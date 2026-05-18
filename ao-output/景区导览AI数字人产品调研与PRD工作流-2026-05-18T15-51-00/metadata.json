@@ -1,0 +1,142 @@
+{
+  "name": "景区导览AI数字人产品调研与PRD工作流",
+  "success": true,
+  "totalDuration": "809.4s",
+  "totalTokens": {
+    "input": 41788,
+    "output": 32341
+  },
+  "inputs": {},
+  "steps": [
+    {
+      "id": "trend_research",
+      "role": "product/product-trend-researcher",
+      "agentName": "趋势研究员",
+      "agentEmoji": "📈",
+      "status": "completed",
+      "output_var": "trend_report",
+      "duration": "49.8s",
+      "tokens": {
+        "input": 2665,
+        "output": 1639
+      }
+    },
+    {
+      "id": "user_research",
+      "role": "design/design-ux-researcher",
+      "agentName": "用户研究员",
+      "agentEmoji": "🔍",
+      "status": "completed",
+      "output_var": "user_report",
+      "duration": "50.8s",
+      "tokens": {
+        "input": 2717,
+        "output": 1707
+      }
+    },
+    {
+      "id": "competitor_analysis",
+      "role": "product/product-feedback-synthesizer",
+      "agentName": "竞品分析师",
+      "agentEmoji": "🥊",
+      "status": "completed",
+      "output_var": "competitor_report",
+      "duration": "62.7s",
+      "tokens": {
+        "input": 2774,
+        "output": 2378
+      }
+    },
+    {
+      "id": "tech_feasibility",
+      "role": "engineering/engineering-ai-engineer",
+      "agentName": "AI技术架构师",
+      "agentEmoji": "🤖",
+      "status": "completed",
+      "output_var": "tech_report",
+      "duration": "46.1s",
+      "tokens": {
+        "input": 2886,
+        "output": 1782
+      }
+    },
+    {
+      "id": "research_report",
+      "role": "product/product-manager",
+      "agentName": "产品经理",
+      "agentEmoji": "📊",
+      "status": "completed",
+      "output_var": "research_report_full",
+      "duration": "87.1s",
+      "tokens": {
+        "input": 8212,
+        "output": 3692
+      }
+    },
+    {
+      "id": "prd_interaction",
+      "role": "product/product-manager",
+      "agentName": "交互模块产品经理",
+      "agentEmoji": "🎙️",
+      "status": "completed",
+      "output_var": "prd_interaction",
+      "duration": "74.9s",
+      "tokens": {
+        "input": 5595,
+        "output": 2419
+      }
+    },
+    {
+      "id": "prd_content_engine",
+      "role": "product/product-manager",
+      "agentName": "内容引擎产品经理",
+      "agentEmoji": "📚",
+      "status": "completed",
+      "output_var": "prd_content",
+      "duration": "115.9s",
+      "tokens": {
+        "input": 5640,
+        "output": 1911
+      }
+    },
+    {
+      "id": "prd_digital_human",
+      "role": "product/product-manager",
+      "agentName": "数字人形象产品经理",
+      "agentEmoji": "👤",
+      "status": "completed",
+      "output_var": "prd_digital",
+      "duration": "46.5s",
+      "tokens": {
+        "input": 0,
+        "output": 1516
+      }
+    },
+    {
+      "id": "prd_analytics",
+      "role": "product/product-manager",
+      "agentName": "数据运营产品经理",
+      "agentEmoji": "📉",
+      "status": "completed",
+      "output_var": "prd_analytics",
+      "duration": "50.5s",
+      "tokens": {
+        "input": 0,
+        "output": 1643
+      }
+    },
+    {
+      "id": "final_delivery",
+      "role": "specialized/specialized-document-generator",
+      "agentName": "文档总编",
+      "agentEmoji": "📝",
+      "status": "completed",
+      "output_var": "final_documents",
+      "duration": "224.9s",
+      "tokens": {
+        "input": 11299,
+        "output": 13654
+      }
+    }
+  ]
+}
