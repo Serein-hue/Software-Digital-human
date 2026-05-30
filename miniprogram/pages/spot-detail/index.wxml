@@ -20,7 +20,7 @@
       class="sd-tier-btn {{tier === item.key ? 'active' : ''}}"
       bindtap="setTier" data-tier="{{item.key}}"
     >
-      <text>{{item.icon}} {{item.label}}</text>
+      <text>{{item.label}}</text>
     </button>
   </view>
 
@@ -38,7 +38,7 @@
       <text>{{isPlaying ? '⏸' : '▶'}}</text>
     </button>
     <view class="sd-audio-info">
-      <text class="sd-audio-label">{{isPlaying ? '正在播报...' : 'AI 语音讲解'}}</text>
+      <text class="sd-audio-label">{{isPlaying ? playingLabel : aiNarration}}</text>
       <text class="sd-audio-dur">{{spot.audioDuration}}</text>
     </view>
   </view>
@@ -46,7 +46,7 @@
   <!-- Related -->
   <view class="sd-related">
     <view class="sd-related-head">
-      <text>🧭 附近景点</text>
+      <text>🧭 {{nearbySpots}}</text>
     </view>
     <view class="sd-related-list">
       <button

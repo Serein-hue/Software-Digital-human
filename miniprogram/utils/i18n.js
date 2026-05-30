@@ -26,6 +26,9 @@ const DICT = {
     'spot.aiNarration': 'AI 语音讲解',
     'spot.playing': '正在播报...',
     'spot.nearbySpots': '附近景点',
+    'spot.oneLine': '一句话',
+    'spot.shortVersion': '简短版',
+    'spot.deepGuide': '深度讲解',
 
     'route.title': '推荐路线',
     'route.count': '{{n}} 条精选路线',
@@ -66,6 +69,9 @@ const DICT = {
     'spot.aiNarration': 'AI Narration',
     'spot.playing': 'Playing...',
     'spot.nearbySpots': 'Nearby Spots',
+    'spot.oneLine': 'One-liner',
+    'spot.shortVersion': 'Brief',
+    'spot.deepGuide': 'Deep Guide',
 
     'route.title': 'Routes',
     'route.count': '{{n}} curated routes',

@@ -1,17 +1,31 @@
-const { SPOTS, TIERS } = require('../../utils/data')
+const { SPOTS } = require('../../utils/data')
+const { t } = require('../../utils/i18n')
 
 Page({
   data: {
     spot: null,
     tier: 'shortIntro',
-    tiers: TIERS,
+    tiers: [],
     paragraphs: [],
     relatedSpots: [],
     isPlaying: false,
     heroGradient: '',
+    aiNarration: '',
+    playingLabel: '',
+    nearbySpots: '',
   },
 
   onLoad(options) {
+    this.setData({
+      aiNarration: t('spot.aiNarration'),
+      playingLabel: t('spot.playing'),
+      nearbySpots: t('spot.nearbySpots'),
+      tiers: [
+        { key: 'oneLiner', label: '⏱ ' + t('spot.oneLine') },
+        { key: 'shortIntro', label: '⏱ ' + t('spot.shortVersion') },
+        { key: 'fullIntro', label: '📖 ' + t('spot.deepGuide') },
+      ],
+    })
     const id = options.id || 'lingshan-buddha'
     this.loadSpot(id)
   },

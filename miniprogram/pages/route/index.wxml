@@ -4,8 +4,8 @@
       <text>◀</text>
     </button>
     <view class="route-header-text">
-      <text class="route-header-title">推荐路线</text>
-      <text class="route-header-sub">3 条精选路线</text>
+      <text class="route-header-title">{{routeTitle}}</text>
+      <text class="route-header-sub">{{routeCount}}</text>
     </view>
   </view>
 
@@ -44,7 +44,7 @@
           </view>
         </view>
         <button class="route-start-btn" bindtap="goBack">
-          <text>🧭 开始导航</text>
+          <text>🧭 {{startNav}}</text>
         </button>
       </view>
     </view>

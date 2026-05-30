@@ -1,3 +1,5 @@
+const { t } = require('../../utils/i18n')
+
 const MOCK_RESULTS = [
   {
     id: 'r1', name: '灵山大佛', category: '青铜佛像·世界之最',
@@ -15,10 +17,31 @@ Page({
     results: [],
     timer: null,
     photoPath: '',
+    // Display strings
+    pageTitle: '',
+    pageHint: '',
+    scanningLabel: '',
+    scanningHint: '',
+    resultsLabel: '',
+    rescanLabel: '',
+    confidenceLabel: '',
+    askLabel: '',
+    captureLabel: '',
   },
 
   onLoad() {
-    this.setData({ phase: 'idle' })
+    this.setData({
+      phase: 'idle',
+      pageTitle: t('photo.results'),
+      pageHint: t('photo.hint'),
+      scanningLabel: t('photo.scanning'),
+      scanningHint: t('photo.hint'),
+      resultsLabel: t('photo.results'),
+      rescanLabel: t('photo.rescan'),
+      confidenceLabel: t('photo.confidence'),
+      askLabel: t('photo.ask'),
+      captureLabel: t('photo.capture'),
+    })
   },
 
   takePhoto() {
