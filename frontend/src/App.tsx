@@ -12,6 +12,7 @@ import {
 import GuidePage from './components/guide/GuidePage'
 import DataDashboard from './components/admin/DataDashboard'
 import KnowledgeBase from './components/admin/KnowledgeBase'
+import ContentReview from './components/admin/ContentReview'
 import {
   ReactFlow,
   Background,
@@ -554,6 +555,7 @@ function AnimatedRoutes() {
         <Route path="/timeline" element={<TimelinePage />} />
         <Route path="/dashboard" element={<DataDashboard />} />
         <Route path="/knowledge" element={<KnowledgeBase />} />
+        <Route path="/review" element={<ContentReview />} />
         <Route path="/validation" element={<ValidationPage />} />
         <Route path="/word" element={<WordPage />} />
       </Routes>
