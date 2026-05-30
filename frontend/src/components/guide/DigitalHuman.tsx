@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Sparkles, Volume2 } from 'lucide-react'
+import { useT } from '../../i18n'
 
 interface Props {
   isSpeaking: boolean
@@ -7,6 +8,7 @@ interface Props {
 }
 
 export default function DigitalHuman({ isSpeaking, spotName }: Props) {
+  const t = useT()
   return (
     <div className="dh-stage">
       <div className="dh-scene">
@@ -63,11 +65,11 @@ export default function DigitalHuman({ isSpeaking, spotName }: Props) {
             animate={{ opacity: 1, y: 0 }}
           >
             <Volume2 size={14} />
-            <span>讲解中</span>
+            <span>{t('guide.speaking')}</span>
             <Sparkles size={12} />
           </motion.span>
         ) : (
-          <span className="dh-idle-badge">AI 导游 · 小景</span>
+          <span className="dh-idle-badge">{t('guide.brandName')}</span>
         )}
         {spotName && <span className="dh-spot-tag">{spotName}</span>}
       </div>

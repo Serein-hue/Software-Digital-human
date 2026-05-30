@@ -32,31 +32,12 @@ const MONTHLY_VISITS_EN = [
   { month: 'Nov', Visitors: 31 }, { month: 'Dec', Visitors: 60 },
 ]
 
-const AGE_DATA = [
-  { name: '30岁以下', value: 153, fill: '#155d58' },
-  { name: '30-49岁', value: 221, fill: '#15bba0' },
-  { name: '50岁以上', value: 148, fill: '#8ab89e' },
-]
-
-const GENDER_DATA = [
-  { name: '男性', value: 275, fill: '#155d58' },
-  { name: '女性', value: 247, fill: '#c1a15a' },
-]
-
 const SATISFACTION_DATA = [
   { name: '5★', value: 8, fill: '#155d58' },
   { name: '4★', value: 114, fill: '#15bba0' },
   { name: '3★', value: 314, fill: '#c1a15a' },
   { name: '2★', value: 62, fill: '#e89460' },
   { name: '1★', value: 24, fill: '#b4522c' },
-]
-
-const SPENDING_DATA = [
-  { name: '门票', value: 203, fill: '#155d58' },
-  { name: '餐饮', value: 228, fill: '#15bba0' },
-  { name: '购物', value: 236, fill: '#c1a15a' },
-  { name: '交通', value: 48, fill: '#e89460' },
-  { name: '娱乐', value: 185, fill: '#8ab89e' },
 ]
 
 const TOP_SPOTS = [
@@ -67,20 +48,29 @@ const TOP_SPOTS = [
   { name: '祥符禅寺', visitors: 273, ratio: '52.3%' },
 ]
 
-const GENDER_DATA_ZH = [
-  { name: '男性', value: 275, fill: '#155d58' },
-  { name: '女性', value: 247, fill: '#c1a15a' },
-]
-
-const GENDER_DATA_EN = [
-  { name: 'Male', value: 275, fill: '#155d58' },
-  { name: 'Female', value: 247, fill: '#c1a15a' },
-]
-
 export default function DataDashboard() {
   const t = useT()
   const lang = getLang()
   const [spotData, setSpotData] = useState(TOP_SPOTS)
+
+  const ageData = [
+    { name: t('dashboard.ageUnder30'), value: 153, fill: '#155d58' },
+    { name: t('dashboard.age30to49'), value: 221, fill: '#15bba0' },
+    { name: t('dashboard.ageOver50'), value: 148, fill: '#8ab89e' },
+  ]
+
+  const genderData = [
+    { name: t('dashboard.genderMale'), value: 275, fill: '#155d58' },
+    { name: t('dashboard.genderFemale'), value: 247, fill: '#c1a15a' },
+  ]
+
+  const spendingData = [
+    { name: t('dashboard.spendTicket'), value: 203, fill: '#155d58' },
+    { name: t('dashboard.spendFood'), value: 228, fill: '#15bba0' },
+    { name: t('dashboard.spendShopping'), value: 236, fill: '#c1a15a' },
+    { name: t('dashboard.spendTransport'), value: 48, fill: '#e89460' },
+    { name: t('dashboard.spendEntertainment'), value: 185, fill: '#8ab89e' },
+  ]
 
   useEffect(() => {
     fetchAnalytics().then((data) => {
@@ -97,7 +87,6 @@ export default function DataDashboard() {
 
   const isEn = lang === 'en'
   const monthlyVisits = isEn ? MONTHLY_VISITS_EN : MONTHLY_VISITS_ZH
-  const genderData = isEn ? GENDER_DATA_EN : GENDER_DATA_ZH
   const visitsKey = isEn ? 'Visitors' : '游客量'
 
   const kpiCards = [
@@ -167,8 +156,8 @@ export default function DataDashboard() {
           </div>
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
-              <Pie data={AGE_DATA} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={42} outerRadius={76} paddingAngle={3}>
-                {AGE_DATA.map((d) => (<Cell key={d.name} fill={d.fill} />))}
+              <Pie data={ageData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={42} outerRadius={76} paddingAngle={3}>
+                {ageData.map((d) => (<Cell key={d.name} fill={d.fill} />))}
               </Pie>
               <Tooltip />
               <Legend wrapperStyle={{ fontSize: 11 }} />
@@ -204,8 +193,8 @@ export default function DataDashboard() {
           </div>
           <ResponsiveContainer width="100%" height={220}>
             <PieChart>
-              <Pie data={SPENDING_DATA} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={38} outerRadius={72} paddingAngle={3}>
-                {SPENDING_DATA.map((d) => (<Cell key={d.name} fill={d.fill} />))}
+              <Pie data={spendingData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={38} outerRadius={72} paddingAngle={3}>
+                {spendingData.map((d) => (<Cell key={d.name} fill={d.fill} />))}
               </Pie>
               <Tooltip />
               <Legend wrapperStyle={{ fontSize: 11 }} />
