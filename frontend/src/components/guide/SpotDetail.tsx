@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, MapPin, Clock, ChevronLeft, Play, Pause, BookOpen, Compass } from 'lucide-react'
 import { useT } from '../../i18n'

@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Camera, X, Scan, Sparkles, ChevronRight, History, MapPin } from 'lucide-react'
 import { useT } from '../../i18n'

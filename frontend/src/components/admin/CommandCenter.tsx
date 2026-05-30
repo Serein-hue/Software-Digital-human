@@ -11,24 +11,22 @@ import {
 } from 'recharts'
 import { useT, getLang } from '../../i18n'
 
-const MONTHLY_VISITS = [
-  { month: '1月', 游客量: 10 }, { month: '2月', 游客量: 13 },
-  { month: '3月', 游客量: 35 }, { month: '4月', 游客量: 49 },
-  { month: '5月', 游客量: 54 }, { month: '6月', 游客量: 49 },
-  { month: '7月', 游客量: 42 }, { month: '8月', 游客量: 68 },
-  { month: '9月', 游客量: 73 }, { month: '10月', 游客量: 38 },
-  { month: '11月', 游客量: 31 }, { month: '12月', 游客量: 60 },
+const MONTHLY_VISITS_ZH = [
+  { month: '1月', visitors: 10 }, { month: '2月', visitors: 13 },
+  { month: '3月', visitors: 35 }, { month: '4月', visitors: 49 },
+  { month: '5月', visitors: 54 }, { month: '6月', visitors: 49 },
+  { month: '7月', visitors: 42 }, { month: '8月', visitors: 68 },
+  { month: '9月', visitors: 73 }, { month: '10月', visitors: 38 },
+  { month: '11月', visitors: 31 }, { month: '12月', visitors: 60 },
 ]
 
-const AGE_DATA = [
-  { name: '30岁以下', value: 153, fill: '#15bba0' },
-  { name: '30-49岁', value: 221, fill: '#155d58' },
-  { name: '50岁以上', value: 148, fill: '#8ab89e' },
-]
-
-const GENDER_DATA = [
-  { name: '男性', value: 275, fill: '#15bba0' },
-  { name: '女性', value: 247, fill: '#c1a15a' },
+const MONTHLY_VISITS_EN = [
+  { month: 'Jan', visitors: 10 }, { month: 'Feb', visitors: 13 },
+  { month: 'Mar', visitors: 35 }, { month: 'Apr', visitors: 49 },
+  { month: 'May', visitors: 54 }, { month: 'Jun', visitors: 49 },
+  { month: 'Jul', visitors: 42 }, { month: 'Aug', visitors: 68 },
+  { month: 'Sep', visitors: 73 }, { month: 'Oct', visitors: 38 },
+  { month: 'Nov', visitors: 31 }, { month: 'Dec', visitors: 60 },
 ]
 
 const SATISFACTION_DATA = [
@@ -37,14 +35,6 @@ const SATISFACTION_DATA = [
   { name: '3★', value: 314, fill: '#c1a15a' },
   { name: '2★', value: 62, fill: '#e89460' },
   { name: '1★', value: 24, fill: '#b4522c' },
-]
-
-const SPENDING_DATA = [
-  { name: '门票', value: 203, fill: '#15bba0' },
-  { name: '餐饮', value: 228, fill: '#155d58' },
-  { name: '购物', value: 236, fill: '#c1a15a' },
-  { name: '交通', value: 48, fill: '#e89460' },
-  { name: '娱乐', value: 185, fill: '#8ab89e' },
 ]
 
 const TOP_SPOTS = [
@@ -88,6 +78,28 @@ export default function CommandCenter() {
   const [dateStr, setDateStr] = useState('')
   const rotationRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const t = useT()
+  const isEn = getLang() === 'en'
+
+  const monthlyVisits = isEn ? MONTHLY_VISITS_EN : MONTHLY_VISITS_ZH
+
+  const ageData = [
+    { name: t('dashboard.ageUnder30'), value: 153, fill: '#15bba0' },
+    { name: t('dashboard.age30to49'), value: 221, fill: '#155d58' },
+    { name: t('dashboard.ageOver50'), value: 148, fill: '#8ab89e' },
+  ]
+
+  const genderData = [
+    { name: t('dashboard.genderMale'), value: 275, fill: '#15bba0' },
+    { name: t('dashboard.genderFemale'), value: 247, fill: '#c1a15a' },
+  ]
+
+  const spendingData = [
+    { name: t('dashboard.spendTicket'), value: 203, fill: '#15bba0' },
+    { name: t('dashboard.spendFood'), value: 228, fill: '#155d58' },
+    { name: t('dashboard.spendShopping'), value: 236, fill: '#c1a15a' },
+    { name: t('dashboard.spendTransport'), value: 48, fill: '#e89460' },
+    { name: t('dashboard.spendEntertainment'), value: 185, fill: '#8ab89e' },
+  ]
 
   useEffect(() => {
     const update = () => {
@@ -205,7 +217,7 @@ export default function CommandCenter() {
               <div className="cmd-panel large">
                 <div className="cmd-panel-head"><TrendingUp size={15} />{t('cmd.monthlyTrend')}</div>
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={MONTHLY_VISITS}>
+                  <AreaChart data={monthlyVisits}>
                     <defs>
                       <linearGradient id="cmdVisit" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor="#15bba0" stopOpacity={0.35} />
@@ -216,7 +228,7 @@ export default function CommandCenter() {
                     <XAxis dataKey="month" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 12 }} />
                     <YAxis tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 12 }} />
                     <Tooltip contentStyle={{ background: '#1a2220', border: '1px solid #2a3a35', borderRadius: 8, color: '#fff' }} />
-                    <Area type="monotone" dataKey="游客量" stroke="#15bba0" fill="url(#cmdVisit)" strokeWidth={2.5} />
+                    <Area type="monotone" dataKey="visitors" stroke="#15bba0" fill="url(#cmdVisit)" strokeWidth={2.5} />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
@@ -259,8 +271,8 @@ export default function CommandCenter() {
                 <div className="cmd-panel-head"><Users size={15} />{t('cmd.ageDist')}</div>
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
-                    <Pie data={AGE_DATA} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={52} outerRadius={90} paddingAngle={3}>
-                      {AGE_DATA.map((d) => (<Cell key={d.name} fill={d.fill} />))}
+                    <Pie data={ageData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={52} outerRadius={90} paddingAngle={3}>
+                      {ageData.map((d) => (<Cell key={d.name} fill={d.fill} />))}
                     </Pie>
                     <Tooltip contentStyle={{ background: '#1a2220', border: '1px solid #2a3a35', borderRadius: 8, color: '#fff' }} />
                     <Legend wrapperStyle={{ fontSize: 13, fill: 'rgba(255,255,255,0.6)' }} />
@@ -271,8 +283,8 @@ export default function CommandCenter() {
                 <div className="cmd-panel-head"><Users size={15} />{t('cmd.genderDist')}</div>
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
-                    <Pie data={GENDER_DATA} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={48} outerRadius={84} paddingAngle={4}>
-                      {GENDER_DATA.map((d) => (<Cell key={d.name} fill={d.fill} />))}
+                    <Pie data={genderData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={48} outerRadius={84} paddingAngle={4}>
+                      {genderData.map((d) => (<Cell key={d.name} fill={d.fill} />))}
                     </Pie>
                     <Tooltip contentStyle={{ background: '#1a2220', border: '1px solid #2a3a35', borderRadius: 8, color: '#fff' }} />
                     <Legend wrapperStyle={{ fontSize: 13, fill: 'rgba(255,255,255,0.6)' }} />
@@ -309,8 +321,8 @@ export default function CommandCenter() {
                 <div className="cmd-panel-head"><Wallet size={15} />{t('cmd.spendingDist')}</div>
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
-                    <Pie data={SPENDING_DATA} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={52} outerRadius={90} paddingAngle={3}>
-                      {SPENDING_DATA.map((d) => (<Cell key={d.name} fill={d.fill} />))}
+                    <Pie data={spendingData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={52} outerRadius={90} paddingAngle={3}>
+                      {spendingData.map((d) => (<Cell key={d.name} fill={d.fill} />))}
                     </Pie>
                     <Tooltip contentStyle={{ background: '#1a2220', border: '1px solid #2a3a35', borderRadius: 8, color: '#fff' }} />
                     <Legend wrapperStyle={{ fontSize: 13, fill: 'rgba(255,255,255,0.6)' }} />
@@ -320,7 +332,7 @@ export default function CommandCenter() {
               <div className="cmd-panel large">
                 <div className="cmd-panel-head"><TrendingUp size={15} />{t('cmd.monthlyRevenue')}</div>
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={MONTHLY_VISITS.map((d) => ({ ...d, 营收: Math.round(d.游客量 * 9.01) }))}>
+                  <AreaChart data={monthlyVisits.map((d) => ({ ...d, revenue: Math.round(d.visitors * 9.01) }))}>
                     <defs>
                       <linearGradient id="cmdRev" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor="#c1a15a" stopOpacity={0.3} />
@@ -331,7 +343,7 @@ export default function CommandCenter() {
                     <XAxis dataKey="month" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 12 }} />
                     <YAxis tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 12 }} />
                     <Tooltip contentStyle={{ background: '#1a2220', border: '1px solid #2a3a35', borderRadius: 8, color: '#fff' }} />
-                    <Area type="monotone" dataKey="营收" stroke="#c1a15a" fill="url(#cmdRev)" strokeWidth={2.5} />
+                    <Area type="monotone" dataKey="revenue" stroke="#c1a15a" fill="url(#cmdRev)" strokeWidth={2.5} />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>

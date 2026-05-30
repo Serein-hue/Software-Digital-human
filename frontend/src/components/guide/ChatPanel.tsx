@@ -1,4 +1,5 @@
-import { useRef, useEffect, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import type { FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mic, Send, ThumbsUp, ThumbsDown, Copy, ShieldCheck, ShieldAlert, ShieldQuestion } from 'lucide-react'
 import { useT } from '../../i18n'
