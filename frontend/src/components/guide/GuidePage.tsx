@@ -10,6 +10,7 @@ import RouteRecommend from './RouteRecommend'
 import PhotoRecognition from './PhotoRecognition'
 import ShareCard from './ShareCard'
 import { useT } from '../../i18n'
+import { fetchChatAnswer } from '../../api'
 
 const MOCK_KNOWLEDGE: Record<string, { text: string; source: string }> = {
   '灵山大佛': {
@@ -73,25 +74,37 @@ export default function GuidePage() {
     setMessages((prev) => [...prev, userMsg])
 
     setIsListening(true)
-    listeningTimerRef.current = setTimeout(() => {
+    listeningTimerRef.current = setTimeout(async () => {
       setIsListening(false)
 
-      const matched = MOCK_KNOWLEDGE[text]
-        ?? (Object.entries(MOCK_KNOWLEDGE).find(([key]) =>
-          text.includes(key.slice(0, 4))
-        )?.[1])
-        ?? MOCK_KNOWLEDGE.default
+      // Try backend first, fall back to mock
+      const remote = await fetchChatAnswer(text)
+      let replyText: string
+      let replySource: string
+
+      if (remote) {
+        replyText = remote.answer
+        replySource = remote.source
+      } else {
+        const matched = MOCK_KNOWLEDGE[text]
+          ?? (Object.entries(MOCK_KNOWLEDGE).find(([key]) =>
+            text.includes(key.slice(0, 4))
+          )?.[1])
+          ?? MOCK_KNOWLEDGE.default
+        replyText = matched.text
+        replySource = matched.source
+      }
 
       setIsSpeaking(true)
       const guideMsg: Message = {
         id: `guide-${Date.now()}`,
         role: 'guide',
-        text: matched.text,
-        source: matched.source,
+        text: replyText,
+        source: replySource,
       }
       setMessages((prev) => [...prev, guideMsg])
 
-      speakingTimerRef.current = setTimeout(() => setIsSpeaking(false), matched.text.length * 35)
+      speakingTimerRef.current = setTimeout(() => setIsSpeaking(false), replyText.length * 35)
     }, 800)
   }, [])
 
