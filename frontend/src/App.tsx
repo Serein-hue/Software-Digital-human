@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import GuidePage from './components/guide/GuidePage'
 import KioskPage from './components/guide/KioskPage'
+import { t, getLang, setLang, type Lang } from './i18n'
 import DataDashboard from './components/admin/DataDashboard'
 import KnowledgeBase from './components/admin/KnowledgeBase'
 import ContentReview from './components/admin/ContentReview'
@@ -128,11 +129,19 @@ function PageShell({ children }: Readonly<{ children: React.ReactNode }>) {
 }
 
 function Header() {
+  const [lang, setLangState] = useState<Lang>(getLang())
+
+  const toggleLang = () => {
+    const next = lang === 'zh' ? 'en' : 'zh'
+    setLang(next)
+    setLangState(next)
+  }
+
   return (
     <header className="app-header">
       <NavLink className="brand" to="/">
         <Sparkles size={18} />
-        <span>景区导览 AI 数字人</span>
+        <span>{t('app.title')}</span>
       </NavLink>
       <nav className="route-nav" aria-label="主导航">
         {navRoutes.map((route) => (
@@ -141,6 +150,14 @@ function Header() {
           </NavLink>
         ))}
       </nav>
+      <button
+        type="button"
+        className="lang-toggle"
+        onClick={toggleLang}
+        aria-label="切换语言"
+      >
+        {t('lang.switch')}
+      </button>
     </header>
   )
 }
