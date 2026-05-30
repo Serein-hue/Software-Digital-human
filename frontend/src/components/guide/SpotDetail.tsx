@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, MapPin, Clock, ChevronLeft, Play, Pause, BookOpen, Compass } from 'lucide-react'
 import { useT } from '../../i18n'
+import { fetchSpot, fetchRelatedSpots } from '../../api'
 
 export interface SpotData {
   id: string
@@ -103,14 +104,53 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
   const [tier, setTier] = useState<Tier>('30秒')
   const [isPlaying, setIsPlaying] = useState(false)
   const audioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const spot = SPOTS[spotId] ?? SPOTS['lingshan-buddha']
+  const [remoteSpot, setRemoteSpot] = useState<SpotData | null>(null)
+  const [remoteRelated, setRemoteRelated] = useState<SpotData[] | null>(null)
   const t = useT()
+
+  useEffect(() => {
+    fetchSpot(spotId).then((data) => {
+      if (data) {
+        setRemoteSpot({
+          id: data.id,
+          name: data.name,
+          category: data.category,
+          heroGradient: data.heroGradient,
+          oneLiner: data.shortIntro,
+          shortIntro: data.shortIntro,
+          fullIntro: data.fullIntro,
+          source: data.source,
+          audioDuration: '3:00',
+          related: data.related,
+        })
+        fetchRelatedSpots(spotId).then((related) => {
+          if (related) {
+            setRemoteRelated(related.map((r) => ({
+              id: r.id,
+              name: r.name,
+              category: r.category,
+              heroGradient: r.heroGradient,
+              oneLiner: r.shortIntro,
+              shortIntro: r.shortIntro,
+              fullIntro: r.shortIntro,
+              source: '',
+              audioDuration: '2:00',
+              related: [],
+            })))
+          }
+        })
+      }
+    }).catch(() => {})
+  }, [spotId])
 
   useEffect(() => {
     return () => {
       if (audioTimerRef.current) clearTimeout(audioTimerRef.current)
     }
   }, [])
+
+  const spot = remoteSpot ?? SPOTS[spotId] ?? SPOTS['lingshan-buddha']
+  const relatedSpots = remoteRelated ?? spot.related.map((id) => SPOTS[id]).filter(Boolean) as SpotData[]
 
   const content = spot[TIER_CONTENT[tier]]
 
@@ -213,16 +253,15 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
           <span>{t('spot.nearbySpots')}</span>
         </div>
         <div className="spot-related-list">
-          {spot.related.map((id) => {
-            const s = SPOTS[id]
+          {relatedSpots.map((s) => {
             if (!s) return null
             return (
               <motion.button
-                key={id}
+                key={s.id}
                 type="button"
                 className="spot-related-chip"
                 whileTap={{ scale: 0.96 }}
-                onClick={() => onNavigate(id)}
+                onClick={() => onNavigate(s.id)}
               >
                 <MapPin size={13} />
                 <div className="spot-related-text">
