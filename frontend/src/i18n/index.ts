@@ -263,6 +263,9 @@ const dict: Record<Lang, Record<string, string>> = {
     'cmd.daysOfWeek': '日一二三四五六',
 
     'lang.switch': 'English',
+
+    'nav.mainNav': '主导航',
+    'nav.switchLang': '切换语言',
   },
   en: {
     'app.title': 'Lingshan · AI Digital Tour Guide',
@@ -524,6 +527,9 @@ const dict: Record<Lang, Record<string, string>> = {
     'cmd.daysOfWeek': 'SuMoTuWeThFrSa',
 
     'lang.switch': '中文',
+
+    'nav.mainNav': 'Main navigation',
+    'nav.switchLang': 'Switch language',
   },
 }
 

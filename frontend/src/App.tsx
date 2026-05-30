@@ -143,7 +143,7 @@ function Header() {
         <Sparkles size={18} />
         <span>{t('app.title')}</span>
       </NavLink>
-      <nav className="route-nav" aria-label="主导航">
+      <nav className="route-nav" aria-label={t('nav.mainNav')}>
         {navRoutes.map((route) => (
           <NavLink key={route.to} to={route.to} end={route.to === '/'}>
             <span>{route.label}</span>
@@ -154,7 +154,7 @@ function Header() {
         type="button"
         className="lang-toggle"
         onClick={toggleLang}
-        aria-label="切换语言"
+        aria-label={t('nav.switchLang')}
       >
         {t('lang.switch')}
       </button>
