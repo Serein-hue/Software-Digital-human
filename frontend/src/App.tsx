@@ -4,10 +4,12 @@ import {
   BookOpen,
   CircleDot,
   MapPinned,
+  MessageCircle,
   PlayCircle,
   ShieldCheck,
   Sparkles,
 } from 'lucide-react'
+import GuidePage from './components/guide/GuidePage'
 import {
   ReactFlow,
   Background,
@@ -543,6 +545,7 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<OverviewPage />} />
+        <Route path="/guide" element={<GuidePage />} />
         <Route path="/prd" element={<PrdPage />} />
         <Route path="/library" element={<LibraryPage />} />
         <Route path="/competitors" element={<CompetitorsPage />} />
