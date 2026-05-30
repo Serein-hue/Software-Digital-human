@@ -103,22 +103,22 @@
     </button>
     <view class="voice-center" catchtap>
       <view class="voice-rings">
-        <view class="voice-ring r1" />
-        <view class="voice-ring r2" />
-        <view class="voice-ring r3" />
-        <view class="voice-mic-icon">🎤</view>
+        <view class="voice-ring r1 {{voiceRecording ? 'active' : ''}}" />
+        <view class="voice-ring r2 {{voiceRecording ? 'active' : ''}}" />
+        <view class="voice-ring r3 {{voiceRecording ? 'active' : ''}}" />
+        <view class="voice-mic-icon" bindtap="{{voiceRecording ? 'stopVoiceRecord' : 'startVoiceRecord'}}">🎤</view>
       </view>
-      <text class="voice-label">正在聆听...</text>
+      <text class="voice-label">{{voiceRecording ? '正在录音...' : '点击麦克风开始'}}</text>
       <view class="voice-bars">
-        <view wx:for="{{16}}" wx:key="index" class="voice-bar" />
+        <view wx:for="{{16}}" wx:key="*this" wx:for-item="idx" class="voice-bar {{voiceRecording ? 'active' : ''}}" />
       </view>
       <view class="voice-suggestions">
         <text class="voice-hint">试试说：</text>
-        <button wx:for="{{['灵山大佛有多高？', '帮我推荐一条路线', '这个景点有什么典故？']}}" wx:key="*this" class="voice-chip" bindtap="onVoiceResult" data-text="{{item}}">
+        <button wx:for="{{voiceSuggestions}}" wx:key="*this" class="voice-chip" bindtap="onVoiceResult" data-text="{{item}}">
           {{item}}
         </button>
       </view>
     </view>
-    <text class="voice-bottom-hint">轻点提示文字快速输入 · 点击空白处取消</text>
+    <text class="voice-bottom-hint">{{voiceRecording ? '录音最长10秒，点击麦克风停止' : '轻点提示文字快速输入 · 点击空白处取消'}}</text>
   </view>
 </view>
