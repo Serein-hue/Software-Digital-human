@@ -8,9 +8,9 @@ interface Props {
 }
 
 const MOCK_RESULTS = [
-  '黄鹤楼有多少年历史？',
+  '灵山大佛有多高？',
   '帮我推荐一条游览路线',
-  '这个景点有什么典故？',
+  '九龙灌浴每天几场表演？',
 ]
 
 export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
