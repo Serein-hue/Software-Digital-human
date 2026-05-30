@@ -280,6 +280,8 @@ export default function KnowledgeBase() {
         <div><strong>{MOCK_DOCS.reduce((s, d) => s + d.chunks, 0)}</strong> 总切片</div>
         <div><strong>{MOCK_DOCS.reduce((s, d) => {
           const num = parseFloat(d.size)
+          if (d.size.includes('GB')) return s + num * 1024
+          if (d.size.includes('KB')) return s + num / 1024
           return s + (d.size.includes('MB') ? num : num / 1024)
         }, 0).toFixed(1)} MB</strong> 总大小</div>
       </div>
