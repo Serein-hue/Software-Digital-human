@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 import GuidePage from './components/guide/GuidePage'
+import KioskPage from './components/guide/KioskPage'
 import DataDashboard from './components/admin/DataDashboard'
 import KnowledgeBase from './components/admin/KnowledgeBase'
 import ContentReview from './components/admin/ContentReview'
@@ -551,6 +552,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<OverviewPage />} />
         <Route path="/guide" element={<GuidePage />} />
+        <Route path="/kiosk" element={<KioskPage />} />
         <Route path="/prd" element={<PrdPage />} />
         <Route path="/library" element={<LibraryPage />} />
         <Route path="/competitors" element={<CompetitorsPage />} />
