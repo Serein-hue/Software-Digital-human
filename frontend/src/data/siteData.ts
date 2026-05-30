@@ -66,6 +66,7 @@ export type FlowStage = {
 export const navRoutes = [
   { to: '/guide', label: 'C端导览' },
   { to: '/dashboard', label: '数据大屏' },
+  { to: '/knowledge', label: '知识库' },
   { to: '/', label: '总览' },
   { to: '/prd', label: 'PRD' },
   { to: '/library', label: '资料库' },
