@@ -1,7 +1,7 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   TrendingUp, Users, Clock, Wallet, Star, MapPin,
-  ChevronRight,
 } from 'lucide-react'
 import {
   CartesianGrid,
@@ -11,20 +11,25 @@ import {
   Tooltip, XAxis, YAxis, Legend,
   Area, AreaChart,
 } from 'recharts'
+import { useT, getLang } from '../../i18n'
+import { fetchAnalytics } from '../../api'
 
-const MONTHLY_VISITS = [
-  { month: '1月', 游客量: 10 },
-  { month: '2月', 游客量: 13 },
-  { month: '3月', 游客量: 35 },
-  { month: '4月', 游客量: 49 },
-  { month: '5月', 游客量: 54 },
-  { month: '6月', 游客量: 49 },
-  { month: '7月', 游客量: 42 },
-  { month: '8月', 游客量: 68 },
-  { month: '9月', 游客量: 73 },
-  { month: '10月', 游客量: 38 },
-  { month: '11月', 游客量: 31 },
-  { month: '12月', 游客量: 60 },
+const MONTHLY_VISITS_ZH = [
+  { month: '1月', 游客量: 10 }, { month: '2月', 游客量: 13 },
+  { month: '3月', 游客量: 35 }, { month: '4月', 游客量: 49 },
+  { month: '5月', 游客量: 54 }, { month: '6月', 游客量: 49 },
+  { month: '7月', 游客量: 42 }, { month: '8月', 游客量: 68 },
+  { month: '9月', 游客量: 73 }, { month: '10月', 游客量: 38 },
+  { month: '11月', 游客量: 31 }, { month: '12月', 游客量: 60 },
+]
+
+const MONTHLY_VISITS_EN = [
+  { month: 'Jan', Visitors: 10 }, { month: 'Feb', Visitors: 13 },
+  { month: 'Mar', Visitors: 35 }, { month: 'Apr', Visitors: 49 },
+  { month: 'May', Visitors: 54 }, { month: 'Jun', Visitors: 49 },
+  { month: 'Jul', Visitors: 42 }, { month: 'Aug', Visitors: 68 },
+  { month: 'Sep', Visitors: 73 }, { month: 'Oct', Visitors: 38 },
+  { month: 'Nov', Visitors: 31 }, { month: 'Dec', Visitors: 60 },
 ]
 
 const AGE_DATA = [
@@ -62,14 +67,46 @@ const TOP_SPOTS = [
   { name: '祥符禅寺', visitors: 273, ratio: '52.3%' },
 ]
 
-const kpiCards = [
-  { icon: Users, label: '累计游客', value: '522', change: '+12%', color: 'var(--teal)' },
-  { icon: Clock, label: '平均停留', value: '4.0h', change: '+0.3h', color: 'var(--teal)' },
-  { icon: Wallet, label: '人均消费', value: '¥901', change: '+8%', color: 'var(--teal)' },
-  { icon: Star, label: '满意度', value: '3.08', change: '/5.0', color: 'var(--rust)' },
+const GENDER_DATA_ZH = [
+  { name: '男性', value: 275, fill: '#155d58' },
+  { name: '女性', value: 247, fill: '#c1a15a' },
+]
+
+const GENDER_DATA_EN = [
+  { name: 'Male', value: 275, fill: '#155d58' },
+  { name: 'Female', value: 247, fill: '#c1a15a' },
 ]
 
 export default function DataDashboard() {
+  const t = useT()
+  const lang = getLang()
+  const [spotData, setSpotData] = useState(TOP_SPOTS)
+
+  useEffect(() => {
+    fetchAnalytics().then((data) => {
+      if (data?.spotPopularity) {
+        const max = Math.max(...data.spotPopularity.map((s) => s.visitors))
+        setSpotData(data.spotPopularity.map((s) => ({
+          name: s.name,
+          visitors: s.visitors,
+          ratio: `${((s.visitors / max) * 100).toFixed(1)}%`,
+        })))
+      }
+    }).catch(() => {})
+  }, [])
+
+  const isEn = lang === 'en'
+  const monthlyVisits = isEn ? MONTHLY_VISITS_EN : MONTHLY_VISITS_ZH
+  const genderData = isEn ? GENDER_DATA_EN : GENDER_DATA_ZH
+  const visitsKey = isEn ? 'Visitors' : '游客量'
+
+  const kpiCards = [
+    { icon: Users, label: t('dashboard.totalVisitors'), value: '522', change: '+12%', color: 'var(--teal)' },
+    { icon: Clock, label: t('dashboard.avgStay'), value: '4.0h', change: '+0.3h', color: 'var(--teal)' },
+    { icon: Wallet, label: t('dashboard.avgSpend'), value: '¥901', change: '+8%', color: 'var(--teal)' },
+    { icon: Star, label: t('dashboard.satisfaction'), value: '3.08', change: '/5.0', color: 'var(--rust)' },
+  ]
+
   return (
     <motion.div
       className="dashboard-root"
@@ -79,10 +116,10 @@ export default function DataDashboard() {
     >
       <div className="dashboard-head">
         <div>
-          <h2>灵山胜境 · 运营数据大屏</h2>
-          <span>数据来源：示范景区公开资料包 · 2025年度</span>
+          <h2>{t('dashboard.title')}</h2>
+          <span>{t('dashboard.subtitle')}</span>
         </div>
-        <span className="dashboard-badge">实时监控</span>
+        <span className="dashboard-badge">{t('dashboard.realtime')}</span>
       </div>
 
       {/* KPI cards */}
@@ -104,10 +141,10 @@ export default function DataDashboard() {
         <div className="dashboard-chart-card large">
           <div className="dashboard-chart-head">
             <TrendingUp size={15} />
-            <span>月度游客趋势</span>
+            <span>{t('dashboard.monthlyTrend')}</span>
           </div>
           <ResponsiveContainer width="100%" height={240}>
-            <AreaChart data={MONTHLY_VISITS}>
+            <AreaChart data={monthlyVisits}>
               <defs>
                 <linearGradient id="visitGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="#155d58" stopOpacity={0.3} />
@@ -118,7 +155,7 @@ export default function DataDashboard() {
               <XAxis dataKey="month" tick={{ fontSize: 11 }} />
               <YAxis tick={{ fontSize: 11 }} />
               <Tooltip />
-              <Area type="monotone" dataKey="游客量" stroke="#155d58" fill="url(#visitGrad)" strokeWidth={2} />
+              <Area type="monotone" dataKey={visitsKey} stroke="#155d58" fill="url(#visitGrad)" strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -126,7 +163,7 @@ export default function DataDashboard() {
         <div className="dashboard-chart-card">
           <div className="dashboard-chart-head">
             <Users size={15} />
-            <span>年龄分布</span>
+            <span>{t('dashboard.ageDist')}</span>
           </div>
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
@@ -145,7 +182,7 @@ export default function DataDashboard() {
         <div className="dashboard-chart-card">
           <div className="dashboard-chart-head">
             <Star size={15} />
-            <span>满意度分布</span>
+            <span>{t('dashboard.satisfactionDist')}</span>
           </div>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={SATISFACTION_DATA}>
@@ -163,7 +200,7 @@ export default function DataDashboard() {
         <div className="dashboard-chart-card">
           <div className="dashboard-chart-head">
             <Wallet size={15} />
-            <span>人均消费构成 (¥)</span>
+            <span>{t('dashboard.spendingDist')}</span>
           </div>
           <ResponsiveContainer width="100%" height={220}>
             <PieChart>
@@ -182,12 +219,12 @@ export default function DataDashboard() {
         <div className="dashboard-chart-card small">
           <div className="dashboard-chart-head">
             <Users size={15} />
-            <span>性别分布</span>
+            <span>{t('dashboard.genderDist')}</span>
           </div>
           <ResponsiveContainer width="100%" height={180}>
             <PieChart>
-              <Pie data={GENDER_DATA} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={38} outerRadius={68} paddingAngle={4}>
-                {GENDER_DATA.map((d) => (<Cell key={d.name} fill={d.fill} />))}
+              <Pie data={genderData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={38} outerRadius={68} paddingAngle={4}>
+                {genderData.map((d) => (<Cell key={d.name} fill={d.fill} />))}
               </Pie>
               <Tooltip />
               <Legend wrapperStyle={{ fontSize: 11 }} />
@@ -198,15 +235,15 @@ export default function DataDashboard() {
         <div className="dashboard-chart-card">
           <div className="dashboard-chart-head">
             <MapPin size={15} />
-            <span>热门景点排行</span>
+            <span>{t('dashboard.topSpots')}</span>
           </div>
           <div className="dashboard-spot-list">
-            {TOP_SPOTS.map((spot, i) => (
+            {spotData.map((spot, i) => (
               <div key={spot.name} className="dashboard-spot-row">
                 <span className="dashboard-spot-rank">{i + 1}</span>
                 <div className="dashboard-spot-info">
                   <strong>{spot.name}</strong>
-                  <span>{spot.visitors} 人次</span>
+                  <span>{spot.visitors} {t('dashboard.visitorsUnit')}</span>
                 </div>
                 <div className="dashboard-spot-bar-wrap">
                   <motion.div
