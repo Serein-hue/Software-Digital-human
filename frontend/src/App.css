@@ -3079,6 +3079,361 @@ li {
   }
 }
 
+/* =============================================
+   B-end Digital Human Config
+   ============================================= */
+
+.dhconfig-root {
+  padding: 28px min(4vw, 48px) 48px;
+}
+
+.dhconfig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.dhconfig-section {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.dhconfig-section-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.dhconfig-section-head svg {
+  color: var(--teal);
+}
+
+.dhconfig-avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.dhconfig-avatar-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.dhconfig-avatar-card:hover {
+  border-color: rgba(21, 93, 88, 0.3);
+}
+
+.dhconfig-avatar-card.active {
+  border-color: var(--teal);
+  background: rgba(21, 93, 88, 0.04);
+}
+
+.dhconfig-avatar-preview {
+  position: relative;
+  height: 64px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dhconfig-avatar-check {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dhconfig-avatar-info strong {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.dhconfig-avatar-info span {
+  font-size: 0.68rem;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.dhconfig-avatar-info p {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin: 3px 0 0;
+  line-height: 1.3;
+}
+
+.dhconfig-voice-presets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.dhconfig-voice-card {
+  padding: 12px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.dhconfig-voice-card:hover {
+  border-color: rgba(21, 93, 88, 0.3);
+}
+
+.dhconfig-voice-card.active {
+  border-color: var(--teal);
+  background: rgba(21, 93, 88, 0.04);
+}
+
+.dhconfig-voice-card strong {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.dhconfig-voice-card span {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.dhconfig-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.dhconfig-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dhconfig-slider-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--ink);
+}
+
+.dhconfig-slider-val {
+  margin-left: auto;
+  font-weight: 700;
+  color: var(--teal);
+  font-size: 0.75rem;
+}
+
+.dhconfig-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #f0ece1;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.dhconfig-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--teal);
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.dhconfig-preview-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border: 2px solid var(--teal);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--teal);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.dhconfig-preview-btn:hover {
+  background: var(--teal);
+  color: #fff;
+}
+
+.dhconfig-toggle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dhconfig-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.dhconfig-toggle:hover {
+  border-color: rgba(21, 93, 88, 0.25);
+}
+
+.dhconfig-toggle > div {
+  flex: 1;
+}
+
+.dhconfig-toggle strong {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.dhconfig-toggle span {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.dhconfig-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.dhconfig-toggle-knob {
+  position: relative;
+  width: 44px;
+  height: 26px;
+  border-radius: 13px;
+  background: #ded8c9;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.dhconfig-toggle-knob::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.dhconfig-toggle input:checked + .dhconfig-toggle-knob {
+  background: var(--teal);
+}
+
+.dhconfig-toggle input:checked + .dhconfig-toggle-knob::after {
+  transform: translateX(18px);
+}
+
+.dhconfig-preview-stage {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: #faf8f1;
+  border-radius: 10px;
+}
+
+.dhconfig-preview-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dhconfig-preview-info strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.dhconfig-preview-info > span {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.dhconfig-preview-badges {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.dhconfig-preview-badge {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  background: rgba(21, 93, 88, 0.1);
+  color: var(--teal);
+}
+
+.dhconfig-preview-badge.off {
+  background: rgba(107, 114, 128, 0.1);
+  color: var(--muted);
+}
+
+@media (max-width: 680px) {
+  .dhconfig-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dhconfig-avatar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 900px) {
   .dashboard-kpi-grid {
     grid-template-columns: repeat(2, 1fr);

@@ -68,6 +68,7 @@ export const navRoutes = [
   { to: '/dashboard', label: '数据大屏' },
   { to: '/knowledge', label: '知识库' },
   { to: '/review', label: '内容审核' },
+  { to: '/digital-human', label: '数字人配置' },
   { to: '/', label: '总览' },
   { to: '/prd', label: 'PRD' },
   { to: '/library', label: '资料库' },
