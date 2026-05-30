@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Map, Clock, Camera, BookOpen, Share2, Image, WifiOff, RefreshCw } from 'lucide-react'
 import DigitalHuman from './DigitalHuman'
@@ -52,6 +52,15 @@ export default function GuidePage() {
   const [isOffline, setIsOffline] = useState(false)
   const [spotDetailId, setSpotDetailId] = useState<string | null>(null)
   const [routeOpen, setRouteOpen] = useState(false)
+  const listeningTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const speakingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (listeningTimerRef.current) clearTimeout(listeningTimerRef.current)
+      if (speakingTimerRef.current) clearTimeout(speakingTimerRef.current)
+    }
+  }, [])
 
   const handleSend = useCallback((text: string) => {
     const userMsg: Message = {
@@ -62,7 +71,7 @@ export default function GuidePage() {
     setMessages((prev) => [...prev, userMsg])
 
     setIsListening(true)
-    setTimeout(() => {
+    listeningTimerRef.current = setTimeout(() => {
       setIsListening(false)
 
       const matched = MOCK_KNOWLEDGE[text]
@@ -80,7 +89,7 @@ export default function GuidePage() {
       }
       setMessages((prev) => [...prev, guideMsg])
 
-      setTimeout(() => setIsSpeaking(false), matched.text.length * 35)
+      speakingTimerRef.current = setTimeout(() => setIsSpeaking(false), matched.text.length * 35)
     }, 800)
   }, [])
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, MapPin, Clock, ChevronLeft, Play, Pause, BookOpen, Compass } from 'lucide-react'
 
@@ -101,16 +101,25 @@ interface Props {
 export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
   const [tier, setTier] = useState<Tier>('30秒')
   const [isPlaying, setIsPlaying] = useState(false)
+  const audioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const spot = SPOTS[spotId] ?? SPOTS['lingshan-buddha']
+
+  useEffect(() => {
+    return () => {
+      if (audioTimerRef.current) clearTimeout(audioTimerRef.current)
+    }
+  }, [])
 
   const content = spot[TIER_CONTENT[tier]]
 
   const togglePlay = () => {
     if (isPlaying) {
       setIsPlaying(false)
+      if (audioTimerRef.current) clearTimeout(audioTimerRef.current)
     } else {
       setIsPlaying(true)
-      setTimeout(() => setIsPlaying(false), spot.audioDuration.split(':').reduce((m, s) => m * 60 + +s, 0) * 1000)
+      const duration = spot.audioDuration.split(':').reduce((m, s) => m * 60 + +s, 0) * 1000
+      audioTimerRef.current = setTimeout(() => setIsPlaying(false), duration)
     }
   }
 
@@ -186,7 +195,7 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
             {Array.from({ length: 7 }).map((_, i) => (
               <motion.span
                 key={i}
-                className="spot-audio-bar"
+                className="spot-audio-bar-inner"
                 animate={{ height: [6, 14 + Math.random() * 18, 6] }}
                 transition={{ repeat: Infinity, duration: 0.5 + Math.random() * 0.3, delay: i * 0.1 }}
               />
@@ -216,7 +225,7 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
                 <MapPin size={13} />
                 <div className="spot-related-text">
                   <strong>{s.name}</strong>
-                  <span>{s.oneLiner.slice(0, 28)}...</span>
+                  <span>{s.oneLiner.length > 28 ? s.oneLiner.slice(0, 28) + '...' : s.oneLiner}</span>
                 </div>
               </motion.button>
             )

@@ -1401,7 +1401,7 @@ li {
   gap: 2px;
 }
 
-.spot-audio-bar {
+.spot-audio-bar-inner {
   width: 3px;
   border-radius: 2px;
   background: var(--teal);
@@ -1791,7 +1791,7 @@ li {
   left: 12px;
   right: 12px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #15bba0, transparent);
+  background: linear-gradient(90deg, transparent, var(--teal-light), transparent);
   box-shadow: 0 0 16px rgba(21, 187, 160, 0.6);
 }
 
@@ -1840,7 +1840,7 @@ li {
 .photo-progress-fill {
   height: 100%;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--teal), #15bba0);
+  background: linear-gradient(90deg, var(--teal), var(--teal-light));
 }
 
 .photo-progress-hint {
@@ -1872,7 +1872,7 @@ li {
   margin: 0;
 }
 
-.photo-results-head svg { color: #15bba0; }
+.photo-results-head svg { color: var(--teal-light); }
 
 .photo-rescan-btn {
   padding: 6px 14px;
@@ -1911,7 +1911,7 @@ li {
   height: 24px;
   border-radius: 50%;
   background: rgba(21, 187, 160, 0.3);
-  color: #15bba0;
+  color: var(--teal-light);
   font-size: 12px;
   font-weight: 800;
 }
@@ -1952,7 +1952,7 @@ li {
 
 .photo-confidence {
   font-size: 11px;
-  color: #15bba0;
+  color: var(--teal-light);
   font-weight: 600;
 }
 
@@ -2239,7 +2239,7 @@ li {
 }
 
 .share-card-action-btn.primary:active {
-  background: #0d4d48;
+  background: var(--teal-dark);
 }
 
 /* =============================================
@@ -2450,7 +2450,7 @@ li {
 }
 
 .kb-upload-btn:active {
-  background: #0d4d48;
+  background: var(--teal-dark);
 }
 
 .kb-toolbar {
@@ -3712,7 +3712,7 @@ li {
 }
 
 .settings-save-btn:active {
-  background: #0d4d48;
+  background: var(--teal-dark);
 }
 
 @media (max-width: 680px) {

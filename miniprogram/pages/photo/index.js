@@ -27,7 +27,7 @@ Page({
     const timer = setInterval(() => {
       const progress = this.data.progress + 2.5
       if (progress >= 100) {
-        clearInterval(this.data.timer)
+        clearInterval(timer)
         this.setData({ progress: 100, phase: 'results', results: MOCK_RESULTS })
       } else {
         this.setData({ progress })

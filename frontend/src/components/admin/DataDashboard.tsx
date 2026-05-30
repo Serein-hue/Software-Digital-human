@@ -5,7 +5,6 @@ import {
 } from 'lucide-react'
 import {
   CartesianGrid,
-  Line, LineChart,
   Pie, PieChart, Cell,
   BarChart, Bar,
   ResponsiveContainer,

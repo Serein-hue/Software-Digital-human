@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Camera, X, Scan, Sparkles, ChevronRight, History, MapPin } from 'lucide-react'
 
@@ -53,14 +53,22 @@ interface Props {
 export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk }: Props) {
   const [phase, setPhase] = useState<'scanning' | 'results'>('scanning')
   const [progress, setProgress] = useState(0)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
+  }, [])
 
   const startScan = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current)
     setPhase('scanning')
     setProgress(0)
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(interval)
+          clearInterval(intervalRef.current!)
           setPhase('results')
           return 100
         }
@@ -69,15 +77,9 @@ export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk 
     }, 40)
   }, [])
 
-  // Auto-start on open
   const handleOpen = useCallback(() => {
     if (isOpen) startScan()
   }, [isOpen, startScan])
-
-  // Trigger start when opened
-  if (isOpen && phase === 'scanning' && progress === 0) {
-    // useEffect-like pattern but in render — actually let me use a different approach
-  }
 
   return (
     <AnimatePresence onExitComplete={() => setPhase('scanning')}>

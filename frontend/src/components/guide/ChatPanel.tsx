@@ -59,7 +59,10 @@ export default function ChatPanel({ messages, onSend, isListening, onRate, onVoi
                   <button type="button" onClick={() => onRate(msg.id, 'down')} aria-label="差评">
                     <ThumbsDown size={13} />
                   </button>
-                  <button type="button" aria-label="复制">
+                  <button type="button" aria-label="复制" onClick={() => {
+                    const lastGuide = [...messages].reverse().find(m => m.role === 'guide')
+                    if (lastGuide) navigator.clipboard.writeText(lastGuide.text).catch(() => {})
+                  }}>
                     <Copy size={13} />
                   </button>
                 </div>

@@ -2,6 +2,7 @@
 page {
   --teal: #155d58;
   --teal-light: #15bba0;
+  --teal-dark: #0d4d48;
   --rust: #b4522c;
   --paper: #faf8f1;
   --paper-deep: #efe8d7;
@@ -34,7 +35,7 @@ page {
   border-radius: 16rpx; font-size: 30rpx; font-weight: 700;
   border: none;
 }
-.btn-primary:active { background: #0d4d48; }
+.btn-primary:active { background: var(--teal-dark); }
 
 .btn-outline {
   display: flex; align-items: center; justify-content: center; gap: 12rpx;

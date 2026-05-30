@@ -9,7 +9,7 @@ export default function SystemSettings() {
   const [copiedKey, setCopiedKey] = useState<string | null>(null)
 
   const copyKey = (key: string, label: string) => {
-    navigator.clipboard.writeText(key)
+    navigator.clipboard.writeText(key).catch(() => {})
     setCopiedKey(label)
     setTimeout(() => setCopiedKey(null), 2000)
   }

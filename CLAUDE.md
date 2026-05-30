@@ -24,8 +24,8 @@ skills/                 # 自动化脚本
 ## 当前状态
 - [x] C端 6 页面完成：GuidePage, ChatPanel, DigitalHuman, SpotDetail, RouteRecommend, PhotoRecognition, VoiceRecord, ShareCard
 - [x] 全部 mock 数据已替换为灵山胜境官方资料
-- [x] B端数据大屏完成 (DataDashboard)
-- [ ] B端：知识库管理、内容审核、数字人配置、系统设置
+- [x] B端 5 页面完成：DataDashboard, KnowledgeBase, ContentReview, DigitalHumanConfig, SystemSettings
+- [x] 微信小程序端：4 页面（guide/spot-detail/route/photo），原生 WXML+WXSS，同设计 token
 - [ ] RAG 检索管道
 - [ ] 后端 API
 
