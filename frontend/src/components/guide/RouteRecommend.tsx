@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, Clock, Footprints, Star, MapPin, ChevronRight, Navigation } from 'lucide-react'
+import { useT } from '../../i18n'
 
 interface RouteStep {
   spot: string
@@ -96,6 +97,7 @@ interface Props {
 
 export default function RouteRecommend({ onClose, onSpotClick }: Props) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
+  const t = useT()
 
   return (
     <motion.div
@@ -110,8 +112,8 @@ export default function RouteRecommend({ onClose, onSpotClick }: Props) {
           <ChevronLeft size={22} />
         </button>
         <div className="route-header-text">
-          <h2>推荐路线</h2>
-          <span>3 条精选路线</span>
+          <h2>{t('route.title')}</h2>
+          <span>{t('route.count', { n: ROUTES.length })}</span>
         </div>
       </div>
 
@@ -191,7 +193,7 @@ export default function RouteRecommend({ onClose, onSpotClick }: Props) {
                     onClick={onClose}
                   >
                     <Navigation size={16} />
-                    <span>开始导航</span>
+                    <span>{t('route.startNav')}</span>
                   </motion.button>
                 </motion.div>
               )}

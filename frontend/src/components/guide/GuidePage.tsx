@@ -9,6 +9,7 @@ import SpotDetail from './SpotDetail'
 import RouteRecommend from './RouteRecommend'
 import PhotoRecognition from './PhotoRecognition'
 import ShareCard from './ShareCard'
+import { useT } from '../../i18n'
 
 const MOCK_KNOWLEDGE: Record<string, { text: string; source: string }> = {
   '灵山大佛': {
@@ -30,10 +31,10 @@ const MOCK_KNOWLEDGE: Record<string, { text: string; source: string }> = {
 }
 
 const QUICK_ACTIONS = [
-  { icon: Map, label: '推荐路线' },
-  { icon: Clock, label: '游览时长' },
-  { icon: Camera, label: '拍照识景' },
-  { icon: BookOpen, label: '深度讲解' },
+  { icon: Map, key: 'routeRecommend' },
+  { icon: Clock, key: 'tourDuration' },
+  { icon: Camera, key: 'photoRecognition' },
+  { icon: BookOpen, key: 'deepGuide' },
 ]
 
 export default function GuidePage() {
@@ -41,7 +42,7 @@ export default function GuidePage() {
     {
       id: 'welcome',
       role: 'guide',
-      text: '欢迎来到灵山胜境！我是您的 AI 导游小景。您可以随时向我提问，比如"灵山大佛有多高？"或者"推荐一条游览路线"。我会根据您的位置，主动为您讲解身边的景点。',
+      text: t('guide.welcome'),
     },
   ])
   const [isSpeaking, setIsSpeaking] = useState(false)
@@ -54,6 +55,7 @@ export default function GuidePage() {
   const [routeOpen, setRouteOpen] = useState(false)
   const listeningTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const speakingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const t = useT()
 
   useEffect(() => {
     return () => {
@@ -103,7 +105,7 @@ export default function GuidePage() {
     <div className="guide-page">
       {/* Header */}
       <header className="guide-header">
-        <span className="guide-header-title">AI 导游</span>
+        <span className="guide-header-title">{t('guide.title')}</span>
         <div className="guide-header-actions">
           <button
             type="button"
@@ -135,7 +137,7 @@ export default function GuidePage() {
             transition={{ duration: 0.25 }}
           >
             <WifiOff size={13} />
-            <span>弱网模式 · 已缓存基础讲解包，部分功能可能受限</span>
+            <span>{t('guide.offlineBanner')}</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -148,24 +150,24 @@ export default function GuidePage() {
       <div className="guide-quick-actions">
         {QUICK_ACTIONS.map((action) => (
           <motion.button
-            key={action.label}
+            key={action.key}
             type="button"
             className="quick-action-chip"
             whileTap={{ scale: 0.95 }}
             onClick={() => {
-              if (action.label === '拍照识景') {
+              if (action.key === 'photoRecognition') {
                 setCameraOpen(true)
-              } else if (action.label === '推荐路线') {
+              } else if (action.key === 'routeRecommend') {
                 setRouteOpen(true)
-              } else if (action.label === '深度讲解') {
+              } else if (action.key === 'deepGuide') {
                 setSpotDetailId('lingshan-buddha')
               } else {
-                handleSend(action.label)
+                handleSend(t(`guide.${action.key}`))
               }
             }}
           >
             <action.icon size={15} />
-            <span>{action.label}</span>
+            <span>{t(`guide.${action.key}`)}</span>
           </motion.button>
         ))}
         <motion.button
@@ -175,7 +177,7 @@ export default function GuidePage() {
           onClick={() => setCameraOpen(true)}
         >
           <Image size={15} />
-          <span>拍照</span>
+          <span>{t('guide.photo')}</span>
         </motion.button>
       </div>
 

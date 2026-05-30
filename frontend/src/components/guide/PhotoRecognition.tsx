@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Camera, X, Scan, Sparkles, ChevronRight, History, MapPin } from 'lucide-react'
+import { useT } from '../../i18n'
 
 interface RecogResult {
   id: string
@@ -54,6 +55,7 @@ export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk 
   const [phase, setPhase] = useState<'scanning' | 'results'>('scanning')
   const [progress, setProgress] = useState(0)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const t = useT()
 
   useEffect(() => {
     return () => {
@@ -127,7 +129,7 @@ export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk 
 
                 <div className="photo-progress-section">
                   <Scan size={16} className="photo-scan-icon" />
-                  <span className="photo-progress-label">识别中...</span>
+                  <span className="photo-progress-label">{t('photo.scanning')}</span>
                   <div className="photo-progress-track">
                     <motion.div
                       className="photo-progress-fill"
@@ -135,7 +137,7 @@ export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk 
                       transition={{ duration: 0.1 }}
                     />
                   </div>
-                  <span className="photo-progress-hint">保持稳定，将景点置于框内</span>
+                  <span className="photo-progress-hint">{t('photo.hint')}</span>
                 </div>
               </div>
             )}
@@ -144,9 +146,9 @@ export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk 
               <div className="photo-results">
                 <div className="photo-results-head">
                   <Sparkles size={16} />
-                  <h3>识别结果</h3>
+                  <h3>{t('photo.results')}</h3>
                   <button type="button" className="photo-rescan-btn" onClick={startScan}>
-                    重新识别
+                    {t('photo.rescan')}
                   </button>
                 </div>
 
@@ -170,7 +172,7 @@ export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk 
                         <p>{item.description}</p>
                         <div className="photo-result-bottom">
                           <span className="photo-confidence">
-                            置信度 {item.confidence}%
+                            {t('photo.confidence')} {item.confidence}%
                           </span>
                         </div>
                       </div>
@@ -197,7 +199,7 @@ export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk 
                             setTimeout(() => onAsk(`给我讲讲${item.name}`), 300)
                           }}
                         >
-                          <span>提问</span>
+                          <span>{t('photo.ask')}</span>
                           <ChevronRight size={14} />
                         </motion.button>
                       </div>
@@ -209,7 +211,7 @@ export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk 
                   <div className="photo-history">
                     <div className="photo-history-head">
                       <History size={14} />
-                      <span>最近识别</span>
+                      <span>{t('photo.recent')}</span>
                     </div>
                     {RECENT_HISTORY.map((item) => (
                       <div key={item.name} className="photo-history-item">

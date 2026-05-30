@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mic, X, AlertCircle, RefreshCw } from 'lucide-react'
+import { useT, getLang } from '../../i18n'
 
 interface Props {
   isOpen: boolean
@@ -8,10 +9,16 @@ interface Props {
   onResult: (text: string) => void
 }
 
-const SUGGESTIONS = [
+const SUGGESTIONS_ZH = [
   '灵山大佛有多高？',
   '帮我推荐一条游览路线',
   '九龙灌浴每天几场表演？',
+]
+
+const SUGGESTIONS_EN = [
+  'How tall is the Grand Buddha?',
+  'Recommend a tour route',
+  'When are the Nine Dragons shows?',
 ]
 
 type Phase = 'listening' | 'result' | 'error' | 'idle'
@@ -22,6 +29,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
   const [errorMsg, setErrorMsg] = useState('')
   const recognitionRef = useRef<any>(null)
   const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const t = useT()
 
   const stopListening = useCallback(() => {
     if (recognitionRef.current) {
@@ -35,7 +43,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
     if (!SpeechRecognition) {
       setPhase('error')
-      setErrorMsg('当前浏览器不支持语音识别，请使用 Chrome 或 Edge')
+      setErrorMsg(t('voice.unsupported'))
       return
     }
 
@@ -67,10 +75,10 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
     recognition.onerror = (event: any) => {
       if (event.error === 'not-allowed') {
         setPhase('error')
-        setErrorMsg('麦克风权限被拒绝，请在浏览器设置中开启')
+        setErrorMsg(t('voice.denied'))
       } else if (event.error !== 'aborted') {
         setPhase('error')
-        setErrorMsg('语音识别出错，请重试')
+        setErrorMsg(t('voice.error'))
       }
     }
 
@@ -93,7 +101,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
       }, 8000)
     } catch {
       setPhase('error')
-      setErrorMsg('无法启动语音识别')
+      setErrorMsg(t('voice.cantStart'))
     }
   }, [onResult, onClose, stopListening, phase])
 
@@ -151,7 +159,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
                   animate={{ opacity: phase === 'listening' ? [0.5, 1, 0.5] : 0.7 }}
                   transition={{ repeat: phase === 'listening' ? Infinity : 0, duration: 1.6 }}
                 >
-                  {phase === 'listening' ? '正在聆听...' : '点击重试'}
+                  {phase === 'listening' ? t('voice.listening') : t('voice.tapRetry')}
                 </motion.p>
 
                 {transcript && (
@@ -194,7 +202,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
                 animate={{ scale: 1, opacity: 1 }}
               >
                 <motion.p className="voice-result-text">{transcript}</motion.p>
-                <span className="voice-result-hint">已识别，正在发送...</span>
+                <span className="voice-result-hint">{t('voice.recognized')}</span>
               </motion.div>
             )}
 
@@ -210,7 +218,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
                   onClick={startListening}
                 >
                   <RefreshCw size={14} />
-                  <span>重试</span>
+                  <span>{t('voice.retry')}</span>
                 </motion.button>
               </div>
             )}
@@ -218,8 +226,8 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
             {/* Suggestions (only in idle/error) */}
             {(phase === 'idle' || phase === 'error') && (
               <div className="voice-suggestions">
-                <span>试试说：</span>
-                {SUGGESTIONS.map((text) => (
+                <span>{t('voice.suggestions')}</span>
+                {(getLang() === 'en' ? SUGGESTIONS_EN : SUGGESTIONS_ZH).map((text) => (
                   <motion.button
                     key={text}
                     type="button"
@@ -239,7 +247,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
           </div>
 
           <p className="voice-hint">
-            {phase === 'listening' ? '正在识别您的语音...' : '轻点提示文字可快速输入 · 点击 ✕ 取消'}
+            {phase === 'listening' ? t('voice.hintListening') : t('voice.hintDefault')}
           </p>
         </motion.div>
       )}

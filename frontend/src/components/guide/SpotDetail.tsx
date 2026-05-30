@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, MapPin, Clock, ChevronLeft, Play, Pause, BookOpen, Compass } from 'lucide-react'
+import { useT } from '../../i18n'
 
 export interface SpotData {
   id: string
@@ -80,10 +81,10 @@ const SPOTS: Record<string, SpotData> = {
 
 type Tier = '一句话' | '30秒' | '3分钟'
 
-const TIER_LABELS: { tier: Tier; icon: typeof Clock; desc: string }[] = [
-  { tier: '一句话', icon: Clock, desc: '一句话' },
-  { tier: '30秒', icon: Clock, desc: '简短版' },
-  { tier: '3分钟', icon: BookOpen, desc: '深度讲解' },
+const TIER_LABELS: { tier: Tier; icon: typeof Clock; descKey: string }[] = [
+  { tier: '一句话', icon: Clock, descKey: 'spot.oneLine' },
+  { tier: '30秒', icon: Clock, descKey: 'spot.shortVersion' },
+  { tier: '3分钟', icon: BookOpen, descKey: 'spot.deepGuide' },
 ]
 
 const TIER_CONTENT: Record<Tier, keyof SpotData> = {
@@ -103,6 +104,7 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
   const [isPlaying, setIsPlaying] = useState(false)
   const audioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const spot = SPOTS[spotId] ?? SPOTS['lingshan-buddha']
+  const t = useT()
 
   useEffect(() => {
     return () => {
@@ -149,15 +151,15 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
 
       {/* Tier switcher */}
       <div className="spot-tier-bar">
-        {TIER_LABELS.map(({ tier: t, icon: Icon, desc }) => (
+        {TIER_LABELS.map(({ tier: t2, icon: Icon, descKey }) => (
           <button
-            key={t}
+            key={t2}
             type="button"
-            className={`spot-tier-btn ${tier === t ? 'active' : ''}`}
-            onClick={() => setTier(t)}
+            className={`spot-tier-btn ${tier === t2 ? 'active' : ''}`}
+            onClick={() => setTier(t2)}
           >
             <Icon size={14} />
-            <span>{desc}</span>
+            <span>{t(descKey)}</span>
           </button>
         ))}
       </div>
@@ -187,7 +189,7 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
           {isPlaying ? <Pause size={20} /> : <Play size={20} />}
         </button>
         <div className="spot-audio-info">
-          <span className="spot-audio-label">{isPlaying ? '正在播报...' : 'AI 语音讲解'}</span>
+          <span className="spot-audio-label">{isPlaying ? t('spot.playing') : t('spot.aiNarration')}</span>
           <span className="spot-audio-dur">{spot.audioDuration}</span>
         </div>
         {isPlaying && (
@@ -208,7 +210,7 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
       <div className="spot-related">
         <div className="spot-related-head">
           <Compass size={15} />
-          <span>附近景点</span>
+          <span>{t('spot.nearbySpots')}</span>
         </div>
         <div className="spot-related-list">
           {spot.related.map((id) => {

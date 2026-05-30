@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState, type FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mic, Send, ThumbsUp, ThumbsDown, Copy } from 'lucide-react'
+import { useT } from '../../i18n'
 
 export interface Message {
   id: string
@@ -21,6 +22,7 @@ interface Props {
 export default function ChatPanel({ messages, onSend, isListening, onRate, onVoiceClick, onCameraClick }: Props) {
   const [input, setInput] = useState('')
   const bottomRef = useRef<HTMLDivElement>(null)
+  const t = useT()
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -98,7 +100,7 @@ export default function ChatPanel({ messages, onSend, isListening, onRate, onVoi
         <input
           type="text"
           className="chat-input"
-          placeholder="输入问题，或按语音键说话..."
+          placeholder={t('guide.inputPlaceholder')}
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
