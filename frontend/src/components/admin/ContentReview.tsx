@@ -4,6 +4,7 @@ import {
   ShieldCheck, CheckCircle, XCircle, Edit3, Eye, Clock,
   Search, Filter, ChevronDown, MessageCircle, BookOpen, AlertTriangle,
 } from 'lucide-react'
+import { useT } from '../../i18n'
 
 interface ReviewItem {
   id: string
@@ -84,16 +85,17 @@ const MOCK_REVIEWS: ReviewItem[] = [
 
 type Tab = 'pending' | 'approved' | 'rejected'
 
-const TABS: { key: Tab; label: string; icon: typeof Clock }[] = [
-  { key: 'pending', label: '待审核', icon: Clock },
-  { key: 'approved', label: '已通过', icon: CheckCircle },
-  { key: 'rejected', label: '已驳回', icon: XCircle },
+const TABS: { key: Tab; i18nKey: string; icon: typeof Clock }[] = [
+  { key: 'pending', i18nKey: 'admin.pendingReview', icon: Clock },
+  { key: 'approved', i18nKey: 'admin.approved', icon: CheckCircle },
+  { key: 'rejected', i18nKey: 'admin.rejected', icon: XCircle },
 ]
 
 export default function ContentReview() {
   const [tab, setTab] = useState<Tab>('pending')
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [search, setSearch] = useState('')
+  const t = useT()
 
   const filtered = MOCK_REVIEWS
     .filter((r) => r.status === tab)
@@ -117,13 +119,13 @@ export default function ContentReview() {
     >
       <div className="dashboard-head">
         <div>
-          <h2>内容审核</h2>
-          <span>AI 生成回答需人工审核后发布</span>
+          <h2>{t('admin.contentReview')}</h2>
+          <span>{t('admin.reviewDesc')}</span>
         </div>
         <div className="review-head-stats">
-          <span className="review-head-stat pending">{counts.pending} 待审</span>
-          <span className="review-head-stat approved">{counts.approved} 通过</span>
-          <span className="review-head-stat rejected">{counts.rejected} 驳回</span>
+          <span className="review-head-stat pending">{t('admin.pendingCount', { n: counts.pending })}</span>
+          <span className="review-head-stat approved">{t('admin.approvedCount', { n: counts.approved })}</span>
+          <span className="review-head-stat rejected">{t('admin.rejectedCount', { n: counts.rejected })}</span>
         </div>
       </div>
 
@@ -134,7 +136,7 @@ export default function ContentReview() {
           <input
             type="text"
             className="kb-search-input"
-            placeholder="搜索问题或答案..."
+            placeholder={t('admin.searchQA')}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -143,7 +145,7 @@ export default function ContentReview() {
 
       {/* Tabs */}
       <div className="review-tabs">
-        {TABS.map(({ key, label, icon: Icon }) => (
+        {TABS.map(({ key, i18nKey, icon: Icon }) => (
           <button
             key={key}
             type="button"
@@ -151,7 +153,7 @@ export default function ContentReview() {
             onClick={() => { setTab(key); setExpandedId(null) }}
           >
             <Icon size={14} />
-            <span>{label}</span>
+            <span>{t(i18nKey)}</span>
             <span className="review-tab-count">{counts[key]}</span>
           </button>
         ))}
@@ -182,15 +184,15 @@ export default function ContentReview() {
                       <span>{item.spot}</span>
                       <span>{item.submittedAt}</span>
                       {item.status !== 'pending' && (
-                        <span>审核人：{item.reviewer}</span>
+                        <span>{t('admin.reviewer')}：{item.reviewer}</span>
                       )}
                     </div>
                   </div>
                 </div>
                 <div className="review-card-right">
-                  {item.status === 'pending' && <span className="review-badge pending">待审</span>}
-                  {item.status === 'approved' && <span className="review-badge approved"><CheckCircle size={12} /> 通过</span>}
-                  {item.status === 'rejected' && <span className="review-badge rejected"><XCircle size={12} /> 驳回</span>}
+                  {item.status === 'pending' && <span className="review-badge pending">{t('admin.pendingReview')}</span>}
+                  {item.status === 'approved' && <span className="review-badge approved"><CheckCircle size={12} /> {t('admin.approved')}</span>}
+                  {item.status === 'rejected' && <span className="review-badge rejected"><XCircle size={12} /> {t('admin.rejected')}</span>}
                   <ChevronDown size={16} className={`review-chevron ${expandedId === item.id ? 'open' : ''}`} />
                 </div>
               </button>
@@ -207,19 +209,19 @@ export default function ContentReview() {
                     <div className="review-answer-box">
                       <div className="review-answer-label">
                         <Eye size={13} />
-                        <span>AI 回答</span>
+                        <span>{t('admin.aiAnswer')}</span>
                       </div>
                       <p>{item.answer}</p>
                       <div className="review-source">
                         <BookOpen size={12} />
-                        <span>信源：{item.source}</span>
+                        <span>{t('admin.sourceRef')}：{item.source}</span>
                       </div>
                     </div>
 
                     {item.rejectReason && (
                       <div className="review-reject-box">
                         <AlertTriangle size={13} />
-                        <span>驳回原因：{item.rejectReason}</span>
+                        <span>{t('admin.rejectReason')}：{item.rejectReason}</span>
                       </div>
                     )}
 
@@ -231,7 +233,7 @@ export default function ContentReview() {
                           whileTap={{ scale: 0.97 }}
                         >
                           <CheckCircle size={15} />
-                          <span>通过</span>
+                          <span>{t('admin.approve')}</span>
                         </motion.button>
                         <motion.button
                           type="button"
@@ -239,7 +241,7 @@ export default function ContentReview() {
                           whileTap={{ scale: 0.97 }}
                         >
                           <Edit3 size={15} />
-                          <span>编辑</span>
+                          <span>{t('admin.edit')}</span>
                         </motion.button>
                         <motion.button
                           type="button"
@@ -247,7 +249,7 @@ export default function ContentReview() {
                           whileTap={{ scale: 0.97 }}
                         >
                           <XCircle size={15} />
-                          <span>驳回</span>
+                          <span>{t('admin.reject')}</span>
                         </motion.button>
                       </div>
                     )}
@@ -261,7 +263,7 @@ export default function ContentReview() {
         {filtered.length === 0 && (
           <div className="kb-empty">
             <ShieldCheck size={32} />
-            <span>{tab === 'pending' ? '所有内容已审核完毕' : '暂无数据'}</span>
+            <span>{tab === 'pending' ? t('admin.allReviewed') : t('admin.noData')}</span>
           </div>
         )}
       </div>

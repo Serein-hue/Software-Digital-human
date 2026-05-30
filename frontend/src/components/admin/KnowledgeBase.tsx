@@ -4,6 +4,7 @@ import {
   FileText, Upload, Search, ChevronRight, Clock, CheckCircle,
   AlertCircle, Layers, Hash, EyeOff, Filter, X,
 } from 'lucide-react'
+import { useT } from '../../i18n'
 
 interface DocEntry {
   id: string
@@ -100,11 +101,11 @@ const STATUS_COLORS: Record<DocEntry['status'], string> = {
   pending: 'var(--muted)',
 }
 
-const STATUS_LABELS: Record<DocEntry['status'], string> = {
-  ready: '已入库',
-  processing: '解析中',
-  error: '失败',
-  pending: '待处理',
+const STATUS_LABEL_KEYS: Record<DocEntry['status'], string> = {
+  ready: 'admin.ready',
+  processing: 'admin.processing',
+  error: 'admin.failed',
+  pending: 'admin.pending',
 }
 
 const TYPE_TAGS: DocEntry['type'][] = ['景点数据', '游览指南', '数据集', '图片', '规则']
@@ -113,6 +114,7 @@ export default function KnowledgeBase() {
   const [search, setSearch] = useState('')
   const [typeFilter, setTypeFilter] = useState<DocEntry['type'] | null>(null)
   const [selected, setSelected] = useState<DocEntry | null>(null)
+  const t = useT()
 
   const filtered = MOCK_DOCS.filter((d) => {
     if (typeFilter && d.type !== typeFilter) return false
@@ -129,8 +131,8 @@ export default function KnowledgeBase() {
     >
       <div className="dashboard-head">
         <div>
-          <h2>知识库管理</h2>
-          <span>文档入库 · 切片解析 · 检索状态</span>
+          <h2>{t('admin.knowledgeBase')}</h2>
+          <span>{t('admin.knowledgeDesc')}</span>
         </div>
         <motion.button
           type="button"
@@ -138,7 +140,7 @@ export default function KnowledgeBase() {
           whileTap={{ scale: 0.97 }}
         >
           <Upload size={15} />
-          <span>上传文档</span>
+          <span>{t('admin.uploadDoc')}</span>
         </motion.button>
       </div>
 
@@ -149,7 +151,7 @@ export default function KnowledgeBase() {
           <input
             type="text"
             className="kb-search-input"
-            placeholder="搜索文档名称或标签..."
+            placeholder={t('admin.searchPlaceholder')}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -178,7 +180,7 @@ export default function KnowledgeBase() {
         {filtered.length === 0 ? (
           <div className="kb-empty">
             <FileText size={32} />
-            <span>没有匹配的文档</span>
+            <span>{t('admin.noMatch')}</span>
           </div>
         ) : (
           filtered.map((doc) => {
@@ -199,13 +201,13 @@ export default function KnowledgeBase() {
                       <strong>{doc.name}</strong>
                       <span className={`kb-status-badge ${doc.status}`}>
                         <Icon size={12} />
-                        {STATUS_LABELS[doc.status]}
+                        {t(STATUS_LABEL_KEYS[doc.status])}
                       </span>
                     </div>
                     <div className="kb-doc-meta">
                       <span>{doc.source}</span>
                       <span>{doc.size}</span>
-                      <span><Layers size={11} /> {doc.chunks} 切片</span>
+                      <span><Layers size={11} /> {doc.chunks} {t('admin.chunks')}</span>
                       <span>{doc.updatedAt}</span>
                     </div>
                     <div className="kb-doc-tags">
@@ -235,33 +237,33 @@ export default function KnowledgeBase() {
                           <Hash size={13} />
                           <div>
                             <strong>{doc.chunks}</strong>
-                            <span>文本切片</span>
+                            <span>{t('admin.slices')}</span>
                           </div>
                         </div>
                         <div className="kb-detail-stat">
                           <Layers size={13} />
                           <div>
                             <strong>{doc.type}</strong>
-                            <span>文档类型</span>
+                            <span>{t('admin.docType')}</span>
                           </div>
                         </div>
                         <div className="kb-detail-stat">
                           <Clock size={13} />
                           <div>
                             <strong>{doc.updatedAt}</strong>
-                            <span>最后更新</span>
+                            <span>{t('admin.lastUpdate')}</span>
                           </div>
                         </div>
                       </div>
                       <div className="kb-detail-actions">
                         <button type="button" className="kb-action-btn">
-                          重新解析
+                          {t('admin.reparse')}
                         </button>
                         <button type="button" className="kb-action-btn">
-                          查看切片
+                          {t('admin.viewSlices')}
                         </button>
                         <button type="button" className="kb-action-btn danger">
-                          删除
+                          {t('admin.delete')}
                         </button>
                       </div>
                     </motion.div>
@@ -275,15 +277,15 @@ export default function KnowledgeBase() {
 
       {/* Stats footer */}
       <div className="kb-stats-bar">
-        <div><strong>{MOCK_DOCS.length}</strong> 文档</div>
-        <div><strong>{MOCK_DOCS.filter((d) => d.status === 'ready').length}</strong> 已入库</div>
-        <div><strong>{MOCK_DOCS.reduce((s, d) => s + d.chunks, 0)}</strong> 总切片</div>
+        <div><strong>{MOCK_DOCS.length}</strong> {t('admin.documents')}</div>
+        <div><strong>{MOCK_DOCS.filter((d) => d.status === 'ready').length}</strong> {t('admin.ready')}</div>
+        <div><strong>{MOCK_DOCS.reduce((s, d) => s + d.chunks, 0)}</strong> {t('admin.chunks')}</div>
         <div><strong>{MOCK_DOCS.reduce((s, d) => {
           const num = parseFloat(d.size)
           if (d.size.includes('GB')) return s + num * 1024
           if (d.size.includes('KB')) return s + num / 1024
           return s + (d.size.includes('MB') ? num : num / 1024)
-        }, 0).toFixed(1)} MB</strong> 总大小</div>
+        }, 0).toFixed(1)} MB</strong> {t('admin.totalSize')}</div>
       </div>
     </motion.div>
   )

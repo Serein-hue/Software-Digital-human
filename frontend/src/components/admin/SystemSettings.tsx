@@ -4,9 +4,11 @@ import {
   Settings, Key, Bell, Database, Info, Copy, Check,
   Trash2, RefreshCw, Shield, Globe,
 } from 'lucide-react'
+import { useT } from '../../i18n'
 
 export default function SystemSettings() {
   const [copiedKey, setCopiedKey] = useState<string | null>(null)
+  const t = useT()
 
   const copyKey = (key: string, label: string) => {
     navigator.clipboard.writeText(key).catch(() => {})
@@ -23,8 +25,8 @@ export default function SystemSettings() {
     >
       <div className="dashboard-head">
         <div>
-          <h2>系统设置</h2>
-          <span>景区配置 · API · 缓存 · 版本</span>
+          <h2>{t('admin.systemSettings')}</h2>
+          <span>{t('admin.settingsDesc')}</span>
         </div>
       </div>
 
@@ -33,23 +35,23 @@ export default function SystemSettings() {
         <div className="settings-card">
           <div className="settings-card-head">
             <Globe size={15} />
-            <span>基本配置</span>
+            <span>{t('admin.basicConfig')}</span>
           </div>
           <div className="settings-fields">
             <label className="settings-field">
-              <span>景区名称</span>
+              <span>{t('admin.scenicName')}</span>
               <input type="text" value="灵山胜境" readOnly className="settings-input" />
             </label>
             <label className="settings-field">
-              <span>景区 ID</span>
+              <span>{t('admin.scenicId')}</span>
               <input type="text" value="lingshan-wuxi-2025" readOnly className="settings-input" />
             </label>
             <label className="settings-field">
-              <span>管理员邮箱</span>
+              <span>{t('admin.adminEmail')}</span>
               <input type="email" value="admin@lingshan.com" className="settings-input" />
             </label>
             <label className="settings-field">
-              <span>客服电话</span>
+              <span>{t('admin.servicePhone')}</span>
               <input type="text" value="0510-8568xxxx" className="settings-input" />
             </label>
           </div>
@@ -59,7 +61,7 @@ export default function SystemSettings() {
         <div className="settings-card">
           <div className="settings-card-head">
             <Key size={15} />
-            <span>API 密钥</span>
+            <span>{t('admin.apiKeys')}</span>
           </div>
           <div className="settings-fields">
             {[
@@ -82,7 +84,7 @@ export default function SystemSettings() {
               </div>
             ))}
             <motion.button type="button" className="settings-add-key" whileTap={{ scale: 0.97 }}>
-              + 添加密钥
+              + {t('admin.addKey')}
             </motion.button>
           </div>
         </div>
@@ -93,19 +95,19 @@ export default function SystemSettings() {
         <div className="settings-card">
           <div className="settings-card-head">
             <Bell size={15} />
-            <span>通知设置</span>
+            <span>{t('admin.notifSettings')}</span>
           </div>
           <div className="settings-fields">
             {[
-              { label: '新问题待审核', desc: 'AI 生成答案提交审核时通知', defaultChecked: true },
-              { label: '游客负面反馈', desc: '满意度低于 3 分时发送告警', defaultChecked: true },
-              { label: '知识库过期提醒', desc: '内容超过 30 天未更新时提醒', defaultChecked: true },
-              { label: '系统异常告警', desc: 'API 调用失败或服务降级时通知', defaultChecked: false },
+              { labelKey: 'admin.notifNewQuestion', descKey: 'admin.notifNewQuestionDesc', defaultChecked: true },
+              { labelKey: 'admin.notifNegativeFeedback', descKey: 'admin.notifNegativeFeedbackDesc', defaultChecked: true },
+              { labelKey: 'admin.notifKbExpiry', descKey: 'admin.notifKbExpiryDesc', defaultChecked: true },
+              { labelKey: 'admin.notifSystemAlert', descKey: 'admin.notifSystemAlertDesc', defaultChecked: false },
             ].map((item) => (
-              <label key={item.label} className="settings-notif-row">
+              <label key={item.labelKey} className="settings-notif-row">
                 <div>
-                  <strong>{item.label}</strong>
-                  <span>{item.desc}</span>
+                  <strong>{t(item.labelKey)}</strong>
+                  <span>{t(item.descKey)}</span>
                 </div>
                 <input type="checkbox" defaultChecked={item.defaultChecked} />
                 <span className="dhconfig-toggle-knob" />
@@ -118,43 +120,43 @@ export default function SystemSettings() {
         <div className="settings-card">
           <div className="settings-card-head">
             <Database size={15} />
-            <span>缓存与数据</span>
+            <span>{t('admin.cacheData')}</span>
           </div>
           <div className="settings-fields">
             <div className="settings-cache-row">
               <div>
-                <strong>知识库缓存</strong>
-                <span>向量索引 + 文档切片缓存 · 当前 288 MB</span>
+                <strong>{t('admin.kbCache')}</strong>
+                <span>{t('admin.kbCacheDesc')} · 288 MB</span>
               </div>
               <button type="button" className="settings-cache-btn">
                 <RefreshCw size={13} />
-                刷新
+                {t('admin.refresh')}
               </button>
             </div>
             <div className="settings-cache-row">
               <div>
-                <strong>对话历史</strong>
-                <span>游客问答记录 · 当前 1,247 条</span>
+                <strong>{t('admin.chatHistory')}</strong>
+                <span>{t('admin.chatHistoryDesc')} · 1,247</span>
               </div>
               <div className="settings-cache-actions">
                 <button type="button" className="settings-cache-btn">
                   <RefreshCw size={13} />
-                  导出
+                  {t('admin.export')}
                 </button>
                 <button type="button" className="settings-cache-btn danger">
                   <Trash2 size={13} />
-                  清除
+                  {t('admin.clear')}
                 </button>
               </div>
             </div>
             <div className="settings-cache-row">
               <div>
-                <strong>静态资源 CDN</strong>
-                <span>数字人形象资源 · 当前 124 MB</span>
+                <strong>{t('admin.staticCdn')}</strong>
+                <span>{t('admin.staticCdnDesc')} · 124 MB</span>
               </div>
               <button type="button" className="settings-cache-btn">
                 <RefreshCw size={13} />
-                预加载
+                {t('admin.prefetch')}
               </button>
             </div>
           </div>
@@ -165,31 +167,31 @@ export default function SystemSettings() {
       <div className="settings-card">
         <div className="settings-card-head">
           <Info size={15} />
-          <span>版本信息</span>
+          <span>{t('admin.versionInfo')}</span>
         </div>
         <div className="settings-version-grid">
           <div className="settings-version-item">
-            <span>前端版本</span>
+            <span>{t('admin.frontendVersion')}</span>
             <strong>v0.2-beta</strong>
           </div>
           <div className="settings-version-item">
-            <span>构建时间</span>
+            <span>{t('admin.buildTime')}</span>
             <strong>2026-05-30</strong>
           </div>
           <div className="settings-version-item">
-            <span>框架</span>
+            <span>{t('admin.framework')}</span>
             <strong>React 19 + Vite 8</strong>
           </div>
           <div className="settings-version-item">
-            <span>数据版本</span>
+            <span>{t('admin.dataVersion')}</span>
             <strong>LS-2025-v1</strong>
           </div>
           <div className="settings-version-item">
-            <span>许可证</span>
-            <strong>中国软件杯 2026 A5</strong>
+            <span>{t('admin.license')}</span>
+            <strong>A5 2026</strong>
           </div>
           <div className="settings-version-item">
-            <span>部署方式</span>
+            <span>{t('admin.deployMethod')}</span>
             <strong>GitHub Pages</strong>
           </div>
         </div>
@@ -199,7 +201,7 @@ export default function SystemSettings() {
       <div className="settings-save-bar">
         <motion.button type="button" className="settings-save-btn" whileTap={{ scale: 0.97 }}>
           <Shield size={15} />
-          <span>保存配置</span>
+          <span>{t('admin.saveConfig')}</span>
         </motion.button>
       </div>
     </motion.div>

@@ -9,6 +9,7 @@ import {
   ResponsiveContainer, Tooltip, XAxis, YAxis, Legend,
   Area, AreaChart,
 } from 'recharts'
+import { useT, getLang } from '../../i18n'
 
 const MONTHLY_VISITS = [
   { month: '1月', 游客量: 10 }, { month: '2月', 游客量: 13 },
@@ -86,16 +87,20 @@ export default function CommandCenter() {
   const [timeStr, setTimeStr] = useState('')
   const [dateStr, setDateStr] = useState('')
   const rotationRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const t = useT()
 
   useEffect(() => {
     const update = () => {
       const d = new Date()
+      const DAYS_ZH = ['日', '一', '二', '三', '四', '五', '六']
+      const DAYS_EN = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+      const dayNames = getLang() === 'en' ? DAYS_EN : DAYS_ZH
       setTimeStr(`${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}:${d.getSeconds().toString().padStart(2, '0')}`)
-      setDateStr(`${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')} ${['日','一','二','三','四','五','六'][d.getDay()]}`)
+      setDateStr(`${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')} ${dayNames[d.getDay()]}`)
     }
     update()
-    const t = setInterval(update, 1000)
-    return () => clearInterval(t)
+    const timer = setInterval(update, 1000)
+    return () => clearInterval(timer)
   }, [])
 
   useEffect(() => {
@@ -132,7 +137,7 @@ export default function CommandCenter() {
         <div className="cmd-header-left">
           <div className="cmd-logo">
             <TrendingUp size={22} />
-            <span>灵山胜境 · 智慧运营中心</span>
+            <span>{t('cmd.title')}</span>
           </div>
           <div className="cmd-live-dot" />
           <span className="cmd-live-label">LIVE</span>
@@ -146,7 +151,7 @@ export default function CommandCenter() {
                 className={`cmd-view-tab ${view === v ? 'active' : ''}`}
                 onClick={() => switchView(v)}
               >
-                {{ overview: '总览', demographics: '客群', revenue: '营收', status: '态势' }[v]}
+                {t(`cmd.${v}`)}
               </button>
             ))}
           </div>
@@ -166,11 +171,11 @@ export default function CommandCenter() {
       {/* KPI strip */}
       <div className="cmd-kpi-strip">
         {[
-          { icon: Users, label: '今日接待', value: totalToday.toLocaleString(), sub: `入园 ${todayVisitors} | 线上 ${todayOnline}`, color: '#15bba0' },
-          { icon: Clock, label: '实时在园', value: '1,247', sub: '较昨日 +8%', color: '#155d58' },
-          { icon: Wallet, label: '今日营收', value: '¥471,230', sub: '人均 ¥901', color: '#c1a15a' },
-          { icon: Star, label: '今日满意度', value: '4.08', sub: '/5.0 · 好评率 92%', color: '#8ab89e' },
-          { icon: Thermometer, label: '客流量等级', value: '舒适', sub: '承载率 52%', color: '#15bba0' },
+          { icon: Users, label: t('cmd.todayVisitors'), value: totalToday.toLocaleString(), sub: `${t('cmd.inPark')} ${todayVisitors} | ${t('cmd.online')} ${todayOnline}`, color: '#15bba0' },
+          { icon: Clock, label: t('cmd.realtimeInPark'), value: '1,247', sub: `${t('cmd.vsYesterday')} +8%`, color: '#155d58' },
+          { icon: Wallet, label: t('cmd.todayRevenue'), value: '¥471,230', sub: `${t('cmd.perCapita')} ¥901`, color: '#c1a15a' },
+          { icon: Star, label: t('cmd.todaySatisfaction'), value: '4.08', sub: `/5.0 · ${t('cmd.goodRate')} 92%`, color: '#8ab89e' },
+          { icon: Thermometer, label: t('cmd.crowdLevel'), value: t('cmd.crowdComfortable'), sub: `${t('cmd.loadRate')} 52%`, color: '#15bba0' },
         ].map((kpi) => (
           <div key={kpi.label} className="cmd-kpi-card">
             <kpi.icon size={18} style={{ color: kpi.color }} />
@@ -198,7 +203,7 @@ export default function CommandCenter() {
               transition={{ duration: 0.5 }}
             >
               <div className="cmd-panel large">
-                <div className="cmd-panel-head"><TrendingUp size={15} />月度游客趋势 (万人次)</div>
+                <div className="cmd-panel-head"><TrendingUp size={15} />{t('cmd.monthlyTrend')}</div>
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={MONTHLY_VISITS}>
                     <defs>
@@ -216,14 +221,14 @@ export default function CommandCenter() {
                 </ResponsiveContainer>
               </div>
               <div className="cmd-panel">
-                <div className="cmd-panel-head"><MapPin size={15} />热门景点 TOP5</div>
+                <div className="cmd-panel-head"><MapPin size={15} />{t('cmd.topSpots')}</div>
                 <div className="cmd-spots-list">
                   {TOP_SPOTS.map((s, i) => (
                     <div key={s.name} className="cmd-spot-row">
                       <span className="cmd-spot-rank">{i + 1}</span>
                       <div className="cmd-spot-info">
                         <strong>{s.name}</strong>
-                        <span>{s.visitors} 人次</span>
+                        <span>{s.visitors} {t('cmd.visitorsUnit')}</span>
                       </div>
                       <div className="cmd-spot-bar-wrap">
                         <motion.div
@@ -251,7 +256,7 @@ export default function CommandCenter() {
               transition={{ duration: 0.5 }}
             >
               <div className="cmd-panel">
-                <div className="cmd-panel-head"><Users size={15} />年龄分布</div>
+                <div className="cmd-panel-head"><Users size={15} />{t('cmd.ageDist')}</div>
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie data={AGE_DATA} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={52} outerRadius={90} paddingAngle={3}>
@@ -263,7 +268,7 @@ export default function CommandCenter() {
                 </ResponsiveContainer>
               </div>
               <div className="cmd-panel">
-                <div className="cmd-panel-head"><Users size={15} />性别分布</div>
+                <div className="cmd-panel-head"><Users size={15} />{t('cmd.genderDist')}</div>
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie data={GENDER_DATA} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={48} outerRadius={84} paddingAngle={4}>
@@ -275,7 +280,7 @@ export default function CommandCenter() {
                 </ResponsiveContainer>
               </div>
               <div className="cmd-panel">
-                <div className="cmd-panel-head"><Star size={15} />满意度分布</div>
+                <div className="cmd-panel-head"><Star size={15} />{t('cmd.satisfactionDist')}</div>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={SATISFACTION_DATA}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
@@ -301,7 +306,7 @@ export default function CommandCenter() {
               transition={{ duration: 0.5 }}
             >
               <div className="cmd-panel">
-                <div className="cmd-panel-head"><Wallet size={15} />人均消费构成 (¥)</div>
+                <div className="cmd-panel-head"><Wallet size={15} />{t('cmd.spendingDist')}</div>
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie data={SPENDING_DATA} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={52} outerRadius={90} paddingAngle={3}>
@@ -313,7 +318,7 @@ export default function CommandCenter() {
                 </ResponsiveContainer>
               </div>
               <div className="cmd-panel large">
-                <div className="cmd-panel-head"><TrendingUp size={15} />月度营收趋势 (万元)</div>
+                <div className="cmd-panel-head"><TrendingUp size={15} />{t('cmd.monthlyRevenue')}</div>
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={MONTHLY_VISITS.map((d) => ({ ...d, 营收: Math.round(d.游客量 * 9.01) }))}>
                     <defs>
@@ -343,7 +348,7 @@ export default function CommandCenter() {
               transition={{ duration: 0.5 }}
             >
               <div className="cmd-panel">
-                <div className="cmd-panel-head"><Wifi size={15} />设施状态</div>
+                <div className="cmd-panel-head"><Wifi size={15} />{t('cmd.facilityStatus')}</div>
                 <div className="cmd-facilities">
                   {FACILITIES.map((f) => (
                     <div key={f.name} className="cmd-facility-row">
@@ -363,7 +368,7 @@ export default function CommandCenter() {
                 </div>
               </div>
               <div className="cmd-panel">
-                <div className="cmd-panel-head"><AlertTriangle size={15} />实时告警</div>
+                <div className="cmd-panel-head"><AlertTriangle size={15} />{t('cmd.realtimeAlerts')}</div>
                 <div className="cmd-alerts">
                   <div className="cmd-alert warn">
                     <AlertTriangle size={14} />
@@ -383,7 +388,7 @@ export default function CommandCenter() {
                 </div>
               </div>
               <div className="cmd-panel">
-                <div className="cmd-panel-head"><MapPin size={15} />客流热力占位</div>
+                <div className="cmd-panel-head"><MapPin size={15} />{t('cmd.heatmap')}</div>
                 <div className="cmd-heatmap-placeholder">
                   <div className="cmd-heatmap-grid">
                     {Array.from({ length: 9 }).map((_, i) => (
@@ -394,7 +399,7 @@ export default function CommandCenter() {
                       />
                     ))}
                   </div>
-                  <span className="cmd-heatmap-label">灵山胜境园区热力图 · 实时更新</span>
+                  <span className="cmd-heatmap-label">{t('cmd.heatmapLabel')}</span>
                 </div>
               </div>
             </motion.div>
@@ -405,14 +410,14 @@ export default function CommandCenter() {
       {/* Footer */}
       <footer className="cmd-footer">
         <div className="cmd-footer-left">
-          <span>数据刷新间隔 5s</span>
+          <span>{t('cmd.refreshInterval')} 5s</span>
           <span>·</span>
-          <span>AI 数字人服务在线</span>
+          <span>{t('cmd.aiOnline')}</span>
           <span>·</span>
-          <span>Kiosk 终端 3 台在线</span>
+          <span>{t('cmd.kioskOnline', { n: 3 })}</span>
         </div>
         <div className="cmd-footer-right">
-          <span>Powered by 锐捷网络 · 中国软件杯 2026 A5</span>
+          <span>Powered by 锐捷网络 · A5 2026</span>
         </div>
       </footer>
     </div>

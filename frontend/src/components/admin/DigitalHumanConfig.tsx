@@ -4,6 +4,7 @@ import {
   UserCircle, Mic, Smile, Palette, Volume2, Eye,
   ChevronDown, Check, Play, Pause, RotateCcw,
 } from 'lucide-react'
+import { useT } from '../../i18n'
 
 interface AvatarData {
   id: string
@@ -74,6 +75,7 @@ export default function DigitalHumanConfig() {
   const [showGesture, setShowGesture] = useState(true)
   const [autoSwitch, setAutoSwitch] = useState(true)
   const [isPlaying, setIsPlaying] = useState(false)
+  const t = useT()
 
   return (
     <motion.div
@@ -84,8 +86,8 @@ export default function DigitalHumanConfig() {
     >
       <div className="dashboard-head">
         <div>
-          <h2>数字人配置</h2>
-          <span>形象 · 语音 · 表情 · 动作</span>
+          <h2>{t('admin.digitalHuman')}</h2>
+          <span>{t('admin.dhDesc')}</span>
         </div>
         <motion.button
           type="button"
@@ -94,7 +96,7 @@ export default function DigitalHumanConfig() {
           style={{ background: 'var(--ink)' }}
         >
           <RotateCcw size={15} />
-          <span>恢复默认</span>
+          <span>{t('admin.resetDefault')}</span>
         </motion.button>
       </div>
 
@@ -103,7 +105,7 @@ export default function DigitalHumanConfig() {
         <div className="dhconfig-section">
           <div className="dhconfig-section-head">
             <UserCircle size={16} />
-            <span>形象选择</span>
+            <span>{t('admin.avatarSelect')}</span>
           </div>
           <div className="dhconfig-avatar-grid">
             {AVATARS.map((av) => (
@@ -136,7 +138,7 @@ export default function DigitalHumanConfig() {
         <div className="dhconfig-section">
           <div className="dhconfig-section-head">
             <Mic size={16} />
-            <span>语音配置</span>
+            <span>{t('admin.voiceConfig')}</span>
           </div>
 
           <div className="dhconfig-voice-presets">
@@ -157,7 +159,7 @@ export default function DigitalHumanConfig() {
             <div className="dhconfig-slider-group">
               <div className="dhconfig-slider-label">
                 <Volume2 size={13} />
-                <span>语速</span>
+                <span>{t('admin.speed')}</span>
                 <span className="dhconfig-slider-val">{speed}%</span>
               </div>
               <input
@@ -172,7 +174,7 @@ export default function DigitalHumanConfig() {
             <div className="dhconfig-slider-group">
               <div className="dhconfig-slider-label">
                 <Mic size={13} />
-                <span>音调</span>
+                <span>{t('admin.pitch')}</span>
                 <span className="dhconfig-slider-val">{pitch}%</span>
               </div>
               <input
@@ -194,7 +196,7 @@ export default function DigitalHumanConfig() {
             onClick={() => setIsPlaying(!isPlaying)}
           >
             {isPlaying ? <Pause size={16} /> : <Play size={16} />}
-            <span>{isPlaying ? '停止预览' : '试听语音'}</span>
+            <span>{isPlaying ? t('admin.stopPreview') : t('admin.testVoice')}</span>
           </motion.button>
         </div>
       </div>
@@ -204,14 +206,14 @@ export default function DigitalHumanConfig() {
         <div className="dhconfig-section">
           <div className="dhconfig-section-head">
             <Smile size={16} />
-            <span>表情与动作</span>
+            <span>{t('admin.expressionGesture')}</span>
           </div>
 
           <div className="dhconfig-toggle-list">
             <label className="dhconfig-toggle">
               <div>
-                <strong>面部表情</strong>
-                <span>讲解时配合内容展示微表情变化</span>
+                <strong>{t('admin.facialExpression')}</strong>
+                <span>{t('admin.facialExprDesc')}</span>
               </div>
               <input
                 type="checkbox"
@@ -223,8 +225,8 @@ export default function DigitalHumanConfig() {
 
             <label className="dhconfig-toggle">
               <div>
-                <strong>手势动作</strong>
-                <span>配合讲解进行自然手势引导</span>
+                <strong>{t('admin.handGesture')}</strong>
+                <span>{t('admin.handGestureDesc')}</span>
               </div>
               <input
                 type="checkbox"
@@ -236,8 +238,8 @@ export default function DigitalHumanConfig() {
 
             <label className="dhconfig-toggle">
               <div>
-                <strong>景点自动适配</strong>
-                <span>根据当前景点自动切换文化主题形象</span>
+                <strong>{t('admin.autoSpotSwitch')}</strong>
+                <span>{t('admin.autoSpotDesc')}</span>
               </div>
               <input
                 type="checkbox"
@@ -253,7 +255,7 @@ export default function DigitalHumanConfig() {
         <div className="dhconfig-section">
           <div className="dhconfig-section-head">
             <Eye size={16} />
-            <span>实时预览</span>
+            <span>{t('admin.livePreview')}</span>
           </div>
           <div className="dhconfig-preview-stage">
             <motion.div
@@ -272,7 +274,7 @@ export default function DigitalHumanConfig() {
                 {showGesture && <span className="dhconfig-preview-badge">手势 ✓</span>}
                 {autoSwitch && <span className="dhconfig-preview-badge">自动切换 ✓</span>}
                 {!showExpression && !showGesture && !autoSwitch && (
-                  <span className="dhconfig-preview-badge off">无额外效果</span>
+                  <span className="dhconfig-preview-badge off">{t('admin.noEffects')}</span>
                 )}
               </div>
             </div>
