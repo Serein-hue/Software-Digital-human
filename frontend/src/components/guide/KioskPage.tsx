@@ -8,8 +8,9 @@ import {
 import DigitalHuman from './DigitalHuman'
 import { SPOTS } from './SpotDetail'
 import { ROUTES } from './RouteRecommend'
+import { useT, getLang } from '../../i18n'
 
-const TRIVIA = [
+const TRIVIA_ZH = [
   '灵山大佛通高88米，是世界最高的露天青铜释迦牟尼立像',
   '灵山梵宫造价18亿，被誉为"东方卢浮宫"',
   '九龙灌浴每天4-5场表演，太子佛从莲花中旋转升起',
@@ -17,6 +18,16 @@ const TRIVIA = [
   '祥符禅寺始建于唐贞观年间，玄奘法师弟子开创',
   '灵山胜境是国家5A级景区，世界佛教论坛永久会址',
   '登216级登云道抱佛脚，俯瞰太湖全景',
+]
+
+const TRIVIA_EN = [
+  'The Grand Buddha stands 88m tall — the world\'s tallest outdoor bronze standing Buddha',
+  'The Fan Palace cost ¥1.8B and is known as the "Louvre of the East"',
+  'Nine Dragons Bathing performs 4-5 shows daily — the Prince Buddha rises from a lotus',
+  'Five Mudra Mandala is surrounded by water, nicknamed "Little Potala Palace"',
+  'Xiangfu Temple dates to Tang Dynasty (627 AD), founded by Xuanzang\'s disciple',
+  'Lingshan is a national 5A scenic area and permanent World Buddhist Forum site',
+  'Climb 216 steps to touch the Buddha\'s foot and overlook Taihu Lake',
 ]
 
 const IDLE_TIMEOUT = 60_000
@@ -36,6 +47,8 @@ export default function KioskPage() {
   const triviaTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const listenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const speakTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const t = useT()
+  const trivia = getLang() === 'en' ? TRIVIA_EN : TRIVIA_ZH
 
   const resetIdleTimer = useCallback(() => {
     if (idleTimerRef.current) clearTimeout(idleTimerRef.current)
@@ -70,7 +83,7 @@ export default function KioskPage() {
   useEffect(() => {
     if (mode === 'idle') {
       triviaTimerRef.current = setInterval(() => {
-        setTriviaIndex((prev) => (prev + 1) % TRIVIA.length)
+        setTriviaIndex((prev) => (prev + 1) % trivia.length)
       }, TRIVIA_INTERVAL)
       return () => {
         if (triviaTimerRef.current) clearInterval(triviaTimerRef.current)
@@ -129,7 +142,7 @@ export default function KioskPage() {
       <div className="kiosk-topbar">
         <div className="kiosk-topbar-left">
           <Sparkles size={20} />
-          <span>灵山胜境 · AI 智能导览</span>
+          <span>{t('kiosk.title')}</span>
         </div>
         <div className="kiosk-topbar-right">
           <span className="kiosk-time">{timeStr}</span>
@@ -155,7 +168,7 @@ export default function KioskPage() {
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ repeat: Infinity, duration: 3 }}
             >
-              点击屏幕开始体验
+              {t('kiosk.tapToStart')}
             </motion.h1>
             <motion.p
               className="kiosk-idle-trivia"
@@ -165,7 +178,7 @@ export default function KioskPage() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.5 }}
             >
-              {TRIVIA[triviaIndex]}
+              {trivia[triviaIndex]}
             </motion.p>
           </motion.div>
         )}
@@ -204,10 +217,10 @@ export default function KioskPage() {
               {/* Tabs */}
               <div className="kiosk-tabs">
                 {[
-                  { key: 'spots', label: '景点讲解', icon: MapPin },
-                  { key: 'routes', label: '路线推荐', icon: Clock },
-                  { key: 'about', label: '关于景区', icon: Users },
-                ].map(({ key, label, icon: Icon }) => (
+                  { key: 'spots', i18nKey: 'kiosk.tabSpots' as const, icon: MapPin },
+                  { key: 'routes', i18nKey: 'kiosk.tabRoutes' as const, icon: Clock },
+                  { key: 'about', i18nKey: 'kiosk.tabAbout' as const, icon: Users },
+                ].map(({ key, i18nKey, icon: Icon }) => (
                   <button
                     key={key}
                     type="button"
@@ -215,7 +228,7 @@ export default function KioskPage() {
                     onClick={(e) => { e.stopPropagation(); setActiveTab(key as typeof activeTab); setSelectedSpot(null); resetIdleTimer() }}
                   >
                     <Icon size={18} />
-                    <span>{label}</span>
+                    <span>{t(i18nKey)}</span>
                   </button>
                 ))}
               </div>
@@ -251,7 +264,7 @@ export default function KioskPage() {
                       onClick={(e) => { e.stopPropagation(); setSelectedSpot(null); resetIdleTimer() }}
                     >
                       <ChevronRight size={18} style={{ transform: 'rotate(180deg)' }} />
-                      <span>返回景点列表</span>
+                      <span>{t('kiosk.backToList')}</span>
                     </button>
                     <div className="kiosk-spot-hero" style={{ background: spot.heroGradient }}>
                       <h2>{spot.name}</h2>
@@ -260,7 +273,7 @@ export default function KioskPage() {
                     <div className="kiosk-spot-body">
                       <p>{spot.shortIntro}</p>
                       <div className="kiosk-spot-meta">
-                        <span>{spot.audioDuration} 讲解</span>
+                        <span>{t('kiosk.audioDuration', { dur: spot.audioDuration })}</span>
                       </div>
                     </div>
                   </div>
@@ -294,17 +307,13 @@ export default function KioskPage() {
                 {activeTab === 'about' && (
                   <div className="kiosk-about">
                     <Sunrise size={28} />
-                    <h3>灵山胜境</h3>
-                    <p>
-                      灵山胜境位于江苏省无锡市太湖西北部的马山镇，是国家5A级旅游景区、
-                      世界佛教论坛永久会址，被誉为"东方佛国"。景区占地面积约30万平方米，
-                      历史可追溯至1300多年前的唐代贞观年间。
-                    </p>
+                    <h3>{t('kiosk.aboutTitle')}</h3>
+                    <p>{t('kiosk.aboutDesc')}</p>
                     <div className="kiosk-about-info">
-                      <div><strong>开放时间</strong><span>07:00 - 17:30</span></div>
-                      <div><strong>建议时长</strong><span>4-6 小时</span></div>
-                      <div><strong>门票参考</strong><span>210 元/人</span></div>
-                      <div><strong>客服电话</strong><span>0510-8568xxxx</span></div>
+                      <div><strong>{t('kiosk.openTime')}</strong><span>07:00 - 17:30</span></div>
+                      <div><strong>{t('kiosk.suggestedDuration')}</strong><span>4-6 {getLang() === 'en' ? 'hours' : '小时'}</span></div>
+                      <div><strong>{t('kiosk.ticketRef')}</strong><span>{getLang() === 'en' ? '¥210' : '210 元/人'}</span></div>
+                      <div><strong>{t('kiosk.servicePhone')}</strong><span>0510-8568xxxx</span></div>
                     </div>
                   </div>
                 )}
@@ -322,8 +331,8 @@ export default function KioskPage() {
           animate={{ y: 0, opacity: 1 }}
         >
           <div className="kiosk-mic-hint">
-            <span>点击话筒提问</span>
-            <span className="kiosk-mic-examples">"灵山大佛有多高？" "推荐一条路线"</span>
+            <span>{t('kiosk.micHint')}</span>
+            <span className="kiosk-mic-examples">{t('kiosk.micExamples')}</span>
           </div>
           <motion.button
             type="button"
@@ -334,7 +343,7 @@ export default function KioskPage() {
             <Mic size={36} />
           </motion.button>
           <div className="kiosk-mic-label">
-            {isListening ? '聆听中...' : isSpeaking ? '讲解中...' : '语音提问'}
+            {isListening ? t('kiosk.micListening') : isSpeaking ? t('kiosk.micSpeaking') : t('kiosk.micIdle')}
           </div>
         </motion.div>
       )}
@@ -377,12 +386,12 @@ export default function KioskPage() {
                   fgColor="#fff"
                 />
               </div>
-              <h3>扫码继续体验</h3>
-              <p>用手机扫描二维码，AI 导游随时随地陪伴您的旅程</p>
+              <h3>{t('kiosk.qrTitle')}</h3>
+              <p>{t('kiosk.qrDesc')}</p>
               <div className="kiosk-qr-devices">
-                <span>支持微信扫码</span>
+                <span>{t('kiosk.qrWechat')}</span>
                 <span>·</span>
-                <span>手机浏览器</span>
+                <span>{t('kiosk.qrBrowser')}</span>
               </div>
             </motion.div>
           </motion.div>
