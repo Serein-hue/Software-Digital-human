@@ -16,6 +16,7 @@ import KnowledgeBase from './components/admin/KnowledgeBase'
 import ContentReview from './components/admin/ContentReview'
 import DigitalHumanConfig from './components/admin/DigitalHumanConfig'
 import SystemSettings from './components/admin/SystemSettings'
+import CommandCenter from './components/admin/CommandCenter'
 import {
   ReactFlow,
   Background,
@@ -562,6 +563,7 @@ function AnimatedRoutes() {
         <Route path="/review" element={<ContentReview />} />
         <Route path="/digital-human" element={<DigitalHumanConfig />} />
         <Route path="/settings" element={<SystemSettings />} />
+        <Route path="/command" element={<CommandCenter />} />
         <Route path="/validation" element={<ValidationPage />} />
         <Route path="/word" element={<WordPage />} />
       </Routes>

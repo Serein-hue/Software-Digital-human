@@ -70,7 +70,7 @@ export const navRoutes = [
   { to: '/review', label: '内容审核' },
   { to: '/digital-human', label: '数字人配置' },
   { to: '/settings', label: '系统设置' },
-  { to: '/kiosk', label: 'Kiosk大屏' },
+  { to: '/command', label: '指挥中心' },
   { to: '/prd', label: 'PRD' },
   { to: '/library', label: '资料库' },
   { to: '/competitors', label: '竞品' },
