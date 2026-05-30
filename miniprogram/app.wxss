@@ -1,0 +1,86 @@
+/* 设计 Token —— 与 Web 端完全统一 */
+page {
+  --teal: #155d58;
+  --teal-light: #15bba0;
+  --rust: #b4522c;
+  --paper: #faf8f1;
+  --paper-deep: #efe8d7;
+  --ink: #20231f;
+  --muted: #62665d;
+  --line: #ded8c9;
+  --line-strong: #bdb4a0;
+
+  font-family: -apple-system, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 28rpx;
+  color: var(--ink);
+  background: var(--paper);
+  box-sizing: border-box;
+}
+
+/* 通用工具类 */
+.flex-row { display: flex; flex-direction: row; align-items: center; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-1 { flex: 1; }
+.gap-8 { gap: 8rpx; }
+.gap-12 { gap: 12rpx; }
+.gap-16 { gap: 16rpx; }
+.text-muted { color: var(--muted); font-size: 24rpx; }
+.text-teal { color: var(--teal); }
+
+/* 通用按钮 */
+.btn-primary {
+  display: flex; align-items: center; justify-content: center; gap: 12rpx;
+  padding: 20rpx 40rpx; background: var(--teal); color: #fff;
+  border-radius: 16rpx; font-size: 30rpx; font-weight: 700;
+  border: none;
+}
+.btn-primary:active { background: #0d4d48; }
+
+.btn-outline {
+  display: flex; align-items: center; justify-content: center; gap: 12rpx;
+  padding: 18rpx 36rpx; background: #fff; color: var(--teal);
+  border: 2rpx solid var(--teal); border-radius: 16rpx; font-size: 28rpx; font-weight: 600;
+}
+.btn-outline:active { background: rgba(21,93,88,0.06); }
+
+/* 通用卡片 */
+.card {
+  background: #fff; border: 1rpx solid var(--line);
+  border-radius: 20rpx; padding: 24rpx;
+}
+
+/* 通用标签 */
+.tag {
+  display: inline-flex; align-items: center; padding: 6rpx 16rpx;
+  border-radius: 12rpx; font-size: 22rpx; font-weight: 600;
+  background: rgba(21,93,88,0.08); color: var(--teal);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex; align-items: center; gap: 4rpx;
+  padding: 4rpx 14rpx; border-radius: 20rpx; font-size: 22rpx; font-weight: 600;
+}
+.badge-teal { background: rgba(21,93,88,0.1); color: var(--teal); }
+.badge-rust { background: rgba(180,82,44,0.1); color: var(--rust); }
+
+/* Loading 占位 */
+.skeleton {
+  background: linear-gradient(90deg, #f0ece1 25%, #e8e4d6 50%, #f0ece1 75%);
+  background-size: 200% 100%; animation: shimmer 1.5s infinite;
+  border-radius: 8rpx;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex; flex-direction: column; align-items: center; gap: 24rpx;
+  padding: 80rpx 40rpx; color: var(--muted);
+}
+.empty-state image { width: 120rpx; height: 120rpx; opacity: 0.4; }
+
+/* 底部安全区 */
+.safe-bottom { padding-bottom: constant(safe-area-inset-bottom); padding-bottom: env(safe-area-inset-bottom); }

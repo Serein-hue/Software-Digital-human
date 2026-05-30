@@ -1,0 +1,12 @@
+.lbs-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18rpx 28rpx; margin: 16rpx 24rpx;
+  background: #fff; border: 1rpx solid var(--line); border-radius: 24rpx;
+  font-size: 24rpx;
+}
+.lbs-left { display: flex; align-items: center; gap: 12rpx; }
+.lbs-icon { font-size: 24rpx; }
+.lbs-spot { font-weight: 700; color: var(--ink); }
+.lbs-dist { color: var(--muted); font-size: 22rpx; }
+.lbs-right { display: flex; align-items: center; gap: 8rpx; color: var(--teal); font-weight: 600; }
+.lbs-offline { color: var(--rust); }

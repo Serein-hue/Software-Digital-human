@@ -1,0 +1,124 @@
+<view class="guide-page">
+  <!-- Header -->
+  <view class="guide-header">
+    <text class="guide-title">AI 导游 · 小景</text>
+    <view class="guide-header-actions">
+      <button class="guide-header-btn" bindtap="toggleOffline" aria-label="切换在线/离线">
+        <text>{{isOffline ? '📡' : '📶'}}</text>
+      </button>
+      <button class="guide-header-btn" bindtap="openShare" aria-label="分享">
+        <text>📤</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- Offline Banner -->
+  <view wx:if="{{isOffline}}" class="offline-banner">
+    <text>📡 弱网模式 · 已缓存基础讲解包</text>
+  </view>
+
+  <!-- LBS Status -->
+  <lbs-status spotName="灵山胜境南门" distance="{{320}}" online="{{!isOffline}}" />
+
+  <!-- Digital Human -->
+  <view class="digital-human-wrap">
+    <view class="digital-human-avatar {{isSpeaking ? 'speaking' : ''}} {{isListening ? 'listening' : ''}}">
+      <text class="dh-face">🧑‍🎤</text>
+      <view wx:if="{{isSpeaking}}" class="dh-wave-ring">
+        <view class="dh-ring r1" />
+        <view class="dh-ring r2" />
+        <view class="dh-ring r3" />
+      </view>
+      <view wx:if="{{isListening}}" class="dh-listen-ring">
+        <view class="dh-ring r1" />
+        <view class="dh-ring r2" />
+      </view>
+    </view>
+    <text class="dh-name">AI 导游 · 小景</text>
+    <text class="dh-status">{{isSpeaking ? '正在讲解...' : isListening ? '正在聆听...' : '灵山胜境'}}</text>
+  </view>
+
+  <!-- Quick Actions -->
+  <view class="quick-actions">
+    <button wx:for="{{quickActions}}" wx:key="label" class="quick-chip" bindtap="onQuickAction" data-action="{{item.action}}" data-label="{{item.label}}">
+      <text>{{item.icon}}</text>
+      <text>{{item.label}}</text>
+    </button>
+    <button class="quick-chip camera-chip" bindtap="openCamera">
+      <text>📸</text>
+      <text>拍照</text>
+    </button>
+  </view>
+
+  <!-- Chat Area -->
+  <view class="chat-area">
+    <scroll-view class="chat-list" scroll-y scroll-into-view="{{scrollToId}}" scroll-with-animation>
+      <view wx:for="{{messages}}" wx:key="id" id="msg-{{item.id}}" class="chat-msg {{item.role}}">
+        <view wx:if="{{item.role === 'guide'}}" class="msg-avatar">🧑‍🎤</view>
+        <view class="msg-bubble {{item.role}}">
+          <text class="msg-text">{{item.text}}</text>
+          <view wx:if="{{item.source}}" class="msg-source">
+            <text>📖 {{item.source}}</text>
+          </view>
+        </view>
+        <view wx:if="{{item.role === 'user'}}" class="msg-avatar user-av">👤</view>
+      </view>
+      <view wx:if="{{isListening}}" class="chat-msg guide">
+        <view class="msg-avatar">🧑‍🎤</view>
+        <view class="msg-bubble guide typing">
+          <view class="typing-dots">
+            <view class="dot" />
+            <view class="dot" />
+            <view class="dot" />
+          </view>
+        </view>
+      </view>
+      <view id="msg-bottom" />
+    </scroll-view>
+
+    <!-- Input bar -->
+    <view class="chat-input-bar safe-bottom">
+      <button class="chat-mic-btn" bindtap="openVoice">
+        <text>🎤</text>
+      </button>
+      <input
+        class="chat-input"
+        placeholder="问我关于灵山胜境的任何问题..."
+        value="{{inputText}}"
+        bindinput="onInput"
+        bindconfirm="onSend"
+        confirm-type="send"
+        adjust-position
+      />
+      <button class="chat-send-btn {{inputText ? 'active' : ''}}" bindtap="onSend" disabled="{{!inputText}}">
+        <text>发送</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- Voice Overlay -->
+  <view wx:if="{{voiceOpen}}" class="voice-overlay" bindtap="closeVoice">
+    <button class="voice-close" bindtap="closeVoice">
+      <text>✕</text>
+    </button>
+    <view class="voice-center" catchtap>
+      <view class="voice-rings">
+        <view class="voice-ring r1" />
+        <view class="voice-ring r2" />
+        <view class="voice-ring r3" />
+        <view class="voice-mic-icon">🎤</view>
+      </view>
+      <text class="voice-label">正在聆听...</text>
+      <view class="voice-bars">
+        <view wx:for="{{16}}" wx:key="index" class="voice-bar" />
+      </view>
+      <view class="voice-suggestions">
+        <text class="voice-hint">试试说：</text>
+        <button wx:for="{{['灵山大佛有多高？', '帮我推荐一条路线', '这个景点有什么典故？']}}" wx:key="*this" class="voice-chip" bindtap="onVoiceResult" data-text="{{item}}">
+          {{item}}
+        </button>
+      </view>
+    </view>
+    <text class="voice-bottom-hint">轻点提示文字快速输入 · 点击空白处取消</text>
+  </view>
+</view>

@@ -1,0 +1,66 @@
+<view class="photo-page">
+  <view class="photo-header">
+    <button class="photo-back-btn" bindtap="goBack">
+      <text>◀</text>
+    </button>
+    <text class="photo-title">拍照识景</text>
+    <text class="photo-hint">将景点置于框内，保持稳定</text>
+  </view>
+
+  <!-- Viewfinder -->
+  <view class="photo-viewfinder">
+    <view class="photo-grid" />
+    <view class="photo-corner tl" />
+    <view class="photo-corner tr" />
+    <view class="photo-corner bl" />
+    <view class="photo-corner br" />
+    <view wx:if="{{phase === 'scanning'}}" class="photo-scan-beam" />
+    <view wx:if="{{phase === 'scanning'}}" class="photo-ripple r1" />
+    <view wx:if="{{phase === 'scanning'}}" class="photo-ripple r2" />
+  </view>
+
+  <!-- Scanning state -->
+  <view wx:if="{{phase === 'scanning'}}" class="photo-status">
+    <text class="photo-status-label">🔍 识别中...</text>
+    <view class="photo-progress">
+      <view class="photo-progress-fill" style="width: {{progress}}%;" />
+    </view>
+    <text class="photo-status-hint">保持稳定，将景点置于框内</text>
+  </view>
+
+  <!-- Results -->
+  <view wx:if="{{phase === 'results'}}" class="photo-results">
+    <view class="photo-results-head">
+      <text>✨ 识别结果</text>
+      <button class="photo-rescan-btn" bindtap="startScan">重新识别</button>
+    </view>
+    <view wx:for="{{results}}" wx:key="id" class="photo-result-card">
+      <view class="photo-result-rank">
+        <text>{{index + 1}}</text>
+      </view>
+      <view class="photo-result-info">
+        <view class="photo-result-top">
+          <text class="result-name">{{item.name}}</text>
+          <text class="result-cat">{{item.category}}</text>
+        </view>
+        <text class="result-desc">{{item.description}}</text>
+        <text class="result-confidence">置信度 {{item.confidence}}%</text>
+      </view>
+      <view class="photo-result-actions">
+        <button wx:if="{{item.spotId}}" class="photo-action-btn" bindtap="openDetail" data-id="{{item.spotId}}">
+          <text>📍</text>
+        </button>
+        <button class="photo-action-btn ask" bindtap="askAbout" data-name="{{item.name}}">
+          <text>提问 ▶</text>
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom actions -->
+  <view class="photo-bottom-actions safe-bottom">
+    <button wx:if="{{phase !== 'scanning'}}" class="photo-capture-btn" bindtap="startScan">
+      <text>📷 拍照识别</text>
+    </button>
+  </view>
+</view>

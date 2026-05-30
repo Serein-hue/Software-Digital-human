@@ -1,0 +1,52 @@
+<view class="route-page">
+  <view class="route-header">
+    <button class="route-back-btn" bindtap="goBack">
+      <text>◀</text>
+    </button>
+    <view class="route-header-text">
+      <text class="route-header-title">推荐路线</text>
+      <text class="route-header-sub">3 条精选路线</text>
+    </view>
+  </view>
+
+  <view class="route-list">
+    <view wx:for="{{routes}}" wx:key="id" class="route-card {{expandedId === item.id ? 'expanded' : ''}}">
+      <view class="route-card-main" bindtap="toggleExpand" data-id="{{item.id}}">
+        <view class="route-card-top">
+          <view class="route-card-left">
+            <text class="route-title">{{item.title}}</text>
+            <text class="route-desc">{{item.description}}</text>
+            <view class="route-tags">
+              <text wx:for="{{item.tags}}" wx:key="*this" class="route-tag">{{item}}</text>
+            </view>
+          </view>
+          <text class="route-chevron {{expandedId === item.id ? 'open' : ''}}">{{expandedId === item.id ? '▼' : '▶'}}</text>
+        </view>
+        <view class="route-meta">
+          <text>⏱ {{item.duration}}</text>
+          <text>👣 {{item.distance}}</text>
+          <text class="route-diff">⭐ {{item.difficulty}}</text>
+        </view>
+      </view>
+
+      <view wx:if="{{expandedId === item.id}}" class="route-detail">
+        <view class="route-steps">
+          <view wx:for="{{item.steps}}" wx:key="spot" class="route-step">
+            <view class="route-step-dot">
+              <text>{{index + 1}}</text>
+              <view wx:if="{{index < item.steps.length - 1}}" class="route-step-line" />
+            </view>
+            <view class="route-step-content">
+              <text class="step-spot">{{item.spot}}</text>
+              <text class="step-dur">{{item.duration}}</text>
+              <text class="step-note">{{item.note}}</text>
+            </view>
+          </view>
+        </view>
+        <button class="route-start-btn" bindtap="goBack">
+          <text>🧭 开始导航</text>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

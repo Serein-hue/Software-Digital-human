@@ -1,0 +1,65 @@
+<view class="sd-page">
+  <!-- Hero -->
+  <view class="sd-hero" style="background: linear-gradient(160deg, #1a3a2a 0%, #2a5a3a 30%, #5a8a4a 70%);">
+    <button class="sd-back-btn" bindtap="goBack">
+      <text>◀</text>
+    </button>
+    <view class="sd-hero-overlay">
+      <text class="sd-category">{{spot.category}}</text>
+      <text class="sd-name">{{spot.name}}</text>
+    </view>
+    <view class="sd-hero-wave">
+      <view class="sd-wave" />
+    </view>
+  </view>
+
+  <!-- Tier Switcher -->
+  <view class="sd-tiers">
+    <button
+      wx:for="{{tiers}}" wx:key="key"
+      class="sd-tier-btn {{tier === item.key ? 'active' : ''}}"
+      bindtap="setTier" data-tier="{{item.key}}"
+    >
+      <text>{{item.icon}} {{item.label}}</text>
+    </button>
+  </view>
+
+  <!-- Content -->
+  <view class="sd-content">
+    <text wx:for="{{paragraphs}}" wx:key="index" class="sd-para">{{item}}</text>
+    <view class="sd-source">
+      <text>📖 {{spot.source}}</text>
+    </view>
+  </view>
+
+  <!-- Audio bar -->
+  <view class="sd-audio">
+    <button class="sd-play-btn {{isPlaying ? 'playing' : ''}}" bindtap="togglePlay">
+      <text>{{isPlaying ? '⏸' : '▶'}}</text>
+    </button>
+    <view class="sd-audio-info">
+      <text class="sd-audio-label">{{isPlaying ? '正在播报...' : 'AI 语音讲解'}}</text>
+      <text class="sd-audio-dur">{{spot.audioDuration}}</text>
+    </view>
+  </view>
+
+  <!-- Related -->
+  <view class="sd-related">
+    <view class="sd-related-head">
+      <text>🧭 附近景点</text>
+    </view>
+    <view class="sd-related-list">
+      <button
+        wx:for="{{relatedSpots}}" wx:key="id"
+        class="sd-related-chip"
+        bindtap="navigateTo" data-id="{{item.id}}"
+      >
+        <text>📍</text>
+        <view class="sd-related-text">
+          <text class="sd-related-name">{{item.name}}</text>
+          <text class="sd-related-desc">{{item.oneLiner}}</text>
+        </view>
+      </button>
+    </view>
+  </view>
+</view>
