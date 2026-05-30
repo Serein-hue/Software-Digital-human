@@ -20,6 +20,7 @@ const DICT = {
     'voice.idleHint': '轻点提示文字快速输入 · 点击空白处取消',
     'voice.suggestions': '试试说：',
     'voice.recordingError': '录音失败，请重试',
+    'voice.mockResult': '给我介绍一下灵山胜境',
 
     'share.title': '灵山胜境 · AI 导游',
 
@@ -63,6 +64,7 @@ const DICT = {
     'voice.idleHint': 'Tap a suggestion or tap outside to cancel',
     'voice.suggestions': 'Try saying:',
     'voice.recordingError': 'Recording failed, please retry',
+    'voice.mockResult': 'Tell me about Lingshan',
 
     'share.title': 'Lingshan · AI Guide',
 

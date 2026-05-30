@@ -69,7 +69,7 @@ Page({
       this.setData({ voiceRecording: false })
       if (res.tempFilePath) {
         this.setData({ voiceOpen: false })
-        this.setData({ inputText: '给我介绍一下灵山胜境' }, () => this.onSend())
+        this.setData({ inputText: t('voice.mockResult') }, () => this.onSend())
       }
     })
     this.recorderManager.onError(() => {

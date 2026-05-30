@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import GuidePage from './components/guide/GuidePage'
 import KioskPage from './components/guide/KioskPage'
+import ErrorBoundary from './components/ErrorBoundary'
 import { t, getLang, setLang, type Lang } from './i18n'
 import DataDashboard from './components/admin/DataDashboard'
 import KnowledgeBase from './components/admin/KnowledgeBase'
@@ -590,15 +591,17 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <HashRouter>
-      <Header />
-      <AnimatedRoutes />
-      <footer className="app-footer">
-        <MapPinned size={16} />
-        <span>内容来自 Word、ao-output 与 PRD，页面以 GitHub Pages 发布</span>
-        <PlayCircle size={16} />
-      </footer>
-    </HashRouter>
+    <ErrorBoundary>
+      <HashRouter>
+        <Header />
+        <AnimatedRoutes />
+        <footer className="app-footer">
+          <MapPinned size={16} />
+          <span>内容来自 Word、ao-output 与 PRD，页面以 GitHub Pages 发布</span>
+          <PlayCircle size={16} />
+        </footer>
+      </HashRouter>
+    </ErrorBoundary>
   )
 }
 
