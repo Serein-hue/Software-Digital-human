@@ -14,32 +14,33 @@ interface RecogResult {
 const MOCK_RESULTS: RecogResult[] = [
   {
     id: 'r1',
-    name: '黄鹤楼主楼',
-    category: '古建筑',
+    name: '灵山大佛',
+    category: '青铜佛像·世界之最',
     confidence: 97.3,
-    description: '天下江山第一楼，始建于三国时期',
-    spotId: 'huanghelou',
+    description: '世界最高露天青铜释迦牟尼立像，通高88米',
+    spotId: 'lingshan-buddha',
   },
   {
     id: 'r2',
-    name: '胜像宝塔',
-    category: '古建筑·元代',
-    confidence: 89.6,
-    description: '武汉现存最古老的地面建筑之一',
-    spotId: 'shengxiang',
+    name: '灵山梵宫',
+    category: '佛教艺术殿堂',
+    confidence: 91.2,
+    description: '"东方卢浮宫"，世界佛教论坛永久会址',
+    spotId: 'lingshan-fanpalace',
   },
   {
     id: 'r3',
-    name: '崔颢题诗壁',
-    category: '碑刻',
-    confidence: 76.2,
-    description: '《黄鹤楼》诗全文石刻',
+    name: '九龙灌浴',
+    category: '动态音乐群雕',
+    confidence: 84.5,
+    description: '大型音乐动态群雕，重现"花开见佛"祥瑞场景',
+    spotId: 'lingshan-jiulong',
   },
 ]
 
 const RECENT_HISTORY = [
-  { name: '白云阁', time: '3分钟前' },
-  { name: '搁笔亭', time: '15分钟前' },
+  { name: '五印坛城', time: '3分钟前' },
+  { name: '祥符禅寺', time: '15分钟前' },
 ]
 
 interface Props {

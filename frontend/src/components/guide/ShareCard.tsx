@@ -31,7 +31,7 @@ const TEMPLATES = [
   },
 ]
 
-export default function ShareCard({ isOpen, onClose, messages, spotName = '黄鹤楼' }: Props) {
+export default function ShareCard({ isOpen, onClose, messages, spotName = '灵山胜境' }: Props) {
   const [templateId, setTemplateId] = useState('classic')
   const [copied, setCopied] = useState(false)
 
@@ -55,7 +55,7 @@ export default function ShareCard({ isOpen, onClose, messages, spotName = '黄�
   }), [messages])
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`我在${spotName}用AI导游小景游览了${stats.questions}个景点，快来体验吧！`)
+    navigator.clipboard.writeText(`我在${spotName}用AI导游小景探索了${stats.questions}个景点，快来一起感受东方佛国的魅力吧！`)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
