@@ -13,6 +13,8 @@ const DICT = {
     'guide.inputPlaceholder': '问我关于灵山胜境的任何问题...',
     'guide.confirmClear': '确定要清空对话记录吗？',
     'guide.confirm': '确认',
+    'guide.toggleOffline': '切换在线/离线',
+    'guide.share': '分享',
 
     'voice.recording': '正在录音...',
     'voice.tapStart': '点击麦克风开始',
@@ -59,6 +61,8 @@ const DICT = {
     'guide.inputPlaceholder': 'Ask me anything about Lingshan...',
     'guide.confirmClear': 'Clear conversation history?',
     'guide.confirm': 'Confirm',
+    'guide.toggleOffline': 'Toggle online/offline',
+    'guide.share': 'Share',
 
     'voice.recording': 'Recording...',
     'voice.tapStart': 'Tap mic to start',

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
-  UserCircle, Mic, Smile, Palette, Volume2, Eye,
-  ChevronDown, Check, Play, Pause, RotateCcw,
+  UserCircle, Mic, Smile, Volume2, Eye,
+  Check, Play, Pause, RotateCcw,
 } from 'lucide-react'
 import { useT } from '../../i18n'
 

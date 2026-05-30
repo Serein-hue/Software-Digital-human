@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ShieldCheck, CheckCircle, XCircle, Edit3, Eye, Clock,
-  Search, Filter, ChevronDown, MessageCircle, BookOpen, AlertTriangle,
+  Search, ChevronDown, MessageCircle, BookOpen, AlertTriangle,
 } from 'lucide-react'
 import { useT } from '../../i18n'
 

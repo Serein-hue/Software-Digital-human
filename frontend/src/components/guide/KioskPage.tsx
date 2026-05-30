@@ -311,8 +311,8 @@ export default function KioskPage() {
                     <p>{t('kiosk.aboutDesc')}</p>
                     <div className="kiosk-about-info">
                       <div><strong>{t('kiosk.openTime')}</strong><span>07:00 - 17:30</span></div>
-                      <div><strong>{t('kiosk.suggestedDuration')}</strong><span>4-6 {getLang() === 'en' ? 'hours' : '小时'}</span></div>
-                      <div><strong>{t('kiosk.ticketRef')}</strong><span>{getLang() === 'en' ? '¥210' : '210 元/人'}</span></div>
+                      <div><strong>{t('kiosk.suggestedDuration')}</strong><span>{t('kiosk.durationValue')}</span></div>
+                      <div><strong>{t('kiosk.ticketRef')}</strong><span>{t('kiosk.ticketValue')}</span></div>
                       <div><strong>{t('kiosk.servicePhone')}</strong><span>0510-8568xxxx</span></div>
                     </div>
                   </div>

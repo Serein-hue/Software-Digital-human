@@ -5,8 +5,8 @@
     <text class="lbs-dist">{{distance}}m</text>
   </view>
   <view class="lbs-right">
-    <text class="lbs-status">LBS 已激活</text>
+    <text class="lbs-status">{{lbsActiveLabel}}</text>
     <text wx:if="{{online}}" class="lbs-online">📶</text>
-    <text wx:else class="lbs-offline">📡 弱网模式</text>
+    <text wx:else class="lbs-offline">📡 {{offlineModeLabel}}</text>
   </view>
 </view>

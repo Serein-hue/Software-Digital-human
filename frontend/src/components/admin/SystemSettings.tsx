@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
-  Settings, Key, Bell, Database, Info, Copy, Check,
+  Key, Bell, Database, Info, Copy, Check,
   Trash2, RefreshCw, Shield, Globe,
 } from 'lucide-react'
 import { useT } from '../../i18n'

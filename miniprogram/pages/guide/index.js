@@ -51,6 +51,8 @@ Page({
       voiceSuggestionsLabel: t('voice.suggestions'),
       voiceSuggestions: getSuggestions(),
       langLabel: getLang() === 'zh' ? 'EN' : '中文',
+      toggleOfflineAria: t('guide.toggleOffline'),
+      shareAria: t('guide.share'),
     })
   },
 

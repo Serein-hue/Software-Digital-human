@@ -6,10 +6,10 @@
       <button class="guide-header-btn lang-btn" bindtap="toggleLanguage">
         <text>{{langLabel}}</text>
       </button>
-      <button class="guide-header-btn" bindtap="toggleOffline" aria-label="切换在线/离线">
+      <button class="guide-header-btn" bindtap="toggleOffline" aria-label="{{toggleOfflineAria}}">
         <text>{{isOffline ? '📡' : '📶'}}</text>
       </button>
-      <button class="guide-header-btn" bindtap="openShare" aria-label="分享">
+      <button class="guide-header-btn" bindtap="openShare" aria-label="{{shareAria}}">
         <text>📤</text>
       </button>
     </view>

@@ -2,15 +2,17 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   FileText, Upload, Search, ChevronRight, Clock, CheckCircle,
-  AlertCircle, Layers, Hash, EyeOff, Filter, X,
+  AlertCircle, Layers, Hash, EyeOff, X,
 } from 'lucide-react'
 import { useT } from '../../i18n'
+
+type DocType = 'spotData' | 'guideInfo' | 'dataset' | 'image' | 'rule'
 
 interface DocEntry {
   id: string
   name: string
   source: string
-  type: '景点数据' | '游览指南' | '数据集' | '图片' | '规则'
+  type: DocType
   status: 'ready' | 'processing' | 'error' | 'pending'
   chunks: number
   size: string
@@ -23,7 +25,7 @@ const MOCK_DOCS: DocEntry[] = [
     id: 'doc-1',
     name: '灵山胜境景点结构化数据集',
     source: '示范景区公开资料包',
-    type: '景点数据',
+    type: 'spotData',
     status: 'ready',
     chunks: 86,
     size: '45 KB',
@@ -34,7 +36,7 @@ const MOCK_DOCS: DocEntry[] = [
     id: 'doc-2',
     name: '灵山胜境游览指南',
     source: '示范景区公开资料包',
-    type: '游览指南',
+    type: 'guideInfo',
     status: 'ready',
     chunks: 134,
     size: '30 KB',
@@ -45,7 +47,7 @@ const MOCK_DOCS: DocEntry[] = [
     id: 'doc-3',
     name: '景点行为分析数据',
     source: '示范景区公开资料包',
-    type: '数据集',
+    type: 'dataset',
     status: 'ready',
     chunks: 522,
     size: '16.7 MB',
@@ -56,7 +58,7 @@ const MOCK_DOCS: DocEntry[] = [
     id: 'doc-4',
     name: '景区门票与优惠政策',
     source: '景区官网',
-    type: '规则',
+    type: 'rule',
     status: 'processing',
     chunks: 12,
     size: '8 KB',
@@ -67,7 +69,7 @@ const MOCK_DOCS: DocEntry[] = [
     id: 'doc-5',
     name: '灵山大佛高清图集',
     source: '景区素材库',
-    type: '图片',
+    type: 'image',
     status: 'pending',
     chunks: 0,
     size: '124 MB',
@@ -78,7 +80,7 @@ const MOCK_DOCS: DocEntry[] = [
     id: 'doc-6',
     name: '梵宫艺术展品说明',
     source: '景区素材库',
-    type: '景点数据',
+    type: 'spotData',
     status: 'error',
     chunks: 3,
     size: '52 KB',
@@ -108,7 +110,15 @@ const STATUS_LABEL_KEYS: Record<DocEntry['status'], string> = {
   pending: 'admin.pending',
 }
 
-const TYPE_TAGS: DocEntry['type'][] = ['景点数据', '游览指南', '数据集', '图片', '规则']
+const TYPE_TAGS: DocType[] = ['spotData', 'guideInfo', 'dataset', 'image', 'rule']
+
+const TYPE_I18N: Record<DocType, string> = {
+  spotData: 'admin.docTypeSpotData',
+  guideInfo: 'admin.docTypeGuide',
+  dataset: 'admin.docTypeDataset',
+  image: 'admin.docTypeImage',
+  rule: 'admin.docTypeRule',
+}
 
 export default function KnowledgeBase() {
   const [search, setSearch] = useState('')
@@ -162,14 +172,14 @@ export default function KnowledgeBase() {
           )}
         </div>
         <div className="kb-type-filters">
-          {TYPE_TAGS.map((t) => (
+          {TYPE_TAGS.map((dt) => (
             <button
-              key={t}
+              key={dt}
               type="button"
-              className={`kb-type-chip ${typeFilter === t ? 'active' : ''}`}
-              onClick={() => setTypeFilter(typeFilter === t ? null : t)}
+              className={`kb-type-chip ${typeFilter === dt ? 'active' : ''}`}
+              onClick={() => setTypeFilter(typeFilter === dt ? null : dt)}
             >
-              {t}
+              {t(TYPE_I18N[dt])}
             </button>
           ))}
         </div>
@@ -211,7 +221,7 @@ export default function KnowledgeBase() {
                       <span>{doc.updatedAt}</span>
                     </div>
                     <div className="kb-doc-tags">
-                      <span className="kb-type-badge">{doc.type}</span>
+                      <span className="kb-type-badge">{t(TYPE_I18N[doc.type])}</span>
                       {doc.tags.map((tag) => (
                         <span key={tag} className="kb-tag">{tag}</span>
                       ))}
@@ -243,7 +253,7 @@ export default function KnowledgeBase() {
                         <div className="kb-detail-stat">
                           <Layers size={13} />
                           <div>
-                            <strong>{doc.type}</strong>
+                            <strong>{t(TYPE_I18N[doc.type])}</strong>
                             <span>{t('admin.docType')}</span>
                           </div>
                         </div>

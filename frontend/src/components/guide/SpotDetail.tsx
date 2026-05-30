@@ -116,19 +116,13 @@ const SPOTS: Record<string, SpotData> = {
   },
 }
 
-type Tier = '一句话' | '30秒' | '3分钟'
+type Tier = 'oneLiner' | 'shortIntro' | 'fullIntro'
 
 const TIER_LABELS: { tier: Tier; icon: typeof Clock; descKey: string }[] = [
-  { tier: '一句话', icon: Clock, descKey: 'spot.oneLine' },
-  { tier: '30秒', icon: Clock, descKey: 'spot.shortVersion' },
-  { tier: '3分钟', icon: BookOpen, descKey: 'spot.deepGuide' },
+  { tier: 'oneLiner', icon: Clock, descKey: 'spot.oneLine' },
+  { tier: 'shortIntro', icon: Clock, descKey: 'spot.shortVersion' },
+  { tier: 'fullIntro', icon: BookOpen, descKey: 'spot.deepGuide' },
 ]
-
-const TIER_CONTENT: Record<Tier, keyof SpotData> = {
-  '一句话': 'oneLiner',
-  '30秒': 'shortIntro',
-  '3分钟': 'fullIntro',
-}
 
 interface Props {
   spotId: string
@@ -137,7 +131,7 @@ interface Props {
 }
 
 export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
-  const [tier, setTier] = useState<Tier>('30秒')
+  const [tier, setTier] = useState<Tier>('shortIntro')
   const [isPlaying, setIsPlaying] = useState(false)
   const audioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [remoteSpot, setRemoteSpot] = useState<SpotData | null>(null)
@@ -188,7 +182,7 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
   const spot = remoteSpot ?? SPOTS[spotId] ?? SPOTS['lingshan-buddha']
   const relatedSpots = remoteRelated ?? spot.related.map((id) => SPOTS[id]).filter(Boolean) as SpotData[]
 
-  const content = spot[TIER_CONTENT[tier]]
+  const content = spot[tier]
 
   const togglePlay = () => {
     if (isPlaying) {

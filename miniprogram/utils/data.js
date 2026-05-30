@@ -284,12 +284,6 @@ const MOCK_KNOWLEDGE = {
   },
 }
 
-const TIERS = [
-  { key: 'oneLiner', label: '一句话', icon: '⏱' },
-  { key: 'shortIntro', label: '30秒', icon: '⏱' },
-  { key: 'fullIntro', label: '3分钟', icon: '📖' },
-]
-
 const QUICK_ACTIONS = [
   { icon: '🗺', label: '推荐路线', action: 'route' },
   { icon: '📷', label: '拍照识景', action: 'camera' },
@@ -301,6 +295,5 @@ module.exports = {
   SPOTS,
   ROUTES,
   MOCK_KNOWLEDGE,
-  TIERS,
   QUICK_ACTIONS,
 }
