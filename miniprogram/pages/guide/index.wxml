@@ -43,7 +43,7 @@
 
   <!-- Quick Actions -->
   <view class="quick-actions">
-    <button wx:for="{{quickActions}}" wx:key="label" class="quick-chip" bindtap="onQuickAction" data-action="{{item.action}}" data-label="{{item.label}}">
+    <button wx:for="{{quickActions}}" wx:key="action" class="quick-chip" bindtap="onQuickAction" data-action="{{item.action}}" data-ask-text="{{item.askText}}">
       <text>{{item.icon}}</text>
       <text>{{item.label}}</text>
     </button>

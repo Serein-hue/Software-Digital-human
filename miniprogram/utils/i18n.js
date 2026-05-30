@@ -46,6 +46,11 @@ const DICT = {
     'photo.confidence': '置信度',
     'photo.ask': '提问',
     'photo.recent': '最近识别',
+
+    'quick.route': '推荐路线',
+    'quick.camera': '拍照识景',
+    'quick.detail': '深度讲解',
+    'quick.duration': '游览时长',
   },
   en: {
     'app.title': 'Lingshan · AI Digital Guide',
@@ -94,6 +99,11 @@ const DICT = {
     'photo.confidence': 'Confidence',
     'photo.ask': 'Ask',
     'photo.recent': 'Recent',
+
+    'quick.route': 'Routes',
+    'quick.camera': 'Photo ID',
+    'quick.detail': 'Deep Guide',
+    'quick.duration': 'Duration',
   },
 }
 

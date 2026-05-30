@@ -285,10 +285,10 @@ const MOCK_KNOWLEDGE = {
 }
 
 const QUICK_ACTIONS = [
-  { icon: '🗺', label: '推荐路线', action: 'route' },
-  { icon: '📷', label: '拍照识景', action: 'camera' },
-  { icon: '📖', label: '深度讲解', action: 'detail' },
-  { icon: '⏱', label: '游览时长', action: 'ask' },
+  { icon: '🗺', i18nKey: 'quick.route', action: 'route', askText: '推荐路线' },
+  { icon: '📷', i18nKey: 'quick.camera', action: 'camera', askText: '拍照识景' },
+  { icon: '📖', i18nKey: 'quick.detail', action: 'detail', askText: '深度讲解' },
+  { icon: '⏱', i18nKey: 'quick.duration', action: 'ask', askText: '游览时长' },
 ]
 
 module.exports = {

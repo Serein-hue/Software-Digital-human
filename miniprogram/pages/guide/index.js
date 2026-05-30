@@ -11,7 +11,7 @@ Page({
     voiceOpen: false,
     voiceRecording: false,
     scrollToId: '',
-    quickActions: QUICK_ACTIONS,
+    quickActions: [],
     voiceSuggestions: [],
     langLabel: 'EN',
     // Display strings
@@ -53,6 +53,10 @@ Page({
       langLabel: getLang() === 'zh' ? 'EN' : '中文',
       toggleOfflineAria: t('guide.toggleOffline'),
       shareAria: t('guide.share'),
+      quickActions: QUICK_ACTIONS.map((q) => ({
+        ...q,
+        label: t(q.i18nKey),
+      })),
     })
   },
 
@@ -124,7 +128,7 @@ Page({
   },
 
   onQuickAction(e) {
-    const { action, label } = e.currentTarget.dataset
+    const { action, askText } = e.currentTarget.dataset
     if (action === 'route') {
       wx.navigateTo({ url: '/pages/route/index' })
     } else if (action === 'camera') {
@@ -132,7 +136,7 @@ Page({
     } else if (action === 'detail') {
       wx.navigateTo({ url: '/pages/spot-detail/index?id=lingshan-buddha' })
     } else if (action === 'ask') {
-      this.onSendText(label)
+      this.onSendText(askText)
     }
   },
 
