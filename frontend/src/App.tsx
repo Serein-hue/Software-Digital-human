@@ -4,7 +4,6 @@ import {
   BookOpen,
   CircleDot,
   MapPinned,
-  MessageCircle,
   PlayCircle,
   ShieldCheck,
   Sparkles,
