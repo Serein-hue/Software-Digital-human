@@ -15,6 +15,8 @@ const DICT = {
     'guide.confirm': '确认',
     'guide.toggleOffline': '切换在线/离线',
     'guide.share': '分享',
+    'guide.lbsActive': 'LBS 已激活',
+    'guide.offlineMode': '弱网模式',
 
     'voice.recording': '正在录音...',
     'voice.tapStart': '点击麦克风开始',
@@ -25,6 +27,7 @@ const DICT = {
     'voice.mockResult': '给我介绍一下灵山胜境',
     'photo.failToast': '拍照失败，请重试',
     'photo.tellMeAbout': '给我讲讲{{name}}',
+    'photo.capture': '拍照识别',
 
     'share.title': '灵山胜境 · AI 导游',
 
@@ -68,6 +71,8 @@ const DICT = {
     'guide.confirm': 'Confirm',
     'guide.toggleOffline': 'Toggle online/offline',
     'guide.share': 'Share',
+    'guide.lbsActive': 'LBS Active',
+    'guide.offlineMode': 'Offline',
 
     'voice.recording': 'Recording...',
     'voice.tapStart': 'Tap mic to start',
@@ -78,6 +83,7 @@ const DICT = {
     'voice.mockResult': 'Tell me about Lingshan',
     'photo.failToast': 'Photo failed, please retry',
     'photo.tellMeAbout': 'Tell me about {{name}}',
+    'photo.capture': 'Photo Scan',
 
     'share.title': 'Lingshan · AI Guide',
 

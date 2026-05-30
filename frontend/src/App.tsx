@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useMemo, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   BookOpen,
@@ -12,12 +12,13 @@ import GuidePage from './components/guide/GuidePage'
 import KioskPage from './components/guide/KioskPage'
 import ErrorBoundary from './components/ErrorBoundary'
 import { t, getLang, setLang, type Lang } from './i18n'
-import DataDashboard from './components/admin/DataDashboard'
-import KnowledgeBase from './components/admin/KnowledgeBase'
-import ContentReview from './components/admin/ContentReview'
-import DigitalHumanConfig from './components/admin/DigitalHumanConfig'
-import SystemSettings from './components/admin/SystemSettings'
-import CommandCenter from './components/admin/CommandCenter'
+
+const DataDashboard = lazy(() => import('./components/admin/DataDashboard'))
+const KnowledgeBase = lazy(() => import('./components/admin/KnowledgeBase'))
+const ContentReview = lazy(() => import('./components/admin/ContentReview'))
+const DigitalHumanConfig = lazy(() => import('./components/admin/DigitalHumanConfig'))
+const SystemSettings = lazy(() => import('./components/admin/SystemSettings'))
+const CommandCenter = lazy(() => import('./components/admin/CommandCenter'))
 import {
   ReactFlow,
   Background,
@@ -575,12 +576,12 @@ function AnimatedRoutes() {
         <Route path="/library" element={<LibraryPage />} />
         <Route path="/competitors" element={<CompetitorsPage />} />
         <Route path="/timeline" element={<TimelinePage />} />
-        <Route path="/dashboard" element={<DataDashboard />} />
-        <Route path="/knowledge" element={<KnowledgeBase />} />
-        <Route path="/review" element={<ContentReview />} />
-        <Route path="/digital-human" element={<DigitalHumanConfig />} />
-        <Route path="/settings" element={<SystemSettings />} />
-        <Route path="/command" element={<CommandCenter />} />
+        <Route path="/dashboard" element={<Suspense><DataDashboard /></Suspense>} />
+        <Route path="/knowledge" element={<Suspense><KnowledgeBase /></Suspense>} />
+        <Route path="/review" element={<Suspense><ContentReview /></Suspense>} />
+        <Route path="/digital-human" element={<Suspense><DigitalHumanConfig /></Suspense>} />
+        <Route path="/settings" element={<Suspense><SystemSettings /></Suspense>} />
+        <Route path="/command" element={<Suspense><CommandCenter /></Suspense>} />
         <Route path="/validation" element={<ValidationPage />} />
         <Route path="/word" element={<WordPage />} />
       </Routes>
