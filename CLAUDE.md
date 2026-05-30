@@ -1,0 +1,41 @@
+# Software-Digital-human — 景区导览 AI 数字人
+
+中国软件杯 2026 A5 赛题，出题企业 锐捷网络，提交截止 2026-06-30。
+
+## 技术栈
+React 19 + Vite + TypeScript + Framer Motion + Recharts + ReactFlow
+纯手写 CSS（无 Tailwind/MUI），移动端优先 ≤480px
+HashRouter（GitHub Pages 兼容）
+
+## 项目结构
+```
+frontend/src/
+  components/guide/     # C端导览 (6 页面)
+  components/admin/     # B端管理后台
+  data/siteData.ts      # 站点配置、导航、PRD数据
+  App.tsx               # 路由 + 布局
+  App.css               # 全部样式 (~2400行)
+docs/app/               # 构建产物 → GitHub Pages
+rag-knowledge/          # RAG 知识库 (Markdown)
+official-materials/     # 赛题官方资料包
+skills/                 # 自动化脚本
+```
+
+## 当前状态
+- [x] C端 6 页面完成：GuidePage, ChatPanel, DigitalHuman, SpotDetail, RouteRecommend, PhotoRecognition, VoiceRecord, ShareCard
+- [x] 全部 mock 数据已替换为灵山胜境官方资料
+- [x] B端数据大屏完成 (DataDashboard)
+- [ ] B端：知识库管理、内容审核、数字人配置、系统设置
+- [ ] RAG 检索管道
+- [ ] 后端 API
+
+## 数据来源
+灵山胜境（无锡，国家5A级景区，世界佛教论坛永久会址）
+官方资料包：景点数据集 + 游客行为分析数据 (xlsx 14万条) + 游览指南
+
+## 关键约定
+- 纯 CSS，不用任何 CSS 框架
+- 移动端优先设计
+- 先确认方案再写代码
+- 做完就推送，实时更新 GitHub Pages
+- 数据替换用增量方式，不搞全量
