@@ -21,6 +21,8 @@ const DICT = {
     'voice.suggestions': '试试说：',
     'voice.recordingError': '录音失败，请重试',
     'voice.mockResult': '给我介绍一下灵山胜境',
+    'photo.failToast': '拍照失败，请重试',
+    'photo.tellMeAbout': '给我讲讲{{name}}',
 
     'share.title': '灵山胜境 · AI 导游',
 
@@ -65,6 +67,8 @@ const DICT = {
     'voice.suggestions': 'Try saying:',
     'voice.recordingError': 'Recording failed, please retry',
     'voice.mockResult': 'Tell me about Lingshan',
+    'photo.failToast': 'Photo failed, please retry',
+    'photo.tellMeAbout': 'Tell me about {{name}}',
 
     'share.title': 'Lingshan · AI Guide',
 

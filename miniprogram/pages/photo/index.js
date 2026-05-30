@@ -55,7 +55,7 @@ Page({
         this.startScan()
       },
       fail: () => {
-        wx.showToast({ title: '拍照失败，请重试', icon: 'none' })
+        wx.showToast({ title: t('photo.failToast'), icon: 'none' })
       },
     })
   },
@@ -86,7 +86,7 @@ Page({
     const pages = getCurrentPages()
     const prevPage = pages[pages.length - 2]
     if (prevPage) {
-      prevPage.onSendText(`给我讲讲${name}`)
+      prevPage.onSendText(t('photo.tellMeAbout', { name }))
     }
     wx.navigateBack()
   },
