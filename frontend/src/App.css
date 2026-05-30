@@ -887,6 +887,40 @@ li {
 .msg-row.user .msg-source { color: rgba(255,255,255,0.75); }
 .msg-row.guide .msg-source { color: var(--muted); }
 
+.msg-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.confidence-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.confidence-high {
+  background: #e6f7ed;
+  color: #1a7d3a;
+}
+
+.confidence-medium {
+  background: #fef7e0;
+  color: #b85c1a;
+}
+
+.confidence-low {
+  background: #f3f0ff;
+  color: #6b5fb5;
+}
+
 .msg-actions {
   display: flex;
   gap: 4px;

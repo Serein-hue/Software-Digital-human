@@ -55,28 +55,28 @@ app.post('/api/chat', (req, res) => {
 
   const q = question.trim()
 
-  // Exact match
+  // Exact match → high confidence
   if (KNOWLEDGE_BASE[q]) {
-    return res.json({ answer: KNOWLEDGE_BASE[q].text, source: KNOWLEDGE_BASE[q].source })
+    return res.json({ answer: KNOWLEDGE_BASE[q].text, source: KNOWLEDGE_BASE[q].source, confidence: 'high' })
   }
 
-  // Partial match on key
+  // Partial key match → medium confidence
   for (const [key, value] of Object.entries(KNOWLEDGE_BASE)) {
     if (key === 'default') continue
     if (q.includes(key.slice(0, 4)) || key.includes(q.slice(0, 4))) {
-      return res.json({ answer: value.text, source: value.source })
+      return res.json({ answer: value.text, source: value.source, confidence: 'medium' })
     }
   }
 
-  // Spot name match
+  // Spot name match → medium confidence
   for (const spot of SPOTS) {
     if (q.includes(spot.name)) {
-      return res.json({ answer: spot.shortIntro, source: spot.source })
+      return res.json({ answer: spot.shortIntro, source: spot.source, confidence: 'medium' })
     }
   }
 
-  // Default
-  res.json({ answer: KNOWLEDGE_BASE.default.text, source: KNOWLEDGE_BASE.default.source })
+  // Default fallback → low confidence
+  res.json({ answer: KNOWLEDGE_BASE.default.text, source: KNOWLEDGE_BASE.default.source, confidence: 'low' })
 })
 
 // ── Analytics ──

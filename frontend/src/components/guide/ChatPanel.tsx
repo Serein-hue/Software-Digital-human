@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, type FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mic, Send, ThumbsUp, ThumbsDown, Copy } from 'lucide-react'
+import { Mic, Send, ThumbsUp, ThumbsDown, Copy, ShieldCheck, ShieldAlert, ShieldQuestion } from 'lucide-react'
 import { useT } from '../../i18n'
 
 export interface Message {
@@ -8,7 +8,14 @@ export interface Message {
   role: 'user' | 'guide'
   text: string
   source?: string
+  confidence?: 'high' | 'medium' | 'low'
 }
+
+const CONFIDENCE_CONFIG = {
+  high: { icon: ShieldCheck, cls: 'confidence-high', labelKey: 'chat.confidenceHigh' },
+  medium: { icon: ShieldAlert, cls: 'confidence-medium', labelKey: 'chat.confidenceMedium' },
+  low: { icon: ShieldQuestion, cls: 'confidence-low', labelKey: 'chat.confidenceLow' },
+} as const
 
 interface Props {
   messages: Message[]
@@ -17,6 +24,17 @@ interface Props {
   onRate?: (id: string, rating: 'up' | 'down') => void
   onVoiceClick?: () => void
   onCameraClick?: () => void
+}
+
+function ConfidenceBadge({ confidence }: { confidence: 'high' | 'medium' | 'low' }) {
+  const cfg = CONFIDENCE_CONFIG[confidence]
+  const Icon = cfg.icon
+  return (
+    <span className={`confidence-badge ${cfg.cls}`}>
+      <Icon size={12} />
+      <span>{t(cfg.labelKey)}</span>
+    </span>
+  )
 }
 
 export default function ChatPanel({ messages, onSend, isListening, onRate, onVoiceClick, onCameraClick }: Props) {
@@ -49,8 +67,11 @@ export default function ChatPanel({ messages, onSend, isListening, onRate, onVoi
             >
               <div className="msg-bubble">
                 <p>{msg.text}</p>
-                {msg.source && (
-                  <span className="msg-source">来源: {msg.source}</span>
+                {(msg.source || msg.confidence) && (
+                  <div className="msg-meta">
+                    {msg.source && <span className="msg-source">来源: {msg.source}</span>}
+                    {msg.confidence && <ConfidenceBadge confidence={msg.confidence} />}
+                  </div>
                 )}
               </div>
               {msg.role === 'guide' && onRate && (

@@ -41,6 +41,7 @@ interface RouteData {
 interface ChatResponse {
   answer: string
   source: string
+  confidence: 'high' | 'medium' | 'low'
 }
 
 interface AnalyticsData {

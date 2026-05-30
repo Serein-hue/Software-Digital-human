@@ -88,6 +88,10 @@ const dict: Record<Lang, Record<string, string>> = {
     'dashboard.visitorsUnit': '人次',
     'dashboard.monthUnit': '月',
 
+    'chat.confidenceHigh': '官方认证',
+    'chat.confidenceMedium': '资料匹配',
+    'chat.confidenceLow': '通用信息',
+
     'lang.switch': 'English',
   },
   en: {
@@ -174,6 +178,10 @@ const dict: Record<Lang, Record<string, string>> = {
     'dashboard.topSpots': 'Top Spots',
     'dashboard.visitorsUnit': 'visitors',
     'dashboard.monthUnit': '',
+
+    'chat.confidenceHigh': 'Verified',
+    'chat.confidenceMedium': 'Matched',
+    'chat.confidenceLow': 'General',
 
     'lang.switch': '中文',
   },

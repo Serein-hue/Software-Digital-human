@@ -81,18 +81,21 @@ export default function GuidePage() {
       const remote = await fetchChatAnswer(text)
       let replyText: string
       let replySource: string
+      let replyConfidence: 'high' | 'medium' | 'low'
 
       if (remote) {
         replyText = remote.answer
         replySource = remote.source
+        replyConfidence = remote.confidence
       } else {
-        const matched = MOCK_KNOWLEDGE[text]
-          ?? (Object.entries(MOCK_KNOWLEDGE).find(([key]) =>
-            text.includes(key.slice(0, 4))
-          )?.[1])
-          ?? MOCK_KNOWLEDGE.default
+        const exactMatch = MOCK_KNOWLEDGE[text]
+        const partialMatch = !exactMatch && Object.entries(MOCK_KNOWLEDGE).find(([key]) =>
+          text.includes(key.slice(0, 4))
+        )?.[1]
+        const matched = exactMatch ?? partialMatch ?? MOCK_KNOWLEDGE.default
         replyText = matched.text
         replySource = matched.source
+        replyConfidence = exactMatch ? 'high' : partialMatch ? 'medium' : 'low'
       }
 
       setIsSpeaking(true)
@@ -101,6 +104,7 @@ export default function GuidePage() {
         role: 'guide',
         text: replyText,
         source: replySource,
+        confidence: replyConfidence,
       }
       setMessages((prev) => [...prev, guideMsg])
 
