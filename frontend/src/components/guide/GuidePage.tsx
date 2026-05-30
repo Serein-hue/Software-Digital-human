@@ -1,9 +1,14 @@
 import { useState, useCallback } from 'react'
-import { motion } from 'framer-motion'
-import { Map, Clock, Camera, BookOpen } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Map, Clock, Camera, BookOpen, Share2, Image, WifiOff, RefreshCw } from 'lucide-react'
 import DigitalHuman from './DigitalHuman'
 import LbsStatus from './LbsStatus'
 import ChatPanel, { type Message } from './ChatPanel'
+import VoiceRecord from './VoiceRecord'
+import SpotDetail from './SpotDetail'
+import RouteRecommend from './RouteRecommend'
+import PhotoRecognition from './PhotoRecognition'
+import ShareCard from './ShareCard'
 
 const MOCK_KNOWLEDGE: Record<string, { text: string; source: string }> = {
   '黄鹤楼的历史': {
@@ -41,6 +46,12 @@ export default function GuidePage() {
   ])
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [isListening, setIsListening] = useState(false)
+  const [voiceOpen, setVoiceOpen] = useState(false)
+  const [cameraOpen, setCameraOpen] = useState(false)
+  const [shareOpen, setShareOpen] = useState(false)
+  const [isOffline, setIsOffline] = useState(false)
+  const [spotDetailId, setSpotDetailId] = useState<string | null>(null)
+  const [routeOpen, setRouteOpen] = useState(false)
 
   const handleSend = useCallback((text: string) => {
     const userMsg: Message = {
@@ -74,16 +85,57 @@ export default function GuidePage() {
   }, [])
 
   const handleRate = useCallback((id: string, rating: 'up' | 'down') => {
-    // TODO: send to analytics pipeline
     console.log(`rated ${id}: ${rating}`)
   }, [])
 
+  const toggleOffline = () => setIsOffline((v) => !v)
+
   return (
     <div className="guide-page">
-      <LbsStatus spotName="黄鹤楼东门" distance={320} online={true} />
+      {/* Header */}
+      <header className="guide-header">
+        <span className="guide-header-title">AI 导游</span>
+        <div className="guide-header-actions">
+          <button
+            type="button"
+            className="guide-header-btn"
+            onClick={toggleOffline}
+            aria-label={isOffline ? '切换到在线模式' : '切换到离线模式'}
+          >
+            {isOffline ? <WifiOff size={17} /> : <RefreshCw size={17} />}
+          </button>
+          <button
+            type="button"
+            className="guide-header-btn"
+            onClick={() => setShareOpen(true)}
+            aria-label="分享"
+          >
+            <Share2 size={17} />
+          </button>
+        </div>
+      </header>
+
+      {/* Offline banner */}
+      <AnimatePresence>
+        {isOffline && (
+          <motion.div
+            className="offline-banner"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <WifiOff size={13} />
+            <span>弱网模式 · 已缓存基础讲解包，部分功能可能受限</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <LbsStatus spotName="黄鹤楼东门" distance={320} online={!isOffline} />
 
       <DigitalHuman isSpeaking={isSpeaking} spotName="黄鹤楼" />
 
+      {/* Quick actions + camera entry */}
       <div className="guide-quick-actions">
         {QUICK_ACTIONS.map((action) => (
           <motion.button
@@ -91,12 +143,31 @@ export default function GuidePage() {
             type="button"
             className="quick-action-chip"
             whileTap={{ scale: 0.95 }}
-            onClick={() => handleSend(action.label)}
+            onClick={() => {
+              if (action.label === '拍照识景') {
+                setCameraOpen(true)
+              } else if (action.label === '推荐路线') {
+                setRouteOpen(true)
+              } else if (action.label === '深度讲解') {
+                setSpotDetailId('huanghelou')
+              } else {
+                handleSend(action.label)
+              }
+            }}
           >
             <action.icon size={15} />
             <span>{action.label}</span>
           </motion.button>
         ))}
+        <motion.button
+          type="button"
+          className="quick-action-chip camera-chip"
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setCameraOpen(true)}
+        >
+          <Image size={15} />
+          <span>拍照</span>
+        </motion.button>
       </div>
 
       <ChatPanel
@@ -104,7 +175,63 @@ export default function GuidePage() {
         onSend={handleSend}
         isListening={isListening}
         onRate={handleRate}
+        onVoiceClick={() => setVoiceOpen(true)}
+        onCameraClick={() => setCameraOpen(true)}
       />
+
+      {/* Voice recording overlay */}
+      <VoiceRecord
+        isOpen={voiceOpen}
+        onClose={() => setVoiceOpen(false)}
+        onResult={(text) => handleSend(text)}
+      />
+
+      {/* Photo Recognition */}
+      <PhotoRecognition
+        isOpen={cameraOpen}
+        onClose={() => setCameraOpen(false)}
+        onSpotDetail={(spotId) => {
+          setCameraOpen(false)
+          setTimeout(() => setSpotDetailId(spotId), 300)
+        }}
+        onAsk={(question) => {
+          setCameraOpen(false)
+          setTimeout(() => handleSend(question), 300)
+        }}
+      />
+
+      {/* Share Card */}
+      <ShareCard
+        isOpen={shareOpen}
+        onClose={() => setShareOpen(false)}
+        messages={messages}
+        spotName="黄鹤楼"
+      />
+
+      {/* Spot Detail */}
+      <AnimatePresence>
+        {spotDetailId && (
+          <SpotDetail
+            key={spotDetailId}
+            spotId={spotDetailId}
+            onClose={() => setSpotDetailId(null)}
+            onNavigate={(id) => setSpotDetailId(id)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Route Recommend */}
+      <AnimatePresence>
+        {routeOpen && (
+          <RouteRecommend
+            onClose={() => setRouteOpen(false)}
+            onSpotClick={(spotId) => {
+              setRouteOpen(false)
+              setTimeout(() => setSpotDetailId(spotId), 300)
+            }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   )
 }
