@@ -1,0 +1,295 @@
+export interface Spot {
+  id: string
+  name: string
+  category: string
+  location: string
+  params: string
+  heroGradient: string
+  shortIntro: string
+  fullIntro: string
+  highlights: string[]
+  openInfo: string
+  source: string
+  related: string[]
+  coordinates?: { lat: number; lng: number }
+}
+
+export const SPOTS: Spot[] = [
+  {
+    id: 'lingshan-dazhaobi',
+    name: '灵山大照壁',
+    category: '景区门户',
+    location: '景区入口处，面朝太湖',
+    params: '长39.8m，高7m，青石雕刻，"华夏第一壁"',
+    heroGradient: 'linear-gradient(160deg, #1a3a2a 0%, #2a4a3a 30%, #3a5a3a 70%, #1a3a2a 100%)',
+    shortIntro: '赵朴初先生亲笔题写鎏金"灵山胜境"四字，背面《小灵山》诗刻，奠定景区佛教文化基调。被誉为"华夏第一壁"，是进入灵山胜境的第一道视觉屏障。',
+    fullIntro: '照壁采用优质青石精心雕刻，表面打磨光滑，纹理细腻，正面鎏金大字由赵朴初先生题写，笔力遒劲，鎏金工艺让字体在阳光下熠熠生辉。北立面刻有赵老诗作《小灵山》，诗中对比印度灵鹫山与中国小灵山，彰显中华佛教文化的自信与底蕴。照壁两侧与碧波荡漾的太湖交相辉映，构成"湖光山色共一楼"的壮美景观。',
+    highlights: ['打卡合影，拍摄湖光壁影同框美景', '解读诗刻文化，感受赵朴初先生的书法魅力', '如愿火车站装置为小众取景框'],
+    openInfo: '全天开放，无时间限制',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+    related: ['lingshan-wumingqiao', 'lingshan-fozutan'],
+  },
+  {
+    id: 'lingshan-buddha',
+    name: '灵山大佛',
+    category: '青铜佛像·世界之最',
+    location: '秦履峰南侧，景区最高处',
+    params: '通高88米（佛体79m+莲花瓣9m），含台基总高101.5m，用铜量725吨',
+    heroGradient: 'linear-gradient(160deg, #1a3a2a 0%, #2a5a3a 30%, #5a8a4a 70%, #3a6a2a 100%)',
+    shortIntro: '世界最高露天青铜释迦牟尼立像，右手施无畏印除却众生痛苦，左手施与愿印赐予众生欢乐。登216级登云道抱佛脚，俯瞰太湖全景。',
+    fullIntro: '灵山大佛位于无锡灵山胜境秦履峰南侧，矗立在景区最高处，是世界上最高的露天青铜释迦牟尼立像，也是灵山胜境的核心地标。佛像通高88米（佛体79米，莲花瓣9米），含台基总高101.5米，总用铜量达725吨，佛体由1560块6-8毫米厚的铜壁板构成，焊缝总长度逾35公里。建造历时3年（1994-1997年），采用现代高科技与传统工艺相结合的方式。在佛教意义上，大佛右手施无畏印，代表除却众生痛苦；左手施与愿印，代表赐予众生欢乐。通往大佛的216级登云道暗合佛教108烦恼与108愿望，前108级寓意"烦恼尽除"，后108级寓意"愿望圆满"。灵山大佛的建造体现了赵朴初先生"五方五佛"的理念，与香港天坛大佛、四川乐山大佛、山西云冈大佛、河南龙门大佛共同构成中国佛教五大佛像格局。',
+    highlights: ['登顶抱佛脚，俯瞰太湖全景', '夕阳西下时拍摄"佛光普照"', '登216级登云道，寓意烦恼尽除、愿望圆满'],
+    openInfo: '8:00-17:00，冬季提前至16:30',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+    related: ['lingshan-fanpalace', 'lingshan-jiulong', 'lingshan-xiangfu'],
+  },
+  {
+    id: 'lingshan-jiulong',
+    name: '九龙灌浴',
+    category: '动态音乐群雕',
+    location: '景区中轴线核心位置',
+    params: '总高27.2m，鎏金太子佛高7.2m重12吨，耗铜量180吨，9组72只凤凰雕塑',
+    heroGradient: 'linear-gradient(160deg, #1a3a5a 0%, #2a4a6a 30%, #3a6a8a 70%, #1a4a6a 100%)',
+    shortIntro: '大型音乐动态群雕，重现释迦牟尼诞生"花开见佛"祥瑞场景。每日4-5场表演，九龙吐水为太子沐浴，水幕与阳光交织出七彩佛光。',
+    fullIntro: '九龙灌浴位于灵山胜境中轴线核心位置，是景区最具标志性的动态景观。总高27.2米，青铜重量260吨，中央为7.2米高、重12吨的鎏金太子佛像，周围环绕9组72只凤凰雕塑，搭配九条栩栩如生的飞龙。大型音乐动态群雕依据《本行经》中释迦牟尼诞生的传说精心打造。表演时，在专属背景音乐《佛之诞》响起时，莲花铜雕缓缓绽放，太子佛从莲花中缓缓升起并自转一周，九条飞龙同时喷出水柱高达数十米，精准沐浴在太子佛身上，整个场景震撼人心，完美还原佛陀诞生的祥瑞瞬间。平日演出时间：10:00、11:30、13:30、15:00；周末及节假日增加演出场次。每场时长约15分钟，建议提前10分钟到场占位。表演结束后可在广场两侧接取龙头流出的"圣水"，寓意祈福安康。',
+    highlights: ['观赏"花开见佛"动态表演', '接取祈福圣水', '拍摄九龙喷水震撼瞬间'],
+    openInfo: '平日演出：10:00/11:30/13:30/15:00，每场约15分钟',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+    related: ['lingshan-buddha', 'lingshan-fanpalace', 'lingshan-mandala'],
+  },
+  {
+    id: 'lingshan-fanpalace',
+    name: '灵山梵宫',
+    category: '佛教艺术殿堂',
+    location: '灵山胜境西侧，香水海之畔',
+    params: '建筑面积7.2万㎡，最高处66.5m，五座莲花圣塔，造价18亿',
+    heroGradient: 'linear-gradient(160deg, #3a2a1a 0%, #5a3a2a 30%, #8a5a3a 70%, #5a3a1a 100%)',
+    shortIntro: '"东方卢浮宫"，世界佛教论坛永久会址。内部汇集东阳木雕、琉璃、油画、景泰蓝等传统工艺，28米高星空穹顶用100公斤纯金绘制。',
+    fullIntro: '灵山梵宫位于灵山胜境西侧香水海之畔，建筑面积达7.2万平方米，最高处66.5米，整体呈"莲花环抱"之势，拥有五座错落分布的莲花圣塔，被誉为"东方卢浮宫"，荣获中国建筑工程最高奖——鲁班奖。梵宫内部堪称艺术殿堂：廊厅两侧12幅高12米宽3米的"世界佛教传法图"油画由多名油画家耗时数年创作；中庭28米高星空穹顶用100公斤纯金绘制，148尊飞天姿态各异；核心琉璃巨制《华藏世界》宽8米高10米，由160块彩色琉璃拼接而成，是目前世界最大的琉璃艺术作品之一。梵宫是第二、四届世界佛教论坛的永久会址，圣坛可容纳2000人同时观演，内设全球唯一大型旋转舞台。每日上演《灵山吉祥颂》大型演出（10:35/11:30/14:00/16:00），运用全息投影、水雾等技术演绎佛陀修行成佛的故事。',
+    highlights: ['观赏东阳木雕、琉璃、油画等非遗艺术瑰宝', '仰望28米星空穹顶', '观看《灵山吉祥颂》大型演出'],
+    openInfo: '9:00-17:00，冬季提前至16:30；演出10:35/11:30/14:00/16:00',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+    related: ['lingshan-buddha', 'lingshan-mandala', 'lingshan-jiulong'],
+  },
+  {
+    id: 'lingshan-mandala',
+    name: '五印坛城',
+    category: '藏传佛教文化',
+    location: '香水海中央独立圆岛',
+    params: '五层重檐楼宇，总高约30m，占地5000㎡，白墙红边金顶',
+    heroGradient: 'linear-gradient(160deg, #3a1a2a 0%, #5a1a3a 30%, #8a2a4a 70%, #5a1a3a 100%)',
+    shortIntro: '"小布达拉宫"，藏传佛教文化瑰宝。五层重檐楼宇矗立香水海湖心岛，108个纯铜转经筒环绕主殿，展现汉藏佛教文化交融。',
+    fullIntro: '五印坛城位于香水海中央的独立圆岛上，通过景观栈道与灵山梵宫相连。建筑为五层重檐楼宇，总高约30米，占地5000㎡，整体采用藏式碉楼风格，白墙红边金顶，以西藏拉萨布达拉宫雪村大门为原型设计山门。"五印"代表五方五佛的五种手印（施无畏印、与愿印、说法印、禅定印、降魔印），坛城是藏传佛教中的曼陀罗道场，象征着宇宙的和谐与圆满。四门的瑞兽雕塑各有寓意：马宝象征吉祥如意，孔雀代表智慧光明，共命鸟寓意和睦友爱，象宝象征太平盛世。内部墙体绘有彩色唐卡，主殿供奉五方五佛藏式造像。转经筒长廊环绕主殿，摆放108个纯铜转经筒，游客可顺时针转动，寓意祈福消灾。登至五层顶层观景台，可俯瞰香水海、灵山梵宫与灵山大佛全景。',
+    highlights: ['顺时针转动108个转经筒祈福', '登顶层观景台俯瞰全景', '体验藏香制作（需预约）'],
+    openInfo: '9:00-17:00，冬季提前至16:30',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+    related: ['lingshan-fanpalace', 'lingshan-buddha', 'lingshan-xiangfu'],
+  },
+  {
+    id: 'lingshan-xiangfu',
+    name: '祥符禅寺',
+    category: '千年古刹',
+    location: '灵山胜境中轴核心，灵山大佛基座之下',
+    params: '唐代古刹，占地约30亩，仿唐重檐歇山式建筑',
+    heroGradient: 'linear-gradient(160deg, #2a3a1a 0%, #3a4a2a 30%, #4a5a3a 70%, #2a3a1a 100%)',
+    shortIntro: '始建于唐贞观年间，由玄奘法师弟子窥基大师开坛讲经。寺内有千年银杏、六角古井等珍贵历史遗迹，钟楼内悬挂重12.8吨的"祥符禅钟"。',
+    fullIntro: '祥符禅寺位于灵山胜境中轴核心，是景区内历史最悠久的人文景观。始建于唐贞观年间，与玄奘法师西行取经的壮举紧密相连——玄奘法师途经马山时见此地山形酷似印度灵鹫山，遂命名为"小灵山"，并嘱咐大弟子窥基法师在此住持道场。北宋大中祥符年间，宋真宗赐额"祥符禅寺"，寺院规模不断扩大，成为江南名刹。千百年来，寺院历经多次兴废，至清末民初毁于战火，仅存一棵千年银杏、一口六角古井和一段残垣断壁。1994年启动修复工程，千年古刹重获新生。寺内珍贵遗存：千年银杏树龄超千年，秋季金黄树叶铺满寺院；六角井为唐代名泉，曾被茶圣陆羽品鉴；钟楼内的祥符禅钟重12.8吨，钟声悠扬，响彻太湖之滨。',
+    highlights: ['礼佛祈福，虔诚朝拜', '聆听祥符禅钟浑厚钟声', '秋季观赏千年银杏'],
+    openInfo: '全天开放，寺内禁止大声喧哗',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+    related: ['lingshan-buddha', 'lingshan-jiulong', 'lingshan-fanpalace'],
+  },
+  {
+    id: 'lingshan-manfeilong',
+    name: '曼飞龙塔',
+    category: '南传佛教建筑',
+    location: '香水海北岸景观绿地，与五印坛城隔岸相望',
+    params: '主塔高16.9m，一主八副九塔组合，白色花岗岩材质',
+    heroGradient: 'linear-gradient(160deg, #4a3a2a 0%, #6a5a3a 30%, #8a7a4a 70%, #5a4a2a 100%)',
+    shortIntro: '复刻云南西双版纳曼飞龙白塔，南传佛教标志性建筑。汉传、藏传、南传三大语系佛教建筑齐聚灵山，彰显佛教文化的多元与包容。',
+    fullIntro: '曼飞龙塔又称"白塔"，是灵山胜境中代表南传佛教文化的核心建筑，完全复刻了云南西双版纳曼飞龙白塔的形制与工艺。主塔矗立在圆形须弥座中央，塔身呈葫芦状，自上而下逐渐收窄，塔刹高耸，鎏金装饰熠熠生辉；八座小塔环绕主塔分布，呈八角形排列，形成"众星拱月"的格局。塔身表面的雕刻极为精美，采用浅浮雕工艺，刻有释迦牟尼佛成道图、阿罗汉像、莲花纹、卷草纹等南传佛教特色图案。白色的塔身与金色的塔刹在阳光的照耀下，与周边的绿水、绿树相映成趣，形成一道独具异域风情的景观。',
+    highlights: ['对比三大语系佛教建筑差异', '拍摄九塔组合全景', '夜间灯光亮化，夜景绝美'],
+    openInfo: '全天开放，无时间限制',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+    related: ['lingshan-mandala', 'lingshan-fanpalace'],
+  },
+  {
+    id: 'lingshan-wuzhimen',
+    name: '五智门',
+    category: '核心门户',
+    location: '佛足坛北侧，景区中轴线上',
+    params: '高16.8m，宽35m，五门六柱石牌坊，汉白玉雕刻',
+    heroGradient: 'linear-gradient(160deg, #2a2a3a 0%, #3a3a4a 30%, #4a4a5a 70%, #2a2a3a 100%)',
+    shortIntro: '五门象征五方五佛，六柱代表佛教"六度波罗蜜"（布施、持戒、忍辱、精进、禅定、般若）。穿过此门，正式踏入禅意圣地。',
+    fullIntro: '五智门由优质汉白玉精雕细琢而成，雕刻工艺精湛绝伦，门柱上雕刻着佛教六度智慧的相关经文，字体工整、苍劲有力；门楣处饰有飞天、神兽、莲花等吉祥图案，造型栩栩如生，尽显佛教艺术的庄严与精美。整座牌坊气势恢宏，矗立在景区中轴线上，与后方的灵山大佛在同一直线上，穿过这道门，便正式从"凡俗之境"踏入"禅意圣地"，开启核心朝圣之旅。',
+    highlights: ['穿门祈福，感受佛教建筑恢弘气势', '解读门柱经文，了解六度智慧', '夜间灯光点缀，氛围感十足'],
+    openInfo: '全天开放，无时间限制',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+    related: ['lingshan-fozutan', 'lingshan-putidadao'],
+  },
+]
+
+export const SPOT_MAP: Record<string, Spot> = Object.fromEntries(SPOTS.map((s) => [s.id, s]))
+
+export interface Route {
+  id: string
+  title: string
+  description: string
+  duration: string
+  distance: string
+  difficulty: string
+  difficultyColor: string
+  steps: { spot: string; duration: string; note: string; spotId?: string }[]
+  highlights: string[]
+  tags: string[]
+}
+
+export const ROUTES: Route[] = [
+  {
+    id: 'history',
+    title: '历史文化爱好者路线',
+    description: '深度探访灵山胜境千年佛教文化，从唐代古刹到当代艺术殿堂，适合对佛教文化与历史感兴趣的游客。',
+    duration: '约6小时',
+    distance: '5.2 km',
+    difficulty: '中等',
+    difficultyColor: '#c1a15a',
+    steps: [
+      { spot: '南门入园', duration: '—', note: '扫码入园，领取电子导览' },
+      { spot: '灵山大照壁', duration: '10分钟', note: '华夏第一壁，39.8米浮雕全景', spotId: 'lingshan-dazhaobi' },
+      { spot: '佛手广场', duration: '15分钟', note: '天下第一掌，摸掌祈福' },
+      { spot: '祥符禅寺', duration: '30分钟', note: '千年古刹，玄奘法师渊源', spotId: 'lingshan-xiangfu' },
+      { spot: '灵山大佛', duration: '60分钟', note: '登216级登云道，抱佛脚', spotId: 'lingshan-buddha' },
+      { spot: '灵山梵宫', duration: '90分钟', note: '佛教艺术殿堂，赏《吉祥颂》', spotId: 'lingshan-fanpalace' },
+      { spot: '五印坛城', duration: '45分钟', note: '藏传佛教文化，转经筒祈福', spotId: 'lingshan-mandala' },
+      { spot: '曼飞龙塔', duration: '20分钟', note: '南传佛教建筑', spotId: 'lingshan-manfeilong' },
+      { spot: '出口', duration: '—', note: '结束游览' },
+    ],
+    highlights: ['含《吉祥颂》演出', '千年古刹深度讲解', '藏传+汉传+南传佛教融合'],
+    tags: ['推荐', '深度', '人文'],
+  },
+  {
+    id: 'nature',
+    title: '自然风光爱好者路线',
+    description: '徜徉于太湖之滨、青龙白虎山环抱之间，感受佛教文化与自然环境的完美融合。',
+    duration: '约5小时',
+    distance: '4.5 km',
+    difficulty: '轻松',
+    difficultyColor: '#155d58',
+    steps: [
+      { spot: '南门入园', duration: '—', note: '扫码入园' },
+      { spot: '佛足坛', duration: '10分钟', note: '佛教文化起点' },
+      { spot: '九龙灌浴', duration: '20分钟', note: '观赏动态表演，接取祈福圣水', spotId: 'lingshan-jiulong' },
+      { spot: '菩提大道', duration: '20分钟', note: '漫步林荫道，欣赏太湖风光' },
+      { spot: '灵山大佛', duration: '50分钟', note: '登顶俯瞰太湖全景', spotId: 'lingshan-buddha' },
+      { spot: '曼飞龙塔', duration: '20分钟', note: '傣族佛教建筑', spotId: 'lingshan-manfeilong' },
+      { spot: '灵山精舍', duration: '30分钟', note: '禅意园林，品尝素斋' },
+      { spot: '梵宫广场', duration: '20分钟', note: '外观梵宫全貌', spotId: 'lingshan-fanpalace' },
+      { spot: '出口', duration: '—', note: '结束游览' },
+    ],
+    highlights: ['太湖最佳拍摄点', '含九龙灌浴表演', '精舍素斋体验'],
+    tags: ['风光', '休闲', '拍照'],
+  },
+  {
+    id: 'family',
+    title: '亲子家庭路线',
+    description: '节奏轻松、互动丰富，让孩子在玩乐中感受传统文化魅力，适合带老人和小孩的家庭。',
+    duration: '约4小时',
+    distance: '3.0 km',
+    difficulty: '轻松',
+    difficultyColor: '#155d58',
+    steps: [
+      { spot: '南门入园', duration: '—', note: '靠近停车场，步行便捷' },
+      { spot: '九龙灌浴', duration: '25分钟', note: '动态群雕表演，孩子最爱', spotId: 'lingshan-jiulong' },
+      { spot: '佛手广场', duration: '15分钟', note: '摸天下第一掌，沾福气' },
+      { spot: '百子戏弥勒', duration: '15分钟', note: '百个孩童雕塑，亲子互动拍照' },
+      { spot: '灵山大佛', duration: '40分钟', note: '全家一起登顶抱佛脚', spotId: 'lingshan-buddha' },
+      { spot: '灵山梵宫', duration: '60分钟', note: '观看《吉祥颂》演出', spotId: 'lingshan-fanpalace' },
+      { spot: '五印坛城', duration: '30分钟', note: '转动108个转经筒', spotId: 'lingshan-mandala' },
+      { spot: '出口', duration: '—', note: '出口旁有素面餐厅' },
+    ],
+    highlights: ['步行距离短', '互动体验丰富', '含《吉祥颂》演出'],
+    tags: ['亲子', '轻松', '互动'],
+  },
+]
+
+export const KNOWLEDGE_BASE: Record<string, { text: string; source: string }> = {
+  '灵山大佛': {
+    text: '灵山大佛位于无锡灵山胜境秦履峰南侧，是世界上最高的露天青铜释迦牟尼立像。佛像通高88米（佛体79米+莲花瓣9米），含台基总高101.5米，总用铜量725吨。右手施无畏印除却众生痛苦，左手施与愿印赐予众生欢乐。登216级登云道抱佛脚，俯瞰太湖全景。',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+  },
+  '灵山梵宫': {
+    text: '灵山梵宫建筑面积7.2万平方米，最高处66.5米，造价18亿，被誉为"东方卢浮宫"。内部汇集东阳木雕、琉璃、油画、景泰蓝等传统工艺，28米高星空穹顶用100公斤纯金绘制。每日上演《灵山吉祥颂》大型演出（10:35/11:30/14:00/16:00），圣坛可容纳2000人同时观演。',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+  },
+  '九龙灌浴': {
+    text: '九龙灌浴总高27.2米，青铜重量260吨，中央为7.2米高鎏金太子佛像。每日4-5场表演，莲花瓣缓缓开启，太子佛在九龙喷泉与《佛诞颂》音乐中旋转升起，九龙吐水为太子沐浴，水幕与阳光交织出七彩佛光。表演结束后可接取祈福圣水。',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+  },
+  '五印坛城': {
+    text: '五印坛城位于香水海中央独立圆岛上，五层重檐楼宇，总高约30米，占地5000㎡。藏式碉楼风格，白墙红边金顶，四门安置瑞兽雕塑。坛城内设转经筒长廊（108个纯铜转经筒）、唐卡展厅和藏传佛教文物陈列，展现汉藏佛教文化交融。',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+  },
+  '祥符禅寺': {
+    text: '祥符禅寺始建于唐贞观年间，由玄奘法师弟子窥基大师开坛讲经。北宋大中祥符年间赐额"祥符禅寺"，占地约30亩。寺内有千年银杏、六角古井等珍贵历史遗迹，钟楼内悬挂重12.8吨的"祥符禅钟"，钟声浑厚洪亮，响彻灵山山谷。',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+  },
+  '曼飞龙塔': {
+    text: '曼飞龙塔主塔高16.9米，由一座主塔和八座小塔组成九塔组合。复刻云南西双版纳景洪市曼飞龙白塔，是南传佛教标志性建筑。汉传、藏传、南传三大语系佛教建筑齐聚灵山，彰显了佛教文化的多元性与包容性。',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+  },
+  '最佳游览路线': {
+    text: '推荐路线：南门入园 → 灵山大照壁 → 佛手广场（天下第一掌）→ 祥符禅寺（千年古刹）→ 灵山大佛（登顶抱佛脚）→ 灵山梵宫（艺术殿堂深度游）→ 五印坛城（藏传佛教文化体验）→ 出口。全程约6小时，建议上午9点前入园避开人流高峰。',
+    source: '灵山胜境官方资料 · 示范景区公开资料包',
+  },
+  default: {
+    text: '灵山胜境位于江苏省无锡市太湖西北部的马山镇，是国家5A级旅游景区、世界佛教论坛永久会址，被誉为"东方佛国"。景区占地面积约30万平方米，历史可追溯至1300多年前的唐代贞观年间。核心景点包括灵山大佛、灵山梵宫、九龙灌浴、五印坛城、祥符禅寺、曼飞龙塔等。',
+    source: '灵山胜境官方资料',
+  },
+}
+
+export const ANALYTICS = {
+  todayVisitors: 12853,
+  yesterdayVisitors: 11420,
+  weekTrend: [10200, 11800, 12300, 10900, 13100, 12500, 12853],
+  hourlyDistribution: [
+    { hour: '8:00', count: 420 },
+    { hour: '9:00', count: 1850 },
+    { hour: '10:00', count: 3200 },
+    { hour: '11:00', count: 2800 },
+    { hour: '12:00', count: 1500 },
+    { hour: '13:00', count: 2100 },
+    { hour: '14:00', count: 3100 },
+    { hour: '15:00', count: 2600 },
+    { hour: '16:00', count: 1800 },
+    { hour: '17:00', count: 800 },
+  ],
+  spotPopularity: [
+    { name: '灵山大佛', visitors: 9850, avgStay: 45 },
+    { name: '灵山梵宫', visitors: 8750, avgStay: 55 },
+    { name: '九龙灌浴', visitors: 9200, avgStay: 25 },
+    { name: '五印坛城', visitors: 6200, avgStay: 35 },
+    { name: '祥符禅寺', visitors: 7100, avgStay: 30 },
+    { name: '曼飞龙塔', visitors: 4800, avgStay: 20 },
+    { name: '灵山大照壁', visitors: 10500, avgStay: 10 },
+  ],
+  deviceDistribution: [
+    { name: '手机', value: 68 },
+    { name: '小程序', value: 22 },
+    { name: '一体机', value: 7 },
+    { name: '其他', value: 3 },
+  ],
+  facilityStatus: [
+    { name: '观光车A线', status: 'normal', load: 65 },
+    { name: '观光车B线', status: 'busy', load: 88 },
+    { name: '梵宫电梯', status: 'normal', load: 45 },
+    { name: '大佛电梯', status: 'normal', load: 52 },
+    { name: '游客中心WiFi', status: 'normal', load: 70 },
+    { name: '北区卫生间', status: 'alert', load: 92 },
+  ],
+  alerts: [
+    { level: 'warning', text: '梵宫入口排队人数超200人', time: '14:32' },
+    { level: 'info', text: '九龙灌浴下一场表演15:00开始', time: '14:30' },
+    { level: 'warning', text: '停车场B区已满，引导车辆至C区', time: '14:15' },
+    { level: 'info', text: '今日入园人数较昨日增长12.5%', time: '14:00' },
+  ],
+}

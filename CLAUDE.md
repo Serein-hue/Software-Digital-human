@@ -13,11 +13,16 @@ frontend/src/
   components/guide/     # C端导览 (6 页面)
   components/admin/     # B端管理后台
   data/siteData.ts      # 站点配置、导航、PRD数据
+  i18n/index.ts         # 中英文双语 (100+ keys, useT() hook)
   App.tsx               # 路由 + 布局
-  App.css               # 全部样式 (~2400行)
+  App.css               # 全部样式 (~4800行)
+backend/src/
+  index.ts              # Express API (8 endpoints)
+  data.ts               # 结构化景点数据
 docs/app/               # 构建产物 → GitHub Pages
 rag-knowledge/          # RAG 知识库 (Markdown)
 official-materials/     # 赛题官方资料包
+miniprogram/            # 微信小程序 (原生 WXML+WXSS)
 skills/                 # 自动化脚本
 ```
 
@@ -26,8 +31,8 @@ skills/                 # 自动化脚本
 - [x] 全部 mock 数据已替换为灵山胜境官方资料
 - [x] B端 5 页面完成：DataDashboard, KnowledgeBase, ContentReview, DigitalHumanConfig, SystemSettings
 - [x] 微信小程序端：4 页面（guide/spot-detail/route/photo），原生 WXML+WXSS，同设计 token
-- [ ] RAG 检索管道
-- [ ] 后端 API
+- [x] RAG 检索管道 → `backend/src/` Express API (8 endpoints)
+- [x] 后端 API → `backend/src/index.ts` (spots, routes, chat, analytics)
 
 ## 数据来源
 灵山胜境（无锡，国家5A级景区，世界佛教论坛永久会址）
