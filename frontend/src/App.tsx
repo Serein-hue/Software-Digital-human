@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 import GuidePage from './components/guide/GuidePage'
+import DataDashboard from './components/admin/DataDashboard'
 import {
   ReactFlow,
   Background,
@@ -550,6 +551,7 @@ function AnimatedRoutes() {
         <Route path="/library" element={<LibraryPage />} />
         <Route path="/competitors" element={<CompetitorsPage />} />
         <Route path="/timeline" element={<TimelinePage />} />
+        <Route path="/dashboard" element={<DataDashboard />} />
         <Route path="/validation" element={<ValidationPage />} />
         <Route path="/word" element={<WordPage />} />
       </Routes>
