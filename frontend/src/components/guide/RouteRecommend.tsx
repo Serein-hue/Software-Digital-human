@@ -108,7 +108,7 @@ export default function RouteRecommend({ onClose, onSpotClick }: Props) {
       transition={{ type: 'spring', damping: 28, stiffness: 280 }}
     >
       <div className="route-header">
-        <button type="button" className="route-back-btn" onClick={onClose} aria-label="返回">
+        <button type="button" className="route-back-btn" onClick={onClose} aria-label={t('guide.back')}>
           <ChevronLeft size={22} />
         </button>
         <div className="route-header-text">

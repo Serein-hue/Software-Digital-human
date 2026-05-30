@@ -1,4 +1,5 @@
 import { MapPin, Navigation, Wifi, WifiOff } from 'lucide-react'
+import { useT } from '../../i18n'
 
 interface Props {
   spotName: string
@@ -7,6 +8,7 @@ interface Props {
 }
 
 export default function LbsStatus({ spotName, distance, online }: Props) {
+  const t = useT()
   return (
     <div className="lbs-bar">
       <div className="lbs-left">
@@ -16,11 +18,11 @@ export default function LbsStatus({ spotName, distance, online }: Props) {
       </div>
       <div className="lbs-right">
         <Navigation size={13} />
-        <span>LBS 已激活</span>
+        <span>{t('guide.lbsActive')}</span>
         {online ? (
           <span className="lbs-online"><Wifi size={12} /></span>
         ) : (
-          <span className="lbs-offline"><WifiOff size={12} /> 弱网模式</span>
+          <span className="lbs-offline"><WifiOff size={12} /> {t('guide.offlineMode')}</span>
         )}
       </div>
     </div>

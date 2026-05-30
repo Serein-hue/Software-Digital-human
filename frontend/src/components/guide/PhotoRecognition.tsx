@@ -93,7 +93,7 @@ export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk 
           exit={{ opacity: 0 }}
           onAnimationComplete={handleOpen}
         >
-          <button type="button" className="photo-close-btn" onClick={onClose} aria-label="关闭">
+          <button type="button" className="photo-close-btn" onClick={onClose} aria-label={t('guide.close')}>
             <X size={22} />
           </button>
 
@@ -196,7 +196,7 @@ export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk 
                           whileTap={{ scale: 0.94 }}
                           onClick={() => {
                             onClose()
-                            setTimeout(() => onAsk(`给我讲讲${item.name}`), 300)
+                            setTimeout(() => onAsk(t('photo.tellMeAbout', { name: item.name })), 300)
                           }}
                         >
                           <span>{t('photo.ask')}</span>

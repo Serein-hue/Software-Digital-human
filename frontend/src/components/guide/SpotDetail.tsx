@@ -211,7 +211,7 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
     >
       {/* Hero */}
       <div className="spot-hero" style={{ background: spot.heroGradient }}>
-        <button type="button" className="spot-back-btn" onClick={onClose} aria-label="返回">
+        <button type="button" className="spot-back-btn" onClick={onClose} aria-label={t('guide.back')}>
           <ChevronLeft size={22} />
         </button>
         <div className="spot-hero-overlay">
@@ -260,7 +260,7 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
           type="button"
           className={`spot-play-btn ${isPlaying ? 'playing' : ''}`}
           onClick={togglePlay}
-          aria-label={isPlaying ? '暂停' : '播放'}
+          aria-label={isPlaying ? t('guide.pause') : t('guide.play')}
         >
           {isPlaying ? <Pause size={20} /> : <Play size={20} />}
         </button>

@@ -164,7 +164,7 @@ export default function GuidePage() {
             type="button"
             className="guide-header-btn"
             onClick={toggleOffline}
-            aria-label={isOffline ? '切换到在线模式' : '切换到离线模式'}
+            aria-label={isOffline ? t('guide.goOnline') : t('guide.goOffline')}
           >
             {isOffline ? <WifiOff size={17} /> : <RefreshCw size={17} />}
           </button>
@@ -172,7 +172,7 @@ export default function GuidePage() {
             type="button"
             className="guide-header-btn"
             onClick={() => setShareOpen(true)}
-            aria-label="分享"
+            aria-label={t('guide.share')}
           >
             <Share2 size={17} />
           </button>

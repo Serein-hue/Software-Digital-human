@@ -29,7 +29,11 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
   const [errorMsg, setErrorMsg] = useState('')
   const recognitionRef = useRef<any>(null)
   const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const phaseRef = useRef<Phase>('listening')
   const t = useT()
+
+  // Keep phaseRef synced so recognition.onend reads current phase without stale closure
+  useEffect(() => { phaseRef.current = phase }, [phase])
 
   const stopListening = useCallback(() => {
     if (recognitionRef.current) {
@@ -50,7 +54,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
     stopListening()
 
     const recognition = new SpeechRecognition()
-    recognition.lang = 'zh-CN'
+    recognition.lang = getLang() === 'en' ? 'en-US' : 'zh-CN'
     recognition.interimResults = true
     recognition.maxAlternatives = 1
     recognition.continuous = false
@@ -83,7 +87,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
     }
 
     recognition.onend = () => {
-      if (phase === 'listening') {
+      if (phaseRef.current === 'listening') {
         setPhase('idle')
       }
     }
@@ -103,7 +107,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
       setPhase('error')
       setErrorMsg(t('voice.cantStart'))
     }
-  }, [onResult, onClose, stopListening, phase])
+  }, [onResult, onClose, stopListening])
 
   useEffect(() => {
     if (isOpen) startListening()
@@ -125,7 +129,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
         >
-          <button type="button" className="voice-close-btn" onClick={handleClose} aria-label="关闭">
+          <button type="button" className="voice-close-btn" onClick={handleClose} aria-label={t('guide.close')}>
             <X size={22} />
           </button>
 
