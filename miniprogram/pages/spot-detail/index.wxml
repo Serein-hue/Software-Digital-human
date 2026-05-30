@@ -1,6 +1,6 @@
 <view class="sd-page">
   <!-- Hero -->
-  <view class="sd-hero" style="background: linear-gradient(160deg, #1a3a2a 0%, #2a5a3a 30%, #5a8a4a 70%);">
+  <view class="sd-hero" style="background: {{heroGradient}};">
     <button class="sd-back-btn" bindtap="goBack">
       <text>◀</text>
     </button>
@@ -26,7 +26,7 @@
 
   <!-- Content -->
   <view class="sd-content">
-    <text wx:for="{{paragraphs}}" wx:key="index" class="sd-para">{{item}}</text>
+    <text wx:for="{{paragraphs}}" wx:key="*this" class="sd-para">{{item}}</text>
     <view class="sd-source">
       <text>📖 {{spot.source}}</text>
     </view>

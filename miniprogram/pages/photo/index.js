@@ -10,14 +10,31 @@ const MOCK_RESULTS = [
 
 Page({
   data: {
-    phase: 'scanning',
+    phase: 'idle',
     progress: 0,
     results: [],
     timer: null,
+    photoPath: '',
   },
 
   onLoad() {
-    this.startScan()
+    this.setData({ phase: 'idle' })
+  },
+
+  takePhoto() {
+    wx.chooseMedia({
+      count: 1,
+      mediaType: ['image'],
+      sourceType: ['camera'],
+      success: (res) => {
+        const photoPath = res.tempFiles[0].tempFilePath
+        this.setData({ photoPath })
+        this.startScan()
+      },
+      fail: () => {
+        wx.showToast({ title: '拍照失败，请重试', icon: 'none' })
+      },
+    })
   },
 
   startScan() {

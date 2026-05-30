@@ -9,7 +9,8 @@
 
   <!-- Viewfinder -->
   <view class="photo-viewfinder">
-    <view class="photo-grid" />
+    <image wx:if="{{photoPath}}" class="photo-preview" src="{{photoPath}}" mode="aspectFill" />
+    <view wx:else class="photo-grid" />
     <view class="photo-corner tl" />
     <view class="photo-corner tr" />
     <view class="photo-corner bl" />
@@ -59,7 +60,7 @@
 
   <!-- Bottom actions -->
   <view class="photo-bottom-actions safe-bottom">
-    <button wx:if="{{phase !== 'scanning'}}" class="photo-capture-btn" bindtap="startScan">
+    <button wx:if="{{phase !== 'scanning'}}" class="photo-capture-btn" bindtap="takePhoto">
       <text>📷 拍照识别</text>
     </button>
   </view>
