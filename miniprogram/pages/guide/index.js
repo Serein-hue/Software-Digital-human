@@ -1,6 +1,5 @@
 const { SPOTS, MOCK_KNOWLEDGE, QUICK_ACTIONS } = require('../../utils/data')
-
-const VOICE_SUGGESTIONS = ['灵山大佛有多高？', '帮我推荐一条路线', '九龙灌浴每天几场表演？']
+const { t, getLang, toggleLang, getSuggestions } = require('../../utils/i18n')
 
 Page({
   data: {
@@ -13,15 +12,55 @@ Page({
     voiceRecording: false,
     scrollToId: '',
     quickActions: QUICK_ACTIONS,
-    voiceSuggestions: VOICE_SUGGESTIONS,
+    voiceSuggestions: [],
+    langLabel: 'EN',
+    // Display strings
+    guideTitle: '',
+    guideWelcome: '',
+    guideWelcomeShort: '',
+    guideOffline: '',
+    guideSpeaking: '',
+    guideListening: '',
+    guidePlace: '',
+    guidePhoto: '',
+    guideSend: '',
+    guideInputPlaceholder: '',
+    voiceRecordingLabel: '',
+    voiceTapStartLabel: '',
+    voiceRecordingHint: '',
+    voiceIdleHint: '',
+    voiceSuggestionsLabel: '',
+  },
+
+  refreshDisplay() {
+    this.setData({
+      guideTitle: t('guide.title'),
+      guideWelcome: t('guide.welcome'),
+      guideWelcomeShort: t('guide.welcomeShort'),
+      guideOffline: t('guide.offline'),
+      guideSpeaking: t('guide.speaking'),
+      guideListening: t('guide.listening'),
+      guidePlace: t('guide.place'),
+      guidePhoto: t('guide.photo'),
+      guideSend: t('guide.send'),
+      guideInputPlaceholder: t('guide.inputPlaceholder'),
+      voiceRecordingLabel: t('voice.recording'),
+      voiceTapStartLabel: t('voice.tapStart'),
+      voiceRecordingHint: t('voice.recordingHint'),
+      voiceIdleHint: t('voice.idleHint'),
+      voiceSuggestionsLabel: t('voice.suggestions'),
+      voiceSuggestions: getSuggestions(),
+      langLabel: getLang() === 'zh' ? 'EN' : '中文',
+    })
   },
 
   onLoad() {
+    this.refreshDisplay()
     this.setData({
       messages: [{
         id: 'welcome',
         role: 'guide',
-        text: '欢迎来到灵山胜境！我是您的 AI 导游小景。您可以随时向我提问，比如"灵山大佛有多高？"或者"推荐一条游览路线"。',
+        text: t('guide.welcome'),
       }],
     })
 
@@ -30,13 +69,12 @@ Page({
       this.setData({ voiceRecording: false })
       if (res.tempFilePath) {
         this.setData({ voiceOpen: false })
-        // Mock recognition result — real implementation would upload to ASR service
         this.setData({ inputText: '给我介绍一下灵山胜境' }, () => this.onSend())
       }
     })
     this.recorderManager.onError(() => {
       this.setData({ voiceRecording: false })
-      wx.showToast({ title: '录音失败，请重试', icon: 'none' })
+      wx.showToast({ title: t('voice.recordingError'), icon: 'none' })
     })
 
     this.speakingTimer = null
@@ -104,6 +142,18 @@ Page({
     this.setData({ isOffline: !this.data.isOffline })
   },
 
+  toggleLanguage() {
+    toggleLang()
+    this.refreshDisplay()
+    this.setData({
+      messages: [{
+        id: 'welcome',
+        role: 'guide',
+        text: t('guide.welcome'),
+      }],
+    })
+  },
+
   openVoice() {
     this.setData({ voiceOpen: true, voiceRecording: false })
   },
@@ -143,7 +193,7 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: '灵山胜境 · AI 导游',
+      title: t('share.title'),
       path: '/pages/guide/index',
     }
   },
@@ -157,15 +207,15 @@ Page({
 
   onPullDownRefresh() {
     wx.showModal({
-      title: '确认',
-      content: '确定要清空对话记录吗？',
+      title: t('guide.confirm'),
+      content: t('guide.confirmClear'),
       success: (res) => {
         if (res.confirm) {
           this.setData({
             messages: [{
               id: 'welcome',
               role: 'guide',
-              text: '欢迎来到灵山胜境！我是您的 AI 导游小景。',
+              text: t('guide.welcomeShort'),
             }],
           })
         }

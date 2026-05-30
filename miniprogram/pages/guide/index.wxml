@@ -1,8 +1,11 @@
 <view class="guide-page">
   <!-- Header -->
   <view class="guide-header">
-    <text class="guide-title">AI 导游 · 小景</text>
+    <text class="guide-title">{{guideTitle}}</text>
     <view class="guide-header-actions">
+      <button class="guide-header-btn lang-btn" bindtap="toggleLanguage">
+        <text>{{langLabel}}</text>
+      </button>
       <button class="guide-header-btn" bindtap="toggleOffline" aria-label="切换在线/离线">
         <text>{{isOffline ? '📡' : '📶'}}</text>
       </button>
@@ -14,7 +17,7 @@
 
   <!-- Offline Banner -->
   <view wx:if="{{isOffline}}" class="offline-banner">
-    <text>📡 弱网模式 · 已缓存基础讲解包</text>
+    <text>📡 {{guideOffline}}</text>
   </view>
 
   <!-- LBS Status -->
@@ -34,8 +37,8 @@
         <view class="dh-ring r2" />
       </view>
     </view>
-    <text class="dh-name">AI 导游 · 小景</text>
-    <text class="dh-status">{{isSpeaking ? '正在讲解...' : isListening ? '正在聆听...' : '灵山胜境'}}</text>
+    <text class="dh-name">{{guideTitle}}</text>
+    <text class="dh-status">{{isSpeaking ? guideSpeaking : isListening ? guideListening : guidePlace}}</text>
   </view>
 
   <!-- Quick Actions -->
@@ -46,7 +49,7 @@
     </button>
     <button class="quick-chip camera-chip" bindtap="openCamera">
       <text>📸</text>
-      <text>拍照</text>
+      <text>{{guidePhoto}}</text>
     </button>
   </view>
 
@@ -83,7 +86,7 @@
       </button>
       <input
         class="chat-input"
-        placeholder="问我关于灵山胜境的任何问题..."
+        placeholder="{{guideInputPlaceholder}}"
         value="{{inputText}}"
         bindinput="onInput"
         bindconfirm="onSend"
@@ -91,7 +94,7 @@
         adjust-position
       />
       <button class="chat-send-btn {{inputText ? 'active' : ''}}" bindtap="onSend" disabled="{{!inputText}}">
-        <text>发送</text>
+        <text>{{guideSend}}</text>
       </button>
     </view>
   </view>
@@ -108,17 +111,17 @@
         <view class="voice-ring r3 {{voiceRecording ? 'active' : ''}}" />
         <view class="voice-mic-icon" bindtap="{{voiceRecording ? 'stopVoiceRecord' : 'startVoiceRecord'}}">🎤</view>
       </view>
-      <text class="voice-label">{{voiceRecording ? '正在录音...' : '点击麦克风开始'}}</text>
+      <text class="voice-label">{{voiceRecording ? voiceRecordingLabel : voiceTapStartLabel}}</text>
       <view class="voice-bars">
         <view wx:for="{{16}}" wx:key="*this" wx:for-item="idx" class="voice-bar {{voiceRecording ? 'active' : ''}}" />
       </view>
       <view class="voice-suggestions">
-        <text class="voice-hint">试试说：</text>
+        <text class="voice-hint">{{voiceSuggestionsLabel}}</text>
         <button wx:for="{{voiceSuggestions}}" wx:key="*this" class="voice-chip" bindtap="onVoiceResult" data-text="{{item}}">
           {{item}}
         </button>
       </view>
     </view>
-    <text class="voice-bottom-hint">{{voiceRecording ? '录音最长10秒，点击麦克风停止' : '轻点提示文字快速输入 · 点击空白处取消'}}</text>
+    <text class="voice-bottom-hint">{{voiceRecording ? voiceRecordingHint : voiceIdleHint}}</text>
   </view>
 </view>

@@ -12,6 +12,10 @@
 }
 .guide-title { color: #fff; font-size: 34rpx; font-weight: 800; }
 .guide-header-actions { display: flex; gap: 12rpx; }
+.lang-btn {
+  font-size: 22rpx; font-weight: 700; color: #fff;
+  background: rgba(255,255,255,0.18); border-radius: 8rpx; padding: 6rpx 14rpx;
+}
 .guide-header-btn {
   width: 64rpx; height: 64rpx; display: flex; align-items: center; justify-content: center;
   background: rgba(255,255,255,0.15); border-radius: 50%;
