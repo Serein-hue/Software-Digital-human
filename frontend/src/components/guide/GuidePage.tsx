@@ -94,6 +94,21 @@ export default function GuidePage() {
   const speakingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const t = useT()
 
+  const langRef = useRef(getLang())
+
+  useEffect(() => {
+    const current = getLang()
+    if (current !== langRef.current) {
+      langRef.current = current
+      setMessages((prev) => {
+        if (prev.length === 1 && prev[0].id === 'welcome') {
+          return [{ id: 'welcome', role: 'guide' as const, text: t('guide.welcome') }]
+        }
+        return prev
+      })
+    }
+  })
+
   useEffect(() => {
     return () => {
       if (listeningTimerRef.current) clearTimeout(listeningTimerRef.current)
