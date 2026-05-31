@@ -11,25 +11,55 @@ from utils import config_util as cfg
 # 确保配置已加载
 cfg.load_config()
 
-# 初始化 OpenAI 客户端
-# 注意：必须显式配置 timeout 与 max_retries，否则一旦上游 LLM 在 chunked/keep-alive
-# 响应中长时间不发字节，调用会永久挂起，进而连带把 agent_lock 锁死，整个对话流程
-# 都会被阻塞（曾经导致 release 机器 5 小时无响应）。
-client = openai.OpenAI(
-    api_key=OPENAI_API_KEY,
-    base_url=OPENAI_API_BASE,
-    timeout=httpx.Timeout(60.0, connect=10.0),
-    max_retries=1,
-)
+def _configured_openai_api_key() -> Optional[str]:
+  return OPENAI_API_KEY or os.getenv("OPENAI_API_KEY")
 
-# 设置全局API密钥（兼容性考虑）
-openai.api_key = OPENAI_API_KEY
 
-# 如果环境变量中没有设置，则设置环境变量（某些库可能依赖环境变量）
-if "OPENAI_API_KEY" not in os.environ:
-    os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
-if "OPENAI_API_BASE" not in os.environ and OPENAI_API_BASE:
-    os.environ["OPENAI_API_BASE"] = OPENAI_API_BASE
+def _configured_openai_api_base() -> Optional[str]:
+  return OPENAI_API_BASE or os.getenv("OPENAI_API_BASE") or os.getenv("OPENAI_BASE_URL")
+
+
+def _build_openai_client() -> openai.OpenAI:
+  api_key = _configured_openai_api_key()
+  if not api_key:
+    raise RuntimeError(
+      "OpenAI API key is not configured. Set gpt_api_key in system.conf/config center "
+      "or export OPENAI_API_KEY before using GPT generation."
+    )
+
+  base_url = _configured_openai_api_base()
+  client_kwargs = {
+    "api_key": api_key,
+    "timeout": httpx.Timeout(60.0, connect=10.0),
+    "max_retries": 1,
+  }
+  if base_url:
+    client_kwargs["base_url"] = base_url
+
+  # 注意：必须显式配置 timeout 与 max_retries，否则一旦上游 LLM 在 chunked/keep-alive
+  # 响应中长时间不发字节，调用会永久挂起，进而连带把 agent_lock 锁死，整个对话流程
+  # 都会被阻塞（曾经导致 release 机器 5 小时无响应）。
+  return openai.OpenAI(**client_kwargs)
+
+
+client = None
+
+
+def _get_openai_client() -> openai.OpenAI:
+  global client
+  if client is None:
+    client = _build_openai_client()
+  return client
+
+
+# 设置全局API密钥（兼容性考虑）；配置为空时不要在导入阶段失败。
+_api_key = _configured_openai_api_key()
+_api_base = _configured_openai_api_base()
+if _api_key:
+  openai.api_key = _api_key
+  os.environ.setdefault("OPENAI_API_KEY", _api_key)
+if _api_base:
+  os.environ.setdefault("OPENAI_API_BASE", _api_base)
 
 
 # ============================================================================
@@ -117,7 +147,7 @@ def gpt_request(prompt: str,
   # 处理o1-preview模型
   if model == "o1-preview": 
     try:
-      response = client.chat.completions.create(
+      response = _get_openai_client().chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": prompt}]
       )
@@ -130,7 +160,7 @@ def gpt_request(prompt: str,
 
   # 处理其他模型
   try:
-    response = client.chat.completions.create(
+    response = _get_openai_client().chat.completions.create(
       model=model,
       messages=[{"role": "user", "content": prompt}],
       max_tokens=max_tokens,
@@ -147,13 +177,7 @@ def gpt_request(prompt: str,
 def gpt4_vision(messages: List[dict], max_tokens: int = 1500) -> str:
   """Make a request to OpenAI's GPT-4 Vision model."""
   try:
-    client = openai.OpenAI(
-        api_key=OPENAI_API_KEY,
-        base_url=OPENAI_API_BASE,
-        timeout=httpx.Timeout(60.0, connect=10.0),
-        max_retries=1,
-    )
-    response = client.chat.completions.create(
+    response = _get_openai_client().chat.completions.create(
       model="gpt-4o",
       messages=messages,
       max_tokens=max_tokens,

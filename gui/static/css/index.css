@@ -162,6 +162,27 @@ html {
 	background: url('../images/menu_bg_h.png') no-repeat;
   }
 
+  .changeImg4{
+	height: 65px;
+	line-height: 65px;
+	cursor: pointer;
+  }
+  .changeImg4:hover{
+	background: url('../images/menu_bg_h.png') no-repeat;
+  }
+  .iconimg4 {
+	background: url('../images/page3.png') no-repeat;
+	background-size: 32px;
+	background-position: 100px 50%;
+	display: block;
+	text-align: center;
+  }
+  .iconimg4:hover{
+	background: url('../images/page3_h.png') no-repeat;
+	background-size: 32px;
+	background-position: 100px 50%;
+  }
+
 
 
   

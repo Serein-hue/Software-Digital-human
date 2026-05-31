@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fay数字人调试</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}?v={{ cache_bust }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/digital-human-debug.css') }}?v={{ cache_bust }}" />
+    <link rel="icon" href="{{ url_for('static',filename='images/favicon.ico') }}" type="image/x-icon" />
+    <script src="{{ url_for('static',filename='js/digital-human-debug.js') }}?v={{ cache_bust }}" defer></script>
+  </head>
+  <body>
+    <div id="debugApp" class="main_bg debug-main">
+      <div class="main_left">
+        <div class="main_left_logo" style="position: relative;">
+          <div class="status-indicators">
+            <div class="status-dot" data-status-dot="server" title="服务器"></div>
+            <div class="status-dot" data-status-dot="digital_human" title="数字人"></div>
+            <div class="status-dot" data-status-dot="remote_audio" title="远程音频"></div>
+          </div>
+          <img src="{{ url_for('static',filename='images/Logo.png') }}" alt="Fay" />
+        </div>
+
+        <div class="main_left_menu">
+          <ul>
+            <li class="changeImg"><a href="/"><span class="iconimg1">消息</span></a></li>
+            <li class="changeImg2"><a href="/setting"><span class="iconimg2">人设</span></a></li>
+            <li class="changeImg3"><a href="http://127.0.0.1:5010/Page3"><span class="iconimg3">MCP</span></a></li>
+            <li class="changeImg4 active"><a href="/digital-human-debug"><span class="iconimg4">调试</span></a></li>
+          </ul>
+        </div>
+
+        <div class="main_left_emoji">
+          <img id="sidebarRobot" style="padding-top: 42px; max-width: 150px;" src="/robot/Normal.jpg" alt="数字人状态" />
+        </div>
+      </div>
+
+      <div class="main_right debug-right">
+        <div class="top_info">
+          <span class="top_info_text">数字人调试：</span>
+          <span id="panelTopMsg">页面已打开，正在连接数字人和面板通道...</span>
+        </div>
+
+        <div class="debug-workbench">
+          <section class="debug-stage">
+            <div class="stage-header">
+              <div>
+                <div class="stage-title">实时数字人</div>
+                <div class="stage-subtitle" id="previewState">待机</div>
+              </div>
+              <div class="stage-actions">
+                <button class="debug-btn" data-action="connect-all">重连</button>
+                <button class="debug-btn" data-action="refresh-status">刷新</button>
+              </div>
+            </div>
+            <div class="stage-avatar">
+              <img id="robotImage" src="/robot/Normal.jpg" alt="Fay数字人" />
+            </div>
+            <div class="status-cards">
+              <div class="status-card">
+                <span>Server</span>
+                <strong data-status-text="server">检测中</strong>
+              </div>
+              <div class="status-card">
+                <span>Human WS</span>
+                <strong data-status-text="digital_human">检测中</strong>
+              </div>
+              <div class="status-card">
+                <span>Audio</span>
+                <strong data-status-text="remote_audio">检测中</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="debug-console">
+            <div class="debug-tabs">
+              <button class="debug-tab active" data-tab="interact">实时交互</button>
+              <button class="debug-tab" data-tab="wire">通道调试</button>
+              <button class="debug-tab" data-tab="log">事件日志</button>
+            </div>
+
+            <div class="debug-tab-panel active" data-tab-panel="interact">
+              <div class="debug-form-row">
+                <label>
+                  <span>用户</span>
+                  <input id="username" type="text" value="User" autocomplete="off" />
+                </label>
+                <label>
+                  <span>运行状态</span>
+                  <input id="runStatus" type="text" value="检测中" readonly />
+                </label>
+              </div>
+              <label class="debug-field">
+                <span>交互文本</span>
+                <textarea id="messageText" rows="7">你好，请做一次数字人调试播报。</textarea>
+              </label>
+              <div class="quick-actions">
+                <button class="debug-btn primary" data-action="start-live">启动服务</button>
+                <button class="debug-btn primary" data-action="send-chat">发送到Fay</button>
+                <button class="debug-btn" data-action="transparent-pass">直接播报</button>
+                <button class="debug-btn" data-action="greet">打招呼</button>
+                <button class="debug-btn" data-action="wake">唤醒</button>
+                <button class="debug-btn danger" data-action="stop-talking">打断</button>
+              </div>
+              <div class="live-feed">
+                <div>
+                  <span>面板消息</span>
+                  <p id="panelMessage">-</p>
+                </div>
+                <div>
+                  <span>最近文本</span>
+                  <p id="lastText">-</p>
+                </div>
+                <div>
+                  <span>最近音频</span>
+                  <p id="lastAudio">-</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="debug-tab-panel" data-tab-panel="wire">
+              <div class="endpoint-list">
+                <div>
+                  <span>数字人端</span>
+                  <code id="humanWsUrl">ws://127.0.0.1:10002</code>
+                  <button class="debug-btn" data-action="connect-human">连接</button>
+                </div>
+                <div>
+                  <span>面板端</span>
+                  <code id="panelWsUrl">ws://127.0.0.1:10003</code>
+                  <button class="debug-btn" data-action="connect-panel">连接</button>
+                </div>
+                <div>
+                  <span>音频桥</span>
+                  <code id="audioWsUrl">ws://127.0.0.1:9001</code>
+                  <button class="debug-btn" data-action="probe-audio">探测</button>
+                </div>
+              </div>
+              <label class="debug-field">
+                <span>发送原始数字人WS消息</span>
+                <textarea id="rawHumanMessage" rows="5">{"Username":"User","Topic":"human","Data":{"Key":"log","Value":"debug ping"}}</textarea>
+              </label>
+              <button class="debug-btn primary" data-action="send-raw-human">发送原始WS消息</button>
+            </div>
+
+            <div class="debug-tab-panel" data-tab-panel="log">
+              <div class="log-toolbar">
+                <button class="debug-btn" data-action="clear-log">清空日志</button>
+              </div>
+              <div id="eventLog" class="event-log" role="log" aria-live="polite"></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="inputmessage debug-inputmessage">
+          <div class="inputmessage_voice">
+            <img src="{{ url_for('static',filename='images/recording.png') }}" alt="语音" />
+          </div>
+          <div class="inputmessage_input">
+            <textarea class="text_in" id="bottomMessageText" placeholder="输入后回车实时发送" style="padding-top: 13px;"></textarea>
+          </div>
+          <div class="inputmessage_send">
+            <img src="{{ url_for('static',filename='images/send.png') }}" alt="发送" data-action="send-bottom" />
+          </div>
+          <div class="inputmessage_open">
+            <img src="{{ url_for('static',filename='images/open.png') }}" alt="启动" data-action="start-live" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

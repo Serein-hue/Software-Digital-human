@@ -1406,6 +1406,14 @@ def setting():
     except Exception as e:
         return f"Error loading settings page: {e}", 500
 
+@__app.route('/digital-human-debug', methods=['get'])
+def digital_human_debug():
+    try:
+        import time as _time
+        return render_template('digital_human_debug.html', cache_bust=str(int(_time.time())))
+    except Exception as e:
+        return f"Error loading digital human debug page: {e}", 500
+
 @__app.route('/Page3', methods=['get'])
 def Page3():
     try:

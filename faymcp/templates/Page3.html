@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fay MCP 管理</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f7f9;
+        --panel: #ffffff;
+        --text: #1f2937;
+        --muted: #667085;
+        --line: #d9dee7;
+        --accent: #0f766e;
+        --danger: #b42318;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Microsoft YaHei", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 14px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 64px;
+        padding: 0 28px;
+        border-bottom: 1px solid var(--line);
+        background: var(--panel);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 650;
+      }
+
+      main {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .toolbar {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+
+      .status {
+        color: var(--muted);
+      }
+
+      button {
+        min-height: 34px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fff;
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      button.primary {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #fff;
+      }
+
+      button.danger {
+        border-color: #fecdca;
+        color: var(--danger);
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 14px;
+      }
+
+      .server {
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      .server-head {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+
+      .server-name {
+        font-size: 16px;
+        font-weight: 650;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding: 0 9px;
+        border-radius: 999px;
+        background: #eef2f6;
+        color: #475467;
+        font-size: 12px;
+      }
+
+      .badge.online {
+        background: #dcfae6;
+        color: #067647;
+      }
+
+      .meta {
+        display: grid;
+        gap: 6px;
+        margin: 10px 0 14px;
+        color: var(--muted);
+      }
+
+      .meta code {
+        color: var(--text);
+        word-break: break-all;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tools {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+      }
+
+      .tool {
+        padding: 8px 0;
+        border-bottom: 1px solid #edf0f5;
+      }
+
+      .tool:last-child {
+        border-bottom: 0;
+      }
+
+      .empty {
+        padding: 32px;
+        border: 1px dashed var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        color: var(--muted);
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Fay MCP 管理</h1>
+      <a href="http://127.0.0.1:5000/">返回管理端</a>
+    </header>
+    <main>
+      <div class="toolbar">
+        <div class="status" id="status">正在加载 MCP 服务...</div>
+        <button class="primary" id="refreshBtn">刷新</button>
+      </div>
+      <section class="grid" id="serverGrid"></section>
+    </main>
+
+    <script>
+      const grid = document.getElementById("serverGrid");
+      const statusEl = document.getElementById("status");
+      const refreshBtn = document.getElementById("refreshBtn");
+
+      async function requestJson(url, options = {}) {
+        const response = await fetch(url, {
+          headers: { "Content-Type": "application/json" },
+          ...options,
+        });
+        const text = await response.text();
+        let data = {};
+        if (text) {
+          try {
+            data = JSON.parse(text);
+          } catch {
+            data = { message: text };
+          }
+        }
+        if (!response.ok) {
+          throw new Error(data.error || data.message || `HTTP ${response.status}`);
+        }
+        return data;
+      }
+
+      function serverCommand(id, action) {
+        return requestJson(`/api/mcp/servers/${id}/${action}`, { method: "POST", body: "{}" });
+      }
+
+      async function loadTools(serverId, target) {
+        target.textContent = "正在加载工具...";
+        try {
+          const data = await requestJson(`/api/mcp/servers/${serverId}/tools`);
+          const tools = Array.isArray(data.tools) ? data.tools : Array.isArray(data) ? data : [];
+          if (!tools.length) {
+            target.textContent = "没有可用工具，或服务尚未连接。";
+            return;
+          }
+          target.innerHTML = tools
+            .map((tool) => {
+              const name = tool.name || "unnamed";
+              const desc = tool.description || "";
+              return `<div class="tool"><strong>${escapeHtml(name)}</strong><br><span>${escapeHtml(desc)}</span></div>`;
+            })
+            .join("");
+        } catch (error) {
+          target.textContent = `工具加载失败：${error.message}`;
+        }
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function renderServers(servers) {
+        if (!servers.length) {
+          grid.innerHTML = '<div class="empty">暂无 MCP 服务配置。</div>';
+          return;
+        }
+
+        grid.innerHTML = servers
+          .map((server) => {
+            const online = server.status === "online";
+            const args = Array.isArray(server.args) ? server.args.join(" ") : "";
+            return `
+              <article class="server" data-id="${server.id}">
+                <div class="server-head">
+                  <div>
+                    <div class="server-name">${escapeHtml(server.name || `Server ${server.id}`)}</div>
+                    <div class="status">ID ${escapeHtml(server.id)} · ${escapeHtml(server.transport || "sse")}</div>
+                  </div>
+                  <span class="badge ${online ? "online" : ""}">${online ? "online" : "offline"}</span>
+                </div>
+                <div class="meta">
+                  <div>命令：<code>${escapeHtml(server.command || server.ip || "-")}</code></div>
+                  <div>参数：<code>${escapeHtml(args || "-")}</code></div>
+                  <div>工作目录：<code>${escapeHtml(server.cwd || "-")}</code></div>
+                  <div>延迟：<code>${escapeHtml(server.latency || "0ms")}</code></div>
+                </div>
+                <div class="actions">
+                  <button data-action="connect">${online ? "重连" : "连接"}</button>
+                  <button data-action="disconnect" ${online ? "" : "disabled"}>断开</button>
+                  <button data-action="tools">工具</button>
+                </div>
+                <div class="tools" hidden></div>
+              </article>`;
+          })
+          .join("");
+      }
+
+      async function loadServers() {
+        refreshBtn.disabled = true;
+        statusEl.textContent = "正在加载 MCP 服务...";
+        try {
+          const servers = await requestJson("/api/mcp/servers");
+          renderServers(Array.isArray(servers) ? servers : []);
+          statusEl.textContent = `已加载 ${Array.isArray(servers) ? servers.length : 0} 个 MCP 服务`;
+        } catch (error) {
+          grid.innerHTML = `<div class="empty">加载失败：${escapeHtml(error.message)}</div>`;
+          statusEl.textContent = "MCP 服务加载失败";
+        } finally {
+          refreshBtn.disabled = false;
+        }
+      }
+
+      grid.addEventListener("click", async (event) => {
+        const button = event.target.closest("button[data-action]");
+        if (!button) return;
+        const card = button.closest(".server");
+        const id = card.dataset.id;
+        const action = button.dataset.action;
+        button.disabled = true;
+        try {
+          if (action === "tools") {
+            const tools = card.querySelector(".tools");
+            tools.hidden = !tools.hidden;
+            if (!tools.hidden) await loadTools(id, tools);
+            return;
+          }
+          await serverCommand(id, action);
+          await loadServers();
+        } catch (error) {
+          alert(error.message);
+        } finally {
+          button.disabled = false;
+        }
+      });
+
+      refreshBtn.addEventListener("click", loadServers);
+      loadServers();
+    </script>
+  </body>
+</html>
