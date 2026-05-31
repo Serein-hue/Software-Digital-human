@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP 知识库管理</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #333; }
+        .card { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .server-list { list-style: none; padding: 0; }
+        .server-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .status-badge { padding: 4px 12px; border-radius: 12px; font-size: 12px; }
+        .online { background: #e6f7e6; color: #28a745; }
+        .offline { background: #fff0f0; color: #dc3545; }
+        .tool-list { margin-top: 12px; }
+        .tool-item { padding: 8px 12px; background: #f8f9fa; border-radius: 4px; margin-bottom: 8px; }
+        .tool-name { font-weight: bold; color: #333; }
+        .tool-desc { color: #666; font-size: 13px; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MCP 知识库管理</h1>
+        <div class="card">
+            <h2>已连接的 MCP 服务器</h2>
+            <ul class="server-list">
+                {% for server in mcp_servers %}
+                <li class="server-item">
+                    <div>
+                        <strong>{{ server.name }}</strong>
+                        <span style="color:#999;margin-left:8px;font-size:13px;">{{ server.type or '' }}</span>
+                    </div>
+                    <span class="status-badge {% if server.status == 'online' %}online{% else %}offline{% endif %}">
+                        {{ '在线' if server.status == 'online' else '离线' }}
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% if not mcp_servers %}
+            <p style="color:#999;text-align:center;padding:20px 0;">暂无已连接的 MCP 服务器</p>
+            {% endif %}
+        </div>
+        <div class="card">
+            <h2>使用说明</h2>
+            <p>MCP (Model Context Protocol) 用于连接外部知识库和工具。</p>
+            <p>通过 MCP，数字人可以访问景区知识库、查询实时信息、调用外部工具。</p>
+            <p style="color:#999;font-size:13px;">提示：在 Fay 管理界面添加 MCP 服务器后，它们会显示在此页面。</p>
+        </div>
+    </div>
+</body>
+</html>
