@@ -126,8 +126,28 @@ def _is_current_only_turn(content: Any, observation: Any = None) -> bool:
     return normalized in short_greetings
 
 
-# 小模型实例（流式，面向用户的快速回复）
-llm = _get_llm_instance("small", streaming=True)
+class _LazySmallLLM:
+    """Create the chat client only when a real LLM request is made."""
+
+    def __init__(self):
+        self._client = None
+        self._lock = threading.RLock()
+
+    def _get_client(self):
+        with self._lock:
+            if self._client is None:
+                self._client = _get_llm_instance("small", streaming=True)
+            return self._client
+
+    def stream(self, messages):
+        return self._get_client().stream(messages)
+
+    def invoke(self, messages):
+        return self._get_client().invoke(messages)
+
+
+# 小模型实例（流式，面向用户的快速回复）。懒加载，避免空 LLM 配置阻塞服务启动。
+llm = _LazySmallLLM()
 
 
 @dataclass

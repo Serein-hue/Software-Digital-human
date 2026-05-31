@@ -156,7 +156,14 @@ if platform.system() == "Windows":
         sys.path.insert(0, _lipsync_dir)
 
 
-    from test_olipsync import LipSyncGenerator
+    try:
+        from test_olipsync import LipSyncGenerator
+    except Exception as lipsync_import_error:
+        LipSyncGenerator = None
+        _lipsync_import_error = lipsync_import_error
+else:
+    LipSyncGenerator = None
+    _lipsync_import_error = None
 
 
     
@@ -2270,7 +2277,7 @@ class FeiFei:
                     #计算lips
 
 
-                    if platform.system() == "Windows":
+                    if platform.system() == "Windows" and LipSyncGenerator is not None:
 
 
                         try:
