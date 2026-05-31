@@ -1,0 +1,9 @@
+{
+  "_说明": "Fallback 阈值与策略配置",
+  "score_threshold": 0.50,
+  "sensitive_check_enabled": true,
+  "sensitive_word_file": "rag/config/sensitive_words.txt",
+  "实时类domain标记": ["weather", "realtime", "queue", "ticket_stock"],
+  "top_k_default": 5,
+  "top_k_max": 20
+}

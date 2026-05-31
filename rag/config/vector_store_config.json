@@ -1,0 +1,16 @@
+{
+  "_说明": "向量库配置，当前使用 ChromaDB（项目已有依赖）",
+  "provider": "chroma",
+  "chroma": {
+    "persist_dir": "rag/chroma_db",
+    "collection_name": "scenic_kb",
+    "distance_strategy": "cosine"
+  },
+  "qdrant": {
+    "host": "localhost",
+    "port": 6333,
+    "collection_name": "scenic_kb",
+    "vector_size": 1024,
+    "distance": "Cosine"
+  }
+}
