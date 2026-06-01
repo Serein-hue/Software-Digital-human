@@ -1,0 +1,17 @@
+{
+  "_说明": "Embedding 模型配置，支持本地/云端切换",
+  "provider": "local",
+  "local": {
+    "model_name": "BAAI/bge-large-zh-v1.5",
+    "device": "cpu",
+    "batch_size": 16,
+    "max_seq_length": 512,
+    "normalize_embeddings": true
+  },
+  "cloud": {
+    "api_base": "http://127.0.0.1:5000/v1",
+    "api_key": "sk-fay",
+    "model": "embedding",
+    "timeout": 30
+  }
+}

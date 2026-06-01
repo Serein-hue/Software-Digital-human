@@ -1,0 +1,9 @@
+{
+  "_说明": "语义分块策略配置",
+  "default_chunk_size": 512,
+  "default_overlap": 64,
+  "chunk_size_min": 128,
+  "chunk_size_max": 2048,
+  "overlap_min": 0,
+  "overlap_max": 256
+}

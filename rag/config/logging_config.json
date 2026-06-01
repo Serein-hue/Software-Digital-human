@@ -1,0 +1,9 @@
+{
+  "_说明": "日志脱敏与结构化日志配置",
+  "desensitization_rules": {
+    "phone": {"pattern": "(1[3-9]\d)\d{4}(\d{4})", "replacement": "\1****\2"},
+    "idcard": {"pattern": "(\d{6})\d{8}(\d{4})", "replacement": "\1********\2"}
+  },
+  "sensitive_query_log_policy": "trace_only",
+  "structured_log_fields": ["trace_id", "query_hash", "top_k", "top_score", "fallback_reason", "latency_ms", "chunk_count"]
+}
