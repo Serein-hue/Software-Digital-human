@@ -1,1 +1,200 @@
-[]
+[
+  {
+    "node_id": 0,
+    "node_type": "conversation",
+    "content": "主人：你好，请做一次数字人调试播报。\nFay：抱歉，我的大脑暂时开了小差，请稍后再试一下。",
+    "importance": 50,
+    "datetime": "2026/06/01 18:47:13",
+    "created": 0,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 1,
+    "node_type": "conversation",
+    "content": "主人：你好\nFay：抱歉，我的大脑暂时开了小差，请稍后再试一下。",
+    "importance": 50,
+    "datetime": "2026/06/01 18:47:53",
+    "created": 1,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 2,
+    "node_type": "observation",
+    "content": "debug page",
+    "importance": 50,
+    "datetime": "2026/06/01 18:48:02",
+    "created": 2,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 3,
+    "node_type": "conversation",
+    "content": "主人：按观测要求打个招呼\nFay：抱歉，我的大脑暂时开了小差，请稍后再试一下。",
+    "importance": 50,
+    "datetime": "2026/06/01 18:48:02",
+    "created": 3,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 4,
+    "node_type": "conversation",
+    "content": "主人：你好\nFay：抱歉，我的大脑暂时开了小差，请稍后再试一下。",
+    "importance": 50,
+    "datetime": "2026/06/01 18:48:13",
+    "created": 4,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 5,
+    "node_type": "conversation",
+    "content": "主人：你在干什么\nFay：抱歉，我的大脑暂时开了小差，请稍后再试一下。",
+    "importance": 50,
+    "datetime": "2026/06/01 18:48:20",
+    "created": 5,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 6,
+    "node_type": "conversation",
+    "content": "主人：你好，请做一次数字人调试播报。\nFay：抱歉，我现在太忙了，休息一会，请稍后再试。",
+    "importance": 50,
+    "datetime": "2026/06/01 18:49:01",
+    "created": 6,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 7,
+    "node_type": "conversation",
+    "content": "主人：你好\nFay：抱歉，我现在太忙了，休息一会，请稍后再试。",
+    "importance": 50,
+    "datetime": "2026/06/01 18:49:09",
+    "created": 7,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 8,
+    "node_type": "conversation",
+    "content": "主人：你好\nFay：抱歉，我现在太忙了，休息一会，请稍后再试。",
+    "importance": 50,
+    "datetime": "2026/06/01 18:49:43",
+    "created": 8,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 9,
+    "node_type": "conversation",
+    "content": "主人：你好\nFay：抱歉，我的大脑暂时开了小差，请稍后再试一下。",
+    "importance": 50,
+    "datetime": "2026/06/01 19:07:31",
+    "created": 9,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 10,
+    "node_type": "conversation",
+    "content": "主人：你好，请做一次数字人调试播报。\nFay：抱歉，我现在太忙了，休息一会，请稍后再试。",
+    "importance": 15,
+    "datetime": "2026/06/01 19:59:03",
+    "created": 10,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 11,
+    "node_type": "observation",
+    "content": "debug page",
+    "importance": 5,
+    "datetime": "2026/06/01 19:59:16",
+    "created": 11,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 12,
+    "node_type": "conversation",
+    "content": "主人：按观测要求打个招呼\nFay：抱歉，我的大脑暂时开了小差，请稍后再试一下。",
+    "importance": 15,
+    "datetime": "2026/06/01 19:59:20",
+    "created": 12,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 13,
+    "node_type": "conversation",
+    "content": "主人：你能干什么\nFay：抱歉，我的大脑暂时开了小差，请稍后再试一下。",
+    "importance": 45,
+    "datetime": "2026/06/01 19:59:33",
+    "created": 13,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 14,
+    "node_type": "conversation",
+    "content": "主人：你好，请做一次数字人调试播报。\nFay：抱歉，我的大脑暂时开了小差，请稍后再试一下。",
+    "importance": 30,
+    "datetime": "2026/06/01 20:18:51",
+    "created": 14,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 15,
+    "node_type": "conversation",
+    "content": "主人：你好，请做一次数字人调试播报。\nFay：好的，正在进行数字人系统自检...面容引擎连接正常，语音模块在线，情感计算单元运转良好。当前系统状态：待机中，随时为您效劳！",
+    "importance": 75,
+    "datetime": "2026/06/01 20:19:37",
+    "created": 15,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 16,
+    "node_type": "conversation",
+    "content": "主人：你能干什么呢\nFay：\n我是一个智能助手，能跟你用语音或文字自然交流，回答各类问题，还能帮企业做前台接待。我可以通过数字人形象展示生动表情，也能一键呼叫真人管理员或播放宣传资料。还能切换不同的AI大脑，比如用DeepSeek、通义千问等大模型为你服务。（参考了数字人主界面、Fay架构等功能描述）",
+    "importance": 90,
+    "datetime": "2026/06/01 20:20:13",
+    "created": 16,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  },
+  {
+    "node_id": 17,
+    "node_type": "conversation",
+    "content": "主人：你该叫我什么呢\nFay：你想让我怎么称呼你呢？可以告诉我你喜欢的称呼哦～",
+    "importance": 20,
+    "datetime": "2026/06/01 20:23:39",
+    "created": 17,
+    "last_retrieved": 17,
+    "pointer_id": null,
+    "tags": []
+  }
+]

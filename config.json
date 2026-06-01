@@ -24,7 +24,7 @@
             "indifferent": 10,
             "join": 10
         },
-        "playSound": true,
+        "playSound": false,
         "visualization": false
     },
     "items": [],
@@ -44,7 +44,7 @@
             "enabled": false
         },
         "wake_word": "\u4f60\u597d",
-        "wake_word_enabled": false,
+        "wake_word_enabled": true,
         "wake_word_type": "front"
     }
 }

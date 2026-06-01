@@ -4,3 +4,7 @@ frontend/.tmp/
 frontend/.vite/
 node_modules/
 *.log
+live2d-avatar/CubismSdkForWeb-5-r.4/Samples/TypeScript/Demo/node_modules
+live2d-avatar/CubismSdkForWeb-5-r.4/Samples/TypeScript/Demo/public/Core
+live2d-avatar/CubismSdkForWeb-5-r.4/Samples/TypeScript/Demo/public/Resources
+live2d-avatar/CubismSdkForWeb-5-r.4/Samples/TypeScript/Demo/dist

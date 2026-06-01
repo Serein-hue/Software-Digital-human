@@ -106,18 +106,21 @@
   }
 
   function updateRobot(src, stateText) {
-    const image = src || "/robot/Normal.jpg";
-    const mainRobot = $("#robotImage");
-    const sidebarRobot = $("#sidebarRobot");
+    const indicator = $("#sidebarLive2dIndicator");
+    const status = $("#sidebarStatus");
 
-    if (mainRobot) {
-      mainRobot.src = image;
+    if (stateText) {
+      if (status) status.textContent = stateText;
+      if ($("#previewState")) $("#previewState").textContent = stateText;
     }
-    if (sidebarRobot) {
-      sidebarRobot.src = image;
-    }
-    if (stateText && $("#previewState")) {
-      $("#previewState").textContent = stateText;
+
+    // Update indicator styling based on state
+    if (indicator) {
+      if (stateText === "播报中" || stateText === "状态更新") {
+        indicator.style.background = "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)";
+      } else {
+        indicator.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+      }
     }
   }
 
@@ -411,7 +414,7 @@
     $("#humanWsUrl").textContent = wsUrl(10002);
     $("#panelWsUrl").textContent = wsUrl(10003);
     $("#audioWsUrl").textContent = wsUrl(9001);
-    updateRobot("/robot/Normal.jpg", "待机");
+    updateRobot(null, "待机");
     bindTabs();
     bindActions();
     connectAll();

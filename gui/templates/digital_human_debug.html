@@ -31,8 +31,11 @@
           </ul>
         </div>
 
-        <div class="main_left_emoji">
-          <img id="sidebarRobot" style="padding-top: 42px; max-width: 150px;" src="/robot/Normal.jpg" alt="数字人状态" />
+        <div class="main_left_emoji" style="text-align: center; padding-top: 30px;">
+          <div id="sidebarLive2dIndicator" style="display: inline-block; width: 120px; height: 120px; line-height: 120px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; font-size: 14px; font-weight: bold; box-shadow: 0 4px 15px rgba(102,126,234,0.4);">
+            Live2D
+          </div>
+          <div style="margin-top: 8px; font-size: 12px; color: #8797b8;" id="sidebarStatus">待机中</div>
         </div>
       </div>
 
@@ -54,8 +57,20 @@
                 <button class="debug-btn" data-action="refresh-status">刷新</button>
               </div>
             </div>
-            <div class="stage-avatar">
-              <img id="robotImage" src="/robot/Normal.jpg" alt="Fay数字人" />
+            <div class="stage-avatar" style="overflow: hidden; padding: 0; background: #1a1a2e;">
+              <iframe id="live2dFrame"
+                src="http://localhost:5173"
+                style="width: 100%; height: 100%; min-height: 380px; border: none;"
+                title="Live2D数字人"
+                allow="autoplay; microphone"
+                loading="lazy">
+              </iframe>
+            </div>
+            <div style="text-align: center; margin: 4px 0 8px;">
+              <span style="color: #8797b8; font-size: 12px;">
+                Live2D 数字人已加载
+                <a href="http://localhost:5173" target="_blank" style="color: #0064fb; text-decoration: none;">新窗口打开 ↗</a>
+              </span>
             </div>
             <div class="status-cards">
               <div class="status-card">
