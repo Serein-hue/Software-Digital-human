@@ -2,7 +2,7 @@
   "_说明": "向量库配置，当前使用 ChromaDB（项目已有依赖）",
   "provider": "chroma",
   "chroma": {
-    "persist_dir": "rag/chroma_db",
+    "persist_dir": "C:/Users/32344/Desktop/Software-Digital-human/rag/chroma_db",
     "collection_name": "scenic_kb",
     "distance_strategy": "cosine"
   },

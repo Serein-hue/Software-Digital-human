@@ -74,3 +74,30 @@ def rebuild():
         return _res(data=engine.rebuild_index())
     except Exception as exc:
         return _res(code=50001, msg=f"Rebuild failed: {exc}")
+
+
+@rag_bp.route("/debug_raw_query", methods=["POST"])
+def debug_raw_query():
+    """直接查 ChromaDB 原始结果，不做 fallback 过滤"""
+    try:
+        data = request.get_json(force=True)
+    except Exception:
+        return _res(code=10001, msg="Invalid JSON")
+    query_text = (data.get("query") or "").strip()
+    if not query_text:
+        return _res(code=10001, msg="Missing query")
+    try:
+        from rag.vector_store import get_store
+        from rag.embedding_service import EmbeddingService
+        emb = EmbeddingService()
+        vec = emb.encode(query_text)
+        store = get_store()
+        raw = store._collection.query(
+            query_embeddings=[vec], n_results=data.get("top_k", 5),
+            include=["documents", "metadatas", "distances"])
+        return _res(data={"count": store.count(), "raw_ids": raw.get("ids"),
+                          "raw_dists": raw.get("distances"),
+                          "raw_docs": [d[:80] for d in (raw.get("documents", [[]])[0])]})
+    except Exception as exc:
+        import traceback
+        return _res(code=50001, msg=f"Debug error: {exc}\n{traceback.format_exc()}")
