@@ -45,9 +45,10 @@
 
 ## 启动方式
 
+所有命令都在项目根目录 `Software-Digital-human/` 下执行。
+
 ### Fay（服务端）
 ```bash
-cd ~/Desktop/Software-Digital-human
 python main.py
 ```
 
@@ -60,14 +61,13 @@ npm start
 
 ### RAG 服务
 ```bash
-cd ~/Desktop/Software-Digital-human
 python rag/run_rag_server.py
 # 端口 5010，健康检查: http://127.0.0.1:5010/api/v1/rag/health
 ```
 
 ### 前端主站
 ```bash
-cd ~/Desktop/Software-Digital-human/frontend
+cd frontend
 npm run dev
 # 端口 5173/5174
 ```

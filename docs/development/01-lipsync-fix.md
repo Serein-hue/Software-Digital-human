@@ -59,10 +59,7 @@ Fay TTS → audio.mp3 → LipSyncGenerator → WebSocket(Lips) → Live2D Lipsyn
 - `pydub`（Python 音频处理库）
 - `ffmpeg`（pydub 解码 MP3 必需）
 
-ffmpeg 通过 winget 安装，路径：
-```
-C:\Users\32344\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.WinGet.Source_8wekyb3d8bbwe\ffmpeg-8.1.1-full_build\bin
-```
+ffmpeg 通过 winget 安装，确保 ffmpeg 在 PATH 环境变量中即可。
 
 ### 测试工具
 
@@ -73,8 +70,7 @@ skills/test_lipsync.py
 不启动 Fay 即可离线测试嘴型数据生成，输出 ASCII 时序图和 JSON：
 
 ```bash
-cd ~/Desktop/Software-Digital-human
-export PATH="...ffmpeg...bin:$PATH"
+cd <项目目录>
 PYTHONIOENCODING=utf-8 python skills/test_lipsync.py samples/sample-*.wav
 ```
 

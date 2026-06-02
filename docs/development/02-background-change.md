@@ -48,12 +48,12 @@ Samples/TypeScript/Demo/dist/Resources/nokia_reception_desk.png
 假设你的新图在 `D:\my_bg.png`，打开终端执行：
 
 ```bash
-cd ~/Desktop/Software-Digital-human/live2d-avatar/CubismSdkForWeb-5-r.4
+cd <项目目录>/live2d-avatar/CubismSdkForWeb-5-r.4
 
 # 替换三处（源头 + public + dist）
-cp "D:/my_bg.png" "Samples/Resources/nokia_reception_desk.png"
-cp "D:/my_bg.png" "Samples/TypeScript/Demo/public/Resources/nokia_reception_desk.png"
-cp "D:/my_bg.png" "Samples/TypeScript/Demo/dist/Resources/nokia_reception_desk.png"
+cp "<你的新图路径>" "Samples/Resources/nokia_reception_desk.png"
+cp "<你的新图路径>" "Samples/TypeScript/Demo/public/Resources/nokia_reception_desk.png"
+cp "<你的新图路径>" "Samples/TypeScript/Demo/dist/Resources/nokia_reception_desk.png"
 ```
 
 然后重启 Live2D 前端：
