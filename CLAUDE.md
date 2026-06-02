@@ -33,6 +33,17 @@ skills/                 # 自动化脚本
 - [x] 微信小程序端：4 页面（guide/spot-detail/route/photo），原生 WXML+WXSS，同设计 token
 - [x] RAG 检索管道 → `backend/src/` Express API (8 endpoints)
 - [x] 后端 API → `backend/src/index.ts` (spots, routes, chat, analytics)
+- [x] LipSync 嘴型同步修复 — `test/ovr_lipsync/test_olipsync.py` 从桩实现改为音频振幅驱动
+- [x] ffmpeg 已安装（winget）— pydub 解析 MP3 必需，PATH: `C:\Users\32344\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.WinGet.Source_8wekyb3d8bbwe\ffmpeg-8.1.1-full_build\bin`
+- [x] 开发辅助脚本：`skills/test_lipsync.py`（嘴型测试）、`skills/start-dev.sh`（一键启动）
+
+## LipSync 数据流
+```
+Fay TTS → audio.mp3 → test_olipsync.LipSyncGenerator → WS "Lips" → Lipsync.ts → ParamMouthOpenY
+```
+- Python 端：pydub 分帧 50ms，RMS 振幅归一化 → viseme 名（sil/PP/TH/DD/E/oh/ou/aa）
+- 前端端：`lipsync.ts` 中 `visemeMap` 映射 viseme → 嘴型开合度，平滑过渡
+- 启动前需确保 ffmpeg 在 PATH 中
 
 ## 数据来源
 灵山胜境（无锡，国家5A级景区，世界佛教论坛永久会址）
