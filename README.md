@@ -110,6 +110,17 @@ cd frontend && npx vite build   # 输出到 docs/app/
 
 所有颜色值统一使用 CSS 变量，零硬编码。
 
+## 开发文档
+
+项目开发过程中的关键技术文档，位于 `docs/development/`：
+
+| 文档 | 内容 |
+|------|------|
+| [01-lipsync-fix.md](docs/development/01-lipsync-fix.md) | Live2D 嘴型同步修复方案（音频振幅驱动） |
+| [02-background-change.md](docs/development/02-background-change.md) | 更换数字人背景图片的方法 |
+| [03-project-progress.md](docs/development/03-project-progress.md) | 项目进度总览 & 启动方式 |
+| [04-rag-guide.md](docs/development/04-rag-guide.md) | RAG 配合指南（给队友看） |
+
 ## 数据来源
 
 灵山胜境（无锡，国家5A级，世界佛教论坛永久会址）官方资料包：
