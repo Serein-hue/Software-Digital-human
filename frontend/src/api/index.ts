@@ -128,6 +128,16 @@ export async function fetchRoute(id: string): Promise<RouteData | null> {
   return apiFetch<RouteData>(`/v1/routes/${id}`)
 }
 
+export async function fetchRelatedSpots(id: string): Promise<SpotSummary[] | null> {
+  // 通过 tag 过滤返回同类型景点
+  const spot = await fetchSpot(id)
+  if (!spot) return null
+  const all = await fetchSpots()
+  if (!all) return null
+  // 排除自身，取前 4 个
+  return all.filter((s: any) => s.id !== id).slice(0, 4)
+}
+
 // ═══════════════════════════════════════
 // RAG 检索（通过 business-api 代理 → RAG :5010）
 // ═══════════════════════════════════════
