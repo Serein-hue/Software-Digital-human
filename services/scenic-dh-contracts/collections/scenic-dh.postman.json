@@ -1,0 +1,124 @@
+{
+  "info": {
+    "name": "scenic-dh 智慧景区数字人平台",
+    "description": "三端协作 API 集合。导入 Apifox/Postman 即可使用。",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "business", "value": "http://localhost:8001"},
+    {"key": "admin", "value": "http://localhost:8002"},
+    {"key": "rag", "value": "http://localhost:8003"},
+    {"key": "avatar", "value": "http://localhost:8004"},
+    {"key": "demo", "value": "http://localhost:8006"},
+    {"key": "admin_token", "value": "adm-dev-token"},
+    {"key": "session_id", "value": ""}
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {"name": "business-api health", "request": {"method": "GET", "url": {"raw": "{{business}}/health"}}},
+        {"name": "admin-api health", "request": {"method": "GET", "url": {"raw": "{{admin}}/health"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}},
+        {"name": "rag-service health", "request": {"method": "GET", "url": {"raw": "{{rag}}/health"}}},
+        {"name": "avatar health", "request": {"method": "GET", "url": {"raw": "{{avatar}}/health"}}},
+        {"name": "demo-mock health", "request": {"method": "GET", "url": {"raw": "{{demo}}/health"}}}
+      ]
+    },
+    {
+      "name": "Spots 景点",
+      "item": [
+        {"name": "景点列表", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/spots", "query": [{"key": "keyword", "value": ""}, {"key": "tag", "value": ""}, {"key": "limit", "value": "20"}, {"key": "offset", "value": "0"}]}}},
+        {"name": "景点详情", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/spots/LS-001"}}},
+        {"name": "景点讲解词", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/spots/LS-001/guide", "query": [{"key": "style", "value": "long"}, {"key": "duration", "value": "3min"}]}}},
+        {"name": "景点不存在 (404)", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/spots/LS-999"}}}
+      ]
+    },
+    {
+      "name": "Routes 路线",
+      "item": [
+        {"name": "路线列表", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/routes"}}},
+        {"name": "路线详情", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/routes/RT-001"}}},
+        {"name": "路线规划", "request": {"method": "POST", "url": {"raw": "{{business}}/v1/routes/plan"}, "body": {"mode": "raw", "raw": "{\"startSpotId\": \"LS-001\", \"interests\": [\"亲子\"]}"}}}
+      ]
+    },
+    {
+      "name": "Sessions 会话",
+      "item": [
+        {"name": "创建会话", "event": [{"listen": "test", "script": {"exec": ["var data = pm.response.json();", "if (data.success) pm.environment.set('session_id', data.data.sessionId);"]}}], "request": {"method": "POST", "url": {"raw": "{{business}}/v1/sessions"}, "body": {"mode": "raw", "raw": "{\"source\": \"postman\", \"language\": \"zh\"}"}}},
+        {"name": "查询会话", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/sessions/{{session_id}}"}}},
+        {"name": "更新会话", "request": {"method": "PATCH", "url": {"raw": "{{business}}/v1/sessions/{{session_id}}"}, "body": {"mode": "raw", "raw": "{\"currentSpotId\": \"LS-001\"}"}}}
+      ]
+    },
+    {
+      "name": "Messages 消息",
+      "item": [
+        {"name": "记录消息", "request": {"method": "POST", "url": {"raw": "{{business}}/v1/sessions/{{session_id}}/messages"}, "body": {"mode": "raw", "raw": "{\"role\": \"user\", \"text\": \"灵山大佛有多高？\"}"}}},
+        {"name": "查询消息", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/sessions/{{session_id}}/messages"}}}
+      ]
+    },
+    {
+      "name": "Arrivals 到达",
+      "item": [
+        {"name": "到达事件", "request": {"method": "POST", "url": {"raw": "{{business}}/v1/sessions/{{session_id}}/arrival-events"}, "body": {"mode": "raw", "raw": "{\"spotId\": \"LS-001\", \"trigger\": \"manual\"}"}}},
+        {"name": "到达记录", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/sessions/{{session_id}}/arrival-events"}}}
+      ]
+    },
+    {
+      "name": "Feedback 反馈",
+      "item": [
+        {"name": "提交反馈", "request": {"method": "POST", "url": {"raw": "{{business}}/v1/sessions/{{session_id}}/feedback"}, "body": {"mode": "raw", "raw": "{\"rating\": 5, \"resolved\": true, \"comment\": \"讲解很棒\"}"}}},
+        {"name": "反馈列表", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/feedback"}}}
+      ]
+    },
+    {
+      "name": "Scenic Info 景区信息",
+      "item": [
+        {"name": "景区资料", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/scenic-areas/SA-001"}}},
+        {"name": "公告", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/notices"}}},
+        {"name": "活动", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/events"}}},
+        {"name": "服务设施", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/services"}}},
+        {"name": "天气", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/weather"}}},
+        {"name": "排队", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/queues"}}},
+        {"name": "票务", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/tickets/products"}}}
+      ]
+    },
+    {
+      "name": "Admin 管理",
+      "item": [
+        {"name": "知识库状态", "request": {"method": "GET", "url": {"raw": "{{admin}}/v1/knowledge/status"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}},
+        {"name": "登记资料来源", "request": {"method": "POST", "url": {"raw": "{{admin}}/v1/knowledge/sources"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}], "body": {"mode": "raw", "raw": "{\"scenicId\": \"SA-001\", \"sourceName\": \"灵山官方资料包\", \"sourceType\": \"public_demo_package\"}"}}},
+        {"name": "触发重建索引", "request": {"method": "POST", "url": {"raw": "{{admin}}/v1/knowledge/reindex"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}], "body": {"mode": "raw", "raw": "{\"scenicId\": \"SA-001\", \"reason\": \"manual\"}"}}},
+        {"name": "人设查询 P1", "request": {"method": "GET", "url": {"raw": "{{admin}}/v1/personas/P1"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}},
+        {"name": "人工播报", "request": {"method": "POST", "url": {"raw": "{{admin}}/v1/broadcasts"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}], "body": {"mode": "raw", "raw": "{\"text\": \"尊敬的游客，九龙灌浴表演即将开始\", \"priority\": \"normal\", \"target\": \"all\"}"}}},
+        {"name": "会话审计", "request": {"method": "GET", "url": {"raw": "{{admin}}/v1/sessions"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}},
+        {"name": "消息审计", "request": {"method": "GET", "url": {"raw": "{{admin}}/v1/messages"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}},
+        {"name": "采纳问答", "request": {"method": "POST", "url": {"raw": "{{admin}}/v1/messages/MSG-001/adopt"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}},
+        {"name": "运营总览", "request": {"method": "GET", "url": {"raw": "{{admin}}/v1/analytics/overview"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}},
+        {"name": "热问分析", "request": {"method": "GET", "url": {"raw": "{{admin}}/v1/analytics/hot-questions"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}},
+        {"name": "RAG分析", "request": {"method": "GET", "url": {"raw": "{{admin}}/v1/analytics/rag"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}},
+        {"name": "数字人分析", "request": {"method": "GET", "url": {"raw": "{{admin}}/v1/analytics/avatar"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}},
+        {"name": "运行状态", "request": {"method": "GET", "url": {"raw": "{{admin}}/v1/runtime/status"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}},
+        {"name": "清空播报队列", "request": {"method": "POST", "url": {"raw": "{{admin}}/v1/runtime/clear-queue"}, "header": [{"key": "x-admin-token", "value": "{{admin_token}}"}]}}
+      ]
+    },
+    {
+      "name": "Demo 演示",
+      "item": [
+        {"name": "重置", "request": {"method": "POST", "url": {"raw": "{{demo}}/v1/demo/reset"}}},
+        {"name": "启动", "request": {"method": "POST", "url": {"raw": "{{demo}}/v1/demo/start"}}},
+        {"name": "推进", "request": {"method": "POST", "url": {"raw": "{{demo}}/v1/demo/next"}}},
+        {"name": "当前状态", "request": {"method": "GET", "url": {"raw": "{{demo}}/v1/demo/current"}}}
+      ]
+    },
+    {
+      "name": "错误示例",
+      "item": [
+        {"name": "缺少鉴权 (401)", "request": {"method": "GET", "url": {"raw": "{{admin}}/v1/knowledge/status"}}},
+        {"name": "景点不存在 (NOT_FOUND)", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/spots/LS-999"}}},
+        {"name": "路线不存在 (ROUTE_NOT_FOUND)", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/routes/RT-999"}}},
+        {"name": "会话不存在 (SESSION_NOT_FOUND)", "request": {"method": "GET", "url": {"raw": "{{business}}/v1/sessions/00000000-0000-0000-0000-000000000000"}}},
+        {"name": "缺少必填字段", "request": {"method": "POST", "url": {"raw": "{{business}}/v1/sessions/{{session_id}}/feedback"}, "body": {"mode": "raw", "raw": "{\"comment\": \"no rating field\"}"}}}
+      ]
+    }
+  ]
+}

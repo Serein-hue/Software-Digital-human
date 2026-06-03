@@ -1,0 +1,1857 @@
+openapi: "3.0.3"
+info:
+  title: scenic-dh 智慧景区数字人平台 API
+  version: "1.0.0"
+  description: |
+    三端协作的唯一契约面。
+    - **接口负责人**: business-api, admin-api, demo-mock-service
+    - **RAG 负责人**: rag-service
+    - **数字人负责人**: avatar-orchestrator, fay-runtime
+  contact:
+    name: scenic-dh team
+
+servers:
+  - url: http://localhost:8001/v1
+    description: business-api 本地
+  - url: http://localhost:8002/v1
+    description: admin-api 本地
+  - url: http://localhost:8003/api/v1
+    description: rag-service 本地
+  - url: http://localhost:8004/v1
+    description: avatar-orchestrator 本地
+  - url: http://localhost:8005/internal/v1
+    description: fay-runtime 本地
+  - url: http://localhost:8006/v1
+    description: demo-mock-service 本地
+
+tags:
+  - name: Health
+  - name: Spots
+  - name: Routes
+  - name: Sessions
+  - name: Messages
+  - name: Arrivals
+  - name: Feedback
+  - name: Context
+  - name: Scenic Info
+  - name: Demo
+  - name: Knowledge
+  - name: Personas
+  - name: Broadcasts
+  - name: Audit
+  - name: Analytics
+  - name: Runtime
+
+# ============================================================
+# 通用组件
+# ============================================================
+components:
+  securitySchemes:
+    InternalServiceToken:
+      type: apiKey
+      in: header
+      name: x-service-token
+      description: 内部服务间调用 token
+    AdminToken:
+      type: apiKey
+      in: header
+      name: x-admin-token
+      description: 运营管理端 token
+    SessionToken:
+      type: apiKey
+      in: header
+      name: x-session-token
+      description: 游客匿名 session token
+
+  schemas:
+    # ---- 基础 ----
+    TraceHeaders:
+      type: object
+      properties:
+        x-trace-id:
+          type: string
+          format: uuid
+          description: 链路追踪 ID，贯穿整条调用链
+        x-span-id:
+          type: string
+          description: 本次 span ID
+
+    ResponseEnvelope:
+      type: object
+      required: [success, traceId, timestamp]
+      properties:
+        success:
+          type: boolean
+        data:
+          description: 成功时的返回数据
+        code:
+          type: string
+          description: 降级/错误时的 code
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+        traceId:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    ErrorDetail:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [INVALID_REQUEST, AUTH, NOT_FOUND, CONFLICT, GONE, RATE_LIMIT, INTERNAL, UNAVAILABLE, TIMEOUT, UPSTREAM, FALLBACK]
+        message:
+          type: string
+        detail:
+          nullable: true
+
+    ResponseMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          minimum: 1
+          default: 1
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        total:
+          type: integer
+        totalPages:
+          type: integer
+
+    # ---- 核心业务对象 ----
+    ScenicArea:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "SA-001"
+        name:
+          type: string
+          example: "灵山胜境"
+        nameEn:
+          type: string
+          example: "Lingshan Buddhist Scenic Spot"
+        level:
+          type: string
+          example: "5A"
+        city:
+          type: string
+          example: "无锡"
+        intro:
+          type: string
+        openTime:
+          type: string
+          example: "07:00-17:30"
+        rules:
+          type: array
+          items:
+            type: string
+        source:
+          type: string
+          enum: [public_demo_package, manual_seed, mock, official]
+        freshnessLevel:
+          type: string
+          enum: [high, medium, low, static]
+
+    Spot:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "LS-001"
+        scenicId:
+          type: string
+          example: "SA-001"
+        name:
+          type: string
+          example: "灵山大佛"
+        nameEn:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+          example: ["佛教文化", "标志性建筑", "必游"]
+        location:
+          type: string
+          example: "景区中轴线北端"
+        summary:
+          type: string
+          description: 一句话简介
+        intro:
+          type: string
+          description: 详细介绍
+        highlights:
+          type: array
+          items:
+            type: string
+          description: 游玩亮点
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+        source:
+          $ref: '#/components/schemas/ScenicArea/properties/source'
+        freshnessLevel:
+          $ref: '#/components/schemas/ScenicArea/properties/freshnessLevel'
+
+    SpotGuide:
+      type: object
+      properties:
+        spotId:
+          type: string
+        shortText:
+          type: string
+          description: 一句话讲解（≤20字）
+        briefText:
+          type: string
+          description: 30 秒简短讲解
+        longText:
+          type: string
+          description: 3 分钟深度讲解
+        fallbackText:
+          type: string
+          description: 无法获取实时数据时的兜底讲解
+        source:
+          $ref: '#/components/schemas/ScenicArea/properties/source'
+
+    Route:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "RT-001"
+        scenicId:
+          type: string
+        name:
+          type: string
+          example: "历史文化深度游"
+        type:
+          type: string
+          enum: [culture, nature, family, quick]
+        duration:
+          type: string
+          example: "约 6 小时"
+        persona:
+          type: string
+          description: 适合人群
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/RouteStop'
+        tips:
+          type: string
+        source:
+          $ref: '#/components/schemas/ScenicArea/properties/source'
+
+    RouteStop:
+      type: object
+      properties:
+        order:
+          type: integer
+        spotId:
+          type: string
+        spotName:
+          type: string
+        stayDuration:
+          type: string
+          example: "60 分钟"
+        description:
+          type: string
+
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        profile:
+          type: object
+          properties:
+            language:
+              type: string
+              enum: [zh, en]
+              default: zh
+            interests:
+              type: array
+              items:
+                type: string
+            groupSize:
+              type: integer
+            hasChildren:
+              type: boolean
+        source:
+          type: string
+          enum: [web, miniprogram, kiosk, demo]
+        currentSpotId:
+          type: string
+        currentRouteId:
+          type: string
+        status:
+          type: string
+          enum: [active, paused, ended]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        sessionId:
+          type: string
+        role:
+          type: string
+          enum: [user, assistant, system]
+        text:
+          type: string
+        citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Citation'
+        fallback:
+          type: boolean
+        fallbackReason:
+          type: string
+        confidence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        speechState:
+          type: string
+          enum: [queued, speaking, done, failed, interrupted]
+        durationMs:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+
+    Citation:
+      type: object
+      properties:
+        sourceName:
+          type: string
+        page:
+          type: string
+        section:
+          type: string
+        quote:
+          type: string
+        chunkId:
+          type: string
+        docId:
+          type: string
+        confidence:
+          type: number
+          format: float
+
+    ArrivalEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        sessionId:
+          type: string
+        spotId:
+          type: string
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+            lng:
+              type: number
+          description: 模拟坐标
+        trigger:
+          type: string
+          enum: [lbs, manual, demo]
+        accepted:
+          type: boolean
+          description: 是否通过防抖检查
+        speechState:
+          type: string
+          enum: [queued, speaking, done, failed]
+        createdAt:
+          type: string
+          format: date-time
+
+    Feedback:
+      type: object
+      properties:
+        id:
+          type: string
+        sessionId:
+          type: string
+        messageId:
+          type: string
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        resolved:
+          type: boolean
+        comment:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    ContextQueryResult:
+      type: object
+      properties:
+        intent:
+          type: string
+        spot:
+          $ref: '#/components/schemas/Spot'
+        route:
+          $ref: '#/components/schemas/Route'
+        notices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Notice'
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceFacility'
+        weather:
+          $ref: '#/components/schemas/WeatherInfo'
+        confidence:
+          type: number
+
+    Notice:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum: [announcement, alert, info, emergency]
+        title:
+          type: string
+        content:
+          type: string
+        active:
+          type: boolean
+        expiresAt:
+          type: string
+          format: date-time
+
+    ServiceFacility:
+      type: object
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+          enum: [toilet, shop, restaurant, parking, help_point, medical, nursery, rest_area]
+        name:
+          type: string
+        location:
+          type: string
+
+    WeatherInfo:
+      type: object
+      properties:
+        scenicId:
+          type: string
+        temperature:
+          type: number
+        weather:
+          type: string
+        warning:
+          type: string
+          nullable: true
+        source:
+          $ref: '#/components/schemas/ScenicArea/properties/source'
+
+    QueueInfo:
+      type: object
+      properties:
+        spotId:
+          type: string
+        queueMinutes:
+          type: integer
+        crowdLevel:
+          type: string
+          enum: [low, medium, high, very_high]
+        source:
+          $ref: '#/components/schemas/ScenicArea/properties/source'
+
+    TicketProduct:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        status:
+          type: string
+          enum: [available, limited, sold_out]
+        source:
+          $ref: '#/components/schemas/ScenicArea/properties/source'
+
+    # ---- 管理端对象 ----
+    KnowledgeStatus:
+      type: object
+      properties:
+        scenicId:
+          type: string
+        documents:
+          type: integer
+        chunks:
+          type: integer
+        updatedAt:
+          type: string
+          format: date-time
+
+    IngestJob:
+      type: object
+      properties:
+        id:
+          type: string
+        scenicId:
+          type: string
+        status:
+          type: string
+          enum: [pending, running, done, failed]
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+        failedFiles:
+          type: array
+          items:
+            type: string
+        chunks:
+          type: integer
+
+    Persona:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        tone:
+          type: string
+          enum: [professional, friendly, lively, solemn]
+        fallbackPolicy:
+          type: object
+
+    Broadcast:
+      type: object
+      properties:
+        id:
+          type: string
+        text:
+          type: string
+        priority:
+          type: string
+          enum: [low, normal, high, emergency]
+        target:
+          type: string
+          enum: [all, spot, session]
+        targetId:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [queued, speaking, done, expired]
+
+    AnalyticsOverview:
+      type: object
+      properties:
+        activeSessions:
+          type: integer
+        totalMessages:
+          type: integer
+        avgRating:
+          type: number
+        fallbackRate:
+          type: number
+        ragHitRate:
+          type: number
+        avatarUptime:
+          type: number
+
+    RuntimeStatus:
+      type: object
+      properties:
+        fayOnline:
+          type: boolean
+        ttsOnline:
+          type: boolean
+        speaking:
+          type: boolean
+        queueLength:
+          type: integer
+        lastError:
+          nullable: true
+
+    DemoState:
+      type: object
+      properties:
+        scenarioId:
+          type: string
+        currentStep:
+          type: integer
+        totalSteps:
+          type: integer
+        status:
+          type: string
+          enum: [idle, running, paused, done]
+        stepResult:
+          nullable: true
+
+security:
+  - SessionToken: []
+
+# ============================================================
+# 路径
+# ============================================================
+paths:
+  # ===== Health =====
+  /health:
+    get:
+      tags: [Health]
+      summary: 健康检查（所有服务必须实现）
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+                          version:
+                            type: string
+                          dependencies:
+                            type: object
+
+  # ===== Spots (business-api) =====
+  /spots:
+    get:
+      tags: [Spots]
+      summary: 景点列表
+      parameters:
+        - name: keyword
+          in: query
+          schema:
+            type: string
+        - name: tag
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Spot'
+                          total:
+                            type: integer
+
+  /spots/{spotId}:
+    get:
+      tags: [Spots]
+      summary: 景点详情
+      parameters:
+        - name: spotId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Spot'
+        '404':
+          description: 景点不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+
+  /spots/{spotId}/guide:
+    get:
+      tags: [Spots]
+      summary: 景点讲解词
+      parameters:
+        - name: spotId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: style
+          in: query
+          schema:
+            type: string
+            enum: [short, brief, long]
+        - name: duration
+          in: query
+          schema:
+            type: string
+            enum: [one_sentence, 30s, 3min]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/SpotGuide'
+
+  /scenic-areas/{scenicId}:
+    get:
+      tags: [Scenic Info]
+      summary: 景区基础资料
+      parameters:
+        - name: scenicId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/ScenicArea'
+
+  # ===== Routes (business-api) =====
+  /routes:
+    get:
+      tags: [Routes]
+      summary: 路线列表
+      parameters:
+        - name: duration
+          in: query
+          schema:
+            type: string
+        - name: persona
+          in: query
+          schema:
+            type: string
+        - name: interest
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Route'
+
+  /routes/{routeId}:
+    get:
+      tags: [Routes]
+      summary: 路线详情
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Route'
+
+  /routes/plan:
+    post:
+      tags: [Routes]
+      summary: 路线规划
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startSpotId:
+                  type: string
+                duration:
+                  type: string
+                interests:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          route:
+                            $ref: '#/components/schemas/Route'
+                          reason:
+                            type: string
+
+  # ===== Sessions (business-api) =====
+  /sessions:
+    post:
+      tags: [Sessions]
+      summary: 创建游客会话
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                profile:
+                  $ref: '#/components/schemas/Session/properties/profile'
+                source:
+                  $ref: '#/components/schemas/Session/properties/source'
+                language:
+                  type: string
+                  enum: [zh, en]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          sessionId:
+                            type: string
+                          status:
+                            type: string
+
+  /sessions/{sessionId}:
+    get:
+      tags: [Sessions]
+      summary: 查询会话
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Session'
+    patch:
+      tags: [Sessions]
+      summary: 更新会话状态
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currentSpotId:
+                  type: string
+                currentRouteId:
+                  type: string
+                profile:
+                  $ref: '#/components/schemas/Session/properties/profile'
+      responses:
+        '200':
+          description: OK
+
+  # ===== Messages (business-api) =====
+  /sessions/{sessionId}/messages:
+    post:
+      tags: [Messages]
+      summary: 记录问答消息
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  type: string
+                  enum: [user, assistant, system]
+                text:
+                  type: string
+                citations:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Citation'
+                fallback:
+                  type: boolean
+                fallbackReason:
+                  type: string
+                confidence:
+                  type: number
+                speechState:
+                  type: string
+                durationMs:
+                  type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          messageId:
+                            type: string
+    get:
+      tags: [Messages]
+      summary: 查询会话消息
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          messages:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Message'
+
+  # ===== Arrivals (business-api) =====
+  /sessions/{sessionId}/arrival-events:
+    post:
+      tags: [Arrivals]
+      summary: 到达景点事件
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                spotId:
+                  type: string
+                location:
+                  type: object
+                  properties:
+                    lat:
+                      type: number
+                    lng:
+                      type: number
+                trigger:
+                  type: string
+                  enum: [lbs, manual, demo]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          eventId:
+                            type: string
+                          accepted:
+                            type: boolean
+    get:
+      tags: [Arrivals]
+      summary: 查询到达记录
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          events:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/ArrivalEvent'
+
+  # ===== Feedback (business-api) =====
+  /sessions/{sessionId}/feedback:
+    post:
+      tags: [Feedback]
+      summary: 提交反馈
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: integer
+                  minimum: 1
+                  maximum: 5
+                resolved:
+                  type: boolean
+                comment:
+                  type: string
+                messageId:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          feedbackId:
+                            type: string
+
+  /feedback:
+    get:
+      tags: [Feedback]
+      summary: 反馈列表
+      parameters:
+        - name: dateRange
+          in: query
+          schema:
+            type: string
+            example: "2026-06-01,2026-06-02"
+        - name: rating
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Feedback'
+                          total:
+                            type: integer
+
+  # ===== Context (business-api, internal) =====
+  /internal/v1/context/query:
+    post:
+      tags: [Context]
+      summary: 编排层结构化上下文查询（内部接口）
+      security:
+        - InternalServiceToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                intent:
+                  type: string
+                spotId:
+                  type: string
+                sessionId:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/ContextQueryResult'
+
+  # ===== 辅助信息 (business-api) =====
+  /notices:
+    get:
+      tags: [Scenic Info]
+      summary: 公告列表
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+        - name: active
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Notice'
+
+  /events:
+    get:
+      tags: [Scenic Info]
+      summary: 活动列表
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: spotId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /services:
+    get:
+      tags: [Scenic Info]
+      summary: 服务设施
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+        - name: nearbySpotId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/ServiceFacility'
+
+  /weather:
+    get:
+      tags: [Scenic Info]
+      summary: 天气（mock）
+      parameters:
+        - name: scenicId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/WeatherInfo'
+
+  /queues:
+    get:
+      tags: [Scenic Info]
+      summary: 排队信息（mock）
+      parameters:
+        - name: spotId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/QueueInfo'
+
+  /tickets/products:
+    get:
+      tags: [Scenic Info]
+      summary: 票务商品（mock）
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/TicketProduct'
+
+  # ===== Demo Mock Service =====
+  /demo/reset:
+    post:
+      tags: [Demo]
+      summary: 重置演示
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scenarioId:
+                  type: string
+      responses:
+        '200':
+          description: OK
+
+  /demo/start:
+    post:
+      tags: [Demo]
+      summary: 启动演示
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scenarioId:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          currentStep:
+                            type: integer
+
+  /demo/next:
+    post:
+      tags: [Demo]
+      summary: 推进演示步骤
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scenarioId:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/DemoState'
+
+  /demo/current:
+    get:
+      tags: [Demo]
+      summary: 当前演示状态
+      parameters:
+        - name: scenarioId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/DemoState'
+
+  # ===== Admin API =====
+  /knowledge/status:
+    get:
+      tags: [Knowledge]
+      summary: 知识库状态
+      security:
+        - AdminToken: []
+      parameters:
+        - name: scenicId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/KnowledgeStatus'
+
+  /knowledge/sources:
+    post:
+      tags: [Knowledge]
+      summary: 登记资料来源
+      security:
+        - AdminToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scenicId:
+                  type: string
+                sourceName:
+                  type: string
+                sourceType:
+                  type: string
+                filePath:
+                  type: string
+      responses:
+        '200':
+          description: OK
+
+  /knowledge/reindex:
+    post:
+      tags: [Knowledge]
+      summary: 触发知识库重建
+      security:
+        - AdminToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scenicId:
+                  type: string
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          jobId:
+                            type: string
+
+  /personas/{personaId}:
+    get:
+      tags: [Personas]
+      summary: 人设查询
+      security:
+        - AdminToken: []
+      parameters:
+        - name: personaId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Persona'
+    put:
+      tags: [Personas]
+      summary: 人设更新
+      security:
+        - AdminToken: []
+      parameters:
+        - name: personaId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Persona'
+      responses:
+        '200':
+          description: OK
+
+  /broadcasts:
+    post:
+      tags: [Broadcasts]
+      summary: 运营人工播报
+      security:
+        - AdminToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                target:
+                  type: string
+                  enum: [all, spot, session]
+                targetId:
+                  type: string
+                priority:
+                  type: string
+                  enum: [low, normal, high, emergency]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          broadcastId:
+                            type: string
+
+  # ===== Audit (admin-api) =====
+  /sessions:
+    get:
+      tags: [Audit]
+      summary: 会话审计列表
+      security:
+        - AdminToken: []
+      parameters:
+        - name: dateRange
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /messages:
+    get:
+      tags: [Audit]
+      summary: 消息审计
+      security:
+        - AdminToken: []
+      parameters:
+        - name: dateRange
+          in: query
+          schema:
+            type: string
+        - name: fallback
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+
+  /messages/{messageId}/adopt:
+    post:
+      tags: [Audit]
+      summary: 采纳问答
+      security:
+        - AdminToken: []
+      parameters:
+        - name: messageId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  # ===== Analytics (admin-api) =====
+  /analytics/overview:
+    get:
+      tags: [Analytics]
+      summary: 运营总览
+      security:
+        - AdminToken: []
+      parameters:
+        - name: dateRange
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/AnalyticsOverview'
+
+  /analytics/hot-questions:
+    get:
+      tags: [Analytics]
+      summary: 热问分析
+      security:
+        - AdminToken: []
+      parameters:
+        - name: dateRange
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /analytics/rag:
+    get:
+      tags: [Analytics]
+      summary: RAG 分析
+      security:
+        - AdminToken: []
+      parameters:
+        - name: dateRange
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /analytics/avatar:
+    get:
+      tags: [Analytics]
+      summary: 数字人分析
+      security:
+        - AdminToken: []
+      parameters:
+        - name: dateRange
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /analytics/visitor-behavior:
+    get:
+      tags: [Analytics]
+      summary: 游客行为样例分析
+      security:
+        - AdminToken: []
+      parameters:
+        - name: attractionName
+          in: query
+          schema:
+            type: string
+        - name: dateRange
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  # ===== Runtime (admin-api) =====
+  /runtime/status:
+    get:
+      tags: [Runtime]
+      summary: 运行时状态
+      security:
+        - AdminToken: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/RuntimeStatus'
+
+  /runtime/microphone/toggle:
+    post:
+      tags: [Runtime]
+      summary: 麦克风开关
+      security:
+        - AdminToken: []
+      responses:
+        '200':
+          description: OK
+
+  /runtime/clear-queue:
+    post:
+      tags: [Runtime]
+      summary: 清空播报队列
+      security:
+        - AdminToken: []
+      responses:
+        '200':
+          description: OK
+
+  # ===== Internal: Seed (business-api) =====
+  /internal/v1/seed/public-package:
+    post:
+      tags: [Scenic Info]
+      summary: 触发公开资料包导入
+      security:
+        - InternalServiceToken: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inputDir:
+                  type: string
+                rebuild:
+                  type: boolean
+      responses:
+        '200':
+          description: OK
