@@ -68,9 +68,10 @@ class RAGEngine:
                 "elapsed_seconds": elapsed, "collection": config.chroma_collection}
 
     def query(self, query_text: str, top_k: Optional[int] = None,
-              filters: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+              filters: Optional[Dict[str, Any]] = None,
+              trace_id: Optional[str] = None) -> Dict[str, Any]:
         start = time.time()
-        trace_id = f"trace_{uuid.uuid4().hex[:32]}"
+        trace_id = trace_id or f"trace_{uuid.uuid4().hex[:32]}"
         k = min(top_k or config.top_k_default, config.top_k_max)
         # Step 1: 查询向量化
         query_embedding = self._embedder.encode(query_text)
@@ -81,16 +82,34 @@ class RAGEngine:
         if not fallback_info["answerable"]:
             elapsed = round((time.time() - start) * 1000, 1)
             return {"trace_id": trace_id, "answerable": False, "contexts": [],
+                    "citations": [],
                     "fallback": {"reason": fallback_info["fallback_reason"],
                                  "safe_reply": fallback_info["safe_reply"],
                                  "top_score": fallback_info["top_score"]},
                     "latency_ms": elapsed}
         # Step 4: 引用
-        contexts = build_citations(contexts_raw)
+        citations = build_citations(contexts_raw)
+        # Step 4b: ContextItem 格式（含全文 text）
+        contexts = []
+        for ctx in contexts_raw:
+            meta = ctx.get("metadata", {})
+            contexts.append({
+                "chunk_id": ctx.get("chunk_id", ""),
+                "text": ctx.get("text", ""),
+                "score": ctx.get("score", 0.0),
+                "source_name": ctx.get("source_name", meta.get("source_name", "")),
+                "section": ctx.get("section", meta.get("section", "")),
+                "domain": ctx.get("domain", meta.get("domain", "")),
+                "spot_id": ctx.get("spot_id", meta.get("spot_id", "")),
+                "authority_level": ctx.get("authority_level", meta.get("authority_level", "official")),
+                "freshness_level": ctx.get("freshness_level", meta.get("freshness_level", "high")),
+                "page": meta.get("page"),
+            })
         # Step 5: medium 时效声明
         has_medium = any(ctx.get("freshness_level") == "medium" for ctx in contexts)
         elapsed = round((time.time() - start) * 1000, 1)
         return {"trace_id": trace_id, "answerable": True, "contexts": contexts,
+                "citations": citations,
                 "fallback": None, "latency_ms": elapsed,
                 "disclaimer": config.get_phrase("freshness_medium_disclaimer") if has_medium else None}
 
