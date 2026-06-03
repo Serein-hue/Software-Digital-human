@@ -1,53 +1,77 @@
 # scenic-dh 统一错误码
 
-所有服务使用同一套错误码。响应 body 必须包含 `code`（string）和 `error` 对象。
+对齐 RAG 服务格式：`code` 为整数，`0`=成功，正数=业务错误，负数=系统错误。
 
 ## 响应格式
 
+成功：
 ```json
 {
-  "success": false,
-  "code": "SPOT_NOT_FOUND",
-  "error": {
-    "type": "NOT_FOUND",
-    "message": "景点 LS-099 不存在",
-    "detail": null
+  "code": 0,
+  "message": "success",
+  "data": { "... 具体数据 ..." },
+  "trace_id": "trace_a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
+}
+```
+
+错误：
+```json
+{
+  "code": 40401,
+  "message": "景点 LS-099 不存在",
+  "data": null,
+  "trace_id": "trace_a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
+}
+```
+
+分页数据：
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "items": ["..."],
+    "pagination": { "page": 1, "page_size": 20, "total": 96, "total_pages": 5 }
   },
-  "traceId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "timestamp": "2026-06-02T10:30:00Z"
+  "trace_id": "trace_..."
 }
 ```
 
 ## 错误码表
 
-| code | HTTP | type | 说明 |
-|------|------|------|------|
-| VALIDATION_ERROR | 400 | INVALID_REQUEST | 请求参数校验失败 |
-| MISSING_REQUIRED_FIELD | 400 | INVALID_REQUEST | 必填字段缺失 |
-| INVALID_FORMAT | 400 | INVALID_REQUEST | 字段格式错误 |
-| AUTH_MISSING | 401 | AUTH | 缺少鉴权头 |
-| AUTH_INVALID | 401 | AUTH | 鉴权令牌无效 |
-| AUTH_EXPIRED | 401 | AUTH | 鉴权令牌过期 |
-| FORBIDDEN | 403 | AUTH | 无权限 |
-| NOT_FOUND | 404 | NOT_FOUND | 资源不存在 |
-| SPOT_NOT_FOUND | 404 | NOT_FOUND | 景点不存在 |
-| ROUTE_NOT_FOUND | 404 | NOT_FOUND | 路线不存在 |
-| SESSION_NOT_FOUND | 404 | NOT_FOUND | 会话不存在 |
-| MESSAGE_NOT_FOUND | 404 | NOT_FOUND | 消息不存在 |
-| CONFLICT | 409 | CONFLICT | 资源冲突 |
-| SESSION_EXPIRED | 410 | GONE | 会话已过期 |
-| RATE_LIMITED | 429 | RATE_LIMIT | 请求频率超限 |
-| INTERNAL_ERROR | 500 | INTERNAL | 内部服务错误 |
-| SERVICE_UNAVAILABLE | 503 | UNAVAILABLE | 服务不可用 |
-| UPSTREAM_TIMEOUT | 504 | TIMEOUT | 上游服务超时 |
-| RAG_TIMEOUT | 504 | TIMEOUT | RAG 检索超时 |
-| FAY_OFFLINE | 503 | UNAVAILABLE | Fay 运行时离线 |
-| FAY_TTS_FAILED | 502 | UPSTREAM | Fay TTS 合成失败 |
-| FALLBACK_REQUIRED | 200 | FALLBACK | 无可用事实引用，触发降级 |
-| LOW_CONFIDENCE | 200 | FALLBACK | RAG 置信度过低，返回兜底话术 |
+| code | HTTP | 说明 |
+|------|------|------|
+| 0 | 200 | 成功 |
+| 20000 | 200 | fallback 触发 |
+| 20001 | 200 | RAG 低置信度 |
+| 40000 | 400 | 请求参数校验失败 |
+| 40001 | 400 | 缺少鉴权头 |
+| 40002 | 400 | 字段格式错误 |
+| 40100 | 401 | 鉴权令牌无效 |
+| 40101 | 401 | 鉴权令牌过期 |
+| 40300 | 403 | 无权限 |
+| 40400 | 404 | 资源不存在 |
+| 40401 | 404 | 景点不存在 |
+| 40402 | 404 | 路线不存在 |
+| 40403 | 404 | 会话不存在 |
+| 40404 | 404 | 消息不存在 |
+| 40900 | 409 | 资源冲突 |
+| 41000 | 410 | 会话已过期 |
+| 42900 | 429 | 请求频率超限 |
+| 50000 | 500 | 内部服务错误 |
+| 50001 | 500 | 查询/统计失败 |
+| 50200 | 502 | 上游服务失败 |
+| 50300 | 503 | 服务不可用 |
+| 50301 | 503 | Fay 运行时离线 |
+| 50400 | 504 | 上游服务超时 |
 
-## 特殊说明
+## 鉴权
 
-- `FALLBACK_REQUIRED` 和 `LOW_CONFIDENCE` 返回 HTTP 200，但标记降级状态。数字人端以此决定播报兜底话术。
-- 所有 `5xx` 类错误应自动触发调用方重试（最多 3 次，指数退避）。
-- `traceId` 必须贯穿整条调用链：前端 → business-api → rag-service → avatar-orchestrator → fay-runtime。
+所有服务统一使用 `Authorization: Bearer <token>` 头（health 除外）：
+- 内部服务间：`Bearer svc-dev-token`
+- 管理端：`Bearer adm-dev-token`
+- 游客会话：`Bearer sess-<session_id>`
+
+## trace_id
+
+从请求头 `X-Trace-Id` 读取，未传则服务端自动生成 `trace_` + 32 位 hex。贯穿整条调用链。

@@ -1,105 +1,41 @@
 {
-  "description": "scenic-dh 统一 DTO 示例。所有服务必须返回此格式，差异仅在各端点 data 字段。",
+  "description": "scenic-dh 统一 DTO 示例。对齐 {code, message, data, trace_id} 格式。",
 
   "successResponse": {
-    "success": true,
-    "data": { "example": "具体数据见各端点定义" },
-    "traceId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "timestamp": "2026-06-02T10:30:00Z",
-    "meta": {
-      "pagination": {
-        "page": 1,
-        "limit": 20,
-        "total": 96,
-        "totalPages": 5
-      }
-    }
+    "code": 0,
+    "message": "success",
+    "data": {},
+    "trace_id": "trace_a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
   },
 
   "errorResponse": {
-    "success": false,
-    "code": "SPOT_NOT_FOUND",
-    "error": {
-      "type": "NOT_FOUND",
-      "message": "景点 LS-099 不存在",
-      "detail": null
-    },
-    "traceId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "timestamp": "2026-06-02T10:30:00Z"
+    "code": 40401,
+    "message": "景点 LS-099 不存在",
+    "data": null,
+    "trace_id": "trace_a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
   },
 
-  "fallbackResponse": {
-    "success": true,
-    "code": "FALLBACK_REQUIRED",
+  "paginatedResponse": {
+    "code": 0,
+    "message": "success",
     "data": {
-      "text": "抱歉，关于这个问题我暂时没有确切信息。建议您咨询景区工作人员。",
-      "answerable": false,
-      "fallbackReason": "no_citation",
-      "confidence": 0.0
+      "items": [],
+      "pagination": { "page": 1, "page_size": 20, "total": 96, "total_pages": 5 }
     },
-    "traceId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "timestamp": "2026-06-02T10:30:00Z"
-  },
-
-  "paginationQuery": {
-    "page": 1,
-    "limit": 20,
-    "description": "分页参数：page 从 1 起，limit 最大 100"
+    "trace_id": "trace_..."
   },
 
   "spotExample": {
     "id": "LS-001",
-    "scenicId": "SA-001",
+    "scenic_id": "SA-001",
     "name": "灵山大佛",
-    "nameEn": "Lingshan Giant Buddha",
-    "tags": ["佛教文化", "标志性建筑", "必游"],
-    "location": "景区中轴线北端",
-    "summary": "高 88 米的青铜释迦牟尼立像，灵山胜境核心标志。",
-    "intro": "灵山大佛高 88 米，加上基座总高达 101.5 米，是目前世界上最高的青铜释迦牟尼立像...",
-    "highlights": ["抱佛脚祈福", "九龙灌浴表演", "梵宫建筑群"],
-    "images": [],
+    "tags": ["佛教文化"],
     "source": "public_demo_package",
-    "freshnessLevel": "high"
+    "freshness_level": "high"
   },
 
-  "sessionExample": {
-    "id": "550e8400-e29b-41d4-a716-446655440000",
-    "profile": {
-      "language": "zh",
-      "interests": ["佛教文化", "建筑"],
-      "groupSize": 3,
-      "hasChildren": false
-    },
-    "source": "miniprogram",
-    "currentSpotId": "LS-001",
-    "currentRouteId": "RT-001",
-    "status": "active",
-    "createdAt": "2026-06-02T09:00:00Z",
-    "updatedAt": "2026-06-02T10:25:00Z"
-  },
-
-  "authHeaders": {
-    "internal": {
-      "x-service-token": "svc-xxxx",
-      "description": "服务间调用令牌，由环境变量注入"
-    },
-    "admin": {
-      "x-admin-token": "adm-xxxx",
-      "description": "运营管理端令牌，MVP 可占位"
-    },
-    "session": {
-      "x-session-token": "sess-xxxx",
-      "description": "游客匿名会话令牌，创建 session 时下发"
-    }
-  },
-
-  "sourceValues": {
-    "enum": ["public_demo_package", "manual_seed", "mock", "official"],
-    "description": "所有返回数据必须标记 source，区分真实资料和模拟数据。未确认的数据不得强答为当前有效。"
-  },
-
-  "freshnessLevelValues": {
-    "enum": ["high", "medium", "low", "static"],
-    "description": "数据新鲜度：high=近期更新，static=静态资料需标记。票价、时间、演艺等静态资料须标 static。"
+  "authHeader": {
+    "Authorization": "Bearer <token>",
+    "description": "统一使用 Bearer token"
   }
 }

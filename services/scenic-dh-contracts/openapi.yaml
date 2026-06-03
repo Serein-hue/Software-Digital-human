@@ -47,21 +47,10 @@ tags:
 # ============================================================
 components:
   securitySchemes:
-    InternalServiceToken:
-      type: apiKey
-      in: header
-      name: x-service-token
-      description: 内部服务间调用 token
-    AdminToken:
-      type: apiKey
-      in: header
-      name: x-admin-token
-      description: 运营管理端 token
-    SessionToken:
-      type: apiKey
-      in: header
-      name: x-session-token
-      description: 游客匿名 session token
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 统一使用 Authorization: Bearer <token>
 
   schemas:
     # ---- 基础 ----
@@ -78,42 +67,19 @@ components:
 
     ResponseEnvelope:
       type: object
-      required: [success, traceId, timestamp]
+      required: [code, message, trace_id]
       properties:
-        success:
-          type: boolean
-        data:
-          description: 成功时的返回数据
         code:
-          type: string
-          description: 降级/错误时的 code
-        error:
-          $ref: '#/components/schemas/ErrorDetail'
-        traceId:
-          type: string
-          format: uuid
-        timestamp:
-          type: string
-          format: date-time
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-
-    ErrorDetail:
-      type: object
-      properties:
-        type:
-          type: string
-          enum: [INVALID_REQUEST, AUTH, NOT_FOUND, CONFLICT, GONE, RATE_LIMIT, INTERNAL, UNAVAILABLE, TIMEOUT, UPSTREAM, FALLBACK]
+          type: integer
+          description: 0=成功，正数=业务错误，负数=系统错误
         message:
           type: string
-        detail:
-          nullable: true
-
-    ResponseMeta:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+          description: success 或错误描述
+        data:
+          description: 业务数据；错误时为 null
+        trace_id:
+          type: string
+          description: 链路追踪 ID，从 X-Trace-Id 继承或自动生成 trace_ + 32 位 hex
 
     Pagination:
       type: object
@@ -122,14 +88,14 @@ components:
           type: integer
           minimum: 1
           default: 1
-        limit:
+        page_size:
           type: integer
           minimum: 1
           maximum: 100
           default: 20
         total:
           type: integer
-        totalPages:
+        total_pages:
           type: integer
 
     # ---- 核心业务对象 ----
@@ -631,7 +597,7 @@ components:
           nullable: true
 
 security:
-  - SessionToken: []
+  - BearerAuth: []
 
 # ============================================================
 # 路径
@@ -1213,7 +1179,7 @@ paths:
       tags: [Context]
       summary: 编排层结构化上下文查询（内部接口）
       security:
-        - InternalServiceToken: []
+        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -1491,7 +1457,7 @@ paths:
       tags: [Knowledge]
       summary: 知识库状态
       security:
-        - AdminToken: []
+        - BearerAuth: []
       parameters:
         - name: scenicId
           in: query
@@ -1515,7 +1481,7 @@ paths:
       tags: [Knowledge]
       summary: 登记资料来源
       security:
-        - AdminToken: []
+        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -1540,7 +1506,7 @@ paths:
       tags: [Knowledge]
       summary: 触发知识库重建
       security:
-        - AdminToken: []
+        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -1573,7 +1539,7 @@ paths:
       tags: [Personas]
       summary: 人设查询
       security:
-        - AdminToken: []
+        - BearerAuth: []
       parameters:
         - name: personaId
           in: path
@@ -1596,7 +1562,7 @@ paths:
       tags: [Personas]
       summary: 人设更新
       security:
-        - AdminToken: []
+        - BearerAuth: []
       parameters:
         - name: personaId
           in: path
@@ -1617,7 +1583,7 @@ paths:
       tags: [Broadcasts]
       summary: 运营人工播报
       security:
-        - AdminToken: []
+        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -1657,7 +1623,7 @@ paths:
       tags: [Audit]
       summary: 会话审计列表
       security:
-        - AdminToken: []
+        - BearerAuth: []
       parameters:
         - name: dateRange
           in: query
@@ -1676,7 +1642,7 @@ paths:
       tags: [Audit]
       summary: 消息审计
       security:
-        - AdminToken: []
+        - BearerAuth: []
       parameters:
         - name: dateRange
           in: query
@@ -1695,7 +1661,7 @@ paths:
       tags: [Audit]
       summary: 采纳问答
       security:
-        - AdminToken: []
+        - BearerAuth: []
       parameters:
         - name: messageId
           in: path
@@ -1712,7 +1678,7 @@ paths:
       tags: [Analytics]
       summary: 运营总览
       security:
-        - AdminToken: []
+        - BearerAuth: []
       parameters:
         - name: dateRange
           in: query
@@ -1736,7 +1702,7 @@ paths:
       tags: [Analytics]
       summary: 热问分析
       security:
-        - AdminToken: []
+        - BearerAuth: []
       parameters:
         - name: dateRange
           in: query
@@ -1751,7 +1717,7 @@ paths:
       tags: [Analytics]
       summary: RAG 分析
       security:
-        - AdminToken: []
+        - BearerAuth: []
       parameters:
         - name: dateRange
           in: query
@@ -1766,7 +1732,7 @@ paths:
       tags: [Analytics]
       summary: 数字人分析
       security:
-        - AdminToken: []
+        - BearerAuth: []
       parameters:
         - name: dateRange
           in: query
@@ -1781,7 +1747,7 @@ paths:
       tags: [Analytics]
       summary: 游客行为样例分析
       security:
-        - AdminToken: []
+        - BearerAuth: []
       parameters:
         - name: attractionName
           in: query
@@ -1801,7 +1767,7 @@ paths:
       tags: [Runtime]
       summary: 运行时状态
       security:
-        - AdminToken: []
+        - BearerAuth: []
       responses:
         '200':
           description: OK
@@ -1820,7 +1786,7 @@ paths:
       tags: [Runtime]
       summary: 麦克风开关
       security:
-        - AdminToken: []
+        - BearerAuth: []
       responses:
         '200':
           description: OK
@@ -1830,7 +1796,7 @@ paths:
       tags: [Runtime]
       summary: 清空播报队列
       security:
-        - AdminToken: []
+        - BearerAuth: []
       responses:
         '200':
           description: OK
@@ -1841,7 +1807,7 @@ paths:
       tags: [Scenic Info]
       summary: 触发公开资料包导入
       security:
-        - InternalServiceToken: []
+        - BearerAuth: []
       requestBody:
         content:
           application/json:

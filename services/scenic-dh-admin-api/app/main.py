@@ -44,8 +44,8 @@ def health():
     from fastapi import Request
     trace_id = "startup"
     return ok(
-        data={"status": "ok", "version": settings.SERVICE_VERSION, "dependencies": {"business_api": settings.BUSINESS_API_URL}},
-        trace_id=trace_id,
+        {"status": "ok", "version": settings.SERVICE_VERSION, "dependencies": {"business_api": settings.BUSINESS_API_URL}},
+        trace_id,
     )
 
 
