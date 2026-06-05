@@ -1,8 +1,8 @@
 {
-  "_说明": "Embedding 模型配置，支持本地/云端切换",
+  "_说明": "Embedding 模型配置，支持本地(chroma_default)/云端切换。local模式需要sentence-transformers+PyTorch",
   "provider": "local",
   "local": {
-    "model_name": "BAAI/bge-large-zh-v1.5",
+    "model_name": "BAAI/bge-small-zh-v1.5",
     "device": "cpu",
     "batch_size": 16,
     "max_seq_length": 512,
@@ -13,5 +13,9 @@
     "api_key": "sk-fay",
     "model": "embedding",
     "timeout": 30
+  },
+  "chroma_default": {
+    "model_name": "all-MiniLM-L6-v2",
+    "dimension": 384
   }
 }

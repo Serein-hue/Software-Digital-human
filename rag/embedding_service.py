@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Embedding 适配层 — 支持本地模型和云端 API 切换。"""
+"""Embedding 适配层 — 支持本地模型（PyTorch）、ChromaLite（ONNX）和云端 API 切换。"""
 
 import hashlib
 import logging
@@ -14,6 +14,7 @@ class EmbeddingService:
     def __init__(self, provider: Optional[str] = None):
         self._provider = provider or config.embedding_provider
         self._local_model = None
+        self._chroma_ef = None
         self._cache: Dict[str, List[float]] = {}
 
     def _load_local_model(self):
@@ -27,6 +28,18 @@ class EmbeddingService:
             self._local_model = SentenceTransformer(model_name, device=device)
         except Exception as exc:
             raise RuntimeError(f"Failed to load local embedding model: {exc}") from exc
+
+    def _get_chroma_ef(self):
+        """ChromaDB 内置 ONNX 嵌入函数（无需 PyTorch）。"""
+        if self._chroma_ef is not None:
+            return self._chroma_ef
+        try:
+            from chromadb.utils.embedding_functions import ONNXMiniLM_L6_V2
+            self._chroma_ef = ONNXMiniLM_L6_V2(preferred_providers=["CPUExecutionProvider"])
+            logger.info("Loaded Chroma ONNX embedding (all-MiniLM-L6-v2)")
+            return self._chroma_ef
+        except Exception as exc:
+            raise RuntimeError(f"Failed to load Chroma ONNX embedding: {exc}") from exc
 
     def _call_cloud_api(self, text: str) -> List[float]:
         import requests
@@ -54,6 +67,9 @@ class EmbeddingService:
         if self._provider == "local":
             self._load_local_model()
             vec = self._local_model.encode(text, normalize_embeddings=True).tolist()
+        elif self._provider == "chroma_default":
+            ef = self._get_chroma_ef()
+            vec = ef([text])[0].tolist()
         elif self._provider == "cloud":
             vec = self._call_cloud_api(text)
         else:
@@ -68,6 +84,9 @@ class EmbeddingService:
             vecs = self._local_model.encode(texts, batch_size=batch_size,
                                             normalize_embeddings=True, show_progress_bar=False)
             return [v.tolist() for v in vecs]
+        elif self._provider == "chroma_default":
+            ef = self._get_chroma_ef()
+            return [v.tolist() for v in ef(texts)]
         else:
             return [self.encode(t) for t in texts]
 

@@ -1,0 +1,798 @@
+openapi: "3.0.3"
+info:
+  title: 灵山数字人 - RAG 知识库服务
+  description: |
+    知识库检索模块，为数字人提供文档知识库检索能力。
+    完整管线：文档解析 → 文本清洗 → 语义分块 → Embedding → 向量入库 → 语义检索 → Fallback
+  version: "2.0.0"
+
+servers:
+  - url: http://127.0.0.1:5010
+    description: 本地开发环境
+
+# ──────────────────────────── 全局组件 ────────────────────────────
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 在请求头中携带 `Authorization: Bearer <token>`
+
+  parameters:
+    TraceId:
+      name: X-Trace-Id
+      in: header
+      required: false
+      schema:
+        type: string
+      description: 链路追踪 ID，调用方传入。不传则服务端自动生成
+
+  schemas:
+    # ── 统一响应外壳 ──
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: |
+            状态码：0=成功，正数=业务错误，负数=系统错误
+          example: 0
+        message:
+          type: string
+          description: 提示语
+          example: "success"
+        data:
+          type: object
+          nullable: true
+          description: 业务数据
+        trace_id:
+          type: string
+          description: 链路追踪 ID
+          example: "trace_a1b2c3d4e5f6"
+      required:
+        - code
+        - message
+        - data
+        - trace_id
+
+    # ── 分页外壳（列表接口使用） ──
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          example: 1
+        page_size:
+          type: integer
+          example: 20
+        total:
+          type: integer
+          example: 73
+        total_pages:
+          type: integer
+          example: 4
+      required:
+        - page
+        - page_size
+        - total
+        - total_pages
+
+    # ── 错误 ──
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 10001
+        message:
+          type: string
+          example: "Missing query"
+        data:
+          type: object
+          nullable: true
+          example: null
+        trace_id:
+          type: string
+          example: "trace_xxx"
+      required:
+        - code
+        - message
+        - data
+        - trace_id
+
+    # ── 查询请求 ──
+    QueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: 用户的问题
+          example: "灵山大佛有多高？"
+        top_k:
+          type: integer
+          description: 返回最多几条相关片段
+          minimum: 1
+          maximum: 20
+          default: 5
+          example: 5
+        filters:
+          type: object
+          description: 可选过滤条件（按字段精确匹配）
+          example: {"domain": "spot_detail"}
+          properties: {}
+
+    # ── 查询响应中的单条上下文 ──
+    ContextItem:
+      type: object
+      properties:
+        chunk_id:
+          type: string
+          example: "chunk_b20b9987087152"
+        text:
+          type: string
+          description: 原文片段内容
+          example: "佛像高88m（主体高度79m+莲花瓣高度9m）"
+        score:
+          type: number
+          format: float
+          description: 相似度分数（0~1），越高越匹配
+          example: 0.666
+        source_name:
+          type: string
+          example: "灵山胜境景点结构化数据集"
+        section:
+          type: string
+          example: ""
+        domain:
+          type: string
+          example: "spot_detail"
+        spot_id:
+          type: string
+          example: "LS-011"
+        authority_level:
+          type: string
+          enum: [official, high, medium, low]
+          example: "official"
+        freshness_level:
+          type: string
+          enum: [high, medium, low]
+          example: "high"
+        page:
+          type: integer
+          nullable: true
+          example: null
+
+    # ── 引用来源 ──
+    CitationItem:
+      type: object
+      properties:
+        chunk_id:
+          type: string
+          example: "chunk_32bdb9ee7ec382"
+        doc_id:
+          type: string
+          example: "doc_lingshan_abc123"
+        source_name:
+          type: string
+          example: "灵山胜境景点结构化数据集"
+        section:
+          type: string
+          example: ""
+        page:
+          type: integer
+          nullable: true
+        quote:
+          type: string
+          description: 引用原文（前 200 字）
+          example: "佛像高88m（主体高度79m+莲花瓣高度9m）"
+        score:
+          type: number
+          format: float
+          example: 0.6391
+        domain:
+          type: string
+          example: "spot_detail"
+        spot_id:
+          type: string
+          example: "LS-011"
+        authority_level:
+          type: string
+          example: "official"
+        freshness_level:
+          type: string
+          example: "high"
+
+    # ── Fallback 兜底信息 ──
+    FallbackInfo:
+      type: object
+      properties:
+        reason:
+          type: string
+          description: 无法回答的原因
+          enum:
+            - no_relevant_docs        # 知识库里没有相关内容
+            - low_confidence          # 匹配分数太低，不够自信
+            - sensitive_query         # 问题涉及敏感信息
+            - realtime_data_unavailable  # 需要实时数据但获取不到
+          example: "low_confidence"
+        safe_reply:
+          type: string
+          description: 给用户的兜底回复话术
+          example: "这个问题我不太确定，建议以景区官方信息为准。"
+        top_score:
+          type: number
+          format: float
+          description: 最高匹配分数
+          example: 0.4245
+
+    # ── 查询响应 ──
+    QueryResponseData:
+      type: object
+      properties:
+        answerable:
+          type: boolean
+          description: 是否能回答（true=查到相关内容，false=没查到或分数低）
+          example: true
+        contexts:
+          type: array
+          description: 找到的原文片段列表（answerable=true 时有数据）
+          items:
+            $ref: "#/components/schemas/ContextItem"
+        citations:
+          type: array
+          description: 引用来源信息（便于溯源）
+          items:
+            $ref: "#/components/schemas/CitationItem"
+        fallback:
+          $ref: "#/components/schemas/FallbackInfo"
+          nullable: true
+          description: answerable=false 时，这里有兜底信息
+        safe_reply:
+          type: string
+          nullable: true
+          description: 安全回复文案（可直接给用户看）
+        disclaimer:
+          type: string
+          nullable: true
+          description: 时效性声明（数据较旧时提示用户）
+          example: "以上信息来源于景区公开资料，票价、演出时间、开放安排等可能调整，建议以景区官方小程序或现场公告为准。"
+        latency_ms:
+          type: number
+          description: 查询耗时（毫秒）
+          example: 2.0
+        trace_id:
+          type: string
+          example: "trace_c8f9f03604a2"
+
+    # ── 入库请求 ──
+    IngestRequest:
+      type: object
+      required:
+        - filepath
+      properties:
+        filepath:
+          type: string
+          description: 要入库的文档路径（绝对路径或相对于项目根目录）
+          example: "rag-knowledge/lingshan-dataset.md"
+        metadata:
+          type: object
+          description: 文档元数据
+          properties:
+            source_name:
+              type: string
+              example: "灵山胜境景点结构化数据集"
+            domain:
+              type: string
+              example: "spot_detail"
+            scenic_id:
+              type: string
+              example: "lingshan"
+            spot_id:
+              type: string
+              example: ""
+            section:
+              type: string
+              example: ""
+            authority_level:
+              type: string
+              enum: [official, high, medium, low]
+              default: "official"
+            freshness_level:
+              type: string
+              enum: [high, medium, low]
+              default: "high"
+        chunk_size:
+          type: integer
+          description: 分块大小（字符数）
+          default: 512
+          example: 512
+        overlap:
+          type: integer
+          description: 分块重叠（字符数）
+          default: 64
+          example: 64
+
+    # ── 入库响应 ──
+    IngestResponseData:
+      type: object
+      properties:
+        job_id:
+          type: string
+          example: "ingest_91ea2ac817ac"
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Ingest completed"
+        chars_raw:
+          type: integer
+          description: 原始字符数
+          example: 51538
+        chars_clean:
+          type: integer
+          description: 清洗后字符数
+          example: 47935
+        chunks:
+          type: integer
+          description: 生成的片段数
+          example: 48
+        inserted:
+          type: integer
+          description: 实际入库数
+          example: 48
+        elapsed_seconds:
+          type: number
+          format: float
+          example: 0.95
+        collection:
+          type: string
+          example: "scenic_kb"
+
+    # ── 统计响应 ──
+    StatsResponseData:
+      type: object
+      properties:
+        provider:
+          type: string
+          example: "chroma"
+        collection:
+          type: string
+          example: "scenic_kb"
+        vectors:
+          type: integer
+          description: 向量库中的总片段数
+          example: 73
+        embedding_provider:
+          type: string
+          description: Embedding 类型（local/chroma_default/cloud）
+          example: "local"
+        embedding_model:
+          type: string
+          example: "BAAI/bge-small-zh-v1.5"
+        score_threshold:
+          type: number
+          description: 回答置信度阈值
+          example: 0.5
+        chunk_size:
+          type: integer
+          example: 512
+        chunk_overlap:
+          type: integer
+          example: 64
+
+    # ── 健康检查响应 ──
+    HealthResponseData:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "ok"
+        timestamp:
+          type: number
+          example: 1780320796.089
+
+    # ── 资料来源登记请求 ──
+    SourceRegisterRequest:
+      type: object
+      required:
+        - name
+        - filepath
+      properties:
+        name:
+          type: string
+          description: 资料名称
+          example: "灵山胜境官方介绍手册"
+        filepath:
+          type: string
+          description: 文件路径
+          example: "rag-knowledge/lingshan-guide.md"
+        domain:
+          type: string
+          example: "guide"
+        description:
+          type: string
+          example: "来自灵山景区官方发布的游览指南"
+        tags:
+          type: array
+          items:
+            type: string
+          example: ["官方", "景点介绍"]
+
+    # ── 采纳问答请求 ──
+    QARegisterRequest:
+      type: object
+      required:
+        - question
+        - answer
+      properties:
+        question:
+          type: string
+          example: "灵山大佛有多高？"
+        answer:
+          type: string
+          example: "灵山大佛通高88米（主体79米+莲花底座9米）"
+        source:
+          type: string
+          example: "lingshan-dataset.md"
+        domain:
+          type: string
+          example: "spot_detail"
+
+    # ── Documents 列表项（给管理后台用） ──
+    DocumentItem:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "doc_lingshan_abc123"
+        name:
+          type: string
+          example: "灵山胜境景点结构化数据集"
+        source_file:
+          type: string
+          example: "lingshan-dataset.md"
+        domain:
+          type: string
+          example: "spot_detail"
+        chunk_count:
+          type: integer
+          example: 48
+        created_at:
+          type: string
+          format: date-time
+          example: "2026-06-01T12:00:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          example: "2026-06-01T12:00:00Z"
+
+    # ── Chunk 条目 ──
+    ChunkItem:
+      type: object
+      properties:
+        chunk_id:
+          type: string
+          example: "chunk_b20b9987087152"
+        text:
+          type: string
+          example: "佛像高88m（主体高度79m+莲花瓣高度9m）"
+        source_name:
+          type: string
+          example: "灵山胜境景点结构化数据集"
+        source_file:
+          type: string
+          example: "lingshan-dataset.md"
+        section:
+          type: string
+        domain:
+          type: string
+        spot_id:
+          type: string
+        authority_level:
+          type: string
+        freshness_level:
+          type: string
+        page:
+          type: integer
+          nullable: true
+        chunk_seq:
+          type: integer
+        chunk_total:
+          type: integer
+
+    # ── 入库任务 ──
+    IngestJob:
+      type: object
+      properties:
+        job_id:
+          type: string
+          example: "ingest_91ea2ac817ac"
+        filepath:
+          type: string
+          example: "rag-knowledge/lingshan-dataset.md"
+        status:
+          type: string
+          enum: [pending, running, completed, failed]
+          example: "completed"
+        chunks_total:
+          type: integer
+          example: 48
+        created_at:
+          type: string
+          format: date-time
+        elapsed_seconds:
+          type: number
+          example: 0.95
+
+# ──────────────────────────── 错误码枚举 ────────────────────────────
+x-error-codes:
+  - code: 0
+    message: "成功"
+  # 请求参数错误（10001~10099）
+  - code: 10001
+    message: "请求参数错误"
+  - code: 10002
+    message: "文件不存在"
+  # 鉴权错误（40001~40099）
+  - code: 40001
+    message: "鉴权失败，需要有效 Token"
+  - code: 40003
+    message: "无权限访问此资源"
+  # 服务端错误（50001~50099）
+  - code: 50001
+    message: "服务器内部错误"
+
+# ──────────────────────────── 接口路径 ────────────────────────────
+paths:
+
+  # ==================== 健康检查 ====================
+  /api/v1/rag/health:
+    get:
+      summary: 健康检查
+      description: 检查 RAG 服务是否正常运行
+      operationId: healthCheck
+      tags:
+        - 健康检查
+      parameters:
+        - $ref: "#/components/parameters/TraceId"
+      responses:
+        "200":
+          description: 服务正常
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiResponse"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/HealthResponseData"
+
+  # ==================== 知识库统计 ====================
+  /api/v1/rag/stats:
+    get:
+      summary: 知识库统计
+      description: 获取知识库的运行状态、向量数量、模型信息等
+      operationId: getStats
+      tags:
+        - 知识库管理
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/TraceId"
+      responses:
+        "200":
+          description: 统计信息
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiResponse"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/StatsResponseData"
+        "401":
+          description: 鉴权失败
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  # ==================== 文档入库 ====================
+  /api/v1/rag/ingest:
+    post:
+      summary: 文档入库
+      description: 将文档解析、清洗、分块、向量化后存入知识库
+      operationId: ingestDocument
+      tags:
+        - 知识库管理
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/TraceId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IngestRequest"
+      responses:
+        "200":
+          description: 入库成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiResponse"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/IngestResponseData"
+        "400":
+          description: 参数错误或不支持的格式
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: 鉴权失败
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: 文件不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  # ==================== 语义检索 ====================
+  /api/v1/rag/query:
+    post:
+      summary: 语义检索
+      description: |
+        用户输入问题，返回最相关的知识片段。
+        如果分数低于阈值则走 Fallback 兜底，不会硬编答案。
+      operationId: queryKnowledge
+      tags:
+        - 核心检索
+      parameters:
+        - $ref: "#/components/parameters/TraceId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryRequest"
+      responses:
+        "200":
+          description: 检索完成
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiResponse"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/QueryResponseData"
+        "400":
+          description: 缺少参数
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  # ==================== 重建索引 ====================
+  /api/v1/rag/rebuild:
+    post:
+      summary: 重建索引
+      description: 清空向量库，重新开始
+      operationId: rebuildIndex
+      tags:
+        - 知识库管理
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/TraceId"
+      responses:
+        "200":
+          description: 重建成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiResponse"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: true
+                          message:
+                            type: string
+                            example: "Index reset, ready for re-ingest"
+
+  # ==================== 资料来源登记（H-03） ====================
+  /api/v1/rag/sources:
+    post:
+      summary: 登记资料来源
+      description: 管理员登记一份新的资料来源
+      operationId: registerSource
+      tags:
+        - 管理操作
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/TraceId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SourceRegisterRequest"
+      responses:
+        "200":
+          description: 登记成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiResponse"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          source_id:
+                            type: string
+                            example: "src_20260601_001"
+                          success:
+                            type: boolean
+                            example: true
+
+  # ==================== 采纳问答（H-03） ====================
+  /api/v1/rag/qa:
+    post:
+      summary: 采纳问答对
+      description: 管理员手动录入一问一答，直接入库
+      operationId: registerQA
+      tags:
+        - 管理操作
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/TraceId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QARegisterRequest"
+      responses:
+        "200":
+          description: 录入成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiResponse"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          qa_id:
+                            type: string
+                            example: "qa_20260601_001"
+                          success:
+                            type: boolean
+                            example: true

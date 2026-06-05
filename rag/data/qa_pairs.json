@@ -1,0 +1,18 @@
+[
+  {
+    "qa_id": "qa_20260605_f3b4c1",
+    "question": "灵山大佛有多高？",
+    "answer": "88米",
+    "source": "lingshan-dataset.md",
+    "domain": "",
+    "created_at": "2026-06-05T12:05:06Z"
+  },
+  {
+    "qa_id": "qa_20260605_500325",
+    "question": "灵山大佛有多高？",
+    "answer": "灵山大佛通高88米（主体79米+莲花底座9米）",
+    "source": "lingshan-dataset.md",
+    "domain": "spot_detail",
+    "created_at": "2026-06-05T12:11:01Z"
+  }
+]

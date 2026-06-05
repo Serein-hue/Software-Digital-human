@@ -28,6 +28,7 @@ live2d-avatar/CubismSdkForWeb-5-r.4/Samples/TypeScript/Demo/node_modules/
 .DS_Store
 Thumbs.db
 
-# RAG generated data
+# RAG
 rag/chroma_db/
+rag/.venv/
 backend/rag/

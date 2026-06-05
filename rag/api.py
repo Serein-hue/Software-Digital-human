@@ -17,6 +17,7 @@ import uuid
 from functools import wraps
 from flask import Blueprint, jsonify, request
 from rag.rag_engine import engine
+from rag.manager import register_source, list_sources, register_qa, list_qa
 
 logger = logging.getLogger("rag.api")
 rag_bp = Blueprint("rag", __name__)
@@ -153,7 +154,7 @@ def query():
         )
         return _res(data=result, trace_id=trace_id)
     except Exception as exc:
-        logger.error("Query error: %s", exc)
+        logger.error("Query error: %s", exc, exc_info=True)
         return _res(code=50001, msg="Query failed", trace_id=trace_id), 500
 
 
@@ -168,6 +169,99 @@ def rebuild():
     except Exception as exc:
         logger.error("Rebuild error: %s", exc)
         return _res(code=50001, msg="Rebuild failed", trace_id=trace_id), 500
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# H-03 管理接口
+# ═══════════════════════════════════════════════════════════════════════
+
+@rag_bp.route("/sources", methods=["POST"])
+@require_auth
+def sources():
+    """登记资料来源 — 管理员录入一份新的资料。"""
+    trace_id = _get_trace_id()
+    try:
+        body = request.get_json(force=True)
+    except Exception:
+        return _res(code=10001, msg="Invalid JSON body", trace_id=trace_id), 400
+
+    name = (body.get("name") or "").strip()
+    filepath = (body.get("filepath") or "").strip()
+    if not name:
+        return _res(code=10001, msg="Missing name", trace_id=trace_id), 400
+    if not filepath:
+        return _res(code=10001, msg="Missing filepath", trace_id=trace_id), 400
+
+    try:
+        result = register_source(
+            name=name,
+            filepath=filepath,
+            domain=body.get("domain"),
+            description=body.get("description"),
+            tags=body.get("tags"),
+        )
+        return _res(data=result, trace_id=trace_id)
+    except Exception as exc:
+        logger.error("Register source error: %s", exc)
+        return _res(code=50001, msg="Failed to register source", trace_id=trace_id), 500
+
+
+@rag_bp.route("/sources", methods=["GET"])
+@require_auth
+def sources_list():
+    """分页列出已登记的资料来源。"""
+    trace_id = _get_trace_id()
+    page, page_size = _pagination()
+    try:
+        data = list_sources(page=page, page_size=page_size)
+        return _res(data=data, trace_id=trace_id)
+    except Exception as exc:
+        logger.error("List sources error: %s", exc)
+        return _res(code=50001, msg="Failed to list sources", trace_id=trace_id), 500
+
+
+@rag_bp.route("/qa", methods=["POST"])
+@require_auth
+def qa():
+    """采纳问答对 — 管理员手动录入一问一答。"""
+    trace_id = _get_trace_id()
+    try:
+        body = request.get_json(force=True)
+    except Exception:
+        return _res(code=10001, msg="Invalid JSON body", trace_id=trace_id), 400
+
+    question = (body.get("question") or "").strip()
+    answer = (body.get("answer") or "").strip()
+    if not question:
+        return _res(code=10001, msg="Missing question", trace_id=trace_id), 400
+    if not answer:
+        return _res(code=10001, msg="Missing answer", trace_id=trace_id), 400
+
+    try:
+        result = register_qa(
+            question=question,
+            answer=answer,
+            source=body.get("source"),
+            domain=body.get("domain"),
+        )
+        return _res(data=result, trace_id=trace_id)
+    except Exception as exc:
+        logger.error("Register QA error: %s", exc)
+        return _res(code=50001, msg="Failed to register QA", trace_id=trace_id), 500
+
+
+@rag_bp.route("/qa", methods=["GET"])
+@require_auth
+def qa_list():
+    """分页列出已采纳的问答对。"""
+    trace_id = _get_trace_id()
+    page, page_size = _pagination()
+    try:
+        data = list_qa(page=page, page_size=page_size)
+        return _res(data=data, trace_id=trace_id)
+    except Exception as exc:
+        logger.error("List QA error: %s", exc)
+        return _res(code=50001, msg="Failed to list QA", trace_id=trace_id), 500
 
 
 @rag_bp.route("/debug_raw_query", methods=["POST"])
