@@ -122,6 +122,11 @@
         indicator.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
       }
     }
+
+    const previewImage = $("#previewRobotImage");
+    if (previewImage && src) {
+      previewImage.src = src;
+    }
   }
 
   function updateStatus() {

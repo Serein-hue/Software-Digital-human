@@ -389,6 +389,11 @@ new Vue({
       execStatus: { status: 'idle', original_request: '', current_step: '', steps_done: 0, elapsed: 0, error: null, progress_messages: [] },
       execStatusUsername: null,
       execPollTimer: null,
+      scenicClientConfig: {
+        welcome: '欢迎来到灵山胜境，我是你的 AI 数字人导览员 Fay。',
+        defaultRoute: '轻量 90 分钟',
+        entryMode: '扫码进入',
+      },
     };
   },
   computed: {
