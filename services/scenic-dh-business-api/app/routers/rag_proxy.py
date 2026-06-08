@@ -35,7 +35,7 @@ async def rag_query(body: RagQueryRequest, request: Request):
         upstream_headers["Authorization"] = auth_header
 
     try:
-        async with httpx.AsyncClient(timeout=15.0) as client:
+        async with httpx.AsyncClient(timeout=60.0) as client:
             resp = await client.post(
                 RAG_QUERY_URL,
                 json=payload,
@@ -66,7 +66,7 @@ async def rag_health(request: Request):
     """检查 RAG 服务连通性"""
     trace_id = request.state.trace_id
     try:
-        async with httpx.AsyncClient(timeout=5.0) as client:
+        async with httpx.AsyncClient(timeout=10.0) as client:
             resp = await client.get(RAG_HEALTH_URL, headers={"X-Trace-Id": trace_id})
             return ok({"rag_status": "ok", "rag_detail": resp.json()}, trace_id)
     except Exception:

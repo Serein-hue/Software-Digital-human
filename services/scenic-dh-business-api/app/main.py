@@ -58,29 +58,49 @@ app.middleware("http")(internal_auth_middleware)
 @app.get("/health", tags=["Health"])
 def health():
     from app.schemas.common import ok
-    from fastapi import Request
-    import inspect
+    return ok({
+        "status": "ok",
+        "version": settings.SERVICE_VERSION,
+    }, "startup-check")
 
-    # 尝试获取 request context；在非请求上下文中回退
-    trace_id = "startup-check"
 
-    return ok(
-        {
-            "status": "ok",
-            "version": settings.SERVICE_VERSION,
-            "dependencies": {
-                "rag_service": settings.RAG_SERVICE_URL,
-                "avatar_orchestrator": settings.AVATAR_ORCHESTRATOR_URL,
-            },
-        },
-        trace_id,
-    )
+@app.get("/health/ready", tags=["Health"])
+def health_ready():
+    """就绪探针：检查 DB + 上游服务连通性"""
+    from app.schemas.common import ok
+    from app.database import SessionLocal
+    checks = {}
+
+    # DB
+    try:
+        db = SessionLocal()
+        db.execute(db.bind if hasattr(db, 'bind') else __import__('sqlalchemy').text("SELECT 1"))
+        db.close()
+        checks["database"] = "ok"
+    except Exception as e:
+        checks["database"] = f"error: {e}"
+
+    # RAG
+    try:
+        import httpx
+        r = httpx.get(f"{settings.RAG_SERVICE_URL}/api/v1/rag/health", timeout=5)
+        checks["rag_service"] = "ok" if r.status_code == 200 else f"status={r.status_code}"
+    except Exception as e:
+        checks["rag_service"] = f"unreachable: {e}"
+
+    all_ok = all(v == "ok" for v in checks.values())
+    return ok({
+        "ready": all_ok,
+        "checks": checks,
+    }, "readiness-probe")
 
 
 # ═══════════════════════════════════════════
-# Routers（逐步挂载）
+# Routers
 # ═══════════════════════════════════════════
 from app.routers import spots, routes, sessions, messages, arrivals, feedback, scenic, rag_proxy, internal  # noqa: E402
+# P0 新增
+from app.routers import map, qrcode, tickets_ext, reservations, work_orders, emergency, offline  # noqa: E402
 
 app.include_router(spots.router, prefix="/v1")
 app.include_router(routes.router, prefix="/v1")
@@ -91,3 +111,12 @@ app.include_router(feedback.router, prefix="/v1")
 app.include_router(scenic.router, prefix="/v1")
 app.include_router(rag_proxy.router, prefix="/v1")
 app.include_router(internal.router)  # 不带 prefix，路径自带 /internal/v1/
+
+# P0 新增
+app.include_router(map.router, prefix="/v1")
+app.include_router(qrcode.router, prefix="/v1")
+app.include_router(tickets_ext.router, prefix="/v1")
+app.include_router(reservations.router, prefix="/v1")
+app.include_router(work_orders.router, prefix="/v1")
+app.include_router(emergency.router, prefix="/v1")
+app.include_router(offline.router, prefix="/v1")

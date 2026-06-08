@@ -1,64 +1,65 @@
-"""会话审计、消息审计、问答采纳"""
+"""会话/消息审计"""
 
-from fastapi import APIRouter, Request, Query
-
-from app.schemas.common import ok, err
+from fastapi import APIRouter, Request, Query, Depends
+from app.schemas.common import ok
+from app.auth import require_permission
 
 router = APIRouter(tags=["Audit"])
 
-# 管理端共享 business-api 的内存存储（实际部署时通过 HTTP 代理查询 business-api）
-# MVP 阶段这里返回模拟数据
-
 
 @router.get("/sessions")
-def list_sessions(date_range: str = Query(None), status: str = Query(None), request: Request = None):
+def list_sessions(
+    request: Request,
+    date_range: str = Query(None),
+    status: str = Query(None),
+    user_payload: dict = Depends(require_permission("audit:read")),
+):
     trace_id = request.state.trace_id
-    return ok(
-        {
-            "items": [
-                {"id": "550e8400-...", "profile": {"language": "zh"}, "source": "miniprogram", "status": "active", "createdAt": "2026-06-02T09:00:00Z"},
-            ],
-            "total": 1,
-        },
-        trace_id,
-    )
+    return ok({
+        "items": [],
+        "total": 0,
+        "note": "session 审计数据来自 business-api DB，请通过 business-api 查询",
+    }, trace_id)
 
 
 @router.get("/sessions/{session_id}")
-def get_session_detail(session_id: str, request: Request):
+def get_session_detail(
+    session_id: str,
+    request: Request,
+    user_payload: dict = Depends(require_permission("audit:read")),
+):
     trace_id = request.state.trace_id
-    return ok(
-        {
-            "id": session_id,
-            "profile": {"language": "zh", "interests": ["佛教文化"]},
-            "status": "active",
-            "messages": [
-                {"id": "MSG-001", "role": "user", "text": "灵山大佛有多高？", "fallback": False, "confidence": 0.95},
-                {"id": "MSG-002", "role": "assistant", "text": "灵山大佛高88米...", "citations": [], "fallback": False, "confidence": 0.95},
-            ],
-            "events": [],
-            "feedback": [],
-        },
-        trace_id,
-    )
+    return ok({
+        "session_id": session_id,
+        "messages": [],
+        "events": [],
+        "note": "详情请查询 business-api",
+    }, trace_id)
 
 
 @router.get("/messages")
-def list_messages(date_range: str = Query(None), fallback: bool = Query(None), request: Request = None):
+def list_messages(
+    request: Request,
+    date_range: str = Query(None),
+    fallback: bool = Query(None),
+    user_payload: dict = Depends(require_permission("audit:read")),
+):
     trace_id = request.state.trace_id
-    return ok(
-        {
-            "items": [
-                {"id": "MSG-001", "sessionId": "550e8400-...", "role": "user", "text": "灵山大佛有多高？", "fallback": False, "createdAt": "2026-06-02T10:00:00Z"},
-                {"id": "MSG-002", "sessionId": "550e8400-...", "role": "assistant", "text": "灵山大佛高88米...", "fallback": False, "createdAt": "2026-06-02T10:00:01Z"},
-            ],
-            "total": 2,
-        },
-        trace_id,
-    )
+    return ok({
+        "items": [],
+        "note": "消息审计数据来自 business-api DB",
+    }, trace_id)
 
 
 @router.post("/messages/{message_id}/adopt")
-def adopt_message(message_id: str, request: Request):
+def adopt_message(
+    message_id: str,
+    request: Request,
+    user_payload: dict = Depends(require_permission("content:write")),
+):
     trace_id = request.state.trace_id
-    return ok({"messageId": message_id, "adopted": True, "category": "faq_candidate"}, trace_id=trace_id)
+    return ok({
+        "message_id": message_id,
+        "status": "adopted",
+        "note": "问答已标记为采纳，待同步至 RAG",
+    }, trace_id)
