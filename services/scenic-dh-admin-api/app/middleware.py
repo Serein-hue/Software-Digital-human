@@ -13,7 +13,7 @@ from app.schemas.common import err
 logger = logging.getLogger("admin-api")
 
 # 免鉴权路径
-PUBLIC_PATHS = {"/health", "/docs", "/redoc", "/openapi.json", "/v1/auth/login"}
+PUBLIC_PATHS = {"/health", "/docs", "/redoc", "/openapi.json", "/v1/auth/login", "/v1/auth/refresh"}
 
 
 class TraceMiddleware(BaseHTTPMiddleware):

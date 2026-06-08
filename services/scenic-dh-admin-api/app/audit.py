@@ -1,47 +1,40 @@
-"""审计日志模块 — 记录所有管理操作"""
+"""审计日志 — 所有写操作自动记录到 AuditLog 表"""
 
-import time
-import uuid
-from typing import Optional
-
-# 内存审计日志（MVP 阶段；后续换持久化存储）
-_audit_logs: list[dict] = []
+from sqlalchemy.orm import Session
 
 
-def log_action(
+def audit_log(
+    db: Session,
     action: str,
-    operator: str = "admin",
-    target: str = "",
-    detail: Optional[dict] = None,
+    operator_id: str | None,
+    operator_name: str | None,
+    target_type: str,
+    target_id: str | None = None,
+    detail: dict | None = None,
+    diff: dict | None = None,
     trace_id: str = "",
-) -> dict:
-    """记录一条审计日志"""
-    entry = {
-        "id": str(uuid.uuid4())[:12],
-        "action": action,
-        "operator": operator,
-        "target": target,
-        "detail": detail or {},
-        "trace_id": trace_id,
-        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-    }
-    _audit_logs.append(entry)
-    return entry
+    ip_address: str | None = None,
+):
+    """写入一条审计日志。失败静默忽略，不阻断业务。"""
+    from app.models import AuditLog
+    try:
+        db.add(AuditLog(
+            action=action,
+            operator_id=operator_id,
+            operator_name=operator_name,
+            target_type=target_type,
+            target_id=target_id,
+            detail=detail or {},
+            diff=diff,
+            trace_id=trace_id,
+            ip_address=ip_address,
+        ))
+    except Exception:
+        pass
 
 
-def get_logs(limit: int = 50, action: Optional[str] = None) -> list[dict]:
-    """查询审计日志"""
-    logs = _audit_logs
-    if action:
-        logs = [l for l in logs if l["action"] == action]
-    return logs[-limit:]
-
-
-# 预定义操作类型
-ACTION_KNOWLEDGE_REINDEX = "knowledge.reindex"
-ACTION_KNOWLEDGE_SOURCE_REGISTER = "knowledge.source.register"
-ACTION_PERSONA_UPDATE = "persona.update"
-ACTION_BROADCAST_CREATE = "broadcast.create"
-ACTION_MESSAGE_ADOPT = "message.adopt"
-ACTION_RUNTIME_CLEAR_QUEUE = "runtime.clear_queue"
-ACTION_RUNTIME_MIC_TOGGLE = "runtime.microphone.toggle"
+def get_operator(user_payload: dict | None) -> tuple[str | None, str | None]:
+    """从 JWT payload 提取 (operator_id, operator_name)。"""
+    if not user_payload:
+        return None, None
+    return user_payload.get("sub"), user_payload.get("username")
