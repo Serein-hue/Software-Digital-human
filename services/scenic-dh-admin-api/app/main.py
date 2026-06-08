@@ -51,6 +51,7 @@ def health():
 
 # Routers
 from app.routers import knowledge, personas, broadcasts, audit, analytics, runtime, data_gaps, audit_logs  # noqa: E402
+from app.routers import auth, users, roles  # noqa: E402 (P0 新增)
 
 app.include_router(knowledge.router, prefix="/v1")
 app.include_router(personas.router, prefix="/v1")
@@ -60,3 +61,8 @@ app.include_router(analytics.router, prefix="/v1")
 app.include_router(runtime.router, prefix="/v1")
 app.include_router(data_gaps.router, prefix="/v1")
 app.include_router(audit_logs.router, prefix="/v1")
+
+# P0 新增：Auth + RBAC
+app.include_router(auth.router, prefix="/v1")
+app.include_router(users.router, prefix="/v1")
+app.include_router(roles.router, prefix="/v1")
