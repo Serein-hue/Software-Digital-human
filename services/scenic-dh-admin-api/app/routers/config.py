@@ -7,6 +7,7 @@ from app.schemas.common import ok, err
 from app.database import SessionLocal
 from app.models import ConfigEntry
 from app.auth import require_permission
+from app.audit import audit_log, get_operator
 
 router = APIRouter(tags=["Config"])
 
@@ -64,6 +65,10 @@ def update_config(
 
         db.commit()
         db.refresh(entry)
+        op_id, op_name = get_operator(user_payload)
+        audit_log(db, "config.update", op_id, op_name, "config", entry.key,
+                  detail={"value": str(body.value)[:100]},
+                  trace_id=trace_id)
         return ok({
             "key": entry.key,
             "value": entry.value,

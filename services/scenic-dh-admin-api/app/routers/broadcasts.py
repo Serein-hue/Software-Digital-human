@@ -10,6 +10,7 @@ from app.schemas.common import ok
 from app.database import SessionLocal
 from app.models import BroadcastMsg
 from app.auth import require_permission
+from app.audit import audit_log, get_operator
 
 router = APIRouter(tags=["Broadcasts"])
 
@@ -43,6 +44,10 @@ def create_broadcast(
         db.add(broadcast)
         db.commit()
         db.refresh(broadcast)
+        op_id, op_name = get_operator(user_payload)
+        audit_log(db, "broadcast.create", op_id, op_name, "broadcast", broadcast.id,
+                  detail={"text": body.text[:100], "priority": body.priority},
+                  trace_id=trace_id)
         return ok({"broadcastId": broadcast.id, "status": broadcast.status}, trace_id)
     finally:
         db.close()

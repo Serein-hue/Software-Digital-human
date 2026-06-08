@@ -8,6 +8,7 @@ from app.schemas.common import ok, err
 from app.database import get_db
 from app.models import User, Role
 from app.auth import get_current_user, require_permission, hash_password
+from app.audit import audit_log, get_operator
 
 router = APIRouter(tags=["Users"])
 
@@ -99,6 +100,11 @@ def create_user(
         db.commit()
         db.refresh(user)
 
+        op_id, op_name = get_operator(user_payload)
+        audit_log(db, "user.create", op_id, op_name, "user", user.id,
+                  detail={"username": user.username, "role_id": user.role_id},
+                  trace_id=trace_id)
+
         return ok({
             "id": user.id,
             "username": user.username,
@@ -127,6 +133,7 @@ def update_user(
         if not user:
             return err(40409, "用户不存在", trace_id)
 
+        old_status = user.status
         if body.display_name is not None:
             user.display_name = body.display_name
         if body.role_id is not None:
@@ -139,6 +146,12 @@ def update_user(
 
         db.commit()
         db.refresh(user)
+
+        op_id, op_name = get_operator(user_payload)
+        audit_log(db, "user.update", op_id, op_name, "user", user.id,
+                  detail={"status": user.status},
+                  diff={"status": {"old": old_status, "new": user.status}},
+                  trace_id=trace_id)
 
         return ok({
             "id": user.id,

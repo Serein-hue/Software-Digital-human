@@ -8,6 +8,7 @@ from app.schemas.common import ok, err
 from app.database import get_db
 from app.models import Role
 from app.auth import require_permission
+from app.audit import audit_log, get_operator
 
 router = APIRouter(tags=["Roles"])
 
@@ -69,6 +70,11 @@ def create_role(
         db.commit()
         db.refresh(role)
 
+        op_id, op_name = get_operator(user_payload)
+        audit_log(db, "role.create", op_id, op_name, "role", role.id,
+                  detail={"name": role.name, "permissions": role.permissions},
+                  trace_id=trace_id)
+
         return ok({
             "id": role.id,
             "name": role.name,
@@ -103,6 +109,11 @@ def update_role(
 
         db.commit()
         db.refresh(role)
+
+        op_id, op_name = get_operator(user_payload)
+        audit_log(db, "role.update", op_id, op_name, "role", role.id,
+                  detail={"name": role.name},
+                  trace_id=trace_id)
 
         return ok({
             "id": role.id,
