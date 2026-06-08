@@ -64,13 +64,39 @@
 | 50300 | 503 | 服务不可用 |
 | 50301 | 503 | Fay 运行时离线 |
 | 50400 | 504 | 上游服务超时 |
+| 50401 | 504 | RAG 检索超时 |
+| 40405 | 404 | 工单不存在 |
+| 40406 | 404 | 二维码未绑定 |
+| 40407 | 404 | 排队号不存在 |
+| 40408 | 404 | 预约不存在 |
+| 40409 | 404 | 用户不存在 |
+| 40410 | 404 | 角色不存在 |
+| 40411 | 404 | 内容不存在 |
+| 40901 | 409 | 排队已满 |
+| 40902 | 409 | 预约名额已满 |
+| 40903 | 409 | 用户名已存在 |
+| 40102 | 401 | 刷新令牌过期 |
+| 40003 | 400 | 缺少必填字段 |
+| 41001 | 410 | 二维码已过期 |
+| 41002 | 410 | 票码已使用 |
+| 40301 | 403 | 内容已被审核，不可修改 |
+| 40302 | 403 | 仅作者可提交审核 |
 
 ## 鉴权
 
-所有服务统一使用 `Authorization: Bearer <token>` 头（health 除外）：
-- 内部服务间：`Bearer svc-dev-token`
-- 管理端：`Bearer adm-dev-token`
+所有服务统一使用 `Authorization: Bearer <token>` 头（health 和 login 除外）：
+
+**游客端 (business-api):**
 - 游客会话：`Bearer sess-<session_id>`
+- 小程序授权：`Bearer <wechat_openid_token>`
+
+**管理端 (admin-api):**
+- JWT 登录：`POST /v1/auth/login` 获取 access_token + refresh_token
+- API 调用：`Bearer <access_token>`（JWT，含 userId、roleId、permissions）
+- Token 刷新：`POST /v1/auth/refresh` 用 refresh_token 换新 access_token
+
+**服务间调用:**
+- 内部服务：`Bearer svc-dev-token`（开发阶段，生产换为服务账号 JWT）
 
 ## trace_id
 

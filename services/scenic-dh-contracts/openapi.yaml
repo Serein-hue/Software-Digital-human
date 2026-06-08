@@ -41,6 +41,17 @@ tags:
   - name: Audit
   - name: Analytics
   - name: Runtime
+  - name: Map
+  - name: QR Code
+  - name: Reservations
+  - name: Work Orders
+  - name: Emergency
+  - name: Offline
+  - name: Auth
+  - name: Users
+  - name: Roles
+  - name: Content
+  - name: Config
 
 # ============================================================
 # 通用组件
@@ -595,6 +606,421 @@ components:
           enum: [idle, running, paused, done]
         stepResult:
           nullable: true
+
+    # ---- P0 新增: 地图 ----
+    MapPOI:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        category:
+          type: string
+          enum: [spot, toilet, shop, restaurant, parking, help_point, medical, nursery, rest_area, entrance, exit]
+        lat:
+          type: number
+        lng:
+          type: number
+        icon:
+          type: string
+        status:
+          type: string
+          enum: [open, closed, maintenance]
+
+    MapLayer:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum: [poi, route, crowd, restricted, facility]
+        visible:
+          type: boolean
+        zIndex:
+          type: integer
+
+    # ---- P0 新增: 二维码 ----
+    QRCodeResult:
+      type: object
+      properties:
+        codeId:
+          type: string
+        type:
+          type: string
+          enum: [spot, ticket, device, event]
+        targetId:
+          type: string
+        targetName:
+          type: string
+        action:
+          type: string
+          enum: [navigate_guide, verify_ticket, queue_number, event_detail, device_info]
+        meta:
+          type: object
+          description: 附加信息，按 action 不同结构
+
+    # ---- P0 新增: 票务扩展 ----
+    TicketOrder:
+      type: object
+      properties:
+        orderId:
+          type: string
+        productId:
+          type: string
+        productName:
+          type: string
+        quantity:
+          type: integer
+        totalPrice:
+          type: number
+        status:
+          type: string
+          enum: [pending, paid, used, refunded, expired]
+        visitDate:
+          type: string
+          format: date
+        ticketCode:
+          type: string
+          description: 入园核验码
+
+    TicketVerifyResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        orderId:
+          type: string
+        ticketCode:
+          type: string
+        productName:
+          type: string
+        visitDate:
+          type: string
+          format: date
+        reason:
+          type: string
+          description: 无效原因
+
+    # ---- P0 新增: 预约排队 ----
+    Reservation:
+      type: object
+      properties:
+        id:
+          type: string
+        sessionId:
+          type: string
+        resourceType:
+          type: string
+          enum: [show, spot, facility]
+        resourceId:
+          type: string
+        resourceName:
+          type: string
+        timeSlot:
+          type: string
+        status:
+          type: string
+          enum: [booked, checked_in, cancelled, expired]
+        queueNumber:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+
+    QueueTicket:
+      type: object
+      properties:
+        id:
+          type: string
+        sessionId:
+          type: string
+        queueId:
+          type: string
+        queueName:
+          type: string
+        number:
+          type: integer
+        waitingMinutes:
+          type: integer
+        peopleAhead:
+          type: integer
+        status:
+          type: string
+          enum: [waiting, called, passed, cancelled]
+        calledAt:
+          nullable: true
+
+    # ---- P0 新增: 工单 ----
+    WorkOrder:
+      type: object
+      properties:
+        id:
+          type: string
+        sessionId:
+          type: string
+        type:
+          type: string
+          enum: [complaint, feedback, emergency, low_confidence]
+        title:
+          type: string
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [low, normal, high, urgent]
+        status:
+          type: string
+          enum: [pending, assigned, processing, resolved, closed]
+        assignee:
+          type: string
+        sla:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+            lng:
+              type: number
+        contactPhone:
+          type: string
+        resolution:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    EmergencyRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        sessionId:
+          type: string
+        type:
+          type: string
+          enum: [sos, medical, lost_child, security, other]
+        description:
+          type: string
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+            lng:
+              type: number
+        contactPhone:
+          type: string
+        status:
+          type: string
+          enum: [pending, dispatched, responding, resolved]
+        responderNote:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    # ---- P0 新增: 离线包 ----
+    OfflinePackage:
+      type: object
+      properties:
+        version:
+          type: string
+        sizeBytes:
+          type: integer
+        manifest:
+          type: object
+          properties:
+            spots:
+              type: integer
+            guides:
+              type: integer
+            notices:
+              type: integer
+            maps:
+              type: integer
+        checksum:
+          type: string
+        forceUpdate:
+          type: boolean
+        releaseNotes:
+          type: string
+        downloadUrl:
+          type: string
+          format: uri
+
+    # ---- P0 新增: Auth / RBAC ----
+    LoginRequest:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+
+    LoginResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        expiresIn:
+          type: integer
+        user:
+          $ref: '#/components/schemas/AdminUser'
+
+    AdminUser:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+        roleId:
+          type: string
+        roleName:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum: [active, disabled]
+        createdAt:
+          type: string
+          format: date-time
+
+    Role:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        userCount:
+          type: integer
+
+    # ---- P0 新增: 内容管理 ----
+    ContentItem:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum: [spot, route, facility, notice, event, ticket_policy]
+        title:
+          type: string
+        body:
+          type: object
+          description: 类型相关的完整内容
+        version:
+          type: integer
+        status:
+          type: string
+          enum: [draft, pending_review, approved, published, rejected, revoked]
+        authorId:
+          type: string
+        reviewerId:
+          type: string
+        publishedAt:
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    ContentApproval:
+      type: object
+      properties:
+        id:
+          type: string
+        contentId:
+          type: string
+        action:
+          type: string
+          enum: [approve, reject, revoke]
+        comment:
+          type: string
+        reviewerId:
+          type: string
+        diff:
+          type: object
+          description: 版本间差异
+        createdAt:
+          type: string
+          format: date-time
+
+    # ---- P0 新增: 运营聚合 ----
+    OpsSnapshot:
+      type: object
+      properties:
+        todayVisitors:
+          type: integer
+        activeSessions:
+          type: integer
+        queuedVisitors:
+          type: integer
+        activeEvents:
+          type: integer
+        onlineDevices:
+          type: integer
+        alerts:
+          type: array
+          items:
+            type: object
+            properties:
+              level:
+                type: string
+                enum: [info, warning, critical]
+              text:
+                type: string
+        pendingWorkOrders:
+          type: integer
+
+    # ---- P0 新增: 配置 ----
+    ConfigEntry:
+      type: object
+      properties:
+        key:
+          type: string
+        value: {}
+        type:
+          type: string
+          enum: [string, number, boolean, json]
+        description:
+          type: string
+        updatedBy:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
 
 security:
   - BearerAuth: []
@@ -1818,6 +2244,913 @@ paths:
                   type: string
                 rebuild:
                   type: boolean
+      responses:
+        '200':
+          description: OK
+
+  # ═══════════════════════════════════════
+  # P0 新增: Map (business-api)
+  # ═══════════════════════════════════════
+  /map/pois:
+    get:
+      tags: [Map]
+      summary: 地图 POI 列表
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+        - name: lat
+          in: query
+          schema:
+            type: number
+        - name: lng
+          in: query
+          schema:
+            type: number
+        - name: radius
+          in: query
+          schema:
+            type: integer
+            default: 5000
+          description: 搜索半径（米）
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/MapPOI'
+
+  /map/layers:
+    get:
+      tags: [Map]
+      summary: 地图图层配置
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/MapLayer'
+
+  # ═══════════════════════════════════════
+  # P0 新增: QR Code (business-api)
+  # ═══════════════════════════════════════
+  /qrcode/resolve:
+    post:
+      tags: [QR Code]
+      summary: 扫码解析
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [code]
+              properties:
+                code:
+                  type: string
+                  description: 扫码结果原始字符串
+                sessionId:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/QRCodeResult'
+
+  # ═══════════════════════════════════════
+  # P0 新增: Tickets 扩展 (business-api)
+  # ═══════════════════════════════════════
+  /tickets/orders:
+    get:
+      tags: [Scenic Info]
+      summary: 票务订单状态查询（只读）
+      parameters:
+        - name: ticketCode
+          in: query
+          schema:
+            type: string
+          description: 入园核验码
+        - name: phone
+          in: query
+          schema:
+            type: string
+          description: 订票手机号
+        - name: orderId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          orders:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/TicketOrder'
+
+  /tickets/verify:
+    post:
+      tags: [Scenic Info]
+      summary: 票码核验（只读）
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ticketCode]
+              properties:
+                ticketCode:
+                  type: string
+                sessionId:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/TicketVerifyResult'
+
+  # ═══════════════════════════════════════
+  # P0 新增: Queue & Reservation (business-api)
+  # ═══════════════════════════════════════
+  /queue/tickets:
+    post:
+      tags: [Reservations]
+      summary: 排队取号
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [sessionId, queueId]
+              properties:
+                sessionId:
+                  type: string
+                queueId:
+                  type: string
+                queueName:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/QueueTicket'
+    delete:
+      tags: [Reservations]
+      summary: 取消排队
+      parameters:
+        - name: ticketId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /reservations:
+    post:
+      tags: [Reservations]
+      summary: 创建预约
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [sessionId, resourceType, resourceId, timeSlot]
+              properties:
+                sessionId:
+                  type: string
+                resourceType:
+                  type: string
+                  enum: [show, spot, facility]
+                resourceId:
+                  type: string
+                resourceName:
+                  type: string
+                timeSlot:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Reservation'
+
+  # ═══════════════════════════════════════
+  # P0 新增: Work Orders (business-api)
+  # ═══════════════════════════════════════
+  /work-orders:
+    post:
+      tags: [Work Orders]
+      summary: 提交工单（投诉/反馈/应急）
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [sessionId, type, title]
+              properties:
+                sessionId:
+                  type: string
+                type:
+                  type: string
+                  enum: [complaint, feedback, emergency, low_confidence]
+                title:
+                  type: string
+                description:
+                  type: string
+                images:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+                location:
+                  type: object
+                  properties:
+                    lat:
+                      type: number
+                    lng:
+                      type: number
+                contactPhone:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          orderId:
+                            type: string
+                          status:
+                            type: string
+
+  /work-orders/{orderId}:
+    get:
+      tags: [Work Orders]
+      summary: 查询工单状态
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/WorkOrder'
+
+  # ═══════════════════════════════════════
+  # P0 新增: Emergency (business-api)
+  # ═══════════════════════════════════════
+  /emergency/requests:
+    post:
+      tags: [Emergency]
+      summary: 发起应急求助
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [sessionId, type]
+              properties:
+                sessionId:
+                  type: string
+                type:
+                  type: string
+                  enum: [sos, medical, lost_child, security, other]
+                description:
+                  type: string
+                location:
+                  type: object
+                  properties:
+                    lat:
+                      type: number
+                    lng:
+                      type: number
+                contactPhone:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          requestId:
+                            type: string
+                          status:
+                            type: string
+                          responderEta:
+                            type: string
+
+  # ═══════════════════════════════════════
+  # P0 新增: Offline (business-api)
+  # ═══════════════════════════════════════
+  /offline-packages/latest:
+    get:
+      tags: [Offline]
+      summary: 获取最新离线包信息
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/OfflinePackage'
+
+  # ═══════════════════════════════════════
+  # P0 新增: Auth (admin-api)
+  # ═══════════════════════════════════════
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: 管理员登录
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/LoginResponse'
+
+  /auth/refresh:
+    post:
+      tags: [Auth]
+      summary: 刷新 token
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+      responses:
+        '200':
+          description: OK
+
+  # ═══════════════════════════════════════
+  # P0 新增: Users & Roles (admin-api)
+  # ═══════════════════════════════════════
+  /users:
+    get:
+      tags: [Users]
+      summary: 用户列表
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: OK
+    post:
+      tags: [Users]
+      summary: 创建用户
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, password, displayName, roleId]
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                displayName:
+                  type: string
+                roleId:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/AdminUser'
+
+  /users/{userId}:
+    put:
+      tags: [Users]
+      summary: 更新用户
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                displayName:
+                  type: string
+                roleId:
+                  type: string
+                status:
+                  type: string
+                  enum: [active, disabled]
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags: [Users]
+      summary: 禁用用户
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /roles:
+    get:
+      tags: [Roles]
+      summary: 角色列表
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Role'
+    post:
+      tags: [Roles]
+      summary: 创建角色
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, permissions]
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                permissions:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Role'
+
+  /roles/{roleId}:
+    put:
+      tags: [Roles]
+      summary: 更新角色
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: roleId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                permissions:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: OK
+
+  # ═══════════════════════════════════════
+  # P0 新增: Ops Snapshot (admin-api)
+  # ═══════════════════════════════════════
+  /admin/ops/snapshot:
+    get:
+      tags: [Analytics]
+      summary: 运营聚合首页
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/OpsSnapshot'
+
+  # ═══════════════════════════════════════
+  # P0 新增: Content CRUD (admin-api)
+  # ═══════════════════════════════════════
+  /content:
+    get:
+      tags: [Content]
+      summary: 内容列表
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [spot, route, facility, notice, event, ticket_policy]
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [draft, pending_review, approved, published, rejected, revoked]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: OK
+    post:
+      tags: [Content]
+      summary: 创建内容草稿
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [type, title, body]
+              properties:
+                type:
+                  type: string
+                  enum: [spot, route, facility, notice, event, ticket_policy]
+                title:
+                  type: string
+                body:
+                  type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/ContentItem'
+
+  /content/{contentId}:
+    get:
+      tags: [Content]
+      summary: 内容详情
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: contentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/ContentItem'
+    put:
+      tags: [Content]
+      summary: 更新内容
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: contentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: object
+      responses:
+        '200':
+          description: OK
+
+  /content/{contentId}/submit:
+    post:
+      tags: [Content]
+      summary: 提交审核
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: contentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /content/{contentId}/approve:
+    post:
+      tags: [Content]
+      summary: 审核通过并发布
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: contentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+      responses:
+        '200':
+          description: OK
+
+  /content/{contentId}/reject:
+    post:
+      tags: [Content]
+      summary: 驳回
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: contentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+      responses:
+        '200':
+          description: OK
+
+  /content/{contentId}/revoke:
+    post:
+      tags: [Content]
+      summary: 撤回发布
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: contentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  # ═══════════════════════════════════════
+  # P0 新增: Config Center (admin-api)
+  # ═══════════════════════════════════════
+  /config:
+    get:
+      tags: [Config]
+      summary: 配置列表
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ResponseEnvelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/ConfigEntry'
+
+  /config/{key}:
+    put:
+      tags: [Config]
+      summary: 更新配置项
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [value]
+              properties:
+                value: {}
+                description:
+                  type: string
       responses:
         '200':
           description: OK
