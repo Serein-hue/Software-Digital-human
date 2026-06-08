@@ -62,7 +62,12 @@ app.include_router(runtime.router, prefix="/v1")
 app.include_router(data_gaps.router, prefix="/v1")
 app.include_router(audit_logs.router, prefix="/v1")
 
-# P0 新增：Auth + RBAC
+# P0 新增：Auth + RBAC + Ops + Content + Config
 app.include_router(auth.router, prefix="/v1")
 app.include_router(users.router, prefix="/v1")
 app.include_router(roles.router, prefix="/v1")
+
+from app.routers import ops, content, config  # noqa: E402
+app.include_router(ops.router, prefix="/v1")
+app.include_router(content.router, prefix="/v1")
+app.include_router(config.router, prefix="/v1")

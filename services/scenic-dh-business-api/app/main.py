@@ -78,9 +78,11 @@ def health():
 
 
 # ═══════════════════════════════════════════
-# Routers（逐步挂载）
+# Routers
 # ═══════════════════════════════════════════
 from app.routers import spots, routes, sessions, messages, arrivals, feedback, scenic, rag_proxy, internal  # noqa: E402
+# P0 新增
+from app.routers import map, qrcode, tickets_ext, reservations, work_orders, emergency, offline  # noqa: E402
 
 app.include_router(spots.router, prefix="/v1")
 app.include_router(routes.router, prefix="/v1")
@@ -91,3 +93,12 @@ app.include_router(feedback.router, prefix="/v1")
 app.include_router(scenic.router, prefix="/v1")
 app.include_router(rag_proxy.router, prefix="/v1")
 app.include_router(internal.router)  # 不带 prefix，路径自带 /internal/v1/
+
+# P0 新增
+app.include_router(map.router, prefix="/v1")
+app.include_router(qrcode.router, prefix="/v1")
+app.include_router(tickets_ext.router, prefix="/v1")
+app.include_router(reservations.router, prefix="/v1")
+app.include_router(work_orders.router, prefix="/v1")
+app.include_router(emergency.router, prefix="/v1")
+app.include_router(offline.router, prefix="/v1")
