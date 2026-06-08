@@ -107,6 +107,35 @@ def seed_admin_db():
                 db.add(ConfigEntry(key=key, value=val, value_type=vtype, description=desc))
         print(f"  Configs: {len(defaults)} 项默认配置")
 
+        # ── Default Personas ──
+        from app.models import Persona, DataGap
+        if db.query(Persona).count() == 0:
+            db.add_all([
+                Persona(id="P1", name="灵山小导游",
+                        description="活泼友好的景区导游，适合家庭游客",
+                        tone="friendly",
+                        fallback_policy={"low_confidence": "admit_unsure", "off_topic": "redirect"}),
+                Persona(id="P2", name="灵山文化导览",
+                        description="专业严谨的文化讲解员，适合文化深度游客",
+                        tone="professional",
+                        fallback_policy={"low_confidence": "cite_source", "off_topic": "decline"}),
+            ])
+            print("  Personas: 2 个 (P1 灵山小导游, P2 灵山文化导览)")
+
+        # ── Default Data Gaps ──
+        if db.query(DataGap).count() == 0:
+            db.add_all([
+                DataGap(id="GAP-001", data_type="GPS/定位", description="游客真实 GPS 位置",
+                        impact="无法做精确到达检测", status="pending", mock_strategy="默认灵山坐标", priority="P0", owner="接口"),
+                DataGap(id="GAP-002", data_type="实时天气", description="景区实时天气数据",
+                        impact="天气提醒不准确", status="pending", mock_strategy="固定多云26℃", priority="P1", owner="接口"),
+                DataGap(id="GAP-003", data_type="实时客流", description="各景点实时人数",
+                        impact="无法计算准确排队时间", status="pending", mock_strategy="固定15分钟", priority="P1", owner="接口"),
+                DataGap(id="GAP-004", data_type="票务核销", description="第三方票务系统对接",
+                        impact="只能展示票种跳转购买", status="pending", mock_strategy="模拟票码验证", priority="P0", owner="接口"),
+            ])
+            print("  DataGaps: 4 个")
+
         db.commit()
         print("\nadmin-api 种子数据导入完成 ✓")
         print("  登录: POST /v1/auth/login {\"username\":\"admin\",\"password\":\"admin123\"}")

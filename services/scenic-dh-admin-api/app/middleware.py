@@ -51,13 +51,24 @@ async def admin_auth_middleware(request: Request, call_next):
 
     token = auth[7:]
 
-    # 兼容旧固定 token（开发过渡期）
+    # 兼容旧固定 token（开发过渡期，拥有全部权限）
     if token == settings.ADMIN_TOKEN:
         request.state.user = {
             "sub": "legacy-admin",
             "username": "admin",
             "role_id": "legacy",
-            "permissions": [],
+            "permissions": [
+                "content:read", "content:write", "content:approve", "content:revoke",
+                "users:read", "users:write", "users:manage",
+                "roles:read", "roles:write",
+                "work_orders:read", "work_orders:assign", "work_orders:resolve",
+                "broadcasts:create", "broadcasts:cancel",
+                "knowledge:read", "knowledge:rebuild",
+                "runtime:read", "runtime:control",
+                "analytics:read",
+                "audit:read",
+                "config:read", "config:write",
+            ],
         }
         return await call_next(request)
 

@@ -155,3 +155,48 @@ class WorkOrderRecord(Base):
     old_status = Column(String(16), nullable=True)
     new_status = Column(String(16), nullable=True)
     created_at = Column(DateTime, default=_utcnow)
+
+
+# ═══════════════════════════════════════════════════════════
+# 数字人配置 & 运营 (P0 新增)
+# ═══════════════════════════════════════════════════════════
+
+class Persona(Base):
+    __tablename__ = "personas"
+
+    id = Column(String(24), primary_key=True, default=_new_id)
+    name = Column(String(64), nullable=False)
+    description = Column(Text, nullable=True)
+    tone = Column(String(20), default="friendly")
+    fallback_policy = Column(JSON, default=dict)
+    created_at = Column(DateTime, default=_utcnow)
+    updated_at = Column(DateTime, default=_utcnow, onupdate=_utcnow)
+
+
+class BroadcastMsg(Base):
+    __tablename__ = "broadcasts"
+
+    id = Column(String(24), primary_key=True, default=_new_id)
+    text = Column(Text, nullable=False)
+    priority = Column(String(12), default="normal")
+    target = Column(String(12), default="all")
+    target_id = Column(String(24), nullable=True)
+    expires_at = Column(DateTime, nullable=True)
+    status = Column(String(12), default="queued")
+    operator_id = Column(String(64), nullable=True)
+    created_at = Column(DateTime, default=_utcnow)
+
+
+class DataGap(Base):
+    __tablename__ = "data_gaps"
+
+    id = Column(String(24), primary_key=True, default=_new_id)
+    data_type = Column(String(32), nullable=False)
+    description = Column(Text, nullable=True)
+    impact = Column(String(32), nullable=True)
+    status = Column(String(16), default="pending")
+    mock_strategy = Column(String(64), nullable=True)
+    priority = Column(String(8), default="P1")
+    owner = Column(String(32), nullable=True)
+    created_at = Column(DateTime, default=_utcnow)
+    updated_at = Column(DateTime, default=_utcnow, onupdate=_utcnow)

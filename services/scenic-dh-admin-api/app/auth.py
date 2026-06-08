@@ -91,6 +91,15 @@ async def get_current_user(
     if path in ("/health", "/docs", "/redoc", "/openapi.json", "/v1/auth/login"):
         return None
 
+    # middleware 已经验证并设置（含 legacy admin token）
+    if hasattr(request.state, "user") and request.state.user:
+        payload = dict(request.state.user)
+        # 可选：验证用户仍存在且活跃
+        from app.models import User
+        user = db.query(User).filter(User.id == payload.get("sub", "")).first()
+        payload["_user"] = user
+        return payload
+
     if credentials is None:
         raise HTTPException(status_code=401, detail="缺少鉴权头")
 
