@@ -157,12 +157,13 @@ def seed_business_db():
         if db.query(TicketEntitlement).count() == 0:
             db.add_all([
                 TicketEntitlement(id="TK-001", product_id="TK-001", product_name="成人票", price=210.0,
-                                  applicable_group="成人", official_jump_url="https://weixin.qq.com/buyticket/lingshan"),
+                                  applicable_group="成人", source="public_demo_package",
+                                  official_jump_url="https://weixin.qq.com/buyticket/lingshan"),
                 TicketEntitlement(id="TK-002", product_id="TK-002", product_name="学生票", price=105.0,
-                                  applicable_group="学生（持有效学生证）",
+                                  applicable_group="学生（持有效学生证）", source="public_demo_package",
                                   official_jump_url="https://weixin.qq.com/buyticket/lingshan"),
                 TicketEntitlement(id="TK-003", product_id="TK-003", product_name="老人票", price=105.0,
-                                  applicable_group="60岁以上老人",
+                                  applicable_group="60岁以上老人", source="public_demo_package",
                                   official_jump_url="https://weixin.qq.com/buyticket/lingshan"),
             ])
             print("  TicketEntitlements: 3 条")

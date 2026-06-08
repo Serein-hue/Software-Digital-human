@@ -1,60 +1,80 @@
-"""内部接口 — 供编排服务（avatar-orchestrator）调用"""
+"""内部接口 — 供编排服务（avatar-orchestrator）调用 — DB 持久化"""
 
 from fastapi import APIRouter, Request
 from pydantic import BaseModel
+from sqlalchemy.orm import Session
 
-from app.schemas.common import ok, err
+from app.schemas.common import ok
+from app.database import SessionLocal
+from app.models import Spot, Route, Notice
 
 router = APIRouter(tags=["Internal"])
 
-# 复用已有 seed 数据（从 spots.py 和 routes.py 导入）
-from app.routers.spots import _SEED_SPOTS, _SEED_GUIDES
-from app.routers.routes import _SEED_ROUTES
-
 
 class ContextQueryRequest(BaseModel):
-    intent: str = ""           # spot_query / route_query / general / arrival
+    intent: str = ""
     spot_id: str | None = None
     session_id: str | None = None
 
 
 @router.post("/internal/v1/context/query")
 def context_query(body: ContextQueryRequest, request: Request):
-    """结构化上下文查询 — 给编排服务返回聚合后的业务数据
-
-    编排服务（avatar-orchestrator）根据 intent 和 spot_id 请求上下文，
-    business-api 聚合相关数据后返回，无需编排层分别调用各接口。
-    """
     trace_id = request.state.trace_id
+    db: Session = SessionLocal()
+    try:
+        spot = None
+        route = None
 
-    spot = None
-    route = None
-    notices = [
-        {"id": "NT-001", "type": "info", "title": "九龙灌浴表演时间", "content": "每日 10:00, 14:00, 16:00"},
-        {"id": "NT-002", "type": "info", "title": "游览须知", "content": "请保持景区卫生，文明游览"},
-    ]
-    weather = {"temperature": 26, "weather": "多云", "source": "mock"}
+        # Notices
+        notices_q = db.query(Notice).filter(Notice.status == "published", Notice.active == True).limit(5).all()
+        notices = [{"id": n.id, "type": n.type, "title": n.title, "content": n.content} for n in notices_q]
 
-    # 根据 intent 查找相关数据
-    if body.spot_id:
-        for s in _SEED_SPOTS:
-            if s["id"] == body.spot_id:
-                spot = s
-                # 附带讲解词
-                guide = _SEED_GUIDES.get(body.spot_id, {})
-                spot = {**spot, "guide": guide}
-                break
+        weather = {"temperature": 26, "weather": "多云", "source": "mock"}
 
-    if body.intent in ("route_query", "general"):
-        route = _SEED_ROUTES[0]  # 默认推荐第一条
+        # 根据 intent 查找
+        if body.spot_id:
+            s = db.query(Spot).filter(Spot.id == body.spot_id).first()
+            if s:
+                spot = {
+                    "id": s.id, "scenicId": s.scenic_id, "name": s.name,
+                    "nameEn": s.name_en, "tags": s.tags or [],
+                    "location": s.location, "summary": s.summary,
+                    "intro": s.intro, "highlights": s.highlights or [],
+                    "images": s.images or [],
+                    "source": s.source, "freshnessLevel": s.freshness_level,
+                    "guide": {
+                        "spotId": s.id,
+                        "shortText": s.guide_short or s.name,
+                        "briefText": s.guide_brief or "",
+                        "longText": s.guide_long or s.intro or "",
+                        "fallbackText": s.guide_fallback or "",
+                        "source": s.source or "public_demo_package",
+                    },
+                }
 
-    result = {
-        "intent": body.intent,
-        "spot": spot,
-        "route": route,
-        "notices": notices,
-        "weather": weather,
-        "session_id": body.session_id,
-    }
+        if body.intent in ("route_query", "general"):
+            r = db.query(Route).filter(Route.status == "published").first()
+            if r:
+                stops = []
+                for stop in (r.stops or []):
+                    stops.append({
+                        "order": stop.order, "spotId": stop.spot_id,
+                        "spotName": stop.spot_name, "stayDuration": stop.stay_duration,
+                        "description": stop.description,
+                    })
+                route = {
+                    "id": r.id, "scenicId": r.scenic_id, "name": r.name,
+                    "type": r.type, "duration": r.duration, "persona": r.persona,
+                    "stops": stops, "tips": r.tips, "source": r.source,
+                }
 
-    return ok(result, trace_id)
+        return ok({
+            "intent": body.intent,
+            "spot": spot,
+            "route": route,
+            "notices": notices,
+            "weather": weather,
+            "session_id": body.session_id,
+        }, trace_id)
+    finally:
+        db.close()
