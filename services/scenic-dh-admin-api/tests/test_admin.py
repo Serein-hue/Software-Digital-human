@@ -60,6 +60,9 @@ def test_runtime_status():
     resp = client.get("/v1/runtime/status", headers=AUTH)
     data = resp.json()
     assert data["data"]["fayOnline"] is True
+    assert data["data"]["avatarImageSource"] == "fay-runtime"
+    assert data["data"]["avatarImageSet"]["speaking"].endswith("/fay-robot/Speaking.jpg")
+    assert data["data"]["avatarConfig"]["transport"] == "fay-runtime"
 
 
 def test_trace_header():
