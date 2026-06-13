@@ -17,6 +17,7 @@ class Settings(BaseSettings):
 
     # 上游服务
     RAG_SERVICE_URL: str = "http://127.0.0.1:5010"
+    RAG_API_KEY: str = "dev-token-123456"
     AVATAR_ORCHESTRATOR_URL: str = "http://localhost:8004/v1"
 
     # 内部服务 token

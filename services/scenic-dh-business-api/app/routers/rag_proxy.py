@@ -28,14 +28,15 @@ async def rag_query(body: RagQueryRequest, request: Request):
     if body.filters:
         payload["filters"] = body.filters
 
-    # 从客户端请求透传 Authorization 头（RAG 服务需要鉴权）
-    auth_header = request.headers.get("Authorization", "")
-    upstream_headers = {"X-Trace-Id": trace_id, "Content-Type": "application/json"}
-    if auth_header:
-        upstream_headers["Authorization"] = auth_header
+    # 使用服务自身 RAG API key 调用上游
+    upstream_headers = {
+        "X-Trace-Id": trace_id,
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {settings.RAG_API_KEY}",
+    }
 
     try:
-        async with httpx.AsyncClient(timeout=15.0) as client:
+        async with httpx.AsyncClient(timeout=60.0) as client:
             resp = await client.post(
                 RAG_QUERY_URL,
                 json=payload,

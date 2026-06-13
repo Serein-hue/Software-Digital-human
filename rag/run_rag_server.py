@@ -27,4 +27,13 @@ def index():
 if __name__ == "__main__":
     port = int(os.getenv("RAG_SERVICE_PORT", "5010"))
     logger.info("RAG service on 0.0.0.0:%d", port)
+    # 预加载 embedding 模型，避免首次查询耗时过长
+    try:
+        from rag.embedding_service import EmbeddingService
+        logger.info("Pre-warming embedding model...")
+        emb = EmbeddingService()
+        emb.encode("预热")
+        logger.info("Embedding model ready")
+    except Exception as exc:
+        logger.warning("Embedding pre-warm skipped: %s", exc)
     app.run(host="0.0.0.0", port=port, debug=False)

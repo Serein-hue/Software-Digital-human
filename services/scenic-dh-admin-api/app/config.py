@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     # 上游服务
     BUSINESS_API_URL: str = "http://localhost:8001/v1"
     RAG_SERVICE_URL: str = "http://127.0.0.1:5010"
-    FAY_RUNTIME_URL: str = "http://localhost:8005/internal/v1"
+    FAY_HTTP_URL: str = "http://localhost:5000"
 
     # 鉴权
     INTERNAL_SERVICE_TOKEN: str = "svc-dev-token"

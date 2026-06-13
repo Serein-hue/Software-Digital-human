@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
 
 from app.config import settings
 from app.middleware import TraceMiddleware, admin_auth_middleware
@@ -29,6 +30,20 @@ async def lifespan(app: FastAPI):
         seed()
     except Exception as e:
         logger.warning("Admin seed skipped: %s", e)
+    # 注入 OpenAPI Bearer 安全方案 -> Swagger Authorize 按钮
+    try:
+        schema = get_openapi(title=app.title, version=app.version, description=app.description, routes=app.routes)
+        schema.setdefault("components", {})["securitySchemes"] = {
+            "BearerAuth": {"type": "http", "scheme": "bearer", "bearerFormat": "JWT", "description": "输入: adm-dev-token"}
+        }
+        for path, methods in schema.get("paths", {}).items():
+            for method in methods.values():
+                if path != "/health":
+                    method["security"] = [{"BearerAuth": []}]
+        app.openapi_schema = schema
+        logger.info("Swagger Authorize button enabled")
+    except Exception as e:
+        logger.warning("OpenAPI patch failed: %s", e)
     yield
     logger.info(f"{settings.SERVICE_NAME} shutting down")
 

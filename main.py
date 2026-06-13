@@ -83,7 +83,10 @@ import signal
 import atexit
 import threading
 from utils import config_util, util
-from asr import ali_nls
+try:
+    from asr import ali_nls
+except ImportError:
+    ali_nls = None
 from core import wsa_server
 from gui import flask_server
 from core import content_db
