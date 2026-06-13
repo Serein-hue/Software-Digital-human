@@ -25,6 +25,15 @@ logger = logging.getLogger("business-api")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info(f"{settings.SERVICE_NAME} v{settings.SERVICE_VERSION} starting on port {settings.PORT}")
+    # 初始化数据库表
+    from app.database import init_db
+    init_db()
+    # 灌入种子数据（幂等：已有数据则跳过）
+    try:
+        from seeds.seed_db import seed
+        seed()
+    except Exception as e:
+        logger.warning("Seed skipped or failed: %s", e)
     yield
     logger.info(f"{settings.SERVICE_NAME} shutting down")
 
@@ -80,7 +89,7 @@ def health():
 # ═══════════════════════════════════════════
 # Routers（逐步挂载）
 # ═══════════════════════════════════════════
-from app.routers import spots, routes, sessions, messages, arrivals, feedback, scenic, rag_proxy, internal  # noqa: E402
+from app.routers import spots, routes, sessions, messages, arrivals, feedback, scenic, rag_proxy, internal, operations  # noqa: E402
 
 app.include_router(spots.router, prefix="/v1")
 app.include_router(routes.router, prefix="/v1")
@@ -90,4 +99,5 @@ app.include_router(arrivals.router, prefix="/v1")
 app.include_router(feedback.router, prefix="/v1")
 app.include_router(scenic.router, prefix="/v1")
 app.include_router(rag_proxy.router, prefix="/v1")
+app.include_router(operations.router, prefix="/v1")
 app.include_router(internal.router)  # 不带 prefix，路径自带 /internal/v1/

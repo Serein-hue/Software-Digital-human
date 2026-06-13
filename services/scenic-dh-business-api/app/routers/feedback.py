@@ -1,4 +1,4 @@
-"""反馈接口"""
+"""反馈接口 — DB 版"""
 
 import uuid
 from datetime import datetime, timezone
@@ -7,10 +7,10 @@ from fastapi import APIRouter, Request, Query
 from pydantic import BaseModel
 
 from app.schemas.common import ok
+from app.database import DbSession
+from app.models import Feedback
 
 router = APIRouter(tags=["Feedback"])
-
-_FEEDBACKS: list[dict] = []
 
 
 class FeedbackRequest(BaseModel):
@@ -21,26 +21,42 @@ class FeedbackRequest(BaseModel):
 
 
 @router.post("/sessions/{session_id}/feedback")
-def create_feedback(session_id: str, body: FeedbackRequest, request: Request):
+def create_feedback(session_id: str, body: FeedbackRequest, request: Request, db: DbSession = None):
     trace_id = request.state.trace_id
     feedback_id = str(uuid.uuid4())
-    fb = {
-        "id": feedback_id,
-        "sessionId": session_id,
-        "messageId": body.messageId,
-        "rating": body.rating,
-        "resolved": body.resolved,
-        "comment": body.comment,
-        "createdAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-    }
-    _FEEDBACKS.append(fb)
+    fb = Feedback(
+        id=feedback_id,
+        session_id=session_id,
+        message_id=body.messageId,
+        rating=body.rating,
+        resolved=body.resolved,
+        comment=body.comment or "",
+        created_at=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    )
+    db.add(fb)
+    db.commit()
     return ok({"feedbackId": feedback_id}, trace_id)
 
 
 @router.get("/feedback")
-def list_feedback(date_range: str = Query(None), rating: int = Query(None), request: Request = None):
+def list_feedback(date_range: str = Query(None), rating: int = Query(None), request: Request = None, db: DbSession = None):
     trace_id = request.state.trace_id
-    items = _FEEDBACKS
+    query = db.query(Feedback)
     if rating:
-        items = [f for f in items if f["rating"] == rating]
-    return ok({"items": items, "total": len(items)}, trace_id)
+        query = query.filter(Feedback.rating == rating)
+    items = query.order_by(Feedback.created_at.desc()).all()
+    return ok({
+        "items": [
+            {
+                "id": fb.id,
+                "sessionId": fb.session_id,
+                "messageId": fb.message_id,
+                "rating": fb.rating,
+                "resolved": fb.resolved,
+                "comment": fb.comment,
+                "createdAt": fb.created_at,
+            }
+            for fb in items
+        ],
+        "total": len(items),
+    }, trace_id)
