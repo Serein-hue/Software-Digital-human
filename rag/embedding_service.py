@@ -4,8 +4,13 @@
 
 import hashlib
 import logging
+import os
 from typing import Dict, List, Optional
 from rag.rag_config import config
+
+# 默认离线模式：模型已缓存至本地，避免在中国网络受限环境重试
+os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
 
 logger = logging.getLogger("rag.embedding")
 

@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 """RAG 独立服务启动入口。启动: python rag/run_rag_server.py"""
 
-import logging, os, sys
+# 强制离线模式：模型已缓存至本地，避免 HuggingFace 在中国网络受限导致启动失败
+import os
+os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
+
+import logging, sys
 _PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
