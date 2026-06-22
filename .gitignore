@@ -32,3 +32,5 @@ Thumbs.db
 rag/chroma_db/
 rag/.venv/
 backend/rag/
+*.db-shm
+*.db-wal

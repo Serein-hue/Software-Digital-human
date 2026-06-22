@@ -18,7 +18,7 @@
 | scenic-dh-admin-api | 8002 | 接口负责人 |
 | scenic-dh-rag-service | 8003 | RAG 负责人 |
 | scenic-dh-avatar-orchestrator | 8004 | 数字人负责人 |
-| scenic-dh-fay-runtime | 8005 | 数字人负责人 |
+| scenic-dh-fay-runtime | 5000 (core) / 5010 (MCP) / 8765 (MCP SSE) | 数字人负责人 |
 | scenic-dh-demo-mock-service | 8006 | 接口负责人 |
 
 ## 三条铁律

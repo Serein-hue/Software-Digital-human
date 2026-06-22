@@ -16,7 +16,12 @@ class Settings(BaseSettings):
     # 上游服务
     BUSINESS_API_URL: str = "http://localhost:8001/v1"
     RAG_SERVICE_URL: str = "http://127.0.0.1:5010"
-    FAY_HTTP_URL: str = "http://localhost:5000"
+    FAY_HTTP_URL: str = "http://localhost:5000"       # Fay GUI / core HTTP（兼容）
+
+    # Fay 数字人运行时（标准部署端口）
+    FAY_CORE_URL: str = "http://127.0.0.1:5000"       # Fay GUI / core HTTP
+    FAY_MCP_URL: str = "http://127.0.0.1:5010"        # Fay MCP 管理服务
+    FAY_WS_URL: str = "ws://127.0.0.1:10000"          # Fay WebSocket
 
     # 鉴权
     INTERNAL_SERVICE_TOKEN: str = "svc-dev-token"
