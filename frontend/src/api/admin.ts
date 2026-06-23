@@ -222,3 +222,101 @@ export async function toggleMicrophone(): Promise<MicToggleResult | null> {
 export async function clearQueue(): Promise<QueueClearResult | null> {
   return apiPost<QueueClearResult>('/runtime/clear-queue')
 }
+
+// ── 工单中心 ─────────────────────────────────────────────────────────
+
+export interface WorkOrder {
+  id: string
+  sessionId: string
+  category: 'complaint' | 'suggestion' | 'repair' | 'other'
+  description: string
+  location: string
+  contact: string
+  status: 'pending' | 'processing' | 'resolved' | 'closed'
+  handler: string | null
+  resolution: string | null
+  createdAt: string
+  updatedAt: string
+}
+
+export interface Emergency {
+  id: string
+  sessionId: string
+  emergencyType: 'medical' | 'lost' | 'security' | 'fire' | 'other'
+  location: string
+  contact: string
+  description: string
+  status: 'pending' | 'dispatching' | 'arrived' | 'resolved'
+  dispatcher: string | null
+  resolvedAt: string | null
+  createdAt: string
+  updatedAt: string
+}
+
+export interface Feedback {
+  id: string
+  sessionId: string
+  messageId: string | null
+  rating: number
+  resolved: boolean
+  comment: string
+  createdAt: string
+}
+
+// ── 工单 API ─────────────────────────────────────────────────────────
+
+export async function fetchWorkOrders(
+  page = 1,
+  pageSize = 20,
+  status?: string,
+  category?: string,
+): Promise<PaginatedData<WorkOrder> | null> {
+  const params = new URLSearchParams({ page: String(page), page_size: String(pageSize) })
+  if (status) params.set('status', status)
+  if (category) params.set('category', category)
+  return apiGet<PaginatedData<WorkOrder>>(`/work-orders?${params}`)
+}
+
+export async function handleWorkOrder(orderId: string): Promise<{ workOrderId: string; status: string } | null> {
+  return apiPost(`/work-orders/${orderId}/handle`)
+}
+
+export async function resolveWorkOrder(orderId: string, resolution = '已处理'): Promise<{ workOrderId: string; status: string } | null> {
+  return apiPost(`/work-orders/${orderId}/resolve`, { resolution })
+}
+
+export async function closeWorkOrder(orderId: string): Promise<{ workOrderId: string; status: string } | null> {
+  return apiPost(`/work-orders/${orderId}/close`)
+}
+
+// ── 应急 API ─────────────────────────────────────────────────────────
+
+export async function fetchEmergencies(
+  page = 1,
+  pageSize = 20,
+  status?: string,
+): Promise<PaginatedData<Emergency> | null> {
+  const params = new URLSearchParams({ page: String(page), page_size: String(pageSize) })
+  if (status) params.set('status', status)
+  return apiGet<PaginatedData<Emergency>>(`/emergencies?${params}`)
+}
+
+export async function dispatchEmergency(emergencyId: string): Promise<{ emergencyId: string; status: string } | null> {
+  return apiPost(`/emergencies/${emergencyId}/dispatch`)
+}
+
+export async function resolveEmergency(emergencyId: string): Promise<{ emergencyId: string; status: string } | null> {
+  return apiPost(`/emergencies/${emergencyId}/resolve`)
+}
+
+// ── 反馈 API ─────────────────────────────────────────────────────────
+
+export async function fetchFeedbacks(
+  page = 1,
+  pageSize = 20,
+  minRating?: number,
+): Promise<PaginatedData<Feedback> | null> {
+  const params = new URLSearchParams({ page: String(page), page_size: String(pageSize) })
+  if (minRating !== undefined) params.set('min_rating', String(minRating))
+  return apiGet<PaginatedData<Feedback>>(`/feedbacks?${params}`)
+}

@@ -21,6 +21,7 @@ const DigitalHumanConfig = lazy(() => import('./components/admin/DigitalHumanCon
 const SystemSettings = lazy(() => import('./components/admin/SystemSettings'))
 const CommandCenter = lazy(() => import('./components/admin/CommandCenter'))
 const DigitalHumanMonitor = lazy(() => import('./components/admin/DigitalHumanMonitor'))
+const WorkOrderCenter = lazy(() => import('./components/admin/WorkOrderCenter'))
 import {
   ReactFlow,
   Background,
@@ -585,6 +586,7 @@ function AnimatedRoutes() {
         <Route path="/settings" element={<Suspense><SystemSettings /></Suspense>} />
         <Route path="/command" element={<Suspense><CommandCenter /></Suspense>} />
         <Route path="/digital-human-monitor" element={<Suspense><DigitalHumanMonitor /></Suspense>} />
+        <Route path="/work-orders" element={<Suspense><WorkOrderCenter /></Suspense>} />
         <Route path="/validation" element={<ValidationPage />} />
         <Route path="/word" element={<WordPage />} />
       </Routes>

@@ -4226,6 +4226,238 @@ li {
 }
 
 /* =============================================
+   B-end Work Order Center — 工单中心
+   ============================================= */
+
+.wo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wo-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+.wo-card:hover {
+  border-color: rgba(21, 93, 88, 0.2);
+}
+
+.wo-card.expanded {
+  border-color: var(--teal);
+}
+
+.wo-card-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.wo-card-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.wo-card-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.wo-category-tag {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: rgba(21, 93, 88, 0.08);
+  color: var(--teal);
+  flex-shrink: 0;
+}
+
+.wo-category-tag.urgent {
+  background: rgba(180, 82, 44, 0.1);
+  color: #b4522c;
+}
+
+.wo-desc {
+  font-size: 0.82rem;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wo-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.wo-chevron {
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform 0.2s;
+}
+
+.wo-chevron.open {
+  transform: rotate(90deg);
+}
+
+.wo-card-detail {
+  border-top: 1px solid var(--line);
+  padding: 12px 16px;
+  overflow: hidden;
+}
+
+.wo-full-desc {
+  font-size: 0.85rem;
+  color: var(--ink);
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.wo-meta-grid {
+  display: flex;
+  gap: 12px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.wo-meta-grid span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wo-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.wo-act-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.75rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.wo-act-btn:hover:not(:disabled) {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.wo-act-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.wo-act-btn.primary {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+}
+
+.wo-act-btn.primary:hover:not(:disabled) {
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+}
+
+.wo-act-btn.urgent-btn {
+  border-color: #b4522c;
+  color: #b4522c;
+}
+
+.wo-act-btn.urgent-btn:hover:not(:disabled) {
+  background: rgba(180, 82, 44, 0.06);
+  border-color: #b4522c;
+}
+
+/* ── 应急状态卡片 ──────────────────────────── */
+
+.wo-card.em-card {
+  border-left: 3px solid transparent;
+}
+
+.wo-card.em-card.urgent {
+  border-left-color: #b4522c;
+  background: rgba(180, 82, 44, 0.02);
+}
+
+/* ── 反馈样式 ──────────────────────────────── */
+
+.wo-card.fb-card {
+  cursor: default;
+}
+
+.wo-card.fb-card:hover {
+  border-color: var(--line);
+}
+
+.fb-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.fb-rating-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.wo-low-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.wo-low-toggle input {
+  accent-color: var(--teal);
+}
+
+@media (max-width: 680px) {
+  .wo-card-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .wo-meta-grid {
+    gap: 8px;
+  }
+}
+
+/* =============================================
    B-end Content Review
    ============================================= */
 
