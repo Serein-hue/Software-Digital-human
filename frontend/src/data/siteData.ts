@@ -69,6 +69,7 @@ export const navRoutes = [
   { to: '/knowledge', label: '知识库' },
   { to: '/review', label: '内容审核' },
   { to: '/digital-human', label: '数字人配置' },
+  { to: '/digital-human-monitor', label: '数字人监控' },
   { to: '/settings', label: '系统设置' },
   { to: '/command', label: '指挥中心' },
   { to: '/prd', label: 'PRD' },

@@ -3827,6 +3827,405 @@ li {
 }
 
 /* =============================================
+   B-end Digital Human Monitor — 数字人监控
+   ============================================= */
+
+.dhmon-root {
+  padding: 28px min(4vw, 48px) 48px;
+}
+
+.dhmon-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dhmon-auto-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.dhmon-auto-refresh input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--teal);
+}
+
+.dhmon-auto-refresh svg {
+  color: var(--teal);
+}
+
+.dhmon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.8rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.dhmon-btn:hover:not(:disabled) {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.dhmon-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.dhmon-btn-primary {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+}
+
+.dhmon-btn-primary:hover:not(:disabled) {
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+  color: #fff;
+}
+
+.dhmon-status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dhmon-status-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  position: relative;
+}
+
+.dhmon-status-card.ok {
+  border-color: rgba(21, 93, 88, 0.2);
+}
+
+.dhmon-status-card.err {
+  border-color: rgba(180, 82, 44, 0.2);
+  background: rgba(180, 82, 44, 0.03);
+}
+
+.dhmon-status-card.speaking {
+  border-color: rgba(21, 93, 88, 0.35);
+  background: rgba(21, 93, 88, 0.04);
+}
+
+.dhmon-status-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(21, 93, 88, 0.08);
+  color: var(--teal);
+}
+
+.dhmon-status-card.err .dhmon-status-icon {
+  background: rgba(180, 82, 44, 0.08);
+  color: #b4522c;
+}
+
+.dhmon-status-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.dhmon-status-label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-bottom: 1px;
+}
+
+.dhmon-status-body strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.dhmon-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dhmon-status-dot.on {
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+}
+
+.dhmon-status-dot.off {
+  background: #b4522c;
+}
+
+.dhmon-queue-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: rgba(21, 93, 88, 0.1);
+  color: var(--teal);
+}
+
+.dhmon-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  background: rgba(180, 82, 44, 0.06);
+  border: 1px solid rgba(180, 82, 44, 0.2);
+  border-radius: 8px;
+  color: #b4522c;
+  font-size: 0.8rem;
+}
+
+.dhmon-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .dhmon-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dhmon-panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dhmon-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 14px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+
+.dhmon-panel-title svg {
+  color: var(--teal);
+  flex-shrink: 0;
+}
+
+.dhmon-log-clear {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.dhmon-log-clear:hover {
+  background: var(--paper-light);
+  color: var(--ink);
+}
+
+.dhmon-broadcast-box {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dhmon-broadcast-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #faf8f1;
+}
+
+.dhmon-broadcast-input-wrap svg {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.dhmon-broadcast-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: transparent;
+}
+
+.dhmon-broadcast-input::placeholder {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.dhmon-actions {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px 14px;
+  flex-wrap: wrap;
+}
+
+.dhmon-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.8rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.dhmon-action-btn:hover:not(:disabled) {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.dhmon-action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.dhmon-action-btn.active {
+  background: rgba(21, 93, 88, 0.06);
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.dhmon-action-btn.danger {
+  color: #b4522c;
+}
+
+.dhmon-action-btn.danger:hover:not(:disabled) {
+  border-color: #b4522c;
+  background: rgba(180, 82, 44, 0.05);
+}
+
+.dhmon-log-container {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.dhmon-log-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.dhmon-log-empty svg {
+  opacity: 0.35;
+}
+
+.dhmon-log-entry {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  font-size: 0.78rem;
+  font-family: 'Cascadia Code', 'SF Mono', 'Fira Code', monospace;
+  border-bottom: 1px solid var(--paper-light);
+}
+
+.dhmon-log-time {
+  color: var(--muted);
+  flex-shrink: 0;
+  min-width: 64px;
+}
+
+.dhmon-log-entry svg {
+  flex-shrink: 0;
+}
+
+.dhmon-log-msg {
+  flex: 1;
+  min-width: 0;
+  color: var(--ink);
+}
+
+.dhmon-log-success svg { color: #16a34a; }
+.dhmon-log-error svg { color: #b4522c; }
+.dhmon-log-warning svg { color: #e89460; }
+.dhmon-log-info svg { color: var(--teal); }
+
+@keyframes dhmon-spin {
+  to { transform: rotate(360deg); }
+}
+
+.dhmon-auto-refresh .spin,
+.dhmon-btn .spin,
+.dhmon-action-btn .spin {
+  animation: dhmon-spin 1s linear infinite;
+}
+
+@media (max-width: 680px) {
+  .dhmon-status-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dhmon-head-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .dhmon-actions {
+    flex-direction: column;
+  }
+
+  .dhmon-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =============================================
    B-end Content Review
    ============================================= */
 

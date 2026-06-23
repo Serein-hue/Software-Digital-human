@@ -7,6 +7,7 @@ import {
   PlayCircle,
   ShieldCheck,
   Sparkles,
+  Monitor,
 } from 'lucide-react'
 import GuidePage from './components/guide/GuidePage'
 import KioskPage from './components/guide/KioskPage'
@@ -19,6 +20,7 @@ const ContentReview = lazy(() => import('./components/admin/ContentReview'))
 const DigitalHumanConfig = lazy(() => import('./components/admin/DigitalHumanConfig'))
 const SystemSettings = lazy(() => import('./components/admin/SystemSettings'))
 const CommandCenter = lazy(() => import('./components/admin/CommandCenter'))
+const DigitalHumanMonitor = lazy(() => import('./components/admin/DigitalHumanMonitor'))
 import {
   ReactFlow,
   Background,
@@ -582,6 +584,7 @@ function AnimatedRoutes() {
         <Route path="/digital-human" element={<Suspense><DigitalHumanConfig /></Suspense>} />
         <Route path="/settings" element={<Suspense><SystemSettings /></Suspense>} />
         <Route path="/command" element={<Suspense><CommandCenter /></Suspense>} />
+        <Route path="/digital-human-monitor" element={<Suspense><DigitalHumanMonitor /></Suspense>} />
         <Route path="/validation" element={<ValidationPage />} />
         <Route path="/word" element={<WordPage />} />
       </Routes>

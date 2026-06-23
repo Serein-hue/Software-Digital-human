@@ -168,3 +168,57 @@ export async function fetchLowConfidenceQueries(
 ): Promise<PaginatedData<LowConfidenceItem> | null> {
   return apiGet<PaginatedData<LowConfidenceItem>>(`/knowledge/low-confidence-queries?page=${page}&page_size=${pageSize}`)
 }
+
+// ── Runtime / Fay 数字人监控 ─────────────────────────────────────────
+
+export interface RuntimeStatus {
+  fayOnline: boolean
+  digitalHumanConnected: boolean
+  mcpOnline: boolean
+  ttsOnline: boolean
+  speaking: boolean
+  queueLength: number
+  lastError: string | null
+}
+
+export interface QueueStatus {
+  queueLength: number
+  fayOnline: boolean
+  speaking: boolean
+}
+
+export interface BroadcastResult {
+  text: string
+  queued: boolean
+  result: unknown
+}
+
+export interface MicToggleResult {
+  microphone: string
+  status: string
+}
+
+export interface QueueClearResult {
+  queue: string
+  queueLength: number
+}
+
+export async function fetchRuntimeStatus(): Promise<RuntimeStatus | null> {
+  return apiGet<RuntimeStatus>('/runtime/status')
+}
+
+export async function fetchQueueStatus(): Promise<QueueStatus | null> {
+  return apiGet<QueueStatus>('/runtime/queue')
+}
+
+export async function sendBroadcast(text: string, speaker = '广播消息'): Promise<BroadcastResult | null> {
+  return apiPost<BroadcastResult>('/runtime/broadcast', { text, speaker })
+}
+
+export async function toggleMicrophone(): Promise<MicToggleResult | null> {
+  return apiPost<MicToggleResult>('/runtime/microphone/toggle')
+}
+
+export async function clearQueue(): Promise<QueueClearResult | null> {
+  return apiPost<QueueClearResult>('/runtime/clear-queue')
+}
