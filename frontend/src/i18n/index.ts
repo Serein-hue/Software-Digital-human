@@ -137,8 +137,8 @@ const dict: Record<Lang, Record<string, string>> = {
     'error.title': '出错了',
     'error.reload': '重新加载',
 
-    'admin.knowledgeBase': '知识库管理',
-    'admin.knowledgeDesc': '文档入库 · 切片解析 · 检索状态',
+    'admin.knowledgeBase': '知识库工坊',
+    'admin.knowledgeDesc': '上传文档 → 解析 → 知识候选 → 采纳 → 重建索引',
     'admin.uploadDoc': '上传文档',
     'admin.searchPlaceholder': '搜索文档名称或标签...',
     'admin.noMatch': '没有匹配的文档',
@@ -411,8 +411,8 @@ const dict: Record<Lang, Record<string, string>> = {
     'error.title': 'Something went wrong',
     'error.reload': 'Reload',
 
-    'admin.knowledgeBase': 'Knowledge Base',
-    'admin.knowledgeDesc': 'Documents · Chunking · Retrieval',
+    'admin.knowledgeBase': 'Knowledge Workshop',
+    'admin.knowledgeDesc': 'Upload → Parse → Candidates → Adopt → Rebuild',
     'admin.uploadDoc': 'Upload',
     'admin.searchPlaceholder': 'Search documents or tags...',
     'admin.noMatch': 'No matching documents',

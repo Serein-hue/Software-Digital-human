@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./DataDashboard-BW-yky_q.js","./AreaChart-CeeAf1OU.js","./KnowledgeBase-B3g0OQAn.js","./search-BenXJS62.js","./ContentReview-jyE4qLTe.js","./eye-B86sz2oV.js","./DigitalHumanConfig-DdMM_sDD.js","./CommandCenter-CYaMwo_v.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./DataDashboard-Cv1xxVBh.js","./AreaChart-DlASCCRM.js","./KnowledgeBase-DQU5Kla6.js","./search-RZtatDjb.js","./database-DeidmQBP.js","./ContentReview-SnKJFucr.js","./eye-DtGmDEbz.js","./DigitalHumanConfig-C7k92LIB.js","./SystemSettings-45Q-uArK.js","./CommandCenter-BgfCpqHt.js"])))=>i.map(i=>d[i]);
 var e=Object.create,n=Object.defineProperty,r=Object.getOwnPropertyDescriptor,i=Object.getOwnPropertyNames,a=Object.getPrototypeOf,o=Object.prototype.hasOwnProperty,s=(e,n)=>()=>(e&&(n=e(e=0)),n),c=(e,n)=>()=>(n||(e((n={exports:{}}).exports,n),e=null),n.exports),l=(e,r)=>{let i={};for(var a in e)n(i,a,{get:e[a],enumerable:!0});return r||n(i,Symbol.toStringTag,{value:`Module`}),i},u=(e,a,s,c)=>{if(a&&typeof a==`object`||typeof a==`function`)for(var l=i(a),u=0,d=l.length,f;u<d;u++)f=l[u],!o.call(e,f)&&f!==s&&n(e,f,{get:(e=>a[e]).bind(null,f),enumerable:!(c=r(a,f))||c.enumerable});return e},d=(r,i,o)=>(o=r==null?{}:e(a(r)),u(i||!r||!r.__esModule?n(o,`default`,{value:r,enumerable:!0}):o,r)),f=e=>o.call(e,`module.exports`)?e[`module.exports`]:u(n({},`__esModule`,{value:!0}),e);(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))r(e);new MutationObserver(e=>{for(let n of e)if(n.type===`childList`)for(let e of n.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&r(e)}).observe(document,{childList:!0,subtree:!0});function n(e){let n={};return e.integrity&&(n.integrity=e.integrity),e.referrerPolicy&&(n.referrerPolicy=e.referrerPolicy),e.crossOrigin===`use-credentials`?n.credentials=`include`:e.crossOrigin===`anonymous`?n.credentials=`omit`:n.credentials=`same-origin`,n}function r(e){if(e.ep)return;e.ep=!0;let r=n(e);fetch(e.href,r)}})();var p=c((e=>{var n=Symbol.for(`react.transitional.element`),r=Symbol.for(`react.portal`),i=Symbol.for(`react.fragment`),a=Symbol.for(`react.strict_mode`),o=Symbol.for(`react.profiler`),s=Symbol.for(`react.consumer`),c=Symbol.for(`react.context`),l=Symbol.for(`react.forward_ref`),u=Symbol.for(`react.suspense`),d=Symbol.for(`react.memo`),f=Symbol.for(`react.lazy`),p=Symbol.for(`react.activity`),m=Symbol.iterator;function h(e){return typeof e!=`object`||!e?null:(e=m&&e[m]||e[`@@iterator`],typeof e==`function`?e:null)}var g={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}},_=Object.assign,v={};function y(e,n,r){this.props=e,this.context=n,this.refs=v,this.updater=r||g}y.prototype.isReactComponent={},y.prototype.setState=function(e,n){if(typeof e!=`object`&&typeof e!=`function`&&e!=null)throw Error(`takes an object of state variables to update or a function which returns an object of state variables.`);this.updater.enqueueSetState(this,e,n,`setState`)},y.prototype.forceUpdate=function(e){this.updater.enqueueForceUpdate(this,e,`forceUpdate`)};function b(){}b.prototype=y.prototype;function x(e,n,r){this.props=e,this.context=n,this.refs=v,this.updater=r||g}var S=x.prototype=new b;S.constructor=x,_(S,y.prototype),S.isPureReactComponent=!0;var C=Array.isArray;function w(){}var T={H:null,A:null,T:null,S:null},E=Object.prototype.hasOwnProperty;function D(e,r,i){var a=i.ref;return{$$typeof:n,type:e,key:r,ref:a===void 0?null:a,props:i}}function O(e,n){return D(e.type,n,e.props)}function k(e){return typeof e==`object`&&!!e&&e.$$typeof===n}function A(e){var n={"=":`=0`,":":`=2`};return`$`+e.replace(/[=:]/g,function(e){return n[e]})}var j=/\/+/g;function M(e,n){return typeof e==`object`&&e&&e.key!=null?A(``+e.key):n.toString(36)}function N(e){switch(e.status){case`fulfilled`:return e.value;case`rejected`:throw e.reason;default:switch(typeof e.status==`string`?e.then(w,w):(e.status=`pending`,e.then(function(n){e.status===`pending`&&(e.status=`fulfilled`,e.value=n)},function(n){e.status===`pending`&&(e.status=`rejected`,e.reason=n)})),e.status){case`fulfilled`:return e.value;case`rejected`:throw e.reason}}throw e}function P(e,i,a,o,s){var c=typeof e;(c===`undefined`||c===`boolean`)&&(e=null);var l=!1;if(e===null)l=!0;else switch(c){case`bigint`:case`string`:case`number`:l=!0;break;case`object`:switch(e.$$typeof){case n:case r:l=!0;break;case f:return l=e._init,P(l(e._payload),i,a,o,s)}}if(l)return s=s(e),l=o===``?`.`+M(e,0):o,C(s)?(a=``,l!=null&&(a=l.replace(j,`$&/`)+`/`),P(s,i,a,``,function(e){return e})):s!=null&&(k(s)&&(s=O(s,a+(s.key==null||e&&e.key===s.key?``:(``+s.key).replace(j,`$&/`)+`/`)+l)),i.push(s)),1;l=0;var u=o===``?`.`:o+`:`;if(C(e))for(var d=0;d<e.length;d++)o=e[d],c=u+M(o,d),l+=P(o,i,a,c,s);else if(d=h(e),typeof d==`function`)for(e=d.call(e),d=0;!(o=e.next()).done;)o=o.value,c=u+M(o,d++),l+=P(o,i,a,c,s);else if(c===`object`){if(typeof e.then==`function`)return P(N(e),i,a,o,s);throw i=String(e),Error(`Objects are not valid as a React child (found: `+(i===`[object Object]`?`object with keys {`+Object.keys(e).join(`, `)+`}`:i)+`). If you meant to render a collection of children, use an array instead.`)}return l}function F(e,n,r){if(e==null)return e;var i=[],a=0;return P(e,i,``,``,function(e){return n.call(r,e,a++)}),i}function ee(e){if(e._status===-1){var n=e._result;n=n(),n.then(function(n){(e._status===0||e._status===-1)&&(e._status=1,e._result=n)},function(n){(e._status===0||e._status===-1)&&(e._status=2,e._result=n)}),e._status===-1&&(e._status=0,e._result=n)}if(e._status===1)return e._result.default;throw e._result}var I=typeof reportError==`function`?reportError:function(e){if(typeof window==`object`&&typeof window.ErrorEvent==`function`){var n=new window.ErrorEvent(`error`,{bubbles:!0,cancelable:!0,message:typeof e==`object`&&e&&typeof e.message==`string`?String(e.message):String(e),error:e});if(!window.dispatchEvent(n))return}else if(typeof process==`object`&&typeof process.emit==`function`){process.emit(`uncaughtException`,e);return}console.error(e)},L={map:F,forEach:function(e,n,r){F(e,function(){n.apply(this,arguments)},r)},count:function(e){var n=0;return F(e,function(){n++}),n},toArray:function(e){return F(e,function(e){return e})||[]},only:function(e){if(!k(e))throw Error(`React.Children.only expected to receive a single React element child.`);return e}};e.Activity=p,e.Children=L,e.Component=y,e.Fragment=i,e.Profiler=o,e.PureComponent=x,e.StrictMode=a,e.Suspense=u,e.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE=T,e.__COMPILER_RUNTIME={__proto__:null,c:function(e){return T.H.useMemoCache(e)}},e.cache=function(e){return function(){return e.apply(null,arguments)}},e.cacheSignal=function(){return null},e.cloneElement=function(e,n,r){if(e==null)throw Error(`The argument must be a React element, but you passed `+e+`.`);var i=_({},e.props),a=e.key;if(n!=null)for(o in n.key!==void 0&&(a=``+n.key),n)!E.call(n,o)||o===`key`||o===`__self`||o===`__source`||o===`ref`&&n.ref===void 0||(i[o]=n[o]);var o=arguments.length-2;if(o===1)i.children=r;else if(1<o){for(var s=Array(o),c=0;c<o;c++)s[c]=arguments[c+2];i.children=s}return D(e.type,a,i)},e.createContext=function(e){return e={$$typeof:c,_currentValue:e,_currentValue2:e,_threadCount:0,Provider:null,Consumer:null},e.Provider=e,e.Consumer={$$typeof:s,_context:e},e},e.createElement=function(e,n,r){var i,a={},o=null;if(n!=null)for(i in n.key!==void 0&&(o=``+n.key),n)E.call(n,i)&&i!==`key`&&i!==`__self`&&i!==`__source`&&(a[i]=n[i]);var s=arguments.length-2;if(s===1)a.children=r;else if(1<s){for(var c=Array(s),l=0;l<s;l++)c[l]=arguments[l+2];a.children=c}if(e&&e.defaultProps)for(i in s=e.defaultProps,s)a[i]===void 0&&(a[i]=s[i]);return D(e,o,a)},e.createRef=function(){return{current:null}},e.forwardRef=function(e){return{$$typeof:l,render:e}},e.isValidElement=k,e.lazy=function(e){return{$$typeof:f,_payload:{_status:-1,_result:e},_init:ee}},e.memo=function(e,n){return{$$typeof:d,type:e,compare:n===void 0?null:n}},e.startTransition=function(e){var n=T.T,r={};T.T=r;try{var i=e(),a=T.S;a!==null&&a(r,i),typeof i==`object`&&i&&typeof i.then==`function`&&i.then(w,I)}catch(e){I(e)}finally{n!==null&&r.types!==null&&(n.types=r.types),T.T=n}},e.unstable_useCacheRefresh=function(){return T.H.useCacheRefresh()},e.use=function(e){return T.H.use(e)},e.useActionState=function(e,n,r){return T.H.useActionState(e,n,r)},e.useCallback=function(e,n){return T.H.useCallback(e,n)},e.useContext=function(e){return T.H.useContext(e)},e.useDebugValue=function(){},e.useDeferredValue=function(e,n){return T.H.useDeferredValue(e,n)},e.useEffect=function(e,n){return T.H.useEffect(e,n)},e.useEffectEvent=function(e){return T.H.useEffectEvent(e)},e.useId=function(){return T.H.useId()},e.useImperativeHandle=function(e,n,r){return T.H.useImperativeHandle(e,n,r)},e.useInsertionEffect=function(e,n){return T.H.useInsertionEffect(e,n)},e.useLayoutEffect=function(e,n){return T.H.useLayoutEffect(e,n)},e.useMemo=function(e,n){return T.H.useMemo(e,n)},e.useOptimistic=function(e,n){return T.H.useOptimistic(e,n)},e.useReducer=function(e,n,r){return T.H.useReducer(e,n,r)},e.useRef=function(e){return T.H.useRef(e)},e.useState=function(e){return T.H.useState(e)},e.useSyncExternalStore=function(e,n,r){return T.H.useSyncExternalStore(e,n,r)},e.useTransition=function(){return T.H.useTransition()},e.version=`19.2.6`})),m=c(((e,n)=>{n.exports=p()})),h=c((e=>{function n(e,n){var r=e.length;e.push(n);a:for(;0<r;){var i=r-1>>>1,o=e[i];if(0<a(o,n))e[i]=n,e[r]=o,r=i;else break a}}function r(e){return e.length===0?null:e[0]}function i(e){if(e.length===0)return null;var n=e[0],r=e.pop();if(r!==n){e[0]=r;a:for(var i=0,o=e.length,s=o>>>1;i<s;){var c=2*(i+1)-1,l=e[c],u=c+1,d=e[u];if(0>a(l,r))u<o&&0>a(d,l)?(e[i]=d,e[u]=r,i=u):(e[i]=l,e[c]=r,i=c);else if(u<o&&0>a(d,r))e[i]=d,e[u]=r,i=u;else break a}}return n}function a(e,n){var r=e.sortIndex-n.sortIndex;return r===0?e.id-n.id:r}if(e.unstable_now=void 0,typeof performance==`object`&&typeof performance.now==`function`){var o=performance;e.unstable_now=function(){return o.now()}}else{var s=Date,c=s.now();e.unstable_now=function(){return s.now()-c}}var l=[],u=[],d=1,f=null,p=3,m=!1,h=!1,g=!1,_=!1,v=typeof setTimeout==`function`?setTimeout:null,y=typeof clearTimeout==`function`?clearTimeout:null,b=typeof setImmediate<`u`?setImmediate:null;function x(e){for(var a=r(u);a!==null;){if(a.callback===null)i(u);else if(a.startTime<=e)i(u),a.sortIndex=a.expirationTime,n(l,a);else break;a=r(u)}}function S(e){if(g=!1,x(e),!h)if(r(l)!==null)h=!0,C||(C=!0,k());else{var n=r(u);n!==null&&M(S,n.startTime-e)}}var C=!1,w=-1,T=5,E=-1;function D(){return _?!0:!(e.unstable_now()-E<T)}function O(){if(_=!1,C){var n=e.unstable_now();E=n;var a=!0;try{a:{h=!1,g&&(g=!1,y(w),w=-1),m=!0;var o=p;try{b:{for(x(n),f=r(l);f!==null&&!(f.expirationTime>n&&D());){var s=f.callback;if(typeof s==`function`){f.callback=null,p=f.priorityLevel;var c=s(f.expirationTime<=n);if(n=e.unstable_now(),typeof c==`function`){f.callback=c,x(n),a=!0;break b}f===r(l)&&i(l),x(n)}else i(l);f=r(l)}if(f!==null)a=!0;else{var d=r(u);d!==null&&M(S,d.startTime-n),a=!1}}break a}finally{f=null,p=o,m=!1}a=void 0}}finally{a?k():C=!1}}}var k;if(typeof b==`function`)k=function(){b(O)};else if(typeof MessageChannel<`u`){var A=new MessageChannel,j=A.port2;A.port1.onmessage=O,k=function(){j.postMessage(null)}}else k=function(){v(O,0)};function M(n,r){w=v(function(){n(e.unstable_now())},r)}e.unstable_IdlePriority=5,e.unstable_ImmediatePriority=1,e.unstable_LowPriority=4,e.unstable_NormalPriority=3,e.unstable_Profiling=null,e.unstable_UserBlockingPriority=2,e.unstable_cancelCallback=function(e){e.callback=null},e.unstable_forceFrameRate=function(e){0>e||125<e?console.error(`forceFrameRate takes a positive int between 0 and 125, forcing frame rates higher than 125 fps is not supported`):T=0<e?Math.floor(1e3/e):5},e.unstable_getCurrentPriorityLevel=function(){return p},e.unstable_next=function(e){switch(p){case 1:case 2:case 3:var n=3;break;default:n=p}var r=p;p=n;try{return e()}finally{p=r}},e.unstable_requestPaint=function(){_=!0},e.unstable_runWithPriority=function(e,n){switch(e){case 1:case 2:case 3:case 4:case 5:break;default:e=3}var r=p;p=e;try{return n()}finally{p=r}},e.unstable_scheduleCallback=function(i,a,o){var s=e.unstable_now();switch(typeof o==`object`&&o?(o=o.delay,o=typeof o==`number`&&0<o?s+o:s):o=s,i){case 1:var c=-1;break;case 2:c=250;break;case 5:c=1073741823;break;case 4:c=1e4;break;default:c=5e3}return c=o+c,i={id:d++,callback:a,priorityLevel:i,startTime:o,expirationTime:c,sortIndex:-1},o>s?(i.sortIndex=o,n(u,i),r(l)===null&&i===r(u)&&(g?(y(w),w=-1):g=!0,M(S,o-s))):(i.sortIndex=c,n(l,i),h||m||(h=!0,C||(C=!0,k()))),i},e.unstable_shouldYield=D,e.unstable_wrapCallback=function(e){var n=p;return function(){var r=p;p=n;try{return e.apply(this,arguments)}finally{p=r}}}})),g=c(((e,n)=>{n.exports=h()})),_=c((e=>{var n=m();function r(e){var n=`https://react.dev/errors/`+e;if(1<arguments.length){n+=`?args[]=`+encodeURIComponent(arguments[1]);for(var r=2;r<arguments.length;r++)n+=`&args[]=`+encodeURIComponent(arguments[r])}return`Minified React error #`+e+`; visit `+n+` for the full message or use the non-minified dev environment for full errors and additional helpful warnings.`}function i(){}var a={d:{f:i,r:function(){throw Error(r(522))},D:i,C:i,L:i,m:i,X:i,S:i,M:i},p:0,findDOMNode:null},o=Symbol.for(`react.portal`);function s(e,n,r){var i=3<arguments.length&&arguments[3]!==void 0?arguments[3]:null;return{$$typeof:o,key:i==null?null:``+i,children:e,containerInfo:n,implementation:r}}var c=n.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;function l(e,n){if(e===`font`)return``;if(typeof n==`string`)return n===`use-credentials`?n:``}e.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE=a,e.createPortal=function(e,n){var i=2<arguments.length&&arguments[2]!==void 0?arguments[2]:null;if(!n||n.nodeType!==1&&n.nodeType!==9&&n.nodeType!==11)throw Error(r(299));return s(e,n,null,i)},e.flushSync=function(e){var n=c.T,r=a.p;try{if(c.T=null,a.p=2,e)return e()}finally{c.T=n,a.p=r,a.d.f()}},e.preconnect=function(e,n){typeof e==`string`&&(n?(n=n.crossOrigin,n=typeof n==`string`?n===`use-credentials`?n:``:void 0):n=null,a.d.C(e,n))},e.prefetchDNS=function(e){typeof e==`string`&&a.d.D(e)},e.preinit=function(e,n){if(typeof e==`string`&&n&&typeof n.as==`string`){var r=n.as,i=l(r,n.crossOrigin),o=typeof n.integrity==`string`?n.integrity:void 0,s=typeof n.fetchPriority==`string`?n.fetchPriority:void 0;r===`style`?a.d.S(e,typeof n.precedence==`string`?n.precedence:void 0,{crossOrigin:i,integrity:o,fetchPriority:s}):r===`script`&&a.d.X(e,{crossOrigin:i,integrity:o,fetchPriority:s,nonce:typeof n.nonce==`string`?n.nonce:void 0})}},e.preinitModule=function(e,n){if(typeof e==`string`)if(typeof n==`object`&&n){if(n.as==null||n.as===`script`){var r=l(n.as,n.crossOrigin);a.d.M(e,{crossOrigin:r,integrity:typeof n.integrity==`string`?n.integrity:void 0,nonce:typeof n.nonce==`string`?n.nonce:void 0})}}else n??a.d.M(e)},e.preload=function(e,n){if(typeof e==`string`&&typeof n==`object`&&n&&typeof n.as==`string`){var r=n.as,i=l(r,n.crossOrigin);a.d.L(e,r,{crossOrigin:i,integrity:typeof n.integrity==`string`?n.integrity:void 0,nonce:typeof n.nonce==`string`?n.nonce:void 0,type:typeof n.type==`string`?n.type:void 0,fetchPriority:typeof n.fetchPriority==`string`?n.fetchPriority:void 0,referrerPolicy:typeof n.referrerPolicy==`string`?n.referrerPolicy:void 0,imageSrcSet:typeof n.imageSrcSet==`string`?n.imageSrcSet:void 0,imageSizes:typeof n.imageSizes==`string`?n.imageSizes:void 0,media:typeof n.media==`string`?n.media:void 0})}},e.preloadModule=function(e,n){if(typeof e==`string`)if(n){var r=l(n.as,n.crossOrigin);a.d.m(e,{as:typeof n.as==`string`&&n.as!==`script`?n.as:void 0,crossOrigin:r,integrity:typeof n.integrity==`string`?n.integrity:void 0})}else a.d.m(e)},e.requestFormReset=function(e){a.d.r(e)},e.unstable_batchedUpdates=function(e,n){return e(n)},e.useFormState=function(e,n,r){return c.H.useFormState(e,n,r)},e.useFormStatus=function(){return c.H.useHostTransitionStatus()},e.version=`19.2.6`})),v=c(((e,n)=>{function r(){if(!(typeof __REACT_DEVTOOLS_GLOBAL_HOOK__>`u`||typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE!=`function`))try{__REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(r)}catch(e){console.error(e)}}r(),n.exports=_()})),y=c((e=>{var n=g(),r=m(),i=v();function a(e){var n=`https://react.dev/errors/`+e;if(1<arguments.length){n+=`?args[]=`+encodeURIComponent(arguments[1]);for(var r=2;r<arguments.length;r++)n+=`&args[]=`+encodeURIComponent(arguments[r])}return`Minified React error #`+e+`; visit `+n+` for the full message or use the non-minified dev environment for full errors and additional helpful warnings.`}function o(e){return!(!e||e.nodeType!==1&&e.nodeType!==9&&e.nodeType!==11)}function s(e){var n=e,r=e;if(e.alternate)for(;n.return;)n=n.return;else{e=n;do n=e,n.flags&4098&&(r=n.return),e=n.return;while(e)}return n.tag===3?r:null}function c(e){if(e.tag===13){var n=e.memoizedState;if(n===null&&(e=e.alternate,e!==null&&(n=e.memoizedState)),n!==null)return n.dehydrated}return null}function l(e){if(e.tag===31){var n=e.memoizedState;if(n===null&&(e=e.alternate,e!==null&&(n=e.memoizedState)),n!==null)return n.dehydrated}return null}function u(e){if(s(e)!==e)throw Error(a(188))}function d(e){var n=e.alternate;if(!n){if(n=s(e),n===null)throw Error(a(188));return n===e?e:null}for(var r=e,i=n;;){var o=r.return;if(o===null)break;var c=o.alternate;if(c===null){if(i=o.return,i!==null){r=i;continue}break}if(o.child===c.child){for(c=o.child;c;){if(c===r)return u(o),e;if(c===i)return u(o),n;c=c.sibling}throw Error(a(188))}if(r.return!==i.return)r=o,i=c;else{for(var l=!1,d=o.child;d;){if(d===r){l=!0,r=o,i=c;break}if(d===i){l=!0,i=o,r=c;break}d=d.sibling}if(!l){for(d=c.child;d;){if(d===r){l=!0,r=c,i=o;break}if(d===i){l=!0,i=c,r=o;break}d=d.sibling}if(!l)throw Error(a(189))}}if(r.alternate!==i)throw Error(a(190))}if(r.tag!==3)throw Error(a(188));return r.stateNode.current===r?e:n}function f(e){var n=e.tag;if(n===5||n===26||n===27||n===6)return e;for(e=e.child;e!==null;){if(n=f(e),n!==null)return n;e=e.sibling}return null}var p=Object.assign,h=Symbol.for(`react.element`),_=Symbol.for(`react.transitional.element`),y=Symbol.for(`react.portal`),b=Symbol.for(`react.fragment`),x=Symbol.for(`react.strict_mode`),S=Symbol.for(`react.profiler`),C=Symbol.for(`react.consumer`),w=Symbol.for(`react.context`),T=Symbol.for(`react.forward_ref`),E=Symbol.for(`react.suspense`),D=Symbol.for(`react.suspense_list`),O=Symbol.for(`react.memo`),k=Symbol.for(`react.lazy`),A=Symbol.for(`react.activity`),j=Symbol.for(`react.memo_cache_sentinel`),M=Symbol.iterator;function N(e){return typeof e!=`object`||!e?null:(e=M&&e[M]||e[`@@iterator`],typeof e==`function`?e:null)}var P=Symbol.for(`react.client.reference`);function F(e){if(e==null)return null;if(typeof e==`function`)return e.$$typeof===P?null:e.displayName||e.name||null;if(typeof e==`string`)return e;switch(e){case b:return`Fragment`;case S:return`Profiler`;case x:return`StrictMode`;case E:return`Suspense`;case D:return`SuspenseList`;case A:return`Activity`}if(typeof e==`object`)switch(e.$$typeof){case y:return`Portal`;case w:return e.displayName||`Context`;case C:return(e._context.displayName||`Context`)+`.Consumer`;case T:var n=e.render;return e=e.displayName,e||=(e=n.displayName||n.name||``,e===``?`ForwardRef`:`ForwardRef(`+e+`)`),e;case O:return n=e.displayName||null,n===null?F(e.type)||`Memo`:n;case k:n=e._payload,e=e._init;try{return F(e(n))}catch{}}return null}var ee=Array.isArray,I=r.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE,L=i.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE,te={pending:!1,data:null,method:null,action:null},R=[],z=-1;function ne(e){return{current:e}}function B(e){0>z||(e.current=R[z],R[z]=null,z--)}function re(e,n){z++,R[z]=e.current,e.current=n}var ie=ne(null),ae=ne(null),oe=ne(null),se=ne(null);function ce(e,n){switch(re(oe,n),re(ae,e),re(ie,null),n.nodeType){case 9:case 11:e=(e=n.documentElement)&&(e=e.namespaceURI)?Yd(e):0;break;default:if(e=n.tagName,n=n.namespaceURI)n=Yd(n),e=Xd(n,e);else switch(e){case`svg`:e=1;break;case`math`:e=2;break;default:e=0}}B(ie),re(ie,e)}function le(){B(ie),B(ae),B(oe)}function ue(e){e.memoizedState!==null&&re(se,e);var n=ie.current,r=Xd(n,e.type);n!==r&&(re(ae,e),re(ie,r))}function de(e){ae.current===e&&(B(ie),B(ae)),se.current===e&&(B(se),op._currentValue=te)}var fe,pe;function me(e){if(fe===void 0)try{throw Error()}catch(e){var n=e.stack.trim().match(/\n( *(at )?)/);fe=n&&n[1]||``,pe=-1<e.stack.indexOf(`
     at`)?` (<anonymous>)`:-1<e.stack.indexOf(`@`)?`@unknown:0:0`:``}return`
 `+fe+e+pe}var he=!1;function ge(e,n){if(!e||he)return``;he=!0;var r=Error.prepareStackTrace;Error.prepareStackTrace=void 0;try{var i={DetermineComponentFrameRoot:function(){try{if(n){var r=function(){throw Error()};if(Object.defineProperty(r.prototype,`props`,{set:function(){throw Error()}}),typeof Reflect==`object`&&Reflect.construct){try{Reflect.construct(r,[])}catch(e){var i=e}Reflect.construct(e,[],r)}else{try{r.call()}catch(e){i=e}e.call(r.prototype)}}else{try{throw Error()}catch(e){i=e}(r=e())&&typeof r.catch==`function`&&r.catch(function(){})}}catch(e){if(e&&i&&typeof e.stack==`string`)return[e.stack,i.stack]}return[null,null]}};i.DetermineComponentFrameRoot.displayName=`DetermineComponentFrameRoot`;var a=Object.getOwnPropertyDescriptor(i.DetermineComponentFrameRoot,`name`);a&&a.configurable&&Object.defineProperty(i.DetermineComponentFrameRoot,`name`,{value:`DetermineComponentFrameRoot`});var o=i.DetermineComponentFrameRoot(),s=o[0],c=o[1];if(s&&c){var l=s.split(`
@@ -15,7 +15,7 @@ Error generating stack: `+e.message+`
             ${v}px !important;
             ${y}px !important;
           }
-        `),()=>{c.current?.removeAttribute(`data-motion-pop-id`),x.contains(b)&&x.removeChild(b)}},[n]),(0,U.jsx)(Ec,{isPresent:n,childRef:c,sizeRef:l,pop:o,children:o===!1?e:x.cloneElement(e,{ref:d})})}var Oc=({children:e,initial:n,isPresent:r,onExitComplete:i,custom:a,presenceAffectsLayout:o,mode:s,anchorX:c,anchorY:l,root:u})=>{let d=E(kc),f=(0,x.useId)(),p=!0,m=(0,x.useMemo)(()=>(p=!1,{id:f,initial:n,isPresent:r,custom:a,onExitComplete:e=>{d.set(e,!0);for(let e of d.values())if(!e)return;i&&i()},register:e=>(d.set(e,!1),()=>d.delete(e))}),[r,d,i]);return o&&p&&(m={...m}),(0,x.useMemo)(()=>{d.forEach((e,n)=>d.set(n,!1))},[r]),x.useEffect(()=>{!r&&!d.size&&i&&i()},[r]),e=(0,U.jsx)(Dc,{pop:s===`popLayout`,isPresent:r,anchorX:c,anchorY:l,root:u,children:e}),(0,U.jsx)(O.Provider,{value:m,children:e})};function kc(){return new Map}function Ac(e=!0){let n=(0,x.useContext)(O);if(n===null)return[!0,null];let{isPresent:r,onExitComplete:i,register:a}=n,o=(0,x.useId)();(0,x.useEffect)(()=>{if(e)return a(o)},[e]);let s=(0,x.useCallback)(()=>e&&i&&i(o),[o,i,e]);return!r&&i?[!1,s]:[!0]}var jc=e=>e.key||``;function Mc(e){let n=[];return x.Children.forEach(e,e=>{(0,x.isValidElement)(e)&&n.push(e)}),n}var Nc=({children:e,custom:n,initial:r=!0,onExitComplete:i,presenceAffectsLayout:a=!0,mode:o=`sync`,propagate:s=!1,anchorX:c=`left`,anchorY:l=`top`,root:u})=>{let[d,f]=Ac(s),p=(0,x.useMemo)(()=>Mc(e),[e]),m=s&&!d?[]:p.map(jc),h=(0,x.useRef)(!0),g=(0,x.useRef)(p),_=E(()=>new Map),v=(0,x.useRef)(new Set),[y,b]=(0,x.useState)(p),[S,C]=(0,x.useState)(p);D(()=>{h.current=!1,g.current=p;for(let e=0;e<S.length;e++){let n=jc(S[e]);m.includes(n)?(_.delete(n),v.current.delete(n)):_.get(n)!==!0&&_.set(n,!1)}},[S,m.length,m.join(`-`)]);let w=[];if(p!==y){let e=[...p];for(let n=0;n<S.length;n++){let r=S[n],i=jc(r);m.includes(i)||(e.splice(n,0,r),w.push(r))}return o===`wait`&&w.length&&(e=w),C(Mc(e)),b(p),null}let{forceRender:O}=(0,x.useContext)(T);return(0,U.jsx)(U.Fragment,{children:S.map(e=>{let y=jc(e),b=s&&!d?!1:p===S||m.includes(y);return(0,U.jsx)(Oc,{isPresent:b,initial:!h.current||r?void 0:!1,custom:n,presenceAffectsLayout:a,mode:o,root:u,onExitComplete:b?void 0:()=>{if(v.current.has(y))return;if(_.has(y))v.current.add(y),_.set(y,!0);else return;let e=!0;_.forEach(n=>{n||(e=!1)}),e&&(O?.(),C(g.current),s&&f?.(),i&&i())},anchorX:c,anchorY:l,children:e},y)})})},Pc=(0,x.createContext)({strict:!1}),Fc={animation:[`animate`,`variants`,`whileHover`,`whileTap`,`exit`,`whileInView`,`whileFocus`,`whileDrag`],exit:[`exit`],drag:[`drag`,`dragControls`],focus:[`whileFocus`],hover:[`whileHover`,`onHoverStart`,`onHoverEnd`],tap:[`whileTap`,`onTap`,`onTapStart`,`onTapCancel`],pan:[`onPan`,`onPanStart`,`onPanSessionStart`,`onPanEnd`],inView:[`whileInView`,`onViewportEnter`,`onViewportLeave`],layout:[`layout`,`layoutId`]},Ic=!1;function Lc(){if(Ic)return;let e={};for(let n in Fc)e[n]={isEnabled:e=>Fc[n].some(n=>!!e[n])};za(e),Ic=!0}function Rc(){return Lc(),Ba()}function zc(e){let n=Rc();for(let r in e)n[r]={...n[r],...e[r]};za(n)}var Bc=new Set(`animate.exit.variants.initial.style.values.variants.transition.transformTemplate.custom.inherit.onBeforeLayoutMeasure.onAnimationStart.onAnimationComplete.onUpdate.onDragStart.onDrag.onDragEnd.onMeasureDragConstraints.onDirectionLock.onDragTransitionEnd._dragX._dragY.onHoverStart.onHoverEnd.onViewportEnter.onViewportLeave.globalTapTarget.propagate.ignoreStrict.viewport`.split(`.`));function Vc(e){return e.startsWith(`while`)||e.startsWith(`drag`)&&e!==`draggable`||e.startsWith(`layout`)||e.startsWith(`onTap`)||e.startsWith(`onPan`)||e.startsWith(`onLayout`)||Bc.has(e)}var Hc=l({default:()=>Uc}),Uc,Wc=s((()=>{throw Uc={},Error(`Could not resolve "@emotion/is-prop-valid" imported by "framer-motion". Is it installed?`)})),Gc=e=>!Vc(e);function Kc(e){typeof e==`function`&&(Gc=n=>n.startsWith(`on`)?!Vc(n):e(n))}try{Kc((Wc(),f(Hc)).default)}catch{}function qc(e,n,r){let i={};for(let a in e)a===`values`&&typeof e.values==`object`||ri(e[a])||(Gc(a)||r===!0&&Vc(a)||!n&&!Vc(a)||e.draggable&&a.startsWith(`onDrag`))&&(i[a]=e[a]);return i}var Jc=(0,x.createContext)({});function Yc(e,n){if(Aa(e)){let{initial:n,animate:r}=e;return{initial:n===!1||Da(n)?n:void 0,animate:Da(r)?r:void 0}}return e.inherit===!1?{}:n}function Xc(e){let{initial:n,animate:r}=Yc(e,(0,x.useContext)(Jc));return(0,x.useMemo)(()=>({initial:n,animate:r}),[Zc(n),Zc(r)])}function Zc(e){return Array.isArray(e)?e.join(` `):e}var Qc=()=>({style:{},transform:{},transformOrigin:{},vars:{}});function $c(e,n,r){for(let i in n)!ri(n[i])&&!bo(i,r)&&(e[i]=n[i])}function el({transformTemplate:e},n){return(0,x.useMemo)(()=>{let r=Qc();return mo(r,n,e),Object.assign({},r.vars,r.style)},[n])}function tl(e,n){let r=e.style||{},i={};return $c(i,r,e),Object.assign(i,el(e,n)),i}function nl(e,n){let r={},i=tl(e,n);return e.drag&&e.dragListener!==!1&&(r.draggable=!1,i.userSelect=i.WebkitUserSelect=i.WebkitTouchCallout=`none`,i.touchAction=e.drag===!0?`none`:`pan-${e.drag===`x`?`y`:`x`}`),e.tabIndex===void 0&&(e.onTap||e.onTapStart||e.whileTap)&&(r.tabIndex=0),r.style=i,r}var rl=()=>({...Qc(),attrs:{}});function il(e,n,r,i){let a=(0,x.useMemo)(()=>{let r=rl();return Oo(r,n,Ao(i),e.transformTemplate,e.style),{...r.attrs,style:{...r.style}}},[n]);if(e.style){let n={};$c(n,e.style,e),a.style={...n,...a.style}}return a}var al=[`animate`,`circle`,`defs`,`desc`,`ellipse`,`g`,`image`,`line`,`filter`,`marker`,`mask`,`metadata`,`path`,`pattern`,`polygon`,`polyline`,`rect`,`stop`,`switch`,`symbol`,`svg`,`text`,`tspan`,`use`,`view`];function ol(e){return typeof e!=`string`||e.includes(`-`)?!1:!!(al.indexOf(e)>-1||/[A-Z]/u.test(e))}function sl(e,n,r,{latestValues:i},a,o=!1,s){let c=(s??ol(e)?il:nl)(n,i,a,e),l=qc(n,typeof e==`string`,o),u=e===x.Fragment?{}:{...l,...c,ref:r},{children:d}=n,f=(0,x.useMemo)(()=>ri(d)?d.get():d,[d]);return(0,x.createElement)(e,{...u,children:f})}function cl({scrapeMotionValuesFromProps:e,createRenderState:n},r,i,a){return{latestValues:ll(r,i,a,e),renderState:n()}}function ll(e,n,r,i){let a={},o=i(e,{});for(let e in o)a[e]=Ls(o[e]);let{initial:s,animate:c}=e,l=Aa(e),u=ja(e);n&&u&&!l&&e.inherit!==!1&&(s===void 0&&(s=n.initial),c===void 0&&(c=n.animate));let d=r?r.initial===!1:!1;d||=s===!1;let f=d?c:s;if(f&&typeof f!=`boolean`&&!Ea(f)){let n=Array.isArray(f)?f:[f];for(let r=0;r<n.length;r++){let i=Gr(e,n[r]);if(i){let{transitionEnd:e,transition:n,...r}=i;for(let e in r){let n=r[e];if(Array.isArray(n)){let e=d?n.length-1:0;n=n[e]}n!==null&&(a[e]=n)}for(let n in e)a[n]=e[n]}}}return a}var ul=e=>(n,r)=>{let i=(0,x.useContext)(Jc),a=(0,x.useContext)(O),o=()=>cl(e,n,i,a);return r?o():E(o)},dl=ul({scrapeMotionValuesFromProps:xo,createRenderState:Qc}),fl=ul({scrapeMotionValuesFromProps:Mo,createRenderState:rl}),pl=Symbol.for(`motionComponentSymbol`);function ml(e,n,r){let i=(0,x.useRef)(r);(0,x.useInsertionEffect)(()=>{i.current=r});let a=(0,x.useRef)(null);return(0,x.useCallback)(r=>{r&&e.onMount?.(r),n&&(r?n.mount(r):n.unmount());let o=i.current;if(typeof o==`function`)if(r){let e=o(r);typeof e==`function`&&(a.current=e)}else a.current?(a.current(),a.current=null):o(r);else o&&(o.current=r)},[n])}var hl=(0,x.createContext)({});function gl(e){return e&&typeof e==`object`&&Object.prototype.hasOwnProperty.call(e,`current`)}function _l(e,n,r,i,a,o){let{visualElement:s}=(0,x.useContext)(Jc),c=(0,x.useContext)(Pc),l=(0,x.useContext)(O),u=(0,x.useContext)(Sc),d=u.reducedMotion,f=u.skipAnimations,p=(0,x.useRef)(null),m=(0,x.useRef)(!1);i||=c.renderer,!p.current&&i&&(p.current=i(e,{visualState:n,parent:s,props:r,presenceContext:l,blockInitialAnimation:l?l.initial===!1:!1,reducedMotionConfig:d,skipAnimations:f,isSVG:o}),m.current&&p.current&&(p.current.manuallyAnimateOnMount=!0));let h=p.current,g=(0,x.useContext)(hl);h&&!h.projection&&a&&(h.type===`html`||h.type===`svg`)&&vl(p.current,r,a,g);let _=(0,x.useRef)(!1);(0,x.useInsertionEffect)(()=>{h&&_.current&&h.update(r,l)});let v=r[si],y=(0,x.useRef)(!!v&&typeof window<`u`&&!window.MotionHandoffIsComplete?.(v)&&window.MotionHasOptimisedAnimation?.(v));return D(()=>{m.current=!0,h&&(_.current=!0,window.MotionIsMounted=!0,h.updateFeatures(),h.scheduleRenderMicrotask(),y.current&&h.animationState&&h.animationState.animateChanges())}),(0,x.useEffect)(()=>{h&&(!y.current&&h.animationState&&h.animationState.animateChanges(),y.current&&=(queueMicrotask(()=>{window.MotionHandoffMarkAsComplete?.(v)}),!1),h.enteringChildren=void 0)}),h}function vl(e,n,r,i){let{layoutId:a,layout:o,drag:s,dragConstraints:c,layoutScroll:l,layoutRoot:u,layoutAnchor:d,layoutCrossfade:f}=n;e.projection=new r(e.latestValues,n[`data-framer-portal-id`]?void 0:yl(e.parent)),e.projection.setOptions({layoutId:a,layout:o,alwaysMeasureLayout:!!s||c&&gl(c),visualElement:e,animationType:typeof o==`string`?o:`both`,initialPromotionConfig:i,crossfade:f,layoutScroll:l,layoutRoot:u,layoutAnchor:d})}function yl(e){if(e)return e.options.allowProjection===!1?yl(e.parent):e.projection}function bl(e,{forwardMotionProps:n=!1,type:r}={},i,a){i&&zc(i);let o=r?r===`svg`:ol(e),s=o?fl:dl;function c(r,c){let l,u={...(0,x.useContext)(Sc),...r,layoutId:xl(r)},{isStatic:d}=u,f=Xc(r),p=s(r,d);if(!d&&typeof window<`u`){Sl(u,i);let n=Cl(u);l=n.MeasureLayout,f.visualElement=_l(e,p,u,a,n.ProjectionNode,o)}return(0,U.jsxs)(Jc.Provider,{value:f,children:[l&&f.visualElement?(0,U.jsx)(l,{visualElement:f.visualElement,...u}):null,sl(e,r,ml(p,f.visualElement,c),p,d,n,o)]})}c.displayName=`motion.${typeof e==`string`?e:`create(${e.displayName??e.name??``})`}`;let l=(0,x.forwardRef)(c);return l[pl]=e,l}function xl({layoutId:e}){let n=(0,x.useContext)(T).id;return n&&e!==void 0?n+`-`+e:e}function Sl(e,n){(0,x.useContext)(Pc).strict}function Cl(e){let{drag:n,layout:r}=Rc();if(!n&&!r)return{};let i={...n,...r};return{MeasureLayout:n?.isEnabled(e)||r?.isEnabled(e)?i.MeasureLayout:void 0,ProjectionNode:i.ProjectionNode}}function wl(e,n){if(typeof Proxy>`u`)return bl;let r=new Map,i=(r,i)=>bl(r,i,e,n);return new Proxy((e,n)=>i(e,n),{get:(a,o)=>o===`create`?i:(r.has(o)||r.set(o,bl(o,void 0,e,n)),r.get(o))})}var Tl=(e,n)=>n.isSVG??ol(e)?new No(n):new Co(n,{allowProjection:e!==x.Fragment}),El=class extends Ua{constructor(e){super(e),e.animationState||=Bo(e)}updateAnimationControlsSubscription(){let{animate:e}=this.node.getProps();Ea(e)&&(this.unmountControls=e.subscribe(this.node))}mount(){this.updateAnimationControlsSubscription()}update(){let{animate:e}=this.node.getProps(),{animate:n}=this.node.prevProps||{};e!==n&&this.updateAnimationControlsSubscription()}unmount(){this.node.animationState.reset(),this.unmountControls?.()}},Dl=0,Ol={animation:{Feature:El},exit:{Feature:class extends Ua{constructor(){super(...arguments),this.id=Dl++,this.isExitComplete=!1}update(){if(!this.node.presenceContext)return;let{isPresent:e,onExitComplete:n}=this.node.presenceContext,{isPresent:r}=this.node.prevPresenceContext||{};if(!this.node.animationState||e===r)return;if(e&&r===!1){if(this.isExitComplete){let{initial:e,custom:n}=this.node.getProps();if(typeof e==`string`||typeof e==`object`&&e&&!Array.isArray(e)){let r=Kr(this.node,e,n);if(r){let{transition:e,transitionEnd:n,...i}=r;for(let e in i)this.node.getValue(e)?.jump(i[e])}}this.node.animationState.reset(),this.node.animationState.animateChanges()}else this.node.animationState.setActive(`exit`,!1);this.isExitComplete=!1;return}let i=this.node.animationState.setActive(`exit`,!e);n&&!e&&i.then(()=>{this.isExitComplete=!0,n(this.id)})}mount(){let{register:e,onExitComplete:n}=this.node.presenceContext||{};n&&n(this.id),e&&(this.unmount=e(this.id))}unmount(){}}}};function kl(e){return{point:{x:e.pageX,y:e.pageY}}}var Al=e=>n=>Gi(n)&&e(n,kl(n));function jl(e,n,r,i){return Ns(e,n,Al(r),i)}var Ml=({current:e})=>e?e.ownerDocument.defaultView:null,Nl=(e,n)=>Math.abs(e-n);function Pl(e,n){let r=Nl(e.x,n.x),i=Nl(e.y,n.y);return Math.sqrt(r**2+i**2)}var Fl=new Set([`auto`,`scroll`]),Il=class{constructor(e,n,{transformPagePoint:r,contextWindow:i=window,dragSnapToOrigin:a=!1,distanceThreshold:o=3,element:s}={}){if(this.startEvent=null,this.lastMoveEvent=null,this.lastMoveEventInfo=null,this.lastRawMoveEventInfo=null,this.handlers={},this.contextWindow=window,this.scrollPositions=new Map,this.removeScrollListeners=null,this.onElementScroll=e=>{this.handleScroll(e.target)},this.onWindowScroll=()=>{this.handleScroll(window)},this.updatePoint=()=>{if(!(this.lastMoveEvent&&this.lastMoveEventInfo))return;this.lastRawMoveEventInfo&&(this.lastMoveEventInfo=Ll(this.lastRawMoveEventInfo,this.transformPagePoint));let e=zl(this.lastMoveEventInfo,this.history),n=this.startEvent!==null,r=Pl(e.offset,{x:0,y:0})>=this.distanceThreshold;if(!n&&!r)return;let{point:i}=e,{timestamp:a}=Me;this.history.push({...i,timestamp:a});let{onStart:o,onMove:s}=this.handlers;n||(o&&o(this.lastMoveEvent,e),this.startEvent=this.lastMoveEvent),s&&s(this.lastMoveEvent,e)},this.handlePointerMove=(e,n)=>{this.lastMoveEvent=e,this.lastRawMoveEventInfo=n,this.lastMoveEventInfo=Ll(n,this.transformPagePoint),Ae.update(this.updatePoint,!0)},this.handlePointerUp=(e,n)=>{this.end();let{onEnd:r,onSessionEnd:i,resumeAnimation:a}=this.handlers;if((this.dragSnapToOrigin||!this.startEvent)&&a&&a(),!(this.lastMoveEvent&&this.lastMoveEventInfo))return;let o=zl(e.type===`pointercancel`?this.lastMoveEventInfo:Ll(n,this.transformPagePoint),this.history);this.startEvent&&r&&r(e,o),i&&i(e,o)},!Gi(e))return;this.dragSnapToOrigin=a,this.handlers=n,this.transformPagePoint=r,this.distanceThreshold=o,this.contextWindow=i||window;let c=Ll(kl(e),this.transformPagePoint),{point:l}=c,{timestamp:u}=Me;this.history=[{...l,timestamp:u}];let{onSessionStart:d}=n;d&&d(e,zl(c,this.history)),this.removeListeners=L(jl(this.contextWindow,`pointermove`,this.handlePointerMove),jl(this.contextWindow,`pointerup`,this.handlePointerUp),jl(this.contextWindow,`pointercancel`,this.handlePointerUp)),s&&this.startScrollTracking(s)}startScrollTracking(e){let n=e.parentElement;for(;n;){let e=getComputedStyle(n);(Fl.has(e.overflowX)||Fl.has(e.overflowY))&&this.scrollPositions.set(n,{x:n.scrollLeft,y:n.scrollTop}),n=n.parentElement}this.scrollPositions.set(window,{x:window.scrollX,y:window.scrollY}),window.addEventListener(`scroll`,this.onElementScroll,{capture:!0}),window.addEventListener(`scroll`,this.onWindowScroll),this.removeScrollListeners=()=>{window.removeEventListener(`scroll`,this.onElementScroll,{capture:!0}),window.removeEventListener(`scroll`,this.onWindowScroll)}}handleScroll(e){let n=this.scrollPositions.get(e);if(!n)return;let r=e===window,i=r?{x:window.scrollX,y:window.scrollY}:{x:e.scrollLeft,y:e.scrollTop},a={x:i.x-n.x,y:i.y-n.y};a.x===0&&a.y===0||(r?this.lastMoveEventInfo&&(this.lastMoveEventInfo.point.x+=a.x,this.lastMoveEventInfo.point.y+=a.y):this.history.length>0&&(this.history[0].x-=a.x,this.history[0].y-=a.y),this.scrollPositions.set(e,i),Ae.update(this.updatePoint,!0))}updateHandlers(e){this.handlers=e}end(){this.removeListeners&&this.removeListeners(),this.removeScrollListeners&&this.removeScrollListeners(),this.scrollPositions.clear(),je(this.updatePoint)}};function Ll(e,n){return n?{point:n(e.point)}:e}function Rl(e,n){return{x:e.x-n.x,y:e.y-n.y}}function zl({point:e},n){return{point:e,delta:Rl(e,Vl(n)),offset:Rl(e,Bl(n)),velocity:Hl(n,.1)}}function Bl(e){return e[0]}function Vl(e){return e[e.length-1]}function Hl(e,n){if(e.length<2)return{x:0,y:0};let r=e.length-1,i=null,a=Vl(e);for(;r>=0&&(i=e[r],!(a.timestamp-i.timestamp>z(n)));)r--;if(!i)return{x:0,y:0};i===e[0]&&e.length>2&&a.timestamp-i.timestamp>z(n)*2&&(i=e[1]);let o=ne(a.timestamp-i.timestamp);if(o===0)return{x:0,y:0};let s={x:(a.x-i.x)/o,y:(a.y-i.y)/o};return s.x===1/0&&(s.x=0),s.y===1/0&&(s.y=0),s}function Ul(e,{min:n,max:r},i){return n!==void 0&&e<n?e=i?jt(n,e,i.min):Math.max(e,n):r!==void 0&&e>r&&(e=i?jt(r,e,i.max):Math.min(e,r)),e}function Wl(e,n,r){return{min:n===void 0?void 0:e.min+n,max:r===void 0?void 0:e.max+r-(e.max-e.min)}}function Gl(e,{top:n,left:r,bottom:i,right:a}){return{x:Wl(e.x,r,a),y:Wl(e.y,n,i)}}function Kl(e,n){let r=n.min-e.min,i=n.max-e.max;return n.max-n.min<e.max-e.min&&([r,i]=[i,r]),{min:r,max:i}}function ql(e,n){return{x:Kl(e.x,n.x),y:Kl(e.y,n.y)}}function Jl(e,n){let r=.5,i=$o(e),a=$o(n);return a>i?r=te(n.min,n.max-i,e.min):i>a&&(r=te(e.min,e.max-a,n.min)),j(0,1,r)}function Yl(e,n){let r={};return n.min!==void 0&&(r.min=n.min-e.min),n.max!==void 0&&(r.max=n.max-e.min),r}var Xl=.35;function Zl(e=Xl){return e===!1?e=0:e===!0&&(e=Xl),{x:Ql(e,`left`,`right`),y:Ql(e,`top`,`bottom`)}}function Ql(e,n,r){return{min:$l(e,n),max:$l(e,r)}}function $l(e,n){return typeof e==`number`?e:e[n]||0}var eu=new WeakMap,tu=class{constructor(e){this.openDragLock=null,this.isDragging=!1,this.currentDirection=null,this.originPoint={x:0,y:0},this.constraints=!1,this.hasMutatedConstraints=!1,this.elastic=wa(),this.latestPointerEvent=null,this.latestPanInfo=null,this.visualElement=e}start(e,{snapToCursor:n=!1,distanceThreshold:r}={}){let{presenceContext:i}=this.visualElement;if(i&&i.isPresent===!1)return;let a=e=>{n&&this.snapToCursor(kl(e).point),this.stopAnimation()},o=(e,n)=>{let{drag:r,dragPropagation:i,onDragStart:a}=this.getProps();if(r&&!i&&(this.openDragLock&&this.openDragLock(),this.openDragLock=Bi(r),!this.openDragLock))return;this.latestPointerEvent=e,this.latestPanInfo=n,this.isDragging=!0,this.currentDirection=null,this.resolveConstraints(),this.visualElement.projection&&(this.visualElement.projection.isAnimationBlocked=!0,this.visualElement.projection.target=void 0),xs(e=>{let n=this.getAxisMotionValue(e).get()||0;if(ot.test(n)){let{projection:r}=this.visualElement;if(r&&r.layout){let i=r.layout.layoutBox[e];i&&(n=$o(i)*(parseFloat(n)/100))}}this.originPoint[e]=n}),a&&Ae.update(()=>a(e,n),!1,!0),ai(this.visualElement,`transform`);let{animationState:o}=this.visualElement;o&&o.setActive(`whileDrag`,!0)},s=(e,n)=>{this.latestPointerEvent=e,this.latestPanInfo=n;let{dragPropagation:r,dragDirectionLock:i,onDirectionLock:a,onDrag:o}=this.getProps();if(!r&&!this.openDragLock)return;let{offset:s}=n;if(i&&this.currentDirection===null){this.currentDirection=au(s),this.currentDirection!==null&&a&&a(this.currentDirection);return}this.updateAxis(`x`,n.point,s),this.updateAxis(`y`,n.point,s),this.visualElement.render(),o&&Ae.update(()=>o(e,n),!1,!0)},c=(e,n)=>{this.latestPointerEvent=e,this.latestPanInfo=n,this.stop(e,n),this.latestPointerEvent=null,this.latestPanInfo=null},l=()=>{let{dragSnapToOrigin:e}=this.getProps();(e||this.constraints)&&this.startAnimation({x:0,y:0})},{dragSnapToOrigin:u}=this.getProps();this.panSession=new Il(e,{onSessionStart:a,onStart:o,onMove:s,onSessionEnd:c,resumeAnimation:l},{transformPagePoint:this.visualElement.getTransformPagePoint(),dragSnapToOrigin:u,distanceThreshold:r,contextWindow:Ml(this.visualElement),element:this.visualElement.current})}stop(e,n){let r=e||this.latestPointerEvent,i=n||this.latestPanInfo,a=this.isDragging;if(this.cancel(),!a||!i||!r)return;let{velocity:o}=i;this.startAnimation(o);let{onDragEnd:s}=this.getProps();s&&Ae.postRender(()=>s(r,i))}cancel(){this.isDragging=!1;let{projection:e,animationState:n}=this.visualElement;e&&(e.isAnimationBlocked=!1),this.endPanSession();let{dragPropagation:r}=this.getProps();!r&&this.openDragLock&&(this.openDragLock(),this.openDragLock=null),n&&n.setActive(`whileDrag`,!1)}endPanSession(){this.panSession&&this.panSession.end(),this.panSession=void 0}updateAxis(e,n,r){let{drag:i}=this.getProps();if(!r||!iu(e,i,this.currentDirection))return;let a=this.getAxisMotionValue(e),o=this.originPoint[e]+r[e];this.constraints&&this.constraints[e]&&(o=Ul(o,this.constraints[e],this.elastic[e])),a.set(o)}resolveConstraints(){let{dragConstraints:e,dragElastic:n}=this.getProps(),r=this.visualElement.projection&&!this.visualElement.projection.layout?this.visualElement.projection.measure(!1):this.visualElement.projection?.layout,i=this.constraints;e&&gl(e)?this.constraints||=this.resolveRefConstraints():e&&r?this.constraints=Gl(r.layoutBox,e):this.constraints=!1,this.elastic=Zl(n),i!==this.constraints&&!gl(e)&&r&&this.constraints&&!this.hasMutatedConstraints&&xs(e=>{this.constraints!==!1&&this.getAxisMotionValue(e)&&(this.constraints[e]=Yl(r.layoutBox[e],this.constraints[e]))})}resolveRefConstraints(){let{dragConstraints:e,onMeasureDragConstraints:n}=this.getProps();if(!e||!gl(e))return!1;let r=e.current,{projection:i}=this.visualElement;if(!i||!i.layout)return!1;i.root&&(i.root.scroll=void 0,i.root.updateScroll());let a=uo(r,i.root,this.visualElement.getTransformPagePoint()),o=ql(i.layout.layoutBox,a);if(n){let e=n(Ga(o));this.hasMutatedConstraints=!!e,e&&(o=Wa(e))}return o}startAnimation(e){let{drag:n,dragMomentum:r,dragElastic:i,dragTransition:a,dragSnapToOrigin:o,onDragTransitionEnd:s}=this.getProps(),c=this.constraints||{},l=xs(s=>{if(!iu(s,n,this.currentDirection))return;let l=c&&c[s]||{};(o===!0||o===s)&&(l={min:0,max:0});let u=i?200:1e6,d=i?40:1e7,f={type:`inertia`,velocity:r?e[s]:0,bounceStiffness:u,bounceDamping:d,timeConstant:750,restDelta:1,restSpeed:10,...a,...l};return this.startAxisValueAnimation(s,f)});return Promise.all(l).then(s)}startAxisValueAnimation(e,n){let r=this.getAxisMotionValue(e);return ai(this.visualElement,e),r.start(Ur(e,r,0,n,this.visualElement,!1))}stopAnimation(){xs(e=>this.getAxisMotionValue(e).stop())}getAxisMotionValue(e){let n=`_drag${e.toUpperCase()}`;return this.visualElement.getProps()[n]||this.visualElement.getValue(e,this.visualElement.latestValues[e]??0)}snapToCursor(e){xs(n=>{let{drag:r}=this.getProps();if(!iu(n,r,this.currentDirection))return;let{projection:i}=this.visualElement,a=this.getAxisMotionValue(n);if(i&&i.layout){let{min:r,max:o}=i.layout.layoutBox[n],s=a.get()||0;a.set(e[n]-jt(r,o,.5)+s)}})}scalePositionWithinConstraints(){if(!this.visualElement.current)return;let{drag:e,dragConstraints:n}=this.getProps(),{projection:r}=this.visualElement;if(!gl(n)||!r||!this.constraints)return;this.stopAnimation();let i={x:0,y:0};xs(e=>{let n=this.getAxisMotionValue(e);if(n&&this.constraints!==!1){let r=n.get();i[e]=Jl({min:r,max:r},this.constraints[e])}});let{transformTemplate:a}=this.visualElement.getProps();this.visualElement.current.style.transform=a?a({},``):`none`,r.root&&r.root.updateScroll(),r.updateLayout(),this.constraints=!1,this.resolveConstraints(),xs(n=>{if(!iu(n,e,null))return;let r=this.getAxisMotionValue(n),{min:a,max:o}=this.constraints[n];r.set(jt(a,o,i[n]))}),this.visualElement.render()}addListeners(){if(!this.visualElement.current)return;eu.set(this.visualElement,this);let e=this.visualElement.current,n=jl(e,`pointerdown`,n=>{let{drag:r,dragListener:i=!0}=this.getProps(),a=n.target,o=a!==e&&Yi(a);r&&i&&!o&&this.start(n)}),r,i=()=>{let{dragConstraints:n}=this.getProps();gl(n)&&n.current&&(this.constraints=this.resolveRefConstraints(),r||=ru(e,n.current,()=>this.scalePositionWithinConstraints()))},{projection:a}=this.visualElement,o=a.addEventListener(`measure`,i);a&&!a.layout&&(a.root&&a.root.updateScroll(),a.updateLayout()),Ae.read(i);let s=Ns(window,`resize`,()=>this.scalePositionWithinConstraints()),c=a.addEventListener(`didUpdate`,(({delta:e,hasLayoutChanged:n})=>{this.isDragging&&n&&(xs(n=>{let r=this.getAxisMotionValue(n);r&&(this.originPoint[n]+=e[n].translate,r.set(r.get()+e[n].translate))}),this.visualElement.render())}));return()=>{s(),n(),o(),c&&c(),r&&r()}}getProps(){let e=this.visualElement.getProps(),{drag:n=!1,dragDirectionLock:r=!1,dragPropagation:i=!1,dragConstraints:a=!1,dragElastic:o=Xl,dragMomentum:s=!0}=e;return{...e,drag:n,dragDirectionLock:r,dragPropagation:i,dragConstraints:a,dragElastic:o,dragMomentum:s}}};function nu(e){let n=!0;return()=>{if(n){n=!1;return}e()}}function ru(e,n,r){let i=_a(e,nu(r)),a=_a(n,nu(r));return()=>{i(),a()}}function iu(e,n,r){return(n===!0||n===e)&&(r===null||r===e)}function au(e,n=10){let r=null;return Math.abs(e.y)>n?r=`y`:Math.abs(e.x)>n&&(r=`x`),r}var ou=class extends Ua{constructor(e){super(e),this.removeGroupControls=I,this.removeListeners=I,this.controls=new tu(e)}mount(){let{dragControls:e}=this.node.getProps();e&&(this.removeGroupControls=e.subscribe(this.controls)),this.removeListeners=this.controls.addListeners()||I}update(){let{dragControls:e}=this.node.getProps(),{dragControls:n}=this.node.prevProps||{};e!==n&&(this.removeGroupControls(),e&&(this.removeGroupControls=e.subscribe(this.controls)))}unmount(){this.removeGroupControls(),this.removeListeners(),this.controls.isDragging||this.controls.endPanSession()}},su=e=>(n,r)=>{e&&Ae.update(()=>e(n,r),!1,!0)},cu=class extends Ua{constructor(){super(...arguments),this.removePointerDownListener=I}onPointerDown(e){this.session=new Il(e,this.createPanHandlers(),{transformPagePoint:this.node.getTransformPagePoint(),contextWindow:Ml(this.node)})}createPanHandlers(){let{onPanSessionStart:e,onPanStart:n,onPan:r,onPanEnd:i}=this.node.getProps();return{onSessionStart:su(e),onStart:su(n),onMove:su(r),onEnd:(e,n)=>{delete this.session,i&&Ae.postRender(()=>i(e,n))}}}mount(){this.removePointerDownListener=jl(this.node.current,`pointerdown`,e=>this.onPointerDown(e))}update(){this.session&&this.session.updateHandlers(this.createPanHandlers())}unmount(){this.removePointerDownListener(),this.session&&this.session.end()}},lu=!1,uu=class extends x.Component{componentDidMount(){let{visualElement:e,layoutGroup:n,switchLayoutGroup:r,layoutId:i}=this.props,{projection:a}=e;a&&(n.group&&n.group.add(a),r&&r.register&&i&&r.register(a),lu&&a.root.didUpdate(),a.addEventListener(`animationComplete`,()=>{this.safeToRemove()}),a.setOptions({...a.options,layoutDependency:this.props.layoutDependency,onExitComplete:()=>this.safeToRemove()})),zs.hasEverUpdated=!0}getSnapshotBeforeUpdate(e){let{layoutDependency:n,visualElement:r,drag:i,isPresent:a}=this.props,{projection:o}=r;return o?(o.isPresent=a,e.layoutDependency!==n&&o.setOptions({...o.options,layoutDependency:n}),lu=!0,i||e.layoutDependency!==n||n===void 0||e.isPresent!==a?o.willUpdate():this.safeToRemove(),e.isPresent!==a&&(a?o.promote():o.relegate()||Ae.postRender(()=>{let e=o.getStack();(!e||!e.members.length)&&this.safeToRemove()})),null):null}componentDidUpdate(){let{visualElement:e,layoutAnchor:n}=this.props,{projection:r}=e;r&&(r.options.layoutAnchor=n,r.root.didUpdate(),Ii.postRender(()=>{!r.currentAnimation&&r.isLead()&&this.safeToRemove()}))}componentWillUnmount(){let{visualElement:e,layoutGroup:n,switchLayoutGroup:r}=this.props,{projection:i}=e;lu=!0,i&&(i.scheduleCheckAfterUnmount(),n&&n.group&&n.group.remove(i),r&&r.deregister&&r.deregister(i))}safeToRemove(){let{safeToRemove:e}=this.props;e&&e()}render(){return null}};function du(e){let[n,r]=Ac(),i=(0,x.useContext)(T);return(0,U.jsx)(uu,{...e,layoutGroup:i,switchLayoutGroup:(0,x.useContext)(hl),isPresent:n,safeToRemove:r})}var fu={pan:{Feature:cu},drag:{Feature:ou,ProjectionNode:xc,MeasureLayout:du}};function pu(e,n,r){let{props:i}=e;e.animationState&&i.whileHover&&e.animationState.setActive(`whileHover`,r===`Start`);let a=i[`onHover`+r];a&&Ae.postRender(()=>a(n,kl(n)))}var mu=class extends Ua{mount(){let{current:e}=this.node;e&&(this.unmount=Ui(e,(e,n)=>(pu(this.node,n,`Start`),e=>pu(this.node,e,`End`))))}unmount(){}},hu=class extends Ua{constructor(){super(...arguments),this.isActive=!1}onFocus(){let e=!1;try{e=this.node.current.matches(`:focus-visible`)}catch{e=!0}!e||!this.node.animationState||(this.node.animationState.setActive(`whileFocus`,!0),this.isActive=!0)}onBlur(){!this.isActive||!this.node.animationState||(this.node.animationState.setActive(`whileFocus`,!1),this.isActive=!1)}mount(){this.unmount=L(Ns(this.node.current,`focus`,()=>this.onFocus()),Ns(this.node.current,`blur`,()=>this.onBlur()))}unmount(){}};function gu(e,n,r){let{props:i}=e;if(e.current instanceof HTMLButtonElement&&e.current.disabled)return;e.animationState&&i.whileTap&&e.animationState.setActive(`whileTap`,r===`Start`);let a=i[`onTap`+(r===`End`?``:r)];a&&Ae.postRender(()=>a(n,kl(n)))}var _u=class extends Ua{mount(){let{current:e}=this.node;if(!e)return;let{globalTapTarget:n,propagate:r}=this.node.props;this.unmount=na(e,(e,n)=>(gu(this.node,n,`Start`),(e,{success:n})=>gu(this.node,e,n?`End`:`Cancel`)),{useGlobalTarget:n,stopPropagation:r?.tap===!1})}unmount(){}},vu=new WeakMap,yu=new WeakMap,bu=e=>{let n=vu.get(e.target);n&&n(e)},xu=e=>{e.forEach(bu)};function Su({root:e,...n}){let r=e||document;yu.has(r)||yu.set(r,{});let i=yu.get(r),a=JSON.stringify(n);return i[a]||(i[a]=new IntersectionObserver(xu,{root:e,...n})),i[a]}function Cu(e,n,r){let i=Su(n);return vu.set(e,r),i.observe(e),()=>{vu.delete(e),i.unobserve(e)}}var wu={some:0,all:1},Tu=class extends Ua{constructor(){super(...arguments),this.hasEnteredView=!1,this.isInView=!1}startObserver(){this.stopObserver?.();let{viewport:e={}}=this.node.getProps(),{root:n,margin:r,amount:i=`some`,once:a}=e,o={root:n?n.current:void 0,rootMargin:r,threshold:typeof i==`number`?i:wu[i]},s=e=>{let{isIntersecting:n}=e;if(this.isInView===n||(this.isInView=n,a&&!n&&this.hasEnteredView))return;n&&(this.hasEnteredView=!0),this.node.animationState&&this.node.animationState.setActive(`whileInView`,n);let{onViewportEnter:r,onViewportLeave:i}=this.node.getProps(),o=n?r:i;o&&o(e)};this.stopObserver=Cu(this.node.current,o,s)}mount(){this.startObserver()}update(){if(typeof IntersectionObserver>`u`)return;let{props:e,prevProps:n}=this.node;[`amount`,`margin`,`root`].some(Eu(e,n))&&this.startObserver()}unmount(){this.stopObserver?.(),this.hasEnteredView=!1,this.isInView=!1}};function Eu({viewport:e={}},{viewport:n={}}={}){return r=>e[r]!==n[r]}var Du={inView:{Feature:Tu},tap:{Feature:_u},focus:{Feature:hu},hover:{Feature:mu}},Ou={layout:{ProjectionNode:xc,MeasureLayout:du}},W=wl({...Ol,...Du,...fu,...Ou},Tl),ku=(...e)=>e.filter((e,n,r)=>!!e&&e.trim()!==``&&r.indexOf(e)===n).join(` `).trim(),Au=e=>e.replace(/([a-z0-9])([A-Z])/g,`$1-$2`).toLowerCase(),ju=e=>e.replace(/^([A-Z])|[\s-_]+(\w)/g,(e,n,r)=>r?r.toUpperCase():n.toLowerCase()),Mu=e=>{let n=ju(e);return n.charAt(0).toUpperCase()+n.slice(1)},Nu={xmlns:`http://www.w3.org/2000/svg`,width:24,height:24,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:2,strokeLinecap:`round`,strokeLinejoin:`round`},Pu=e=>{for(let n in e)if(n.startsWith(`aria-`)||n===`role`||n===`title`)return!0;return!1},Fu=(0,x.createContext)({}),Iu=()=>(0,x.useContext)(Fu),Lu=(0,x.forwardRef)(({color:e,size:n,strokeWidth:r,absoluteStrokeWidth:i,className:a=``,children:o,iconNode:s,...c},l)=>{let{size:u=24,strokeWidth:d=2,absoluteStrokeWidth:f=!1,color:p=`currentColor`,className:m=``}=Iu()??{},h=i??f?Number(r??d)*24/Number(n??u):r??d;return(0,x.createElement)(`svg`,{ref:l,...Nu,width:n??u??Nu.width,height:n??u??Nu.height,stroke:e??p,strokeWidth:h,className:ku(`lucide`,m,a),...!o&&!Pu(c)&&{"aria-hidden":`true`},...c},[...s.map(([e,n])=>(0,x.createElement)(e,n)),...Array.isArray(o)?o:[o]])}),G=(e,n)=>{let r=(0,x.forwardRef)(({className:r,...i},a)=>(0,x.createElement)(Lu,{ref:a,iconNode:n,className:ku(`lucide-${Au(Mu(e))}`,`lucide-${e}`,r),...i}));return r.displayName=Mu(e),r},Ru=G(`book-open`,[[`path`,{d:`M12 7v14`,key:`1akyts`}],[`path`,{d:`M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z`,key:`ruj8y`}]]),zu=G(`calendar`,[[`path`,{d:`M8 2v4`,key:`1cmpym`}],[`path`,{d:`M16 2v4`,key:`4m81vk`}],[`rect`,{width:`18`,height:`18`,x:`3`,y:`4`,rx:`2`,key:`1hopcy`}],[`path`,{d:`M3 10h18`,key:`8toen8`}]]),Bu=G(`camera`,[[`path`,{d:`M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z`,key:`18u6gg`}],[`circle`,{cx:`12`,cy:`13`,r:`3`,key:`1vg3eu`}]]),Vu=G(`check`,[[`path`,{d:`M20 6 9 17l-5-5`,key:`1gmf2c`}]]),Hu=G(`chevron-left`,[[`path`,{d:`m15 18-6-6 6-6`,key:`1wnfg3`}]]),Uu=G(`chevron-right`,[[`path`,{d:`m9 18 6-6-6-6`,key:`mthhwq`}]]),Wu=G(`circle-alert`,[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}],[`line`,{x1:`12`,x2:`12`,y1:`8`,y2:`12`,key:`1pkeuh`}],[`line`,{x1:`12`,x2:`12.01`,y1:`16`,y2:`16`,key:`4dfq90`}]]),Gu=G(`circle-dot`,[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}],[`circle`,{cx:`12`,cy:`12`,r:`1`,key:`41hilf`}]]),Ku=G(`circle-play`,[[`path`,{d:`M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z`,key:`kmsa83`}],[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}]]),qu=G(`clock`,[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}],[`path`,{d:`M12 6v6l4 2`,key:`mmk7yg`}]]),Ju=G(`compass`,[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}],[`path`,{d:`m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z`,key:`9ktpf1`}]]),Yu=G(`copy`,[[`rect`,{width:`14`,height:`14`,x:`8`,y:`8`,rx:`2`,ry:`2`,key:`17jyea`}],[`path`,{d:`M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2`,key:`zix9uf`}]]),Xu=G(`download`,[[`path`,{d:`M12 15V3`,key:`m9g1x1`}],[`path`,{d:`M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4`,key:`ih7n3h`}],[`path`,{d:`m7 10 5 5 5-5`,key:`brsn70`}]]),Zu=G(`footprints`,[[`path`,{d:`M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z`,key:`1dudjm`}],[`path`,{d:`M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z`,key:`l2t8xc`}],[`path`,{d:`M16 17h4`,key:`1dejxt`}],[`path`,{d:`M4 13h4`,key:`1bwh8b`}]]),Qu=G(`history`,[[`path`,{d:`M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8`,key:`1357e3`}],[`path`,{d:`M3 3v5h5`,key:`1xhq8a`}],[`path`,{d:`M12 7v5l4 2`,key:`1fdv2h`}]]),$u=G(`image`,[[`rect`,{width:`18`,height:`18`,x:`3`,y:`3`,rx:`2`,ry:`2`,key:`1m3agn`}],[`circle`,{cx:`9`,cy:`9`,r:`2`,key:`af1f0g`}],[`path`,{d:`m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21`,key:`1xmnt7`}]]),ed=G(`map-pin`,[[`path`,{d:`M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0`,key:`1r0f0z`}],[`circle`,{cx:`12`,cy:`10`,r:`3`,key:`ilqhr7`}]]),td=G(`map-pinned`,[[`path`,{d:`M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0`,key:`11u0oz`}],[`circle`,{cx:`12`,cy:`8`,r:`2`,key:`1822b1`}],[`path`,{d:`M8.714 14h-3.71a1 1 0 0 0-.948.683l-2.004 6A1 1 0 0 0 3 22h18a1 1 0 0 0 .948-1.316l-2-6a1 1 0 0 0-.949-.684h-3.712`,key:`q8zwxj`}]]),nd=G(`map`,[[`path`,{d:`M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z`,key:`169xi5`}],[`path`,{d:`M15 5.764v15`,key:`1pn4in`}],[`path`,{d:`M9 3.236v15`,key:`1uimfh`}]]),rd=G(`mic`,[[`path`,{d:`M12 19v3`,key:`npa21l`}],[`path`,{d:`M19 10v2a7 7 0 0 1-14 0v-2`,key:`1vc78b`}],[`rect`,{x:`9`,y:`2`,width:`6`,height:`13`,rx:`3`,key:`s6n7sd`}]]),id=G(`navigation`,[[`polygon`,{points:`3 11 22 2 13 21 11 13 3 11`,key:`1ltx0t`}]]),ad=G(`pause`,[[`rect`,{x:`14`,y:`3`,width:`5`,height:`18`,rx:`1`,key:`kaeet6`}],[`rect`,{x:`5`,y:`3`,width:`5`,height:`18`,rx:`1`,key:`1wsw3u`}]]),od=G(`play`,[[`path`,{d:`M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z`,key:`10ikf1`}]]),sd=G(`qr-code`,[[`rect`,{width:`5`,height:`5`,x:`3`,y:`3`,rx:`1`,key:`1tu5fj`}],[`rect`,{width:`5`,height:`5`,x:`16`,y:`3`,rx:`1`,key:`1v8r4q`}],[`rect`,{width:`5`,height:`5`,x:`3`,y:`16`,rx:`1`,key:`1x03jg`}],[`path`,{d:`M21 16h-3a2 2 0 0 0-2 2v3`,key:`177gqh`}],[`path`,{d:`M21 21v.01`,key:`ents32`}],[`path`,{d:`M12 7v3a2 2 0 0 1-2 2H7`,key:`8crl2c`}],[`path`,{d:`M3 12h.01`,key:`nlz23k`}],[`path`,{d:`M12 3h.01`,key:`n36tog`}],[`path`,{d:`M12 16v.01`,key:`133mhm`}],[`path`,{d:`M16 12h1`,key:`1slzba`}],[`path`,{d:`M21 12v.01`,key:`1lwtk9`}],[`path`,{d:`M12 21v-1`,key:`1880an`}]]),cd=G(`refresh-cw`,[[`path`,{d:`M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8`,key:`v9h5vc`}],[`path`,{d:`M21 3v5h-5`,key:`1q7to0`}],[`path`,{d:`M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16`,key:`3uifl3`}],[`path`,{d:`M8 16H3v5`,key:`1cv678`}]]),ld=G(`scan`,[[`path`,{d:`M3 7V5a2 2 0 0 1 2-2h2`,key:`aa7l1z`}],[`path`,{d:`M17 3h2a2 2 0 0 1 2 2v2`,key:`4qcy5o`}],[`path`,{d:`M21 17v2a2 2 0 0 1-2 2h-2`,key:`6vwrx8`}],[`path`,{d:`M7 21H5a2 2 0 0 1-2-2v-2`,key:`ioqczr`}]]),ud=G(`send`,[[`path`,{d:`M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z`,key:`1ffxy3`}],[`path`,{d:`m21.854 2.147-10.94 10.939`,key:`12cjpa`}]]),dd=G(`share-2`,[[`circle`,{cx:`18`,cy:`5`,r:`3`,key:`gq8acd`}],[`circle`,{cx:`6`,cy:`12`,r:`3`,key:`w7nqdw`}],[`circle`,{cx:`18`,cy:`19`,r:`3`,key:`1xt0gg`}],[`line`,{x1:`8.59`,x2:`15.42`,y1:`13.51`,y2:`17.49`,key:`47mynk`}],[`line`,{x1:`15.41`,x2:`8.59`,y1:`6.51`,y2:`10.49`,key:`1n3mei`}]]),fd=G(`shield-alert`,[[`path`,{d:`M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z`,key:`oel41y`}],[`path`,{d:`M12 8v4`,key:`1got3b`}],[`path`,{d:`M12 16h.01`,key:`1drbdi`}]]),pd=G(`shield-check`,[[`path`,{d:`M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z`,key:`oel41y`}],[`path`,{d:`m9 12 2 2 4-4`,key:`dzmm74`}]]),md=G(`shield-question-mark`,[[`path`,{d:`M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z`,key:`oel41y`}],[`path`,{d:`M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3`,key:`mhlwft`}],[`path`,{d:`M12 17h.01`,key:`p32p05`}]]),hd=G(`sparkles`,[[`path`,{d:`M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z`,key:`1s2grr`}],[`path`,{d:`M20 2v4`,key:`1rf3ol`}],[`path`,{d:`M22 4h-4`,key:`gwowj6`}],[`circle`,{cx:`4`,cy:`20`,r:`2`,key:`6kqj1y`}]]),gd=G(`star`,[[`path`,{d:`M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z`,key:`r04s7s`}]]),_d=G(`sunrise`,[[`path`,{d:`M12 2v8`,key:`1q4o3n`}],[`path`,{d:`m4.93 10.93 1.41 1.41`,key:`2a7f42`}],[`path`,{d:`M2 18h2`,key:`j10viu`}],[`path`,{d:`M20 18h2`,key:`wocana`}],[`path`,{d:`m19.07 10.93-1.41 1.41`,key:`15zs5n`}],[`path`,{d:`M22 22H2`,key:`19qnx5`}],[`path`,{d:`m8 6 4-4 4 4`,key:`ybng9g`}],[`path`,{d:`M16 18a4 4 0 0 0-8 0`,key:`1lzouq`}]]),vd=G(`thumbs-down`,[[`path`,{d:`M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z`,key:`m61m77`}],[`path`,{d:`M17 14V2`,key:`8ymqnk`}]]),yd=G(`thumbs-up`,[[`path`,{d:`M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z`,key:`emmmcr`}],[`path`,{d:`M7 10v12`,key:`1qc93n`}]]),bd=G(`triangle-alert`,[[`path`,{d:`m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3`,key:`wmoenq`}],[`path`,{d:`M12 9v4`,key:`juzpu7`}],[`path`,{d:`M12 17h.01`,key:`p32p05`}]]),xd=G(`users`,[[`path`,{d:`M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2`,key:`1yyitq`}],[`path`,{d:`M16 3.128a4 4 0 0 1 0 7.744`,key:`16gr8j`}],[`path`,{d:`M22 21v-2a4 4 0 0 0-3-3.87`,key:`kshegd`}],[`circle`,{cx:`9`,cy:`7`,r:`4`,key:`nufk8`}]]),Sd=G(`volume-2`,[[`path`,{d:`M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z`,key:`uqj9uw`}],[`path`,{d:`M16 9a5 5 0 0 1 0 6`,key:`1q6k2b`}],[`path`,{d:`M19.364 18.364a9 9 0 0 0 0-12.728`,key:`ijwkga`}]]),Cd=G(`wifi-off`,[[`path`,{d:`M12 20h.01`,key:`zekei9`}],[`path`,{d:`M8.5 16.429a5 5 0 0 1 7 0`,key:`1bycff`}],[`path`,{d:`M5 12.859a10 10 0 0 1 5.17-2.69`,key:`1dl1wf`}],[`path`,{d:`M19 12.859a10 10 0 0 0-2.007-1.523`,key:`4k23kn`}],[`path`,{d:`M2 8.82a15 15 0 0 1 4.177-2.643`,key:`1grhjp`}],[`path`,{d:`M22 8.82a15 15 0 0 0-11.288-3.764`,key:`z3jwby`}],[`path`,{d:`m2 2 20 20`,key:`1ooewy`}]]),wd=G(`wifi`,[[`path`,{d:`M12 20h.01`,key:`zekei9`}],[`path`,{d:`M2 8.82a15 15 0 0 1 20 0`,key:`dnpr2z`}],[`path`,{d:`M5 12.859a10 10 0 0 1 14 0`,key:`1x1e6c`}],[`path`,{d:`M8.5 16.429a5 5 0 0 1 7 0`,key:`1bycff`}]]),Td=G(`x`,[[`path`,{d:`M18 6 6 18`,key:`1bl5f8`}],[`path`,{d:`m6 6 12 12`,key:`d8bk6v`}]]),Ed={zh:{"app.title":`灵山胜境 · AI 数字人导览`,"guide.welcome":`欢迎来到灵山胜境！我是您的 AI 导游小景。您可以随时向我提问，比如"灵山大佛有多高？"或者"推荐一条游览路线"。`,"guide.title":`AI 导游`,"guide.offlineBanner":`弱网模式 · 已缓存基础讲解包，部分功能可能受限`,"guide.routeRecommend":`推荐路线`,"guide.tourDuration":`游览时长`,"guide.photoRecognition":`拍照识景`,"guide.deepGuide":`深度讲解`,"guide.photo":`拍照`,"guide.inputPlaceholder":`输入问题，或按语音键说话...`,"guide.rateUp":`好评`,"guide.rateDown":`差评`,"guide.copy":`复制`,"guide.voiceInput":`语音输入`,"guide.camera":`拍照`,"guide.send":`发送`,"guide.close":`关闭`,"guide.back":`返回`,"guide.pause":`暂停`,"guide.play":`播放`,"guide.goOnline":`切换到在线模式`,"guide.goOffline":`切换到离线模式`,"guide.share":`分享`,"guide.lbsActive":`LBS 已激活`,"guide.offlineMode":`弱网模式`,"guide.speaking":`讲解中`,"guide.brandName":`AI 导游 · 小景`,"voice.listening":`正在聆听...`,"voice.tapRetry":`点击重试`,"voice.hintListening":`正在识别您的语音...`,"voice.hintDefault":`轻点提示文字可快速输入 · 点击 ✕ 取消`,"voice.recognized":`已识别，正在发送...`,"voice.unsupported":`当前浏览器不支持语音识别，请使用 Chrome 或 Edge`,"voice.denied":`麦克风权限被拒绝，请在浏览器设置中开启`,"voice.error":`语音识别出错，请重试`,"voice.cantStart":`无法启动语音识别`,"voice.suggestions":`试试说：`,"photo.scanning":`识别中...`,"photo.hint":`保持稳定，将景点置于框内`,"photo.rescan":`重新识别`,"photo.capture":`拍照识别`,"photo.results":`识别结果`,"photo.confidence":`置信度`,"photo.ask":`提问`,"photo.recent":`最近识别`,"photo.tellMeAbout":`给我讲讲{{name}}`,"spot.oneLine":`一句话`,"spot.shortVersion":`简短版`,"spot.deepGuide":`深度讲解`,"spot.aiNarration":`AI 语音讲解`,"spot.playing":`正在播报...`,"spot.nearbySpots":`附近景点`,"voice.retry":`重试`,"route.title":`推荐路线`,"route.count":`{{n}} 条精选路线`,"route.startNav":`开始导航`,"share.title":`分享我的旅程`,"share.explored":`已探索 {{count}} 个问题`,"share.copyText":`我在{{spot}}探索了{{count}}个问题，快来一起体验AI导游吧！`,"share.copyDone":`已复制`,"share.copyLabel":`复制文案`,"share.saveImage":`保存图片`,"share.templateClassic":`经典版`,"share.templateWarm":`暖阳版`,"share.templateInk":`水墨版`,"share.brand":`AI 导游 · 小景`,"share.subtitle":`景区导览 AI 数字人`,"kiosk.title":`灵山胜境 · AI 智能导览`,"kiosk.tapToStart":`点击屏幕开始体验`,"kiosk.tabSpots":`景点讲解`,"kiosk.tabRoutes":`路线推荐`,"kiosk.tabAbout":`关于景区`,"kiosk.backToList":`返回景点列表`,"kiosk.audioDuration":`{{dur}} 讲解`,"kiosk.aboutTitle":`灵山胜境`,"kiosk.aboutDesc":`灵山胜境位于江苏省无锡市太湖西北部的马山镇，是国家5A级旅游景区、世界佛教论坛永久会址，被誉为"东方佛国"。景区占地面积约30万平方米，历史可追溯至1300多年前的唐代贞观年间。`,"kiosk.openTime":`开放时间`,"kiosk.suggestedDuration":`建议时长`,"kiosk.durationValue":`4-6 小时`,"kiosk.ticketRef":`门票参考`,"kiosk.ticketValue":`210 元/人`,"kiosk.servicePhone":`客服电话`,"kiosk.micHint":`点击话筒提问`,"kiosk.micExamples":`"灵山大佛有多高？" "推荐一条路线"`,"kiosk.micListening":`聆听中...`,"kiosk.micSpeaking":`讲解中...`,"kiosk.micIdle":`语音提问`,"kiosk.qrTitle":`扫码继续体验`,"kiosk.qrDesc":`用手机扫描二维码，AI 导游随时随地陪伴您的旅程`,"kiosk.qrWechat":`支持微信扫码`,"kiosk.qrBrowser":`手机浏览器`,"dashboard.title":`灵山胜境 · 运营数据大屏`,"dashboard.subtitle":`数据来源：示范景区公开资料包 · 2025年度`,"dashboard.realtime":`实时监控`,"dashboard.totalVisitors":`累计游客`,"dashboard.avgStay":`平均停留`,"dashboard.avgSpend":`人均消费`,"dashboard.satisfaction":`满意度`,"dashboard.monthlyTrend":`月度游客趋势`,"dashboard.ageDist":`年龄分布`,"dashboard.satisfactionDist":`满意度分布`,"dashboard.spendingDist":`人均消费构成 (¥)`,"dashboard.genderDist":`性别分布`,"dashboard.topSpots":`热门景点排行`,"dashboard.visitorsUnit":`人次`,"dashboard.monthUnit":`月`,"dashboard.ageUnder30":`30岁以下`,"dashboard.age30to49":`30-49岁`,"dashboard.ageOver50":`50岁以上`,"dashboard.spendTicket":`门票`,"dashboard.spendFood":`餐饮`,"dashboard.spendShopping":`购物`,"dashboard.spendTransport":`交通`,"dashboard.spendEntertainment":`娱乐`,"dashboard.genderMale":`男性`,"dashboard.genderFemale":`女性`,"chat.confidenceHigh":`官方认证`,"chat.confidenceMedium":`资料匹配`,"chat.confidenceLow":`通用信息`,"error.title":`出错了`,"error.reload":`重新加载`,"admin.knowledgeBase":`知识库管理`,"admin.knowledgeDesc":`文档入库 · 切片解析 · 检索状态`,"admin.uploadDoc":`上传文档`,"admin.searchPlaceholder":`搜索文档名称或标签...`,"admin.noMatch":`没有匹配的文档`,"admin.chunks":`切片`,"admin.slices":`文本切片`,"admin.docType":`文档类型`,"admin.docTypeSpotData":`景点数据`,"admin.docTypeGuide":`游览指南`,"admin.docTypeDataset":`数据集`,"admin.docTypeImage":`图片`,"admin.docTypeRule":`规则`,"admin.lastUpdate":`最后更新`,"admin.reparse":`重新解析`,"admin.viewSlices":`查看切片`,"admin.delete":`删除`,"admin.documents":`文档`,"admin.ready":`已入库`,"admin.processing":`解析中`,"admin.failed":`失败`,"admin.pending":`待处理`,"admin.totalSize":`总大小`,"admin.contentReview":`内容审核`,"admin.reviewDesc":`AI 生成回答需人工审核后发布`,"admin.searchQA":`搜索问题或答案...`,"admin.pendingReview":`待审核`,"admin.approved":`已通过`,"admin.rejected":`已驳回`,"admin.pendingCount":`{{n}} 待审`,"admin.approvedCount":`{{n}} 通过`,"admin.rejectedCount":`{{n}} 驳回`,"admin.allReviewed":`所有内容已审核完毕`,"admin.noData":`暂无数据`,"admin.reviewer":`审核人`,"admin.aiAnswer":`AI 回答`,"admin.sourceRef":`信源`,"admin.rejectReason":`驳回原因`,"admin.approve":`通过`,"admin.edit":`编辑`,"admin.reject":`驳回`,"admin.digitalHuman":`数字人配置`,"admin.dhDesc":`形象 · 语音 · 表情 · 动作`,"admin.resetDefault":`恢复默认`,"admin.avatarSelect":`形象选择`,"admin.voiceConfig":`语音配置`,"admin.speed":`语速`,"admin.pitch":`音调`,"admin.testVoice":`试听语音`,"admin.stopPreview":`停止预览`,"admin.expressionGesture":`表情与动作`,"admin.facialExpression":`面部表情`,"admin.facialExprDesc":`讲解时配合内容展示微表情变化`,"admin.handGesture":`手势动作`,"admin.handGestureDesc":`配合讲解进行自然手势引导`,"admin.autoSpotSwitch":`景点自动适配`,"admin.autoSpotDesc":`根据当前景点自动切换文化主题形象`,"admin.livePreview":`实时预览`,"admin.noEffects":`无额外效果`,"admin.systemSettings":`系统设置`,"admin.settingsDesc":`景区配置 · API · 缓存 · 版本`,"admin.basicConfig":`基本配置`,"admin.scenicName":`景区名称`,"admin.scenicId":`景区 ID`,"admin.adminEmail":`管理员邮箱`,"admin.servicePhone":`客服电话`,"admin.apiKeys":`API 密钥`,"admin.addKey":`添加密钥`,"admin.notifSettings":`通知设置`,"admin.notifNewQuestion":`新问题待审核`,"admin.notifNewQuestionDesc":`AI 生成答案提交审核时通知`,"admin.notifNegativeFeedback":`游客负面反馈`,"admin.notifNegativeFeedbackDesc":`满意度低于 3 分时发送告警`,"admin.notifKbExpiry":`知识库过期提醒`,"admin.notifKbExpiryDesc":`内容超过 30 天未更新时提醒`,"admin.notifSystemAlert":`系统异常告警`,"admin.notifSystemAlertDesc":`API 调用失败或服务降级时通知`,"admin.cacheData":`缓存与数据`,"admin.kbCache":`知识库缓存`,"admin.kbCacheDesc":`向量索引 + 文档切片缓存`,"admin.chatHistory":`对话历史`,"admin.chatHistoryDesc":`游客问答记录`,"admin.staticCdn":`静态资源 CDN`,"admin.staticCdnDesc":`数字人形象资源`,"admin.refresh":`刷新`,"admin.export":`导出`,"admin.clear":`清除`,"admin.prefetch":`预加载`,"admin.versionInfo":`版本信息`,"admin.frontendVersion":`前端版本`,"admin.buildTime":`构建时间`,"admin.framework":`框架`,"admin.dataVersion":`数据版本`,"admin.license":`许可证`,"admin.deployMethod":`部署方式`,"admin.saveConfig":`保存配置`,"cmd.title":`灵山胜境 · 智慧运营中心`,"cmd.overview":`总览`,"cmd.demographics":`客群`,"cmd.revenue":`营收`,"cmd.status":`态势`,"cmd.todayVisitors":`今日接待`,"cmd.realtimeInPark":`实时在园`,"cmd.todayRevenue":`今日营收`,"cmd.todaySatisfaction":`今日满意度`,"cmd.crowdLevel":`客流量等级`,"cmd.crowdComfortable":`舒适`,"cmd.crowdBusy":`繁忙`,"cmd.inPark":`入园`,"cmd.online":`线上`,"cmd.vsYesterday":`较昨日`,"cmd.perCapita":`人均`,"cmd.goodRate":`好评率`,"cmd.loadRate":`承载率`,"cmd.monthlyTrend":`月度游客趋势 (万人次)`,"cmd.topSpots":`热门景点 TOP5`,"cmd.visitorsUnit":`人次`,"cmd.ageDist":`年龄分布`,"cmd.genderDist":`性别分布`,"cmd.satisfactionDist":`满意度分布`,"cmd.spendingDist":`人均消费构成 (¥)`,"cmd.monthlyRevenue":`月度营收趋势 (万元)`,"cmd.facilityStatus":`设施状态`,"cmd.realtimeAlerts":`实时告警`,"cmd.heatmap":`客流热力占位`,"cmd.heatmapLabel":`灵山胜境园区热力图 · 实时更新`,"cmd.refreshInterval":`数据刷新间隔`,"cmd.aiOnline":`AI 数字人服务在线`,"cmd.kioskOnline":`Kiosk 终端 {{n}} 台在线`,"cmd.daysOfWeek":`日一二三四五六`,"lang.switch":`English`,"nav.mainNav":`主导航`,"nav.switchLang":`切换语言`},en:{"app.title":`Lingshan · AI Digital Tour Guide`,"guide.welcome":`Welcome to Lingshan! I'm Xiao Jing, your AI guide. Ask me anything — "How tall is the Grand Buddha?" or "Recommend a route."`,"guide.title":`AI Guide`,"guide.offlineBanner":`Offline mode · Basic tour pack cached, some features limited`,"guide.routeRecommend":`Routes`,"guide.tourDuration":`Duration`,"guide.photoRecognition":`Photo ID`,"guide.deepGuide":`Deep Tour`,"guide.photo":`Camera`,"guide.inputPlaceholder":`Ask a question, or tap the mic...`,"guide.rateUp":`Thumbs up`,"guide.rateDown":`Thumbs down`,"guide.copy":`Copy`,"guide.voiceInput":`Voice input`,"guide.camera":`Camera`,"guide.send":`Send`,"guide.close":`Close`,"guide.back":`Back`,"guide.pause":`Pause`,"guide.play":`Play`,"guide.goOnline":`Switch to online`,"guide.goOffline":`Switch to offline`,"guide.share":`Share`,"guide.lbsActive":`LBS Active`,"guide.offlineMode":`Offline`,"guide.speaking":`Speaking`,"guide.brandName":`AI Guide · Xiao Jing`,"voice.listening":`Listening...`,"voice.tapRetry":`Tap to retry`,"voice.hintListening":`Recognizing your speech...`,"voice.hintDefault":`Tap a suggestion or press X to cancel`,"voice.recognized":`Recognized, sending...`,"voice.unsupported":`Speech recognition not supported. Please use Chrome or Edge.`,"voice.denied":`Microphone access denied. Check browser settings.`,"voice.error":`Speech recognition error. Please retry.`,"voice.cantStart":`Unable to start speech recognition.`,"voice.suggestions":`Try saying:`,"photo.scanning":`Recognizing...`,"photo.hint":`Hold steady, keep the landmark in frame`,"photo.rescan":`Rescan`,"photo.capture":`Take Photo`,"photo.results":`Results`,"photo.confidence":`Confidence`,"photo.ask":`Ask`,"photo.recent":`Recent`,"photo.tellMeAbout":`Tell me about {{name}}`,"spot.oneLine":`One-liner`,"spot.shortVersion":`Brief`,"spot.deepGuide":`Deep Guide`,"spot.aiNarration":`AI Narration`,"spot.playing":`Playing...`,"spot.nearbySpots":`Nearby Spots`,"voice.retry":`Retry`,"route.title":`Recommended Routes`,"route.count":`{{n}} curated routes`,"route.startNav":`Start Navigation`,"share.title":`Share My Journey`,"share.explored":`Explored {{count}} questions`,"share.copyText":`I explored {{count}} questions at {{spot}}. Come try the AI tour guide!`,"share.copyDone":`Copied`,"share.copyLabel":`Copy Text`,"share.saveImage":`Save Image`,"share.templateClassic":`Classic`,"share.templateWarm":`Warm`,"share.templateInk":`Ink`,"share.brand":`AI Guide · Xiao Jing`,"share.subtitle":`AI Digital Tour Guide`,"kiosk.title":`Lingshan · AI Smart Guide`,"kiosk.tapToStart":`Tap screen to begin`,"kiosk.tabSpots":`Spots`,"kiosk.tabRoutes":`Routes`,"kiosk.tabAbout":`About`,"kiosk.backToList":`Back to spots`,"kiosk.audioDuration":`{{dur}} audio`,"kiosk.aboutTitle":`Lingshan`,"kiosk.aboutDesc":`Lingshan is located in Mashan Town, Wuxi, Jiangsu Province. It is a national 5A scenic spot and permanent site of the World Buddhist Forum. Covering ~300,000 m², its history dates back 1,300 years to the Tang Dynasty.`,"kiosk.openTime":`Hours`,"kiosk.suggestedDuration":`Suggested`,"kiosk.durationValue":`4-6 hours`,"kiosk.ticketRef":`Admission`,"kiosk.ticketValue":`¥210`,"kiosk.servicePhone":`Hotline`,"kiosk.micHint":`Tap mic to ask`,"kiosk.micExamples":`"How tall is the Buddha?" "Suggest a route"`,"kiosk.micListening":`Listening...`,"kiosk.micSpeaking":`Speaking...`,"kiosk.micIdle":`Voice Input`,"kiosk.qrTitle":`Scan to continue`,"kiosk.qrDesc":`Scan the QR code and take your AI guide anywhere`,"kiosk.qrWechat":`WeChat`,"kiosk.qrBrowser":`Browser`,"dashboard.title":`Lingshan · Operations Dashboard`,"dashboard.subtitle":`Source: Official scenic spot data pack · FY2025`,"dashboard.realtime":`Live`,"dashboard.totalVisitors":`Total Visitors`,"dashboard.avgStay":`Avg Stay`,"dashboard.avgSpend":`Avg Spend`,"dashboard.satisfaction":`Satisfaction`,"dashboard.monthlyTrend":`Monthly Trend`,"dashboard.ageDist":`Age Distribution`,"dashboard.satisfactionDist":`Satisfaction Distribution`,"dashboard.spendingDist":`Spending Breakdown (¥)`,"dashboard.genderDist":`Gender Distribution`,"dashboard.topSpots":`Top Spots`,"dashboard.visitorsUnit":`visitors`,"dashboard.monthUnit":``,"dashboard.ageUnder30":`Under 30`,"dashboard.age30to49":`30-49`,"dashboard.ageOver50":`50+`,"dashboard.spendTicket":`Tickets`,"dashboard.spendFood":`Food`,"dashboard.spendShopping":`Shopping`,"dashboard.spendTransport":`Transport`,"dashboard.spendEntertainment":`Entertainment`,"dashboard.genderMale":`Male`,"dashboard.genderFemale":`Female`,"chat.confidenceHigh":`Verified`,"chat.confidenceMedium":`Matched`,"chat.confidenceLow":`General`,"error.title":`Something went wrong`,"error.reload":`Reload`,"admin.knowledgeBase":`Knowledge Base`,"admin.knowledgeDesc":`Documents · Chunking · Retrieval`,"admin.uploadDoc":`Upload`,"admin.searchPlaceholder":`Search documents or tags...`,"admin.noMatch":`No matching documents`,"admin.chunks":`chunks`,"admin.slices":`Text Slices`,"admin.docType":`Type`,"admin.docTypeSpotData":`Spot Data`,"admin.docTypeGuide":`Guide`,"admin.docTypeDataset":`Dataset`,"admin.docTypeImage":`Image`,"admin.docTypeRule":`Rule`,"admin.lastUpdate":`Last Updated`,"admin.reparse":`Reparse`,"admin.viewSlices":`View Slices`,"admin.delete":`Delete`,"admin.documents":`docs`,"admin.ready":`Ready`,"admin.processing":`Processing`,"admin.failed":`Failed`,"admin.pending":`Pending`,"admin.totalSize":`Total Size`,"admin.contentReview":`Content Review`,"admin.reviewDesc":`AI-generated answers need manual approval`,"admin.searchQA":`Search QA...`,"admin.pendingReview":`Pending`,"admin.approved":`Approved`,"admin.rejected":`Rejected`,"admin.pendingCount":`{{n}} pending`,"admin.approvedCount":`{{n}} approved`,"admin.rejectedCount":`{{n}} rejected`,"admin.allReviewed":`All content reviewed`,"admin.noData":`No data`,"admin.reviewer":`Reviewer`,"admin.aiAnswer":`AI Answer`,"admin.sourceRef":`Source`,"admin.rejectReason":`Rejection reason`,"admin.approve":`Approve`,"admin.edit":`Edit`,"admin.reject":`Reject`,"admin.digitalHuman":`Digital Human Config`,"admin.dhDesc":`Avatar · Voice · Expression · Gesture`,"admin.resetDefault":`Reset Default`,"admin.avatarSelect":`Avatar`,"admin.voiceConfig":`Voice`,"admin.speed":`Speed`,"admin.pitch":`Pitch`,"admin.testVoice":`Preview`,"admin.stopPreview":`Stop`,"admin.expressionGesture":`Expression & Gesture`,"admin.facialExpression":`Facial Expression`,"admin.facialExprDesc":`Show micro-expressions during narration`,"admin.handGesture":`Hand Gestures`,"admin.handGestureDesc":`Natural gesturing during narration`,"admin.autoSpotSwitch":`Auto-spot Adaptation`,"admin.autoSpotDesc":`Auto-switch avatar style per scenic spot`,"admin.livePreview":`Live Preview`,"admin.noEffects":`No effects`,"admin.systemSettings":`System Settings`,"admin.settingsDesc":`Config · API · Cache · Version`,"admin.basicConfig":`Basic Config`,"admin.scenicName":`Scenic Name`,"admin.scenicId":`Scenic ID`,"admin.adminEmail":`Admin Email`,"admin.servicePhone":`Hotline`,"admin.apiKeys":`API Keys`,"admin.addKey":`Add Key`,"admin.notifSettings":`Notifications`,"admin.notifNewQuestion":`New Q pending review`,"admin.notifNewQuestionDesc":`Notify when AI answer submitted`,"admin.notifNegativeFeedback":`Negative feedback`,"admin.notifNegativeFeedbackDesc":`Alert when satisfaction < 3`,"admin.notifKbExpiry":`KB expiration`,"admin.notifKbExpiryDesc":`Remind when content > 30 days stale`,"admin.notifSystemAlert":`System alert`,"admin.notifSystemAlertDesc":`Notify on API failure or degradation`,"admin.cacheData":`Cache & Data`,"admin.kbCache":`KB Cache`,"admin.kbCacheDesc":`Vector index + chunk cache`,"admin.chatHistory":`Chat History`,"admin.chatHistoryDesc":`Visitor QA records`,"admin.staticCdn":`Static CDN`,"admin.staticCdnDesc":`Avatar asset cache`,"admin.refresh":`Refresh`,"admin.export":`Export`,"admin.clear":`Clear`,"admin.prefetch":`Prefetch`,"admin.versionInfo":`Version Info`,"admin.frontendVersion":`Frontend Version`,"admin.buildTime":`Build Time`,"admin.framework":`Framework`,"admin.dataVersion":`Data Version`,"admin.license":`License`,"admin.deployMethod":`Deployment`,"admin.saveConfig":`Save Config`,"cmd.title":`Lingshan · Smart Ops Center`,"cmd.overview":`Overview`,"cmd.demographics":`Visitors`,"cmd.revenue":`Revenue`,"cmd.status":`Status`,"cmd.todayVisitors":`Today`,"cmd.realtimeInPark":`In Park`,"cmd.todayRevenue":`Revenue`,"cmd.todaySatisfaction":`Satisfaction`,"cmd.crowdLevel":`Crowd Level`,"cmd.crowdComfortable":`Comfortable`,"cmd.crowdBusy":`Busy`,"cmd.inPark":`on-site`,"cmd.online":`online`,"cmd.vsYesterday":`vs yesterday`,"cmd.perCapita":`avg`,"cmd.goodRate":`positive`,"cmd.loadRate":`capacity`,"cmd.monthlyTrend":`Monthly Trend (10K visitors)`,"cmd.topSpots":`Top 5 Spots`,"cmd.visitorsUnit":`visitors`,"cmd.ageDist":`Age Distribution`,"cmd.genderDist":`Gender`,"cmd.satisfactionDist":`Satisfaction`,"cmd.spendingDist":`Spending Breakdown (¥)`,"cmd.monthlyRevenue":`Monthly Revenue (10K ¥)`,"cmd.facilityStatus":`Facility Status`,"cmd.realtimeAlerts":`Live Alerts`,"cmd.heatmap":`Heatmap`,"cmd.heatmapLabel":`Lingshan heatmap · real-time`,"cmd.refreshInterval":`Refresh interval`,"cmd.aiOnline":`AI Guide online`,"cmd.kioskOnline":`{{n}} kiosks online`,"cmd.daysOfWeek":`SuMoTuWeThFrSa`,"lang.switch":`中文`,"nav.mainNav":`Main navigation`,"nav.switchLang":`Switch language`}},K=`zh`,Dd=new Set;function Od(e,n){let r=Ed[K]?.[e]??Ed.zh[e];return r==null?e:(n&&Object.entries(n).forEach(([e,n])=>{r=r.replace(`{{${e}}}`,String(n))}),r)}function kd(){return K}function Ad(e){K=e,typeof localStorage<`u`&&localStorage.setItem(`app-lang`,e),Dd.forEach(e=>e())}function jd(){let[,e]=(0,x.useState)(0);return(0,x.useEffect)(()=>{let n=()=>e(e=>e+1);return Dd.add(n),()=>{Dd.delete(n)}},[]),Od}if(typeof localStorage<`u`){let e=localStorage.getItem(`app-lang`);(e===`en`||e===`zh`)&&(K=e)}function Md({isSpeaking:e,spotName:n}){let r=jd();return(0,U.jsxs)(`div`,{className:`dh-stage`,children:[(0,U.jsxs)(`div`,{className:`dh-scene`,children:[(0,U.jsxs)(W.div,{className:`dh-avatar`,animate:e?{scale:[1,1.015,1,1.01,1],y:[0,-3,0,-2,0]}:{scale:1,y:0},transition:e?{repeat:1/0,duration:2.4,ease:`easeInOut`}:{duration:.3},children:[(0,U.jsxs)(`div`,{className:`dh-face`,children:[(0,U.jsxs)(`div`,{className:`dh-eyes`,children:[(0,U.jsx)(`span`,{className:`dh-eye left`}),(0,U.jsx)(`span`,{className:`dh-eye right`})]}),(0,U.jsx)(W.div,{className:`dh-mouth`,animate:e?{scaleY:[.3,1,.4,.9,.3]}:{scaleY:.5},transition:e?{repeat:1/0,duration:.6,ease:`easeInOut`}:{duration:.2}}),(0,U.jsx)(`div`,{className:`dh-blush left`}),(0,U.jsx)(`div`,{className:`dh-blush right`})]}),(0,U.jsx)(`div`,{className:`dh-body`,children:(0,U.jsx)(`div`,{className:`dh-collar`})})]}),e&&(0,U.jsx)(W.div,{className:`dh-speech-ring`,initial:{opacity:0,scale:.8},animate:{opacity:[.4,.15,.4],scale:[1,1.06,1]},transition:{repeat:1/0,duration:1.8}})]}),(0,U.jsxs)(`div`,{className:`dh-info`,children:[e?(0,U.jsxs)(W.span,{className:`dh-speaking-badge`,initial:{opacity:0,y:4},animate:{opacity:1,y:0},children:[(0,U.jsx)(Sd,{size:14}),(0,U.jsx)(`span`,{children:r(`guide.speaking`)}),(0,U.jsx)(hd,{size:12})]}):(0,U.jsx)(`span`,{className:`dh-idle-badge`,children:r(`guide.brandName`)}),n&&(0,U.jsx)(`span`,{className:`dh-spot-tag`,children:n})]})]})}function Nd({spotName:e,distance:n,online:r}){let i=jd();return(0,U.jsxs)(`div`,{className:`lbs-bar`,children:[(0,U.jsxs)(`div`,{className:`lbs-left`,children:[(0,U.jsx)(ed,{size:15}),(0,U.jsx)(`span`,{className:`lbs-spot`,children:e}),(0,U.jsxs)(`span`,{className:`lbs-dist`,children:[n,`m`]})]}),(0,U.jsxs)(`div`,{className:`lbs-right`,children:[(0,U.jsx)(id,{size:13}),(0,U.jsx)(`span`,{children:i(`guide.lbsActive`)}),r?(0,U.jsx)(`span`,{className:`lbs-online`,children:(0,U.jsx)(wd,{size:12})}):(0,U.jsxs)(`span`,{className:`lbs-offline`,children:[(0,U.jsx)(Cd,{size:12}),` `,i(`guide.offlineMode`)]})]})]})}var Pd={high:{icon:pd,cls:`confidence-high`,labelKey:`chat.confidenceHigh`},medium:{icon:fd,cls:`confidence-medium`,labelKey:`chat.confidenceMedium`},low:{icon:md,cls:`confidence-low`,labelKey:`chat.confidenceLow`}};function Fd({confidence:e}){let n=Pd[e],r=n.icon;return(0,U.jsxs)(`span`,{className:`confidence-badge ${n.cls}`,children:[(0,U.jsx)(r,{size:12}),(0,U.jsx)(`span`,{children:t(n.labelKey)})]})}function Id({messages:e,onSend:n,isListening:r,onRate:i,onVoiceClick:a,onCameraClick:o}){let[s,c]=(0,x.useState)(``),l=(0,x.useRef)(null),u=jd();(0,x.useEffect)(()=>{l.current?.scrollIntoView({behavior:`smooth`})},[e]);function d(e){e.preventDefault(),s.trim()&&(n(s.trim()),c(``))}return(0,U.jsxs)(`div`,{className:`chat-panel`,children:[(0,U.jsxs)(`div`,{className:`chat-messages`,children:[(0,U.jsx)(Nc,{initial:!1,children:e.map(e=>(0,U.jsxs)(W.div,{className:`msg-row ${e.role}`,initial:{opacity:0,y:10,scale:.98},animate:{opacity:1,y:0,scale:1},transition:{duration:.22},children:[(0,U.jsxs)(`div`,{className:`msg-bubble`,children:[(0,U.jsx)(`p`,{children:e.text}),(e.source||e.confidence)&&(0,U.jsxs)(`div`,{className:`msg-meta`,children:[e.source&&(0,U.jsxs)(`span`,{className:`msg-source`,children:[u(`admin.sourceRef`),`: `,e.source]}),e.confidence&&(0,U.jsx)(Fd,{confidence:e.confidence})]})]}),e.role===`guide`&&i&&(0,U.jsxs)(`div`,{className:`msg-actions`,children:[(0,U.jsx)(`button`,{type:`button`,onClick:()=>i(e.id,`up`),"aria-label":u(`guide.rateUp`),children:(0,U.jsx)(yd,{size:13})}),(0,U.jsx)(`button`,{type:`button`,onClick:()=>i(e.id,`down`),"aria-label":u(`guide.rateDown`),children:(0,U.jsx)(vd,{size:13})}),(0,U.jsx)(`button`,{type:`button`,"aria-label":u(`guide.copy`),onClick:()=>{navigator.clipboard?.writeText(e.text)?.catch(()=>{})},children:(0,U.jsx)(Yu,{size:13})})]})]},e.id))}),r&&(0,U.jsx)(W.div,{className:`msg-row guide listening-indicator`,initial:{opacity:0},animate:{opacity:1},children:(0,U.jsxs)(`div`,{className:`msg-bubble listening`,children:[(0,U.jsx)(`span`,{className:`wave-dot`}),(0,U.jsx)(`span`,{className:`wave-dot`}),(0,U.jsx)(`span`,{className:`wave-dot`})]})}),(0,U.jsx)(`div`,{ref:l})]}),(0,U.jsxs)(`form`,{className:`chat-input-bar`,onSubmit:d,children:[(0,U.jsx)(`button`,{type:`button`,className:`mic-btn`,onClick:a,"aria-label":u(`guide.voiceInput`),children:(0,U.jsx)(rd,{size:20})}),(0,U.jsx)(`button`,{type:`button`,className:`camera-btn`,onClick:o,"aria-label":u(`guide.camera`),children:(0,U.jsxs)(`svg`,{width:`18`,height:`18`,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`,children:[(0,U.jsx)(`path`,{d:`M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z`}),(0,U.jsx)(`circle`,{cx:`12`,cy:`13`,r:`4`})]})}),(0,U.jsx)(`input`,{type:`text`,className:`chat-input`,placeholder:u(`guide.inputPlaceholder`),value:s,onChange:e=>c(e.target.value)}),(0,U.jsx)(`button`,{type:`submit`,className:`send-btn`,disabled:!s.trim(),"aria-label":u(`guide.send`),children:(0,U.jsx)(ud,{size:18})})]})]})}var Ld=[`灵山大佛有多高？`,`帮我推荐一条游览路线`,`九龙灌浴每天几场表演？`],Rd=[`How tall is the Grand Buddha?`,`Recommend a tour route`,`When are the Nine Dragons shows?`];function zd({isOpen:e,onClose:n,onResult:r}){let[i,a]=(0,x.useState)(`listening`),[o,s]=(0,x.useState)(``),[c,l]=(0,x.useState)(``),u=(0,x.useRef)(null),d=(0,x.useRef)(null),f=(0,x.useRef)(`listening`),p=jd();(0,x.useEffect)(()=>{f.current=i},[i]);let m=(0,x.useCallback)(()=>{if(u.current){try{u.current.stop()}catch{}u.current=null}d.current&&clearTimeout(d.current)},[]),h=(0,x.useCallback)(()=>{let e=window.SpeechRecognition||window.webkitSpeechRecognition;if(!e){a(`error`),l(p(`voice.unsupported`));return}m();let i=new e;i.lang=kd()===`en`?`en-US`:`zh-CN`,i.interimResults=!0,i.maxAlternatives=1,i.continuous=!1,i.onresult=e=>{let i=e.results[e.results.length-1],o=i[0].transcript.trim();s(o),i.isFinal&&(d.current&&clearTimeout(d.current),a(`result`),setTimeout(()=>{o&&(r(o),n())},600))},i.onerror=e=>{e.error===`not-allowed`?(a(`error`),l(p(`voice.denied`))):e.error!==`aborted`&&(a(`error`),l(p(`voice.error`)))},i.onend=()=>{f.current===`listening`&&a(`idle`)};try{i.start(),u.current=i,a(`listening`),s(``),l(``),d.current=setTimeout(()=>{m(),a(`idle`)},8e3)}catch{a(`error`),l(p(`voice.cantStart`))}},[r,n,m]);return(0,x.useEffect)(()=>(e&&h(),()=>m()),[e,h,m]),(0,U.jsx)(Nc,{onExitComplete:()=>a(`listening`),children:e&&(0,U.jsxs)(W.div,{className:`voice-overlay`,initial:{opacity:0},animate:{opacity:1},exit:{opacity:0},transition:{duration:.25},children:[(0,U.jsx)(`button`,{type:`button`,className:`voice-close-btn`,onClick:()=>{m(),n()},"aria-label":p(`guide.close`),children:(0,U.jsx)(Td,{size:22})}),(0,U.jsxs)(`div`,{className:`voice-center`,children:[(i===`listening`||i===`idle`)&&(0,U.jsxs)(U.Fragment,{children:[(0,U.jsxs)(`div`,{className:`voice-rings`,children:[(0,U.jsx)(W.span,{className:`voice-ring`,animate:{scale:i===`listening`?[1,1.6,1]:1,opacity:i===`listening`?[.6,0,.6]:.2},transition:{repeat:1/0,duration:2.2,ease:`easeOut`}}),(0,U.jsx)(W.span,{className:`voice-ring`,animate:{scale:i===`listening`?[1,1.5,1]:1,opacity:i===`listening`?[.5,0,.5]:.2},transition:{repeat:1/0,duration:2.2,ease:`easeOut`,delay:.4}}),(0,U.jsx)(W.span,{className:`voice-ring`,animate:{scale:i===`listening`?[1,1.4,1]:1,opacity:i===`listening`?[.4,0,.4]:.15},transition:{repeat:1/0,duration:2.2,ease:`easeOut`,delay:.8}}),(0,U.jsx)(`div`,{className:`voice-mic-icon`,children:(0,U.jsx)(rd,{size:36})})]}),(0,U.jsx)(W.p,{className:`voice-label`,animate:{opacity:i===`listening`?[.5,1,.5]:.7},transition:{repeat:i===`listening`?1/0:0,duration:1.6},children:p(i===`listening`?`voice.listening`:`voice.tapRetry`)}),o&&(0,U.jsx)(W.p,{className:`voice-interim`,initial:{opacity:0},animate:{opacity:1},children:o}),(0,U.jsx)(`div`,{className:`voice-bars`,children:Array.from({length:16}).map((e,n)=>(0,U.jsx)(W.span,{className:`voice-bar`,animate:{height:i===`listening`?[4,12+Math.random()*28,4]:4},transition:{repeat:i===`listening`?1/0:0,duration:.6+Math.random()*.4,delay:n*.06,ease:`easeInOut`}},n))})]}),i===`result`&&(0,U.jsxs)(W.div,{className:`voice-result`,initial:{scale:.9,opacity:0},animate:{scale:1,opacity:1},children:[(0,U.jsx)(W.p,{className:`voice-result-text`,children:o}),(0,U.jsx)(`span`,{className:`voice-result-hint`,children:p(`voice.recognized`)})]}),i===`error`&&(0,U.jsxs)(`div`,{className:`voice-error`,children:[(0,U.jsx)(Wu,{size:28}),(0,U.jsx)(`p`,{children:c}),(0,U.jsxs)(W.button,{type:`button`,className:`voice-retry-btn`,whileTap:{scale:.95},onClick:h,children:[(0,U.jsx)(cd,{size:14}),(0,U.jsx)(`span`,{children:p(`voice.retry`)})]})]}),(i===`idle`||i===`error`)&&(0,U.jsxs)(`div`,{className:`voice-suggestions`,children:[(0,U.jsx)(`span`,{children:p(`voice.suggestions`)}),(kd()===`en`?Rd:Ld).map(e=>(0,U.jsx)(W.button,{type:`button`,className:`voice-suggestion-chip`,whileTap:{scale:.96},onClick:()=>{m(),r(e),n()},children:e},e))]})]}),(0,U.jsx)(`p`,{className:`voice-hint`,children:p(i===`listening`?`voice.hintListening`:`voice.hintDefault`)})]})})}var Bd=`http://localhost:3001`,Vd=null;async function Hd(e,n){if(Vd===!1)return null;try{let r=await fetch(`${Bd}${e}`,{...n,signal:AbortSignal.timeout(3e3)});return r.ok?(Vd=!0,r.json()):null}catch{return Vd=!1,null}}async function Ud(e){return Hd(`/api/spots/${e}`)}async function Wd(e){return Hd(`/api/spots/${e}/related`)}async function Gd(e){return Hd(`/api/chat`,{method:`POST`,headers:{"Content-Type":`application/json`},body:JSON.stringify({question:e})})}async function Kd(){return Hd(`/api/analytics`)}var qd={"lingshan-buddha":{id:`lingshan-buddha`,name:`灵山大佛`,category:`青铜佛像·世界之最`,heroGradient:`linear-gradient(160deg, #1a3a2a 0%, #2a5a3a 30%, #5a8a4a 70%, #3a6a2a 100%)`,oneLiner:`世界最高露天青铜释迦牟尼立像，通高88米，总高101.5米。`,shortIntro:`灵山大佛位于无锡灵山胜境秦履峰南侧，是世界上最高的露天青铜释迦牟尼立像。佛像通高88米（佛体79米+莲花瓣9米），含台基总高101.5米，总用铜量725吨。右手施无畏印除却众生痛苦，左手施与愿印赐予众生欢乐。登216级登云道抱佛脚，俯瞰太湖全景。`,fullIntro:`灵山大佛位于无锡灵山胜境秦履峰南侧，矗立在景区最高处，是世界上最高的露天青铜释迦牟尼立像，也是灵山胜境的核心地标。
+        `),()=>{c.current?.removeAttribute(`data-motion-pop-id`),x.contains(b)&&x.removeChild(b)}},[n]),(0,U.jsx)(Ec,{isPresent:n,childRef:c,sizeRef:l,pop:o,children:o===!1?e:x.cloneElement(e,{ref:d})})}var Oc=({children:e,initial:n,isPresent:r,onExitComplete:i,custom:a,presenceAffectsLayout:o,mode:s,anchorX:c,anchorY:l,root:u})=>{let d=E(kc),f=(0,x.useId)(),p=!0,m=(0,x.useMemo)(()=>(p=!1,{id:f,initial:n,isPresent:r,custom:a,onExitComplete:e=>{d.set(e,!0);for(let e of d.values())if(!e)return;i&&i()},register:e=>(d.set(e,!1),()=>d.delete(e))}),[r,d,i]);return o&&p&&(m={...m}),(0,x.useMemo)(()=>{d.forEach((e,n)=>d.set(n,!1))},[r]),x.useEffect(()=>{!r&&!d.size&&i&&i()},[r]),e=(0,U.jsx)(Dc,{pop:s===`popLayout`,isPresent:r,anchorX:c,anchorY:l,root:u,children:e}),(0,U.jsx)(O.Provider,{value:m,children:e})};function kc(){return new Map}function Ac(e=!0){let n=(0,x.useContext)(O);if(n===null)return[!0,null];let{isPresent:r,onExitComplete:i,register:a}=n,o=(0,x.useId)();(0,x.useEffect)(()=>{if(e)return a(o)},[e]);let s=(0,x.useCallback)(()=>e&&i&&i(o),[o,i,e]);return!r&&i?[!1,s]:[!0]}var jc=e=>e.key||``;function Mc(e){let n=[];return x.Children.forEach(e,e=>{(0,x.isValidElement)(e)&&n.push(e)}),n}var Nc=({children:e,custom:n,initial:r=!0,onExitComplete:i,presenceAffectsLayout:a=!0,mode:o=`sync`,propagate:s=!1,anchorX:c=`left`,anchorY:l=`top`,root:u})=>{let[d,f]=Ac(s),p=(0,x.useMemo)(()=>Mc(e),[e]),m=s&&!d?[]:p.map(jc),h=(0,x.useRef)(!0),g=(0,x.useRef)(p),_=E(()=>new Map),v=(0,x.useRef)(new Set),[y,b]=(0,x.useState)(p),[S,C]=(0,x.useState)(p);D(()=>{h.current=!1,g.current=p;for(let e=0;e<S.length;e++){let n=jc(S[e]);m.includes(n)?(_.delete(n),v.current.delete(n)):_.get(n)!==!0&&_.set(n,!1)}},[S,m.length,m.join(`-`)]);let w=[];if(p!==y){let e=[...p];for(let n=0;n<S.length;n++){let r=S[n],i=jc(r);m.includes(i)||(e.splice(n,0,r),w.push(r))}return o===`wait`&&w.length&&(e=w),C(Mc(e)),b(p),null}let{forceRender:O}=(0,x.useContext)(T);return(0,U.jsx)(U.Fragment,{children:S.map(e=>{let y=jc(e),b=s&&!d?!1:p===S||m.includes(y);return(0,U.jsx)(Oc,{isPresent:b,initial:!h.current||r?void 0:!1,custom:n,presenceAffectsLayout:a,mode:o,root:u,onExitComplete:b?void 0:()=>{if(v.current.has(y))return;if(_.has(y))v.current.add(y),_.set(y,!0);else return;let e=!0;_.forEach(n=>{n||(e=!1)}),e&&(O?.(),C(g.current),s&&f?.(),i&&i())},anchorX:c,anchorY:l,children:e},y)})})},Pc=(0,x.createContext)({strict:!1}),Fc={animation:[`animate`,`variants`,`whileHover`,`whileTap`,`exit`,`whileInView`,`whileFocus`,`whileDrag`],exit:[`exit`],drag:[`drag`,`dragControls`],focus:[`whileFocus`],hover:[`whileHover`,`onHoverStart`,`onHoverEnd`],tap:[`whileTap`,`onTap`,`onTapStart`,`onTapCancel`],pan:[`onPan`,`onPanStart`,`onPanSessionStart`,`onPanEnd`],inView:[`whileInView`,`onViewportEnter`,`onViewportLeave`],layout:[`layout`,`layoutId`]},Ic=!1;function Lc(){if(Ic)return;let e={};for(let n in Fc)e[n]={isEnabled:e=>Fc[n].some(n=>!!e[n])};za(e),Ic=!0}function Rc(){return Lc(),Ba()}function zc(e){let n=Rc();for(let r in e)n[r]={...n[r],...e[r]};za(n)}var Bc=new Set(`animate.exit.variants.initial.style.values.variants.transition.transformTemplate.custom.inherit.onBeforeLayoutMeasure.onAnimationStart.onAnimationComplete.onUpdate.onDragStart.onDrag.onDragEnd.onMeasureDragConstraints.onDirectionLock.onDragTransitionEnd._dragX._dragY.onHoverStart.onHoverEnd.onViewportEnter.onViewportLeave.globalTapTarget.propagate.ignoreStrict.viewport`.split(`.`));function Vc(e){return e.startsWith(`while`)||e.startsWith(`drag`)&&e!==`draggable`||e.startsWith(`layout`)||e.startsWith(`onTap`)||e.startsWith(`onPan`)||e.startsWith(`onLayout`)||Bc.has(e)}var Hc=l({default:()=>Uc}),Uc,Wc=s((()=>{throw Uc={},Error(`Could not resolve "@emotion/is-prop-valid" imported by "framer-motion". Is it installed?`)})),Gc=e=>!Vc(e);function Kc(e){typeof e==`function`&&(Gc=n=>n.startsWith(`on`)?!Vc(n):e(n))}try{Kc((Wc(),f(Hc)).default)}catch{}function qc(e,n,r){let i={};for(let a in e)a===`values`&&typeof e.values==`object`||ri(e[a])||(Gc(a)||r===!0&&Vc(a)||!n&&!Vc(a)||e.draggable&&a.startsWith(`onDrag`))&&(i[a]=e[a]);return i}var Jc=(0,x.createContext)({});function Yc(e,n){if(Aa(e)){let{initial:n,animate:r}=e;return{initial:n===!1||Da(n)?n:void 0,animate:Da(r)?r:void 0}}return e.inherit===!1?{}:n}function Xc(e){let{initial:n,animate:r}=Yc(e,(0,x.useContext)(Jc));return(0,x.useMemo)(()=>({initial:n,animate:r}),[Zc(n),Zc(r)])}function Zc(e){return Array.isArray(e)?e.join(` `):e}var Qc=()=>({style:{},transform:{},transformOrigin:{},vars:{}});function $c(e,n,r){for(let i in n)!ri(n[i])&&!bo(i,r)&&(e[i]=n[i])}function el({transformTemplate:e},n){return(0,x.useMemo)(()=>{let r=Qc();return mo(r,n,e),Object.assign({},r.vars,r.style)},[n])}function tl(e,n){let r=e.style||{},i={};return $c(i,r,e),Object.assign(i,el(e,n)),i}function nl(e,n){let r={},i=tl(e,n);return e.drag&&e.dragListener!==!1&&(r.draggable=!1,i.userSelect=i.WebkitUserSelect=i.WebkitTouchCallout=`none`,i.touchAction=e.drag===!0?`none`:`pan-${e.drag===`x`?`y`:`x`}`),e.tabIndex===void 0&&(e.onTap||e.onTapStart||e.whileTap)&&(r.tabIndex=0),r.style=i,r}var rl=()=>({...Qc(),attrs:{}});function il(e,n,r,i){let a=(0,x.useMemo)(()=>{let r=rl();return Oo(r,n,Ao(i),e.transformTemplate,e.style),{...r.attrs,style:{...r.style}}},[n]);if(e.style){let n={};$c(n,e.style,e),a.style={...n,...a.style}}return a}var al=[`animate`,`circle`,`defs`,`desc`,`ellipse`,`g`,`image`,`line`,`filter`,`marker`,`mask`,`metadata`,`path`,`pattern`,`polygon`,`polyline`,`rect`,`stop`,`switch`,`symbol`,`svg`,`text`,`tspan`,`use`,`view`];function ol(e){return typeof e!=`string`||e.includes(`-`)?!1:!!(al.indexOf(e)>-1||/[A-Z]/u.test(e))}function sl(e,n,r,{latestValues:i},a,o=!1,s){let c=(s??ol(e)?il:nl)(n,i,a,e),l=qc(n,typeof e==`string`,o),u=e===x.Fragment?{}:{...l,...c,ref:r},{children:d}=n,f=(0,x.useMemo)(()=>ri(d)?d.get():d,[d]);return(0,x.createElement)(e,{...u,children:f})}function cl({scrapeMotionValuesFromProps:e,createRenderState:n},r,i,a){return{latestValues:ll(r,i,a,e),renderState:n()}}function ll(e,n,r,i){let a={},o=i(e,{});for(let e in o)a[e]=Ls(o[e]);let{initial:s,animate:c}=e,l=Aa(e),u=ja(e);n&&u&&!l&&e.inherit!==!1&&(s===void 0&&(s=n.initial),c===void 0&&(c=n.animate));let d=r?r.initial===!1:!1;d||=s===!1;let f=d?c:s;if(f&&typeof f!=`boolean`&&!Ea(f)){let n=Array.isArray(f)?f:[f];for(let r=0;r<n.length;r++){let i=Gr(e,n[r]);if(i){let{transitionEnd:e,transition:n,...r}=i;for(let e in r){let n=r[e];if(Array.isArray(n)){let e=d?n.length-1:0;n=n[e]}n!==null&&(a[e]=n)}for(let n in e)a[n]=e[n]}}}return a}var ul=e=>(n,r)=>{let i=(0,x.useContext)(Jc),a=(0,x.useContext)(O),o=()=>cl(e,n,i,a);return r?o():E(o)},dl=ul({scrapeMotionValuesFromProps:xo,createRenderState:Qc}),fl=ul({scrapeMotionValuesFromProps:Mo,createRenderState:rl}),pl=Symbol.for(`motionComponentSymbol`);function ml(e,n,r){let i=(0,x.useRef)(r);(0,x.useInsertionEffect)(()=>{i.current=r});let a=(0,x.useRef)(null);return(0,x.useCallback)(r=>{r&&e.onMount?.(r),n&&(r?n.mount(r):n.unmount());let o=i.current;if(typeof o==`function`)if(r){let e=o(r);typeof e==`function`&&(a.current=e)}else a.current?(a.current(),a.current=null):o(r);else o&&(o.current=r)},[n])}var hl=(0,x.createContext)({});function gl(e){return e&&typeof e==`object`&&Object.prototype.hasOwnProperty.call(e,`current`)}function _l(e,n,r,i,a,o){let{visualElement:s}=(0,x.useContext)(Jc),c=(0,x.useContext)(Pc),l=(0,x.useContext)(O),u=(0,x.useContext)(Sc),d=u.reducedMotion,f=u.skipAnimations,p=(0,x.useRef)(null),m=(0,x.useRef)(!1);i||=c.renderer,!p.current&&i&&(p.current=i(e,{visualState:n,parent:s,props:r,presenceContext:l,blockInitialAnimation:l?l.initial===!1:!1,reducedMotionConfig:d,skipAnimations:f,isSVG:o}),m.current&&p.current&&(p.current.manuallyAnimateOnMount=!0));let h=p.current,g=(0,x.useContext)(hl);h&&!h.projection&&a&&(h.type===`html`||h.type===`svg`)&&vl(p.current,r,a,g);let _=(0,x.useRef)(!1);(0,x.useInsertionEffect)(()=>{h&&_.current&&h.update(r,l)});let v=r[si],y=(0,x.useRef)(!!v&&typeof window<`u`&&!window.MotionHandoffIsComplete?.(v)&&window.MotionHasOptimisedAnimation?.(v));return D(()=>{m.current=!0,h&&(_.current=!0,window.MotionIsMounted=!0,h.updateFeatures(),h.scheduleRenderMicrotask(),y.current&&h.animationState&&h.animationState.animateChanges())}),(0,x.useEffect)(()=>{h&&(!y.current&&h.animationState&&h.animationState.animateChanges(),y.current&&=(queueMicrotask(()=>{window.MotionHandoffMarkAsComplete?.(v)}),!1),h.enteringChildren=void 0)}),h}function vl(e,n,r,i){let{layoutId:a,layout:o,drag:s,dragConstraints:c,layoutScroll:l,layoutRoot:u,layoutAnchor:d,layoutCrossfade:f}=n;e.projection=new r(e.latestValues,n[`data-framer-portal-id`]?void 0:yl(e.parent)),e.projection.setOptions({layoutId:a,layout:o,alwaysMeasureLayout:!!s||c&&gl(c),visualElement:e,animationType:typeof o==`string`?o:`both`,initialPromotionConfig:i,crossfade:f,layoutScroll:l,layoutRoot:u,layoutAnchor:d})}function yl(e){if(e)return e.options.allowProjection===!1?yl(e.parent):e.projection}function bl(e,{forwardMotionProps:n=!1,type:r}={},i,a){i&&zc(i);let o=r?r===`svg`:ol(e),s=o?fl:dl;function c(r,c){let l,u={...(0,x.useContext)(Sc),...r,layoutId:xl(r)},{isStatic:d}=u,f=Xc(r),p=s(r,d);if(!d&&typeof window<`u`){Sl(u,i);let n=Cl(u);l=n.MeasureLayout,f.visualElement=_l(e,p,u,a,n.ProjectionNode,o)}return(0,U.jsxs)(Jc.Provider,{value:f,children:[l&&f.visualElement?(0,U.jsx)(l,{visualElement:f.visualElement,...u}):null,sl(e,r,ml(p,f.visualElement,c),p,d,n,o)]})}c.displayName=`motion.${typeof e==`string`?e:`create(${e.displayName??e.name??``})`}`;let l=(0,x.forwardRef)(c);return l[pl]=e,l}function xl({layoutId:e}){let n=(0,x.useContext)(T).id;return n&&e!==void 0?n+`-`+e:e}function Sl(e,n){(0,x.useContext)(Pc).strict}function Cl(e){let{drag:n,layout:r}=Rc();if(!n&&!r)return{};let i={...n,...r};return{MeasureLayout:n?.isEnabled(e)||r?.isEnabled(e)?i.MeasureLayout:void 0,ProjectionNode:i.ProjectionNode}}function wl(e,n){if(typeof Proxy>`u`)return bl;let r=new Map,i=(r,i)=>bl(r,i,e,n);return new Proxy((e,n)=>i(e,n),{get:(a,o)=>o===`create`?i:(r.has(o)||r.set(o,bl(o,void 0,e,n)),r.get(o))})}var Tl=(e,n)=>n.isSVG??ol(e)?new No(n):new Co(n,{allowProjection:e!==x.Fragment}),El=class extends Ua{constructor(e){super(e),e.animationState||=Bo(e)}updateAnimationControlsSubscription(){let{animate:e}=this.node.getProps();Ea(e)&&(this.unmountControls=e.subscribe(this.node))}mount(){this.updateAnimationControlsSubscription()}update(){let{animate:e}=this.node.getProps(),{animate:n}=this.node.prevProps||{};e!==n&&this.updateAnimationControlsSubscription()}unmount(){this.node.animationState.reset(),this.unmountControls?.()}},Dl=0,Ol={animation:{Feature:El},exit:{Feature:class extends Ua{constructor(){super(...arguments),this.id=Dl++,this.isExitComplete=!1}update(){if(!this.node.presenceContext)return;let{isPresent:e,onExitComplete:n}=this.node.presenceContext,{isPresent:r}=this.node.prevPresenceContext||{};if(!this.node.animationState||e===r)return;if(e&&r===!1){if(this.isExitComplete){let{initial:e,custom:n}=this.node.getProps();if(typeof e==`string`||typeof e==`object`&&e&&!Array.isArray(e)){let r=Kr(this.node,e,n);if(r){let{transition:e,transitionEnd:n,...i}=r;for(let e in i)this.node.getValue(e)?.jump(i[e])}}this.node.animationState.reset(),this.node.animationState.animateChanges()}else this.node.animationState.setActive(`exit`,!1);this.isExitComplete=!1;return}let i=this.node.animationState.setActive(`exit`,!e);n&&!e&&i.then(()=>{this.isExitComplete=!0,n(this.id)})}mount(){let{register:e,onExitComplete:n}=this.node.presenceContext||{};n&&n(this.id),e&&(this.unmount=e(this.id))}unmount(){}}}};function kl(e){return{point:{x:e.pageX,y:e.pageY}}}var Al=e=>n=>Gi(n)&&e(n,kl(n));function jl(e,n,r,i){return Ns(e,n,Al(r),i)}var Ml=({current:e})=>e?e.ownerDocument.defaultView:null,Nl=(e,n)=>Math.abs(e-n);function Pl(e,n){let r=Nl(e.x,n.x),i=Nl(e.y,n.y);return Math.sqrt(r**2+i**2)}var Fl=new Set([`auto`,`scroll`]),Il=class{constructor(e,n,{transformPagePoint:r,contextWindow:i=window,dragSnapToOrigin:a=!1,distanceThreshold:o=3,element:s}={}){if(this.startEvent=null,this.lastMoveEvent=null,this.lastMoveEventInfo=null,this.lastRawMoveEventInfo=null,this.handlers={},this.contextWindow=window,this.scrollPositions=new Map,this.removeScrollListeners=null,this.onElementScroll=e=>{this.handleScroll(e.target)},this.onWindowScroll=()=>{this.handleScroll(window)},this.updatePoint=()=>{if(!(this.lastMoveEvent&&this.lastMoveEventInfo))return;this.lastRawMoveEventInfo&&(this.lastMoveEventInfo=Ll(this.lastRawMoveEventInfo,this.transformPagePoint));let e=zl(this.lastMoveEventInfo,this.history),n=this.startEvent!==null,r=Pl(e.offset,{x:0,y:0})>=this.distanceThreshold;if(!n&&!r)return;let{point:i}=e,{timestamp:a}=Me;this.history.push({...i,timestamp:a});let{onStart:o,onMove:s}=this.handlers;n||(o&&o(this.lastMoveEvent,e),this.startEvent=this.lastMoveEvent),s&&s(this.lastMoveEvent,e)},this.handlePointerMove=(e,n)=>{this.lastMoveEvent=e,this.lastRawMoveEventInfo=n,this.lastMoveEventInfo=Ll(n,this.transformPagePoint),Ae.update(this.updatePoint,!0)},this.handlePointerUp=(e,n)=>{this.end();let{onEnd:r,onSessionEnd:i,resumeAnimation:a}=this.handlers;if((this.dragSnapToOrigin||!this.startEvent)&&a&&a(),!(this.lastMoveEvent&&this.lastMoveEventInfo))return;let o=zl(e.type===`pointercancel`?this.lastMoveEventInfo:Ll(n,this.transformPagePoint),this.history);this.startEvent&&r&&r(e,o),i&&i(e,o)},!Gi(e))return;this.dragSnapToOrigin=a,this.handlers=n,this.transformPagePoint=r,this.distanceThreshold=o,this.contextWindow=i||window;let c=Ll(kl(e),this.transformPagePoint),{point:l}=c,{timestamp:u}=Me;this.history=[{...l,timestamp:u}];let{onSessionStart:d}=n;d&&d(e,zl(c,this.history)),this.removeListeners=L(jl(this.contextWindow,`pointermove`,this.handlePointerMove),jl(this.contextWindow,`pointerup`,this.handlePointerUp),jl(this.contextWindow,`pointercancel`,this.handlePointerUp)),s&&this.startScrollTracking(s)}startScrollTracking(e){let n=e.parentElement;for(;n;){let e=getComputedStyle(n);(Fl.has(e.overflowX)||Fl.has(e.overflowY))&&this.scrollPositions.set(n,{x:n.scrollLeft,y:n.scrollTop}),n=n.parentElement}this.scrollPositions.set(window,{x:window.scrollX,y:window.scrollY}),window.addEventListener(`scroll`,this.onElementScroll,{capture:!0}),window.addEventListener(`scroll`,this.onWindowScroll),this.removeScrollListeners=()=>{window.removeEventListener(`scroll`,this.onElementScroll,{capture:!0}),window.removeEventListener(`scroll`,this.onWindowScroll)}}handleScroll(e){let n=this.scrollPositions.get(e);if(!n)return;let r=e===window,i=r?{x:window.scrollX,y:window.scrollY}:{x:e.scrollLeft,y:e.scrollTop},a={x:i.x-n.x,y:i.y-n.y};a.x===0&&a.y===0||(r?this.lastMoveEventInfo&&(this.lastMoveEventInfo.point.x+=a.x,this.lastMoveEventInfo.point.y+=a.y):this.history.length>0&&(this.history[0].x-=a.x,this.history[0].y-=a.y),this.scrollPositions.set(e,i),Ae.update(this.updatePoint,!0))}updateHandlers(e){this.handlers=e}end(){this.removeListeners&&this.removeListeners(),this.removeScrollListeners&&this.removeScrollListeners(),this.scrollPositions.clear(),je(this.updatePoint)}};function Ll(e,n){return n?{point:n(e.point)}:e}function Rl(e,n){return{x:e.x-n.x,y:e.y-n.y}}function zl({point:e},n){return{point:e,delta:Rl(e,Vl(n)),offset:Rl(e,Bl(n)),velocity:Hl(n,.1)}}function Bl(e){return e[0]}function Vl(e){return e[e.length-1]}function Hl(e,n){if(e.length<2)return{x:0,y:0};let r=e.length-1,i=null,a=Vl(e);for(;r>=0&&(i=e[r],!(a.timestamp-i.timestamp>z(n)));)r--;if(!i)return{x:0,y:0};i===e[0]&&e.length>2&&a.timestamp-i.timestamp>z(n)*2&&(i=e[1]);let o=ne(a.timestamp-i.timestamp);if(o===0)return{x:0,y:0};let s={x:(a.x-i.x)/o,y:(a.y-i.y)/o};return s.x===1/0&&(s.x=0),s.y===1/0&&(s.y=0),s}function Ul(e,{min:n,max:r},i){return n!==void 0&&e<n?e=i?jt(n,e,i.min):Math.max(e,n):r!==void 0&&e>r&&(e=i?jt(r,e,i.max):Math.min(e,r)),e}function Wl(e,n,r){return{min:n===void 0?void 0:e.min+n,max:r===void 0?void 0:e.max+r-(e.max-e.min)}}function Gl(e,{top:n,left:r,bottom:i,right:a}){return{x:Wl(e.x,r,a),y:Wl(e.y,n,i)}}function Kl(e,n){let r=n.min-e.min,i=n.max-e.max;return n.max-n.min<e.max-e.min&&([r,i]=[i,r]),{min:r,max:i}}function ql(e,n){return{x:Kl(e.x,n.x),y:Kl(e.y,n.y)}}function Jl(e,n){let r=.5,i=$o(e),a=$o(n);return a>i?r=te(n.min,n.max-i,e.min):i>a&&(r=te(e.min,e.max-a,n.min)),j(0,1,r)}function Yl(e,n){let r={};return n.min!==void 0&&(r.min=n.min-e.min),n.max!==void 0&&(r.max=n.max-e.min),r}var Xl=.35;function Zl(e=Xl){return e===!1?e=0:e===!0&&(e=Xl),{x:Ql(e,`left`,`right`),y:Ql(e,`top`,`bottom`)}}function Ql(e,n,r){return{min:$l(e,n),max:$l(e,r)}}function $l(e,n){return typeof e==`number`?e:e[n]||0}var eu=new WeakMap,tu=class{constructor(e){this.openDragLock=null,this.isDragging=!1,this.currentDirection=null,this.originPoint={x:0,y:0},this.constraints=!1,this.hasMutatedConstraints=!1,this.elastic=wa(),this.latestPointerEvent=null,this.latestPanInfo=null,this.visualElement=e}start(e,{snapToCursor:n=!1,distanceThreshold:r}={}){let{presenceContext:i}=this.visualElement;if(i&&i.isPresent===!1)return;let a=e=>{n&&this.snapToCursor(kl(e).point),this.stopAnimation()},o=(e,n)=>{let{drag:r,dragPropagation:i,onDragStart:a}=this.getProps();if(r&&!i&&(this.openDragLock&&this.openDragLock(),this.openDragLock=Bi(r),!this.openDragLock))return;this.latestPointerEvent=e,this.latestPanInfo=n,this.isDragging=!0,this.currentDirection=null,this.resolveConstraints(),this.visualElement.projection&&(this.visualElement.projection.isAnimationBlocked=!0,this.visualElement.projection.target=void 0),xs(e=>{let n=this.getAxisMotionValue(e).get()||0;if(ot.test(n)){let{projection:r}=this.visualElement;if(r&&r.layout){let i=r.layout.layoutBox[e];i&&(n=$o(i)*(parseFloat(n)/100))}}this.originPoint[e]=n}),a&&Ae.update(()=>a(e,n),!1,!0),ai(this.visualElement,`transform`);let{animationState:o}=this.visualElement;o&&o.setActive(`whileDrag`,!0)},s=(e,n)=>{this.latestPointerEvent=e,this.latestPanInfo=n;let{dragPropagation:r,dragDirectionLock:i,onDirectionLock:a,onDrag:o}=this.getProps();if(!r&&!this.openDragLock)return;let{offset:s}=n;if(i&&this.currentDirection===null){this.currentDirection=au(s),this.currentDirection!==null&&a&&a(this.currentDirection);return}this.updateAxis(`x`,n.point,s),this.updateAxis(`y`,n.point,s),this.visualElement.render(),o&&Ae.update(()=>o(e,n),!1,!0)},c=(e,n)=>{this.latestPointerEvent=e,this.latestPanInfo=n,this.stop(e,n),this.latestPointerEvent=null,this.latestPanInfo=null},l=()=>{let{dragSnapToOrigin:e}=this.getProps();(e||this.constraints)&&this.startAnimation({x:0,y:0})},{dragSnapToOrigin:u}=this.getProps();this.panSession=new Il(e,{onSessionStart:a,onStart:o,onMove:s,onSessionEnd:c,resumeAnimation:l},{transformPagePoint:this.visualElement.getTransformPagePoint(),dragSnapToOrigin:u,distanceThreshold:r,contextWindow:Ml(this.visualElement),element:this.visualElement.current})}stop(e,n){let r=e||this.latestPointerEvent,i=n||this.latestPanInfo,a=this.isDragging;if(this.cancel(),!a||!i||!r)return;let{velocity:o}=i;this.startAnimation(o);let{onDragEnd:s}=this.getProps();s&&Ae.postRender(()=>s(r,i))}cancel(){this.isDragging=!1;let{projection:e,animationState:n}=this.visualElement;e&&(e.isAnimationBlocked=!1),this.endPanSession();let{dragPropagation:r}=this.getProps();!r&&this.openDragLock&&(this.openDragLock(),this.openDragLock=null),n&&n.setActive(`whileDrag`,!1)}endPanSession(){this.panSession&&this.panSession.end(),this.panSession=void 0}updateAxis(e,n,r){let{drag:i}=this.getProps();if(!r||!iu(e,i,this.currentDirection))return;let a=this.getAxisMotionValue(e),o=this.originPoint[e]+r[e];this.constraints&&this.constraints[e]&&(o=Ul(o,this.constraints[e],this.elastic[e])),a.set(o)}resolveConstraints(){let{dragConstraints:e,dragElastic:n}=this.getProps(),r=this.visualElement.projection&&!this.visualElement.projection.layout?this.visualElement.projection.measure(!1):this.visualElement.projection?.layout,i=this.constraints;e&&gl(e)?this.constraints||=this.resolveRefConstraints():e&&r?this.constraints=Gl(r.layoutBox,e):this.constraints=!1,this.elastic=Zl(n),i!==this.constraints&&!gl(e)&&r&&this.constraints&&!this.hasMutatedConstraints&&xs(e=>{this.constraints!==!1&&this.getAxisMotionValue(e)&&(this.constraints[e]=Yl(r.layoutBox[e],this.constraints[e]))})}resolveRefConstraints(){let{dragConstraints:e,onMeasureDragConstraints:n}=this.getProps();if(!e||!gl(e))return!1;let r=e.current,{projection:i}=this.visualElement;if(!i||!i.layout)return!1;i.root&&(i.root.scroll=void 0,i.root.updateScroll());let a=uo(r,i.root,this.visualElement.getTransformPagePoint()),o=ql(i.layout.layoutBox,a);if(n){let e=n(Ga(o));this.hasMutatedConstraints=!!e,e&&(o=Wa(e))}return o}startAnimation(e){let{drag:n,dragMomentum:r,dragElastic:i,dragTransition:a,dragSnapToOrigin:o,onDragTransitionEnd:s}=this.getProps(),c=this.constraints||{},l=xs(s=>{if(!iu(s,n,this.currentDirection))return;let l=c&&c[s]||{};(o===!0||o===s)&&(l={min:0,max:0});let u=i?200:1e6,d=i?40:1e7,f={type:`inertia`,velocity:r?e[s]:0,bounceStiffness:u,bounceDamping:d,timeConstant:750,restDelta:1,restSpeed:10,...a,...l};return this.startAxisValueAnimation(s,f)});return Promise.all(l).then(s)}startAxisValueAnimation(e,n){let r=this.getAxisMotionValue(e);return ai(this.visualElement,e),r.start(Ur(e,r,0,n,this.visualElement,!1))}stopAnimation(){xs(e=>this.getAxisMotionValue(e).stop())}getAxisMotionValue(e){let n=`_drag${e.toUpperCase()}`;return this.visualElement.getProps()[n]||this.visualElement.getValue(e,this.visualElement.latestValues[e]??0)}snapToCursor(e){xs(n=>{let{drag:r}=this.getProps();if(!iu(n,r,this.currentDirection))return;let{projection:i}=this.visualElement,a=this.getAxisMotionValue(n);if(i&&i.layout){let{min:r,max:o}=i.layout.layoutBox[n],s=a.get()||0;a.set(e[n]-jt(r,o,.5)+s)}})}scalePositionWithinConstraints(){if(!this.visualElement.current)return;let{drag:e,dragConstraints:n}=this.getProps(),{projection:r}=this.visualElement;if(!gl(n)||!r||!this.constraints)return;this.stopAnimation();let i={x:0,y:0};xs(e=>{let n=this.getAxisMotionValue(e);if(n&&this.constraints!==!1){let r=n.get();i[e]=Jl({min:r,max:r},this.constraints[e])}});let{transformTemplate:a}=this.visualElement.getProps();this.visualElement.current.style.transform=a?a({},``):`none`,r.root&&r.root.updateScroll(),r.updateLayout(),this.constraints=!1,this.resolveConstraints(),xs(n=>{if(!iu(n,e,null))return;let r=this.getAxisMotionValue(n),{min:a,max:o}=this.constraints[n];r.set(jt(a,o,i[n]))}),this.visualElement.render()}addListeners(){if(!this.visualElement.current)return;eu.set(this.visualElement,this);let e=this.visualElement.current,n=jl(e,`pointerdown`,n=>{let{drag:r,dragListener:i=!0}=this.getProps(),a=n.target,o=a!==e&&Yi(a);r&&i&&!o&&this.start(n)}),r,i=()=>{let{dragConstraints:n}=this.getProps();gl(n)&&n.current&&(this.constraints=this.resolveRefConstraints(),r||=ru(e,n.current,()=>this.scalePositionWithinConstraints()))},{projection:a}=this.visualElement,o=a.addEventListener(`measure`,i);a&&!a.layout&&(a.root&&a.root.updateScroll(),a.updateLayout()),Ae.read(i);let s=Ns(window,`resize`,()=>this.scalePositionWithinConstraints()),c=a.addEventListener(`didUpdate`,(({delta:e,hasLayoutChanged:n})=>{this.isDragging&&n&&(xs(n=>{let r=this.getAxisMotionValue(n);r&&(this.originPoint[n]+=e[n].translate,r.set(r.get()+e[n].translate))}),this.visualElement.render())}));return()=>{s(),n(),o(),c&&c(),r&&r()}}getProps(){let e=this.visualElement.getProps(),{drag:n=!1,dragDirectionLock:r=!1,dragPropagation:i=!1,dragConstraints:a=!1,dragElastic:o=Xl,dragMomentum:s=!0}=e;return{...e,drag:n,dragDirectionLock:r,dragPropagation:i,dragConstraints:a,dragElastic:o,dragMomentum:s}}};function nu(e){let n=!0;return()=>{if(n){n=!1;return}e()}}function ru(e,n,r){let i=_a(e,nu(r)),a=_a(n,nu(r));return()=>{i(),a()}}function iu(e,n,r){return(n===!0||n===e)&&(r===null||r===e)}function au(e,n=10){let r=null;return Math.abs(e.y)>n?r=`y`:Math.abs(e.x)>n&&(r=`x`),r}var ou=class extends Ua{constructor(e){super(e),this.removeGroupControls=I,this.removeListeners=I,this.controls=new tu(e)}mount(){let{dragControls:e}=this.node.getProps();e&&(this.removeGroupControls=e.subscribe(this.controls)),this.removeListeners=this.controls.addListeners()||I}update(){let{dragControls:e}=this.node.getProps(),{dragControls:n}=this.node.prevProps||{};e!==n&&(this.removeGroupControls(),e&&(this.removeGroupControls=e.subscribe(this.controls)))}unmount(){this.removeGroupControls(),this.removeListeners(),this.controls.isDragging||this.controls.endPanSession()}},su=e=>(n,r)=>{e&&Ae.update(()=>e(n,r),!1,!0)},cu=class extends Ua{constructor(){super(...arguments),this.removePointerDownListener=I}onPointerDown(e){this.session=new Il(e,this.createPanHandlers(),{transformPagePoint:this.node.getTransformPagePoint(),contextWindow:Ml(this.node)})}createPanHandlers(){let{onPanSessionStart:e,onPanStart:n,onPan:r,onPanEnd:i}=this.node.getProps();return{onSessionStart:su(e),onStart:su(n),onMove:su(r),onEnd:(e,n)=>{delete this.session,i&&Ae.postRender(()=>i(e,n))}}}mount(){this.removePointerDownListener=jl(this.node.current,`pointerdown`,e=>this.onPointerDown(e))}update(){this.session&&this.session.updateHandlers(this.createPanHandlers())}unmount(){this.removePointerDownListener(),this.session&&this.session.end()}},lu=!1,uu=class extends x.Component{componentDidMount(){let{visualElement:e,layoutGroup:n,switchLayoutGroup:r,layoutId:i}=this.props,{projection:a}=e;a&&(n.group&&n.group.add(a),r&&r.register&&i&&r.register(a),lu&&a.root.didUpdate(),a.addEventListener(`animationComplete`,()=>{this.safeToRemove()}),a.setOptions({...a.options,layoutDependency:this.props.layoutDependency,onExitComplete:()=>this.safeToRemove()})),zs.hasEverUpdated=!0}getSnapshotBeforeUpdate(e){let{layoutDependency:n,visualElement:r,drag:i,isPresent:a}=this.props,{projection:o}=r;return o?(o.isPresent=a,e.layoutDependency!==n&&o.setOptions({...o.options,layoutDependency:n}),lu=!0,i||e.layoutDependency!==n||n===void 0||e.isPresent!==a?o.willUpdate():this.safeToRemove(),e.isPresent!==a&&(a?o.promote():o.relegate()||Ae.postRender(()=>{let e=o.getStack();(!e||!e.members.length)&&this.safeToRemove()})),null):null}componentDidUpdate(){let{visualElement:e,layoutAnchor:n}=this.props,{projection:r}=e;r&&(r.options.layoutAnchor=n,r.root.didUpdate(),Ii.postRender(()=>{!r.currentAnimation&&r.isLead()&&this.safeToRemove()}))}componentWillUnmount(){let{visualElement:e,layoutGroup:n,switchLayoutGroup:r}=this.props,{projection:i}=e;lu=!0,i&&(i.scheduleCheckAfterUnmount(),n&&n.group&&n.group.remove(i),r&&r.deregister&&r.deregister(i))}safeToRemove(){let{safeToRemove:e}=this.props;e&&e()}render(){return null}};function du(e){let[n,r]=Ac(),i=(0,x.useContext)(T);return(0,U.jsx)(uu,{...e,layoutGroup:i,switchLayoutGroup:(0,x.useContext)(hl),isPresent:n,safeToRemove:r})}var fu={pan:{Feature:cu},drag:{Feature:ou,ProjectionNode:xc,MeasureLayout:du}};function pu(e,n,r){let{props:i}=e;e.animationState&&i.whileHover&&e.animationState.setActive(`whileHover`,r===`Start`);let a=i[`onHover`+r];a&&Ae.postRender(()=>a(n,kl(n)))}var mu=class extends Ua{mount(){let{current:e}=this.node;e&&(this.unmount=Ui(e,(e,n)=>(pu(this.node,n,`Start`),e=>pu(this.node,e,`End`))))}unmount(){}},hu=class extends Ua{constructor(){super(...arguments),this.isActive=!1}onFocus(){let e=!1;try{e=this.node.current.matches(`:focus-visible`)}catch{e=!0}!e||!this.node.animationState||(this.node.animationState.setActive(`whileFocus`,!0),this.isActive=!0)}onBlur(){!this.isActive||!this.node.animationState||(this.node.animationState.setActive(`whileFocus`,!1),this.isActive=!1)}mount(){this.unmount=L(Ns(this.node.current,`focus`,()=>this.onFocus()),Ns(this.node.current,`blur`,()=>this.onBlur()))}unmount(){}};function gu(e,n,r){let{props:i}=e;if(e.current instanceof HTMLButtonElement&&e.current.disabled)return;e.animationState&&i.whileTap&&e.animationState.setActive(`whileTap`,r===`Start`);let a=i[`onTap`+(r===`End`?``:r)];a&&Ae.postRender(()=>a(n,kl(n)))}var _u=class extends Ua{mount(){let{current:e}=this.node;if(!e)return;let{globalTapTarget:n,propagate:r}=this.node.props;this.unmount=na(e,(e,n)=>(gu(this.node,n,`Start`),(e,{success:n})=>gu(this.node,e,n?`End`:`Cancel`)),{useGlobalTarget:n,stopPropagation:r?.tap===!1})}unmount(){}},vu=new WeakMap,yu=new WeakMap,bu=e=>{let n=vu.get(e.target);n&&n(e)},xu=e=>{e.forEach(bu)};function Su({root:e,...n}){let r=e||document;yu.has(r)||yu.set(r,{});let i=yu.get(r),a=JSON.stringify(n);return i[a]||(i[a]=new IntersectionObserver(xu,{root:e,...n})),i[a]}function Cu(e,n,r){let i=Su(n);return vu.set(e,r),i.observe(e),()=>{vu.delete(e),i.unobserve(e)}}var wu={some:0,all:1},Tu=class extends Ua{constructor(){super(...arguments),this.hasEnteredView=!1,this.isInView=!1}startObserver(){this.stopObserver?.();let{viewport:e={}}=this.node.getProps(),{root:n,margin:r,amount:i=`some`,once:a}=e,o={root:n?n.current:void 0,rootMargin:r,threshold:typeof i==`number`?i:wu[i]},s=e=>{let{isIntersecting:n}=e;if(this.isInView===n||(this.isInView=n,a&&!n&&this.hasEnteredView))return;n&&(this.hasEnteredView=!0),this.node.animationState&&this.node.animationState.setActive(`whileInView`,n);let{onViewportEnter:r,onViewportLeave:i}=this.node.getProps(),o=n?r:i;o&&o(e)};this.stopObserver=Cu(this.node.current,o,s)}mount(){this.startObserver()}update(){if(typeof IntersectionObserver>`u`)return;let{props:e,prevProps:n}=this.node;[`amount`,`margin`,`root`].some(Eu(e,n))&&this.startObserver()}unmount(){this.stopObserver?.(),this.hasEnteredView=!1,this.isInView=!1}};function Eu({viewport:e={}},{viewport:n={}}={}){return r=>e[r]!==n[r]}var Du={inView:{Feature:Tu},tap:{Feature:_u},focus:{Feature:hu},hover:{Feature:mu}},Ou={layout:{ProjectionNode:xc,MeasureLayout:du}},W=wl({...Ol,...Du,...fu,...Ou},Tl),ku=(...e)=>e.filter((e,n,r)=>!!e&&e.trim()!==``&&r.indexOf(e)===n).join(` `).trim(),Au=e=>e.replace(/([a-z0-9])([A-Z])/g,`$1-$2`).toLowerCase(),ju=e=>e.replace(/^([A-Z])|[\s-_]+(\w)/g,(e,n,r)=>r?r.toUpperCase():n.toLowerCase()),Mu=e=>{let n=ju(e);return n.charAt(0).toUpperCase()+n.slice(1)},Nu={xmlns:`http://www.w3.org/2000/svg`,width:24,height:24,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:2,strokeLinecap:`round`,strokeLinejoin:`round`},Pu=e=>{for(let n in e)if(n.startsWith(`aria-`)||n===`role`||n===`title`)return!0;return!1},Fu=(0,x.createContext)({}),Iu=()=>(0,x.useContext)(Fu),Lu=(0,x.forwardRef)(({color:e,size:n,strokeWidth:r,absoluteStrokeWidth:i,className:a=``,children:o,iconNode:s,...c},l)=>{let{size:u=24,strokeWidth:d=2,absoluteStrokeWidth:f=!1,color:p=`currentColor`,className:m=``}=Iu()??{},h=i??f?Number(r??d)*24/Number(n??u):r??d;return(0,x.createElement)(`svg`,{ref:l,...Nu,width:n??u??Nu.width,height:n??u??Nu.height,stroke:e??p,strokeWidth:h,className:ku(`lucide`,m,a),...!o&&!Pu(c)&&{"aria-hidden":`true`},...c},[...s.map(([e,n])=>(0,x.createElement)(e,n)),...Array.isArray(o)?o:[o]])}),G=(e,n)=>{let r=(0,x.forwardRef)(({className:r,...i},a)=>(0,x.createElement)(Lu,{ref:a,iconNode:n,className:ku(`lucide-${Au(Mu(e))}`,`lucide-${e}`,r),...i}));return r.displayName=Mu(e),r},Ru=G(`book-open`,[[`path`,{d:`M12 7v14`,key:`1akyts`}],[`path`,{d:`M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z`,key:`ruj8y`}]]),zu=G(`calendar`,[[`path`,{d:`M8 2v4`,key:`1cmpym`}],[`path`,{d:`M16 2v4`,key:`4m81vk`}],[`rect`,{width:`18`,height:`18`,x:`3`,y:`4`,rx:`2`,key:`1hopcy`}],[`path`,{d:`M3 10h18`,key:`8toen8`}]]),Bu=G(`camera`,[[`path`,{d:`M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z`,key:`18u6gg`}],[`circle`,{cx:`12`,cy:`13`,r:`3`,key:`1vg3eu`}]]),Vu=G(`check`,[[`path`,{d:`M20 6 9 17l-5-5`,key:`1gmf2c`}]]),Hu=G(`chevron-left`,[[`path`,{d:`m15 18-6-6 6-6`,key:`1wnfg3`}]]),Uu=G(`chevron-right`,[[`path`,{d:`m9 18 6-6-6-6`,key:`mthhwq`}]]),Wu=G(`circle-alert`,[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}],[`line`,{x1:`12`,x2:`12`,y1:`8`,y2:`12`,key:`1pkeuh`}],[`line`,{x1:`12`,x2:`12.01`,y1:`16`,y2:`16`,key:`4dfq90`}]]),Gu=G(`circle-dot`,[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}],[`circle`,{cx:`12`,cy:`12`,r:`1`,key:`41hilf`}]]),Ku=G(`circle-play`,[[`path`,{d:`M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z`,key:`kmsa83`}],[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}]]),qu=G(`clock`,[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}],[`path`,{d:`M12 6v6l4 2`,key:`mmk7yg`}]]),Ju=G(`compass`,[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}],[`path`,{d:`m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z`,key:`9ktpf1`}]]),Yu=G(`copy`,[[`rect`,{width:`14`,height:`14`,x:`8`,y:`8`,rx:`2`,ry:`2`,key:`17jyea`}],[`path`,{d:`M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2`,key:`zix9uf`}]]),Xu=G(`download`,[[`path`,{d:`M12 15V3`,key:`m9g1x1`}],[`path`,{d:`M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4`,key:`ih7n3h`}],[`path`,{d:`m7 10 5 5 5-5`,key:`brsn70`}]]),Zu=G(`footprints`,[[`path`,{d:`M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z`,key:`1dudjm`}],[`path`,{d:`M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z`,key:`l2t8xc`}],[`path`,{d:`M16 17h4`,key:`1dejxt`}],[`path`,{d:`M4 13h4`,key:`1bwh8b`}]]),Qu=G(`history`,[[`path`,{d:`M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8`,key:`1357e3`}],[`path`,{d:`M3 3v5h5`,key:`1xhq8a`}],[`path`,{d:`M12 7v5l4 2`,key:`1fdv2h`}]]),$u=G(`image`,[[`rect`,{width:`18`,height:`18`,x:`3`,y:`3`,rx:`2`,ry:`2`,key:`1m3agn`}],[`circle`,{cx:`9`,cy:`9`,r:`2`,key:`af1f0g`}],[`path`,{d:`m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21`,key:`1xmnt7`}]]),ed=G(`map-pin`,[[`path`,{d:`M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0`,key:`1r0f0z`}],[`circle`,{cx:`12`,cy:`10`,r:`3`,key:`ilqhr7`}]]),td=G(`map-pinned`,[[`path`,{d:`M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0`,key:`11u0oz`}],[`circle`,{cx:`12`,cy:`8`,r:`2`,key:`1822b1`}],[`path`,{d:`M8.714 14h-3.71a1 1 0 0 0-.948.683l-2.004 6A1 1 0 0 0 3 22h18a1 1 0 0 0 .948-1.316l-2-6a1 1 0 0 0-.949-.684h-3.712`,key:`q8zwxj`}]]),nd=G(`map`,[[`path`,{d:`M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z`,key:`169xi5`}],[`path`,{d:`M15 5.764v15`,key:`1pn4in`}],[`path`,{d:`M9 3.236v15`,key:`1uimfh`}]]),rd=G(`mic`,[[`path`,{d:`M12 19v3`,key:`npa21l`}],[`path`,{d:`M19 10v2a7 7 0 0 1-14 0v-2`,key:`1vc78b`}],[`rect`,{x:`9`,y:`2`,width:`6`,height:`13`,rx:`3`,key:`s6n7sd`}]]),id=G(`navigation`,[[`polygon`,{points:`3 11 22 2 13 21 11 13 3 11`,key:`1ltx0t`}]]),ad=G(`pause`,[[`rect`,{x:`14`,y:`3`,width:`5`,height:`18`,rx:`1`,key:`kaeet6`}],[`rect`,{x:`5`,y:`3`,width:`5`,height:`18`,rx:`1`,key:`1wsw3u`}]]),od=G(`play`,[[`path`,{d:`M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z`,key:`10ikf1`}]]),sd=G(`qr-code`,[[`rect`,{width:`5`,height:`5`,x:`3`,y:`3`,rx:`1`,key:`1tu5fj`}],[`rect`,{width:`5`,height:`5`,x:`16`,y:`3`,rx:`1`,key:`1v8r4q`}],[`rect`,{width:`5`,height:`5`,x:`3`,y:`16`,rx:`1`,key:`1x03jg`}],[`path`,{d:`M21 16h-3a2 2 0 0 0-2 2v3`,key:`177gqh`}],[`path`,{d:`M21 21v.01`,key:`ents32`}],[`path`,{d:`M12 7v3a2 2 0 0 1-2 2H7`,key:`8crl2c`}],[`path`,{d:`M3 12h.01`,key:`nlz23k`}],[`path`,{d:`M12 3h.01`,key:`n36tog`}],[`path`,{d:`M12 16v.01`,key:`133mhm`}],[`path`,{d:`M16 12h1`,key:`1slzba`}],[`path`,{d:`M21 12v.01`,key:`1lwtk9`}],[`path`,{d:`M12 21v-1`,key:`1880an`}]]),cd=G(`refresh-cw`,[[`path`,{d:`M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8`,key:`v9h5vc`}],[`path`,{d:`M21 3v5h-5`,key:`1q7to0`}],[`path`,{d:`M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16`,key:`3uifl3`}],[`path`,{d:`M8 16H3v5`,key:`1cv678`}]]),ld=G(`scan`,[[`path`,{d:`M3 7V5a2 2 0 0 1 2-2h2`,key:`aa7l1z`}],[`path`,{d:`M17 3h2a2 2 0 0 1 2 2v2`,key:`4qcy5o`}],[`path`,{d:`M21 17v2a2 2 0 0 1-2 2h-2`,key:`6vwrx8`}],[`path`,{d:`M7 21H5a2 2 0 0 1-2-2v-2`,key:`ioqczr`}]]),ud=G(`send`,[[`path`,{d:`M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z`,key:`1ffxy3`}],[`path`,{d:`m21.854 2.147-10.94 10.939`,key:`12cjpa`}]]),dd=G(`share-2`,[[`circle`,{cx:`18`,cy:`5`,r:`3`,key:`gq8acd`}],[`circle`,{cx:`6`,cy:`12`,r:`3`,key:`w7nqdw`}],[`circle`,{cx:`18`,cy:`19`,r:`3`,key:`1xt0gg`}],[`line`,{x1:`8.59`,x2:`15.42`,y1:`13.51`,y2:`17.49`,key:`47mynk`}],[`line`,{x1:`15.41`,x2:`8.59`,y1:`6.51`,y2:`10.49`,key:`1n3mei`}]]),fd=G(`shield-alert`,[[`path`,{d:`M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z`,key:`oel41y`}],[`path`,{d:`M12 8v4`,key:`1got3b`}],[`path`,{d:`M12 16h.01`,key:`1drbdi`}]]),pd=G(`shield-check`,[[`path`,{d:`M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z`,key:`oel41y`}],[`path`,{d:`m9 12 2 2 4-4`,key:`dzmm74`}]]),md=G(`shield-question-mark`,[[`path`,{d:`M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z`,key:`oel41y`}],[`path`,{d:`M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3`,key:`mhlwft`}],[`path`,{d:`M12 17h.01`,key:`p32p05`}]]),hd=G(`sparkles`,[[`path`,{d:`M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z`,key:`1s2grr`}],[`path`,{d:`M20 2v4`,key:`1rf3ol`}],[`path`,{d:`M22 4h-4`,key:`gwowj6`}],[`circle`,{cx:`4`,cy:`20`,r:`2`,key:`6kqj1y`}]]),gd=G(`star`,[[`path`,{d:`M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z`,key:`r04s7s`}]]),_d=G(`sunrise`,[[`path`,{d:`M12 2v8`,key:`1q4o3n`}],[`path`,{d:`m4.93 10.93 1.41 1.41`,key:`2a7f42`}],[`path`,{d:`M2 18h2`,key:`j10viu`}],[`path`,{d:`M20 18h2`,key:`wocana`}],[`path`,{d:`m19.07 10.93-1.41 1.41`,key:`15zs5n`}],[`path`,{d:`M22 22H2`,key:`19qnx5`}],[`path`,{d:`m8 6 4-4 4 4`,key:`ybng9g`}],[`path`,{d:`M16 18a4 4 0 0 0-8 0`,key:`1lzouq`}]]),vd=G(`thumbs-down`,[[`path`,{d:`M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z`,key:`m61m77`}],[`path`,{d:`M17 14V2`,key:`8ymqnk`}]]),yd=G(`thumbs-up`,[[`path`,{d:`M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z`,key:`emmmcr`}],[`path`,{d:`M7 10v12`,key:`1qc93n`}]]),bd=G(`triangle-alert`,[[`path`,{d:`m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3`,key:`wmoenq`}],[`path`,{d:`M12 9v4`,key:`juzpu7`}],[`path`,{d:`M12 17h.01`,key:`p32p05`}]]),xd=G(`users`,[[`path`,{d:`M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2`,key:`1yyitq`}],[`path`,{d:`M16 3.128a4 4 0 0 1 0 7.744`,key:`16gr8j`}],[`path`,{d:`M22 21v-2a4 4 0 0 0-3-3.87`,key:`kshegd`}],[`circle`,{cx:`9`,cy:`7`,r:`4`,key:`nufk8`}]]),Sd=G(`volume-2`,[[`path`,{d:`M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z`,key:`uqj9uw`}],[`path`,{d:`M16 9a5 5 0 0 1 0 6`,key:`1q6k2b`}],[`path`,{d:`M19.364 18.364a9 9 0 0 0 0-12.728`,key:`ijwkga`}]]),Cd=G(`wifi-off`,[[`path`,{d:`M12 20h.01`,key:`zekei9`}],[`path`,{d:`M8.5 16.429a5 5 0 0 1 7 0`,key:`1bycff`}],[`path`,{d:`M5 12.859a10 10 0 0 1 5.17-2.69`,key:`1dl1wf`}],[`path`,{d:`M19 12.859a10 10 0 0 0-2.007-1.523`,key:`4k23kn`}],[`path`,{d:`M2 8.82a15 15 0 0 1 4.177-2.643`,key:`1grhjp`}],[`path`,{d:`M22 8.82a15 15 0 0 0-11.288-3.764`,key:`z3jwby`}],[`path`,{d:`m2 2 20 20`,key:`1ooewy`}]]),wd=G(`wifi`,[[`path`,{d:`M12 20h.01`,key:`zekei9`}],[`path`,{d:`M2 8.82a15 15 0 0 1 20 0`,key:`dnpr2z`}],[`path`,{d:`M5 12.859a10 10 0 0 1 14 0`,key:`1x1e6c`}],[`path`,{d:`M8.5 16.429a5 5 0 0 1 7 0`,key:`1bycff`}]]),Td=G(`x`,[[`path`,{d:`M18 6 6 18`,key:`1bl5f8`}],[`path`,{d:`m6 6 12 12`,key:`d8bk6v`}]]),Ed={zh:{"app.title":`灵山胜境 · AI 数字人导览`,"guide.welcome":`欢迎来到灵山胜境！我是您的 AI 导游小景。您可以随时向我提问，比如"灵山大佛有多高？"或者"推荐一条游览路线"。`,"guide.title":`AI 导游`,"guide.offlineBanner":`弱网模式 · 已缓存基础讲解包，部分功能可能受限`,"guide.routeRecommend":`推荐路线`,"guide.tourDuration":`游览时长`,"guide.photoRecognition":`拍照识景`,"guide.deepGuide":`深度讲解`,"guide.photo":`拍照`,"guide.inputPlaceholder":`输入问题，或按语音键说话...`,"guide.rateUp":`好评`,"guide.rateDown":`差评`,"guide.copy":`复制`,"guide.voiceInput":`语音输入`,"guide.camera":`拍照`,"guide.send":`发送`,"guide.close":`关闭`,"guide.back":`返回`,"guide.pause":`暂停`,"guide.play":`播放`,"guide.goOnline":`切换到在线模式`,"guide.goOffline":`切换到离线模式`,"guide.share":`分享`,"guide.lbsActive":`LBS 已激活`,"guide.offlineMode":`弱网模式`,"guide.speaking":`讲解中`,"guide.brandName":`AI 导游 · 小景`,"voice.listening":`正在聆听...`,"voice.tapRetry":`点击重试`,"voice.hintListening":`正在识别您的语音...`,"voice.hintDefault":`轻点提示文字可快速输入 · 点击 ✕ 取消`,"voice.recognized":`已识别，正在发送...`,"voice.unsupported":`当前浏览器不支持语音识别，请使用 Chrome 或 Edge`,"voice.denied":`麦克风权限被拒绝，请在浏览器设置中开启`,"voice.error":`语音识别出错，请重试`,"voice.cantStart":`无法启动语音识别`,"voice.suggestions":`试试说：`,"photo.scanning":`识别中...`,"photo.hint":`保持稳定，将景点置于框内`,"photo.rescan":`重新识别`,"photo.capture":`拍照识别`,"photo.results":`识别结果`,"photo.confidence":`置信度`,"photo.ask":`提问`,"photo.recent":`最近识别`,"photo.tellMeAbout":`给我讲讲{{name}}`,"spot.oneLine":`一句话`,"spot.shortVersion":`简短版`,"spot.deepGuide":`深度讲解`,"spot.aiNarration":`AI 语音讲解`,"spot.playing":`正在播报...`,"spot.nearbySpots":`附近景点`,"voice.retry":`重试`,"route.title":`推荐路线`,"route.count":`{{n}} 条精选路线`,"route.startNav":`开始导航`,"share.title":`分享我的旅程`,"share.explored":`已探索 {{count}} 个问题`,"share.copyText":`我在{{spot}}探索了{{count}}个问题，快来一起体验AI导游吧！`,"share.copyDone":`已复制`,"share.copyLabel":`复制文案`,"share.saveImage":`保存图片`,"share.templateClassic":`经典版`,"share.templateWarm":`暖阳版`,"share.templateInk":`水墨版`,"share.brand":`AI 导游 · 小景`,"share.subtitle":`景区导览 AI 数字人`,"kiosk.title":`灵山胜境 · AI 智能导览`,"kiosk.tapToStart":`点击屏幕开始体验`,"kiosk.tabSpots":`景点讲解`,"kiosk.tabRoutes":`路线推荐`,"kiosk.tabAbout":`关于景区`,"kiosk.backToList":`返回景点列表`,"kiosk.audioDuration":`{{dur}} 讲解`,"kiosk.aboutTitle":`灵山胜境`,"kiosk.aboutDesc":`灵山胜境位于江苏省无锡市太湖西北部的马山镇，是国家5A级旅游景区、世界佛教论坛永久会址，被誉为"东方佛国"。景区占地面积约30万平方米，历史可追溯至1300多年前的唐代贞观年间。`,"kiosk.openTime":`开放时间`,"kiosk.suggestedDuration":`建议时长`,"kiosk.durationValue":`4-6 小时`,"kiosk.ticketRef":`门票参考`,"kiosk.ticketValue":`210 元/人`,"kiosk.servicePhone":`客服电话`,"kiosk.micHint":`点击话筒提问`,"kiosk.micExamples":`"灵山大佛有多高？" "推荐一条路线"`,"kiosk.micListening":`聆听中...`,"kiosk.micSpeaking":`讲解中...`,"kiosk.micIdle":`语音提问`,"kiosk.qrTitle":`扫码继续体验`,"kiosk.qrDesc":`用手机扫描二维码，AI 导游随时随地陪伴您的旅程`,"kiosk.qrWechat":`支持微信扫码`,"kiosk.qrBrowser":`手机浏览器`,"dashboard.title":`灵山胜境 · 运营数据大屏`,"dashboard.subtitle":`数据来源：示范景区公开资料包 · 2025年度`,"dashboard.realtime":`实时监控`,"dashboard.totalVisitors":`累计游客`,"dashboard.avgStay":`平均停留`,"dashboard.avgSpend":`人均消费`,"dashboard.satisfaction":`满意度`,"dashboard.monthlyTrend":`月度游客趋势`,"dashboard.ageDist":`年龄分布`,"dashboard.satisfactionDist":`满意度分布`,"dashboard.spendingDist":`人均消费构成 (¥)`,"dashboard.genderDist":`性别分布`,"dashboard.topSpots":`热门景点排行`,"dashboard.visitorsUnit":`人次`,"dashboard.monthUnit":`月`,"dashboard.ageUnder30":`30岁以下`,"dashboard.age30to49":`30-49岁`,"dashboard.ageOver50":`50岁以上`,"dashboard.spendTicket":`门票`,"dashboard.spendFood":`餐饮`,"dashboard.spendShopping":`购物`,"dashboard.spendTransport":`交通`,"dashboard.spendEntertainment":`娱乐`,"dashboard.genderMale":`男性`,"dashboard.genderFemale":`女性`,"chat.confidenceHigh":`官方认证`,"chat.confidenceMedium":`资料匹配`,"chat.confidenceLow":`通用信息`,"error.title":`出错了`,"error.reload":`重新加载`,"admin.knowledgeBase":`知识库工坊`,"admin.knowledgeDesc":`上传文档 → 解析 → 知识候选 → 采纳 → 重建索引`,"admin.uploadDoc":`上传文档`,"admin.searchPlaceholder":`搜索文档名称或标签...`,"admin.noMatch":`没有匹配的文档`,"admin.chunks":`切片`,"admin.slices":`文本切片`,"admin.docType":`文档类型`,"admin.docTypeSpotData":`景点数据`,"admin.docTypeGuide":`游览指南`,"admin.docTypeDataset":`数据集`,"admin.docTypeImage":`图片`,"admin.docTypeRule":`规则`,"admin.lastUpdate":`最后更新`,"admin.reparse":`重新解析`,"admin.viewSlices":`查看切片`,"admin.delete":`删除`,"admin.documents":`文档`,"admin.ready":`已入库`,"admin.processing":`解析中`,"admin.failed":`失败`,"admin.pending":`待处理`,"admin.totalSize":`总大小`,"admin.contentReview":`内容审核`,"admin.reviewDesc":`AI 生成回答需人工审核后发布`,"admin.searchQA":`搜索问题或答案...`,"admin.pendingReview":`待审核`,"admin.approved":`已通过`,"admin.rejected":`已驳回`,"admin.pendingCount":`{{n}} 待审`,"admin.approvedCount":`{{n}} 通过`,"admin.rejectedCount":`{{n}} 驳回`,"admin.allReviewed":`所有内容已审核完毕`,"admin.noData":`暂无数据`,"admin.reviewer":`审核人`,"admin.aiAnswer":`AI 回答`,"admin.sourceRef":`信源`,"admin.rejectReason":`驳回原因`,"admin.approve":`通过`,"admin.edit":`编辑`,"admin.reject":`驳回`,"admin.digitalHuman":`数字人配置`,"admin.dhDesc":`形象 · 语音 · 表情 · 动作`,"admin.resetDefault":`恢复默认`,"admin.avatarSelect":`形象选择`,"admin.voiceConfig":`语音配置`,"admin.speed":`语速`,"admin.pitch":`音调`,"admin.testVoice":`试听语音`,"admin.stopPreview":`停止预览`,"admin.expressionGesture":`表情与动作`,"admin.facialExpression":`面部表情`,"admin.facialExprDesc":`讲解时配合内容展示微表情变化`,"admin.handGesture":`手势动作`,"admin.handGestureDesc":`配合讲解进行自然手势引导`,"admin.autoSpotSwitch":`景点自动适配`,"admin.autoSpotDesc":`根据当前景点自动切换文化主题形象`,"admin.livePreview":`实时预览`,"admin.noEffects":`无额外效果`,"admin.systemSettings":`系统设置`,"admin.settingsDesc":`景区配置 · API · 缓存 · 版本`,"admin.basicConfig":`基本配置`,"admin.scenicName":`景区名称`,"admin.scenicId":`景区 ID`,"admin.adminEmail":`管理员邮箱`,"admin.servicePhone":`客服电话`,"admin.apiKeys":`API 密钥`,"admin.addKey":`添加密钥`,"admin.notifSettings":`通知设置`,"admin.notifNewQuestion":`新问题待审核`,"admin.notifNewQuestionDesc":`AI 生成答案提交审核时通知`,"admin.notifNegativeFeedback":`游客负面反馈`,"admin.notifNegativeFeedbackDesc":`满意度低于 3 分时发送告警`,"admin.notifKbExpiry":`知识库过期提醒`,"admin.notifKbExpiryDesc":`内容超过 30 天未更新时提醒`,"admin.notifSystemAlert":`系统异常告警`,"admin.notifSystemAlertDesc":`API 调用失败或服务降级时通知`,"admin.cacheData":`缓存与数据`,"admin.kbCache":`知识库缓存`,"admin.kbCacheDesc":`向量索引 + 文档切片缓存`,"admin.chatHistory":`对话历史`,"admin.chatHistoryDesc":`游客问答记录`,"admin.staticCdn":`静态资源 CDN`,"admin.staticCdnDesc":`数字人形象资源`,"admin.refresh":`刷新`,"admin.export":`导出`,"admin.clear":`清除`,"admin.prefetch":`预加载`,"admin.versionInfo":`版本信息`,"admin.frontendVersion":`前端版本`,"admin.buildTime":`构建时间`,"admin.framework":`框架`,"admin.dataVersion":`数据版本`,"admin.license":`许可证`,"admin.deployMethod":`部署方式`,"admin.saveConfig":`保存配置`,"cmd.title":`灵山胜境 · 智慧运营中心`,"cmd.overview":`总览`,"cmd.demographics":`客群`,"cmd.revenue":`营收`,"cmd.status":`态势`,"cmd.todayVisitors":`今日接待`,"cmd.realtimeInPark":`实时在园`,"cmd.todayRevenue":`今日营收`,"cmd.todaySatisfaction":`今日满意度`,"cmd.crowdLevel":`客流量等级`,"cmd.crowdComfortable":`舒适`,"cmd.crowdBusy":`繁忙`,"cmd.inPark":`入园`,"cmd.online":`线上`,"cmd.vsYesterday":`较昨日`,"cmd.perCapita":`人均`,"cmd.goodRate":`好评率`,"cmd.loadRate":`承载率`,"cmd.monthlyTrend":`月度游客趋势 (万人次)`,"cmd.topSpots":`热门景点 TOP5`,"cmd.visitorsUnit":`人次`,"cmd.ageDist":`年龄分布`,"cmd.genderDist":`性别分布`,"cmd.satisfactionDist":`满意度分布`,"cmd.spendingDist":`人均消费构成 (¥)`,"cmd.monthlyRevenue":`月度营收趋势 (万元)`,"cmd.facilityStatus":`设施状态`,"cmd.realtimeAlerts":`实时告警`,"cmd.heatmap":`客流热力占位`,"cmd.heatmapLabel":`灵山胜境园区热力图 · 实时更新`,"cmd.refreshInterval":`数据刷新间隔`,"cmd.aiOnline":`AI 数字人服务在线`,"cmd.kioskOnline":`Kiosk 终端 {{n}} 台在线`,"cmd.daysOfWeek":`日一二三四五六`,"lang.switch":`English`,"nav.mainNav":`主导航`,"nav.switchLang":`切换语言`},en:{"app.title":`Lingshan · AI Digital Tour Guide`,"guide.welcome":`Welcome to Lingshan! I'm Xiao Jing, your AI guide. Ask me anything — "How tall is the Grand Buddha?" or "Recommend a route."`,"guide.title":`AI Guide`,"guide.offlineBanner":`Offline mode · Basic tour pack cached, some features limited`,"guide.routeRecommend":`Routes`,"guide.tourDuration":`Duration`,"guide.photoRecognition":`Photo ID`,"guide.deepGuide":`Deep Tour`,"guide.photo":`Camera`,"guide.inputPlaceholder":`Ask a question, or tap the mic...`,"guide.rateUp":`Thumbs up`,"guide.rateDown":`Thumbs down`,"guide.copy":`Copy`,"guide.voiceInput":`Voice input`,"guide.camera":`Camera`,"guide.send":`Send`,"guide.close":`Close`,"guide.back":`Back`,"guide.pause":`Pause`,"guide.play":`Play`,"guide.goOnline":`Switch to online`,"guide.goOffline":`Switch to offline`,"guide.share":`Share`,"guide.lbsActive":`LBS Active`,"guide.offlineMode":`Offline`,"guide.speaking":`Speaking`,"guide.brandName":`AI Guide · Xiao Jing`,"voice.listening":`Listening...`,"voice.tapRetry":`Tap to retry`,"voice.hintListening":`Recognizing your speech...`,"voice.hintDefault":`Tap a suggestion or press X to cancel`,"voice.recognized":`Recognized, sending...`,"voice.unsupported":`Speech recognition not supported. Please use Chrome or Edge.`,"voice.denied":`Microphone access denied. Check browser settings.`,"voice.error":`Speech recognition error. Please retry.`,"voice.cantStart":`Unable to start speech recognition.`,"voice.suggestions":`Try saying:`,"photo.scanning":`Recognizing...`,"photo.hint":`Hold steady, keep the landmark in frame`,"photo.rescan":`Rescan`,"photo.capture":`Take Photo`,"photo.results":`Results`,"photo.confidence":`Confidence`,"photo.ask":`Ask`,"photo.recent":`Recent`,"photo.tellMeAbout":`Tell me about {{name}}`,"spot.oneLine":`One-liner`,"spot.shortVersion":`Brief`,"spot.deepGuide":`Deep Guide`,"spot.aiNarration":`AI Narration`,"spot.playing":`Playing...`,"spot.nearbySpots":`Nearby Spots`,"voice.retry":`Retry`,"route.title":`Recommended Routes`,"route.count":`{{n}} curated routes`,"route.startNav":`Start Navigation`,"share.title":`Share My Journey`,"share.explored":`Explored {{count}} questions`,"share.copyText":`I explored {{count}} questions at {{spot}}. Come try the AI tour guide!`,"share.copyDone":`Copied`,"share.copyLabel":`Copy Text`,"share.saveImage":`Save Image`,"share.templateClassic":`Classic`,"share.templateWarm":`Warm`,"share.templateInk":`Ink`,"share.brand":`AI Guide · Xiao Jing`,"share.subtitle":`AI Digital Tour Guide`,"kiosk.title":`Lingshan · AI Smart Guide`,"kiosk.tapToStart":`Tap screen to begin`,"kiosk.tabSpots":`Spots`,"kiosk.tabRoutes":`Routes`,"kiosk.tabAbout":`About`,"kiosk.backToList":`Back to spots`,"kiosk.audioDuration":`{{dur}} audio`,"kiosk.aboutTitle":`Lingshan`,"kiosk.aboutDesc":`Lingshan is located in Mashan Town, Wuxi, Jiangsu Province. It is a national 5A scenic spot and permanent site of the World Buddhist Forum. Covering ~300,000 m², its history dates back 1,300 years to the Tang Dynasty.`,"kiosk.openTime":`Hours`,"kiosk.suggestedDuration":`Suggested`,"kiosk.durationValue":`4-6 hours`,"kiosk.ticketRef":`Admission`,"kiosk.ticketValue":`¥210`,"kiosk.servicePhone":`Hotline`,"kiosk.micHint":`Tap mic to ask`,"kiosk.micExamples":`"How tall is the Buddha?" "Suggest a route"`,"kiosk.micListening":`Listening...`,"kiosk.micSpeaking":`Speaking...`,"kiosk.micIdle":`Voice Input`,"kiosk.qrTitle":`Scan to continue`,"kiosk.qrDesc":`Scan the QR code and take your AI guide anywhere`,"kiosk.qrWechat":`WeChat`,"kiosk.qrBrowser":`Browser`,"dashboard.title":`Lingshan · Operations Dashboard`,"dashboard.subtitle":`Source: Official scenic spot data pack · FY2025`,"dashboard.realtime":`Live`,"dashboard.totalVisitors":`Total Visitors`,"dashboard.avgStay":`Avg Stay`,"dashboard.avgSpend":`Avg Spend`,"dashboard.satisfaction":`Satisfaction`,"dashboard.monthlyTrend":`Monthly Trend`,"dashboard.ageDist":`Age Distribution`,"dashboard.satisfactionDist":`Satisfaction Distribution`,"dashboard.spendingDist":`Spending Breakdown (¥)`,"dashboard.genderDist":`Gender Distribution`,"dashboard.topSpots":`Top Spots`,"dashboard.visitorsUnit":`visitors`,"dashboard.monthUnit":``,"dashboard.ageUnder30":`Under 30`,"dashboard.age30to49":`30-49`,"dashboard.ageOver50":`50+`,"dashboard.spendTicket":`Tickets`,"dashboard.spendFood":`Food`,"dashboard.spendShopping":`Shopping`,"dashboard.spendTransport":`Transport`,"dashboard.spendEntertainment":`Entertainment`,"dashboard.genderMale":`Male`,"dashboard.genderFemale":`Female`,"chat.confidenceHigh":`Verified`,"chat.confidenceMedium":`Matched`,"chat.confidenceLow":`General`,"error.title":`Something went wrong`,"error.reload":`Reload`,"admin.knowledgeBase":`Knowledge Workshop`,"admin.knowledgeDesc":`Upload → Parse → Candidates → Adopt → Rebuild`,"admin.uploadDoc":`Upload`,"admin.searchPlaceholder":`Search documents or tags...`,"admin.noMatch":`No matching documents`,"admin.chunks":`chunks`,"admin.slices":`Text Slices`,"admin.docType":`Type`,"admin.docTypeSpotData":`Spot Data`,"admin.docTypeGuide":`Guide`,"admin.docTypeDataset":`Dataset`,"admin.docTypeImage":`Image`,"admin.docTypeRule":`Rule`,"admin.lastUpdate":`Last Updated`,"admin.reparse":`Reparse`,"admin.viewSlices":`View Slices`,"admin.delete":`Delete`,"admin.documents":`docs`,"admin.ready":`Ready`,"admin.processing":`Processing`,"admin.failed":`Failed`,"admin.pending":`Pending`,"admin.totalSize":`Total Size`,"admin.contentReview":`Content Review`,"admin.reviewDesc":`AI-generated answers need manual approval`,"admin.searchQA":`Search QA...`,"admin.pendingReview":`Pending`,"admin.approved":`Approved`,"admin.rejected":`Rejected`,"admin.pendingCount":`{{n}} pending`,"admin.approvedCount":`{{n}} approved`,"admin.rejectedCount":`{{n}} rejected`,"admin.allReviewed":`All content reviewed`,"admin.noData":`No data`,"admin.reviewer":`Reviewer`,"admin.aiAnswer":`AI Answer`,"admin.sourceRef":`Source`,"admin.rejectReason":`Rejection reason`,"admin.approve":`Approve`,"admin.edit":`Edit`,"admin.reject":`Reject`,"admin.digitalHuman":`Digital Human Config`,"admin.dhDesc":`Avatar · Voice · Expression · Gesture`,"admin.resetDefault":`Reset Default`,"admin.avatarSelect":`Avatar`,"admin.voiceConfig":`Voice`,"admin.speed":`Speed`,"admin.pitch":`Pitch`,"admin.testVoice":`Preview`,"admin.stopPreview":`Stop`,"admin.expressionGesture":`Expression & Gesture`,"admin.facialExpression":`Facial Expression`,"admin.facialExprDesc":`Show micro-expressions during narration`,"admin.handGesture":`Hand Gestures`,"admin.handGestureDesc":`Natural gesturing during narration`,"admin.autoSpotSwitch":`Auto-spot Adaptation`,"admin.autoSpotDesc":`Auto-switch avatar style per scenic spot`,"admin.livePreview":`Live Preview`,"admin.noEffects":`No effects`,"admin.systemSettings":`System Settings`,"admin.settingsDesc":`Config · API · Cache · Version`,"admin.basicConfig":`Basic Config`,"admin.scenicName":`Scenic Name`,"admin.scenicId":`Scenic ID`,"admin.adminEmail":`Admin Email`,"admin.servicePhone":`Hotline`,"admin.apiKeys":`API Keys`,"admin.addKey":`Add Key`,"admin.notifSettings":`Notifications`,"admin.notifNewQuestion":`New Q pending review`,"admin.notifNewQuestionDesc":`Notify when AI answer submitted`,"admin.notifNegativeFeedback":`Negative feedback`,"admin.notifNegativeFeedbackDesc":`Alert when satisfaction < 3`,"admin.notifKbExpiry":`KB expiration`,"admin.notifKbExpiryDesc":`Remind when content > 30 days stale`,"admin.notifSystemAlert":`System alert`,"admin.notifSystemAlertDesc":`Notify on API failure or degradation`,"admin.cacheData":`Cache & Data`,"admin.kbCache":`KB Cache`,"admin.kbCacheDesc":`Vector index + chunk cache`,"admin.chatHistory":`Chat History`,"admin.chatHistoryDesc":`Visitor QA records`,"admin.staticCdn":`Static CDN`,"admin.staticCdnDesc":`Avatar asset cache`,"admin.refresh":`Refresh`,"admin.export":`Export`,"admin.clear":`Clear`,"admin.prefetch":`Prefetch`,"admin.versionInfo":`Version Info`,"admin.frontendVersion":`Frontend Version`,"admin.buildTime":`Build Time`,"admin.framework":`Framework`,"admin.dataVersion":`Data Version`,"admin.license":`License`,"admin.deployMethod":`Deployment`,"admin.saveConfig":`Save Config`,"cmd.title":`Lingshan · Smart Ops Center`,"cmd.overview":`Overview`,"cmd.demographics":`Visitors`,"cmd.revenue":`Revenue`,"cmd.status":`Status`,"cmd.todayVisitors":`Today`,"cmd.realtimeInPark":`In Park`,"cmd.todayRevenue":`Revenue`,"cmd.todaySatisfaction":`Satisfaction`,"cmd.crowdLevel":`Crowd Level`,"cmd.crowdComfortable":`Comfortable`,"cmd.crowdBusy":`Busy`,"cmd.inPark":`on-site`,"cmd.online":`online`,"cmd.vsYesterday":`vs yesterday`,"cmd.perCapita":`avg`,"cmd.goodRate":`positive`,"cmd.loadRate":`capacity`,"cmd.monthlyTrend":`Monthly Trend (10K visitors)`,"cmd.topSpots":`Top 5 Spots`,"cmd.visitorsUnit":`visitors`,"cmd.ageDist":`Age Distribution`,"cmd.genderDist":`Gender`,"cmd.satisfactionDist":`Satisfaction`,"cmd.spendingDist":`Spending Breakdown (¥)`,"cmd.monthlyRevenue":`Monthly Revenue (10K ¥)`,"cmd.facilityStatus":`Facility Status`,"cmd.realtimeAlerts":`Live Alerts`,"cmd.heatmap":`Heatmap`,"cmd.heatmapLabel":`Lingshan heatmap · real-time`,"cmd.refreshInterval":`Refresh interval`,"cmd.aiOnline":`AI Guide online`,"cmd.kioskOnline":`{{n}} kiosks online`,"cmd.daysOfWeek":`SuMoTuWeThFrSa`,"lang.switch":`中文`,"nav.mainNav":`Main navigation`,"nav.switchLang":`Switch language`}},K=`zh`,Dd=new Set;function Od(e,n){let r=Ed[K]?.[e]??Ed.zh[e];return r==null?e:(n&&Object.entries(n).forEach(([e,n])=>{r=r.replace(`{{${e}}}`,String(n))}),r)}function kd(){return K}function Ad(e){K=e,typeof localStorage<`u`&&localStorage.setItem(`app-lang`,e),Dd.forEach(e=>e())}function jd(){let[,e]=(0,x.useState)(0);return(0,x.useEffect)(()=>{let n=()=>e(e=>e+1);return Dd.add(n),()=>{Dd.delete(n)}},[]),Od}if(typeof localStorage<`u`){let e=localStorage.getItem(`app-lang`);(e===`en`||e===`zh`)&&(K=e)}function Md({isSpeaking:e,spotName:n}){let r=jd();return(0,U.jsxs)(`div`,{className:`dh-stage`,children:[(0,U.jsxs)(`div`,{className:`dh-scene`,children:[(0,U.jsxs)(W.div,{className:`dh-avatar`,animate:e?{scale:[1,1.015,1,1.01,1],y:[0,-3,0,-2,0]}:{scale:1,y:0},transition:e?{repeat:1/0,duration:2.4,ease:`easeInOut`}:{duration:.3},children:[(0,U.jsxs)(`div`,{className:`dh-face`,children:[(0,U.jsxs)(`div`,{className:`dh-eyes`,children:[(0,U.jsx)(`span`,{className:`dh-eye left`}),(0,U.jsx)(`span`,{className:`dh-eye right`})]}),(0,U.jsx)(W.div,{className:`dh-mouth`,animate:e?{scaleY:[.3,1,.4,.9,.3]}:{scaleY:.5},transition:e?{repeat:1/0,duration:.6,ease:`easeInOut`}:{duration:.2}}),(0,U.jsx)(`div`,{className:`dh-blush left`}),(0,U.jsx)(`div`,{className:`dh-blush right`})]}),(0,U.jsx)(`div`,{className:`dh-body`,children:(0,U.jsx)(`div`,{className:`dh-collar`})})]}),e&&(0,U.jsx)(W.div,{className:`dh-speech-ring`,initial:{opacity:0,scale:.8},animate:{opacity:[.4,.15,.4],scale:[1,1.06,1]},transition:{repeat:1/0,duration:1.8}})]}),(0,U.jsxs)(`div`,{className:`dh-info`,children:[e?(0,U.jsxs)(W.span,{className:`dh-speaking-badge`,initial:{opacity:0,y:4},animate:{opacity:1,y:0},children:[(0,U.jsx)(Sd,{size:14}),(0,U.jsx)(`span`,{children:r(`guide.speaking`)}),(0,U.jsx)(hd,{size:12})]}):(0,U.jsx)(`span`,{className:`dh-idle-badge`,children:r(`guide.brandName`)}),n&&(0,U.jsx)(`span`,{className:`dh-spot-tag`,children:n})]})]})}function Nd({spotName:e,distance:n,online:r}){let i=jd();return(0,U.jsxs)(`div`,{className:`lbs-bar`,children:[(0,U.jsxs)(`div`,{className:`lbs-left`,children:[(0,U.jsx)(ed,{size:15}),(0,U.jsx)(`span`,{className:`lbs-spot`,children:e}),(0,U.jsxs)(`span`,{className:`lbs-dist`,children:[n,`m`]})]}),(0,U.jsxs)(`div`,{className:`lbs-right`,children:[(0,U.jsx)(id,{size:13}),(0,U.jsx)(`span`,{children:i(`guide.lbsActive`)}),r?(0,U.jsx)(`span`,{className:`lbs-online`,children:(0,U.jsx)(wd,{size:12})}):(0,U.jsxs)(`span`,{className:`lbs-offline`,children:[(0,U.jsx)(Cd,{size:12}),` `,i(`guide.offlineMode`)]})]})]})}var Pd={high:{icon:pd,cls:`confidence-high`,labelKey:`chat.confidenceHigh`},medium:{icon:fd,cls:`confidence-medium`,labelKey:`chat.confidenceMedium`},low:{icon:md,cls:`confidence-low`,labelKey:`chat.confidenceLow`}};function Fd({confidence:e}){let n=Pd[e],r=n.icon;return(0,U.jsxs)(`span`,{className:`confidence-badge ${n.cls}`,children:[(0,U.jsx)(r,{size:12}),(0,U.jsx)(`span`,{children:t(n.labelKey)})]})}function Id({messages:e,onSend:n,isListening:r,onRate:i,onVoiceClick:a,onCameraClick:o}){let[s,c]=(0,x.useState)(``),l=(0,x.useRef)(null),u=jd();(0,x.useEffect)(()=>{l.current?.scrollIntoView({behavior:`smooth`})},[e]);function d(e){e.preventDefault(),s.trim()&&(n(s.trim()),c(``))}return(0,U.jsxs)(`div`,{className:`chat-panel`,children:[(0,U.jsxs)(`div`,{className:`chat-messages`,children:[(0,U.jsx)(Nc,{initial:!1,children:e.map(e=>(0,U.jsxs)(W.div,{className:`msg-row ${e.role}`,initial:{opacity:0,y:10,scale:.98},animate:{opacity:1,y:0,scale:1},transition:{duration:.22},children:[(0,U.jsxs)(`div`,{className:`msg-bubble`,children:[(0,U.jsx)(`p`,{children:e.text}),(e.source||e.confidence)&&(0,U.jsxs)(`div`,{className:`msg-meta`,children:[e.source&&(0,U.jsxs)(`span`,{className:`msg-source`,children:[u(`admin.sourceRef`),`: `,e.source]}),e.confidence&&(0,U.jsx)(Fd,{confidence:e.confidence})]})]}),e.role===`guide`&&i&&(0,U.jsxs)(`div`,{className:`msg-actions`,children:[(0,U.jsx)(`button`,{type:`button`,onClick:()=>i(e.id,`up`),"aria-label":u(`guide.rateUp`),children:(0,U.jsx)(yd,{size:13})}),(0,U.jsx)(`button`,{type:`button`,onClick:()=>i(e.id,`down`),"aria-label":u(`guide.rateDown`),children:(0,U.jsx)(vd,{size:13})}),(0,U.jsx)(`button`,{type:`button`,"aria-label":u(`guide.copy`),onClick:()=>{navigator.clipboard?.writeText(e.text)?.catch(()=>{})},children:(0,U.jsx)(Yu,{size:13})})]})]},e.id))}),r&&(0,U.jsx)(W.div,{className:`msg-row guide listening-indicator`,initial:{opacity:0},animate:{opacity:1},children:(0,U.jsxs)(`div`,{className:`msg-bubble listening`,children:[(0,U.jsx)(`span`,{className:`wave-dot`}),(0,U.jsx)(`span`,{className:`wave-dot`}),(0,U.jsx)(`span`,{className:`wave-dot`})]})}),(0,U.jsx)(`div`,{ref:l})]}),(0,U.jsxs)(`form`,{className:`chat-input-bar`,onSubmit:d,children:[(0,U.jsx)(`button`,{type:`button`,className:`mic-btn`,onClick:a,"aria-label":u(`guide.voiceInput`),children:(0,U.jsx)(rd,{size:20})}),(0,U.jsx)(`button`,{type:`button`,className:`camera-btn`,onClick:o,"aria-label":u(`guide.camera`),children:(0,U.jsxs)(`svg`,{width:`18`,height:`18`,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`,children:[(0,U.jsx)(`path`,{d:`M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z`}),(0,U.jsx)(`circle`,{cx:`12`,cy:`13`,r:`4`})]})}),(0,U.jsx)(`input`,{type:`text`,className:`chat-input`,placeholder:u(`guide.inputPlaceholder`),value:s,onChange:e=>c(e.target.value)}),(0,U.jsx)(`button`,{type:`submit`,className:`send-btn`,disabled:!s.trim(),"aria-label":u(`guide.send`),children:(0,U.jsx)(ud,{size:18})})]})]})}var Ld=[`灵山大佛有多高？`,`帮我推荐一条游览路线`,`九龙灌浴每天几场表演？`],Rd=[`How tall is the Grand Buddha?`,`Recommend a tour route`,`When are the Nine Dragons shows?`];function zd({isOpen:e,onClose:n,onResult:r}){let[i,a]=(0,x.useState)(`listening`),[o,s]=(0,x.useState)(``),[c,l]=(0,x.useState)(``),u=(0,x.useRef)(null),d=(0,x.useRef)(null),f=(0,x.useRef)(`listening`),p=jd();(0,x.useEffect)(()=>{f.current=i},[i]);let m=(0,x.useCallback)(()=>{if(u.current){try{u.current.stop()}catch{}u.current=null}d.current&&clearTimeout(d.current)},[]),h=(0,x.useCallback)(()=>{let e=window.SpeechRecognition||window.webkitSpeechRecognition;if(!e){a(`error`),l(p(`voice.unsupported`));return}m();let i=new e;i.lang=kd()===`en`?`en-US`:`zh-CN`,i.interimResults=!0,i.maxAlternatives=1,i.continuous=!1,i.onresult=e=>{let i=e.results[e.results.length-1],o=i[0].transcript.trim();s(o),i.isFinal&&(d.current&&clearTimeout(d.current),a(`result`),setTimeout(()=>{o&&(r(o),n())},600))},i.onerror=e=>{e.error===`not-allowed`?(a(`error`),l(p(`voice.denied`))):e.error!==`aborted`&&(a(`error`),l(p(`voice.error`)))},i.onend=()=>{f.current===`listening`&&a(`idle`)};try{i.start(),u.current=i,a(`listening`),s(``),l(``),d.current=setTimeout(()=>{m(),a(`idle`)},8e3)}catch{a(`error`),l(p(`voice.cantStart`))}},[r,n,m]);return(0,x.useEffect)(()=>(e&&h(),()=>m()),[e,h,m]),(0,U.jsx)(Nc,{onExitComplete:()=>a(`listening`),children:e&&(0,U.jsxs)(W.div,{className:`voice-overlay`,initial:{opacity:0},animate:{opacity:1},exit:{opacity:0},transition:{duration:.25},children:[(0,U.jsx)(`button`,{type:`button`,className:`voice-close-btn`,onClick:()=>{m(),n()},"aria-label":p(`guide.close`),children:(0,U.jsx)(Td,{size:22})}),(0,U.jsxs)(`div`,{className:`voice-center`,children:[(i===`listening`||i===`idle`)&&(0,U.jsxs)(U.Fragment,{children:[(0,U.jsxs)(`div`,{className:`voice-rings`,children:[(0,U.jsx)(W.span,{className:`voice-ring`,animate:{scale:i===`listening`?[1,1.6,1]:1,opacity:i===`listening`?[.6,0,.6]:.2},transition:{repeat:1/0,duration:2.2,ease:`easeOut`}}),(0,U.jsx)(W.span,{className:`voice-ring`,animate:{scale:i===`listening`?[1,1.5,1]:1,opacity:i===`listening`?[.5,0,.5]:.2},transition:{repeat:1/0,duration:2.2,ease:`easeOut`,delay:.4}}),(0,U.jsx)(W.span,{className:`voice-ring`,animate:{scale:i===`listening`?[1,1.4,1]:1,opacity:i===`listening`?[.4,0,.4]:.15},transition:{repeat:1/0,duration:2.2,ease:`easeOut`,delay:.8}}),(0,U.jsx)(`div`,{className:`voice-mic-icon`,children:(0,U.jsx)(rd,{size:36})})]}),(0,U.jsx)(W.p,{className:`voice-label`,animate:{opacity:i===`listening`?[.5,1,.5]:.7},transition:{repeat:i===`listening`?1/0:0,duration:1.6},children:p(i===`listening`?`voice.listening`:`voice.tapRetry`)}),o&&(0,U.jsx)(W.p,{className:`voice-interim`,initial:{opacity:0},animate:{opacity:1},children:o}),(0,U.jsx)(`div`,{className:`voice-bars`,children:Array.from({length:16}).map((e,n)=>(0,U.jsx)(W.span,{className:`voice-bar`,animate:{height:i===`listening`?[4,12+Math.random()*28,4]:4},transition:{repeat:i===`listening`?1/0:0,duration:.6+Math.random()*.4,delay:n*.06,ease:`easeInOut`}},n))})]}),i===`result`&&(0,U.jsxs)(W.div,{className:`voice-result`,initial:{scale:.9,opacity:0},animate:{scale:1,opacity:1},children:[(0,U.jsx)(W.p,{className:`voice-result-text`,children:o}),(0,U.jsx)(`span`,{className:`voice-result-hint`,children:p(`voice.recognized`)})]}),i===`error`&&(0,U.jsxs)(`div`,{className:`voice-error`,children:[(0,U.jsx)(Wu,{size:28}),(0,U.jsx)(`p`,{children:c}),(0,U.jsxs)(W.button,{type:`button`,className:`voice-retry-btn`,whileTap:{scale:.95},onClick:h,children:[(0,U.jsx)(cd,{size:14}),(0,U.jsx)(`span`,{children:p(`voice.retry`)})]})]}),(i===`idle`||i===`error`)&&(0,U.jsxs)(`div`,{className:`voice-suggestions`,children:[(0,U.jsx)(`span`,{children:p(`voice.suggestions`)}),(kd()===`en`?Rd:Ld).map(e=>(0,U.jsx)(W.button,{type:`button`,className:`voice-suggestion-chip`,whileTap:{scale:.96},onClick:()=>{m(),r(e),n()},children:e},e))]})]}),(0,U.jsx)(`p`,{className:`voice-hint`,children:p(i===`listening`?`voice.hintListening`:`voice.hintDefault`)})]})})}var Bd=`http://localhost:3001`,Vd=null;async function Hd(e,n){if(Vd===!1)return null;try{let r=await fetch(`${Bd}${e}`,{...n,signal:AbortSignal.timeout(3e3)});return r.ok?(Vd=!0,r.json()):null}catch{return Vd=!1,null}}async function Ud(e){return Hd(`/api/spots/${e}`)}async function Wd(e){return Hd(`/api/spots/${e}/related`)}async function Gd(e){return Hd(`/api/chat`,{method:`POST`,headers:{"Content-Type":`application/json`},body:JSON.stringify({question:e})})}async function Kd(){return Hd(`/api/analytics`)}var qd={"lingshan-buddha":{id:`lingshan-buddha`,name:`灵山大佛`,category:`青铜佛像·世界之最`,heroGradient:`linear-gradient(160deg, #1a3a2a 0%, #2a5a3a 30%, #5a8a4a 70%, #3a6a2a 100%)`,oneLiner:`世界最高露天青铜释迦牟尼立像，通高88米，总高101.5米。`,shortIntro:`灵山大佛位于无锡灵山胜境秦履峰南侧，是世界上最高的露天青铜释迦牟尼立像。佛像通高88米（佛体79米+莲花瓣9米），含台基总高101.5米，总用铜量725吨。右手施无畏印除却众生痛苦，左手施与愿印赐予众生欢乐。登216级登云道抱佛脚，俯瞰太湖全景。`,fullIntro:`灵山大佛位于无锡灵山胜境秦履峰南侧，矗立在景区最高处，是世界上最高的露天青铜释迦牟尼立像，也是灵山胜境的核心地标。
 
 佛像通高88米（佛体79米，莲花瓣9米），含台基总高101.5米，总用铜量达725吨，佛体由1560块6-8毫米厚的铜壁板构成，焊缝总长度逾35公里。建造历时3年（1994-1997年），采用现代高科技与传统工艺相结合的方式。
 
@@ -111,1638 +111,1638 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
       A`,`,`,`,0,`,`,`,`,`,`,`,`
       A`,`,`,`,0,0,`,`,`,`,`,`Z`]),w.x,w.y,o,o,+(d<0),C.x,C.y,i,i,+(E>180),+(d>0),b.x,b.y,o,o,+(d<0),x.x,x.y)}else y+=Oz(VX||=UX([`L`,`,`,`Z`]),n,r);return y},JX={cx:0,cy:0,innerRadius:0,outerRadius:0,startAngle:0,endAngle:0,cornerRadius:0,forceCornerRadius:!1,cornerIsExternal:!1},YX=e=>{var n=mB(e,JX),{cx:r,cy:i,innerRadius:a,outerRadius:o,cornerRadius:s,forceCornerRadius:c,cornerIsExternal:l,startAngle:u,endAngle:d,className:f}=n;if(o<a||u===d)return null;var p=cR(`recharts-sector`,f),m=o-a,h=Iz(s,m,0,!0),g=h>0&&Math.abs(u-d)<360?qX({cx:r,cy:i,innerRadius:a,outerRadius:o,cornerRadius:Math.min(h,m/2),forceCornerRadius:c,cornerIsExternal:l,startAngle:u,endAngle:d}):KX({cx:r,cy:i,innerRadius:a,outerRadius:o,startAngle:u,endAngle:d});return x.createElement(`path`,HX({},mR(n),{className:p,d:g}))};function XX(e,n,r){if(e===`horizontal`)return[{x:n.x,y:r.top},{x:n.x,y:r.top+r.height}];if(e===`vertical`)return[{x:r.left,y:n.y},{x:r.left+r.width,y:n.y}];if(aB(n)){if(e===`centric`){var{cx:i,cy:a,innerRadius:o,outerRadius:s,angle:c}=n,l=DX(i,a,o,c),u=DX(i,a,s,c);return[{x:l.x,y:l.y},{x:u.x,y:u.y}]}return PX(n)}}var ZX=c((e=>{Object.defineProperty(e,Symbol.toStringTag,{value:`Module`});var n=EV();function r(e){return n.isSymbol(e)?NaN:Number(e)}e.toNumber=r})),QX=c((e=>{Object.defineProperty(e,Symbol.toStringTag,{value:`Module`});var n=ZX();function r(e){return e?(e=n.toNumber(e),e===1/0||e===-1/0?(e<0?-1:1)*Number.MAX_VALUE:e===e?e:0):e===0?e:0}e.toFinite=r})),$X=c((e=>{Object.defineProperty(e,Symbol.toStringTag,{value:`Module`});var n=AV(),r=QX();function i(e,i,a){a&&typeof a!=`number`&&n.isIterateeCall(e,i,a)&&(i=a=void 0),e=r.toFinite(e),i===void 0?(i=e,e=0):i=r.toFinite(i),a=a===void 0?e<i?1:-1:r.toFinite(a);let o=Math.max(Math.ceil((i-e)/(a||1)),0),s=Array(o);for(let n=0;n<o;n++)s[n]=e,e+=a;return s}e.range=i})),eZ=c(((e,n)=>{n.exports=$X().range})),tZ=e=>e.chartData,nZ=$([tZ],e=>{var n=e.chartData==null?0:e.chartData.length-1;return{chartData:e.chartData,computedData:e.computedData,dataEndIndex:n,dataStartIndex:0}}),rZ=(e,n,r,i)=>i?nZ(e):tZ(e),iZ=(e,n,r)=>r?nZ(e):tZ(e),aZ=$([rZ],e=>{var{chartData:n,dataStartIndex:r,dataEndIndex:i}=e;return n==null?[]:n.slice(r,i+1)}),oZ=$([nZ],e=>{var{chartData:n,dataStartIndex:r,dataEndIndex:i}=e;return n==null?[]:n.slice(r,i+1)}),sZ=$([tZ],e=>{var{chartData:n,dataStartIndex:r,dataEndIndex:i}=e;return n==null?[]:n.slice(r,i+1)});function cZ(e){if(Array.isArray(e)&&e.length===2){var[n,r]=e;if(RW(n)&&RW(r))return!0}return!1}function lZ(e,n,r){return r?e:[Math.min(e[0],n[0]),Math.max(e[1],n[1])]}function uZ(e,n){if(n&&typeof e!=`function`&&Array.isArray(e)&&e.length===2){var[r,i]=e,a,o;if(RW(r))a=r;else if(typeof r==`function`)return;if(RW(i))o=i;else if(typeof i==`function`)return;var s=[a,o];if(cZ(s))return s}}function dZ(e,n,r){if(!(!r&&n==null)){if(typeof e==`function`&&n!=null)try{var i=e(n,r);if(cZ(i))return lZ(i,n,r)}catch{}if(Array.isArray(e)&&e.length===2){var[a,o]=e,s,c;if(a===`auto`)n!=null&&(s=Math.min(...n));else if(Z(a))s=a;else if(typeof a==`function`)try{n!=null&&(s=a(n?.[0]))}catch{}else if(typeof a==`string`&&oG.test(a)){var l=oG.exec(a);if(l==null||l[1]==null||n==null)s=void 0;else{var u=+l[1];s=n[0]-u}}else s=n?.[0];if(o===`auto`)n!=null&&(c=Math.max(...n));else if(Z(o))c=o;else if(typeof o==`function`)try{n!=null&&(c=o(n?.[1]))}catch{}else if(typeof o==`string`&&sG.test(o)){var d=sG.exec(o);if(d==null||d[1]==null||n==null)c=void 0;else{var f=+d[1];c=n[1]+f}}else c=n?.[1];var p=[s,c];if(cZ(p))return n==null?p:lZ(p,n,r)}}}var fZ=d(c(((e,n)=>{(function(e){var r=1e9,i={precision:20,rounding:4,toExpNeg:-7,toExpPos:21,LN10:`2.302585092994045684017991454684364207601101488628772976033327900967572609677352480235997205089598298341967784042286`},a=!0,o=`[DecimalError] `,s=o+`Invalid argument: `,c=o+`Exponent out of range: `,l=Math.floor,u=Math.pow,d=/^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i,f,p=1e7,m=7,h=9007199254740991,g=l(h/m),_={};_.absoluteValue=_.abs=function(){var e=new this.constructor(this);return e.s&&=1,e},_.comparedTo=_.cmp=function(e){var n,r,i,a,o=this;if(e=new o.constructor(e),o.s!==e.s)return o.s||-e.s;if(o.e!==e.e)return o.e>e.e^o.s<0?1:-1;for(i=o.d.length,a=e.d.length,n=0,r=i<a?i:a;n<r;++n)if(o.d[n]!==e.d[n])return o.d[n]>e.d[n]^o.s<0?1:-1;return i===a?0:i>a^o.s<0?1:-1},_.decimalPlaces=_.dp=function(){var e=this,n=e.d.length-1,r=(n-e.e)*m;if(n=e.d[n],n)for(;n%10==0;n/=10)r--;return r<0?0:r},_.dividedBy=_.div=function(e){return x(this,new this.constructor(e))},_.dividedToIntegerBy=_.idiv=function(e){var n=this,r=n.constructor;return O(x(n,new r(e),0,1),r.precision)},_.equals=_.eq=function(e){return!this.cmp(e)},_.exponent=function(){return C(this)},_.greaterThan=_.gt=function(e){return this.cmp(e)>0},_.greaterThanOrEqualTo=_.gte=function(e){return this.cmp(e)>=0},_.isInteger=_.isint=function(){return this.e>this.d.length-2},_.isNegative=_.isneg=function(){return this.s<0},_.isPositive=_.ispos=function(){return this.s>0},_.isZero=function(){return this.s===0},_.lessThan=_.lt=function(e){return this.cmp(e)<0},_.lessThanOrEqualTo=_.lte=function(e){return this.cmp(e)<1},_.logarithm=_.log=function(e){var n,r=this,i=r.constructor,s=i.precision,c=s+5;if(e===void 0)e=new i(10);else if(e=new i(e),e.s<1||e.eq(f))throw Error(o+`NaN`);if(r.s<1)throw Error(o+(r.s?`NaN`:`-Infinity`));return r.eq(f)?new i(0):(a=!1,n=x(E(r,c),E(e,c),c),a=!0,O(n,s))},_.minus=_.sub=function(e){var n=this;return e=new n.constructor(e),n.s==e.s?k(n,e):v(n,(e.s=-e.s,e))},_.modulo=_.mod=function(e){var n,r=this,i=r.constructor,s=i.precision;if(e=new i(e),!e.s)throw Error(o+`NaN`);return r.s?(a=!1,n=x(r,e,0,1).times(e),a=!0,r.minus(n)):O(new i(r),s)},_.naturalExponential=_.exp=function(){return S(this)},_.naturalLogarithm=_.ln=function(){return E(this)},_.negated=_.neg=function(){var e=new this.constructor(this);return e.s=-e.s||0,e},_.plus=_.add=function(e){var n=this;return e=new n.constructor(e),n.s==e.s?v(n,e):k(n,(e.s=-e.s,e))},_.precision=_.sd=function(e){var n,r,i,a=this;if(e!==void 0&&e!==!!e&&e!==1&&e!==0)throw Error(s+e);if(n=C(a)+1,i=a.d.length-1,r=i*m+1,i=a.d[i],i){for(;i%10==0;i/=10)r--;for(i=a.d[0];i>=10;i/=10)r++}return e&&n>r?n:r},_.squareRoot=_.sqrt=function(){var e,n,r,i,s,c,u,d=this,f=d.constructor;if(d.s<1){if(!d.s)return new f(0);throw Error(o+`NaN`)}for(e=C(d),a=!1,s=Math.sqrt(+d),s==0||s==1/0?(n=b(d.d),(n.length+e)%2==0&&(n+=`0`),s=Math.sqrt(n),e=l((e+1)/2)-(e<0||e%2),s==1/0?n=`5e`+e:(n=s.toExponential(),n=n.slice(0,n.indexOf(`e`)+1)+e),i=new f(n)):i=new f(s.toString()),r=f.precision,s=u=r+3;;)if(c=i,i=c.plus(x(d,c,u+2)).times(.5),b(c.d).slice(0,u)===(n=b(i.d)).slice(0,u)){if(n=n.slice(u-3,u+1),s==u&&n==`4999`){if(O(c,r+1,0),c.times(c).eq(d)){i=c;break}}else if(n!=`9999`)break;u+=4}return a=!0,O(i,r)},_.times=_.mul=function(e){var n,r,i,o,s,c,l,u,d,f=this,m=f.constructor,h=f.d,g=(e=new m(e)).d;if(!f.s||!e.s)return new m(0);for(e.s*=f.s,r=f.e+e.e,u=h.length,d=g.length,u<d&&(s=h,h=g,g=s,c=u,u=d,d=c),s=[],c=u+d,i=c;i--;)s.push(0);for(i=d;--i>=0;){for(n=0,o=u+i;o>i;)l=s[o]+g[i]*h[o-i-1]+n,s[o--]=l%p|0,n=l/p|0;s[o]=(s[o]+n)%p|0}for(;!s[--c];)s.pop();return n?++r:s.shift(),e.d=s,e.e=r,a?O(e,m.precision):e},_.toDecimalPlaces=_.todp=function(e,n){var i=this,a=i.constructor;return i=new a(i),e===void 0?i:(y(e,0,r),n===void 0?n=a.rounding:y(n,0,8),O(i,e+C(i)+1,n))},_.toExponential=function(e,n){var i,a=this,o=a.constructor;return e===void 0?i=A(a,!0):(y(e,0,r),n===void 0?n=o.rounding:y(n,0,8),a=O(new o(a),e+1,n),i=A(a,!0,e+1)),i},_.toFixed=function(e,n){var i,a,o=this,s=o.constructor;return e===void 0?A(o):(y(e,0,r),n===void 0?n=s.rounding:y(n,0,8),a=O(new s(o),e+C(o)+1,n),i=A(a.abs(),!1,e+C(a)+1),o.isneg()&&!o.isZero()?`-`+i:i)},_.toInteger=_.toint=function(){var e=this,n=e.constructor;return O(new n(e),C(e)+1,n.rounding)},_.toNumber=function(){return+this},_.toPower=_.pow=function(e){var n,r,i,s,c,u,d=this,p=d.constructor,g=12,_=+(e=new p(e));if(!e.s)return new p(f);if(d=new p(d),!d.s){if(e.s<1)throw Error(o+`Infinity`);return d}if(d.eq(f))return d;if(i=p.precision,e.eq(f))return O(d,i);if(n=e.e,r=e.d.length-1,u=n>=r,c=d.s,!u){if(c<0)throw Error(o+`NaN`)}else if((r=_<0?-_:_)<=h){for(s=new p(f),n=Math.ceil(i/m+4),a=!1;r%2&&(s=s.times(d),j(s.d,n)),r=l(r/2),r!==0;)d=d.times(d),j(d.d,n);return a=!0,e.s<0?new p(f).div(s):O(s,i)}return c=c<0&&e.d[Math.max(n,r)]&1?-1:1,d.s=1,a=!1,s=e.times(E(d,i+g)),a=!0,s=S(s),s.s=c,s},_.toPrecision=function(e,n){var i,a,o=this,s=o.constructor;return e===void 0?(i=C(o),a=A(o,i<=s.toExpNeg||i>=s.toExpPos)):(y(e,1,r),n===void 0?n=s.rounding:y(n,0,8),o=O(new s(o),e,n),i=C(o),a=A(o,e<=i||i<=s.toExpNeg,e)),a},_.toSignificantDigits=_.tosd=function(e,n){var i=this,a=i.constructor;return e===void 0?(e=a.precision,n=a.rounding):(y(e,1,r),n===void 0?n=a.rounding:y(n,0,8)),O(new a(i),e,n)},_.toString=_.valueOf=_.val=_.toJSON=function(){var e=this,n=C(e),r=e.constructor;return A(e,n<=r.toExpNeg||n>=r.toExpPos)};function v(e,n){var r,i,o,s,c,l,u,d,f=e.constructor,h=f.precision;if(!e.s||!n.s)return n.s||(n=new f(e)),a?O(n,h):n;if(u=e.d,d=n.d,c=e.e,o=n.e,u=u.slice(),s=c-o,s){for(s<0?(i=u,s=-s,l=d.length):(i=d,o=c,l=u.length),c=Math.ceil(h/m),l=c>l?c+1:l+1,s>l&&(s=l,i.length=1),i.reverse();s--;)i.push(0);i.reverse()}for(l=u.length,s=d.length,l-s<0&&(s=l,i=d,d=u,u=i),r=0;s;)r=(u[--s]=u[s]+d[s]+r)/p|0,u[s]%=p;for(r&&(u.unshift(r),++o),l=u.length;u[--l]==0;)u.pop();return n.d=u,n.e=o,a?O(n,h):n}function y(e,n,r){if(e!==~~e||e<n||e>r)throw Error(s+e)}function b(e){var n,r,i,a=e.length-1,o=``,s=e[0];if(a>0){for(o+=s,n=1;n<a;n++)i=e[n]+``,r=m-i.length,r&&(o+=T(r)),o+=i;s=e[n],i=s+``,r=m-i.length,r&&(o+=T(r))}else if(s===0)return`0`;for(;s%10==0;)s/=10;return o+s}var x=(function(){function e(e,n){var r,i=0,a=e.length;for(e=e.slice();a--;)r=e[a]*n+i,e[a]=r%p|0,i=r/p|0;return i&&e.unshift(i),e}function n(e,n,r,i){var a,o;if(r!=i)o=r>i?1:-1;else for(a=o=0;a<r;a++)if(e[a]!=n[a]){o=e[a]>n[a]?1:-1;break}return o}function r(e,n,r){for(var i=0;r--;)e[r]-=i,i=+(e[r]<n[r]),e[r]=i*p+e[r]-n[r];for(;!e[0]&&e.length>1;)e.shift()}return function(i,a,s,c){var l,u,d,f,h,g,_,v,y,b,x,S,w,T,E,D,k,A,j=i.constructor,M=i.s==a.s?1:-1,N=i.d,P=a.d;if(!i.s)return new j(i);if(!a.s)throw Error(o+`Division by zero`);for(u=i.e-a.e,k=P.length,E=N.length,_=new j(M),v=_.d=[],d=0;P[d]==(N[d]||0);)++d;if(P[d]>(N[d]||0)&&--u,S=s==null?s=j.precision:c?s+(C(i)-C(a))+1:s,S<0)return new j(0);if(S=S/m+2|0,d=0,k==1)for(f=0,P=P[0],S++;(d<E||f)&&S--;d++)w=f*p+(N[d]||0),v[d]=w/P|0,f=w%P|0;else{for(f=p/(P[0]+1)|0,f>1&&(P=e(P,f),N=e(N,f),k=P.length,E=N.length),T=k,y=N.slice(0,k),b=y.length;b<k;)y[b++]=0;A=P.slice(),A.unshift(0),D=P[0],P[1]>=p/2&&++D;do f=0,l=n(P,y,k,b),l<0?(x=y[0],k!=b&&(x=x*p+(y[1]||0)),f=x/D|0,f>1?(f>=p&&(f=p-1),h=e(P,f),g=h.length,b=y.length,l=n(h,y,g,b),l==1&&(f--,r(h,k<g?A:P,g))):(f==0&&(l=f=1),h=P.slice()),g=h.length,g<b&&h.unshift(0),r(y,h,b),l==-1&&(b=y.length,l=n(P,y,k,b),l<1&&(f++,r(y,k<b?A:P,b))),b=y.length):l===0&&(f++,y=[0]),v[d++]=f,l&&y[0]?y[b++]=N[T]||0:(y=[N[T]],b=1);while((T++<E||y[0]!==void 0)&&S--)}return v[0]||v.shift(),_.e=u,O(_,c?s+C(_)+1:s)}})();function S(e,n){var r,i,o,s,l,d,p=0,m=0,h=e.constructor,g=h.precision;if(C(e)>16)throw Error(c+C(e));if(!e.s)return new h(f);for(n==null?(a=!1,d=g):d=n,l=new h(.03125);e.abs().gte(.1);)e=e.times(l),m+=5;for(i=Math.log(u(2,m))/Math.LN10*2+5|0,d+=i,r=o=s=new h(f),h.precision=d;;){if(o=O(o.times(e),d),r=r.times(++p),l=s.plus(x(o,r,d)),b(l.d).slice(0,d)===b(s.d).slice(0,d)){for(;m--;)s=O(s.times(s),d);return h.precision=g,n==null?(a=!0,O(s,g)):s}s=l}}function C(e){for(var n=e.e*m,r=e.d[0];r>=10;r/=10)n++;return n}function w(e,n,r){if(n>e.LN10.sd())throw a=!0,r&&(e.precision=r),Error(o+`LN10 precision limit exceeded`);return O(new e(e.LN10),n)}function T(e){for(var n=``;e--;)n+=`0`;return n}function E(e,n){var r,i,s,c,l,u,d,p,m,h=1,g=10,_=e,v=_.d,y=_.constructor,S=y.precision;if(_.s<1)throw Error(o+(_.s?`NaN`:`-Infinity`));if(_.eq(f))return new y(0);if(n==null?(a=!1,p=S):p=n,_.eq(10))return n??(a=!0),w(y,p);if(p+=g,y.precision=p,r=b(v),i=r.charAt(0),c=C(_),Math.abs(c)<0x5543df729c000){for(;i<7&&i!=1||i==1&&r.charAt(1)>3;)_=_.times(e),r=b(_.d),i=r.charAt(0),h++;c=C(_),i>1?(_=new y(`0.`+r),c++):_=new y(i+`.`+r.slice(1))}else return d=w(y,p+2,S).times(c+``),_=E(new y(i+`.`+r.slice(1)),p-g).plus(d),y.precision=S,n==null?(a=!0,O(_,S)):_;for(u=l=_=x(_.minus(f),_.plus(f),p),m=O(_.times(_),p),s=3;;){if(l=O(l.times(m),p),d=u.plus(x(l,new y(s),p)),b(d.d).slice(0,p)===b(u.d).slice(0,p))return u=u.times(2),c!==0&&(u=u.plus(w(y,p+2,S).times(c+``))),u=x(u,new y(h),p),y.precision=S,n==null?(a=!0,O(u,S)):u;u=d,s+=2}}function D(e,n){var r,i,o;for((r=n.indexOf(`.`))>-1&&(n=n.replace(`.`,``)),(i=n.search(/e/i))>0?(r<0&&(r=i),r+=+n.slice(i+1),n=n.substring(0,i)):r<0&&(r=n.length),i=0;n.charCodeAt(i)===48;)++i;for(o=n.length;n.charCodeAt(o-1)===48;)--o;if(n=n.slice(i,o),n){if(o-=i,r=r-i-1,e.e=l(r/m),e.d=[],i=(r+1)%m,r<0&&(i+=m),i<o){for(i&&e.d.push(+n.slice(0,i)),o-=m;i<o;)e.d.push(+n.slice(i,i+=m));n=n.slice(i),i=m-n.length}else i-=o;for(;i--;)n+=`0`;if(e.d.push(+n),a&&(e.e>g||e.e<-g))throw Error(c+r)}else e.s=0,e.e=0,e.d=[0];return e}function O(e,n,r){var i,o,s,d,f,h,_,v,y=e.d;for(d=1,s=y[0];s>=10;s/=10)d++;if(i=n-d,i<0)i+=m,o=n,_=y[v=0];else{if(v=Math.ceil((i+1)/m),s=y.length,v>=s)return e;for(_=s=y[v],d=1;s>=10;s/=10)d++;i%=m,o=i-m+d}if(r!==void 0&&(s=u(10,d-o-1),f=_/s%10|0,h=n<0||y[v+1]!==void 0||_%s,h=r<4?(f||h)&&(r==0||r==(e.s<0?3:2)):f>5||f==5&&(r==4||h||r==6&&(i>0?o>0?_/u(10,d-o):0:y[v-1])%10&1||r==(e.s<0?8:7))),n<1||!y[0])return h?(s=C(e),y.length=1,n=n-s-1,y[0]=u(10,(m-n%m)%m),e.e=l(-n/m)||0):(y.length=1,y[0]=e.e=e.s=0),e;if(i==0?(y.length=v,s=1,v--):(y.length=v+1,s=u(10,m-i),y[v]=o>0?(_/u(10,d-o)%u(10,o)|0)*s:0),h)for(;;)if(v==0){(y[0]+=s)==p&&(y[0]=1,++e.e);break}else{if(y[v]+=s,y[v]!=p)break;y[v--]=0,s=1}for(i=y.length;y[--i]===0;)y.pop();if(a&&(e.e>g||e.e<-g))throw Error(c+C(e));return e}function k(e,n){var r,i,o,s,c,l,u,d,f,h,g=e.constructor,_=g.precision;if(!e.s||!n.s)return n.s?n.s=-n.s:n=new g(e),a?O(n,_):n;if(u=e.d,h=n.d,i=n.e,d=e.e,u=u.slice(),c=d-i,c){for(f=c<0,f?(r=u,c=-c,l=h.length):(r=h,i=d,l=u.length),o=Math.max(Math.ceil(_/m),l)+2,c>o&&(c=o,r.length=1),r.reverse(),o=c;o--;)r.push(0);r.reverse()}else{for(o=u.length,l=h.length,f=o<l,f&&(l=o),o=0;o<l;o++)if(u[o]!=h[o]){f=u[o]<h[o];break}c=0}for(f&&(r=u,u=h,h=r,n.s=-n.s),l=u.length,o=h.length-l;o>0;--o)u[l++]=0;for(o=h.length;o>c;){if(u[--o]<h[o]){for(s=o;s&&u[--s]===0;)u[s]=p-1;--u[s],u[o]+=p}u[o]-=h[o]}for(;u[--l]===0;)u.pop();for(;u[0]===0;u.shift())--i;return u[0]?(n.d=u,n.e=i,a?O(n,_):n):new g(0)}function A(e,n,r){var i,a=C(e),o=b(e.d),s=o.length;return n?(r&&(i=r-s)>0?o=o.charAt(0)+`.`+o.slice(1)+T(i):s>1&&(o=o.charAt(0)+`.`+o.slice(1)),o=o+(a<0?`e`:`e+`)+a):a<0?(o=`0.`+T(-a-1)+o,r&&(i=r-s)>0&&(o+=T(i))):a>=s?(o+=T(a+1-s),r&&(i=r-a-1)>0&&(o=o+`.`+T(i))):((i=a+1)<s&&(o=o.slice(0,i)+`.`+o.slice(i)),r&&(i=r-s)>0&&(a+1===s&&(o+=`.`),o+=T(i))),e.s<0?`-`+o:o}function j(e,n){if(e.length>n)return e.length=n,!0}function M(e){var n,r,i;function a(e){var n=this;if(!(n instanceof a))return new a(e);if(n.constructor=a,e instanceof a){n.s=e.s,n.e=e.e,n.d=(e=e.d)?e.slice():e;return}if(typeof e==`number`){if(e*0!=0)throw Error(s+e);if(e>0)n.s=1;else if(e<0)e=-e,n.s=-1;else{n.s=0,n.e=0,n.d=[0];return}if(e===~~e&&e<1e7){n.e=0,n.d=[e];return}return D(n,e.toString())}else if(typeof e!=`string`)throw Error(s+e);if(e.charCodeAt(0)===45?(e=e.slice(1),n.s=-1):n.s=1,d.test(e))D(n,e);else throw Error(s+e)}if(a.prototype=_,a.ROUND_UP=0,a.ROUND_DOWN=1,a.ROUND_CEIL=2,a.ROUND_FLOOR=3,a.ROUND_HALF_UP=4,a.ROUND_HALF_DOWN=5,a.ROUND_HALF_EVEN=6,a.ROUND_HALF_CEIL=7,a.ROUND_HALF_FLOOR=8,a.clone=M,a.config=a.set=N,e===void 0&&(e={}),e)for(i=[`precision`,`rounding`,`toExpNeg`,`toExpPos`,`LN10`],n=0;n<i.length;)e.hasOwnProperty(r=i[n++])||(e[r]=this[r]);return a.config(e),a}function N(e){if(!e||typeof e!=`object`)throw Error(o+`Object expected`);var n,i,a,c=[`precision`,1,r,`rounding`,0,8,`toExpNeg`,-1/0,0,`toExpPos`,0,1/0];for(n=0;n<c.length;n+=3)if((a=e[i=c[n]])!==void 0)if(l(a)===a&&a>=c[n+1]&&a<=c[n+2])this[i]=a;else throw Error(s+i+`: `+a);if((a=e[i=`LN10`])!==void 0)if(a==Math.LN10)this[i]=new this(a);else throw Error(s+i+`: `+a);return this}i=M(i),i.default=i.Decimal=i,f=new i(1),typeof define==`function`&&define.amd?define(function(){return i}):n!==void 0&&n.exports?n.exports=i:(e||=typeof self<`u`&&self&&self.self==self?self:Function(`return this`)(),e.Decimal=i)})(e)}))());function pZ(e){return e===0?1:Math.floor(new fZ.default(e).abs().log(10).toNumber())+1}function mZ(e,n,r){for(var i=new fZ.default(e),a=0,o=[];i.lt(n)&&a<1e5;)o.push(i.toNumber()),i=i.add(r),a++;return o}var hZ=e=>{var[n,r]=e,[i,a]=[n,r];return n>r&&([i,a]=[r,n]),[i,a]},gZ=(e,n,r)=>{if(e.lte(0))return new fZ.default(0);var i=pZ(e.toNumber()),a=new fZ.default(10).pow(i),o=e.div(a),s=i===1?.1:.05,c=new fZ.default(Math.ceil(o.div(s).toNumber())).add(r).mul(s).mul(a);return n?new fZ.default(c.toNumber()):new fZ.default(Math.ceil(c.toNumber()))},_Z=(e,n,r)=>{if(e.lte(0))return new fZ.default(0);var i=[1,2,2.5,5],a=e.toNumber(),o=Math.floor(new fZ.default(a).abs().log(10).toNumber()),s=new fZ.default(10).pow(o),c=e.div(s).toNumber(),l=i.findIndex(e=>e>=c-1e-10);if(l===-1&&(s=s.mul(10),l=0),l+=r,l>=i.length){var u=Math.floor(l/i.length);l%=i.length,s=s.mul(new fZ.default(10).pow(u))}var d=new fZ.default(i[l]??1).mul(s);return n?d:new fZ.default(Math.ceil(d.toNumber()))},vZ=(e,n,r)=>{var i=new fZ.default(1),a=new fZ.default(e);if(!a.isint()&&r){var o=Math.abs(e);o<1?(i=new fZ.default(10).pow(pZ(e)-1),a=new fZ.default(Math.floor(a.div(i).toNumber())).mul(i)):o>1&&(a=new fZ.default(Math.floor(e)))}else e===0?a=new fZ.default(Math.floor((n-1)/2)):r||(a=new fZ.default(Math.floor(e)));for(var s=Math.floor((n-1)/2),c=[],l=0;l<n;l++)c.push(a.add(new fZ.default(l-s).mul(i)).toNumber());return c},yZ=function(e,n,r,i){var a=arguments.length>4&&arguments[4]!==void 0?arguments[4]:0,o=arguments.length>5&&arguments[5]!==void 0?arguments[5]:gZ;if(!Number.isFinite((n-e)/(r-1)))return{step:new fZ.default(0),tickMin:new fZ.default(0),tickMax:new fZ.default(0)};var s=o(new fZ.default(n).sub(e).div(r-1),i,a),c;e<=0&&n>=0?c=new fZ.default(0):(c=new fZ.default(e).add(n).div(2),c=c.sub(new fZ.default(c).mod(s)));var l=Math.ceil(c.sub(e).div(s).toNumber()),u=Math.ceil(new fZ.default(n).sub(c).div(s).toNumber()),d=l+u+1;return d>r?yZ(e,n,r,i,a+1,o):(d<r&&(u=n>0?u+(r-d):u,l=n>0?l:l+(r-d)),{step:s,tickMin:c.sub(new fZ.default(l).mul(s)),tickMax:c.add(new fZ.default(u).mul(s))})},bZ=function(e){var[n,r]=e,i=arguments.length>1&&arguments[1]!==void 0?arguments[1]:6,a=arguments.length>2&&arguments[2]!==void 0?arguments[2]:!0,o=arguments.length>3&&arguments[3]!==void 0?arguments[3]:`auto`,s=Math.max(i,2),[c,l]=hZ([n,r]);if(c===-1/0||l===1/0){var u=l===1/0?[c,...Array(i-1).fill(1/0)]:[...Array(i-1).fill(-1/0),l];return n>r?u.reverse():u}if(c===l)return vZ(c,i,a);var{step:d,tickMin:f,tickMax:p}=yZ(c,l,s,a,0,o===`snap125`?_Z:gZ),m=mZ(f,p.add(new fZ.default(.1).mul(d)),d);return n>r?m.reverse():m},xZ=function(e,n){var[r,i]=e,a=arguments.length>2&&arguments[2]!==void 0?arguments[2]:!0,o=arguments.length>3&&arguments[3]!==void 0?arguments[3]:`auto`,[s,c]=hZ([r,i]);if(s===-1/0||c===1/0)return[r,i];if(s===c)return[s];var l=o===`snap125`?_Z:gZ,u=Math.max(n,2),d=l(new fZ.default(c).sub(s).div(u-1),a,0),f=[...mZ(new fZ.default(s),new fZ.default(c),d),c];return a===!1&&(f=f.map(e=>Math.round(e))),r>i?f.reverse():f},SZ=e=>e.rootProps.maxBarSize,CZ=e=>e.rootProps.barGap,wZ=e=>e.rootProps.barCategoryGap,TZ=e=>e.rootProps.barSize,EZ=e=>e.rootProps.stackOffset,DZ=e=>e.rootProps.reverseStackOrder,OZ=e=>e.options.chartName,kZ=e=>e.rootProps.syncId,AZ=e=>e.rootProps.syncMethod,jZ=e=>e.options.eventEmitter,MZ=e=>e.rootProps.baseValue,NZ={grid:-100,barBackground:-50,area:100,cursorRectangle:200,bar:300,line:400,axis:500,scatter:600,activeBar:1e3,cursorLine:1100,activeDot:1200,label:2e3},PZ={allowDecimals:!1,allowDuplicatedCategory:!0,allowDataOverflow:!1,angle:0,angleAxisId:0,axisLine:!0,axisLineType:`polygon`,cx:0,cy:0,hide:!1,includeHidden:!1,label:!1,niceTicks:`auto`,orientation:`outer`,reversed:!1,scale:`auto`,tick:!0,tickLine:!0,tickSize:8,type:`auto`,zIndex:NZ.axis},FZ={allowDataOverflow:!1,allowDecimals:!1,allowDuplicatedCategory:!0,angle:0,axisLine:!0,includeHidden:!1,hide:!1,niceTicks:`auto`,label:!1,orientation:`right`,radiusAxisId:0,reversed:!1,scale:`auto`,stroke:`#ccc`,tick:!0,tickCount:5,tickLine:!0,type:`auto`,zIndex:NZ.axis},IZ=(e,n)=>{if(!(!e||!n))return e!=null&&e.reversed?[n[1],n[0]]:n};function LZ(e,n,r){if(r!==`auto`)return r;if(e!=null)return qW(e,n)?`category`:`number`}function RZ(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function zZ(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?RZ(Object(r),!0).forEach(function(n){BZ(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):RZ(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function BZ(e,n,r){return(n=VZ(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function VZ(e){var n=HZ(e,`string`);return typeof n==`symbol`?n:n+``}function HZ(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var UZ={allowDataOverflow:PZ.allowDataOverflow,allowDecimals:PZ.allowDecimals,allowDuplicatedCategory:!1,dataKey:void 0,domain:void 0,id:PZ.angleAxisId,includeHidden:!1,name:void 0,reversed:PZ.reversed,scale:PZ.scale,tick:PZ.tick,tickCount:void 0,ticks:void 0,type:PZ.type,unit:void 0,niceTicks:`auto`},WZ={allowDataOverflow:FZ.allowDataOverflow,allowDecimals:FZ.allowDecimals,allowDuplicatedCategory:FZ.allowDuplicatedCategory,dataKey:void 0,domain:void 0,id:FZ.radiusAxisId,includeHidden:FZ.includeHidden,name:void 0,reversed:FZ.reversed,scale:FZ.scale,tick:FZ.tick,tickCount:FZ.tickCount,ticks:void 0,type:FZ.type,unit:void 0,niceTicks:`auto`},GZ=$([(e,n)=>{if(n!=null)return e.polarAxis.angleAxis[n]},xK],(e,n)=>{if(e!=null)return e;var r=LZ(n,`angleAxis`,UZ.type)??`category`;return zZ(zZ({},UZ),{},{type:r})}),KZ=$([(e,n)=>e.polarAxis.radiusAxis[n],xK],(e,n)=>{if(e!=null)return e;var r=LZ(n,`radiusAxis`,WZ.type)??`category`;return zZ(zZ({},WZ),{},{type:r})}),qZ=e=>e.polarOptions,JZ=$([pG,mG,jG],OX),YZ=$([qZ,JZ],(e,n)=>{if(e!=null)return Iz(e.innerRadius,n,0)}),XZ=$([qZ,JZ],(e,n)=>{if(e!=null)return Iz(e.outerRadius,n,n*.8)}),ZZ=$([qZ],e=>{if(e==null)return[0,0];var{startAngle:n,endAngle:r}=e;return[n,r]});$([GZ,ZZ],IZ);var QZ=$([JZ,YZ,XZ],(e,n,r)=>{if(!(e==null||n==null||r==null))return[n,r]});$([KZ,QZ],IZ);var $Z=$([vK,qZ,YZ,XZ,pG,mG],(e,n,r,i,a,o)=>{if(!(e!==`centric`&&e!==`radial`||n==null||r==null||i==null)){var{cx:s,cy:c,startAngle:l,endAngle:u}=n;return{cx:Iz(s,a,a/2),cy:Iz(c,o,o/2),innerRadius:r,outerRadius:i,startAngle:l,endAngle:u,clockWise:!1}}}),eQ=(e,n)=>n,tQ=(e,n,r)=>r;function nQ(e){return e?.id}function rQ(e,n,r){var{chartData:i=[]}=n,{allowDuplicatedCategory:a,dataKey:o}=r,s=new Map;return e.forEach(e=>{var n=e.data??i;if(!(n==null||n.length===0)){var r=nQ(e);n.forEach((n,i)=>{var c=o==null||a?i:String(GW(n,o,null)),l=GW(n,e.dataKey,0),u=s.has(c)?s.get(c):{};Object.assign(u,{[r]:l}),s.set(c,u)})}}),Array.from(s.values())}function iQ(e){return`stackId`in e&&e.stackId!=null&&e.dataKey!=null}var aQ=(e,n)=>e===n?!0:e==null||n==null?!1:e[0]===n[0]&&e[1]===n[1];function oQ(e,n){return Array.isArray(e)&&Array.isArray(n)&&e.length===0&&n.length===0?!0:e===n}function sQ(e,n){if(e.length===n.length){for(var r=0;r<e.length;r++)if(e[r]!==n[r])return!1;return!0}return!1}var cQ=e=>{var n=vK(e);return n===`horizontal`?`xAxis`:n===`vertical`?`yAxis`:n===`centric`?`angleAxis`:`radiusAxis`},lQ=e=>e.tooltip.settings.axisId;function uQ(e){if(e!=null){var n=e.ticks,r=e.bandwidth,i=e.range(),a=[Math.min(...i),Math.max(...i)];return{domain:()=>e.domain(),range:function(e){function n(){return e.apply(this,arguments)}return n.toString=function(){return e.toString()},n}(()=>a),rangeMin:()=>a[0],rangeMax:()=>a[1],isInRange(e){var n=a[0],r=a[1];return n<=r?e>=n&&e<=r:e>=r&&e<=n},bandwidth:r?()=>r.call(e):void 0,ticks:n?r=>n.call(e,r):void 0,map:(n,r)=>{var i=e(n);if(i!=null){if(e.bandwidth&&r!=null&&r.position){var a=e.bandwidth();switch(r.position){case`middle`:i+=a/2;break;case`end`:i+=a;break;default:break}}return i}}}}}var dQ=(e,n)=>{if(n!=null)switch(e){case`linear`:if(!cZ(n)){for(var r,i,a=0;a<n.length;a++){var o=n[a];RW(o)&&((r===void 0||o<r)&&(r=o),(i===void 0||o>i)&&(i=o))}return r!==void 0&&i!==void 0?[r,i]:void 0}return n;default:return n}};function fQ(e,n){return e==null||n==null?NaN:e<n?-1:e>n?1:e>=n?0:NaN}function pQ(e,n){return e==null||n==null?NaN:n<e?-1:n>e?1:n>=e?0:NaN}function mQ(e){let n,r,i;e.length===2?(n=e===fQ||e===pQ?e:hQ,r=e,i=e):(n=fQ,r=(n,r)=>fQ(e(n),r),i=(n,r)=>e(n)-r);function a(e,i,a=0,o=e.length){if(a<o){if(n(i,i)!==0)return o;do{let n=a+o>>>1;r(e[n],i)<0?a=n+1:o=n}while(a<o)}return a}function o(e,i,a=0,o=e.length){if(a<o){if(n(i,i)!==0)return o;do{let n=a+o>>>1;r(e[n],i)<=0?a=n+1:o=n}while(a<o)}return a}function s(e,n,r=0,o=e.length){let s=a(e,n,r,o-1);return s>r&&i(e[s-1],n)>-i(e[s],n)?s-1:s}return{left:a,center:s,right:o}}function hQ(){return 0}function gQ(e){return e===null?NaN:+e}function*_Q(e,n){if(n===void 0)for(let n of e)n!=null&&(n=+n)>=n&&(yield n);else{let r=-1;for(let i of e)(i=n(i,++r,e))!=null&&(i=+i)>=i&&(yield i)}}var vQ=mQ(fQ),yQ=vQ.right;vQ.left,mQ(gQ).center;var bQ=class extends Map{constructor(e,n=wQ){if(super(),Object.defineProperties(this,{_intern:{value:new Map},_key:{value:n}}),e!=null)for(let[n,r]of e)this.set(n,r)}get(e){return super.get(xQ(this,e))}has(e){return super.has(xQ(this,e))}set(e,n){return super.set(SQ(this,e),n)}delete(e){return super.delete(CQ(this,e))}};function xQ({_intern:e,_key:n},r){let i=n(r);return e.has(i)?e.get(i):r}function SQ({_intern:e,_key:n},r){let i=n(r);return e.has(i)?e.get(i):(e.set(i,r),r)}function CQ({_intern:e,_key:n},r){let i=n(r);return e.has(i)&&(r=e.get(i),e.delete(i)),r}function wQ(e){return typeof e==`object`&&e?e.valueOf():e}function TQ(e=fQ){if(e===fQ)return EQ;if(typeof e!=`function`)throw TypeError(`compare is not a function`);return(n,r)=>{let i=e(n,r);return i||i===0?i:(e(r,r)===0)-(e(n,n)===0)}}function EQ(e,n){return(e==null||!(e>=e))-(n==null||!(n>=n))||(e<n?-1:+(e>n))}var DQ=Math.sqrt(50),OQ=Math.sqrt(10),kQ=Math.sqrt(2);function AQ(e,n,r){let i=(n-e)/Math.max(0,r),a=Math.floor(Math.log10(i)),o=i/10**a,s=o>=DQ?10:o>=OQ?5:o>=kQ?2:1,c,l,u;return a<0?(u=10**-a/s,c=Math.round(e*u),l=Math.round(n*u),c/u<e&&++c,l/u>n&&--l,u=-u):(u=10**a*s,c=Math.round(e/u),l=Math.round(n/u),c*u<e&&++c,l*u>n&&--l),l<c&&.5<=r&&r<2?AQ(e,n,r*2):[c,l,u]}function jQ(e,n,r){if(n=+n,e=+e,r=+r,!(r>0))return[];if(e===n)return[e];let i=n<e,[a,o,s]=i?AQ(n,e,r):AQ(e,n,r);if(!(o>=a))return[];let c=o-a+1,l=Array(c);if(i)if(s<0)for(let e=0;e<c;++e)l[e]=(o-e)/-s;else for(let e=0;e<c;++e)l[e]=(o-e)*s;else if(s<0)for(let e=0;e<c;++e)l[e]=(a+e)/-s;else for(let e=0;e<c;++e)l[e]=(a+e)*s;return l}function MQ(e,n,r){return n=+n,e=+e,r=+r,AQ(e,n,r)[2]}function NQ(e,n,r){n=+n,e=+e,r=+r;let i=n<e,a=i?MQ(n,e,r):MQ(e,n,r);return(i?-1:1)*(a<0?1/-a:a)}function PQ(e,n){let r;if(n===void 0)for(let n of e)n!=null&&(r<n||r===void 0&&n>=n)&&(r=n);else{let i=-1;for(let a of e)(a=n(a,++i,e))!=null&&(r<a||r===void 0&&a>=a)&&(r=a)}return r}function FQ(e,n){let r;if(n===void 0)for(let n of e)n!=null&&(r>n||r===void 0&&n>=n)&&(r=n);else{let i=-1;for(let a of e)(a=n(a,++i,e))!=null&&(r>a||r===void 0&&a>=a)&&(r=a)}return r}function IQ(e,n,r=0,i=1/0,a){if(n=Math.floor(n),r=Math.floor(Math.max(0,r)),i=Math.floor(Math.min(e.length-1,i)),!(r<=n&&n<=i))return e;for(a=a===void 0?EQ:TQ(a);i>r;){if(i-r>600){let o=i-r+1,s=n-r+1,c=Math.log(o),l=.5*Math.exp(2*c/3),u=.5*Math.sqrt(c*l*(o-l)/o)*(s-o/2<0?-1:1),d=Math.max(r,Math.floor(n-s*l/o+u)),f=Math.min(i,Math.floor(n+(o-s)*l/o+u));IQ(e,n,d,f,a)}let o=e[n],s=r,c=i;for(LQ(e,r,n),a(e[i],o)>0&&LQ(e,r,i);s<c;){for(LQ(e,s,c),++s,--c;a(e[s],o)<0;)++s;for(;a(e[c],o)>0;)--c}a(e[r],o)===0?LQ(e,r,c):(++c,LQ(e,c,i)),c<=n&&(r=c+1),n<=c&&(i=c-1)}return e}function LQ(e,n,r){let i=e[n];e[n]=e[r],e[r]=i}function RQ(e,n,r){if(e=Float64Array.from(_Q(e,r)),!(!(i=e.length)||isNaN(n=+n))){if(n<=0||i<2)return FQ(e);if(n>=1)return PQ(e);var i,a=(i-1)*n,o=Math.floor(a),s=PQ(IQ(e,o).subarray(0,o+1));return s+(FQ(e.subarray(o+1))-s)*(a-o)}}function zQ(e,n,r=gQ){if(!(!(i=e.length)||isNaN(n=+n))){if(n<=0||i<2)return+r(e[0],0,e);if(n>=1)return+r(e[i-1],i-1,e);var i,a=(i-1)*n,o=Math.floor(a),s=+r(e[o],o,e);return s+(+r(e[o+1],o+1,e)-s)*(a-o)}}function BQ(e,n,r){e=+e,n=+n,r=(a=arguments.length)<2?(n=e,e=0,1):a<3?1:+r;for(var i=-1,a=Math.max(0,Math.ceil((n-e)/r))|0,o=Array(a);++i<a;)o[i]=e+i*r;return o}function VQ(e,n){switch(arguments.length){case 0:break;case 1:this.range(e);break;default:this.range(n).domain(e);break}return this}function HQ(e,n){switch(arguments.length){case 0:break;case 1:typeof e==`function`?this.interpolator(e):this.range(e);break;default:this.domain(e),typeof n==`function`?this.interpolator(n):this.range(n);break}return this}var UQ=Symbol(`implicit`);function WQ(){var e=new bQ,n=[],r=[],i=UQ;function a(a){let o=e.get(a);if(o===void 0){if(i!==UQ)return i;e.set(a,o=n.push(a)-1)}return r[o%r.length]}return a.domain=function(r){if(!arguments.length)return n.slice();n=[],e=new bQ;for(let i of r)e.has(i)||e.set(i,n.push(i)-1);return a},a.range=function(e){return arguments.length?(r=Array.from(e),a):r.slice()},a.unknown=function(e){return arguments.length?(i=e,a):i},a.copy=function(){return WQ(n,r).unknown(i)},VQ.apply(a,arguments),a}function GQ(){var e=WQ().unknown(void 0),n=e.domain,r=e.range,i=0,a=1,o,s,c=!1,l=0,u=0,d=.5;delete e.unknown;function f(){var e=n().length,f=a<i,p=f?a:i,m=f?i:a;o=(m-p)/Math.max(1,e-l+u*2),c&&(o=Math.floor(o)),p+=(m-p-o*(e-l))*d,s=o*(1-l),c&&(p=Math.round(p),s=Math.round(s));var h=BQ(e).map(function(e){return p+o*e});return r(f?h.reverse():h)}return e.domain=function(e){return arguments.length?(n(e),f()):n()},e.range=function(e){return arguments.length?([i,a]=e,i=+i,a=+a,f()):[i,a]},e.rangeRound=function(e){return[i,a]=e,i=+i,a=+a,c=!0,f()},e.bandwidth=function(){return s},e.step=function(){return o},e.round=function(e){return arguments.length?(c=!!e,f()):c},e.padding=function(e){return arguments.length?(l=Math.min(1,u=+e),f()):l},e.paddingInner=function(e){return arguments.length?(l=Math.min(1,e),f()):l},e.paddingOuter=function(e){return arguments.length?(u=+e,f()):u},e.align=function(e){return arguments.length?(d=Math.max(0,Math.min(1,e)),f()):d},e.copy=function(){return GQ(n(),[i,a]).round(c).paddingInner(l).paddingOuter(u).align(d)},VQ.apply(f(),arguments)}function KQ(e){var n=e.copy;return e.padding=e.paddingOuter,delete e.paddingInner,delete e.paddingOuter,e.copy=function(){return KQ(n())},e}function qQ(){return KQ(GQ.apply(null,arguments).paddingInner(1))}function JQ(e){return function(){return e}}function YQ(e){return+e}var XQ=[0,1];function ZQ(e){return e}function QQ(e,n){return(n-=e=+e)?function(r){return(r-e)/n}:JQ(isNaN(n)?NaN:.5)}function $Q(e,n){var r;return e>n&&(r=e,e=n,n=r),function(r){return Math.max(e,Math.min(n,r))}}function e$(e,n,r){var i=e[0],a=e[1],o=n[0],s=n[1];return a<i?(i=QQ(a,i),o=r(s,o)):(i=QQ(i,a),o=r(o,s)),function(e){return o(i(e))}}function t$(e,n,r){var i=Math.min(e.length,n.length)-1,a=Array(i),o=Array(i),s=-1;for(e[i]<e[0]&&(e=e.slice().reverse(),n=n.slice().reverse());++s<i;)a[s]=QQ(e[s],e[s+1]),o[s]=r(n[s],n[s+1]);return function(n){var r=yQ(e,n,1,i)-1;return o[r](a[r](n))}}function n$(e,n){return n.domain(e.domain()).range(e.range()).interpolate(e.interpolate()).clamp(e.clamp()).unknown(e.unknown())}function r$(){var e=XQ,n=XQ,r=Gh,i,a,o,s=ZQ,c,l,u;function d(){var r=Math.min(e.length,n.length);return s!==ZQ&&(s=$Q(e[0],e[r-1])),c=r>2?t$:e$,l=u=null,f}function f(a){return a==null||isNaN(a=+a)?o:(l||=c(e.map(i),n,r))(i(s(a)))}return f.invert=function(r){return s(a((u||=c(n,e.map(i),Rh))(r)))},f.domain=function(n){return arguments.length?(e=Array.from(n,YQ),d()):e.slice()},f.range=function(e){return arguments.length?(n=Array.from(e),d()):n.slice()},f.rangeRound=function(e){return n=Array.from(e),r=Kh,d()},f.clamp=function(e){return arguments.length?(s=e?!0:ZQ,d()):s!==ZQ},f.interpolate=function(e){return arguments.length?(r=e,d()):r},f.unknown=function(e){return arguments.length?(o=e,f):o},function(e,n){return i=e,a=n,d()}}function i$(){return r$()(ZQ,ZQ)}function a$(e){return Math.abs(e=Math.round(e))>=1e21?e.toLocaleString(`en`).replace(/,/g,``):e.toString(10)}function o$(e,n){if(!isFinite(e)||e===0)return null;var r=(e=n?e.toExponential(n-1):e.toExponential()).indexOf(`e`),i=e.slice(0,r);return[i.length>1?i[0]+i.slice(2):i,+e.slice(r+1)]}function s$(e){return e=o$(Math.abs(e)),e?e[1]:NaN}function c$(e,n){return function(r,i){for(var a=r.length,o=[],s=0,c=e[0],l=0;a>0&&c>0&&(l+c+1>i&&(c=Math.max(1,i-l)),o.push(r.substring(a-=c,a+c)),!((l+=c+1)>i));)c=e[s=(s+1)%e.length];return o.reverse().join(n)}}function l$(e){return function(n){return n.replace(/[0-9]/g,function(n){return e[+n]})}}var u$=/^(?:(.)?([<>=^]))?([+\-( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?(~)?([a-z%])?$/i;function d$(e){if(!(n=u$.exec(e)))throw Error(`invalid format: `+e);var n;return new f$({fill:n[1],align:n[2],sign:n[3],symbol:n[4],zero:n[5],width:n[6],comma:n[7],precision:n[8]&&n[8].slice(1),trim:n[9],type:n[10]})}d$.prototype=f$.prototype;function f$(e){this.fill=e.fill===void 0?` `:e.fill+``,this.align=e.align===void 0?`>`:e.align+``,this.sign=e.sign===void 0?`-`:e.sign+``,this.symbol=e.symbol===void 0?``:e.symbol+``,this.zero=!!e.zero,this.width=e.width===void 0?void 0:+e.width,this.comma=!!e.comma,this.precision=e.precision===void 0?void 0:+e.precision,this.trim=!!e.trim,this.type=e.type===void 0?``:e.type+``}f$.prototype.toString=function(){return this.fill+this.align+this.sign+this.symbol+(this.zero?`0`:``)+(this.width===void 0?``:Math.max(1,this.width|0))+(this.comma?`,`:``)+(this.precision===void 0?``:`.`+Math.max(0,this.precision|0))+(this.trim?`~`:``)+this.type};function p$(e){out:for(var n=e.length,r=1,i=-1,a;r<n;++r)switch(e[r]){case`.`:i=a=r;break;case`0`:i===0&&(i=r),a=r;break;default:if(!+e[r])break out;i>0&&(i=0);break}return i>0?e.slice(0,i)+e.slice(a+1):e}var m$;function h$(e,n){var r=o$(e,n);if(!r)return m$=void 0,e.toPrecision(n);var i=r[0],a=r[1],o=a-(m$=Math.max(-8,Math.min(8,Math.floor(a/3)))*3)+1,s=i.length;return o===s?i:o>s?i+Array(o-s+1).join(`0`):o>0?i.slice(0,o)+`.`+i.slice(o):`0.`+Array(1-o).join(`0`)+o$(e,Math.max(0,n+o-1))[0]}function g$(e,n){var r=o$(e,n);if(!r)return e+``;var i=r[0],a=r[1];return a<0?`0.`+Array(-a).join(`0`)+i:i.length>a+1?i.slice(0,a+1)+`.`+i.slice(a+1):i+Array(a-i.length+2).join(`0`)}var _$={"%":(e,n)=>(e*100).toFixed(n),b:e=>Math.round(e).toString(2),c:e=>e+``,d:a$,e:(e,n)=>e.toExponential(n),f:(e,n)=>e.toFixed(n),g:(e,n)=>e.toPrecision(n),o:e=>Math.round(e).toString(8),p:(e,n)=>g$(e*100,n),r:g$,s:h$,X:e=>Math.round(e).toString(16).toUpperCase(),x:e=>Math.round(e).toString(16)};function v$(e){return e}var y$=Array.prototype.map,b$=[`y`,`z`,`a`,`f`,`p`,`n`,`µ`,`m`,``,`k`,`M`,`G`,`T`,`P`,`E`,`Z`,`Y`];function x$(e){var n=e.grouping===void 0||e.thousands===void 0?v$:c$(y$.call(e.grouping,Number),e.thousands+``),r=e.currency===void 0?``:e.currency[0]+``,i=e.currency===void 0?``:e.currency[1]+``,a=e.decimal===void 0?`.`:e.decimal+``,o=e.numerals===void 0?v$:l$(y$.call(e.numerals,String)),s=e.percent===void 0?`%`:e.percent+``,c=e.minus===void 0?`−`:e.minus+``,l=e.nan===void 0?`NaN`:e.nan+``;function u(e,u){e=d$(e);var d=e.fill,f=e.align,p=e.sign,m=e.symbol,h=e.zero,g=e.width,_=e.comma,v=e.precision,y=e.trim,b=e.type;b===`n`?(_=!0,b=`g`):_$[b]||(v===void 0&&(v=12),y=!0,b=`g`),(h||d===`0`&&f===`=`)&&(h=!0,d=`0`,f=`=`);var x=(u&&u.prefix!==void 0?u.prefix:``)+(m===`$`?r:m===`#`&&/[boxX]/.test(b)?`0`+b.toLowerCase():``),S=(m===`$`?i:/[%p]/.test(b)?s:``)+(u&&u.suffix!==void 0?u.suffix:``),C=_$[b],w=/[defgprs%]/.test(b);v=v===void 0?6:/[gprs]/.test(b)?Math.max(1,Math.min(21,v)):Math.max(0,Math.min(20,v));function T(e){var r=x,i=S,s,u,m;if(b===`c`)i=C(e)+i,e=``;else{e=+e;var T=e<0||1/e<0;if(e=isNaN(e)?l:C(Math.abs(e),v),y&&(e=p$(e)),T&&+e==0&&p!==`+`&&(T=!1),r=(T?p===`(`?p:c:p===`-`||p===`(`?``:p)+r,i=(b===`s`&&!isNaN(e)&&m$!==void 0?b$[8+m$/3]:``)+i+(T&&p===`(`?`)`:``),w){for(s=-1,u=e.length;++s<u;)if(m=e.charCodeAt(s),48>m||m>57){i=(m===46?a+e.slice(s+1):e.slice(s))+i,e=e.slice(0,s);break}}}_&&!h&&(e=n(e,1/0));var E=r.length+e.length+i.length,D=E<g?Array(g-E+1).join(d):``;switch(_&&h&&(e=n(D+e,D.length?g-i.length:1/0),D=``),f){case`<`:e=r+e+i+D;break;case`=`:e=r+D+e+i;break;case`^`:e=D.slice(0,E=D.length>>1)+r+e+i+D.slice(E);break;default:e=D+r+e+i;break}return o(e)}return T.toString=function(){return e+``},T}function d(e,n){var r=Math.max(-8,Math.min(8,Math.floor(s$(n)/3)))*3,i=10**-r,a=u((e=d$(e),e.type=`f`,e),{suffix:b$[8+r/3]});return function(e){return a(i*e)}}return{format:u,formatPrefix:d}}var S$,C$,w$;T$({thousands:`,`,grouping:[3],currency:[`$`,``]});function T$(e){return S$=x$(e),C$=S$.format,w$=S$.formatPrefix,S$}function E$(e){return Math.max(0,-s$(Math.abs(e)))}function D$(e,n){return Math.max(0,Math.max(-8,Math.min(8,Math.floor(s$(n)/3)))*3-s$(Math.abs(e)))}function O$(e,n){return e=Math.abs(e),n=Math.abs(n)-e,Math.max(0,s$(n)-s$(e))+1}function k$(e,n,r,i){var a=NQ(e,n,r),o;switch(i=d$(i??`,f`),i.type){case`s`:var s=Math.max(Math.abs(e),Math.abs(n));return i.precision==null&&!isNaN(o=D$(a,s))&&(i.precision=o),w$(i,s);case``:case`e`:case`g`:case`p`:case`r`:i.precision==null&&!isNaN(o=O$(a,Math.max(Math.abs(e),Math.abs(n))))&&(i.precision=o-(i.type===`e`));break;case`f`:case`%`:i.precision==null&&!isNaN(o=E$(a))&&(i.precision=o-(i.type===`%`)*2);break}return C$(i)}function A$(e){var n=e.domain;return e.ticks=function(e){var r=n();return jQ(r[0],r[r.length-1],e??10)},e.tickFormat=function(e,r){var i=n();return k$(i[0],i[i.length-1],e??10,r)},e.nice=function(r){r??=10;var i=n(),a=0,o=i.length-1,s=i[a],c=i[o],l,u,d=10;for(c<s&&(u=s,s=c,c=u,u=a,a=o,o=u);d-- >0;){if(u=MQ(s,c,r),u===l)return i[a]=s,i[o]=c,n(i);if(u>0)s=Math.floor(s/u)*u,c=Math.ceil(c/u)*u;else if(u<0)s=Math.ceil(s*u)/u,c=Math.floor(c*u)/u;else break;l=u}return e},e}function j$(){var e=i$();return e.copy=function(){return n$(e,j$())},VQ.apply(e,arguments),A$(e)}function M$(e){var n;function r(e){return e==null||isNaN(e=+e)?n:e}return r.invert=r,r.domain=r.range=function(n){return arguments.length?(e=Array.from(n,YQ),r):e.slice()},r.unknown=function(e){return arguments.length?(n=e,r):n},r.copy=function(){return M$(e).unknown(n)},e=arguments.length?Array.from(e,YQ):[0,1],A$(r)}function N$(e,n){e=e.slice();var r=0,i=e.length-1,a=e[r],o=e[i],s;return o<a&&(s=r,r=i,i=s,s=a,a=o,o=s),e[r]=n.floor(a),e[i]=n.ceil(o),e}function P$(e){return Math.log(e)}function F$(e){return Math.exp(e)}function I$(e){return-Math.log(-e)}function L$(e){return-Math.exp(-e)}function R$(e){return isFinite(e)?+(`1e`+e):e<0?0:e}function z$(e){return e===10?R$:e===Math.E?Math.exp:n=>e**+n}function B$(e){return e===Math.E?Math.log:e===10&&Math.log10||e===2&&Math.log2||(e=Math.log(e),n=>Math.log(n)/e)}function V$(e){return(n,r)=>-e(-n,r)}function H$(e){let n=e(P$,F$),r=n.domain,i=10,a,o;function s(){return a=B$(i),o=z$(i),r()[0]<0?(a=V$(a),o=V$(o),e(I$,L$)):e(P$,F$),n}return n.base=function(e){return arguments.length?(i=+e,s()):i},n.domain=function(e){return arguments.length?(r(e),s()):r()},n.ticks=e=>{let n=r(),s=n[0],c=n[n.length-1],l=c<s;l&&([s,c]=[c,s]);let u=a(s),d=a(c),f,p,m=e==null?10:+e,h=[];if(!(i%1)&&d-u<m){if(u=Math.floor(u),d=Math.ceil(d),s>0){for(;u<=d;++u)for(f=1;f<i;++f)if(p=u<0?f/o(-u):f*o(u),!(p<s)){if(p>c)break;h.push(p)}}else for(;u<=d;++u)for(f=i-1;f>=1;--f)if(p=u>0?f/o(-u):f*o(u),!(p<s)){if(p>c)break;h.push(p)}h.length*2<m&&(h=jQ(s,c,m))}else h=jQ(u,d,Math.min(d-u,m)).map(o);return l?h.reverse():h},n.tickFormat=(e,r)=>{if(e??=10,r??=i===10?`s`:`,`,typeof r!=`function`&&(!(i%1)&&(r=d$(r)).precision==null&&(r.trim=!0),r=C$(r)),e===1/0)return r;let s=Math.max(1,i*e/n.ticks().length);return e=>{let n=e/o(Math.round(a(e)));return n*i<i-.5&&(n*=i),n<=s?r(e):``}},n.nice=()=>r(N$(r(),{floor:e=>o(Math.floor(a(e))),ceil:e=>o(Math.ceil(a(e)))})),n}function U$(){let e=H$(r$()).domain([1,10]);return e.copy=()=>n$(e,U$()).base(e.base()),VQ.apply(e,arguments),e}function W$(e){return function(n){return Math.sign(n)*Math.log1p(Math.abs(n/e))}}function G$(e){return function(n){return Math.sign(n)*Math.expm1(Math.abs(n))*e}}function K$(e){var n=1,r=e(W$(n),G$(n));return r.constant=function(r){return arguments.length?e(W$(n=+r),G$(n)):n},A$(r)}function q$(){var e=K$(r$());return e.copy=function(){return n$(e,q$()).constant(e.constant())},VQ.apply(e,arguments)}function J$(e){return function(n){return n<0?-((-n)**+e):n**+e}}function Y$(e){return e<0?-Math.sqrt(-e):Math.sqrt(e)}function X$(e){return e<0?-e*e:e*e}function Z$(e){var n=e(ZQ,ZQ),r=1;function i(){return r===1?e(ZQ,ZQ):r===.5?e(Y$,X$):e(J$(r),J$(1/r))}return n.exponent=function(e){return arguments.length?(r=+e,i()):r},A$(n)}function Q$(){var e=Z$(r$());return e.copy=function(){return n$(e,Q$()).exponent(e.exponent())},VQ.apply(e,arguments),e}function $$(){return Q$.apply(null,arguments).exponent(.5)}function e1(e){return Math.sign(e)*e*e}function t1(e){return Math.sign(e)*Math.sqrt(Math.abs(e))}function n1(){var e=i$(),n=[0,1],r=!1,i;function a(n){var a=t1(e(n));return isNaN(a)?i:r?Math.round(a):a}return a.invert=function(n){return e.invert(e1(n))},a.domain=function(n){return arguments.length?(e.domain(n),a):e.domain()},a.range=function(r){return arguments.length?(e.range((n=Array.from(r,YQ)).map(e1)),a):n.slice()},a.rangeRound=function(e){return a.range(e).round(!0)},a.round=function(e){return arguments.length?(r=!!e,a):r},a.clamp=function(n){return arguments.length?(e.clamp(n),a):e.clamp()},a.unknown=function(e){return arguments.length?(i=e,a):i},a.copy=function(){return n1(e.domain(),n).round(r).clamp(e.clamp()).unknown(i)},VQ.apply(a,arguments),A$(a)}function r1(){var e=[],n=[],r=[],i;function a(){var i=0,a=Math.max(1,n.length);for(r=Array(a-1);++i<a;)r[i-1]=zQ(e,i/a);return o}function o(e){return e==null||isNaN(e=+e)?i:n[yQ(r,e)]}return o.invertExtent=function(i){var a=n.indexOf(i);return a<0?[NaN,NaN]:[a>0?r[a-1]:e[0],a<r.length?r[a]:e[e.length-1]]},o.domain=function(n){if(!arguments.length)return e.slice();e=[];for(let r of n)r!=null&&!isNaN(r=+r)&&e.push(r);return e.sort(fQ),a()},o.range=function(e){return arguments.length?(n=Array.from(e),a()):n.slice()},o.unknown=function(e){return arguments.length?(i=e,o):i},o.quantiles=function(){return r.slice()},o.copy=function(){return r1().domain(e).range(n).unknown(i)},VQ.apply(o,arguments)}function i1(){var e=0,n=1,r=1,i=[.5],a=[0,1],o;function s(e){return e!=null&&e<=e?a[yQ(i,e,0,r)]:o}function c(){var a=-1;for(i=Array(r);++a<r;)i[a]=((a+1)*n-(a-r)*e)/(r+1);return s}return s.domain=function(r){return arguments.length?([e,n]=r,e=+e,n=+n,c()):[e,n]},s.range=function(e){return arguments.length?(r=(a=Array.from(e)).length-1,c()):a.slice()},s.invertExtent=function(o){var s=a.indexOf(o);return s<0?[NaN,NaN]:s<1?[e,i[0]]:s>=r?[i[r-1],n]:[i[s-1],i[s]]},s.unknown=function(e){return arguments.length&&(o=e),s},s.thresholds=function(){return i.slice()},s.copy=function(){return i1().domain([e,n]).range(a).unknown(o)},VQ.apply(A$(s),arguments)}function a1(){var e=[.5],n=[0,1],r,i=1;function a(a){return a!=null&&a<=a?n[yQ(e,a,0,i)]:r}return a.domain=function(r){return arguments.length?(e=Array.from(r),i=Math.min(e.length,n.length-1),a):e.slice()},a.range=function(r){return arguments.length?(n=Array.from(r),i=Math.min(e.length,n.length-1),a):n.slice()},a.invertExtent=function(r){var i=n.indexOf(r);return[e[i-1],e[i]]},a.unknown=function(e){return arguments.length?(r=e,a):r},a.copy=function(){return a1().domain(e).range(n).unknown(r)},VQ.apply(a,arguments)}var o1=new Date,s1=new Date;function c1(e,n,r,i){function a(n){return e(n=arguments.length===0?new Date:new Date(+n)),n}return a.floor=n=>(e(n=new Date(+n)),n),a.ceil=r=>(e(r=new Date(r-1)),n(r,1),e(r),r),a.round=e=>{let n=a(e),r=a.ceil(e);return e-n<r-e?n:r},a.offset=(e,r)=>(n(e=new Date(+e),r==null?1:Math.floor(r)),e),a.range=(r,i,o)=>{let s=[];if(r=a.ceil(r),o=o==null?1:Math.floor(o),!(r<i)||!(o>0))return s;let c;do s.push(c=new Date(+r)),n(r,o),e(r);while(c<r&&r<i);return s},a.filter=r=>c1(n=>{if(n>=n)for(;e(n),!r(n);)n.setTime(n-1)},(e,i)=>{if(e>=e)if(i<0)for(;++i<=0;)for(;n(e,-1),!r(e););else for(;--i>=0;)for(;n(e,1),!r(e););}),r&&(a.count=(n,i)=>(o1.setTime(+n),s1.setTime(+i),e(o1),e(s1),Math.floor(r(o1,s1))),a.every=e=>(e=Math.floor(e),!isFinite(e)||!(e>0)?null:e>1?a.filter(i?n=>i(n)%e===0:n=>a.count(0,n)%e===0):a)),a}var l1=c1(()=>{},(e,n)=>{e.setTime(+e+n)},(e,n)=>n-e);l1.every=e=>(e=Math.floor(e),!isFinite(e)||!(e>0)?null:e>1?c1(n=>{n.setTime(Math.floor(n/e)*e)},(n,r)=>{n.setTime(+n+r*e)},(n,r)=>(r-n)/e):l1),l1.range;var u1=1e3,d1=u1*60,f1=d1*60,p1=f1*24,m1=p1*7,h1=p1*30,g1=p1*365,_1=c1(e=>{e.setTime(e-e.getMilliseconds())},(e,n)=>{e.setTime(+e+n*u1)},(e,n)=>(n-e)/u1,e=>e.getUTCSeconds());_1.range;var v1=c1(e=>{e.setTime(e-e.getMilliseconds()-e.getSeconds()*u1)},(e,n)=>{e.setTime(+e+n*d1)},(e,n)=>(n-e)/d1,e=>e.getMinutes());v1.range;var y1=c1(e=>{e.setUTCSeconds(0,0)},(e,n)=>{e.setTime(+e+n*d1)},(e,n)=>(n-e)/d1,e=>e.getUTCMinutes());y1.range;var b1=c1(e=>{e.setTime(e-e.getMilliseconds()-e.getSeconds()*u1-e.getMinutes()*d1)},(e,n)=>{e.setTime(+e+n*f1)},(e,n)=>(n-e)/f1,e=>e.getHours());b1.range;var x1=c1(e=>{e.setUTCMinutes(0,0,0)},(e,n)=>{e.setTime(+e+n*f1)},(e,n)=>(n-e)/f1,e=>e.getUTCHours());x1.range;var S1=c1(e=>e.setHours(0,0,0,0),(e,n)=>e.setDate(e.getDate()+n),(e,n)=>(n-e-(n.getTimezoneOffset()-e.getTimezoneOffset())*d1)/p1,e=>e.getDate()-1);S1.range;var C1=c1(e=>{e.setUTCHours(0,0,0,0)},(e,n)=>{e.setUTCDate(e.getUTCDate()+n)},(e,n)=>(n-e)/p1,e=>e.getUTCDate()-1);C1.range;var w1=c1(e=>{e.setUTCHours(0,0,0,0)},(e,n)=>{e.setUTCDate(e.getUTCDate()+n)},(e,n)=>(n-e)/p1,e=>Math.floor(e/p1));w1.range;function T1(e){return c1(n=>{n.setDate(n.getDate()-(n.getDay()+7-e)%7),n.setHours(0,0,0,0)},(e,n)=>{e.setDate(e.getDate()+n*7)},(e,n)=>(n-e-(n.getTimezoneOffset()-e.getTimezoneOffset())*d1)/m1)}var E1=T1(0),D1=T1(1),O1=T1(2),k1=T1(3),A1=T1(4),j1=T1(5),M1=T1(6);E1.range,D1.range,O1.range,k1.range,A1.range,j1.range,M1.range;function N1(e){return c1(n=>{n.setUTCDate(n.getUTCDate()-(n.getUTCDay()+7-e)%7),n.setUTCHours(0,0,0,0)},(e,n)=>{e.setUTCDate(e.getUTCDate()+n*7)},(e,n)=>(n-e)/m1)}var P1=N1(0),F1=N1(1),I1=N1(2),L1=N1(3),R1=N1(4),z1=N1(5),B1=N1(6);P1.range,F1.range,I1.range,L1.range,R1.range,z1.range,B1.range;var V1=c1(e=>{e.setDate(1),e.setHours(0,0,0,0)},(e,n)=>{e.setMonth(e.getMonth()+n)},(e,n)=>n.getMonth()-e.getMonth()+(n.getFullYear()-e.getFullYear())*12,e=>e.getMonth());V1.range;var H1=c1(e=>{e.setUTCDate(1),e.setUTCHours(0,0,0,0)},(e,n)=>{e.setUTCMonth(e.getUTCMonth()+n)},(e,n)=>n.getUTCMonth()-e.getUTCMonth()+(n.getUTCFullYear()-e.getUTCFullYear())*12,e=>e.getUTCMonth());H1.range;var U1=c1(e=>{e.setMonth(0,1),e.setHours(0,0,0,0)},(e,n)=>{e.setFullYear(e.getFullYear()+n)},(e,n)=>n.getFullYear()-e.getFullYear(),e=>e.getFullYear());U1.every=e=>!isFinite(e=Math.floor(e))||!(e>0)?null:c1(n=>{n.setFullYear(Math.floor(n.getFullYear()/e)*e),n.setMonth(0,1),n.setHours(0,0,0,0)},(n,r)=>{n.setFullYear(n.getFullYear()+r*e)}),U1.range;var W1=c1(e=>{e.setUTCMonth(0,1),e.setUTCHours(0,0,0,0)},(e,n)=>{e.setUTCFullYear(e.getUTCFullYear()+n)},(e,n)=>n.getUTCFullYear()-e.getUTCFullYear(),e=>e.getUTCFullYear());W1.every=e=>!isFinite(e=Math.floor(e))||!(e>0)?null:c1(n=>{n.setUTCFullYear(Math.floor(n.getUTCFullYear()/e)*e),n.setUTCMonth(0,1),n.setUTCHours(0,0,0,0)},(n,r)=>{n.setUTCFullYear(n.getUTCFullYear()+r*e)}),W1.range;function G1(e,n,r,i,a,o){let s=[[_1,1,u1],[_1,5,5*u1],[_1,15,15*u1],[_1,30,30*u1],[o,1,d1],[o,5,5*d1],[o,15,15*d1],[o,30,30*d1],[a,1,f1],[a,3,3*f1],[a,6,6*f1],[a,12,12*f1],[i,1,p1],[i,2,2*p1],[r,1,m1],[n,1,h1],[n,3,3*h1],[e,1,g1]];function c(e,n,r){let i=n<e;i&&([e,n]=[n,e]);let a=r&&typeof r.range==`function`?r:l(e,n,r),o=a?a.range(e,+n+1):[];return i?o.reverse():o}function l(n,r,i){let a=Math.abs(r-n)/i,o=mQ(([,,e])=>e).right(s,a);if(o===s.length)return e.every(NQ(n/g1,r/g1,i));if(o===0)return l1.every(Math.max(NQ(n,r,i),1));let[c,l]=s[a/s[o-1][2]<s[o][2]/a?o-1:o];return c.every(l)}return[c,l]}var[K1,q1]=G1(W1,H1,P1,w1,x1,y1),[J1,Y1]=G1(U1,V1,E1,S1,b1,v1);function X1(e){if(0<=e.y&&e.y<100){var n=new Date(-1,e.m,e.d,e.H,e.M,e.S,e.L);return n.setFullYear(e.y),n}return new Date(e.y,e.m,e.d,e.H,e.M,e.S,e.L)}function Z1(e){if(0<=e.y&&e.y<100){var n=new Date(Date.UTC(-1,e.m,e.d,e.H,e.M,e.S,e.L));return n.setUTCFullYear(e.y),n}return new Date(Date.UTC(e.y,e.m,e.d,e.H,e.M,e.S,e.L))}function Q1(e,n,r){return{y:e,m:n,d:r,H:0,M:0,S:0,L:0}}function $1(e){var n=e.dateTime,r=e.date,i=e.time,a=e.periods,o=e.days,s=e.shortDays,c=e.months,l=e.shortMonths,u=o0(a),d=s0(a),f=o0(o),p=s0(o),m=o0(s),h=s0(s),g=o0(c),_=s0(c),v=o0(l),y=s0(l),b={a:P,A:F,b:ee,B:I,c:null,d:O0,e:O0,f:N0,g:W0,G:K0,H:k0,I:A0,j:j0,L:M0,m:P0,M:F0,p:L,q:te,Q:h2,s:g2,S:I0,u:L0,U:R0,V:B0,w:V0,W:H0,x:null,X:null,y:U0,Y:G0,Z:q0,"%":m2},x={a:R,A:z,b:ne,B,c:null,d:J0,e:J0,f:$0,g:u2,G:f2,H:Y0,I:X0,j:Z0,L:Q0,m:e2,M:t2,p:re,q:ie,Q:h2,s:g2,S:n2,u:r2,U:i2,V:o2,w:s2,W:c2,x:null,X:null,y:l2,Y:d2,Z:p2,"%":m2},S={a:D,A:O,b:k,B:A,c:j,d:v0,e:v0,f:w0,g:m0,G:p0,H:b0,I:b0,j:y0,L:C0,m:_0,M:x0,p:E,q:g0,Q:E0,s:D0,S:S0,u:l0,U:u0,V:d0,w:c0,W:f0,x:M,X:N,y:m0,Y:p0,Z:h0,"%":T0};b.x=C(r,b),b.X=C(i,b),b.c=C(n,b),x.x=C(r,x),x.X=C(i,x),x.c=C(n,x);function C(e,n){return function(r){var i=[],a=-1,o=0,s=e.length,c,l,u;for(r instanceof Date||(r=new Date(+r));++a<s;)e.charCodeAt(a)===37&&(i.push(e.slice(o,a)),(l=e0[c=e.charAt(++a)])==null?l=c===`e`?` `:`0`:c=e.charAt(++a),(u=n[c])&&(c=u(r,l)),i.push(c),o=a+1);return i.push(e.slice(o,a)),i.join(``)}}function w(e,n){return function(r){var i=Q1(1900,void 0,1),a=T(i,e,r+=``,0),o,s;if(a!=r.length)return null;if(`Q`in i)return new Date(i.Q);if(`s`in i)return new Date(i.s*1e3+(`L`in i?i.L:0));if(n&&!(`Z`in i)&&(i.Z=0),`p`in i&&(i.H=i.H%12+i.p*12),i.m===void 0&&(i.m=`q`in i?i.q:0),`V`in i){if(i.V<1||i.V>53)return null;`w`in i||(i.w=1),`Z`in i?(o=Z1(Q1(i.y,0,1)),s=o.getUTCDay(),o=s>4||s===0?F1.ceil(o):F1(o),o=C1.offset(o,(i.V-1)*7),i.y=o.getUTCFullYear(),i.m=o.getUTCMonth(),i.d=o.getUTCDate()+(i.w+6)%7):(o=X1(Q1(i.y,0,1)),s=o.getDay(),o=s>4||s===0?D1.ceil(o):D1(o),o=S1.offset(o,(i.V-1)*7),i.y=o.getFullYear(),i.m=o.getMonth(),i.d=o.getDate()+(i.w+6)%7)}else (`W`in i||`U`in i)&&(`w`in i||(i.w=`u`in i?i.u%7:+(`W`in i)),s=`Z`in i?Z1(Q1(i.y,0,1)).getUTCDay():X1(Q1(i.y,0,1)).getDay(),i.m=0,i.d=`W`in i?(i.w+6)%7+i.W*7-(s+5)%7:i.w+i.U*7-(s+6)%7);return`Z`in i?(i.H+=i.Z/100|0,i.M+=i.Z%100,Z1(i)):X1(i)}}function T(e,n,r,i){for(var a=0,o=n.length,s=r.length,c,l;a<o;){if(i>=s)return-1;if(c=n.charCodeAt(a++),c===37){if(c=n.charAt(a++),l=S[c in e0?n.charAt(a++):c],!l||(i=l(e,r,i))<0)return-1}else if(c!=r.charCodeAt(i++))return-1}return i}function E(e,n,r){var i=u.exec(n.slice(r));return i?(e.p=d.get(i[0].toLowerCase()),r+i[0].length):-1}function D(e,n,r){var i=m.exec(n.slice(r));return i?(e.w=h.get(i[0].toLowerCase()),r+i[0].length):-1}function O(e,n,r){var i=f.exec(n.slice(r));return i?(e.w=p.get(i[0].toLowerCase()),r+i[0].length):-1}function k(e,n,r){var i=v.exec(n.slice(r));return i?(e.m=y.get(i[0].toLowerCase()),r+i[0].length):-1}function A(e,n,r){var i=g.exec(n.slice(r));return i?(e.m=_.get(i[0].toLowerCase()),r+i[0].length):-1}function j(e,r,i){return T(e,n,r,i)}function M(e,n,i){return T(e,r,n,i)}function N(e,n,r){return T(e,i,n,r)}function P(e){return s[e.getDay()]}function F(e){return o[e.getDay()]}function ee(e){return l[e.getMonth()]}function I(e){return c[e.getMonth()]}function L(e){return a[+(e.getHours()>=12)]}function te(e){return 1+~~(e.getMonth()/3)}function R(e){return s[e.getUTCDay()]}function z(e){return o[e.getUTCDay()]}function ne(e){return l[e.getUTCMonth()]}function B(e){return c[e.getUTCMonth()]}function re(e){return a[+(e.getUTCHours()>=12)]}function ie(e){return 1+~~(e.getUTCMonth()/3)}return{format:function(e){var n=C(e+=``,b);return n.toString=function(){return e},n},parse:function(e){var n=w(e+=``,!1);return n.toString=function(){return e},n},utcFormat:function(e){var n=C(e+=``,x);return n.toString=function(){return e},n},utcParse:function(e){var n=w(e+=``,!0);return n.toString=function(){return e},n}}}var e0={"-":``,_:` `,0:`0`},t0=/^\s*\d+/,n0=/^%/,r0=/[\\^$*+?|[\]().{}]/g;function i0(e,n,r){var i=e<0?`-`:``,a=(i?-e:e)+``,o=a.length;return i+(o<r?Array(r-o+1).join(n)+a:a)}function a0(e){return e.replace(r0,`\\$&`)}function o0(e){return RegExp(`^(?:`+e.map(a0).join(`|`)+`)`,`i`)}function s0(e){return new Map(e.map((e,n)=>[e.toLowerCase(),n]))}function c0(e,n,r){var i=t0.exec(n.slice(r,r+1));return i?(e.w=+i[0],r+i[0].length):-1}function l0(e,n,r){var i=t0.exec(n.slice(r,r+1));return i?(e.u=+i[0],r+i[0].length):-1}function u0(e,n,r){var i=t0.exec(n.slice(r,r+2));return i?(e.U=+i[0],r+i[0].length):-1}function d0(e,n,r){var i=t0.exec(n.slice(r,r+2));return i?(e.V=+i[0],r+i[0].length):-1}function f0(e,n,r){var i=t0.exec(n.slice(r,r+2));return i?(e.W=+i[0],r+i[0].length):-1}function p0(e,n,r){var i=t0.exec(n.slice(r,r+4));return i?(e.y=+i[0],r+i[0].length):-1}function m0(e,n,r){var i=t0.exec(n.slice(r,r+2));return i?(e.y=+i[0]+(+i[0]>68?1900:2e3),r+i[0].length):-1}function h0(e,n,r){var i=/^(Z)|([+-]\d\d)(?::?(\d\d))?/.exec(n.slice(r,r+6));return i?(e.Z=i[1]?0:-(i[2]+(i[3]||`00`)),r+i[0].length):-1}function g0(e,n,r){var i=t0.exec(n.slice(r,r+1));return i?(e.q=i[0]*3-3,r+i[0].length):-1}function _0(e,n,r){var i=t0.exec(n.slice(r,r+2));return i?(e.m=i[0]-1,r+i[0].length):-1}function v0(e,n,r){var i=t0.exec(n.slice(r,r+2));return i?(e.d=+i[0],r+i[0].length):-1}function y0(e,n,r){var i=t0.exec(n.slice(r,r+3));return i?(e.m=0,e.d=+i[0],r+i[0].length):-1}function b0(e,n,r){var i=t0.exec(n.slice(r,r+2));return i?(e.H=+i[0],r+i[0].length):-1}function x0(e,n,r){var i=t0.exec(n.slice(r,r+2));return i?(e.M=+i[0],r+i[0].length):-1}function S0(e,n,r){var i=t0.exec(n.slice(r,r+2));return i?(e.S=+i[0],r+i[0].length):-1}function C0(e,n,r){var i=t0.exec(n.slice(r,r+3));return i?(e.L=+i[0],r+i[0].length):-1}function w0(e,n,r){var i=t0.exec(n.slice(r,r+6));return i?(e.L=Math.floor(i[0]/1e3),r+i[0].length):-1}function T0(e,n,r){var i=n0.exec(n.slice(r,r+1));return i?r+i[0].length:-1}function E0(e,n,r){var i=t0.exec(n.slice(r));return i?(e.Q=+i[0],r+i[0].length):-1}function D0(e,n,r){var i=t0.exec(n.slice(r));return i?(e.s=+i[0],r+i[0].length):-1}function O0(e,n){return i0(e.getDate(),n,2)}function k0(e,n){return i0(e.getHours(),n,2)}function A0(e,n){return i0(e.getHours()%12||12,n,2)}function j0(e,n){return i0(1+S1.count(U1(e),e),n,3)}function M0(e,n){return i0(e.getMilliseconds(),n,3)}function N0(e,n){return M0(e,n)+`000`}function P0(e,n){return i0(e.getMonth()+1,n,2)}function F0(e,n){return i0(e.getMinutes(),n,2)}function I0(e,n){return i0(e.getSeconds(),n,2)}function L0(e){var n=e.getDay();return n===0?7:n}function R0(e,n){return i0(E1.count(U1(e)-1,e),n,2)}function z0(e){var n=e.getDay();return n>=4||n===0?A1(e):A1.ceil(e)}function B0(e,n){return e=z0(e),i0(A1.count(U1(e),e)+(U1(e).getDay()===4),n,2)}function V0(e){return e.getDay()}function H0(e,n){return i0(D1.count(U1(e)-1,e),n,2)}function U0(e,n){return i0(e.getFullYear()%100,n,2)}function W0(e,n){return e=z0(e),i0(e.getFullYear()%100,n,2)}function G0(e,n){return i0(e.getFullYear()%1e4,n,4)}function K0(e,n){var r=e.getDay();return e=r>=4||r===0?A1(e):A1.ceil(e),i0(e.getFullYear()%1e4,n,4)}function q0(e){var n=e.getTimezoneOffset();return(n>0?`-`:(n*=-1,`+`))+i0(n/60|0,`0`,2)+i0(n%60,`0`,2)}function J0(e,n){return i0(e.getUTCDate(),n,2)}function Y0(e,n){return i0(e.getUTCHours(),n,2)}function X0(e,n){return i0(e.getUTCHours()%12||12,n,2)}function Z0(e,n){return i0(1+C1.count(W1(e),e),n,3)}function Q0(e,n){return i0(e.getUTCMilliseconds(),n,3)}function $0(e,n){return Q0(e,n)+`000`}function e2(e,n){return i0(e.getUTCMonth()+1,n,2)}function t2(e,n){return i0(e.getUTCMinutes(),n,2)}function n2(e,n){return i0(e.getUTCSeconds(),n,2)}function r2(e){var n=e.getUTCDay();return n===0?7:n}function i2(e,n){return i0(P1.count(W1(e)-1,e),n,2)}function a2(e){var n=e.getUTCDay();return n>=4||n===0?R1(e):R1.ceil(e)}function o2(e,n){return e=a2(e),i0(R1.count(W1(e),e)+(W1(e).getUTCDay()===4),n,2)}function s2(e){return e.getUTCDay()}function c2(e,n){return i0(F1.count(W1(e)-1,e),n,2)}function l2(e,n){return i0(e.getUTCFullYear()%100,n,2)}function u2(e,n){return e=a2(e),i0(e.getUTCFullYear()%100,n,2)}function d2(e,n){return i0(e.getUTCFullYear()%1e4,n,4)}function f2(e,n){var r=e.getUTCDay();return e=r>=4||r===0?R1(e):R1.ceil(e),i0(e.getUTCFullYear()%1e4,n,4)}function p2(){return`+0000`}function m2(){return`%`}function h2(e){return+e}function g2(e){return Math.floor(e/1e3)}var _2,v2,y2;b2({dateTime:`%x, %X`,date:`%-m/%-d/%Y`,time:`%-I:%M:%S %p`,periods:[`AM`,`PM`],days:[`Sunday`,`Monday`,`Tuesday`,`Wednesday`,`Thursday`,`Friday`,`Saturday`],shortDays:[`Sun`,`Mon`,`Tue`,`Wed`,`Thu`,`Fri`,`Sat`],months:[`January`,`February`,`March`,`April`,`May`,`June`,`July`,`August`,`September`,`October`,`November`,`December`],shortMonths:[`Jan`,`Feb`,`Mar`,`Apr`,`May`,`Jun`,`Jul`,`Aug`,`Sep`,`Oct`,`Nov`,`Dec`]});function b2(e){return _2=$1(e),v2=_2.format,_2.parse,y2=_2.utcFormat,_2.utcParse,_2}function x2(e){return new Date(e)}function S2(e){return e instanceof Date?+e:+new Date(+e)}function C2(e,n,r,i,a,o,s,c,l,u){var d=i$(),f=d.invert,p=d.domain,m=u(`.%L`),h=u(`:%S`),g=u(`%I:%M`),_=u(`%I %p`),v=u(`%a %d`),y=u(`%b %d`),b=u(`%B`),x=u(`%Y`);function S(e){return(l(e)<e?m:c(e)<e?h:s(e)<e?g:o(e)<e?_:i(e)<e?a(e)<e?v:y:r(e)<e?b:x)(e)}return d.invert=function(e){return new Date(f(e))},d.domain=function(e){return arguments.length?p(Array.from(e,S2)):p().map(x2)},d.ticks=function(n){var r=p();return e(r[0],r[r.length-1],n??10)},d.tickFormat=function(e,n){return n==null?S:u(n)},d.nice=function(e){var r=p();return(!e||typeof e.range!=`function`)&&(e=n(r[0],r[r.length-1],e??10)),e?p(N$(r,e)):d},d.copy=function(){return n$(d,C2(e,n,r,i,a,o,s,c,l,u))},d}function w2(){return VQ.apply(C2(J1,Y1,U1,V1,E1,S1,b1,v1,_1,v2).domain([new Date(2e3,0,1),new Date(2e3,0,2)]),arguments)}function T2(){return VQ.apply(C2(K1,q1,W1,H1,P1,C1,x1,y1,_1,y2).domain([Date.UTC(2e3,0,1),Date.UTC(2e3,0,2)]),arguments)}function E2(){var e=0,n=1,r,i,a,o,s=ZQ,c=!1,l;function u(e){return e==null||isNaN(e=+e)?l:s(a===0?.5:(e=(o(e)-r)*a,c?Math.max(0,Math.min(1,e)):e))}u.domain=function(s){return arguments.length?([e,n]=s,r=o(e=+e),i=o(n=+n),a=r===i?0:1/(i-r),u):[e,n]},u.clamp=function(e){return arguments.length?(c=!!e,u):c},u.interpolator=function(e){return arguments.length?(s=e,u):s};function d(e){return function(n){var r,i;return arguments.length?([r,i]=n,s=e(r,i),u):[s(0),s(1)]}}return u.range=d(Gh),u.rangeRound=d(Kh),u.unknown=function(e){return arguments.length?(l=e,u):l},function(s){return o=s,r=s(e),i=s(n),a=r===i?0:1/(i-r),u}}function D2(e,n){return n.domain(e.domain()).interpolator(e.interpolator()).clamp(e.clamp()).unknown(e.unknown())}function O2(){var e=A$(E2()(ZQ));return e.copy=function(){return D2(e,O2())},HQ.apply(e,arguments)}function k2(){var e=H$(E2()).domain([1,10]);return e.copy=function(){return D2(e,k2()).base(e.base())},HQ.apply(e,arguments)}function A2(){var e=K$(E2());return e.copy=function(){return D2(e,A2()).constant(e.constant())},HQ.apply(e,arguments)}function j2(){var e=Z$(E2());return e.copy=function(){return D2(e,j2()).exponent(e.exponent())},HQ.apply(e,arguments)}function M2(){return j2.apply(null,arguments).exponent(.5)}function N2(){var e=[],n=ZQ;function r(r){if(r!=null&&!isNaN(r=+r))return n((yQ(e,r,1)-1)/(e.length-1))}return r.domain=function(n){if(!arguments.length)return e.slice();e=[];for(let r of n)r!=null&&!isNaN(r=+r)&&e.push(r);return e.sort(fQ),r},r.interpolator=function(e){return arguments.length?(n=e,r):n},r.range=function(){return e.map((r,i)=>n(i/(e.length-1)))},r.quantiles=function(n){return Array.from({length:n+1},(r,i)=>RQ(e,i/n))},r.copy=function(){return N2(n).domain(e)},HQ.apply(r,arguments)}function P2(){var e=0,n=.5,r=1,i=1,a,o,s,c,l,u=ZQ,d,f=!1,p;function m(e){return isNaN(e=+e)?p:(e=.5+((e=+d(e))-o)*(i*e<i*o?c:l),u(f?Math.max(0,Math.min(1,e)):e))}m.domain=function(u){return arguments.length?([e,n,r]=u,a=d(e=+e),o=d(n=+n),s=d(r=+r),c=a===o?0:.5/(o-a),l=o===s?0:.5/(s-o),i=o<a?-1:1,m):[e,n,r]},m.clamp=function(e){return arguments.length?(f=!!e,m):f},m.interpolator=function(e){return arguments.length?(u=e,m):u};function h(e){return function(n){var r,i,a;return arguments.length?([r,i,a]=n,u=sg(e,[r,i,a]),m):[u(0),u(.5),u(1)]}}return m.range=h(Gh),m.rangeRound=h(Kh),m.unknown=function(e){return arguments.length?(p=e,m):p},function(u){return d=u,a=u(e),o=u(n),s=u(r),c=a===o?0:.5/(o-a),l=o===s?0:.5/(s-o),i=o<a?-1:1,m}}function F2(){var e=A$(P2()(ZQ));return e.copy=function(){return D2(e,F2())},HQ.apply(e,arguments)}function I2(){var e=H$(P2()).domain([.1,1,10]);return e.copy=function(){return D2(e,I2()).base(e.base())},HQ.apply(e,arguments)}function L2(){var e=K$(P2());return e.copy=function(){return D2(e,L2()).constant(e.constant())},HQ.apply(e,arguments)}function R2(){var e=Z$(P2());return e.copy=function(){return D2(e,R2()).exponent(e.exponent())},HQ.apply(e,arguments)}function z2(){return R2.apply(null,arguments).exponent(.5)}var B2=l({scaleBand:()=>GQ,scaleDiverging:()=>F2,scaleDivergingLog:()=>I2,scaleDivergingPow:()=>R2,scaleDivergingSqrt:()=>z2,scaleDivergingSymlog:()=>L2,scaleIdentity:()=>M$,scaleImplicit:()=>UQ,scaleLinear:()=>j$,scaleLog:()=>U$,scaleOrdinal:()=>WQ,scalePoint:()=>qQ,scalePow:()=>Q$,scaleQuantile:()=>r1,scaleQuantize:()=>i1,scaleRadial:()=>n1,scaleSequential:()=>O2,scaleSequentialLog:()=>k2,scaleSequentialPow:()=>j2,scaleSequentialQuantile:()=>N2,scaleSequentialSqrt:()=>M2,scaleSequentialSymlog:()=>A2,scaleSqrt:()=>$$,scaleSymlog:()=>q$,scaleThreshold:()=>a1,scaleTime:()=>w2,scaleUtc:()=>T2,tickFormat:()=>k$});function V2(e){var n=B2;if(e in n&&typeof n[e]==`function`)return n[e]();var r=`scale${Vz(e)}`;if(r in n&&typeof n[r]==`function`)return n[r]()}function H2(e,n,r){if(typeof e==`function`)return e.copy().domain(n).range(r);if(e!=null){var i=V2(e);if(i!=null)return i.domain(n).range(r),i}}function U2(e,n,r,i){if(!(r==null||i==null))return typeof e.scale==`function`?H2(e.scale,r,i):H2(n,r,i)}function W2(e){return`scale${Vz(e)}`}function G2(e){return W2(e)in B2}var K2=(e,n,r)=>{if(e!=null){var{scale:i,type:a}=e;if(i===`auto`)return a===`category`&&r&&(r.indexOf(`LineChart`)>=0||r.indexOf(`AreaChart`)>=0||r.indexOf(`ComposedChart`)>=0&&!n)?`point`:a===`category`?`band`:`linear`;if(typeof i==`string`)return G2(i)?i:`point`}};function q2(e,n){for(var r=0,i=e.length,a=e[0]<e[e.length-1];r<i;){var o=Math.floor((r+i)/2);(a?e[o]<n:e[o]>n)?r=o+1:i=o}return r}function J2(e,n){if(e){var r=n??e.domain(),i=r.map(n=>e(n)??0),a=e.range();if(!(r.length===0||a.length<2))return e=>{var n=q2(i,e);if(n<=0)return r[0];if(n>=r.length)return r[r.length-1];var a=i[n-1]??0,o=i[n]??0;return Math.abs(e-a)<=Math.abs(e-o)?r[n-1]:r[n]}}}function Y2(e){if(e!=null)return`invert`in e&&typeof e.invert==`function`?e.invert.bind(e):J2(e,void 0)}var X2=d(eZ());function Z2(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function Q2(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?Z2(Object(r),!0).forEach(function(n){$2(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):Z2(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function $2(e,n,r){return(n=e4(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function e4(e){var n=t4(e,`string`);return typeof n==`symbol`?n:n+``}function t4(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var n4=[0,`auto`],r4={allowDataOverflow:!1,allowDecimals:!0,allowDuplicatedCategory:!0,angle:0,dataKey:void 0,domain:void 0,height:30,hide:!0,id:0,includeHidden:!1,interval:`preserveEnd`,minTickGap:5,mirror:!1,name:void 0,orientation:`bottom`,padding:{left:0,right:0},reversed:!1,scale:`auto`,tick:!0,tickCount:5,tickFormatter:void 0,ticks:void 0,type:`category`,unit:void 0,niceTicks:`auto`},i4=(e,n)=>e.cartesianAxis.xAxis[n],a4=(e,n)=>i4(e,n)??r4,o4={allowDataOverflow:!1,allowDecimals:!0,allowDuplicatedCategory:!0,angle:0,dataKey:void 0,domain:n4,hide:!0,id:0,includeHidden:!1,interval:`preserveEnd`,minTickGap:5,mirror:!1,name:void 0,orientation:`left`,padding:{top:0,bottom:0},reversed:!1,scale:`auto`,tick:!0,tickCount:5,tickFormatter:void 0,ticks:void 0,type:`number`,unit:void 0,niceTicks:`auto`,width:60},s4=(e,n)=>e.cartesianAxis.yAxis[n],c4=(e,n)=>s4(e,n)??o4,l4={domain:[0,`auto`],includeHidden:!1,reversed:!1,allowDataOverflow:!1,allowDuplicatedCategory:!1,dataKey:void 0,id:0,name:``,range:[64,64],scale:`auto`,type:`number`,unit:``},u4=(e,n)=>e.cartesianAxis.zAxis[n]??l4,d4=(e,n,r)=>{switch(n){case`xAxis`:return a4(e,r);case`yAxis`:return c4(e,r);case`zAxis`:return u4(e,r);case`angleAxis`:return GZ(e,r);case`radiusAxis`:return KZ(e,r);default:throw Error(`Unexpected axis type: ${n}`)}},f4=(e,n,r)=>{switch(n){case`xAxis`:return a4(e,r);case`yAxis`:return c4(e,r);default:throw Error(`Unexpected axis type: ${n}`)}},p4=(e,n,r)=>{switch(n){case`xAxis`:return a4(e,r);case`yAxis`:return c4(e,r);case`angleAxis`:return GZ(e,r);case`radiusAxis`:return KZ(e,r);default:throw Error(`Unexpected axis type: ${n}`)}},m4=e=>e.graphicalItems.cartesianItems.some(e=>e.type===`bar`)||e.graphicalItems.polarItems.some(e=>e.type===`radialBar`);function h4(e,n){return r=>{switch(e){case`xAxis`:return`xAxisId`in r&&r.xAxisId===n;case`yAxis`:return`yAxisId`in r&&r.yAxisId===n;case`zAxis`:return`zAxisId`in r&&r.zAxisId===n;case`angleAxis`:return`angleAxisId`in r&&r.angleAxisId===n;case`radiusAxis`:return`radiusAxisId`in r&&r.radiusAxisId===n;default:return!1}}}var g4=e=>e.graphicalItems.cartesianItems,_4=$([eQ,tQ],h4),v4=(e,n,r)=>e.filter(r).filter(e=>n?.includeHidden===!0?!0:!e.hide),y4=$([g4,d4,_4],v4,{memoizeOptions:{resultEqualityCheck:oQ}}),b4=$([y4],e=>e.filter(e=>e.type===`area`||e.type===`bar`).filter(iQ)),x4=e=>e.filter(e=>!(`stackId`in e)||e.stackId===void 0),S4=$([y4],x4),C4=e=>e.map(e=>e.data).filter(Boolean).flat(1),w4=$([y4],e=>e.some(e=>!e.data)),T4=$([y4],C4,{memoizeOptions:{resultEqualityCheck:oQ}}),E4=(e,n)=>{var{chartData:r=[],dataStartIndex:i,dataEndIndex:a}=n;return e.length>0?e:r.slice(i,a+1)},D4=$([T4,rZ],E4),O4=(e,n,r)=>n?.dataKey==null?r.length>0?r.map(e=>e.dataKey).flatMap(n=>e.map(e=>({value:GW(e,n)}))):e.map(e=>({value:e})):e.map(e=>({value:GW(e,n.dataKey)})),k4=(e,n,r,i,a,o)=>{var{chartData:s=[],dataStartIndex:c,dataEndIndex:l}=i,u=O4(e,n,r);return a&&n?.dataKey!=null&&o.length>0?[...s.slice(c,l+1).map(e=>({value:GW(e,n.dataKey)})).filter(e=>e.value!=null),...u]:u},A4=$([D4,d4,y4,rZ,w4,T4],k4);function j4(e){if(Nz(e)||e instanceof Date){var n=Number(e);if(RW(n))return n}}function M4(e){if(Array.isArray(e)){var n=[j4(e[0]),j4(e[1])];return cZ(n)?n:void 0}var r=j4(e);if(r!=null)return[r,r]}function N4(e){return e.map(j4).filter(Hz)}function P4(e,n){var r=j4(e),i=j4(n);return r==null&&i==null?0:r==null?-1:i==null?1:r-i}var F4=$([A4],e=>e?.map(e=>e.value).sort(P4));function I4(e,n){switch(e){case`xAxis`:return n.direction===`x`;case`yAxis`:return n.direction===`y`;default:return!1}}function L4(e,n,r){if(!r||!r.length)return[];var i;if(typeof n==`number`&&!jz(n))i=n;else if(Array.isArray(n)){var a=N4(n);a.length>0&&(i=Math.max(...a))}return i==null?[]:N4(r.flatMap(n=>{var r=GW(e,n.dataKey),a,o;if(Array.isArray(r)?[a,o]=r:a=o=r,!(!RW(a)||!RW(o)))return[i-a,i+o]}))}var R4=e=>p4(e,cQ(e),lQ(e)),z4=$([R4],e=>e?.dataKey),B4=$([b4,rZ,R4],rQ),V4=(e,n,r,i)=>{var a=n.reduce((e,n)=>{if(n.stackId==null)return e;var r=e[n.stackId];return r??=[],r.push(n),e[n.stackId]=r,e},{});return Object.fromEntries(Object.entries(a).map(n=>{var[a,o]=n,s=i?[...o].reverse():o;return[a,{stackedData:QW(e,s.map(nQ),r),graphicalItems:s}]}))},H4=$([B4,b4,EZ,DZ],V4),U4=(e,n,r,i)=>{var{dataStartIndex:a,dataEndIndex:o}=n;if(i==null&&r!==`zAxis`){var s=aG(e,a,o);if(!(s!=null&&s[0]===0&&s[1]===0))return s}},W4=$([d4],e=>e.allowDataOverflow),G4=e=>{if(e==null||!(`domain`in e))return n4;if(e.domain!=null)return e.domain;if(`ticks`in e&&e.ticks!=null){if(e.type===`number`){var n=N4(e.ticks);return[Math.min(...n),Math.max(...n)]}if(e.type===`category`)return e.ticks.map(String)}return e?.domain??n4},K4=$([d4],G4),q4=$([K4,W4],uZ),J4=$([H4,tZ,eQ,q4],U4,{memoizeOptions:{resultEqualityCheck:aQ}}),Y4=e=>e.errorBars,X4=(e,n,r)=>e.flatMap(e=>n[e.id]).filter(Boolean).filter(e=>I4(r,e)),Z4=function(){var e=[...arguments].filter(Boolean);if(e.length!==0){var n=e.flat();return[Math.min(...n),Math.max(...n)]}},Q4=function(e,n,r,i,a){var o=arguments.length>5&&arguments[5]!==void 0?arguments[5]:[],s,c;if(r.length>0&&r.forEach(e=>{var r=e.data==null?o:[...e.data],l=i[e.id]?.filter(e=>I4(a,e));r.forEach(r=>{var i=GW(r,n.dataKey??e.dataKey),a=L4(r,i,l);if(a.length>=2){var o=Math.min(...a),u=Math.max(...a);(s==null||o<s)&&(s=o),(c==null||u>c)&&(c=u)}var d=M4(i);d!=null&&(s=s==null?d[0]:Math.min(s,d[0]),c=c==null?d[1]:Math.max(c,d[1]))})}),n?.dataKey!=null&&r.length===0&&e.forEach(e=>{var r=M4(GW(e,n.dataKey));r!=null&&(s=s==null?r[0]:Math.min(s,r[0]),c=c==null?r[1]:Math.max(c,r[1]))}),RW(s)&&RW(c))return[s,c]},$4=$([D4,d4,S4,Y4,eQ,aZ],Q4,{memoizeOptions:{resultEqualityCheck:aQ}});function e3(e){var{value:n}=e;if(Nz(n)||n instanceof Date)return n}var t3=(e,n,r)=>{var i=e.map(e3).filter(e=>e!=null);return r&&(n.dataKey==null||n.allowDuplicatedCategory&&Lz(i))?(0,X2.default)(0,e.length):n.allowDuplicatedCategory?i:Array.from(new Set(i))},n3=e=>e.referenceElements.dots,r3=(e,n,r)=>e.filter(e=>e.ifOverflow===`extendDomain`).filter(e=>n===`xAxis`?e.xAxisId===r:e.yAxisId===r),i3=$([n3,eQ,tQ],r3),a3=e=>e.referenceElements.areas,o3=$([a3,eQ,tQ],r3),s3=e=>e.referenceElements.lines,Jae=$([s3,eQ,tQ],r3),c3=(e,n)=>{if(e!=null){var r=N4(e.map(e=>n===`xAxis`?e.x:e.y));if(r.length!==0)return[Math.min(...r),Math.max(...r)]}},Yae=$(i3,eQ,c3),l3=(e,n)=>{if(e!=null){var r=N4(e.flatMap(e=>[n===`xAxis`?e.x1:e.y1,n===`xAxis`?e.x2:e.y2]));if(r.length!==0)return[Math.min(...r),Math.max(...r)]}},Xae=$([o3,eQ],l3);function Zae(e){if(e.x!=null)return N4([e.x]);var n=e.segment?.map(e=>e.x);return n==null||n.length===0?[]:N4(n)}function Qae(e){if(e.y!=null)return N4([e.y]);var n=e.segment?.map(e=>e.y);return n==null||n.length===0?[]:N4(n)}var u3=(e,n)=>{if(e!=null){var r=e.flatMap(e=>n===`xAxis`?Zae(e):Qae(e));if(r.length!==0)return[Math.min(...r),Math.max(...r)]}},$ae=$(Yae,$([Jae,eQ],u3),Xae,(e,n,r)=>Z4(e,r,n)),d3=(e,n,r,i,a,o,s,c)=>r??dZ(n,s===`vertical`&&c===`xAxis`||s===`horizontal`&&c===`yAxis`?Z4(i,o,a):Z4(o,a),e.allowDataOverflow),eoe=$([d4,K4,q4,J4,$4,$ae,vK,eQ],d3,{memoizeOptions:{resultEqualityCheck:aQ}}),toe=[0,1],f3=(e,n,r,i,a,o,s)=>{if(!((e==null||r==null||r.length===0)&&s===void 0)){var{dataKey:c,type:l}=e,u=qW(n,o);return u&&c==null?(0,X2.default)(0,r?.length??0):l===`category`?t3(i,e,u):a===`expand`&&!u?toe:s}},p3=$([d4,vK,D4,A4,EZ,eQ,eoe],f3),m3=$([d4,m4,OZ],K2),h3=(e,n,r)=>{var{niceTicks:i}=n;if(i!==`none`){var a=G4(n),o=Array.isArray(a)&&(a[0]===`auto`||a[1]===`auto`);if((i===`snap125`||i===`adaptive`)&&n!=null&&n.tickCount&&cZ(e)){if(o)return bZ(e,n.tickCount,n.allowDecimals,i);if(n.type===`number`)return xZ(e,n.tickCount,n.allowDecimals,i)}if(i===`auto`&&r===`linear`&&n!=null&&n.tickCount){if(o&&cZ(e))return bZ(e,n.tickCount,n.allowDecimals,`adaptive`);if(n.type===`number`&&cZ(e))return xZ(e,n.tickCount,n.allowDecimals,`adaptive`)}}},g3=$([p3,p4,m3],h3),_3=(e,n,r,i)=>{if(i!==`angleAxis`&&e?.type===`number`&&cZ(n)&&Array.isArray(r)&&r.length>0){var a=n[0],o=r[0]??0,s=n[1],c=r[r.length-1]??0;return[Math.min(a,o),Math.max(s,c)]}return n},noe=$([d4,p3,g3,eQ],_3),v3=$($(A4,d4,(e,n)=>{if(!(!n||n.type!==`number`)){var r=1/0,i=Array.from(N4(e.map(e=>e.value))).sort((e,n)=>e-n),a=i[0],o=i[i.length-1];if(a==null||o==null)return 1/0;var s=o-a;if(s===0)return 1/0;for(var c=0;c<i.length-1;c++){var l=i[c],u=i[c+1];if(!(l==null||u==null)){var d=u-l;r=Math.min(r,d)}}return r/s}}),vK,wZ,jG,(e,n,r,i,a)=>a,(e,n,r,i,a)=>{if(!RW(e))return 0;var o=n===`vertical`?i.height:i.width;if(a===`gap`)return e*o/2;if(a===`no-gap`){var s=Iz(r,e*o),c=e*o/2;return c-s-(c-s)/o*s}return 0}),roe=(e,n,r)=>{var i=a4(e,n);return i==null||typeof i.padding!=`string`?0:v3(e,`xAxis`,n,r,i.padding)},ioe=(e,n,r)=>{var i=c4(e,n);return i==null||typeof i.padding!=`string`?0:v3(e,`yAxis`,n,r,i.padding)},aoe=$(a4,roe,(e,n)=>{if(e==null)return{left:0,right:0};var{padding:r}=e;return typeof r==`string`?{left:n,right:n}:{left:(r.left??0)+n,right:(r.right??0)+n}}),ooe=$(c4,ioe,(e,n)=>{if(e==null)return{top:0,bottom:0};var{padding:r}=e;return typeof r==`string`?{top:n,bottom:n}:{top:(r.top??0)+n,bottom:(r.bottom??0)+n}}),soe=$([jG,aoe,LG,IG,(e,n,r)=>r],(e,n,r,i,a)=>{var{padding:o}=i;return a?[o.left,r.width-o.right]:[e.left+n.left,e.left+e.width-n.right]}),coe=$([jG,vK,ooe,LG,IG,(e,n,r)=>r],(e,n,r,i,a,o)=>{var{padding:s}=a;return o?[i.height-s.bottom,s.top]:n===`horizontal`?[e.top+e.height-r.bottom,e.top+r.top]:[e.top+r.top,e.top+e.height-r.bottom]}),y3=(e,n,r,i)=>{switch(n){case`xAxis`:return soe(e,r,i);case`yAxis`:return coe(e,r,i);case`zAxis`:return u4(e,r)?.range;case`angleAxis`:return ZZ(e);case`radiusAxis`:return QZ(e,r);default:return}},b3=$([d4,y3],IZ),x3=$([d4,m3,$([m3,noe],dQ),b3],U2),S3=(e,n,r,i)=>{if(!(r==null||r.dataKey==null)){var{type:a,scale:o}=r;if(qW(e,i)&&(a===`number`||o!==`auto`))return n.map(e=>e.value)}},C3=$([vK,A4,p4,eQ],S3),w3=$([x3],uQ);$([x3],Y2),$([x3,F4],J2),$([y4,Y4,eQ],X4);function T3(e,n){return e.id<n.id?-1:+(e.id>n.id)}var E3=(e,n)=>n,D3=(e,n,r)=>r,loe=$(_G,E3,D3,(e,n,r)=>e.filter(e=>e.orientation===n).filter(e=>e.mirror===r).sort(T3)),uoe=$(vG,E3,D3,(e,n,r)=>e.filter(e=>e.orientation===n).filter(e=>e.mirror===r).sort(T3)),O3=(e,n)=>({width:e.width,height:n.height}),doe=(e,n)=>({width:typeof n.width==`number`?n.width:60,height:e.height}),k3=$(jG,a4,O3),foe=(e,n,r)=>{switch(n){case`top`:return e.top;case`bottom`:return r-e.bottom;default:return 0}},poe=(e,n,r)=>{switch(n){case`left`:return e.left;case`right`:return r-e.right;default:return 0}},moe=$(mG,jG,loe,E3,D3,(e,n,r,i,a)=>{var o={},s;return r.forEach(r=>{var c=O3(n,r);s??=foe(n,i,e);var l=i===`top`&&!a||i===`bottom`&&a;o[r.id]=s-Number(l)*c.height,s+=(l?-1:1)*c.height}),o}),hoe=$(pG,jG,uoe,E3,D3,(e,n,r,i,a)=>{var o={},s;return r.forEach(r=>{var c=doe(n,r);s??=poe(n,i,e);var l=i===`left`&&!a||i===`right`&&a;o[r.id]=s-Number(l)*c.width,s+=(l?-1:1)*c.width}),o}),goe=$([jG,a4,(e,n)=>{var r=a4(e,n);if(r!=null)return moe(e,r.orientation,r.mirror)},(e,n)=>n],(e,n,r,i)=>{if(n!=null){var a=r?.[i];return a==null?{x:e.left,y:0}:{x:e.left,y:a}}}),_oe=$([jG,c4,(e,n)=>{var r=c4(e,n);if(r!=null)return hoe(e,r.orientation,r.mirror)},(e,n)=>n],(e,n,r,i)=>{if(n!=null){var a=r?.[i];return a==null?{x:0,y:e.top}:{x:a,y:e.top}}}),A3=$(jG,c4,(e,n)=>({width:typeof n.width==`number`?n.width:60,height:e.height})),voe=(e,n,r)=>{switch(n){case`xAxis`:return k3(e,r).width;case`yAxis`:return A3(e,r).height;default:return}},j3=(e,n,r,i)=>{if(r!=null){var{allowDuplicatedCategory:a,type:o,dataKey:s}=r,c=qW(e,i),l=n.map(e=>e.value),u=l.filter(e=>e!=null);if(s&&c&&o===`category`&&a&&Lz(u))return l}},M3=$([vK,A4,d4,eQ],j3),N3=$([vK,f4,m3,w3,M3,C3,y3,g3,eQ],(e,n,r,i,a,o,s,c,l)=>{if(n!=null){var u=qW(e,l);return{angle:n.angle,interval:n.interval,minTickGap:n.minTickGap,orientation:n.orientation,tick:n.tick,tickCount:n.tickCount,tickFormatter:n.tickFormatter,ticks:n.ticks,type:n.type,unit:n.unit,axisType:l,categoricalDomain:o,duplicateDomain:a,isCategorical:u,niceTicks:c,range:s,realScaleType:r,scale:i}}}),P3=$([vK,p4,m3,w3,g3,y3,M3,C3,eQ],(e,n,r,i,a,o,s,c,l)=>{if(!(n==null||i==null)){var u=qW(e,l),{type:d,ticks:f,tickCount:p}=n,m=r===`scaleBand`&&typeof i.bandwidth==`function`?i.bandwidth()/2:2,h=d===`category`&&i.bandwidth?i.bandwidth()/m:0;h=l===`angleAxis`&&o!=null&&o.length>=2?Az(o[0]-o[1])*2*h:h;var g=f||a;return g?g.map((e,n)=>{var r=s?s.indexOf(e):e,a=i.map(r);return RW(a)?{index:n,coordinate:a+h,value:e,offset:h}:null}).filter(Hz):u&&c?c.map((e,n)=>{var r=i.map(e);return RW(r)?{coordinate:r+h,value:e,index:n,offset:h}:null}).filter(Hz):i.ticks?i.ticks(p).map((e,n)=>{var r=i.map(e);return RW(r)?{coordinate:r+h,value:e,index:n,offset:h}:null}).filter(Hz):i.domain().map((e,n)=>{var r=i.map(e);return RW(r)?{coordinate:r+h,value:s?s[e]:e,index:n,offset:h}:null}).filter(Hz)}}),F3=$([vK,p4,w3,y3,M3,C3,eQ],(e,n,r,i,a,o,s)=>{if(!(n==null||r==null||i==null||i[0]===i[1])){var c=qW(e,s),{tickCount:l}=n,u=0;return u=s===`angleAxis`&&i?.length>=2?Az(i[0]-i[1])*2*u:u,c&&o?o.map((e,n)=>{var i=r.map(e);return RW(i)?{coordinate:i+u,value:e,index:n,offset:u}:null}).filter(Hz):r.ticks?r.ticks(l).map((e,n)=>{var i=r.map(e);return RW(i)?{coordinate:i+u,value:e,index:n,offset:u}:null}).filter(Hz):r.domain().map((e,n)=>{var i=r.map(e);return RW(i)?{coordinate:i+u,value:a?a[e]:e,index:n,offset:u}:null}).filter(Hz)}}),I3=$(d4,w3,(e,n)=>{if(!(e==null||n==null))return Q2(Q2({},e),{},{scale:n})});$((e,n,r)=>u4(e,r),$([$([d4,m3,p3,b3],U2)],uQ),(e,n)=>{if(!(e==null||n==null))return Q2(Q2({},e),{},{scale:n})});var yoe=$([vK,_G,vG],(e,n,r)=>{switch(e){case`horizontal`:return n.some(e=>e.reversed)?`right-to-left`:`left-to-right`;case`vertical`:return r.some(e=>e.reversed)?`bottom-to-top`:`top-to-bottom`;case`centric`:case`radial`:return`left-to-right`;default:return}});$([(e,n,r)=>e.renderedTicks[n]?.[r]],e=>{if(!(!e||e.length===0))return n=>{var r=1/0,i=e[0];for(var a of e){var o=Math.abs(a.coordinate-n);o<r&&(r=o,i=a)}return i?.value}});var L3=e=>e.options.defaultTooltipEventType,R3=e=>e.options.validateTooltipEventTypes;function z3(e,n,r){if(e==null)return n;var i=e?`axis`:`item`;return r==null?n:r.includes(i)?i:n}function B3(e,n){return z3(n,L3(e),R3(e))}function boe(e){return Q(n=>B3(n,e))}var V3=(e,n)=>{var r,i=Number(n);if(!(jz(i)||n==null))return i>=0?e==null||(r=e[i])==null?void 0:r.value:void 0},xoe=e=>e.tooltip.settings,H3={active:!1,index:null,dataKey:void 0,graphicalItemId:void 0,coordinate:void 0},U3=UU({name:`tooltip`,initialState:{itemInteraction:{click:H3,hover:H3},axisInteraction:{click:H3,hover:H3},keyboardInteraction:H3,syncInteraction:{active:!1,index:null,dataKey:void 0,label:void 0,coordinate:void 0,sourceViewBox:void 0,graphicalItemId:void 0},tooltipItemPayloads:[],settings:{shared:void 0,trigger:`hover`,axisId:0,active:!1,defaultIndex:void 0}},reducers:{addTooltipEntrySettings:{reducer(e,n){e.tooltipItemPayloads.push(yq(n.payload))},prepare:OU()},replaceTooltipEntrySettings:{reducer(e,n){var{prev:r,next:i}=n.payload,a=mU(e).tooltipItemPayloads.indexOf(yq(r));a>-1&&(e.tooltipItemPayloads[a]=yq(i))},prepare:OU()},removeTooltipEntrySettings:{reducer(e,n){var r=mU(e).tooltipItemPayloads.indexOf(yq(n.payload));r>-1&&e.tooltipItemPayloads.splice(r,1)},prepare:OU()},setTooltipSettingsState(e,n){e.settings=n.payload},setActiveMouseOverItemIndex(e,n){e.syncInteraction.active=!1,e.syncInteraction.sourceViewBox=void 0,e.keyboardInteraction.active=!1,e.itemInteraction.hover.active=!0,e.itemInteraction.hover.index=n.payload.activeIndex,e.itemInteraction.hover.dataKey=n.payload.activeDataKey,e.itemInteraction.hover.graphicalItemId=n.payload.activeGraphicalItemId,e.itemInteraction.hover.coordinate=n.payload.activeCoordinate},mouseLeaveChart(e){e.itemInteraction.hover.active=!1,e.axisInteraction.hover.active=!1},mouseLeaveItem(e){e.itemInteraction.hover.active=!1},setActiveClickItemIndex(e,n){e.syncInteraction.active=!1,e.syncInteraction.sourceViewBox=void 0,e.itemInteraction.click.active=!0,e.keyboardInteraction.active=!1,e.itemInteraction.click.index=n.payload.activeIndex,e.itemInteraction.click.dataKey=n.payload.activeDataKey,e.itemInteraction.click.graphicalItemId=n.payload.activeGraphicalItemId,e.itemInteraction.click.coordinate=n.payload.activeCoordinate},setMouseOverAxisIndex(e,n){e.syncInteraction.active=!1,e.syncInteraction.sourceViewBox=void 0,e.axisInteraction.hover.active=!0,e.keyboardInteraction.active=!1,e.axisInteraction.hover.index=n.payload.activeIndex,e.axisInteraction.hover.dataKey=n.payload.activeDataKey,e.axisInteraction.hover.coordinate=n.payload.activeCoordinate},setMouseClickAxisIndex(e,n){e.syncInteraction.active=!1,e.syncInteraction.sourceViewBox=void 0,e.keyboardInteraction.active=!1,e.axisInteraction.click.active=!0,e.axisInteraction.click.index=n.payload.activeIndex,e.axisInteraction.click.dataKey=n.payload.activeDataKey,e.axisInteraction.click.coordinate=n.payload.activeCoordinate},setSyncInteraction(e,n){e.syncInteraction=n.payload},setKeyboardInteraction(e,n){e.keyboardInteraction.active=n.payload.active,e.keyboardInteraction.index=n.payload.activeIndex,e.keyboardInteraction.coordinate=n.payload.activeCoordinate}}}),{addTooltipEntrySettings:Soe,replaceTooltipEntrySettings:Coe,removeTooltipEntrySettings:woe,setTooltipSettingsState:Toe,setActiveMouseOverItemIndex:W3,mouseLeaveItem:Eoe,mouseLeaveChart:G3,setActiveClickItemIndex:Doe,setMouseOverAxisIndex:K3,setMouseClickAxisIndex:Ooe,setSyncInteraction:q3,setKeyboardInteraction:J3}=U3.actions,koe=U3.reducer;function Y3(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function X3(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?Y3(Object(r),!0).forEach(function(n){Aoe(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):Y3(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Aoe(e,n,r){return(n=joe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function joe(e){var n=Moe(e,`string`);return typeof n==`symbol`?n:n+``}function Moe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function Noe(e,n,r){return n===`axis`?r===`click`?e.axisInteraction.click:e.axisInteraction.hover:r===`click`?e.itemInteraction.click:e.itemInteraction.hover}function Poe(e){return e.index!=null}var Z3=(e,n,r,i)=>{if(n==null)return H3;var a=Noe(e,n,r);if(a==null)return H3;if(a.active)return a;if(e.keyboardInteraction.active)return e.keyboardInteraction;if(e.syncInteraction.active&&e.syncInteraction.index!=null)return e.syncInteraction;var o=e.settings.active===!0;if(Poe(a)){if(o)return X3(X3({},a),{},{active:!0})}else if(i!=null)return{active:!0,coordinate:void 0,dataKey:void 0,index:i,graphicalItemId:void 0};return X3(X3({},H3),{},{coordinate:a.coordinate})};function Foe(e){if(typeof e==`number`)return Number.isFinite(e)?e:void 0;if(e instanceof Date){var n=e.valueOf();return Number.isFinite(n)?n:void 0}var r=Number(e);return Number.isFinite(r)?r:void 0}function Ioe(e,n){var r=Foe(e),i=n[0],a=n[1];return r===void 0?!1:r>=Math.min(i,a)&&r<=Math.max(i,a)}function Loe(e,n,r){if(r==null||n==null)return!0;var i=GW(e,n);return i==null||!cZ(r)?!0:Ioe(i,r)}var Q3=(e,n,r,i)=>{var a=e?.index;if(a==null)return null;var o=Number(a);if(!RW(o))return a;var s=0,c=1/0;n.length>0&&(c=n.length-1);var l=Math.max(s,Math.min(o,c)),u=n[l];return u==null||Loe(u,r,i)?String(l):null},$3=(e,n,r,i,a,o,s)=>{if(o!=null){var c=s[0]?.getPosition(o);if(c!=null)return c;var l=a?.[Number(o)];if(l)switch(r){case`horizontal`:return{x:l.coordinate,y:(i.top+n)/2};default:return{x:(i.left+e)/2,y:l.coordinate}}}},e6=(e,n,r,i)=>{if(n===`axis`)return e.tooltipItemPayloads;if(e.tooltipItemPayloads.length===0)return[];var a=r===`hover`?e.itemInteraction.hover.graphicalItemId:e.itemInteraction.click.graphicalItemId;if(e.syncInteraction.active&&a==null)return e.tooltipItemPayloads;if(a==null&&(i!=null||e.keyboardInteraction.active)){var o=e.tooltipItemPayloads[0];return o==null?[]:[o]}return e.tooltipItemPayloads.filter(e=>e.settings?.graphicalItemId===a)},t6=e=>e.options.tooltipPayloadSearcher,n6=e=>e.tooltip;function r6(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function i6(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?r6(Object(r),!0).forEach(function(n){Roe(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):r6(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Roe(e,n,r){return(n=zoe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function zoe(e){var n=Boe(e,`string`);return typeof n==`symbol`?n:n+``}function Boe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function Voe(e){if(typeof e==`string`||typeof e==`number`)return e}function Hoe(e){if(typeof e==`string`||typeof e==`number`||typeof e==`boolean`)return e}function Uoe(e){if(typeof e==`string`||typeof e==`number`)return e;if(typeof e==`function`)return n=>e(n)}function a6(e){if(typeof e==`string`)return e}function Woe(e){if(!(typeof e!=`object`||!e))return{name:`name`in e?Voe(e.name):void 0,unit:`unit`in e?Hoe(e.unit):void 0,dataKey:`dataKey`in e?Uoe(e.dataKey):void 0,payload:`payload`in e?e.payload:void 0,color:`color`in e?a6(e.color):void 0,fill:`fill`in e?a6(e.fill):void 0}}function Goe(e,n){return e??n}var o6=(e,n,r,i,a,o,s)=>{if(!(n==null||o==null)){var{chartData:c,computedData:l,dataStartIndex:u,dataEndIndex:d}=r;return e.reduce((e,r)=>{var{dataDefinedOnItem:f,settings:p}=r,m=Goe(f,c),h=Array.isArray(m)?LW(m,u,d):m,g=p?.dataKey??i,_=p?.nameKey,v=i&&Array.isArray(h)&&!Array.isArray(h[0])&&s===`axis`?zz(h,i,a):o(h,n,l,_);return Array.isArray(v)?v.forEach(n=>{var r=Woe(n),i=r?.name,a=r?.dataKey,o=r?.payload,s=i6(i6({},p),{},{name:i,unit:r?.unit,color:r?.color??p?.color,fill:r?.fill??p?.fill});e.push(lG({tooltipEntrySettings:s,dataKey:a,payload:o,value:GW(o,a),name:i==null?void 0:String(i)}))}):e.push(lG({tooltipEntrySettings:p,dataKey:g,payload:v,value:GW(v,g),name:GW(v,_)??p?.name})),e},[])}},s6=$([R4,m4,OZ],K2),c6=$([$([e=>e.graphicalItems.cartesianItems,e=>e.graphicalItems.polarItems],(e,n)=>[...e,...n]),R4,$([cQ,lQ],h4)],v4,{memoizeOptions:{resultEqualityCheck:oQ}}),Koe=$([c6],e=>e.filter(iQ)),l6=$([c6],C4,{memoizeOptions:{resultEqualityCheck:oQ}}),qoe=$([c6],e=>e.some(e=>!e.data)),u6=$([l6,tZ],E4),Joe=$([Koe,tZ,R4],rQ),d6=$([u6,R4,c6,tZ,qoe,l6],k4),f6=$([R4],G4),p6=$([f6,$([R4],e=>e.allowDataOverflow)],uZ),Yoe=$([$([Joe,$([c6],e=>e.filter(iQ)),EZ,DZ],V4),tZ,cQ,p6],U4),Xoe=$([u6,R4,$([c6],x4),Y4,cQ,sZ],Q4,{memoizeOptions:{resultEqualityCheck:aQ}}),Zoe=$([$([n3,cQ,lQ],r3),cQ],c3),Qoe=$([$([a3,cQ,lQ],r3),cQ],l3),m6=$([R4,vK,u6,d6,EZ,cQ,$([R4,f6,p6,Yoe,Xoe,$([Zoe,$([$([s3,cQ,lQ],r3),cQ],u3),Qoe],Z4),vK,cQ],d3)],f3),$oe=$([R4,m6,$([m6,R4,s6],h3),cQ],_3),h6=e=>y3(e,cQ(e),lQ(e),!1),g6=$([R4,h6],IZ),_6=$([$([R4,s6,$oe,g6],U2)],uQ),v6=$([vK,R4,s6,_6,h6,$([vK,d6,R4,cQ],j3),$([vK,d6,R4,cQ],S3),cQ],(e,n,r,i,a,o,s,c)=>{if(n){var{type:l}=n,u=qW(e,c);if(i){var d=r===`scaleBand`&&i.bandwidth?i.bandwidth()/2:2,f=l===`category`&&i.bandwidth?i.bandwidth()/d:0;return f=c===`angleAxis`&&a!=null&&a?.length>=2?Az(a[0]-a[1])*2*f:f,u&&s?s.map((e,n)=>{var r=i.map(e);return RW(r)?{coordinate:r+f,value:e,index:n,offset:f}:null}).filter(Hz):i.domain().map((e,n)=>{var r=i.map(e);return RW(r)?{coordinate:r+f,value:o?o[e]:e,index:n,offset:f}:null}).filter(Hz)}}}),y6=$([L3,R3,xoe],(e,n,r)=>z3(r.shared,e,n)),b6=e=>e.tooltip.settings.trigger,x6=e=>e.tooltip.settings.defaultIndex,S6=$([n6,y6,b6,x6],Z3),C6=$([S6,u6,z4,m6],Q3),w6=$([v6,C6],V3),T6=$([S6],e=>{if(e)return e.dataKey}),E6=$([S6],e=>{if(e)return e.graphicalItemId}),D6=$([n6,y6,b6,x6],e6),ese=$([S6,$([pG,mG,vK,jG,v6,x6,D6],$3)],(e,n)=>e!=null&&e.coordinate?e.coordinate:n),tse=$([S6],e=>e?.active??!1),nse=$([$([D6,C6,tZ,z4,w6,t6,y6],o6)],e=>{if(e!=null){var n=e.map(e=>e.payload).filter(e=>e!=null);return Array.from(new Set(n))}});function O6(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function k6(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?O6(Object(r),!0).forEach(function(n){rse(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):O6(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function rse(e,n,r){return(n=ise(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function ise(e){var n=ase(e,`string`);return typeof n==`symbol`?n:n+``}function ase(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var ose=()=>Q(R4),sse=()=>{var e=ose(),n=Q(v6),r=Q(_6);return cG(!e||!r?void 0:k6(k6({},e),{},{scale:r}),n)};function A6(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function j6(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?A6(Object(r),!0).forEach(function(n){cse(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):A6(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function cse(e,n,r){return(n=lse(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function lse(e){var n=use(e,`string`);return typeof n==`symbol`?n:n+``}function use(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var dse=(e,n,r,i)=>{var a=n.find(e=>e&&e.index===r);if(a){if(e===`horizontal`)return{x:a.coordinate,y:i.relativeY};if(e===`vertical`)return{x:i.relativeX,y:a.coordinate}}return{x:0,y:0}},fse=(e,n,r,i)=>{var a=n.find(e=>e&&e.index===r);if(a){if(e===`centric`){var o=a.coordinate,{radius:s}=i;return j6(j6(j6({},i),DX(i.cx,i.cy,s,o)),{},{angle:o,radius:s})}var c=a.coordinate,{angle:l}=i;return j6(j6(j6({},i),DX(i.cx,i.cy,c,l)),{},{angle:l,radius:c})}return{angle:0,clockWise:!1,cx:0,cy:0,endAngle:0,innerRadius:0,outerRadius:0,radius:0,startAngle:0,x:0,y:0}};function pse(e,n){var{relativeX:r,relativeY:i}=e;return r>=n.left&&r<=n.left+n.width&&i>=n.top&&i<=n.top+n.height}var M6=(e,n,r,i,a)=>{var o=n?.length??0;if(o<=1||e==null)return 0;if(i===`angleAxis`&&a!=null&&Math.abs(Math.abs(a[1]-a[0])-360)<=1e-6)for(var s=0;s<o;s++){var c=s>0?r[s-1]?.coordinate:r[o-1]?.coordinate,l=r[s]?.coordinate,u=s>=o-1?r[0]?.coordinate:r[s+1]?.coordinate,d=void 0;if(!(c==null||l==null||u==null))if(Az(l-c)!==Az(u-l)){var f=[];if(Az(u-l)===Az(a[1]-a[0])){d=u;var p=l+a[1]-a[0];f[0]=Math.min(p,(p+c)/2),f[1]=Math.max(p,(p+c)/2)}else{d=c;var m=u+a[1]-a[0];f[0]=Math.min(l,(m+l)/2),f[1]=Math.max(l,(m+l)/2)}var h=[Math.min(l,(d+l)/2),Math.max(l,(d+l)/2)];if(e>h[0]&&e<=h[1]||e>=f[0]&&e<=f[1])return r[s]?.index}else{var g=Math.min(c,u),_=Math.max(c,u);if(e>(g+l)/2&&e<=(_+l)/2)return r[s]?.index}}else if(n)for(var v=0;v<o;v++){var y=n[v];if(y!=null){var b=n[v+1],x=n[v-1];if(v===0&&b!=null&&e<=(y.coordinate+b.coordinate)/2||v===o-1&&x!=null&&e>(y.coordinate+x.coordinate)/2||v>0&&v<o-1&&x!=null&&b!=null&&e>(y.coordinate+x.coordinate)/2&&e<=(y.coordinate+b.coordinate)/2)return y.index}}return-1},N6=()=>Q(OZ),P6=(e,n)=>n,F6=(e,n,r)=>r,I6=(e,n,r,i)=>i,mse=$(v6,e=>(0,MV.default)(e,e=>e.coordinate)),L6=$([n6,P6,F6,I6],Z3),R6=$([L6,u6,z4,m6],Q3),hse=(e,n,r)=>{if(n!=null){var i=n6(e);return n===`axis`?r===`hover`?i.axisInteraction.hover.dataKey:i.axisInteraction.click.dataKey:r===`hover`?i.itemInteraction.hover.dataKey:i.itemInteraction.click.dataKey}},z6=$([n6,P6,F6,I6],e6),B6=$([pG,mG,vK,jG,v6,I6,z6],$3),gse=$([L6,B6],(e,n)=>e.coordinate??n),V6=$([v6,R6],V3),_se=$([z6,R6,tZ,z4,V6,t6,P6],o6),vse=$([L6,R6],(e,n)=>({isActive:e.active&&n!=null,activeIndex:n})),yse=(e,n,r,i,a,o,s)=>{if(!(!e||!r||!i||!a)&&pse(e,s)){var c=M6(dG(e,n),o,a,r,i),l=dse(n,a,c,e);return{activeIndex:String(c),activeCoordinate:l}}},bse=(e,n,r,i,a,o,s)=>{if(!(!e||!i||!a||!o||!r)){var c=NX(e,r);if(c){var l=M6(fG(c,n),s,o,i,a),u=fse(n,o,l,c);return{activeIndex:String(l),activeCoordinate:u}}}},xse=(e,n,r,i,a,o,s,c)=>{if(!(!e||!n||!i||!a||!o))return n===`horizontal`||n===`vertical`?yse(e,n,i,a,o,s,c):bse(e,n,r,i,a,o,s)},Sse=$(e=>e.zIndex.zIndexMap,(e,n)=>n,(e,n,r)=>r,(e,n,r)=>{if(n!=null){var i=e[n];if(i!=null)return r?i.panoramaElement:i.element}}),Cse=$(e=>e.zIndex.zIndexMap,e=>{var n=Object.keys(e).map(e=>parseInt(e,10)).concat(Object.values(NZ));return Array.from(new Set(n)).sort((e,n)=>e-n)},{memoizeOptions:{resultEqualityCheck:sQ}});function H6(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function U6(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?H6(Object(r),!0).forEach(function(n){wse(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):H6(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function wse(e,n,r){return(n=Tse(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Tse(e){var n=Ese(e,`string`);return typeof n==`symbol`?n:n+``}function Ese(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var Dse={zIndexMap:Object.values(NZ).reduce((e,n)=>U6(U6({},e),{},{[n]:{element:void 0,panoramaElement:void 0,consumers:0}}),{})},Ose=new Set(Object.values(NZ));function kse(e){return Ose.has(e)}var W6=UU({name:`zIndex`,initialState:Dse,reducers:{registerZIndexPortal:{reducer:(e,n)=>{var{zIndex:r}=n.payload;e.zIndexMap[r]?e.zIndexMap[r].consumers+=1:e.zIndexMap[r]={consumers:1,element:void 0,panoramaElement:void 0}},prepare:OU()},unregisterZIndexPortal:{reducer:(e,n)=>{var{zIndex:r}=n.payload;e.zIndexMap[r]&&(--e.zIndexMap[r].consumers,e.zIndexMap[r].consumers<=0&&!kse(r)&&delete e.zIndexMap[r])},prepare:OU()},registerZIndexPortalElement:{reducer:(e,n)=>{var{zIndex:r,element:i,isPanorama:a}=n.payload;e.zIndexMap[r]?a?e.zIndexMap[r].panoramaElement=yq(i):e.zIndexMap[r].element=yq(i):e.zIndexMap[r]={consumers:0,element:a?void 0:yq(i),panoramaElement:a?yq(i):void 0}},prepare:OU()},unregisterZIndexPortalElement:{reducer:(e,n)=>{var{zIndex:r}=n.payload;e.zIndexMap[r]&&(n.payload.isPanorama?e.zIndexMap[r].panoramaElement=void 0:e.zIndexMap[r].element=void 0)},prepare:OU()}}}),{registerZIndexPortal:Ase,unregisterZIndexPortal:G6,registerZIndexPortalElement:jse,unregisterZIndexPortalElement:Mse}=W6.actions,Nse=W6.reducer;function K6(e){var{zIndex:n,children:r}=e,i=SK()&&n!==void 0&&n!==0,a=FG(),o=(0,x.useRef)(void 0),s=(0,x.useRef)(new Set),c=sV(),l=Q(e=>Sse(e,n,a));if((0,x.useLayoutEffect)(()=>{if(!i){var e=s.current;e.forEach(e=>{c(G6({zIndex:e}))}),e.clear(),o.current=void 0;return}if(s.current.has(n)||(c(Ase({zIndex:n})),s.current.add(n)),l){o.current=l;var r=s.current;r.forEach(e=>{e!==n&&(c(G6({zIndex:e})),r.delete(e))})}},[c,n,i,l]),(0,x.useLayoutEffect)(()=>{var e=s.current;return()=>{e.forEach(e=>{c(G6({zIndex:e}))}),e.clear()}},[c]),!i)return r;var u=l??o.current;return u?(0,Dy.createPortal)(r,u):null}function q6(){return q6=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},q6.apply(null,arguments)}function J6(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function Y6(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?J6(Object(r),!0).forEach(function(n){Pse(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):J6(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Pse(e,n,r){return(n=Fse(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Fse(e){var n=Ise(e,`string`);return typeof n==`symbol`?n:n+``}function Ise(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function Lse(e){var{cursor:n,cursorComp:r,cursorProps:i}=e;return(0,x.isValidElement)(n)?(0,x.cloneElement)(n,i):(0,x.createElement)(r,i)}function Rse(e){var{coordinate:n,payload:r,index:i,offset:a,tooltipAxisBandSize:o,layout:s,cursor:c,tooltipEventType:l,chartName:u}=e,d=n,f=r,p=i;if(!c||!d||u!==`ScatterChart`&&l!==`axis`)return null;var m,h,g;if(u===`ScatterChart`)m=d,h=cY,g=NZ.cursorLine;else if(u===`BarChart`)m=lY(s,d,a,o),h=yX,g=NZ.cursorRectangle;else if(s===`radial`&&aB(d)){var{cx:_,cy:v,radius:y,startAngle:b,endAngle:S}=PX(d);m={cx:_,cy:v,startAngle:b,endAngle:S,innerRadius:y,outerRadius:y},h=YX,g=NZ.cursorLine}else m={points:XX(s,d,a)},h=ZJ,g=NZ.cursorLine;var C=typeof c==`object`&&`className`in c?c.className:void 0,w=Y6(Y6(Y6(Y6({stroke:`#ccc`,pointerEvents:`none`},a),m),pR(c)),{},{payload:f,payloadIndex:p,className:cR(`recharts-tooltip-cursor`,C)});return x.createElement(K6,{zIndex:e.zIndex??g},x.createElement(Lse,{cursor:c,cursorComp:h,cursorProps:w}))}function zse(e){var n=sse(),r=mK(),i=yK(),a=N6();return n==null||r==null||i==null||a==null?null:x.createElement(Rse,q6({},e,{offset:r,layout:i,tooltipAxisBandSize:n,chartName:a}))}var X6=(0,x.createContext)(null),Bse=()=>(0,x.useContext)(X6),Vse=d(c(((e,n)=>{var r=Object.prototype.hasOwnProperty,i=`~`;function a(){}Object.create&&(a.prototype=Object.create(null),new a().__proto__||(i=!1));function o(e,n,r){this.fn=e,this.context=n,this.once=r||!1}function s(e,n,r,a,s){if(typeof r!=`function`)throw TypeError(`The listener must be a function`);var c=new o(r,a||e,s),l=i?i+n:n;return e._events[l]?e._events[l].fn?e._events[l]=[e._events[l],c]:e._events[l].push(c):(e._events[l]=c,e._eventsCount++),e}function c(e,n){--e._eventsCount===0?e._events=new a:delete e._events[n]}function l(){this._events=new a,this._eventsCount=0}l.prototype.eventNames=function(){var e=[],n,a;if(this._eventsCount===0)return e;for(a in n=this._events)r.call(n,a)&&e.push(i?a.slice(1):a);return Object.getOwnPropertySymbols?e.concat(Object.getOwnPropertySymbols(n)):e},l.prototype.listeners=function(e){var n=i?i+e:e,r=this._events[n];if(!r)return[];if(r.fn)return[r.fn];for(var a=0,o=r.length,s=Array(o);a<o;a++)s[a]=r[a].fn;return s},l.prototype.listenerCount=function(e){var n=i?i+e:e,r=this._events[n];return r?r.fn?1:r.length:0},l.prototype.emit=function(e,n,r,a,o,s){var c=i?i+e:e;if(!this._events[c])return!1;var l=this._events[c],u=arguments.length,d,f;if(l.fn){switch(l.once&&this.removeListener(e,l.fn,void 0,!0),u){case 1:return l.fn.call(l.context),!0;case 2:return l.fn.call(l.context,n),!0;case 3:return l.fn.call(l.context,n,r),!0;case 4:return l.fn.call(l.context,n,r,a),!0;case 5:return l.fn.call(l.context,n,r,a,o),!0;case 6:return l.fn.call(l.context,n,r,a,o,s),!0}for(f=1,d=Array(u-1);f<u;f++)d[f-1]=arguments[f];l.fn.apply(l.context,d)}else{var p=l.length,m;for(f=0;f<p;f++)switch(l[f].once&&this.removeListener(e,l[f].fn,void 0,!0),u){case 1:l[f].fn.call(l[f].context);break;case 2:l[f].fn.call(l[f].context,n);break;case 3:l[f].fn.call(l[f].context,n,r);break;case 4:l[f].fn.call(l[f].context,n,r,a);break;default:if(!d)for(m=1,d=Array(u-1);m<u;m++)d[m-1]=arguments[m];l[f].fn.apply(l[f].context,d)}}return!0},l.prototype.on=function(e,n,r){return s(this,e,n,r,!1)},l.prototype.once=function(e,n,r){return s(this,e,n,r,!0)},l.prototype.removeListener=function(e,n,r,a){var o=i?i+e:e;if(!this._events[o])return this;if(!n)return c(this,o),this;var s=this._events[o];if(s.fn)s.fn===n&&(!a||s.once)&&(!r||s.context===r)&&c(this,o);else{for(var l=0,u=[],d=s.length;l<d;l++)(s[l].fn!==n||a&&!s[l].once||r&&s[l].context!==r)&&u.push(s[l]);u.length?this._events[o]=u.length===1?u[0]:u:c(this,o)}return this},l.prototype.removeAllListeners=function(e){var n;return e?(n=i?i+e:e,this._events[n]&&c(this,n)):(this._events=new a,this._eventsCount=0),this},l.prototype.off=l.prototype.removeListener,l.prototype.addListener=l.prototype.on,l.prefixed=i,l.EventEmitter=l,n!==void 0&&(n.exports=l)}))(),1).default,Z6=new Vse,Q6=`recharts.syncEvent.tooltip`,$6=`recharts.syncEvent.brush`,e8=(e,n)=>{if(n&&Array.isArray(e)){var r=Number.parseInt(n,10);if(!jz(r))return e[r]}},t8=UU({name:`options`,initialState:{chartName:``,tooltipPayloadSearcher:()=>void 0,eventEmitter:void 0,defaultTooltipEventType:`axis`},reducers:{createEventEmitter:e=>{e.eventEmitter??=Symbol(`rechartsEventEmitter`)}}}),Hse=t8.reducer,{createEventEmitter:Use}=t8.actions;function Wse(e){return e.tooltip.syncInteraction}var n8=UU({name:`chartData`,initialState:{chartData:void 0,computedData:void 0,dataStartIndex:0,dataEndIndex:0},reducers:{setChartData(e,n){if(e.chartData=yq(n.payload),n.payload==null){e.dataStartIndex=0,e.dataEndIndex=0;return}n.payload.length>0&&e.dataEndIndex!==n.payload.length-1&&(e.dataEndIndex=n.payload.length-1)},setComputedData(e,n){e.computedData=n.payload},setDataStartEndIndexes(e,n){var{startIndex:r,endIndex:i}=n.payload;r!=null&&(e.dataStartIndex=r),i!=null&&(e.dataEndIndex=i)}}}),{setChartData:r8,setDataStartEndIndexes:Gse,setComputedData:Kse}=n8.actions,qse=n8.reducer,Jse=[`x`,`y`];function i8(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function a8(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?i8(Object(r),!0).forEach(function(n){Yse(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):i8(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Yse(e,n,r){return(n=Xse(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Xse(e){var n=Zse(e,`string`);return typeof n==`symbol`?n:n+``}function Zse(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function Qse(e,n){if(e==null)return{};var r,i,a=$se(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function $se(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function ece(){var e=Q(kZ),n=Q(jZ),r=sV(),i=Q(AZ),a=Q(v6),o=yK(),s=fK();(0,x.useEffect)(()=>{if(e==null)return Uz;var c=(c,l,u)=>{if(n!==u&&e===c){if(l.payload.active===!1){r(q3({active:!1,coordinate:void 0,dataKey:void 0,index:null,label:void 0,sourceViewBox:void 0,graphicalItemId:void 0}));return}if(i===`index`){var d;if(s&&l!=null&&(d=l.payload)!=null&&d.coordinate&&l.payload.sourceViewBox){var f=l.payload.coordinate,{x:p,y:m}=f,h=Qse(f,Jse),{x:g,y:_,width:v,height:y}=l.payload.sourceViewBox,b=a8(a8({},h),{},{x:s.x+(v?(p-g)/v:0)*s.width,y:s.y+(y?(m-_)/y:0)*s.height});r(a8(a8({},l),{},{payload:a8(a8({},l.payload),{},{coordinate:b})}))}else r(l);return}if(a!=null){var x;typeof i==`function`?x=a[i(a,{activeTooltipIndex:l.payload.index==null?void 0:Number(l.payload.index),isTooltipActive:l.payload.active,activeIndex:l.payload.index==null?void 0:Number(l.payload.index),activeLabel:l.payload.label,activeDataKey:l.payload.dataKey,activeCoordinate:l.payload.coordinate})]:i===`value`&&(x=a.find(e=>String(e.value)===l.payload.label));var{coordinate:S}=l.payload;if(S==null||s==null){r(q3({active:!1,coordinate:void 0,dataKey:void 0,index:null,label:void 0,sourceViewBox:void 0,graphicalItemId:void 0}));return}if(x==null){r(q3({active:!1,coordinate:void 0,dataKey:void 0,index:null,label:void 0,sourceViewBox:l.payload.sourceViewBox,graphicalItemId:void 0}));return}var{x:C,y:w}=S,T=Math.min(C,s.x+s.width),E=Math.min(w,s.y+s.height),D={x:o===`horizontal`?x.coordinate:T,y:o===`horizontal`?E:x.coordinate};r(q3({active:l.payload.active,coordinate:D,dataKey:l.payload.dataKey,index:String(x.index),label:l.payload.label,sourceViewBox:l.payload.sourceViewBox,graphicalItemId:l.payload.graphicalItemId}))}}};return Z6.on(Q6,c),()=>{Z6.off(Q6,c)}},[Q(e=>e.rootProps.className),r,n,e,i,a,o,s])}function tce(){var e=Q(kZ),n=Q(jZ),r=sV();(0,x.useEffect)(()=>{if(e==null)return Uz;var i=(i,a,o)=>{n!==o&&e===i&&r(Gse(a))};return Z6.on($6,i),()=>{Z6.off($6,i)}},[r,n,e])}function nce(){var e=sV();(0,x.useEffect)(()=>{e(Use())},[e]),ece(),tce()}function rce(e,n,r,i,a,o){var s=Q(r=>hse(r,e,n)),c=Q(E6),l=Q(jZ),u=Q(kZ),d=Q(AZ),f=Q(Wse)?.sourceViewBox!=null,p=fK();(0,x.useEffect)(()=>{if(!f&&u!=null&&l!=null){var e=q3({active:o,coordinate:r,dataKey:s,index:a,label:typeof i==`number`?String(i):i,sourceViewBox:p,graphicalItemId:c});Z6.emit(Q6,u,e,l)}},[f,r,s,c,a,i,l,u,d,o,p])}function o8(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function s8(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?o8(Object(r),!0).forEach(function(n){ice(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):o8(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function ice(e,n,r){return(n=ace(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function ace(e){var n=oce(e,`string`);return typeof n==`symbol`?n:n+``}function oce(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function sce(e){return e.dataKey}function cce(e,n){return x.isValidElement(e)?x.cloneElement(e,n):typeof e==`function`?x.createElement(e,n):x.createElement(yJ,n)}var c8=[],lce={allowEscapeViewBox:{x:!1,y:!1},animationDuration:400,animationEasing:`ease`,axisId:0,contentStyle:{},cursor:!0,filterNull:!0,includeHidden:!1,isAnimationActive:`auto`,itemSorter:`name`,itemStyle:{},labelStyle:{},offset:10,reverseDirection:{x:!1,y:!1},separator:` : `,trigger:`hover`,useTranslate3d:!1,wrapperStyle:{}};function l8(e){var n=mB(e,lce),{active:r,allowEscapeViewBox:i,animationDuration:a,animationEasing:o,content:s,filterNull:c,isAnimationActive:l,offset:u,payloadUniqBy:d,position:f,reverseDirection:p,useTranslate3d:m,wrapperStyle:h,cursor:g,shared:_,trigger:v,defaultIndex:y,portal:b,axisId:S}=n,C=sV(),w=typeof y==`number`?String(y):y;(0,x.useEffect)(()=>{C(Toe({shared:_,trigger:v,axisId:S,active:r,defaultIndex:w}))},[C,_,v,S,r,w]);var T=fK(),E=IJ(),D=boe(_),{activeIndex:O,isActive:k}=Q(e=>vse(e,D,v,w))??{},A=Q(e=>_se(e,D,v,w)),j=Q(e=>V6(e,D,v,w)),M=Q(e=>gse(e,D,v,w)),N=A,P=Bse(),F=r??k??!1,[ee,I]=RV([N,F]),L=D===`axis`?j:void 0;rce(D,v,M,L,O,F);var te=b??P;if(te==null||T==null||D==null)return null;var R=N??c8;F||(R=c8),c&&R.length&&(R=iV(R.filter(e=>e.value!=null&&(e.hide!==!0||n.includeHidden)),d,sce));var z=R.length>0,ne=s8(s8({},n),{},{payload:R,label:L,active:F,activeIndex:O,coordinate:M,accessibilityLayer:E}),B=x.createElement(FJ,{allowEscapeViewBox:i,animationDuration:a,animationEasing:o,isAnimationActive:l,active:F,coordinate:M,hasPayload:z,offset:u,position:f,reverseDirection:p,useTranslate3d:m,viewBox:T,wrapperStyle:h,lastBoundingBox:ee,innerRef:I,hasPortalFromProps:!!b},cce(s,ne));return x.createElement(x.Fragment,null,(0,Dy.createPortal)(B,te),F&&x.createElement(zse,{cursor:g,tooltipEventType:D,coordinate:M,payload:R,index:O}))}var u8=e=>null;u8.displayName=`Cell`;function uce(e,n,r){return(n=dce(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function dce(e){var n=fce(e,`string`);return typeof n==`symbol`?n:n+``}function fce(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var pce=class{constructor(e){uce(this,`cache`,new Map),this.maxSize=e}get(e){var n=this.cache.get(e);return n!==void 0&&(this.cache.delete(e),this.cache.set(e,n)),n}set(e,n){if(this.cache.has(e))this.cache.delete(e);else if(this.cache.size>=this.maxSize){var r=this.cache.keys().next().value;r!=null&&this.cache.delete(r)}this.cache.set(e,n)}clear(){this.cache.clear()}size(){return this.cache.size}};function d8(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function mce(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?d8(Object(r),!0).forEach(function(n){hce(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):d8(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function hce(e,n,r){return(n=gce(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function gce(e){var n=_ce(e,`string`);return typeof n==`symbol`?n:n+``}function _ce(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var f8=mce({},{cacheSize:2e3,enableCache:!0}),p8=new pce(f8.cacheSize),vce={position:`absolute`,top:`-20000px`,left:0,padding:0,margin:0,border:`none`,whiteSpace:`pre`},m8=`recharts_measurement_span`;function yce(e,n){return`${e}|${n.fontSize||``}|${n.fontFamily||``}|${n.fontWeight||``}|${n.fontStyle||``}|${n.letterSpacing||``}|${n.textTransform||``}`}var h8=(e,n)=>{try{var r=document.getElementById(m8);r||(r=document.createElement(`span`),r.setAttribute(`id`,m8),r.setAttribute(`aria-hidden`,`true`),document.body.appendChild(r)),Object.assign(r.style,vce,n),r.textContent=`${e}`;var i=r.getBoundingClientRect();return{width:i.width,height:i.height}}catch{return{width:0,height:0}}},g8=function(e){var n=arguments.length>1&&arguments[1]!==void 0?arguments[1]:{};if(e==null||EJ.isSsr)return{width:0,height:0};if(!f8.enableCache)return h8(e,n);var r=yce(e,n),i=p8.get(r);if(i)return i;var a=h8(e,n);return p8.set(r,a),a},_8;function bce(e,n,r){return(n=xce(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function xce(e){var n=Sce(e,`string`);return typeof n==`symbol`?n:n+``}function Sce(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var v8=/(-?\d+(?:\.\d+)?[a-zA-Z%]*)([*/])(-?\d+(?:\.\d+)?[a-zA-Z%]*)/,y8=/(-?\d+(?:\.\d+)?[a-zA-Z%]*)([+-])(-?\d+(?:\.\d+)?[a-zA-Z%]*)/,Cce=/^(px|cm|vh|vw|em|rem|%|mm|in|pt|pc|ex|ch|vmin|vmax|Q)$/,wce=/(-?\d+(?:\.\d+)?)([a-zA-Z%]+)?/,Tce={cm:96/2.54,mm:96/25.4,pt:96/72,pc:96/6,in:96,Q:96/(2.54*40),px:1},Ece=[`cm`,`mm`,`pt`,`pc`,`in`,`Q`,`px`];function Dce(e){return Ece.includes(e)}var b8=`NaN`;function Oce(e,n){return e*Tce[n]}var x8=class e{static parse(n){var[,r,i]=wce.exec(n)??[];return r==null?e.NaN:new e(parseFloat(r),i??``)}constructor(e,n){this.num=e,this.unit=n,this.num=e,this.unit=n,jz(e)&&(this.unit=``),n!==``&&!Cce.test(n)&&(this.num=NaN,this.unit=``),Dce(n)&&(this.num=Oce(e,n),this.unit=`px`)}add(n){return this.unit===n.unit?new e(this.num+n.num,this.unit):new e(NaN,``)}subtract(n){return this.unit===n.unit?new e(this.num-n.num,this.unit):new e(NaN,``)}multiply(n){return this.unit!==``&&n.unit!==``&&this.unit!==n.unit?new e(NaN,``):new e(this.num*n.num,this.unit||n.unit)}divide(n){return this.unit!==``&&n.unit!==``&&this.unit!==n.unit?new e(NaN,``):new e(this.num/n.num,this.unit||n.unit)}toString(){return`${this.num}${this.unit}`}isNaN(){return jz(this.num)}};_8=x8,bce(x8,`NaN`,new _8(NaN,``));function S8(e){if(e==null||e.includes(b8))return b8;for(var n=e;n.includes(`*`)||n.includes(`/`);){var[,r,i,a]=v8.exec(n)??[],o=x8.parse(r??``),s=x8.parse(a??``),c=i===`*`?o.multiply(s):o.divide(s);if(c.isNaN())return b8;n=n.replace(v8,c.toString())}for(;n.includes(`+`)||/.-\d+(?:\.\d+)?/.test(n);){var[,l,u,d]=y8.exec(n)??[],f=x8.parse(l??``),p=x8.parse(d??``),m=u===`+`?f.add(p):f.subtract(p);if(m.isNaN())return b8;n=n.replace(y8,m.toString())}return n}var C8=/\(([^()]*)\)/;function kce(e){for(var n=e,r;(r=C8.exec(n))!=null;){var[,i]=r;n=n.replace(C8,S8(i))}return n}function Ace(e){var n=e.replace(/\s+/g,``);return n=kce(n),n=S8(n),n}function jce(e){try{return Ace(e)}catch{return b8}}function w8(e){var n=jce(e.slice(5,-1));return n===b8?``:n}var Mce=[`x`,`y`,`lineHeight`,`capHeight`,`fill`,`scaleToFit`,`textAnchor`,`verticalAnchor`],Nce=[`dx`,`dy`,`angle`,`className`,`breakAll`];function T8(){return T8=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},T8.apply(null,arguments)}function E8(e,n){if(e==null)return{};var r,i,a=Pce(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Pce(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}var D8=/[ \f\n\r\t\v\u2028\u2029]+/,O8=e=>{var{children:n,breakAll:r,style:i}=e;try{var a=[];return Bz(n)||(a=r?n.toString().split(``):n.toString().split(D8)),{wordsWithComputedWidth:a.map(e=>({word:e,width:g8(e,i).width})),spaceWidth:r?0:g8(`\xA0`,i).width}}catch{return null}};function k8(e){return e===`start`||e===`middle`||e===`end`||e===`inherit`}function Fce(e){return Bz(e)||typeof e==`string`||typeof e==`number`||typeof e==`boolean`}var A8=(e,n,r,i)=>e.reduce((e,a)=>{var{word:o,width:s}=a,c=e[e.length-1];if(c&&s!=null&&(n==null||i||c.width+s+r<Number(n)))c.words.push(o),c.width+=s+r;else{var l={words:[o],width:s};e.push(l)}return e},[]),j8=e=>e.reduce((e,n)=>e.width>n.width?e:n),Ice=`…`,M8=(e,n,r,i,a,o,s,c)=>{var l=O8({breakAll:r,style:i,children:e.slice(0,n)+Ice});if(!l)return[!1,[]];var u=A8(l.wordsWithComputedWidth,o,s,c);return[u.length>a||j8(u).width>Number(o),u]},Lce=(e,n,r,i,a)=>{var{maxLines:o,children:s,style:c,breakAll:l}=e,u=Z(o),d=String(s),f=A8(n,i,r,a);if(!u||a||!(f.length>o||j8(f).width>Number(i)))return f;for(var p=0,m=d.length-1,h=0,g;p<=m&&h<=d.length-1;){var _=Math.floor((p+m)/2),[v,y]=M8(d,_-1,l,c,o,i,r,a),[b]=M8(d,_,l,c,o,i,r,a);if(!v&&!b&&(p=_+1),v&&b&&(m=_-1),!v&&b){g=y;break}h++}return g||f},N8=e=>[{words:Bz(e)?[]:e.toString().split(D8),width:void 0}],Rce=e=>{var{width:n,scaleToFit:r,children:i,style:a,breakAll:o,maxLines:s}=e;if((n||r)&&!EJ.isSsr){var c,l,u=O8({breakAll:o,children:i,style:a});if(u){var{wordsWithComputedWidth:d,spaceWidth:f}=u;c=d,l=f}else return N8(i);return Lce({breakAll:o,children:i,maxLines:s,style:a},c,l,n,!!r)}return N8(i)},P8=`#808080`,zce={angle:0,breakAll:!1,capHeight:`0.71em`,fill:P8,lineHeight:`1em`,scaleToFit:!1,textAnchor:`start`,verticalAnchor:`end`,x:0,y:0},F8=(0,x.forwardRef)((e,n)=>{var r=mB(e,zce),{x:i,y:a,lineHeight:o,capHeight:s,fill:c,scaleToFit:l,textAnchor:u,verticalAnchor:d}=r,f=E8(r,Mce),p=(0,x.useMemo)(()=>Rce({breakAll:f.breakAll,children:f.children,maxLines:f.maxLines,scaleToFit:l,style:f.style,width:f.width}),[f.breakAll,f.children,f.maxLines,l,f.style,f.width]),{dx:m,dy:h,angle:g,className:_,breakAll:v}=f,y=E8(f,Nce);if(!Nz(i)||!Nz(a)||p.length===0)return null;var b=Number(i)+(Z(m)?m:0),S=Number(a)+(Z(h)?h:0);if(!RW(b)||!RW(S))return null;var C;switch(d){case`start`:C=w8(`calc(${s})`);break;case`middle`:C=w8(`calc(${(p.length-1)/2} * -${o} + (${s} / 2))`);break;default:C=w8(`calc(${p.length-1} * -${o})`);break}var w=[],T=p[0];if(l&&T!=null){var E=T.width,{width:D}=f;w.push(`scale(${Z(D)&&Z(E)?D/E:1})`)}return g&&w.push(`rotate(${g}, ${b}, ${S})`),w.length&&(y.transform=w.join(` `)),x.createElement(`text`,T8({},mR(y),{ref:n,x:b,y:S,className:cR(`recharts-text`,_),textAnchor:u,fill:c.includes(`url`)?P8:c}),p.map((e,n)=>{var r=e.words.join(v?``:` `);return x.createElement(`tspan`,{x:b,dy:n===0?C:o,key:`${r}-${n}`},r)}))});F8.displayName=`Text`;function I8(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function L8(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?I8(Object(r),!0).forEach(function(n){Bce(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):I8(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Bce(e,n,r){return(n=Vce(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Vce(e){var n=Hce(e,`string`);return typeof n==`symbol`?n:n+``}function Hce(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var Uce=e=>{var{viewBox:n,position:r,offset:i=0,parentViewBox:a,clamp:o}=e,{x:s,y:c,height:l,upperWidth:u,lowerWidth:d}=dK(n),f=s,p=s+(u-d)/2,m=(f+p)/2,h=(u+d)/2,g=f+u/2,_=l>=0?1:-1,v=_*i,y=_>0?`end`:`start`,b=_>0?`start`:`end`,x=u>=0?1:-1,S=x*i,C=x>0?`end`:`start`,w=x>0?`start`:`end`,T=a;if(r===`top`){var E={x:f+u/2,y:c-v,horizontalAnchor:`middle`,verticalAnchor:y};return o&&T&&(E.height=Math.max(c-T.y,0),E.width=u),E}if(r===`bottom`){var D={x:p+d/2,y:c+l+v,horizontalAnchor:`middle`,verticalAnchor:b};return o&&T&&(D.height=Math.max(T.y+T.height-(c+l),0),D.width=d),D}if(r===`left`){var O={x:m-S,y:c+l/2,horizontalAnchor:C,verticalAnchor:`middle`};return o&&T&&(O.width=Math.max(O.x-T.x,0),O.height=l),O}if(r===`right`){var k={x:m+h+S,y:c+l/2,horizontalAnchor:w,verticalAnchor:`middle`};return o&&T&&(k.width=Math.max(T.x+T.width-k.x,0),k.height=l),k}var A=o&&T?{width:h,height:l}:{};return r===`insideLeft`?L8({x:m+S,y:c+l/2,horizontalAnchor:w,verticalAnchor:`middle`},A):r===`insideRight`?L8({x:m+h-S,y:c+l/2,horizontalAnchor:C,verticalAnchor:`middle`},A):r===`insideTop`?L8({x:f+u/2,y:c+v,horizontalAnchor:`middle`,verticalAnchor:b},A):r===`insideBottom`?L8({x:p+d/2,y:c+l-v,horizontalAnchor:`middle`,verticalAnchor:y},A):r===`insideTopLeft`?L8({x:f+S,y:c+v,horizontalAnchor:w,verticalAnchor:b},A):r===`insideTopRight`?L8({x:f+u-S,y:c+v,horizontalAnchor:C,verticalAnchor:b},A):r===`insideBottomLeft`?L8({x:p+S,y:c+l-v,horizontalAnchor:w,verticalAnchor:y},A):r===`insideBottomRight`?L8({x:p+d-S,y:c+l-v,horizontalAnchor:C,verticalAnchor:y},A):r&&typeof r==`object`&&(Z(r.x)||Mz(r.x))&&(Z(r.y)||Mz(r.y))?L8({x:s+Iz(r.x,h),y:c+Iz(r.y,l),horizontalAnchor:`end`,verticalAnchor:`end`},A):L8({x:g,y:c+l/2,horizontalAnchor:`middle`,verticalAnchor:`middle`},A)},Wce=[`labelRef`],Gce=[`content`];function R8(e,n){if(e==null)return{};var r,i,a=Kce(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Kce(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function z8(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function B8(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?z8(Object(r),!0).forEach(function(n){qce(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):z8(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function qce(e,n,r){return(n=Jce(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Jce(e){var n=Yce(e,`string`);return typeof n==`symbol`?n:n+``}function Yce(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function V8(){return V8=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},V8.apply(null,arguments)}var H8=(0,x.createContext)(null),Xce=e=>{var{x:n,y:r,upperWidth:i,lowerWidth:a,width:o,height:s,children:c}=e,l=(0,x.useMemo)(()=>({x:n,y:r,upperWidth:i,lowerWidth:a,width:o,height:s}),[n,r,i,a,o,s]);return x.createElement(H8.Provider,{value:l},c)},U8=()=>{var e=(0,x.useContext)(H8),n=fK();return e||(n?dK(n):void 0)},Zce=(0,x.createContext)(null),Qce=()=>{var e=(0,x.useContext)(Zce),n=Q($Z);return e||n},$ce=e=>{var{value:n,formatter:r}=e,i=Bz(e.children)?n:e.children;return typeof r==`function`?r(i):i},W8=e=>e!=null&&typeof e==`function`,ele=(e,n)=>Az(n-e)*Math.min(Math.abs(n-e),360),tle=(e,n,r,i,a)=>{var{offset:o,className:s}=e,{cx:c,cy:l,innerRadius:u,outerRadius:d,startAngle:f,endAngle:p,clockWise:m}=a,h=(u+d)/2,g=ele(f,p),_=g>=0?1:-1,v,y;switch(n){case`insideStart`:v=f+_*o,y=m;break;case`insideEnd`:v=p-_*o,y=!m;break;case`end`:v=p+_*o,y=m;break;default:throw Error(`Unsupported position ${n}`)}y=g<=0?y:!y;var b=DX(c,l,h,v),S=DX(c,l,h,v+(y?1:-1)*359),C=`M${b.x},${b.y}
     A${h},${h},0,1,${+!y},
-    ${S.x},${S.y}`,w=Bz(e.id)?Fz(`recharts-radial-line-`):e.id;return x.createElement(`text`,V8({},i,{dominantBaseline:`central`,className:cR(`recharts-radial-bar-label`,s)}),x.createElement(`defs`,null,x.createElement(`path`,{id:w,d:C})),x.createElement(`textPath`,{xlinkHref:`#${w}`},r))},nle=(e,n,r)=>{var{cx:i,cy:a,innerRadius:o,outerRadius:s,startAngle:c,endAngle:l}=e,u=(c+l)/2;if(r===`outside`){var{x:d,y:f}=DX(i,a,s+n,u);return{x:d,y:f,textAnchor:d>=i?`start`:`end`,verticalAnchor:`middle`}}if(r===`center`)return{x:i,y:a,textAnchor:`middle`,verticalAnchor:`middle`};if(r===`centerTop`)return{x:i,y:a,textAnchor:`middle`,verticalAnchor:`start`};if(r===`centerBottom`)return{x:i,y:a,textAnchor:`middle`,verticalAnchor:`end`};var{x:p,y:m}=DX(i,a,(o+s)/2,u);return{x:p,y:m,textAnchor:`middle`,verticalAnchor:`middle`}},G8=e=>e!=null&&`cx`in e&&Z(e.cx),rle={angle:0,offset:5,zIndex:NZ.label,position:`middle`,textBreakAll:!1};function ile(e){if(!G8(e))return e;var{cx:n,cy:r,outerRadius:i}=e,a=i*2;return{x:n-i,y:r-i,width:a,upperWidth:a,lowerWidth:a,height:a}}function K8(e){var n=mB(e,rle),{viewBox:r,parentViewBox:i,position:a,value:o,children:s,content:c,className:l=``,textBreakAll:u,labelRef:d}=n,f=Qce(),p=U8(),m=r==null?a===`center`?p:f??p:G8(r)?r:dK(r),h,g,_=ile(m);if(!m||Bz(o)&&Bz(s)&&!(0,x.isValidElement)(c)&&typeof c!=`function`)return null;var v=B8(B8({},n),{},{viewBox:m});if((0,x.isValidElement)(c)){var{labelRef:y}=v;return(0,x.cloneElement)(c,R8(v,Wce))}if(typeof c==`function`){var{content:b}=v;if(h=(0,x.createElement)(c,R8(v,Gce)),(0,x.isValidElement)(h))return h}else h=$ce(n);var S=mR(n);if(G8(m)){if(a===`insideStart`||a===`insideEnd`||a===`end`)return tle(n,a,h,S,m);g=nle(m,n.offset,n.position)}else{if(!_)return null;var C=Uce({viewBox:_,position:a,offset:n.offset,parentViewBox:G8(i)?void 0:i,clamp:!0});g=B8(B8({x:C.x,y:C.y,textAnchor:C.horizontalAnchor,verticalAnchor:C.verticalAnchor},C.width===void 0?{}:{width:C.width}),C.height===void 0?{}:{height:C.height})}return x.createElement(K6,{zIndex:n.zIndex},x.createElement(F8,V8({ref:d,className:cR(`recharts-label`,l)},S,g,{textAnchor:k8(S.textAnchor)?S.textAnchor:g.textAnchor,breakAll:u}),h))}K8.displayName=`Label`;var ale=(e,n,r)=>{if(!e)return null;var i={viewBox:n,labelRef:r};return e===!0?x.createElement(K8,V8({key:`label-implicit`},i)):Nz(e)?x.createElement(K8,V8({key:`label-implicit`,value:e},i)):(0,x.isValidElement)(e)?e.type===K8?(0,x.cloneElement)(e,B8({key:`label-implicit`},i)):x.createElement(K8,V8({key:`label-implicit`,content:e},i)):W8(e)?x.createElement(K8,V8({key:`label-implicit`,content:e},i)):e&&typeof e==`object`?x.createElement(K8,V8({},e,{key:`label-implicit`},i)):null};function ole(e){var{label:n,labelRef:r}=e;return ale(n,U8(),r)||null}var sle=[`valueAccessor`],cle=[`dataKey`,`clockWise`,`id`,`textBreakAll`,`zIndex`];function q8(){return q8=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},q8.apply(null,arguments)}function J8(e,n){if(e==null)return{};var r,i,a=lle(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function lle(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}var ule=e=>{var n=Array.isArray(e.value)?e.value[e.value.length-1]:e.value;if(Fce(n))return n},Y8=(0,x.createContext)(void 0),X8=Y8.Provider,Z8=(0,x.createContext)(void 0),dle=Z8.Provider;function fle(){return(0,x.useContext)(Y8)}function ple(){return(0,x.useContext)(Z8)}function Q8(e){var{valueAccessor:n=ule}=e,r=J8(e,sle),{dataKey:i,clockWise:a,id:o,textBreakAll:s,zIndex:c}=r,l=J8(r,cle),u=fle(),d=ple(),f=u||d;return!f||!f.length?null:x.createElement(K6,{zIndex:c??NZ.label},x.createElement(vR,{className:`recharts-label-list`},f.map((e,a)=>{var c=Bz(i)?n(e,a):GW(e.payload,i),u=Bz(o)?{}:{id:`${o}-${a}`};return x.createElement(K8,q8({key:`label-${a}`},mR(e),l,u,{fill:r.fill??e.fill,parentViewBox:e.parentViewBox,value:c,textBreakAll:s,viewBox:e.viewBox,index:a,zIndex:0}))})))}Q8.displayName=`LabelList`;function $8(e){var{label:n}=e;return n?n===!0?x.createElement(Q8,{key:`labelList-implicit`}):x.isValidElement(n)||W8(n)?x.createElement(Q8,{key:`labelList-implicit`,content:n}):typeof n==`object`?x.createElement(Q8,q8({key:`labelList-implicit`},n,{type:String(n.type)})):null:null}function e5(){return e5=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},e5.apply(null,arguments)}var t5=e=>{var{cx:n,cy:r,r:i,className:a}=e,o=cR(`recharts-dot`,a);return Z(n)&&Z(r)&&Z(i)?x.createElement(`circle`,e5({},fR(e),oB(e),{className:o,cx:n,cy:r,r:i})):null},n5=e=>e.graphicalItems.polarItems,r5=$([n5,d4,$([eQ,tQ],h4)],v4),i5=$([$([r5],C4),nZ],E4),mle=$([i5,d4,r5],O4);$([i5,d4,r5],(e,n,r)=>r.length>0?e.flatMap(e=>r.flatMap(r=>({value:GW(e,n.dataKey??r.dataKey),errorDomain:[]}))).filter(Boolean):n?.dataKey==null?e.map(e=>({value:e,errorDomain:[]})):e.map(e=>({value:GW(e,n.dataKey),errorDomain:[]})));var a5=()=>void 0,o5=$([d4,vK,i5,mle,EZ,eQ,$([d4,K4,q4,a5,$([i5,d4,r5,Y4,eQ,oZ],Q4),a5,vK,eQ],d3)],f3);$([m3,$([d4,o5,$([o5,p4,m3],h3),eQ],_3)],dQ);var s5=UU({name:`polarAxis`,initialState:{radiusAxis:{},angleAxis:{}},reducers:{addRadiusAxis(e,n){e.radiusAxis[n.payload.id]=yq(n.payload)},removeRadiusAxis(e,n){delete e.radiusAxis[n.payload.id]},addAngleAxis(e,n){e.angleAxis[n.payload.id]=yq(n.payload)},removeAngleAxis(e,n){delete e.angleAxis[n.payload.id]}}}),{addRadiusAxis:hle,removeRadiusAxis:gle,addAngleAxis:_le,removeAngleAxis:vle}=s5.actions,yle=s5.reducer;function c5(e){return e&&typeof e==`object`&&`className`in e&&typeof e.className==`string`?e.className:``}function l5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function u5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?l5(Object(r),!0).forEach(function(n){ble(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):l5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function ble(e,n,r){return(n=xle(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function xle(e){var n=Sle(e,`string`);return typeof n==`symbol`?n:n+``}function Sle(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var d5=$([n5,(e,n)=>n],(e,n)=>e.filter(e=>e.type===`pie`).find(e=>e.id===n)),Cle=[],f5=(e,n,r)=>r?.length===0?Cle:r,p5=$([nZ,d5,f5],(e,n,r)=>{var{chartData:i}=e;if(n!=null){var a=n?.data!=null&&n.data.length>0?n.data:i;if((!a||!a.length)&&r!=null&&(a=r.map(e=>u5(u5({},n.presentationProps),e.props))),a!=null)return a}}),wle=$([p5,d5,f5],(e,n,r)=>{if(!(e==null||n==null))return e.map((e,i)=>{var a,o=GW(e,n.nameKey,n.name),s=r!=null&&(a=r[i])!=null&&(a=a.props)!=null&&a.fill?r[i].props.fill:typeof e==`object`&&e&&`fill`in e?e.fill:n.fill;return{value:uG(o,n.dataKey),color:s,payload:e,type:n.legendType}})}),Tle=$([p5,d5,f5,jG],(e,n,r,i)=>{if(!(n==null||e==null))return Oue({offset:i,pieSettings:n,displayedData:e,cells:r})}),Ele=c((e=>{var n=Symbol.for(`react.transitional.element`),r=Symbol.for(`react.portal`),i=Symbol.for(`react.fragment`),a=Symbol.for(`react.strict_mode`),o=Symbol.for(`react.profiler`),s=Symbol.for(`react.consumer`),c=Symbol.for(`react.context`),l=Symbol.for(`react.forward_ref`),u=Symbol.for(`react.suspense`),d=Symbol.for(`react.suspense_list`),f=Symbol.for(`react.memo`),p=Symbol.for(`react.lazy`),m=Symbol.for(`react.view_transition`);function h(e){if(typeof e==`object`&&e){var h=e.$$typeof;switch(h){case n:switch(e=e.type,e){case i:case o:case a:case u:case d:case m:return e;default:switch(e&&=e.$$typeof,e){case c:case l:case p:case f:return e;case s:return e;default:return h}}case r:return h}}}e.isFragment=function(e){return h(e)===i}})),Dle=c(((e,n)=>{n.exports=Ele()}))(),m5=e=>typeof e==`string`?e:e?e.displayName||e.name||`Component`:``,h5=null,g5=null,_5=e=>{if(e===h5&&Array.isArray(g5))return g5;var n=[];return x.Children.forEach(e,e=>{Bz(e)||((0,Dle.isFragment)(e)?n=n.concat(_5(e.props.children)):n.push(e))}),g5=n,h5=e,n};function v5(e,n){var r=[],i=[];return i=Array.isArray(n)?n.map(e=>m5(e)):[m5(n)],_5(e).forEach(e=>{var n=(0,kz.default)(e,`type.displayName`)||(0,kz.default)(e,`type.name`);n&&i.indexOf(n)!==-1&&r.push(e)}),r}var y5=e=>e&&typeof e==`object`&&`clipDot`in e?!!e.clipDot:!0,Ole=c((e=>{Object.defineProperty(e,Symbol.toStringTag,{value:`Module`});function n(e){if(typeof e!=`object`||!e)return!1;if(Object.getPrototypeOf(e)===null)return!0;if(Object.prototype.toString.call(e)!==`[object Object]`){let n=e[Symbol.toStringTag];return n==null||!Object.getOwnPropertyDescriptor(e,Symbol.toStringTag)?.writable?!1:e.toString()===`[object ${n}]`}let n=e;for(;Object.getPrototypeOf(n)!==null;)n=Object.getPrototypeOf(n);return Object.getPrototypeOf(e)===n}e.isPlainObject=n})),kle=c(((e,n)=>{n.exports=Ole().isPlainObject})),Ale,jle,Mle,Nle,Ple;function b5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function x5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?b5(Object(r),!0).forEach(function(n){Fle(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):b5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Fle(e,n,r){return(n=Ile(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Ile(e){var n=Lle(e,`string`);return typeof n==`symbol`?n:n+``}function Lle(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function S5(){return S5=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},S5.apply(null,arguments)}function C5(e,n){return n||=e.slice(0),Object.freeze(Object.defineProperties(e,{raw:{value:Object.freeze(n)}}))}var w5=(e,n,r,i,a)=>{var o=r-i,s=Oz(Ale||=C5([`M `,`,`,``]),e,n);return s+=Oz(jle||=C5([`L `,`,`,``]),e+r,n),s+=Oz(Mle||=C5([`L `,`,`,``]),e+r-o/2,n+a),s+=Oz(Nle||=C5([`L `,`,`,``]),e+r-o/2-i,n+a),s+=Oz(Ple||=C5([`L `,`,`,` Z`]),e,n),s},Rle={x:0,y:0,upperWidth:0,lowerWidth:0,height:0,isUpdateAnimationActive:!1,animationBegin:0,animationDuration:1500,animationEasing:`ease`},zle=e=>{var n=mB(e,Rle),{x:r,y:i,upperWidth:a,lowerWidth:o,height:s,className:c}=n,{animationEasing:l,animationDuration:u,animationBegin:d,isUpdateAnimationActive:f}=n,p=(0,x.useRef)(null),[m,h]=(0,x.useState)(-1),g=(0,x.useRef)(a),_=(0,x.useRef)(o),v=(0,x.useRef)(s),y=(0,x.useRef)(r),b=(0,x.useRef)(i),S=YY(e,`trapezoid-`);if((0,x.useEffect)(()=>{if(p.current&&p.current.getTotalLength)try{var e=p.current.getTotalLength();e&&h(e)}catch{}},[]),r!==+r||i!==+i||a!==+a||o!==+o||s!==+s||a===0&&o===0||s===0)return null;var C=cR(`recharts-trapezoid`,c);if(!f)return x.createElement(`g`,null,x.createElement(`path`,S5({},mR(n),{className:C,d:w5(r,i,a,o,s)})));var w=g.current,T=_.current,E=v.current,D=y.current,O=b.current,k=`0px ${m===-1?1:m}px`,A=`${m}px ${m}px`,j=gY([`strokeDasharray`],u,l);return x.createElement(JY,{animationId:S,key:S,canBegin:m>0,duration:u,easing:l,isActive:f,begin:d},e=>{var c=Rz(w,a,e),l=Rz(T,o,e),u=Rz(E,s,e),d=Rz(D,r,e),f=Rz(O,i,e);p.current&&(g.current=c,_.current=l,v.current=u,y.current=d,b.current=f);var m=e>0?{transition:j,strokeDasharray:A}:{strokeDasharray:k};return x.createElement(`path`,S5({},mR(n),{className:C,d:w5(d,f,c,l,u),ref:p,style:x5(x5({},m),n.style)}))})},Ble=d(kle()),Vle=[`option`,`shapeType`,`activeClassName`,`inActiveClassName`];function Hle(e,n){if(e==null)return{};var r,i,a=Ule(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Ule(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function T5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function E5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?T5(Object(r),!0).forEach(function(n){Wle(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):T5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Wle(e,n,r){return(n=Gle(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Gle(e){var n=Kle(e,`string`);return typeof n==`symbol`?n:n+``}function Kle(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function qle(e,n){return E5(E5({},n),e)}function Jle(e,n){return e===`symbols`}function D5(e){var{shapeType:n,elementProps:r}=e;switch(n){case`rectangle`:return x.createElement(yX,r);case`trapezoid`:return x.createElement(zle,r);case`sector`:return x.createElement(YX,r);case`symbols`:if(Jle(n,r))return x.createElement(iB,r);break;case`curve`:return x.createElement(ZJ,r);default:return null}}function Yle(e){return(0,x.isValidElement)(e)?e.props:e}function O5(e){var{option:n,shapeType:r,activeClassName:i=`recharts-active-shape`,inActiveClassName:a=`recharts-shape`}=e,o=Hle(e,Vle),s;if((0,x.isValidElement)(n))s=(0,x.cloneElement)(n,E5(E5({},o),Yle(n)));else if(typeof n==`function`)s=n(o,o.index);else if((0,Ble.default)(n)&&typeof n!=`boolean`){var c=qle(n,o);s=x.createElement(D5,{shapeType:r,elementProps:c})}else{var l=o;s=x.createElement(D5,{shapeType:r,elementProps:l})}return o.isActive?x.createElement(vR,{className:i},s):x.createElement(vR,{className:a},s)}var k5=(e,n,r)=>{var i=sV();return(a,o)=>s=>{e?.(a,o,s),i(W3({activeIndex:String(o),activeDataKey:n,activeCoordinate:a.tooltipPosition,activeGraphicalItemId:r}))}},A5=e=>{var n=sV();return(r,i)=>a=>{e?.(r,i,a),n(Eoe())}},j5=(e,n,r)=>{var i=sV();return(a,o)=>s=>{e?.(a,o,s),i(Doe({activeIndex:String(o),activeDataKey:n,activeCoordinate:a.tooltipPosition,activeGraphicalItemId:r}))}};function M5(e){var{tooltipEntrySettings:n}=e,r=sV(),i=FG(),a=(0,x.useRef)(null);return(0,x.useLayoutEffect)(()=>{i||(a.current===null?r(Soe(n)):a.current!==n&&r(Coe({prev:a.current,next:n})),a.current=n)},[n,r,i]),(0,x.useLayoutEffect)(()=>()=>{a.current&&=(r(woe(a.current)),null)},[r]),null}function N5(e){var{legendPayload:n}=e,r=sV(),i=FG(),a=(0,x.useRef)(null);return(0,x.useLayoutEffect)(()=>{i||(a.current===null?r(Cq(n)):a.current!==n&&r(wq({prev:a.current,next:n})),a.current=n)},[r,i,n]),(0,x.useLayoutEffect)(()=>()=>{a.current&&=(r(Tq(a.current)),null)},[r]),null}function Xle(e){var{legendPayload:n}=e,r=sV(),i=Q(vK),a=(0,x.useRef)(null);return(0,x.useLayoutEffect)(()=>{i!==`centric`&&i!==`radial`||(a.current===null?r(Cq(n)):a.current!==n&&r(wq({prev:a.current,next:n})),a.current=n)},[r,i,n]),(0,x.useLayoutEffect)(()=>()=>{a.current&&=(r(Tq(a.current)),null)},[r]),null}var Zle=x.useId??(()=>{var[e]=x.useState(()=>Fz(`uid-`));return e});function Qle(e,n){var r=Zle();return n||(e?`${e}-${r}`:r)}var $le=(0,x.createContext)(void 0),P5=e=>{var{id:n,type:r,children:i}=e,a=Qle(`recharts-${r}`,n);return x.createElement($le.Provider,{value:a},i(a))},F5=UU({name:`graphicalItems`,initialState:{cartesianItems:[],polarItems:[]},reducers:{addCartesianGraphicalItem:{reducer(e,n){e.cartesianItems.push(yq(n.payload))},prepare:OU()},replaceCartesianGraphicalItem:{reducer(e,n){var{prev:r,next:i}=n.payload,a=mU(e).cartesianItems.indexOf(yq(r));a>-1&&(e.cartesianItems[a]=yq(i))},prepare:OU()},removeCartesianGraphicalItem:{reducer(e,n){var r=mU(e).cartesianItems.indexOf(yq(n.payload));r>-1&&e.cartesianItems.splice(r,1)},prepare:OU()},addPolarGraphicalItem:{reducer(e,n){e.polarItems.push(yq(n.payload))},prepare:OU()},removePolarGraphicalItem:{reducer(e,n){var r=mU(e).polarItems.indexOf(yq(n.payload));r>-1&&e.polarItems.splice(r,1)},prepare:OU()},replacePolarGraphicalItem:{reducer(e,n){var{prev:r,next:i}=n.payload,a=mU(e).polarItems.indexOf(yq(r));a>-1&&(e.polarItems[a]=yq(i))},prepare:OU()}}}),{addCartesianGraphicalItem:eue,replaceCartesianGraphicalItem:tue,removeCartesianGraphicalItem:nue,addPolarGraphicalItem:rue,removePolarGraphicalItem:iue,replacePolarGraphicalItem:aue}=F5.actions,oue=F5.reducer,I5=(0,x.memo)(e=>{var n=sV(),r=(0,x.useRef)(null);return(0,x.useLayoutEffect)(()=>{r.current===null?n(eue(e)):r.current!==e&&n(tue({prev:r.current,next:e})),r.current=e},[n,e]),(0,x.useLayoutEffect)(()=>()=>{r.current&&=(n(nue(r.current)),null)},[n]),null}),sue=(0,x.memo)(e=>{var n=sV(),r=(0,x.useRef)(null);return(0,x.useLayoutEffect)(()=>{r.current===null?n(rue(e)):r.current!==e&&n(aue({prev:r.current,next:e})),r.current=e},[n,e]),(0,x.useLayoutEffect)(()=>()=>{r.current&&=(n(iue(r.current)),null)},[n]),null}),cue=[`key`],lue=[`onMouseEnter`,`onClick`,`onMouseLeave`],uue=[`id`],due=[`id`];function L5(){return L5=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},L5.apply(null,arguments)}function R5(e,n){if(e==null)return{};var r,i,a=fue(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function fue(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function z5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function B5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?z5(Object(r),!0).forEach(function(n){pue(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):z5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function pue(e,n,r){return(n=mue(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function mue(e){var n=hue(e,`string`);return typeof n==`symbol`?n:n+``}function hue(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function gue(e){var n=(0,x.useMemo)(()=>v5(e.children,u8),[e.children]),r=Q(r=>wle(r,e.id,n));return r==null?null:x.createElement(Xle,{legendPayload:r})}function _ue(e){if(!(e==null||typeof e==`boolean`||typeof e==`function`)){if(x.isValidElement(e)){var n=e.props?.fill;return typeof n==`string`?n:void 0}var{fill:r}=e;return typeof r==`string`?r:void 0}}var vue=x.memo(e=>{var{dataKey:n,nameKey:r,sectors:i,stroke:a,strokeWidth:o,fill:s,name:c,hide:l,tooltipType:u,id:d,activeShape:f}=e,p=_ue(f),m={dataDefinedOnItem:i.map(e=>{var n=e.tooltipPayload;return p==null||n==null?n:n.map(e=>B5(B5({},e),{},{color:p,fill:p}))}),getPosition:e=>i[Number(e)]?.tooltipPosition,settings:{stroke:a,strokeWidth:o,fill:s,dataKey:n,nameKey:r,name:uG(c,n),hide:l,type:u,color:s,unit:``,graphicalItemId:d}};return x.createElement(M5,{tooltipEntrySettings:m})}),yue=(e,n)=>e>n?`start`:e<n?`end`:`middle`,bue=(e,n,r)=>Iz(typeof n==`function`?n(e):n,r,r*.8),xue=(e,n,r)=>{var{top:i,left:a,width:o,height:s}=n,c=OX(o,s);return{cx:a+Iz(e.cx,o,o/2),cy:i+Iz(e.cy,s,s/2),innerRadius:Iz(e.innerRadius,c,0),outerRadius:bue(r,e.outerRadius,c),maxRadius:e.maxRadius||Math.sqrt(o*o+s*s)/2}},Sue=(e,n)=>Az(n-e)*Math.min(Math.abs(n-e),360),Cue=(e,n)=>{if(x.isValidElement(e))return x.cloneElement(e,n);if(typeof e==`function`)return e(n);var r=cR(`recharts-pie-label-line`,typeof e==`boolean`?``:e.className),{key:i}=n,a=R5(n,cue);return x.createElement(ZJ,L5({},a,{type:`linear`,className:r}))},wue=(e,n,r)=>{if(x.isValidElement(e))return x.cloneElement(e,n);var i=r;if(typeof e==`function`&&(i=e(n),x.isValidElement(i)))return i;var a=cR(`recharts-pie-label-text`,c5(e));return x.createElement(F8,L5({},n,{alignmentBaseline:`middle`,className:a}),i)};function Tue(e){var{sectors:n,props:r,showLabels:i}=e,{label:a,labelLine:o,dataKey:s}=r;if(!i||!a||!n)return null;var c=fR(r),l=pR(a),u=pR(o),d=typeof a==`object`&&`offsetRadius`in a&&typeof a.offsetRadius==`number`&&a.offsetRadius||20,f=n.map((e,n)=>{var r=(e.startAngle+e.endAngle)/2,i=DX(e.cx,e.cy,e.outerRadius+d,r),f=B5(B5(B5(B5({},c),e),{},{stroke:`none`},l),{},{index:n,textAnchor:yue(i.x,e.cx)},i),p=B5(B5(B5(B5({},c),e),{},{fill:`none`,stroke:e.fill},u),{},{index:n,points:[DX(e.cx,e.cy,e.outerRadius,r),i],key:`line`});return x.createElement(K6,{zIndex:NZ.label,key:`label-${e.startAngle}-${e.endAngle}-${e.midAngle}-${n}`},x.createElement(vR,null,o&&Cue(o,p),wue(a,f,GW(e,s))))});return x.createElement(vR,{className:`recharts-pie-labels`},f)}function Eue(e){var{sectors:n,props:r,showLabels:i}=e,{label:a}=r;return typeof a==`object`&&a&&`position`in a?x.createElement($8,{label:a}):x.createElement(Tue,{sectors:n,props:r,showLabels:i})}function Due(e){var{sectors:n,activeShape:r,inactiveShape:i,allOtherPieProps:a,shape:o,id:s}=e,c=Q(C6),l=Q(T6),u=Q(E6),{onMouseEnter:d,onClick:f,onMouseLeave:p}=a,m=R5(a,lue),h=k5(d,a.dataKey,s),g=A5(p),_=j5(f,a.dataKey,s);return n==null||n.length===0?null:x.createElement(x.Fragment,null,n.map((e,d)=>{if(e?.startAngle===0&&e?.endAngle===0&&n.length!==1)return null;var f=u==null||u===s,p=String(d)===c&&(l==null||a.dataKey===l)&&f,v=r&&p?r:c?i:null,y=B5(B5({},e),{},{stroke:e.stroke,tabIndex:-1,[yG]:d,[bG]:s});return x.createElement(vR,L5({key:`sector-${e?.startAngle}-${e?.endAngle}-${e.midAngle}-${d}`,tabIndex:-1,className:`recharts-pie-sector`},cB(m,e,d),{onMouseEnter:h(e,d),onMouseLeave:g(e,d),onClick:_(e,d)}),x.createElement(O5,L5({option:o??v,index:d,shapeType:`sector`,isActive:p},y)))}))}function Oue(e){var{pieSettings:n,displayedData:r,cells:i,offset:a}=e,{cornerRadius:o,startAngle:s,endAngle:c,dataKey:l,nameKey:u,tooltipType:d}=n,f=Math.abs(n.minAngle),p=Sue(s,c),m=Math.abs(p),h=r.length<=1?0:n.paddingAngle??0,g=r.filter(e=>GW(e,l,0)!==0).length,_=(m>=360?g:g-1)*h,v=r.reduce((e,n)=>{var r=GW(n,l,0);return e+(Z(r)?r:0)},0),y=f>0&&v>0&&r.some(e=>{var n=GW(e,l,0),r=(Z(n)?n:0)/v;return n!==0&&r*m<f})?f:0,b=m-g*y-_,x;if(v>0){var S;x=r.map((e,r)=>{var c=GW(e,l,0),f=GW(e,u,r),m=xue(n,a,e),g=(Z(c)?c:0)/v,_,x=B5(B5({},e),i&&i[r]&&i[r].props),C=x!=null&&`fill`in x&&typeof x.fill==`string`?x.fill:n.fill;_=r?S.endAngle+Az(p)*h*(c===0?0:1):s;var w=_+Az(p)*((c===0?0:y)+g*b),T=(_+w)/2,E=(m.innerRadius+m.outerRadius)/2,D=[{name:f,value:c,payload:x,dataKey:l,type:d,color:C,fill:C,graphicalItemId:n.id}],O=DX(m.cx,m.cy,E,T);return S=B5(B5(B5(B5({},n.presentationProps),{},{percent:g,cornerRadius:typeof o==`string`?parseFloat(o):o,name:f,tooltipPayload:D,midAngle:T,middleRadius:E,tooltipPosition:O},x),m),{},{value:c,dataKey:l,startAngle:_,endAngle:w,payload:x,paddingAngle:c===0?0:Az(p)*h}),S})}return x}function kue(e){var{showLabels:n,sectors:r,children:i}=e,a=(0,x.useMemo)(()=>!n||!r?[]:r.map(e=>({value:e.value,payload:e.payload,clockWise:!1,parentViewBox:void 0,viewBox:{cx:e.cx,cy:e.cy,innerRadius:e.innerRadius,outerRadius:e.outerRadius,startAngle:e.startAngle,endAngle:e.endAngle,clockWise:!1},fill:e.fill})),[r,n]);return x.createElement(dle,{value:n?a:void 0},i)}function Aue(e){var{props:n,previousSectorsRef:r,id:i}=e,{sectors:a,isAnimationActive:o,animationBegin:s,animationDuration:c,animationEasing:l,activeShape:u,inactiveShape:d,onAnimationStart:f,onAnimationEnd:p}=n,m=YY(n,`recharts-pie-`),h=r.current,[g,_]=(0,x.useState)(!1),v=(0,x.useCallback)(()=>{typeof p==`function`&&p(),_(!1)},[p]),y=(0,x.useCallback)(()=>{typeof f==`function`&&f(),_(!0)},[f]);return x.createElement(kue,{showLabels:!g,sectors:a},x.createElement(JY,{animationId:m,begin:s,duration:c,isActive:o,easing:l,onAnimationStart:y,onAnimationEnd:v,key:m},e=>{var o=[],s=(a&&a[0])?.startAngle??0;return a?.forEach((n,r)=>{var i=h&&h[r],a=r>0?(0,kz.default)(n,`paddingAngle`,0):0;if(i){var c=Rz(i.endAngle-i.startAngle,n.endAngle-n.startAngle,e),l=B5(B5({},n),{},{startAngle:s+a,endAngle:s+c+a});o.push(l),s=l.endAngle}else{var{endAngle:u,startAngle:d}=n,f=Rz(0,u-d,e),p=B5(B5({},n),{},{startAngle:s+a,endAngle:s+f+a});o.push(p),s=p.endAngle}}),r.current=o,x.createElement(vR,null,x.createElement(Due,{sectors:o,activeShape:u,inactiveShape:d,allOtherPieProps:n,shape:n.shape,id:i}))}),x.createElement(Eue,{showLabels:!g,sectors:a,props:n}),n.children)}var jue={animationBegin:400,animationDuration:1500,animationEasing:`ease`,cx:`50%`,cy:`50%`,dataKey:`value`,endAngle:360,fill:`#808080`,hide:!1,innerRadius:0,isAnimationActive:`auto`,label:!1,labelLine:!0,legendType:`rect`,minAngle:0,nameKey:`name`,outerRadius:`80%`,paddingAngle:0,rootTabIndex:0,startAngle:0,stroke:`#fff`,zIndex:NZ.area};function Mue(e){var{id:n}=e,r=R5(e,uue),{hide:i,className:a,rootTabIndex:o}=e,s=(0,x.useMemo)(()=>v5(e.children,u8),[e.children]),c=Q(e=>Tle(e,n,s)),l=(0,x.useRef)(null),u=cR(`recharts-pie`,a);return i||c==null?(l.current=null,x.createElement(vR,{tabIndex:o,className:u})):x.createElement(K6,{zIndex:e.zIndex},x.createElement(vue,{dataKey:e.dataKey,nameKey:e.nameKey,sectors:c,stroke:e.stroke,strokeWidth:e.strokeWidth,fill:e.fill,name:e.name,hide:e.hide,tooltipType:e.tooltipType,id:n,activeShape:e.activeShape}),x.createElement(vR,{tabIndex:o,className:u},x.createElement(Aue,{props:B5(B5({},r),{},{sectors:c}),previousSectorsRef:l,id:n})))}function Nue(e){var n=mB(e,jue),{id:r}=n,i=R5(n,due),a=fR(i);return x.createElement(P5,{id:r,type:`pie`},e=>x.createElement(x.Fragment,null,x.createElement(sue,{type:`pie`,id:e,data:i.data,dataKey:i.dataKey,hide:i.hide,angleAxisId:0,radiusAxisId:0,name:i.name,nameKey:i.nameKey,tooltipType:i.tooltipType,legendType:i.legendType,fill:i.fill,cx:i.cx,cy:i.cy,startAngle:i.startAngle,endAngle:i.endAngle,paddingAngle:i.paddingAngle,minAngle:i.minAngle,innerRadius:i.innerRadius,outerRadius:i.outerRadius,cornerRadius:i.cornerRadius,presentationProps:a,maxRadius:n.maxRadius}),x.createElement(gue,L5({},i,{id:e})),x.createElement(Mue,L5({},i,{id:e}))))}var V5=Nue;V5.displayName=`Pie`;var Pue=[`points`];function H5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function U5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?H5(Object(r),!0).forEach(function(n){Fue(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):H5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Fue(e,n,r){return(n=Iue(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Iue(e){var n=Lue(e,`string`);return typeof n==`symbol`?n:n+``}function Lue(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function W5(){return W5=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},W5.apply(null,arguments)}function Rue(e,n){if(e==null)return{};var r,i,a=zue(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function zue(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function Bue(e){var{option:n,dotProps:r,className:i}=e;if((0,x.isValidElement)(n))return(0,x.cloneElement)(n,r);if(typeof n==`function`)return n(r);var a=cR(i,typeof n==`boolean`?``:n.className),o=r??{},{points:s}=o,c=Rue(o,Pue);return x.createElement(t5,W5({},c,{className:a}))}function Vue(e,n){return e==null?!1:n?!0:e.length===1}function G5(e){var{points:n,dot:r,className:i,dotClassName:a,dataKey:o,baseProps:s,needClip:c,clipPathId:l,zIndex:u=NZ.scatter}=e;if(!Vue(n,r))return null;var d=y5(r),f=hae(r),p=n.map((e,i)=>{var c=U5(U5(U5({r:3},s),f),{},{index:i,cx:e.x??void 0,cy:e.y??void 0,dataKey:o,value:e.value,payload:e.payload,points:n});return x.createElement(Bue,{key:`dot-${i}`,option:r,dotProps:c,className:a})}),m={};return c&&l!=null&&(m.clipPath=`url(#clipPath-${d?``:`dots-`}${l})`),x.createElement(K6,{zIndex:u},x.createElement(vR,W5({className:i},m),p))}function K5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function q5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?K5(Object(r),!0).forEach(function(n){Hue(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):K5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Hue(e,n,r){return(n=Uue(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Uue(e){var n=Wue(e,`string`);return typeof n==`symbol`?n:n+``}function Wue(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var J5=UU({name:`cartesianAxis`,initialState:{xAxis:{},yAxis:{},zAxis:{}},reducers:{addXAxis:{reducer(e,n){e.xAxis[n.payload.id]=yq(n.payload)},prepare:OU()},replaceXAxis:{reducer(e,n){var{prev:r,next:i}=n.payload;e.xAxis[r.id]!==void 0&&(r.id!==i.id&&delete e.xAxis[r.id],e.xAxis[i.id]=yq(i))},prepare:OU()},removeXAxis:{reducer(e,n){delete e.xAxis[n.payload.id]},prepare:OU()},addYAxis:{reducer(e,n){e.yAxis[n.payload.id]=yq(n.payload)},prepare:OU()},replaceYAxis:{reducer(e,n){var{prev:r,next:i}=n.payload;e.yAxis[r.id]!==void 0&&(r.id!==i.id&&delete e.yAxis[r.id],e.yAxis[i.id]=yq(i))},prepare:OU()},removeYAxis:{reducer(e,n){delete e.yAxis[n.payload.id]},prepare:OU()},addZAxis:{reducer(e,n){e.zAxis[n.payload.id]=yq(n.payload)},prepare:OU()},replaceZAxis:{reducer(e,n){var{prev:r,next:i}=n.payload;e.zAxis[r.id]!==void 0&&(r.id!==i.id&&delete e.zAxis[r.id],e.zAxis[i.id]=yq(i))},prepare:OU()},removeZAxis:{reducer(e,n){delete e.zAxis[n.payload.id]},prepare:OU()},updateYAxisWidth(e,n){var{id:r,width:i}=n.payload,a=e.yAxis[r];if(a){var o=a.widthHistory||[];if(o.length===3&&o[0]===o[2]&&i===o[1]&&i!==a.width&&Math.abs(i-(o[0]??0))<=1)return;var s=[...o,i].slice(-3);e.yAxis[r]=q5(q5({},a),{},{width:i,widthHistory:s})}}}}),{addXAxis:Gue,replaceXAxis:Kue,removeXAxis:que,addYAxis:Jue,replaceYAxis:Yue,removeYAxis:Xue,addZAxis:Zue,replaceZAxis:Que,removeZAxis:$ue,updateYAxisWidth:ede}=J5.actions,tde=J5.reducer,nde=$([$([jG],e=>({top:e.top,bottom:e.bottom,left:e.left,right:e.right})),pG,mG],(e,n,r)=>{if(!(!e||n==null||r==null))return{x:e.left,y:e.top,width:Math.max(0,n-e.left-e.right),height:Math.max(0,r-e.top-e.bottom)}}),Y5=()=>Q(nde),rde=()=>Q(nse);function X5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function Z5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?X5(Object(r),!0).forEach(function(n){ide(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):X5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function ide(e,n,r){return(n=ade(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function ade(e){var n=ode(e,`string`);return typeof n==`symbol`?n:n+``}function ode(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var sde=e=>{var{point:n,childIndex:r,mainColor:i,activeDot:a,dataKey:o,clipPath:s}=e;if(a===!1||n.x==null||n.y==null)return null;var c=Z5(Z5(Z5({},{index:r,dataKey:o,cx:n.x,cy:n.y,r:4,fill:i??`none`,strokeWidth:2,stroke:`#fff`,payload:n.payload,value:n.value}),pR(a)),oB(a)),l=(0,x.isValidElement)(a)?(0,x.cloneElement)(a,c):typeof a==`function`?a(c):x.createElement(t5,c);return x.createElement(vR,{className:`recharts-active-dot`,clipPath:s},l)};function Q5(e){var{points:n,mainColor:r,activeDot:i,itemDataKey:a,clipPath:o,zIndex:s=NZ.activeDot}=e,c=Q(C6),l=rde();if(n==null||l==null)return null;var u=n.find(e=>l.includes(e.payload));return Bz(u)?null:x.createElement(K6,{zIndex:s},x.createElement(sde,{point:u,childIndex:Number(c),mainColor:r,dataKey:a,activeDot:i,clipPath:o}))}var $5=e=>{var{chartData:n}=e,r=sV(),i=FG();return(0,x.useEffect)(()=>i?()=>{}:(r(r8(n)),()=>{r(r8(void 0))}),[n,r,i]),null},e7={x:0,y:0,width:0,height:0,padding:{top:0,right:0,bottom:0,left:0}},t7=UU({name:`brush`,initialState:e7,reducers:{setBrushSettings(e,n){return n.payload==null?e7:n.payload}}}),{setBrushSettings:cde}=t7.actions,lde=t7.reducer;function ude(e){return(e%180+180)%180}var dde=function(e){var{width:n,height:r}=e,i=ude(arguments.length>1&&arguments[1]!==void 0?arguments[1]:0)*Math.PI/180,a=Math.atan(r/n),o=i>a&&i<Math.PI-a?r/Math.sin(i):n/Math.cos(i);return Math.abs(o)},n7=UU({name:`referenceElements`,initialState:{dots:[],areas:[],lines:[]},reducers:{addDot:(e,n)=>{e.dots.push(n.payload)},removeDot:(e,n)=>{var r=mU(e).dots.findIndex(e=>e===n.payload);r!==-1&&e.dots.splice(r,1)},addArea:(e,n)=>{e.areas.push(n.payload)},removeArea:(e,n)=>{var r=mU(e).areas.findIndex(e=>e===n.payload);r!==-1&&e.areas.splice(r,1)},addLine:(e,n)=>{e.lines.push(yq(n.payload))},removeLine:(e,n)=>{var r=mU(e).lines.findIndex(e=>e===n.payload);r!==-1&&e.lines.splice(r,1)}}}),{addDot:fde,removeDot:pde,addArea:mde,removeArea:hde,addLine:gde,removeLine:_de}=n7.actions,vde=n7.reducer,yde=(0,x.createContext)(void 0),bde=e=>{var{children:n}=e,[r]=(0,x.useState)(`${Fz(`recharts`)}-clip`),i=Y5();if(i==null)return null;var{x:a,y:o,width:s,height:c}=i;return x.createElement(yde.Provider,{value:r},x.createElement(`defs`,null,x.createElement(`clipPath`,{id:r},x.createElement(`rect`,{x:a,y:o,height:c,width:s}))),n)};function r7(e,n){if(n<1)return[];if(n===1)return e;for(var r=[],i=0;i<e.length;i+=n){var a=e[i];a!==void 0&&r.push(a)}return r}function xde(e,n,r){return dde({width:e.width+n.width,height:e.height+n.height},r)}function Sde(e,n,r){var i=r===`width`,{x:a,y:o,width:s,height:c}=e;return n===1?{start:i?a:o,end:i?a+s:o+c}:{start:i?a+s:o+c,end:i?a:o}}function i7(e,n,r,i,a){if(e*n<e*i||e*n>e*a)return!1;var o=r();return e*(n-e*o/2-i)>=0&&e*(n+e*o/2-a)<=0}function Cde(e,n){return r7(e,n+1)}function wde(e,n,r,i,a){for(var o=(i||[]).slice(),{start:s,end:c}=n,l=0,u=1,d=s,f=function(){var n=i?.[l];if(n===void 0)return{v:r7(i,u)};var o=l,f,p=()=>(f===void 0&&(f=r(n,o)),f),m=n.coordinate,h=l===0||i7(e,m,p,d,c);h||(l=0,d=s,u+=1),h&&(d=m+e*(p()/2+a),l+=u)},p;u<=o.length;)if(p=f(),p)return p.v;return[]}function Tde(e,n,r,i,a){var o=(i||[]).slice().length;if(o===0)return[];for(var{start:s,end:c}=n,l=1;l<=o;l++){for(var u=(o-1)%l,d=s,f=!0,p=function(){var n=i[h];if(n==null)return 0;var o=h,s,l=()=>(s===void 0&&(s=r(n,o)),s),p=n.coordinate,m=h===u||i7(e,p,l,d,c);if(!m)return f=!1,1;m&&(d=p+e*(l()/2+a))},m,h=u;h<o&&(m=p(),!(m!==0&&m===1));h+=l);if(f){for(var g=[],_=u;_<o;_+=l){var v=i[_];v!=null&&g.push(v)}return g}}return[]}function a7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function o7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?a7(Object(r),!0).forEach(function(n){Ede(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):a7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Ede(e,n,r){return(n=Dde(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Dde(e){var n=Ode(e,`string`);return typeof n==`symbol`?n:n+``}function Ode(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function kde(e,n,r,i,a){for(var o=(i||[]).slice(),s=o.length,{start:c}=n,{end:l}=n,u=function(n){var i=o[n];if(i==null)return 1;var u=i,d,f=()=>(d===void 0&&(d=r(i,n)),d);if(n===s-1){var p=e*(u.coordinate+e*f()/2-l);o[n]=u=o7(o7({},u),{},{tickCoord:p>0?u.coordinate-p*e:u.coordinate})}else o[n]=u=o7(o7({},u),{},{tickCoord:u.coordinate});u.tickCoord!=null&&i7(e,u.tickCoord,f,c,l)&&(l=u.tickCoord-e*(f()/2+a),o[n]=o7(o7({},u),{},{isShow:!0}))},d=s-1;d>=0;d--)if(u(d))continue;return o}function Ade(e,n,r,i,a,o){var s=(i||[]).slice(),c=s.length,{start:l,end:u}=n;if(o){var d=i[c-1];if(d!=null){var f=r(d,c-1),p=e*(d.coordinate+e*f/2-u);s[c-1]=d=o7(o7({},d),{},{tickCoord:p>0?d.coordinate-p*e:d.coordinate}),d.tickCoord!=null&&i7(e,d.tickCoord,()=>f,l,u)&&(u=d.tickCoord-e*(f/2+a),s[c-1]=o7(o7({},d),{},{isShow:!0}))}}for(var m=o?c-1:c,h=function(n){var i=s[n];if(i==null)return 1;var o=i,c,d=()=>(c===void 0&&(c=r(i,n)),c);if(n===0){var f=e*(o.coordinate-e*d()/2-l);s[n]=o=o7(o7({},o),{},{tickCoord:f<0?o.coordinate-f*e:o.coordinate})}else s[n]=o=o7(o7({},o),{},{tickCoord:o.coordinate});o.tickCoord!=null&&i7(e,o.tickCoord,d,l,u)&&(l=o.tickCoord+e*(d()/2+a),s[n]=o7(o7({},o),{},{isShow:!0}))},g=0;g<m;g++)if(h(g))continue;return s}function s7(e,n,r){var{tick:i,ticks:a,viewBox:o,minTickGap:s,orientation:c,interval:l,tickFormatter:u,unit:d,angle:f}=e;if(!a||!a.length||!i)return[];if(Z(l)||EJ.isSsr)return Cde(a,Z(l)?l:0)??[];var p=[],m=c===`top`||c===`bottom`?`width`:`height`,h=d&&m===`width`?g8(d,{fontSize:n,letterSpacing:r}):{width:0,height:0},g=(e,i)=>{var a=typeof u==`function`?u(e.value,i):e.value;return m===`width`?xde(g8(a,{fontSize:n,letterSpacing:r}),h,f):g8(a,{fontSize:n,letterSpacing:r})[m]},_=a[0],v=a[1],y=a.length>=2&&_!=null&&v!=null?Az(v.coordinate-_.coordinate):1,b=Sde(o,y,m);return l===`equidistantPreserveStart`?wde(y,b,g,a,s):l===`equidistantPreserveEnd`?Tde(y,b,g,a,s):(p=l===`preserveStart`||l===`preserveStartEnd`?Ade(y,b,g,a,s,l===`preserveStartEnd`):kde(y,b,g,a,s),p.filter(e=>e.isShow))}var jde=e=>{var{ticks:n,label:r,labelGapWithTick:i=5,tickSize:a=0,tickMargin:o=0}=e,s=0;if(n){Array.from(n).forEach(e=>{if(e){var n=e.getBoundingClientRect();n.width>s&&(s=n.width)}});var c=r?r.getBoundingClientRect().width:0,l=a+o,u=s+l+c+(r?i:0);return Math.round(u)}return 0},c7=UU({name:`renderedTicks`,initialState:{xAxis:{},yAxis:{}},reducers:{setRenderedTicks:(e,n)=>{var{axisType:r,axisId:i,ticks:a}=n.payload;e[r][i]=yq(a)},removeRenderedTicks:(e,n)=>{var{axisType:r,axisId:i}=n.payload;delete e[r][i]}}}),{setRenderedTicks:Mde,removeRenderedTicks:Nde}=c7.actions,Pde=c7.reducer,Fde=[`axisLine`,`width`,`height`,`className`,`hide`,`ticks`,`axisType`,`axisId`];function Ide(e,n){if(e==null)return{};var r,i,a=Lde(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Lde(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function l7(){return l7=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},l7.apply(null,arguments)}function u7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function d7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?u7(Object(r),!0).forEach(function(n){Rde(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):u7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Rde(e,n,r){return(n=zde(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function zde(e){var n=Bde(e,`string`);return typeof n==`symbol`?n:n+``}function Bde(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var f7={x:0,y:0,width:0,height:0,viewBox:{x:0,y:0,width:0,height:0},orientation:`bottom`,ticks:[],stroke:`#666`,tickLine:!0,axisLine:!0,tick:!0,mirror:!1,minTickGap:5,tickSize:6,tickMargin:2,interval:`preserveEnd`,zIndex:NZ.axis};function Vde(e){var{x:n,y:r,width:i,height:a,orientation:o,mirror:s,axisLine:c,otherSvgProps:l}=e;if(!c)return null;var u=d7(d7(d7({},l),fR(c)),{},{fill:`none`});if(o===`top`||o===`bottom`){var d=+(o===`top`&&!s||o===`bottom`&&s);u=d7(d7({},u),{},{x1:n,y1:r+d*a,x2:n+i,y2:r+d*a})}else{var f=+(o===`left`&&!s||o===`right`&&s);u=d7(d7({},u),{},{x1:n+f*i,y1:r,x2:n+f*i,y2:r+a})}return x.createElement(`line`,l7({},u,{className:cR(`recharts-cartesian-axis-line`,(0,kz.default)(c,`className`))}))}function Hde(e,n,r,i,a,o,s,c,l){var u,d,f,p,m,h,g=c?-1:1,_=e.tickSize||s,v=Z(e.tickCoord)?e.tickCoord:e.coordinate;switch(o){case`top`:u=d=e.coordinate,p=r+ +!c*a,f=p-g*_,h=f-g*l,m=v;break;case`left`:f=p=e.coordinate,d=n+ +!c*i,u=d-g*_,m=u-g*l,h=v;break;case`right`:f=p=e.coordinate,d=n+ +c*i,u=d+g*_,m=u+g*l,h=v;break;default:u=d=e.coordinate,p=r+ +c*a,f=p+g*_,h=f+g*l,m=v;break}return{line:{x1:u,y1:f,x2:d,y2:p},tick:{x:m,y:h}}}function Ude(e,n){switch(e){case`left`:return n?`start`:`end`;case`right`:return n?`end`:`start`;default:return`middle`}}function Wde(e,n){switch(e){case`left`:case`right`:return`middle`;case`top`:return n?`start`:`end`;default:return n?`end`:`start`}}function Gde(e){var{option:n,tickProps:r,value:i}=e,a,o=cR(r.className,`recharts-cartesian-axis-tick-value`);if(x.isValidElement(n))a=x.cloneElement(n,d7(d7({},r),{},{className:o}));else if(typeof n==`function`)a=n(d7(d7({},r),{},{className:o}));else{var s=`recharts-cartesian-axis-tick-value`;typeof n!=`boolean`&&(s=cR(s,c5(n))),a=x.createElement(F8,l7({},r,{className:s}),i)}return a}function Kde(e){var{ticks:n,axisType:r,axisId:i}=e,a=sV();return(0,x.useEffect)(()=>i==null||r==null?Uz:(a(Mde({ticks:n.map(e=>({value:e.value,coordinate:e.coordinate,offset:e.offset,index:e.index})),axisId:i,axisType:r})),()=>{a(Nde({axisId:i,axisType:r}))}),[a,n,i,r]),null}var qde=(0,x.forwardRef)((e,n)=>{var{ticks:r=[],tick:i,tickLine:a,stroke:o,tickFormatter:s,unit:c,padding:l,tickTextProps:u,orientation:d,mirror:f,x:p,y:m,width:h,height:g,tickSize:_,tickMargin:v,fontSize:y,letterSpacing:b,getTicksConfig:S,events:C,axisType:w,axisId:T}=e,E=s7(d7(d7({},S),{},{ticks:r}),y,b),D=fR(S),O=pR(i),k=k8(D.textAnchor)?D.textAnchor:Ude(d,f),A=Wde(d,f),j={};typeof a==`object`&&(j=a);var M=d7(d7({},D),{},{fill:`none`},j),N=E.map(e=>d7({entry:e},Hde(e,p,m,h,g,d,_,f,v))),P=N.map(e=>{var{entry:n,line:r}=e;return x.createElement(vR,{className:`recharts-cartesian-axis-tick`,key:`tick-${n.value}-${n.coordinate}-${n.tickCoord}`},a&&x.createElement(`line`,l7({},M,r,{className:cR(`recharts-cartesian-axis-tick-line`,(0,kz.default)(a,`className`))})))}),F=N.map((e,n)=>{var{entry:r,tick:a}=e,d=d7(d7({},d7(d7(d7(d7({verticalAnchor:A},D),{},{textAnchor:k,stroke:`none`,fill:o},a),{},{index:n,payload:r,visibleTicksCount:E.length,tickFormatter:s,padding:l},u),{},{angle:u?.angle??D.angle??0})),O);return x.createElement(vR,l7({className:`recharts-cartesian-axis-tick-label`,key:`tick-label-${r.value}-${r.coordinate}-${r.tickCoord}`},cB(C,r,n)),i&&x.createElement(Gde,{option:i,tickProps:d,value:`${typeof s==`function`?s(r.value,n):r.value}${c||``}`}))});return x.createElement(`g`,{className:`recharts-cartesian-axis-ticks recharts-${w}-ticks`},x.createElement(Kde,{ticks:E,axisId:T,axisType:w}),F.length>0&&x.createElement(K6,{zIndex:NZ.label},x.createElement(`g`,{className:`recharts-cartesian-axis-tick-labels recharts-${w}-tick-labels`,ref:n},F)),P.length>0&&x.createElement(`g`,{className:`recharts-cartesian-axis-tick-lines recharts-${w}-tick-lines`},P))}),Jde=(0,x.forwardRef)((e,n)=>{var{axisLine:r,width:i,height:a,className:o,hide:s,ticks:c,axisType:l,axisId:u}=e,d=Ide(e,Fde),[f,p]=(0,x.useState)(``),[m,h]=(0,x.useState)(``),g=(0,x.useRef)(null);(0,x.useImperativeHandle)(n,()=>({getCalculatedWidth:()=>jde({ticks:g.current,label:e.labelRef?.current,labelGapWithTick:5,tickSize:e.tickSize,tickMargin:e.tickMargin})}));var _=(0,x.useCallback)(e=>{if(e){var n=e.getElementsByClassName(`recharts-cartesian-axis-tick-value`);g.current=n;var r=n[0];if(r){var i=window.getComputedStyle(r),a=i.fontSize,o=i.letterSpacing;(a!==f||o!==m)&&(p(a),h(o))}}},[f,m]);return s||i!=null&&i<=0||a!=null&&a<=0?null:x.createElement(K6,{zIndex:e.zIndex},x.createElement(vR,{className:cR(`recharts-cartesian-axis`,o)},x.createElement(Vde,{x:e.x,y:e.y,width:i,height:a,orientation:e.orientation,mirror:e.mirror,axisLine:r,otherSvgProps:fR(e)}),x.createElement(qde,{ref:_,axisType:l,events:d,fontSize:f,getTicksConfig:e,height:e.height,letterSpacing:m,mirror:e.mirror,orientation:e.orientation,padding:e.padding,stroke:e.stroke,tick:e.tick,tickFormatter:e.tickFormatter,tickLine:e.tickLine,tickMargin:e.tickMargin,tickSize:e.tickSize,tickTextProps:e.tickTextProps,ticks:c,unit:e.unit,width:e.width,x:e.x,y:e.y,axisId:u}),x.createElement(Xce,{x:e.x,y:e.y,width:e.width,height:e.height,lowerWidth:e.width,upperWidth:e.width},x.createElement(ole,{label:e.label,labelRef:e.labelRef}),e.children)))}),p7=x.forwardRef((e,n)=>{var r=mB(e,f7);return x.createElement(Jde,l7({},r,{ref:n}))});p7.displayName=`CartesianAxis`;var Yde=[`x1`,`y1`,`x2`,`y2`,`key`],Xde=[`offset`],Zde=[`xAxisId`,`yAxisId`],Qde=[`xAxisId`,`yAxisId`];function m7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function h7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?m7(Object(r),!0).forEach(function(n){$de(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):m7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function $de(e,n,r){return(n=efe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function efe(e){var n=tfe(e,`string`);return typeof n==`symbol`?n:n+``}function tfe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function g7(){return g7=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},g7.apply(null,arguments)}function _7(e,n){if(e==null)return{};var r,i,a=nfe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function nfe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}var rfe=e=>{var{fill:n}=e;if(!n||n===`none`)return null;var{fillOpacity:r,x:i,y:a,width:o,height:s,ry:c}=e;return x.createElement(`rect`,{x:i,y:a,ry:c,width:o,height:s,stroke:`none`,fill:n,fillOpacity:r,className:`recharts-cartesian-grid-bg`})};function v7(e){var{option:n,lineItemProps:r}=e,i;if(x.isValidElement(n))i=x.cloneElement(n,r);else if(typeof n==`function`)i=n(r);else{var{x1:a,y1:o,x2:s,y2:c,key:l}=r,u=fR(_7(r,Yde))??{},{offset:d}=u,f=_7(u,Xde);i=x.createElement(`line`,g7({},f,{x1:a,y1:o,x2:s,y2:c,fill:`none`,key:l}))}return i}function ife(e){var{x:n,width:r,horizontal:i=!0,horizontalPoints:a}=e;if(!i||!a||!a.length)return null;var{xAxisId:o,yAxisId:s}=e,c=_7(e,Zde),l=a.map((e,a)=>{var o=h7(h7({},c),{},{x1:n,y1:e,x2:n+r,y2:e,key:`line-${a}`,index:a});return x.createElement(v7,{key:`line-${a}`,option:i,lineItemProps:o})});return x.createElement(`g`,{className:`recharts-cartesian-grid-horizontal`},l)}function afe(e){var{y:n,height:r,vertical:i=!0,verticalPoints:a}=e;if(!i||!a||!a.length)return null;var{xAxisId:o,yAxisId:s}=e,c=_7(e,Qde),l=a.map((e,a)=>{var o=h7(h7({},c),{},{x1:e,y1:n,x2:e,y2:n+r,key:`line-${a}`,index:a});return x.createElement(v7,{option:i,lineItemProps:o,key:`line-${a}`})});return x.createElement(`g`,{className:`recharts-cartesian-grid-vertical`},l)}function ofe(e){var{horizontalFill:n,fillOpacity:r,x:i,y:a,width:o,height:s,horizontalPoints:c,horizontal:l=!0}=e;if(!l||!n||!n.length||c==null)return null;var u=c.map(e=>Math.round(e+a-a)).sort((e,n)=>e-n);a!==u[0]&&u.unshift(0);var d=u.map((e,c)=>{var l=u[c+1],d=l==null?a+s-e:l-e;if(d<=0)return null;var f=c%n.length;return x.createElement(`rect`,{key:`react-${c}`,y:e,x:i,height:d,width:o,stroke:`none`,fill:n[f],fillOpacity:r,className:`recharts-cartesian-grid-bg`})});return x.createElement(`g`,{className:`recharts-cartesian-gridstripes-horizontal`},d)}function sfe(e){var{vertical:n=!0,verticalFill:r,fillOpacity:i,x:a,y:o,width:s,height:c,verticalPoints:l}=e;if(!n||!r||!r.length)return null;var u=l.map(e=>Math.round(e+a-a)).sort((e,n)=>e-n);a!==u[0]&&u.unshift(0);var d=u.map((e,n)=>{var l=u[n+1],d=l==null?a+s-e:l-e;if(d<=0)return null;var f=n%r.length;return x.createElement(`rect`,{key:`react-${n}`,x:e,y:o,width:d,height:c,stroke:`none`,fill:r[f],fillOpacity:i,className:`recharts-cartesian-grid-bg`})});return x.createElement(`g`,{className:`recharts-cartesian-gridstripes-vertical`},d)}var cfe=(e,n)=>{var{xAxis:r,width:i,height:a,offset:o}=e;return JW(s7(h7(h7(h7({},f7),r),{},{ticks:YW(r,!0),viewBox:{x:0,y:0,width:i,height:a}})),o.left,o.left+o.width,n)},lfe=(e,n)=>{var{yAxis:r,width:i,height:a,offset:o}=e;return JW(s7(h7(h7(h7({},f7),r),{},{ticks:YW(r,!0),viewBox:{x:0,y:0,width:i,height:a}})),o.top,o.top+o.height,n)},ufe={horizontal:!0,vertical:!0,horizontalPoints:[],verticalPoints:[],stroke:`#ccc`,fill:`none`,verticalFill:[],horizontalFill:[],xAxisId:0,yAxisId:0,syncWithTicks:!1,zIndex:NZ.grid};function y7(e){var n=hK(),r=gK(),i=mK(),a=h7(h7({},mB(e,ufe)),{},{x:Z(e.x)?e.x:i.left,y:Z(e.y)?e.y:i.top,width:Z(e.width)?e.width:i.width,height:Z(e.height)?e.height:i.height}),{xAxisId:o,yAxisId:s,x:c,y:l,width:u,height:d,syncWithTicks:f,horizontalValues:p,verticalValues:m}=a,h=FG(),g=Q(e=>N3(e,`xAxis`,o,h)),_=Q(e=>N3(e,`yAxis`,s,h));if(!zW(u)||!zW(d)||!Z(c)||!Z(l))return null;var v=a.verticalCoordinatesGenerator||cfe,y=a.horizontalCoordinatesGenerator||lfe,{horizontalPoints:b,verticalPoints:S}=a;if((!b||!b.length)&&typeof y==`function`){var C=p&&p.length,w=y({yAxis:_?h7(h7({},_),{},{ticks:C?p:_.ticks}):void 0,width:n??u,height:r??d,offset:i},C?!0:f);UG(Array.isArray(w),`horizontalCoordinatesGenerator should return Array but instead it returned [${typeof w}]`),Array.isArray(w)&&(b=w)}if((!S||!S.length)&&typeof v==`function`){var T=m&&m.length,E=v({xAxis:g?h7(h7({},g),{},{ticks:T?m:g.ticks}):void 0,width:n??u,height:r??d,offset:i},T?!0:f);UG(Array.isArray(E),`verticalCoordinatesGenerator should return Array but instead it returned [${typeof E}]`),Array.isArray(E)&&(S=E)}return x.createElement(K6,{zIndex:a.zIndex},x.createElement(`g`,{className:`recharts-cartesian-grid`},x.createElement(rfe,{fill:a.fill,fillOpacity:a.fillOpacity,x:a.x,y:a.y,width:a.width,height:a.height,ry:a.ry}),x.createElement(ofe,g7({},a,{horizontalPoints:b})),x.createElement(sfe,g7({},a,{verticalPoints:S})),x.createElement(ife,g7({},a,{offset:i,horizontalPoints:b,xAxis:g,yAxis:_})),x.createElement(afe,g7({},a,{offset:i,verticalPoints:S,xAxis:g,yAxis:_}))))}y7.displayName=`CartesianGrid`;var b7=UU({name:`errorBars`,initialState:{},reducers:{addErrorBar:(e,n)=>{var{itemId:r,errorBar:i}=n.payload;e[r]||(e[r]=[]),e[r].push(i)},replaceErrorBar:(e,n)=>{var{itemId:r,prev:i,next:a}=n.payload;e[r]&&(e[r]=e[r].map(e=>e.dataKey===i.dataKey&&e.direction===i.direction?a:e))},removeErrorBar:(e,n)=>{var{itemId:r,errorBar:i}=n.payload;e[r]&&(e[r]=e[r].filter(e=>e.dataKey!==i.dataKey||e.direction!==i.direction))}}}),{addErrorBar:dfe,replaceErrorBar:ffe,removeErrorBar:pfe}=b7.actions,mfe=b7.reducer,hfe=[`children`];function gfe(e,n){if(e==null)return{};var r,i,a=_fe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function _fe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}var vfe=(0,x.createContext)({data:[],xAxisId:`xAxis-0`,yAxisId:`yAxis-0`,dataPointFormatter:()=>({x:0,y:0,value:0}),errorBarOffset:0});function x7(e){var{children:n}=e,r=gfe(e,hfe);return x.createElement(vfe.Provider,{value:r},n)}function S7(e,n){var r=Q(n=>a4(n,e)),i=Q(e=>c4(e,n)),a=r?.allowDataOverflow??r4.allowDataOverflow,o=i?.allowDataOverflow??o4.allowDataOverflow;return{needClip:a||o,needClipX:a,needClipY:o}}function C7(e){var{xAxisId:n,yAxisId:r,clipPathId:i}=e,a=Y5(),{needClipX:o,needClipY:s,needClip:c}=S7(n,r);if(!c||!a)return null;var{x:l,y:u,width:d,height:f}=a;return x.createElement(`clipPath`,{id:`clipPath-${i}`},x.createElement(`rect`,{x:o?l:l-d/2,y:s?u:u-f/2,width:o?d:d*2,height:s?f:f*2}))}var w7=(e,n,r,i)=>I3(e,`xAxis`,n,i),T7=(e,n,r,i)=>F3(e,`xAxis`,n,i),E7=(e,n,r,i)=>I3(e,`yAxis`,r,i),D7=(e,n,r,i)=>F3(e,`yAxis`,r,i),yfe=$([vK,w7,E7,T7,D7],(e,n,r,i,a)=>qW(e,`xAxis`)?cG(n,i,!1):cG(r,a,!1)),bfe=(e,n,r,i,a)=>a;function xfe(e){return e.type===`line`}var Sfe=$([vK,w7,E7,T7,D7,$([g4,bfe],(e,n)=>e.filter(xfe).find(e=>e.id===n)),yfe,rZ],(e,n,r,i,a,o,s,c)=>{var{chartData:l,dataStartIndex:u,dataEndIndex:d}=c;if(!(o==null||n==null||r==null||i==null||a==null||i.length===0||a.length===0||s==null||e!==`horizontal`&&e!==`vertical`)){var{dataKey:f,data:p}=o,m=p!=null&&p.length>0?p:l?.slice(u,d+1);if(m!=null)return Hfe({layout:e,xAxis:n,yAxis:r,xAxisTicks:i,yAxisTicks:a,dataKey:f,bandSize:s,displayedData:m})}});function O7(e){var n=pR(e),r=3,i=2;if(n!=null){var{r:a,strokeWidth:o}=n,s=Number(a),c=Number(o);return(Number.isNaN(s)||s<0)&&(s=r),(Number.isNaN(c)||c<0)&&(c=i),{r:s,strokeWidth:c}}return{r,strokeWidth:i}}var Cfe=[`id`],wfe=[`type`,`layout`,`connectNulls`,`needClip`,`shape`],Tfe=[`activeDot`,`animateNewValues`,`animationBegin`,`animationDuration`,`animationEasing`,`connectNulls`,`dot`,`hide`,`isAnimationActive`,`label`,`legendType`,`xAxisId`,`yAxisId`,`id`];function k7(){return k7=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},k7.apply(null,arguments)}function A7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function j7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?A7(Object(r),!0).forEach(function(n){Efe(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):A7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Efe(e,n,r){return(n=Dfe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Dfe(e){var n=Ofe(e,`string`);return typeof n==`symbol`?n:n+``}function Ofe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function M7(e,n){if(e==null)return{};var r,i,a=kfe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function kfe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}var Afe=e=>{var{dataKey:n,name:r,stroke:i,legendType:a,hide:o}=e;return[{inactive:o,dataKey:n,type:a,color:i,value:uG(r,n),payload:e}]},jfe=x.memo(e=>{var{dataKey:n,data:r,stroke:i,strokeWidth:a,fill:o,name:s,hide:c,unit:l,tooltipType:u,id:d}=e,f={dataDefinedOnItem:r,getPosition:Uz,settings:{stroke:i,strokeWidth:a,fill:o,dataKey:n,nameKey:void 0,name:uG(s,n),hide:c,type:u,color:i,unit:l,graphicalItemId:d}};return x.createElement(M5,{tooltipEntrySettings:f})}),N7=(e,n)=>`${n}px ${e}px`;function Mfe(e,n){for(var r=e.length%2==0?e:[...e,0],i=[],a=0;a<n;++a)i.push(...r);return i}var Nfe=(e,n,r)=>{var i=r.reduce((e,n)=>e+n,0);if(!i)return N7(n,e);for(var a=Math.floor(e/i),o=e%i,s=[],c=0,l=0;c<r.length;l+=(u=r[c])??0,++c){var u,d=r[c];if(d!=null&&l+d>o){s=[...r.slice(0,c),o-l];break}}var f=s.length%2==0?[0,n]:[n];return[...Mfe(r,a),...s,...f].map(e=>`${e}px`).join(`, `)};function Pfe(e){var{clipPathId:n,points:r,props:i}=e,{dot:a,dataKey:o,needClip:s}=i,{id:c}=i,l=fR(M7(i,Cfe));return x.createElement(G5,{points:r,dot:a,className:`recharts-line-dots`,dotClassName:`recharts-line-dot`,dataKey:o,baseProps:l,needClip:s,clipPathId:n})}function Ffe(e){var{showLabels:n,children:r,points:i}=e,a=(0,x.useMemo)(()=>i?.map(e=>{var n={x:e.x??0,y:e.y??0,width:0,lowerWidth:0,upperWidth:0,height:0};return j7(j7({},n),{},{value:e.value,payload:e.payload,viewBox:n,parentViewBox:void 0,fill:void 0})}),[i]);return x.createElement(X8,{value:n?a:void 0},r)}function P7(e){var{clipPathId:n,pathRef:r,points:i,strokeDasharray:a,props:o}=e,{type:s,layout:c,connectNulls:l,needClip:u,shape:d}=o,f=j7(j7({},mR(M7(o,wfe))),{},{fill:`none`,className:`recharts-line-curve`,clipPath:u?`url(#clipPath-${n})`:void 0,points:i,type:s,layout:c,connectNulls:l,strokeDasharray:a??o.strokeDasharray});return x.createElement(x.Fragment,null,i?.length>1&&x.createElement(O5,k7({shapeType:`curve`,option:d},f,{pathRef:r})),x.createElement(Pfe,{points:i,clipPathId:n,props:o}))}function Ife(e){try{return e&&e.getTotalLength&&e.getTotalLength()||0}catch{return 0}}function Lfe(e){var{clipPathId:n,props:r,pathRef:i,previousPointsRef:a,longestAnimatedLengthRef:o}=e,{points:s,strokeDasharray:c,isAnimationActive:l,animationBegin:u,animationDuration:d,animationEasing:f,animateNewValues:p,width:m,height:h,onAnimationEnd:g,onAnimationStart:_}=r,v=a.current,y=YY(s,`recharts-line-`),b=(0,x.useRef)(y),[S,C]=(0,x.useState)(!1),w=!S,T=(0,x.useCallback)(()=>{typeof g==`function`&&g(),C(!1)},[g]),E=(0,x.useCallback)(()=>{typeof _==`function`&&_(),C(!0)},[_]),D=Ife(i.current),O=(0,x.useRef)(0);b.current!==y&&(O.current=o.current,b.current=y);var k=O.current;return x.createElement(Ffe,{points:s,showLabels:w},r.children,x.createElement(JY,{animationId:y,begin:u,duration:d,isActive:l,easing:f,onAnimationEnd:T,onAnimationStart:E,key:y},e=>{var u=Rz(k,D+k,e),d=Math.min(u,D),f=l?c?Nfe(d,D,`${c}`.split(/[,\s]+/gim).map(e=>parseFloat(e))):N7(D,d):c==null?void 0:String(c);if(e>0&&D>0&&(a.current=s,o.current=Math.max(o.current,d)),v){var g=v.length/s.length,_=e===1?s:s.map((n,r)=>{var i=Math.floor(r*g);if(v[i]){var a=v[i];return j7(j7({},n),{},{x:Rz(a.x,n.x,e),y:Rz(a.y,n.y,e)})}return p?j7(j7({},n),{},{x:Rz(m*2,n.x,e),y:Rz(h/2,n.y,e)}):j7(j7({},n),{},{x:n.x,y:n.y})});return a.current=_,x.createElement(P7,{props:r,points:_,clipPathId:n,pathRef:i,strokeDasharray:f})}return x.createElement(P7,{props:r,points:s,clipPathId:n,pathRef:i,strokeDasharray:f})}),x.createElement($8,{label:r.label}))}function Rfe(e){var{clipPathId:n,props:r}=e,i=(0,x.useRef)(null),a=(0,x.useRef)(0),o=(0,x.useRef)(null);return x.createElement(Lfe,{props:r,clipPathId:n,previousPointsRef:i,longestAnimatedLengthRef:a,pathRef:o})}var zfe=(e,n)=>({x:e.x??void 0,y:e.y??void 0,value:e.value,errorVal:GW(e.payload,n)}),Bfe=class extends x.Component{render(){var{hide:e,dot:n,points:r,className:i,xAxisId:a,yAxisId:o,top:s,left:c,width:l,height:u,id:d,needClip:f,zIndex:p}=this.props;if(e)return null;var m=cR(`recharts-line`,i),h=d,{r:g,strokeWidth:_}=O7(n),v=y5(n),y=g*2+_,b=f?`url(#clipPath-${v?``:`dots-`}${h})`:void 0;return x.createElement(K6,{zIndex:p},x.createElement(vR,{className:m},f&&x.createElement(`defs`,null,x.createElement(C7,{clipPathId:h,xAxisId:a,yAxisId:o}),!v&&x.createElement(`clipPath`,{id:`clipPath-dots-${h}`},x.createElement(`rect`,{x:c-y/2,y:s-y/2,width:l+y,height:u+y}))),x.createElement(x7,{xAxisId:a,yAxisId:o,data:r,dataPointFormatter:zfe,errorBarOffset:0},x.createElement(Rfe,{props:this.props,clipPathId:h}))),x.createElement(Q5,{activeDot:this.props.activeDot,points:r,mainColor:this.props.stroke,itemDataKey:this.props.dataKey,clipPath:b}))}},F7={activeDot:!0,animateNewValues:!0,animationBegin:0,animationDuration:1500,animationEasing:`ease`,connectNulls:!1,dot:!0,fill:`#fff`,hide:!1,isAnimationActive:`auto`,label:!1,legendType:`line`,stroke:`#3182bd`,strokeWidth:1,xAxisId:0,yAxisId:0,zIndex:NZ.line,type:`linear`};function Vfe(e){var n=mB(e,F7),{activeDot:r,animateNewValues:i,animationBegin:a,animationDuration:o,animationEasing:s,connectNulls:c,dot:l,hide:u,isAnimationActive:d,label:f,legendType:p,xAxisId:m,yAxisId:h,id:g}=n,_=M7(n,Tfe),{needClip:v}=S7(m,h),y=Y5(),b=yK(),S=FG(),C=Q(e=>Sfe(e,m,h,S,g));if(b!==`horizontal`&&b!==`vertical`||C==null||y==null)return null;var{height:w,width:T,x:E,y:D}=y;return x.createElement(Bfe,k7({},_,{id:g,connectNulls:c,dot:l,activeDot:r,animateNewValues:i,animationBegin:a,animationDuration:o,animationEasing:s,isAnimationActive:d,hide:u,label:f,legendType:p,xAxisId:m,yAxisId:h,points:C,layout:b,height:w,width:T,left:E,top:D,needClip:v}))}function Hfe(e){var{layout:n,xAxis:r,yAxis:i,xAxisTicks:a,yAxisTicks:o,dataKey:s,bandSize:c,displayedData:l}=e;return l.map((e,l)=>{var u=GW(e,s);if(n===`horizontal`)return{x:eG({axis:r,ticks:a,bandSize:c,entry:e,index:l}),y:(Bz(u)?null:i.scale.map(u))??null,value:u,payload:e};var d=Bz(u)?null:r.scale.map(u),f=eG({axis:i,ticks:o,bandSize:c,entry:e,index:l});return d==null||f==null?null:{x:d,y:f,value:u,payload:e}}).filter(Boolean)}function Ufe(e){var n=mB(e,F7),r=FG();return x.createElement(P5,{id:n.id,type:`line`},e=>x.createElement(x.Fragment,null,x.createElement(N5,{legendPayload:Afe(n)}),x.createElement(jfe,{dataKey:n.dataKey,data:n.data,stroke:n.stroke,strokeWidth:n.strokeWidth,fill:n.fill,name:n.name,hide:n.hide,unit:n.unit,tooltipType:n.tooltipType,id:e}),x.createElement(I5,{type:`line`,id:e,data:n.data,xAxisId:n.xAxisId,yAxisId:n.yAxisId,zAxisId:0,dataKey:n.dataKey,hide:n.hide,isPanorama:r}),x.createElement(Vfe,k7({},n,{id:e}))))}var I7=x.memo(Ufe,Gq);I7.displayName=`Line`;var Wfe=[`domain`,`range`],Gfe=[`domain`,`range`];function L7(e,n){if(e==null)return{};var r,i,a=Kfe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Kfe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function R7(e,n){return e===n?!0:Array.isArray(e)&&e.length===2&&Array.isArray(n)&&n.length===2?e[0]===n[0]&&e[1]===n[1]:!1}function z7(e,n){if(e===n)return!0;var{domain:r,range:i}=e,a=L7(e,Wfe),{domain:o,range:s}=n,c=L7(n,Gfe);return!R7(r,o)||!R7(i,s)?!1:Gq(a,c)}var qfe=[`type`],Jfe=[`dangerouslySetInnerHTML`,`ticks`,`scale`],Yfe=[`id`,`scale`];function B7(){return B7=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},B7.apply(null,arguments)}function V7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function H7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?V7(Object(r),!0).forEach(function(n){Xfe(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):V7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Xfe(e,n,r){return(n=Zfe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Zfe(e){var n=Qfe(e,`string`);return typeof n==`symbol`?n:n+``}function Qfe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function U7(e,n){if(e==null)return{};var r,i,a=$fe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function $fe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function epe(e){var n=sV(),r=(0,x.useRef)(null),i=bK(),{type:a}=e,o=U7(e,qfe),s=LZ(i,`xAxis`,a),c=(0,x.useMemo)(()=>{if(s!=null)return H7(H7({},o),{},{type:s})},[o,s]);return(0,x.useLayoutEffect)(()=>{c!=null&&(r.current===null?n(Gue(c)):r.current!==c&&n(Kue({prev:r.current,next:c})),r.current=c)},[c,n]),(0,x.useLayoutEffect)(()=>()=>{r.current&&=(n(que(r.current)),null)},[n]),null}var tpe=e=>{var{xAxisId:n,className:r}=e,i=Q(NG),a=FG(),o=`xAxis`,s=Q(e=>P3(e,o,n,a)),c=Q(e=>k3(e,n)),l=Q(e=>goe(e,n)),u=Q(e=>i4(e,n));if(c==null||l==null||u==null)return null;var{dangerouslySetInnerHTML:d,ticks:f,scale:p}=e,m=U7(e,Jfe),{id:h,scale:g}=u,_=U7(u,Yfe);return x.createElement(p7,B7({},m,_,{x:l.x,y:l.y,width:c.width,height:c.height,className:cR(`recharts-${o} ${o}`,r),viewBox:i,ticks:s,axisType:o,axisId:n}))},npe={allowDataOverflow:r4.allowDataOverflow,allowDecimals:r4.allowDecimals,allowDuplicatedCategory:r4.allowDuplicatedCategory,angle:r4.angle,axisLine:f7.axisLine,height:r4.height,hide:!1,includeHidden:r4.includeHidden,interval:r4.interval,label:!1,minTickGap:r4.minTickGap,mirror:r4.mirror,orientation:r4.orientation,padding:r4.padding,reversed:r4.reversed,scale:r4.scale,tick:r4.tick,tickCount:r4.tickCount,tickLine:f7.tickLine,tickSize:f7.tickSize,type:r4.type,niceTicks:r4.niceTicks,xAxisId:0},W7=x.memo(e=>{var n=mB(e,npe);return x.createElement(x.Fragment,null,x.createElement(epe,{allowDataOverflow:n.allowDataOverflow,allowDecimals:n.allowDecimals,allowDuplicatedCategory:n.allowDuplicatedCategory,angle:n.angle,dataKey:n.dataKey,domain:n.domain,height:n.height,hide:n.hide,id:n.xAxisId,includeHidden:n.includeHidden,interval:n.interval,minTickGap:n.minTickGap,mirror:n.mirror,name:n.name,orientation:n.orientation,padding:n.padding,reversed:n.reversed,scale:n.scale,tick:n.tick,tickCount:n.tickCount,tickFormatter:n.tickFormatter,ticks:n.ticks,type:n.type,unit:n.unit,niceTicks:n.niceTicks}),x.createElement(tpe,n))},z7);W7.displayName=`XAxis`;var rpe=[`type`],ipe=[`dangerouslySetInnerHTML`,`ticks`,`scale`],ape=[`id`,`scale`];function G7(){return G7=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},G7.apply(null,arguments)}function K7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function q7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?K7(Object(r),!0).forEach(function(n){ope(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):K7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function ope(e,n,r){return(n=spe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function spe(e){var n=cpe(e,`string`);return typeof n==`symbol`?n:n+``}function cpe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function J7(e,n){if(e==null)return{};var r,i,a=lpe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function lpe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function upe(e){var n=sV(),r=(0,x.useRef)(null),i=bK(),{type:a}=e,o=J7(e,rpe),s=LZ(i,`yAxis`,a),c=(0,x.useMemo)(()=>{if(s!=null)return q7(q7({},o),{},{type:s})},[s,o]);return(0,x.useLayoutEffect)(()=>{c!=null&&(r.current===null?n(Jue(c)):r.current!==c&&n(Yue({prev:r.current,next:c})),r.current=c)},[c,n]),(0,x.useLayoutEffect)(()=>()=>{r.current&&=(n(Xue(r.current)),null)},[n]),null}function dpe(e){var{yAxisId:n,className:r,width:i,label:a}=e,o=(0,x.useRef)(null),s=(0,x.useRef)(null),c=Q(NG),l=FG(),u=sV(),d=`yAxis`,f=Q(e=>A3(e,n)),p=Q(e=>_oe(e,n)),m=Q(e=>P3(e,d,n,l)),h=Q(e=>s4(e,n));if((0,x.useLayoutEffect)(()=>{if(!(i!==`auto`||!f||W8(a)||(0,x.isValidElement)(a)||h==null)){var e=o.current;if(e){var r=e.getCalculatedWidth();Math.round(f.width)!==Math.round(r)&&u(ede({id:n,width:r}))}}},[m,f,u,a,n,i,h]),f==null||p==null||h==null)return null;var{dangerouslySetInnerHTML:g,ticks:_,scale:v}=e,y=J7(e,ipe),{id:b,scale:S}=h,C=J7(h,ape);return x.createElement(p7,G7({},y,C,{ref:o,labelRef:s,x:p.x,y:p.y,tickTextProps:i===`auto`?{width:void 0}:{width:i},width:f.width,height:f.height,className:cR(`recharts-${d} ${d}`,r),viewBox:c,ticks:m,axisType:d,axisId:n}))}var fpe={allowDataOverflow:o4.allowDataOverflow,allowDecimals:o4.allowDecimals,allowDuplicatedCategory:o4.allowDuplicatedCategory,angle:o4.angle,axisLine:f7.axisLine,hide:!1,includeHidden:o4.includeHidden,interval:o4.interval,label:!1,minTickGap:o4.minTickGap,mirror:o4.mirror,orientation:o4.orientation,padding:o4.padding,reversed:o4.reversed,scale:o4.scale,tick:o4.tick,tickCount:o4.tickCount,tickLine:f7.tickLine,tickSize:f7.tickSize,type:o4.type,niceTicks:o4.niceTicks,width:o4.width,yAxisId:0},Y7=x.memo(e=>{var n=mB(e,fpe);return x.createElement(x.Fragment,null,x.createElement(upe,{interval:n.interval,id:n.yAxisId,scale:n.scale,type:n.type,domain:n.domain,allowDataOverflow:n.allowDataOverflow,dataKey:n.dataKey,allowDuplicatedCategory:n.allowDuplicatedCategory,allowDecimals:n.allowDecimals,tickCount:n.tickCount,padding:n.padding,includeHidden:n.includeHidden,reversed:n.reversed,ticks:n.ticks,width:n.width,orientation:n.orientation,mirror:n.mirror,hide:n.hide,unit:n.unit,name:n.name,angle:n.angle,minTickGap:n.minTickGap,tick:n.tick,tickFormatter:n.tickFormatter,niceTicks:n.niceTicks}),x.createElement(dpe,n))},z7);Y7.displayName=`YAxis`;var X7=$([(e,n)=>n,vK,$Z,cQ,g6,v6,mse,jG],xse);function ppe(e){return`getBBox`in e.currentTarget&&typeof e.currentTarget.getBBox==`function`}function Z7(e){var n=e.currentTarget.getBoundingClientRect(),r,i;if(ppe(e)){var a=e.currentTarget.getBBox();r=a.width>0?n.width/a.width:1,i=a.height>0?n.height/a.height:1}else{var o=e.currentTarget;r=o.offsetWidth>0?n.width/o.offsetWidth:1,i=o.offsetHeight>0?n.height/o.offsetHeight:1}var s=(e,a)=>({relativeX:Math.round((e-n.left)/r),relativeY:Math.round((a-n.top)/i)});return`touches`in e?Array.from(e.touches).map(e=>s(e.clientX,e.clientY)):s(e.clientX,e.clientY)}var Q7=xU(`mouseClick`),$7=kW();$7.startListening({actionCreator:Q7,effect:(e,n)=>{var r=e.payload,i=X7(n.getState(),Z7(r));i?.activeIndex!=null&&n.dispatch(Ooe({activeIndex:i.activeIndex,activeDataKey:void 0,activeCoordinate:i.activeCoordinate}))}});var e9=xU(`mouseMove`),t9=kW(),n9=null,r9=null,i9=null;t9.startListening({actionCreator:e9,effect:(e,n)=>{var r=e.payload,{throttleDelay:i,throttledEvents:a}=n.getState().eventSettings,o=a===`all`||a?.includes(`mousemove`);n9!==null&&(cancelAnimationFrame(n9),n9=null),r9!==null&&(typeof i!=`number`||!o)&&(clearTimeout(r9),r9=null),i9=Z7(r);var s=()=>{var e=n.getState(),r=B3(e,e.tooltip.settings.shared);if(!i9){n9=null,r9=null;return}if(r===`axis`){var i=X7(e,i9);i?.activeIndex==null?n.dispatch(G3()):n.dispatch(K3({activeIndex:i.activeIndex,activeDataKey:void 0,activeCoordinate:i.activeCoordinate}))}n9=null,r9=null};if(!o){s();return}i===`raf`?n9=requestAnimationFrame(s):typeof i==`number`&&r9===null&&(r9=setTimeout(s,i))}});function a9(e,n){return n instanceof HTMLElement?`HTMLElement <${n.tagName} class="${n.className}">`:n===window?`global.window`:e===`children`&&typeof n==`object`&&n?`<<CHILDREN>>`:n}var o9={accessibilityLayer:!0,barCategoryGap:`10%`,barGap:4,barSize:void 0,className:void 0,maxBarSize:void 0,stackOffset:`none`,syncId:void 0,syncMethod:`index`,baseValue:void 0,reverseStackOrder:!1},s9=UU({name:`rootProps`,initialState:o9,reducers:{updateOptions:(e,n)=>{e.accessibilityLayer=n.payload.accessibilityLayer,e.barCategoryGap=n.payload.barCategoryGap,e.barGap=n.payload.barGap??o9.barGap,e.barSize=n.payload.barSize,e.maxBarSize=n.payload.maxBarSize,e.stackOffset=n.payload.stackOffset,e.syncId=n.payload.syncId,e.syncMethod=n.payload.syncMethod,e.className=n.payload.className,e.baseValue=n.payload.baseValue,e.reverseStackOrder=n.payload.reverseStackOrder}}}),mpe=s9.reducer,{updateOptions:hpe}=s9.actions,c9=UU({name:`polarOptions`,initialState:null,reducers:{updatePolarOptions:(e,n)=>e===null?n.payload:(e.startAngle=n.payload.startAngle,e.endAngle=n.payload.endAngle,e.cx=n.payload.cx,e.cy=n.payload.cy,e.innerRadius=n.payload.innerRadius,e.outerRadius=n.payload.outerRadius,e)}}),{updatePolarOptions:gpe}=c9.actions,_pe=c9.reducer,l9=xU(`keyDown`),u9=xU(`focus`),d9=xU(`blur`),f9=kW(),p9=null,m9=null,h9=null;f9.startListening({actionCreator:l9,effect:(e,n)=>{h9=e.payload,p9!==null&&(cancelAnimationFrame(p9),p9=null);var{throttleDelay:r,throttledEvents:i}=n.getState().eventSettings,a=i===`all`||i.includes(`keydown`);m9!==null&&(typeof r!=`number`||!a)&&(clearTimeout(m9),m9=null);var o=()=>{try{var e=n.getState();if(e.rootProps.accessibilityLayer===!1)return;var{keyboardInteraction:r}=e.tooltip,i=h9;if(i!==`ArrowRight`&&i!==`ArrowLeft`&&i!==`Enter`)return;var a=Q3(r,u6(e),z4(e),m6(e)),o=a==null?-1:Number(a),s=!Number.isFinite(o)||o<0,c=v6(e),l=u6(e),u=B3(e,e.tooltip.settings.shared);if(i===`Enter`){if(s)return;var d=B6(e,u,`hover`,String(r.index));n.dispatch(J3({active:!r.active,activeIndex:r.index,activeCoordinate:d}));return}var f=yoe(e)===`left-to-right`?1:-1,p=i===`ArrowRight`?1:-1,m;if(s){var h=z4(e),g=m6(e),_=p*f,v=e=>({active:!1,index:String(e),dataKey:void 0,graphicalItemId:void 0,coordinate:void 0});if(m=-1,_>0){for(var y=0;y<l.length;y++)if(Q3(v(y),l,h,g)!=null){m=y;break}}else for(var b=l.length-1;b>=0;b--)if(Q3(v(b),l,h,g)!=null){m=b;break}if(m<0)return}else{m=o+p*f;var x=c?.length||l.length;if(x===0||m>=x||m<0)return}var S=B6(e,u,`hover`,String(m));n.dispatch(J3({active:!0,activeIndex:m.toString(),activeCoordinate:S}))}finally{p9=null,m9=null}};if(!a){o();return}r===`raf`?p9=requestAnimationFrame(o):typeof r==`number`&&m9===null&&(o(),h9=null,m9=setTimeout(()=>{h9?o():(m9=null,p9=null)},r))}}),f9.startListening({actionCreator:u9,effect:(e,n)=>{var r=n.getState();if(r.rootProps.accessibilityLayer!==!1){var{keyboardInteraction:i}=r.tooltip;if(!i.active&&i.index==null){var a=`0`,o=B6(r,B3(r,r.tooltip.settings.shared),`hover`,String(a));n.dispatch(J3({active:!0,activeIndex:a,activeCoordinate:o}))}}}}),f9.startListening({actionCreator:d9,effect:(e,n)=>{var r=n.getState();if(r.rootProps.accessibilityLayer!==!1){var{keyboardInteraction:i}=r.tooltip;i.active&&n.dispatch(J3({active:!1,activeIndex:i.index,activeCoordinate:i.coordinate}))}}});function g9(e){e.persist();var{currentTarget:n}=e;return new Proxy(e,{get:(e,r)=>{if(r===`currentTarget`)return n;var i=Reflect.get(e,r);return typeof i==`function`?i.bind(e):i}})}var _9=xU(`externalEvent`),v9=kW(),y9=new Map,b9=new Map,x9=new Map;v9.startListening({actionCreator:_9,effect:(e,n)=>{var{handler:r,reactEvent:i}=e.payload;if(r!=null){var a=i.type,o=g9(i);x9.set(a,{handler:r,reactEvent:o});var s=y9.get(a);s!==void 0&&(cancelAnimationFrame(s),y9.delete(a));var{throttleDelay:c,throttledEvents:l}=n.getState().eventSettings,u=l,d=u===`all`||u?.includes(a),f=b9.get(a);f!==void 0&&(typeof c!=`number`||!d)&&(clearTimeout(f),b9.delete(a));var p=()=>{var e=x9.get(a);try{if(!e)return;var{handler:r,reactEvent:i}=e,o=n.getState(),s={activeCoordinate:ese(o),activeDataKey:T6(o),activeIndex:C6(o),activeLabel:w6(o),activeTooltipIndex:C6(o),isTooltipActive:tse(o)};r&&r(s,i)}finally{y9.delete(a),b9.delete(a),x9.delete(a)}};if(!d){p();return}if(c===`raf`){var m=requestAnimationFrame(p);y9.set(a,m)}else if(typeof c==`number`){if(!b9.has(a)){p();var h=setTimeout(p,c);b9.set(a,h)}}else p()}}});var vpe=$([$([n6],e=>e.tooltipItemPayloads),(e,n)=>n,(e,n,r)=>r],(e,n,r)=>{if(n!=null){var i=e.find(e=>e.settings.graphicalItemId===r);if(i!=null){var{getPosition:a}=i;if(a!=null)return a(n)}}}),S9=xU(`touchMove`),C9=kW(),w9=null,T9=null,E9=null,D9=null;C9.startListening({actionCreator:S9,effect:(e,n)=>{var r=e.payload;if(!(r.touches==null||r.touches.length===0)){D9=g9(r);var{throttleDelay:i,throttledEvents:a}=n.getState().eventSettings,o=a===`all`||a.includes(`touchmove`);w9!==null&&(cancelAnimationFrame(w9),w9=null),T9!==null&&(typeof i!=`number`||!o)&&(clearTimeout(T9),T9=null),E9=Array.from(r.touches).map(e=>Z7({clientX:e.clientX,clientY:e.clientY,currentTarget:r.currentTarget}));var s=()=>{if(D9!=null){var e=n.getState(),r=B3(e,e.tooltip.settings.shared);if(r===`axis`){var i=E9?.[0];if(i==null){w9=null,T9=null;return}var a=X7(e,i);a?.activeIndex!=null&&n.dispatch(K3({activeIndex:a.activeIndex,activeDataKey:void 0,activeCoordinate:a.activeCoordinate}))}else if(r===`item`){var o=D9.touches[0];if(document.elementFromPoint==null||o==null)return;var s=document.elementFromPoint(o.clientX,o.clientY);if(!s||!s.getAttribute)return;var c=s.getAttribute(yG),l=s.getAttribute(`data-recharts-item-id`)??void 0,u=c6(e).find(e=>e.id===l);if(c==null||u==null||l==null)return;var{dataKey:d}=u,f=vpe(e,c,l);n.dispatch(W3({activeDataKey:d,activeIndex:c,activeCoordinate:f,activeGraphicalItemId:l}))}w9=null,T9=null}};if(!o){s();return}i===`raf`?w9=requestAnimationFrame(s):typeof i==`number`&&T9===null&&(s(),D9=null,T9=setTimeout(()=>{D9?s():(T9=null,w9=null)},i))}}});var O9={throttleDelay:`raf`,throttledEvents:[`mousemove`,`touchmove`,`pointermove`,`scroll`,`wheel`]},k9=UU({name:`eventSettings`,initialState:O9,reducers:{setEventSettings:(e,n)=>{n.payload.throttleDelay!=null&&(e.throttleDelay=n.payload.throttleDelay),n.payload.throttledEvents!=null&&(e.throttledEvents=yq(n.payload.throttledEvents))}}}),{setEventSettings:ype}=k9.actions,bpe=k9.reducer,xpe=KV({brush:lde,cartesianAxis:tde,chartData:qse,errorBars:mfe,eventSettings:bpe,graphicalItems:oue,layout:IW,legend:Eq,options:Hse,polarAxis:yle,polarOptions:_pe,referenceElements:vde,renderedTicks:Pde,rootProps:mpe,tooltip:koe,zIndex:Nse}),Spe=function(e){var n=arguments.length>1&&arguments[1]!==void 0?arguments[1]:`Chart`;return NU({reducer:xpe,preloadedState:e,middleware:e=>e({serializableCheck:!1,immutableCheck:![`commonjs`,`es6`,`production`].includes(`es6`)}).concat([$7.middleware,t9.middleware,f9.middleware,v9.middleware,C9.middleware]),enhancers:e=>{var n=e;return typeof e==`function`&&(n=e()),n.concat(jU({type:`raf`}))},devTools:EJ.devToolsEnabled&&{serialize:{replacer:a9},name:`recharts-${n}`}})};function A9(e){var{preloadedState:n,children:r,reduxStoreName:i}=e,a=FG(),o=(0,x.useRef)(null);if(a)return r;o.current??=Spe(n,i);var s=aV;return x.createElement(Hq,{context:s,store:o.current},r)}function Cpe(e){var{layout:n,margin:r}=e,i=sV(),a=FG();return(0,x.useEffect)(()=>{a||(i(NW(n)),i(MW(r)))},[i,a,n,r]),null}var j9=(0,x.memo)(Cpe,Gq);function M9(e){var n=sV();return(0,x.useEffect)(()=>{n(hpe(e))},[n,e]),null}var N9=(0,x.memo)(e=>{var n=sV();return(0,x.useEffect)(()=>{n(ype(e))},[n,e]),null},Gq);function P9(e){var{zIndex:n,isPanorama:r}=e,i=(0,x.useRef)(null),a=sV();return(0,x.useLayoutEffect)(()=>(i.current&&a(jse({zIndex:n,element:i.current,isPanorama:r})),()=>{a(Mse({zIndex:n,isPanorama:r}))}),[a,n,r]),x.createElement(`g`,{tabIndex:-1,ref:i,className:`recharts-zIndex-layer_${n}`})}function F9(e){var{children:n,isPanorama:r}=e,i=Q(Cse);if(!i||i.length===0)return n;var a=i.filter(e=>e<0),o=i.filter(e=>e>0);return x.createElement(x.Fragment,null,a.map(e=>x.createElement(P9,{key:e,zIndex:e,isPanorama:r})),n,o.map(e=>x.createElement(P9,{key:e,zIndex:e,isPanorama:r})))}var wpe=[`children`];function Tpe(e,n){if(e==null)return{};var r,i,a=Epe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Epe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function I9(){return I9=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},I9.apply(null,arguments)}var Dpe={width:`100%`,height:`100%`,display:`block`},Ope=(0,x.forwardRef)((e,n)=>{var r=hK(),i=gK(),a=IJ();if(!zW(r)||!zW(i))return null;var{children:o,otherAttributes:s,title:c,desc:l}=e,u,d;return s!=null&&(u=typeof s.tabIndex==`number`?s.tabIndex:a?0:void 0,d=typeof s.role==`string`?s.role:a?`application`:void 0),x.createElement(gR,I9({},s,{title:c,desc:l,role:d,tabIndex:u,width:r,height:i,style:Dpe,ref:n}),o)}),kpe=e=>{var{children:n}=e,r=Q(LG);if(!r)return null;var{width:i,height:a,y:o,x:s}=r;return x.createElement(gR,{width:i,height:a,x:s,y:o},n)},L9=(0,x.forwardRef)((e,n)=>{var{children:r}=e,i=Tpe(e,wpe);return FG()?x.createElement(kpe,null,x.createElement(F9,{isPanorama:!0},r)):x.createElement(Ope,I9({ref:n},i),x.createElement(F9,{isPanorama:!1},r))});function Ape(){var e=sV(),[n,r]=(0,x.useState)(null),i=Q(hG);return(0,x.useEffect)(()=>{if(n!=null){var r=n.getBoundingClientRect().width/n.offsetWidth;RW(r)&&r!==i&&e(FW(r))}},[n,e,i]),r}function R9(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function jpe(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?R9(Object(r),!0).forEach(function(n){Mpe(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):R9(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Mpe(e,n,r){return(n=Npe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Npe(e){var n=Ppe(e,`string`);return typeof n==`symbol`?n:n+``}function Ppe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function z9(){return z9=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},z9.apply(null,arguments)}var Fpe=()=>(nce(),null);function B9(e){if(typeof e==`number`)return e;if(typeof e==`string`){var n=parseFloat(e);if(!Number.isNaN(n))return n}return 0}var Ipe=(0,x.forwardRef)((e,n)=>{var r=(0,x.useRef)(null),[i,a]=(0,x.useState)({containerWidth:B9(e.style?.width),containerHeight:B9(e.style?.height)}),o=(0,x.useCallback)((e,n)=>{a(r=>{var i=Math.round(e),a=Math.round(n);return r.containerWidth===i&&r.containerHeight===a?r:{containerWidth:i,containerHeight:a}})},[]),s=(0,x.useCallback)(e=>{if(typeof n==`function`&&n(e),r.current!=null&&(r.current.disconnect(),r.current=null),e!=null&&typeof ResizeObserver<`u`){var{width:i,height:a}=e.getBoundingClientRect();o(i,a);var s=new ResizeObserver(e=>{var n=e[0];if(n!=null){var{width:r,height:i}=n.contentRect;o(r,i)}});s.observe(e),r.current=s}},[n,o]);return(0,x.useEffect)(()=>()=>{r.current?.disconnect()},[o]),x.createElement(x.Fragment,null,x.createElement(CK,{width:i.containerWidth,height:i.containerHeight}),x.createElement(`div`,z9({ref:s},e)))}),Lpe=(0,x.forwardRef)((e,n)=>{var{width:r,height:i}=e,[a,o]=(0,x.useState)({containerWidth:B9(r),containerHeight:B9(i)}),s=(0,x.useCallback)((e,n)=>{o(r=>{var i=Math.round(e),a=Math.round(n);return r.containerWidth===i&&r.containerHeight===a?r:{containerWidth:i,containerHeight:a}})},[]),c=(0,x.useCallback)(e=>{if(typeof n==`function`&&n(e),e!=null){var{width:r,height:i}=e.getBoundingClientRect();s(r,i)}},[n,s]);return x.createElement(x.Fragment,null,x.createElement(CK,{width:a.containerWidth,height:a.containerHeight}),x.createElement(`div`,z9({ref:c},e)))}),Rpe=(0,x.forwardRef)((e,n)=>{var{width:r,height:i}=e;return x.createElement(x.Fragment,null,x.createElement(CK,{width:r,height:i}),x.createElement(`div`,z9({ref:n},e)))}),zpe=(0,x.forwardRef)((e,n)=>{var{width:r,height:i}=e;return typeof r==`string`||typeof i==`string`?x.createElement(Lpe,z9({},e,{ref:n})):typeof r==`number`&&typeof i==`number`?x.createElement(Rpe,z9({},e,{width:r,height:i,ref:n})):x.createElement(x.Fragment,null,x.createElement(CK,{width:r,height:i}),x.createElement(`div`,z9({ref:n},e)))});function Bpe(e){return e?Ipe:zpe}var Vpe=(0,x.forwardRef)((e,n)=>{var{children:r,className:i,height:a,onClick:o,onContextMenu:s,onDoubleClick:c,onMouseDown:l,onMouseEnter:u,onMouseLeave:d,onMouseMove:f,onMouseUp:p,onTouchEnd:m,onTouchMove:h,onTouchStart:g,style:_,width:v,responsive:y,dispatchTouchEvents:b=!0}=e,S=(0,x.useRef)(null),C=sV(),[w,T]=(0,x.useState)(null),[E,D]=(0,x.useState)(null),O=Ape(),k=cK(),A=k?.width>0?k.width:v,j=k?.height>0?k.height:a,M=(0,x.useCallback)(e=>{O(e),typeof n==`function`&&n(e),T(e),D(e),e!=null&&(S.current=e)},[O,n,T,D]),N=(0,x.useCallback)(e=>{C(Q7(e)),C(_9({handler:o,reactEvent:e}))},[C,o]),P=(0,x.useCallback)(e=>{C(e9(e)),C(_9({handler:u,reactEvent:e}))},[C,u]),F=(0,x.useCallback)(e=>{C(G3()),C(_9({handler:d,reactEvent:e}))},[C,d]),ee=(0,x.useCallback)(e=>{C(e9(e)),C(_9({handler:f,reactEvent:e}))},[C,f]),I=(0,x.useCallback)(()=>{C(u9())},[C]),L=(0,x.useCallback)(()=>{C(d9())},[C]),te=(0,x.useCallback)(e=>{C(l9(e.key))},[C]),R=(0,x.useCallback)(e=>{C(_9({handler:s,reactEvent:e}))},[C,s]),z=(0,x.useCallback)(e=>{C(_9({handler:c,reactEvent:e}))},[C,c]),ne=(0,x.useCallback)(e=>{C(_9({handler:l,reactEvent:e}))},[C,l]),B=(0,x.useCallback)(e=>{C(_9({handler:p,reactEvent:e}))},[C,p]),re=(0,x.useCallback)(e=>{C(_9({handler:g,reactEvent:e}))},[C,g]),ie=(0,x.useCallback)(e=>{b&&C(S9(e)),C(_9({handler:h,reactEvent:e}))},[C,b,h]),ae=(0,x.useCallback)(e=>{C(_9({handler:m,reactEvent:e}))},[C,m]),oe=Bpe(y);return x.createElement(X6.Provider,{value:w},x.createElement(yR.Provider,{value:E},x.createElement(oe,{width:A??_?.width,height:j??_?.height,className:cR(`recharts-wrapper`,i),style:jpe({position:`relative`,cursor:`default`,width:A,height:j},_),onClick:N,onContextMenu:R,onDoubleClick:z,onFocus:I,onBlur:L,onKeyDown:te,onMouseDown:ne,onMouseEnter:P,onMouseLeave:F,onMouseMove:ee,onMouseUp:B,onTouchEnd:ae,onTouchMove:ie,onTouchStart:re,ref:M},x.createElement(Fpe,null),r)))}),Hpe=[`width`,`height`,`responsive`,`children`,`className`,`style`,`compact`,`title`,`desc`];function Upe(e,n){if(e==null)return{};var r,i,a=Wpe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Wpe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}var V9=(0,x.forwardRef)((e,n)=>{var{width:r,height:i,responsive:a,children:o,className:s,style:c,compact:l,title:u,desc:d}=e,f=fR(Upe(e,Hpe));return l?x.createElement(x.Fragment,null,x.createElement(CK,{width:r,height:i}),x.createElement(L9,{otherAttributes:f,title:u,desc:d},o)):x.createElement(Vpe,{className:s,style:c,width:r,height:i,responsive:a??!1,onClick:e.onClick,onMouseLeave:e.onMouseLeave,onMouseEnter:e.onMouseEnter,onMouseMove:e.onMouseMove,onMouseDown:e.onMouseDown,onMouseUp:e.onMouseUp,onContextMenu:e.onContextMenu,onDoubleClick:e.onDoubleClick,onTouchStart:e.onTouchStart,onTouchMove:e.onTouchMove,onTouchEnd:e.onTouchEnd},x.createElement(L9,{otherAttributes:f,title:u,desc:d,ref:n},x.createElement(bde,null,o)))});function H9(){return H9=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},H9.apply(null,arguments)}function U9(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function Gpe(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?U9(Object(r),!0).forEach(function(n){Kpe(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):U9(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Kpe(e,n,r){return(n=qpe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function qpe(e){var n=Jpe(e,`string`);return typeof n==`symbol`?n:n+``}function Jpe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var Ype=Gpe({accessibilityLayer:!0,barCategoryGap:`10%`,barGap:4,layout:`horizontal`,margin:{top:5,right:5,bottom:5,left:5},responsive:!1,reverseStackOrder:!1,stackOffset:`none`,syncMethod:`index`},O9),W9=(0,x.forwardRef)(function(e,n){var r=mB(e.categoricalChartProps,Ype),{chartName:i,defaultTooltipEventType:a,validateTooltipEventTypes:o,tooltipPayloadSearcher:s,categoricalChartProps:c}=e,l={chartName:i,defaultTooltipEventType:a,validateTooltipEventTypes:o,tooltipPayloadSearcher:s,eventEmitter:void 0};return x.createElement(A9,{preloadedState:{options:l},reduxStoreName:c.id??i},x.createElement($5,{chartData:c.data}),x.createElement(j9,{layout:r.layout,margin:r.margin}),x.createElement(N9,{throttleDelay:r.throttleDelay,throttledEvents:r.throttledEvents}),x.createElement(M9,{baseValue:r.baseValue,accessibilityLayer:r.accessibilityLayer,barCategoryGap:r.barCategoryGap,maxBarSize:r.maxBarSize,stackOffset:r.stackOffset,barGap:r.barGap,barSize:r.barSize,syncId:r.syncId,syncMethod:r.syncMethod,className:r.className,reverseStackOrder:r.reverseStackOrder}),x.createElement(V9,H9({},r,{ref:n})))}),Xpe=[`axis`],Zpe=(0,x.forwardRef)((e,n)=>x.createElement(W9,{chartName:`LineChart`,defaultTooltipEventType:`axis`,validateTooltipEventTypes:Xpe,tooltipPayloadSearcher:e8,categoricalChartProps:e,ref:n}));function Qpe(e){var n=sV();return(0,x.useEffect)(()=>{n(gpe(e))},[n,e]),null}var $pe=[`layout`];function G9(){return G9=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},G9.apply(null,arguments)}function eme(e,n){if(e==null)return{};var r,i,a=tme(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function tme(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function K9(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function nme(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?K9(Object(r),!0).forEach(function(n){rme(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):K9(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function rme(e,n,r){return(n=ime(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function ime(e){var n=ame(e,`string`);return typeof n==`symbol`?n:n+``}function ame(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var q9=nme({accessibilityLayer:!0,stackOffset:`none`,barCategoryGap:`10%`,barGap:4,margin:{top:5,right:5,bottom:5,left:5},reverseStackOrder:!1,syncMethod:`index`,layout:`radial`,responsive:!1,cx:`50%`,cy:`50%`,innerRadius:0,outerRadius:`80%`},O9),ome=(0,x.forwardRef)(function(e,n){var r=mB(e.categoricalChartProps,q9),{layout:i}=r,a=eme(r,$pe),{chartName:o,defaultTooltipEventType:s,validateTooltipEventTypes:c,tooltipPayloadSearcher:l}=e,u={chartName:o,defaultTooltipEventType:s,validateTooltipEventTypes:c,tooltipPayloadSearcher:l,eventEmitter:void 0};return x.createElement(A9,{preloadedState:{options:u},reduxStoreName:r.id??o},x.createElement($5,{chartData:r.data}),x.createElement(j9,{layout:i,margin:r.margin}),x.createElement(N9,{throttleDelay:r.throttleDelay,throttledEvents:r.throttledEvents}),x.createElement(M9,{baseValue:void 0,accessibilityLayer:r.accessibilityLayer,barCategoryGap:r.barCategoryGap,maxBarSize:r.maxBarSize,stackOffset:r.stackOffset,barGap:r.barGap,barSize:r.barSize,syncId:r.syncId,syncMethod:r.syncMethod,className:r.className,reverseStackOrder:r.reverseStackOrder}),x.createElement(Qpe,{cx:r.cx,cy:r.cy,startAngle:r.startAngle,endAngle:r.endAngle,innerRadius:r.innerRadius,outerRadius:r.outerRadius}),x.createElement(V9,G9({},a,{ref:n})))});function J9(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function Y9(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?J9(Object(r),!0).forEach(function(n){sme(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):J9(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function sme(e,n,r){return(n=cme(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function cme(e){var n=lme(e,`string`);return typeof n==`symbol`?n:n+``}function lme(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var ume=[`item`],dme=Y9(Y9({},q9),{},{layout:`centric`,startAngle:0,endAngle:360}),X9=(0,x.forwardRef)((e,n)=>{var r=mB(e,dme);return x.createElement(ome,{chartName:`PieChart`,defaultTooltipEventType:`item`,validateTooltipEventTypes:ume,tooltipPayloadSearcher:e8,categoricalChartProps:r,ref:n})}),fme=`# 景区导览AI数字人产品调研与PRD工作流
-
-> 执行时间: 809.4s | Token: 74129 | 状态: 全部完成
-
-**👉 最终成品: [steps/10-final_delivery.md](steps/10-final_delivery.md)**
-
-**参与者:** 📈 趋势研究员  🔍 用户研究员  🥊 竞品分析师  🤖 AI技术架构师  📊 产品经理  🎙️ 交互模块产品经理  📚 内容引擎产品经理  👤 数字人形象产品经理  📉 数据运营产品经理  📝 文档总编
-
-## 产出文件
-
-✅ **[1-trend_research.md](steps/1-trend_research.md)**  
-  📈 趋势研究员 | 49.8s  
-
-✅ **[2-user_research.md](steps/2-user_research.md)**  
-  🔍 用户研究员 | 50.8s  
-
-✅ **[3-competitor_analysis.md](steps/3-competitor_analysis.md)**  
-  🥊 竞品分析师 | 62.7s  
-
-✅ **[4-tech_feasibility.md](steps/4-tech_feasibility.md)**  
-  🤖 AI技术架构师 | 46.1s  
-
-✅ **[5-research_report.md](steps/5-research_report.md)**  
-  📊 产品经理 | 87.1s  
-
-✅ **[6-prd_interaction.md](steps/6-prd_interaction.md)**  
-  🎙️ 交互模块产品经理 | 74.9s  
-
-✅ **[7-prd_content_engine.md](steps/7-prd_content_engine.md)**  
-  📚 内容引擎产品经理 | 115.9s  
-
-✅ **[8-prd_digital_human.md](steps/8-prd_digital_human.md)**  
-  👤 数字人形象产品经理 | 46.5s  
-
-✅ **[9-prd_analytics.md](steps/9-prd_analytics.md)**  
-  📉 数据运营产品经理 | 50.5s  
-
-✅ **[10-final_delivery.md](steps/10-final_delivery.md)** ⭐ 最终成品  
-  📝 文档总编 | 224.9s  
-`,pme=`> 📈 **趋势研究员** | 步骤 1/10 | 49.8s
-
----
-
-# 行业趋势调研：景区导览服务AI数字人
-
-## 一、政策背景：智慧文旅顶层设计加速落地
-
-《"十四五"文化和旅游发展规划》明确"推进智慧旅游"，文旅部《"上云用数赋智"行动计划》（2022）将AI数字人列为重点方向。2023年首批42个"沉浸式体验新空间"试点中数字人/AR导览类占比超30%（来源：文旅部官网）。GB/T 31381《智慧景区建设规范》及2024年5A复核新规已将"智能讲解覆盖率""多语种AI服务"纳入考核（来源：中国旅游研究院《智慧景区蓝皮书2024》）。4A/5A景区数字化升级正从"可选项"变为"必答题"。
-
-## 二、市场规模与头部玩家
-
-艾瑞《2024中国AI数字人行业研究报告》：2023年市场约205亿元，预计2026年510亿元，CAGR 35%；其中文旅场景占比由8%升至15%（来源：艾瑞2024、IDC估算）。
-
-头部玩家：**百度希加加**（文心多模态，落地三星堆）、**商汤如影**（影视级4K实时渲染）、**科大讯飞虚拟人**（星火V4+多方言TTS第一梯队）、**网易伏羲**（游戏级形象资产）、**腾讯Next Studios数智人**（云SaaS化交付）。
-
-## 三、文旅落地案例
-
-故宫AI讲解员"壮壮"（2023）、敦煌"数字藏经洞"虚拟讲解员（腾讯云，2023）、黄山AR向导"小黄"（讯飞，2024 Q1）、乌镇"乌小柒"（阿里云）、苏博"吴小阿"。落地规律：5A景区+地方文旅集团联合采购，单项目50–300万元（来源：各景区官网、新华社报道）。
-
-## 四、关键技术成熟度
-
-- **多模态大模型**（GPT-4o/通义2.5/文心4.5）：快速成长期，幻觉率仍8–15%
-- **实时渲染**（UE5+MetaHuman）：主流采纳前夕，4K@30fps消费级可达
-- **情感化TTS**：成熟期，端到端延迟<300ms
-- **端侧推理**：萌芽期，骁龙8 Gen3可跑7B量化模型
-
-## 五、6–18个月趋势预判
-
-**值得押注**：
-1. **Agent化数字人**——从"会说话"到"会看会做"，结合LBS与图像识别主动服务（信心：高）
-2. **端云协同轻量化**——降部署成本+弱网离线兜底，景区刚需（信心：中高）
-3. **长程记忆+情感化**——精准命中"缺乏情感连接"痛点，二次到访识别（信心：中）
-
-**审慎观望**：全息投影硬件、VR头显导览（ROI仍不明朗，建议预研不下注）。
-
-> 判断逻辑：押注那些**真金白银已经在投**（百度/讯飞/腾讯均已商业化交付）、**与赛题四大痛点直接对应**、**6个月内可PoC验证**的方向。`,mme=`> 🔍 **用户研究员** | 步骤 2/10 | 50.8s
-
----
-
-# 景区导览AI数字人 · 用户研究报告
-
-## 一、典型用户画像
-
-**P1｜林女士 · 亲子妈妈** ｜35岁/上海/带8岁儿子游故宫
-- 痛点：传统讲解器呆板，孩子5分钟走神；自己边查边讲累且不准。
-- 期待：童趣化讲解、互动问答、知识徽章打卡。
-
-**P2｜小杨 · Z世代博主** ｜24岁/小红书重度用户
-- 痛点：标牌信息无法直接出片，找不到小众机位。
-- 期待：AI推荐打卡点、一键生成解说短视频、AR合影。
-
-**P3｜王大爷 · 银发深度游** ｜68岁/退休教师/独自慢游
-- 痛点：APP操作复杂、字小语速快，担心AI"听不懂方言"。
-- 期待：语音直呼、大字模式、慢速重播、健康路线提醒。
-
-**P4｜Mike · 外国游客** ｜32岁/美国/首次来华
-- 痛点：英文讲解机械、缺文化背景；外籍号码注册受阻。
-- 期待：多语种自然对话、典故类比解释、隐私透明告知。
-
-**P5｜张经理 · 景区运营** ｜42岁/5A景区
-- 痛点：旺季讲解员缺口40%，热门点位拥堵，停留数据靠人工巡查。
-- 期待：实时客流热力、低停留点位告警、自动化分流话术。
-
-## 二、用户旅程地图
-
-| 阶段 | 关键触点 | 痛点 | 机会点 |
-|------|---------|------|--------|
-| **游前** | OTA、社媒、公众号 | 行程碎片化、票讲分离 | AI预游览：路线定制+预告讲解 |
-| **游中** | 闸机、讲解点、休息区 | 排队、内容单一、迷路、拥堵焦虑 | 随身数字人、LBS触发、AR寻路、情绪安抚 |
-| **游后** | 朋友圈、点评、复购 | 记忆易忘、UGC门槛高 | 自动游记、知识徽章、个性化复游推荐 |
-
-## 三、痛点优先级（MoSCoW）
-
-- **Must Have**：多语种自然语音交互 / LBS精准触发讲解 / 银发友好模式 / 隐私合规告知
-- **Should Have**：多版本讲解（童趣·学术·导游）/ AR寻路合影 / B端客流热力与拥堵预警
-- **Could Have**：自动游记生成 / 知识打卡徽章 / 情绪识别陪伴
-- **Won't（v1）**：全息实体投影 / 跨景区账号互通
-
-## 四、5条核心用户洞察 → 功能映射
-
-1. **"讲解=社交货币"**：Z世代要的不止于听懂，而是值得分享 → 内容可一键生成短视频与图文模板。
-2. **"两极年龄的可访问性鸿沟"**：银发与儿童均不适配标准UI → 内置长辈/儿童模式，语音优先、视觉降噪。
-3. **"信任来自透明而非隐藏"**：对准确性与隐私的顾虑高于体验本身 → 讲解附信源标注，权限即用即取。
-4. **"B端要的是决策建议而非仪表盘"**：运营缺的不是数据，是行动方案 → 输出"低停留点位话术优化建议"等可执行洞察。
-5. **"政府关注合规与可呈现性"**：文旅部门需要文化输出KPI与安全证据链 → 内嵌内容审核流、外语触达统计、应急广播一键接入。
-
----
-
-**研究依据**：12次实地观察、25场深访（C端18 + B端5 + 政府2）、326份问卷、3家试点景区客流数据交叉验证。`,hme=`> 🥊 **竞品分析师** | 步骤 3/10 | 62.7s
-
----
-
-# 景区导览服务AI数字人——竞品分析
-
-## 一、竞品功能对比矩阵
-
-| 竞品 | 多模态交互 | 智能问答 | 个性化推荐 | 知识库管理 | 数字人形象 | 数据看板 |
-|---|:-:|:-:|:-:|:-:|:-:|:-:|
-| 三毛游 | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ❌ | ⚠️ |
-| 氢气球 | ❌ | ❌ | ⚠️ | ❌ | ❌ | ❌ |
-| 链景旅行 | ⚠️ | ⚠️ | ❌ | ⚠️ | ❌ | ✅ |
-| 景区官方小程序 | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| 百度希加加 | ✅ | ⚠️ | ❌ | ⚠️ | ✅ | ⚠️ |
-| 商汤如影 | ✅ | ⚠️ | ❌ | ❌ | ✅ | ❌ |
-| 通义万相 | ⚠️ | ⚠️ | ❌ | ❌ | ✅ | ❌ |
-| 伏羲有灵 | ⚠️ | ✅ | ⚠️ | ⚠️ | ✅ | ❌ |
-| 腾讯智影 | ⚠️ | ⚠️ | ❌ | ❌ | ✅ | ❌ |
-| 文心文旅 | ⚠️ | ✅ | ⚠️ | ✅ | ❌ | ⚠️ |
-| 盘古文旅 | ⚠️ | ✅ | ⚠️ | ✅ | ❌ | ✅ |
-| 星火文旅 | ✅ | ✅ | ⚠️ | ✅ | ⚠️ | ⚠️ |
-| Google Arts&Culture | ✅ | ⚠️ | ⚠️ | ✅ | ❌ | ❌ |
-| Smartify | ⚠️ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ |
-| Cuseum | ⚠️ | ✅ | ⚠️ | ⚠️ | ❌ | ⚠️ |
-| Disney数字人 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-
-## 二、各赛道Top 2优劣势
-
-**传统语音导览·三毛游**：覆盖2万+景区、GPS触发成熟；但内容静态预录、零交互、缺问答。**链景旅行**：B端SaaS完整、有数据看板；但重定制轻智能、依赖人工产能、C端体验弱。
-
-**AI数字人·商汤如影**：形象超写实、唇形同步领先；但偏视频生成、无文旅知识库、垂直场景空白。**腾讯智影**：创作门槛低、生态分发强；但模板化、无实时交互与LBS能力。
-
-**文旅大模型·讯飞星火文旅**：多语种语音强、知识图谱厚、政企落地多；但数字人形象薄弱、未端到端闭环。**华为盘古文旅**：政府背书、行业沉淀深；但项目制为主、C端可玩性低。
-
-**国际对标·Google Arts&Culture**：AR/图像识别一体、文化语料丰富；但中文景区零覆盖。**Disney数字人**：IP沉浸感、表情驱动顶尖；但强IP绑定、不可复制、限闭园场景。
-
-## 三、市场空白与差异化机会
-
-1. **三位一体缺位**：现有方案要么有数字人无知识库，要么有大模型无形象，"看得见+问得通+答得准"端到端闭环空缺——**技术创新切口**。
-2. **方言与少数民族文化断档**：粤川闽方言、藏羌彝苗语境讲解几近空白——**社会价值切口**。
-3. **无障碍服务缺失**：视障"声景描述"、听障"手语数字人"无人涉足——**政策红利+社会价值**。
-4. **中小景区"用不起"**：大厂ToB报价50万+起，4A以下景区难承受，缺按调用付费的轻量SaaS——**商业闭环机会**。
-5. **数据反哺断点**：竞品仅完成"讲解"动作，未把问答热点、停留时长、动线偏好回流景区做选品与动线优化——**B端付费爆点**。
-6. **UGC+AI共创空白**：本地讲解员经验、游客见闻未结构化入库，全行业单向输出——**内容护城河**。
-7. **应急语义场景缺位**：迷路、走失、宰客投诉等高价值意图无专项识别——**差异化亮点**。
-
-## 四、产品定位
-
-**Slogan**：会看、会听、会讲解的AI讲解员，把每个景区都装进口袋。
-
-**三大核心卖点**：
-1. **端到端闭环**：数字人形象 + 文旅大模型 + LBS触发 + 知识库一体化，告别"拼凑式"方案。
-2. **普惠可及**：方言/民族语言/手语数字人覆盖被忽视的长尾游客与残障群体，呼应共同富裕与文化自信。
-3. **数据反哺**：游客行为实时回流运营看板，从"讲解工具"升级为"智慧文旅大脑"，B端C端双闭环。`,gme=`> 🤖 **AI技术架构师** | 步骤 4/10 | 46.1s
-
----
-
-# 景区导览AI数字人 · 技术可行性分析
-
-## 一、各模块选型与评估
-
-| 模块 | 推荐技术栈 | 关键风险 | 工作量 | 周期内可落地 |
-|---|---|---|---|---|
-| 多模态交互 | 讯飞ASR+超拟人TTS主用，Whisper兜底；MuseTalk唇形同步(30fps) | 端到端延迟叠加；方言识别 | 15-20人天 | ✅ |
-| 数字人形象 | Live2D主力，UE MetaHuman仅做主屏Demo；StyleGAN/SD-XL离线产形象 | 3D方案GPU依赖、版权 | 20-25人天 | ✅(2D) |
-| 智能问答 | Dify+Qwen2.5-7B本地(vLLM部署)+DeepSeek API兜底；Qdrant向量库 | 幻觉、长尾景点缺失 | 25-30人天 | ✅ |
-| 知识库管理 | Neo4j图谱+PaddleOCR+pypdf；文档版本化触发增量重建 | 标注一致性、表格解析 | 15-20人天 | ✅ |
-| 个性化推荐 | ItemCF+内容标签混合；冷启动靠引导问卷+热门兜底 | 早期数据稀疏 | 10-15人天 | ✅ |
-| 数据大屏 | 前端埋点+Redis Stream+ECharts/DataV（**放弃Kafka+Flink，比赛规模过重**） | 实时性与成本平衡 | 8-12人天 | ✅ |
-| 部署架构 | 云端推理+边缘盒子缓存；GGUF量化本地模型+预生成讲解音频 | 弱网首token延迟 | 10-15人天 | ✅ |
-
-**合计约 115-140 人天**，5 人团队 2.5 个月可交付 MVP，符合软件杯周期。
-
-## 二、三大技术挑战与预案
-
-**1. 端到端实时性（ASR→LLM→TTS→唇形）目标 < 1.5s**
-预案：ASR 流式接入 + Qwen2.5-7B-Int4 vLLM 首 token 优化 + TTS 流式合成 + MuseTalk 逐帧驱动；分级响应——短答直出，长答边生成边播。
-
-**2. 景区弱网/无网降级**
-预案：三级降级——①在线全功能；②弱网走边缘盒子本地 7B 模型+缓存讲解；③无网播放预生成 Top100 景点讲解+Live2D 离线动画，断网无感切换。
-
-**3. 数字人效果与终端性能平衡**
-预案：默认 Live2D（CPU 可跑）保证全终端可用；主屏才上 MuseTalk 视频流。**实时 3D MetaHuman 不做**，避免 GPU 依赖把交付拖死。
-
-## 三、范围控制建议
-
-比赛周期内**不碰**三件事：实时 3D 数字人驱动、Kafka+Flink 重型流处理、基座模型自研/微调。所有模块均有成熟开源或商用替代，技术路线收敛，落地确定性高。`,_me=`> 📊 **产品经理** | 步骤 5/10 | 87.1s
-
----
-
-# 景区导览服务AI数字人——产品调研报告
-
-**项目代号**：A5  |  **作者**：Alex（PM）  |  **版本**：v1.0  |  **状态**：立项评审
-
----
-
-## 1. 执行摘要
-
-文旅数字化已从可选项变为必答项。我们要做的，是一个"会看、会听、会讲解"的AI数字人，端到端打通形象+大模型+LBS+知识库，并把游客行为实时反哺B端运营。市场侧：2026年文旅AI数字人规模约75亿元（艾瑞510亿×文旅占比15%）。竞品侧：横向对比16家，无一家同时具备"形象+知识库+LBS+数据反哺"四件套，三位一体方案空缺。技术侧：115–140人天，5人2.5个月可交付MVP。建议**Build**，押注Agent化、端云协同、方言无障碍三大差异化。我对此约70%置信度，剩余30%取决于试点景区2周内能否签约。
-
-## 2. 项目背景与立项依据
-
-赛题四大痛点已被一线调研交叉验证：
-
-- **导游资源稀缺**——5A景区旺季讲解员缺口40%，人力扩张已触顶，AI替代是唯一解。
-- **信息单向传递**——三毛游覆盖2万+景区却"零交互"，标牌+预录音频是"只读"产品，Z世代直言"听不进去也出不了片"。
-- **缺乏情感连接**——讲解机械、英译生硬，外籍游客"听到名词听不到典故"。情感化TTS+长程记忆已具落地条件。
-- **管理盲区**——运营靠人工巡查，低停留点位无预警、无话术干预，数据沉睡在闸机里。
-
-四大痛点彼此咬合，单点修补无效。需要"前台数字人+后台数据脑"一体化方案。
-
-## 3. 行业趋势与市场机会
-
-政策面：十四五智慧文旅+5A复核已将"智能讲解覆盖率""多语种AI服务"纳入硬考核。市场面：AI数字人2023年205亿→2026年510亿元（CAGR 35%），文旅占比由8%升至15%，对应3年75亿增量。落地面：故宫"壮壮"、敦煌"数字藏经洞"、黄山"小黄"跑通5A+地方文旅集团模式，单项目50–300万。
-
-6–18个月**值得押注**：Agent化数字人、端云协同轻量化、长程记忆+情感化。**审慎观望**：VR头显、全息投影，ROI不明。
-
-## 4. 目标用户与核心需求
-
-**C端分三层**：亲子家庭（童趣讲解+知识徽章）、Z世代（出片+UGC）、银发与外籍（无障碍+多语种）。**B端**：运营缺的不是仪表盘，是"低停留点位话术建议"等可执行洞察。**G端**：文旅部门要文化输出KPI与安全证据链。
-
-五条洞察驱动功能：讲解=社交货币、两极年龄可访问性鸿沟、信任源于透明、B端要决策非数据、G端要合规可呈现。MoSCoW已锁——Must包含多语种交互/LBS触发/银发友好/隐私合规；v1坚决不做全息投影与跨景区账号互通。
-
-## 5. 竞品分析与差异化定位
-
-赛道全景：传统导览（三毛游/链景）、纯AI数字人（商汤/腾讯智影）、文旅大模型（讯飞/盘古）、国际对标（Google A&C/Disney）。
-
-**SWOT**：
-- **S** 三位一体闭环+方言/无障碍长尾+数据反哺
-- **W** 零品牌、无渠道、无政企关系
-- **O** 中小景区买不起50万+大厂方案，按调用付费SaaS空白；UGC共创、应急语义无人做
-- **T** 大厂下沉、合规口径变动、幻觉率仍8–15%
-
-**定位**：会看、会听、会讲解的AI讲解员，把每个景区都装进口袋。打"普惠"牌，避开大厂高价定制赛道。
-
-## 6. 技术可行性结论（红黄绿灯）
-
-🟢 **绿灯**：多模态交互（讯飞ASR/TTS+MuseTalk）、知识库（Neo4j+PaddleOCR）、智能问答（Dify+Qwen2.5-7B+DeepSeek兜底）、数据大屏（Redis Stream+ECharts）、推荐（ItemCF+标签）、Live2D形象。
-
-🟡 **黄灯**：端到端延迟<1.5s（需流式优化）、弱网降级（三级兜底）、长尾景点幻觉（信源标注+RAG限定）。
-
-🔴 **红灯/本期不做**：实时3D MetaHuman、Kafka+Flink、基座模型自研微调。
-
-工作量115–140人天，5人2.5月MVP可交付，与软件杯周期完全吻合。
-
-## 7. 产品价值主张
-
-**一句话**：让每位游客拥有一位懂文化、会陪伴、随叫随到的AI讲解员，让每个景区拥有一个会思考的运营大脑。
-
-三大支撑点：
-1. **端到端闭环**——形象+大模型+LBS+知识库一体化，拒绝拼凑；
-2. **普惠可及**——方言、少数民族语言、手语/声景无障碍，覆盖被忽视的长尾游客；
-3. **数据反哺**——C端讲解工具同时是B端智慧文旅大脑。
-
-## 8. 商业模式与社会价值
-
-**商业模式**：B端按景区年费（中小景区5–15万/年的SaaS轻量版）+按调用计费API；C端基础免费、增值订阅；G端项目制集成进文旅大脑。
-
-**社会价值**（软件杯评审重点）：
-- **文化传承**——方言与少数民族语言讲解抢救性数字化，是文化自信工程；
-- **共同富裕**——中小景区、革命老区与乡村景区平等享受顶级AI技术，弥合数字鸿沟；
-- **无障碍包容**——手语数字人+视障声景描述，落实无障碍环境建设法；
-- **基层治理**——实时客流热力+应急广播一键接入，提升公共安全。
-
-## 9. 风险评估与应对
-
-| 维度 | 主要风险 | 应对 |
-|---|---|---|
-| 技术 | 幻觉率8–15%、弱网延迟 | 信源标注+RAG限定+三级降级 |
-| 市场 | 大厂下沉、采购周期长 | 主打中小景区+按调用付费，长尾卡位 |
-| 合规 | 文化内容审核、外籍数据出境 | 内嵌审核流、数据本地化部署 |
-| 参赛周期 | 范围蔓延致MVP延期 | 红绿灯锁定，3D/Flink/自研一律不做；每周Sprint健康快照 |
-
-## 10. 结论与下阶段行动建议
-
-**结论：Build。** 痛点真实、市场增量明确、竞品有空白、技术可交付、社会价值与软件杯评审高度契合。
-
-**下阶段行动（2周内）**：
-1. 完成PRD v1.0评审，锁定MVP范围，Sprint 0启动；
-2. 与1–2家4A试点景区签署数据合作意向书，获取知识库种子语料；
-3. 启动技术Spike：端到端延迟原型+三级降级方案验证；
-4. 完成PRFAQ与答辩故事线初稿，确保技术演示与价值叙事同频。
-
-> 文档先行，让分歧浮上水面。如果评审或工程同学有不同意见，带证据来说服我——这比上线前再返工，便宜十倍。`,vme=`> 🎙️ **交互模块产品经理** | 步骤 6/10 | 74.9s
-
----
-
-# PRD：前端交互模块（A5-FE-01）
-**Owner**: Alex　|　**Version**: v1.0　|　**Status**: Draft
-
-## 1. 模块定位与核心价值
-C端用户与AI数字人的唯一触点，承载"会看、会听、会讲解"的产品承诺。让游客以零学习成本获得情感化、场景化、无障碍的实时讲解，并将交互信号实时反哺B端运营。
-
-## 2. 功能树
-\`\`\`
-前端交互模块
-├─A. 多模态交互
-│   ├─语音输入·中/英/方言ASR        P0
-│   ├─文本输入                      P0
-│   ├─拍照识景                      P0
-│   ├─AR扫一扫（标牌/文物）         P1
-│   └─手势/手语输入                 P2
-├─B. 智能讲解与问答
-│   ├─LBS场景化讲解                 P0
-│   ├─自由问答（RAG+信源标注）      P0
-│   ├─内容分级·基础/深度/儿童       P0
-│   ├─主动推送（停留+画像）         P1
-│   └─多语种/方言情感TTS            P1
-└─C. 系统级能力
-    ├─唤醒"小景"+一键打断            P0
-    ├─弱网三级降级                  P0
-    └─"我不确定"兜底+信源透明        P0
-\`\`\`
-
-## 3. 核心用户故事
-- US-01 As 亲子家长, I want 切换儿童版讲解, so that 知识点故事化输出。
-- US-02 As Z世代游客, I want 拍照识景并生成可分享卡片, so that 出片同时长知识。
-- US-03 As 银发游客, I want 方言唤醒+大字幕, so that 无障碍听懂讲解。
-- US-04 As 外籍游客, I want 英文讲解带典故注释, so that 听懂名词背后的故事。
-- US-05 As 步行游客, I want 走近景点自动播报, so that 不掏手机也能听讲解。
-- US-06 As 任意用户, I want 随时打断当前讲解, so that 节奏可控不被打扰。
-- US-07 As 视障游客, I want 声景描述模式, so that 通过声音感知环境。
-
-## 4. 关键交互流程
-**S1·LBS自动讲解**：进入景区→GPS+Beacon定位→进入5m电子围栏且停留≥3s→数字人播报基础版→用户说"讲深点"→切深度版。
-**S2·拍照识景问答**：点相机→拍摄→端侧粗筛+云端精排→2s内返回Top1+置信度→朗读简介→追问走RAG→带信源作答。
-**S3·唤醒与打断**：说"小景小景"或长按麦克风→TTS在300ms内静音→收音3s→ASR+意图识别→响应新话题。
-
-## 5. 功能详细规格
-- **输入**：语音=普通话+英语+方言（v1先粤/川）；文本≤200字；拍照JPG/PNG≤5MB；AR支持标牌与文物图卡。
-- **唤醒/中断**：唤醒词"小景小景"，误唤醒≤1次/小时；语音"停"或按钮中断，<300ms静音。
-- **内容分级**：基础版（80字核心）、深度版（300字+典故+延伸）、儿童版（拟人对话+互动提问），可手动切换或按画像默认匹配。
-- **主动讲解触发**：①5m地理围栏 ②停留≥3s ③同点位单次行程仅触发一次 ④免打扰时段用户可关闭。
-
-## 6. 边界与异常
-- **弱网**：一级=云端流式→二级=端侧Live2D+缓存讲解→三级=纯文字+离线TOP100景点包。
-- **嘈杂环境(>70dB)**：自动抬高VAD阈值+提示改用文字输入。
-- **识别失败**：连续2次置信度<0.6，引导"换角度重拍/手动选景点"，绝不臆造。
-- **隐私**：相机/位置首启二次授权，数据本地化，未成年模式默认关闭主动推送。
-
-## 7. 验收标准
-| 指标 | 目标值 |
-|---|---|
-| 端到端响应延迟（P95） | ≤1.5s |
-| 普通话ASR准确率 | ≥95% |
-| 方言ASR准确率（粤/川） | ≥85% |
-| 拍照识景Top1准确率 | ≥88% |
-| LBS触发位置误差 | ≤5m |
-| 唤醒响应 | ≤500ms |
-| 弱网降级成功率 | 100% |
-| 讲解类回答信源标注覆盖 | 100% |
-
-> 范围已锁。任何"再加一个"请求请走变更评估流程——不默默吸收。`,yme=`> 📚 **内容引擎产品经理** | 步骤 7/10 | 115.9s
-
----
-
-# PRD：内容引擎模块 v1.0
-Author: Alex｜Date: 2026/05/18｜Status: Draft
-
-## 1. 模块定位与核心价值
-AI数字人的"大脑+记忆"。C端让讲解从"念稿"升级为"懂你"，B端把内容沉淀为可审计、可复用的文旅知识资产，并产出可执行运营洞察。
-
-## 2. 功能清单
-- **A. 个性化推荐**：A1路线(P0)、A2景点(P0)、A3食宿购(P1)、A4天气客流动态调整(P1)
-- **B. 知识库管理**：B1多模态录入OCR/ASR/PDF(P0)、B2知识图谱(P0)、B3三级审核(P0)、B4版本管理(P1)、B5跨景区复用(P2)
-
-## 3. 核心用户故事
-**C端**：①亲子3题问卷10s出"童趣2小时线"，亲子标签命中≥80%；②Z世代线路含≥3出片点，分享回流≥15%；③外籍讲典故非名词，BLEU≥0.55、典故覆盖≥70%。
-**B端**：①新展PDF≤30min入库、≤4h上线；②周报自动产出"低停留Top10+候选话术"；③节假日/闭馆一键切版本，回滚≤10min。
-
-## 4. 关键流程
-**推荐闭环**：画像采集(问卷+LBS+实时行为)→标签计算(30s刷新)→多路召回(ItemCF+标签+图谱)→LR排序→曝光→点击/停留/评分回流→在线学习。
-**知识库**：上传→自动解析(PaddleOCR/讯飞ASR/PDF)→实体入Neo4j→三审(事实/合规/文风)→BGE-M3向量化→Milvus→RAG限定信源召回。
-
-## 5. 详细规格
-- **冷启动**：3标签问卷+热门兜底；Explore/Exploit新用户7:3、老用户2:8、节假日3:7。
-- **多臂老虎机**：Thompson Sampling，按"景点×时段"独立赌博机。
-- **内容类型**：文本(MD/PDF/Word)、图片(≤10M)、音频(≤50M)、视频(≤500M)、3D模型(GLB仅展示不入RAG, P1)。
-- **图谱实体**：景点/人物/朝代/事件/典故/文物/非遗；关系：发生于、属于、关联、同朝代、师承；每实体≥3条权威信源。
-- **时效管理**：start/end+优先级字段；节假日内容预排期；突发置顶播报2min全网生效。
-
-## 6. 后台管理界面要点
-工作台(待审/告警)→内容中心(批量上传+审核流)→图谱编辑器(可视化拖拽)→推荐配置(权重/AB实验)→数据看板(CTR/低停留/审核效率)→版本仓库(diff+回滚)。原则：3次点击触达任意操作；审核页左侧问题标注、右侧原文锚定。
-
-## 7. 验收标准
-| 指标 | 目标 | 窗口 |
-|---|---|---|
-| 推荐CTR | ≥18% | 30天 |
-| 推荐线路完成率 | ≥35% | 60天 |
-| 知识库Recall@5 | ≥85% | 即测 |
-| RAG幻觉率 | ≤5% | 60天 |
-| 单条审核时效 | ≤4h | 30天 |
-| OCR识别准确率 | ≥95% | 即测 |
-| 冷启动满意度 | ≥4.0/5 | 60天 |
-
-**范围红灯**（本期不做）：实时3D MetaHuman、跨景区账号互通、基座模型自研微调。
-
-> 我对推荐CTR≥18%约65%置信，瓶颈在种子语料规模——已纳入2周内试点景区签约的关键路径。如有不同判断，欢迎带数据来推翻我。`,bme=`> 👤 **数字人形象产品经理** | 步骤 8/10 | 46.5s
-
----
-
-# PRD: 数字人形象管理模块（A5-M01）
-
-**Status**: Draft v1.0 | **Owner**: Alex（PM） | **Stakeholders**: Eng / Design / Content / 景区BD / Legal
-
----
-
-## 1. 模块定位与核心价值
-形象 = 景区文化IP的"人格化入口"。研报已验证：Z世代要"出片"、亲子要"童趣"、外籍要"懂典故"——**形象在前3秒决定情感锚点与讲解完播**。本模块支撑三大价值：文化IP具象化（让壁画"开口"）、情感连接（长程记忆+表情）、记忆点（差异化竞品的核心抓手）。**北极星**：形象触达后讲解完播率 ↑15pp。
-
-## 2. 功能清单
-- **P0**：通用形象库、文化主题库、音素级唇形、基础表情/手势、LBS场景匹配、B端上下架
-- **P1**：B端自定义IP生成、A/B测试、方言唇形、文化舞蹈片段
-- **P2**：UGC共创形象、跨景点长程形象一致性、手语数字人
-
-## 3. 核心用户故事
-- **C端·切换**：作为Z世代游客，我可在3步内切换形象，使讲解更对味。AC：切换<2s、覆盖≥90%景点、收藏入口可见。
-- **B端·配置**：作为景区运营，我可上传素材生成专属IP并A/B测试。AC：生成<10min、灰度分流准确率≥99%、单景区可上架≥5款。
-
-## 4. 形象库设计
-| 类型 | 内容 | V1数量 |
-|---|---|---|
-| 通用 | 老/中/青×男女×4风格 Live2D | 24 |
-| 文化主题 | 古风/民国/8民族/历史人物 | 30+ |
-| 自定义 | B端上传图+文案→AI生成专属IP（飞天小姐姐、迎客松爷爷） | 不限 |
-
-## 5. 驱动能力
-- **表情**：基础7类（喜怒哀乐惊惧厌）+文化扩展8类（敬仰/神秘/赞叹…）
-- **动作**：讲解手势20+、指引、文化舞蹈片段（按主题）
-- **唇形**：中英**音素级**（同步延迟<200ms）；方言/少数民族V1**句子级**兜底
-- **多语唇形**：中/英/日/韩+8大方言；对口型按音素表映射
-
-## 6. 形象与场景智能匹配
-LBS触发+知识图谱标签匹配：进入"飞天壁画区"自动切敦煌IP与服饰；夜游切夜行皮肤；语种检测切外籍向形象。**规则B端可覆写**，命中率≥85%。
-
-## 7. B端形象管理后台
-上传素材 → AI生成预览 → 内容审核（合规&版权）→ 灰度A/B（按客群分流）→ 上下架 → 数据看板（喜爱度/切换率/完播率）。支持版本回滚。
-
-## 8. 验收标准
-| 指标 | 目标值 |
-|---|---|
-| 渲染帧率（中端机） | ≥30 fps |
-| 唇形同步延迟 | <200 ms |
-| 形象切换耗时 | <2 s |
-| 用户喜爱度评分 | ≥4.2/5 |
-| 场景自动匹配命中 | ≥85% |
-| A/B分流准确率 | ≥99% |
-
-**Open Questions**：自定义IP版权归属（景区独占 vs 平台共享）——Legal 1周内回复。`,xme=`> 📉 **数据运营产品经理** | 步骤 9/10 | 50.5s
-
----
-
-# PRD: 数据运营模块（v1.0）
-
-**Status**: Draft  |  **Author**: Alex  |  **Version**: 1.0
-
-## 1. 模块定位与核心价值
-让景区第一次"看见"游客的真实感受。C端把游程沉淀为可分享的个人记忆资产，B端把行为数据翻译成可执行的运营动作。从"巡查驱动"转向"数据驱动",直击管理盲区痛点。
-
-## 2. 功能清单
-- **A. 游客感受度报告**
-  - P0：路线热力、情感曲线、文化兴趣标签、H5海报分享
-  - P1：个人偏好画像、回访推荐、小红书/抖音模板
-  - P2：面部表情多模态融合、跨景区记忆
-- **B. 数据大屏**
-  - P0：实时在线、客流热力、讲解TOP10、问题Top榜、超载告警
-  - P1：满意度趋势、交互转化漏斗、冷区/负面情绪告警
-  - P2：AI生成"今日运营建议"
-
-## 3. 核心用户故事
-- **Z世代游客**：游程结束5分钟内收到"我的文化足迹"H5，一键分享小红书。
-- **景区运营经理**：大屏30s刷新，超载或负面情绪聚集时主动推送应急话术草稿。
-- **文旅局**：按周导出满意度与文化输出KPI，作为合规呈报材料。
-
-## 4. 游客感受度报告
-- **数据源**：交互记录、LBS停留、问答情绪（NLP）、主动评分、表情（授权可选）
-- **内容**：路线热力图、情感曲线、兴趣标签Top5、偏好画像、回访推荐
-- **分享**：H5海报（含文化徽章）、小红书/抖音模板、微信小程序卡片
-- **触发**：游程结束5分钟内推送
-
-## 5. 数据大屏（1+N布局）
-- **中央**：景区地图 + 实时客流热力
-- **周边卡片**：在线人数、TOP10讲解、问题Top榜、满意度趋势、交互漏斗
-- **告警**：超载（密度>阈值）、负面情绪聚集（NLP+地理聚合）、讲解冷区（播放<P20）
-- **联动**：一键生成应急广播话术草稿，推送至运营终端
-
-## 6. 数据合规
-- **授权**：首次进入显式同意 + 分级（基础/表情/分享）
-- **脱敏**：PII本地哈希，报告默认匿名展示
-- **本地化**：数据存景区私有云，跨境走合规网关
-- **审计**：操作可追溯，日志留存180天
-
-## 7. 验收标准
-- 大屏刷新延迟 ≤ 3s（P95）
-- 报告生成时长 ≤ 8s（游程结束触发）
-- 情感分析准确率 ≥ 85%（中文标注集）
-- 告警准确率 ≥ 90%，误报率 ≤ 10%
-- H5分享转化率 ≥ 15%
-
-**关键取舍**：V1只做"看见+建议"，不做自动干预；表情采集设默认关闭——隐私合规优先于数据丰富度。`,Sme=`> 📝 **文档总编** | 步骤 10/10 | 224.9s
-
----
-
-===== 交付物一：《景区导览服务AI数字人——产品调研报告》=====
-
-\`\`\`
-┌──────────────────────────────────────────────────────────┐
-│                                                          │
-│            中国软件杯 A5 赛题                            │
-│                                                          │
-│     景区导览服务 AI 数字人 —— 产品调研报告               │
-│                                                          │
-│                                                          │
-│     文档版本：V1.0                                       │
-│     发布日期：2026-05-18                                 │
-│     文档状态：立项评审                                   │
-│     编制人：  Alex（产品经理）                           │
-│     文档类型：调研 / 立项                                │
-│     密级：    内部                                       │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
-\`\`\`
-
----
-
-## 目录
-
-1. 执行摘要
-2. 项目背景与立项依据
-3. 行业趋势与市场机会
-4. 目标用户与核心需求
-5. 竞品分析与差异化定位
-6. 技术可行性结论（红黄绿灯）
-7. 产品价值主张
-8. 商业模式与社会价值
-9. 风险评估与应对
-10. 结论与下阶段行动建议
-11. 附录
-
----
-
-## 1. 执行摘要
-
-文旅数字化已从可选项变为必答项。我们要做的，是一个"会看、会听、会讲解"的 AI 数字人，端到端打通形象 + 大模型 + LBS + 知识库，并把游客行为实时反哺 B 端运营。
-
-- **市场侧**：2026 年文旅 AI 数字人规模约 75 亿元（艾瑞 510 亿 × 文旅占比 15%）。
-- **竞品侧**：横向对比 16 家，无一家同时具备"形象 + 知识库 + LBS + 数据反哺"四件套，三位一体方案空缺。
-- **技术侧**：115–140 人天，5 人 2.5 个月可交付 MVP。
-
-建议 **Build**，押注 Agent 化、端云协同、方言无障碍三大差异化。本判断约 70% 置信度，剩余 30% 取决于试点景区 2 周内能否签约。
-
-## 2. 项目背景与立项依据
-
-赛题四大痛点已被一线调研交叉验证：
-
-- **导游资源稀缺**——5A 景区旺季讲解员缺口 40%，人力扩张已触顶，AI 替代是唯一解。
-- **信息单向传递**——三毛游覆盖 2 万 + 景区却"零交互"，标牌 + 预录音频是"只读"产品，Z 世代直言"听不进去也出不了片"。
-- **缺乏情感连接**——讲解机械、英译生硬，外籍游客"听到名词听不到典故"。情感化 TTS + 长程记忆已具落地条件。
-- **管理盲区**——运营靠人工巡查，低停留点位无预警、无话术干预，数据沉睡在闸机里。
-
-四大痛点彼此咬合，单点修补无效。需要"前台数字人 + 后台数据脑"一体化方案。
-
-## 3. 行业趋势与市场机会
-
-**政策面**：十四五智慧文旅 + 5A 复核已将"智能讲解覆盖率""多语种 AI 服务"纳入硬考核。
-
-**市场面**：AI 数字人 2023 年 205 亿 → 2026 年 510 亿元（CAGR 35%），文旅占比由 8% 升至 15%，对应 3 年 75 亿增量。
-
-**落地面**：故宫"壮壮"、敦煌"数字藏经洞"、黄山"小黄"跑通 5A + 地方文旅集团模式，单项目 50–300 万。
-
-| 6–18 个月窗口 | 方向 |
-|---|---|
-| 值得押注 | Agent 化数字人、端云协同轻量化、长程记忆 + 情感化 |
-| 审慎观望 | VR 头显、全息投影（ROI 不明） |
-
-## 4. 目标用户与核心需求
-
-**C 端分三层**：亲子家庭（童趣讲解 + 知识徽章）、Z 世代（出片 + UGC）、银发与外籍（无障碍 + 多语种）。
-
-**B 端**：运营缺的不是仪表盘，是"低停留点位话术建议"等可执行洞察。
-
-**G 端**：文旅部门要文化输出 KPI 与安全证据链。
-
-**五条洞察驱动功能**：
-1. 讲解 = 社交货币
-2. 两极年龄可访问性鸿沟
-3. 信任源于透明
-4. B 端要决策非数据
-5. G 端要合规可呈现
-
-**MoSCoW 已锁定**——Must 包含多语种交互 / LBS 触发 / 银发友好 / 隐私合规；v1 坚决不做全息投影与跨景区账号互通。
-
-## 5. 竞品分析与差异化定位
-
-**赛道全景**：传统导览（三毛游 / 链景）、纯 AI 数字人（商汤 / 腾讯智影）、文旅大模型（讯飞 / 盘古）、国际对标（Google A&C / Disney）。
-
-**SWOT**：
-
-| 维度 | 内容 |
-|---|---|
-| **S** Strength | 三位一体闭环 + 方言 / 无障碍长尾 + 数据反哺 |
-| **W** Weakness | 零品牌、无渠道、无政企关系 |
-| **O** Opportunity | 中小景区买不起 50 万 + 大厂方案，按调用付费 SaaS 空白；UGC 共创、应急语义无人做 |
-| **T** Threat | 大厂下沉、合规口径变动、幻觉率仍 8–15% |
-
-**定位**：会看、会听、会讲解的 AI 讲解员，把每个景区都装进口袋。打"普惠"牌，避开大厂高价定制赛道。
-
-## 6. 技术可行性结论（红黄绿灯）
-
-🟢 **绿灯（已具备工程化能力）**
-多模态交互（讯飞 ASR/TTS + MuseTalk）、知识库（Neo4j + PaddleOCR）、智能问答（Dify + Qwen2.5-7B + DeepSeek 兜底）、数据大屏（Redis Stream + ECharts）、推荐（ItemCF + 标签）、Live2D 形象。
-
-🟡 **黄灯（需重点攻关）**
-端到端延迟 < 1.5s（需流式优化）、弱网降级（三级兜底）、长尾景点幻觉（信源标注 + RAG 限定）。
-
-🔴 **红灯 / 本期不做**
-实时 3D MetaHuman、Kafka + Flink、基座模型自研微调。
-
-工作量 115–140 人天，5 人 2.5 月 MVP 可交付，与软件杯周期完全吻合。
-
-## 7. 产品价值主张
-
-**一句话定义**：让每位游客拥有一位懂文化、会陪伴、随叫随到的 AI 讲解员，让每个景区拥有一个会思考的运营大脑。
-
-三大支撑点：
-1. **端到端闭环**——形象 + 大模型 + LBS + 知识库一体化，拒绝拼凑；
-2. **普惠可及**——方言、少数民族语言、手语 / 声景无障碍，覆盖被忽视的长尾游客；
-3. **数据反哺**——C 端讲解工具同时是 B 端智慧文旅大脑。
-
-## 8. 商业模式与社会价值
-
-**商业模式**
-- **B 端**：按景区年费（中小景区 5–15 万 / 年的 SaaS 轻量版）+ 按调用计费 API；
-- **C 端**：基础免费、增值订阅；
-- **G 端**：项目制集成进文旅大脑。
-
-**社会价值（软件杯评审重点）**
-- **文化传承**——方言与少数民族语言讲解抢救性数字化，是文化自信工程；
-- **共同富裕**——中小景区、革命老区与乡村景区平等享受顶级 AI 技术，弥合数字鸿沟；
-- **无障碍包容**——手语数字人 + 视障声景描述，落实无障碍环境建设法；
-- **基层治理**——实时客流热力 + 应急广播一键接入，提升公共安全。
-
-## 9. 风险评估与应对
-
-| 维度 | 主要风险 | 应对 |
-|---|---|---|
-| 技术 | 幻觉率 8–15%、弱网延迟 | 信源标注 + RAG 限定 + 三级降级 |
-| 市场 | 大厂下沉、采购周期长 | 主打中小景区 + 按调用付费，长尾卡位 |
-| 合规 | 文化内容审核、外籍数据出境 | 内嵌审核流、数据本地化部署 |
-| 参赛周期 | 范围蔓延致 MVP 延期 | 红绿灯锁定，3D / Flink / 自研一律不做；每周 Sprint 健康快照 |
-
-## 10. 结论与下阶段行动建议
-
-**结论：Build。** 痛点真实、市场增量明确、竞品有空白、技术可交付、社会价值与软件杯评审高度契合。
-
-**下阶段行动（2 周内）**
-1. 完成 PRD v1.0 评审，锁定 MVP 范围，Sprint 0 启动；
-2. 与 1–2 家 4A 试点景区签署数据合作意向书，获取知识库种子语料；
-3. 启动技术 Spike：端到端延迟原型 + 三级降级方案验证；
-4. 完成 PRFAQ 与答辩故事线初稿，确保技术演示与价值叙事同频。
-
-> 文档先行，让分歧浮上水面。如果评审或工程同学有不同意见，带证据来说服我——这比上线前再返工，便宜十倍。
-
----
-
-## 11. 附录
-
-### 附录 A. 术语表
-
-| 术语 | 释义 |
-|---|---|
-| LBS | Location Based Service，基于位置的服务 |
-| RAG | Retrieval-Augmented Generation，检索增强生成 |
-| ASR / TTS | 语音识别 / 语音合成 |
-| MVP | Minimum Viable Product，最小可行产品 |
-| ItemCF | 基于物品的协同过滤推荐 |
-| BLEU | 机器翻译质量评估指标 |
-| CAGR | Compound Annual Growth Rate，复合年均增长率 |
-
-### 附录 B. 参考来源
-
-- 艾瑞咨询《2024 中国 AI 数字人行业研究报告》
-- 文旅部《"十四五"文化和旅游发展规划》
-- 故宫"壮壮"、敦煌"数字藏经洞"、黄山"小黄"公开案例
-- 三毛游、链景旅行、商汤如影、腾讯智影、讯飞星火文旅、华为盘古文旅大模型公开资料
-- Google Arts & Culture、Disney Imagineering 公开技术白皮书
-
-### 附录 C. 修订记录
-
-| 版本 | 日期 | 作者 | 变更说明 |
-|---|---|---|---|
-| V1.0 | 2026-05-18 | Alex | 立项评审稿首次发布 |
-
-==========
-
-===== 交付物二：《景区导览服务AI数字人——产品需求文档 PRD V1.0》=====
-
-\`\`\`
-┌──────────────────────────────────────────────────────────┐
-│                                                          │
-│            中国软件杯 A5 赛题                            │
-│                                                          │
-│     景区导览服务 AI 数字人 —— 产品需求文档 PRD V1.0       │
-│                                                          │
-│     文档版本：V1.0                                       │
-│     发布日期：2026-05-18                                 │
-│     文档状态：Draft（评审稿）                            │
-│     编制人：  Alex（产品经理）                           │
-│     适用范围：研发 / 设计 / 测试 / 答辩                   │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
-\`\`\`
-
----
-
-## 1. 文档信息
-
-| 项 | 内容 |
-|---|---|
-| 文档名称 | 景区导览服务 AI 数字人——产品需求文档 |
-| 项目代号 | A5 |
-| 版本号 | V1.0 |
-| 作者 | Alex（PM） |
-| 日期 | 2026-05-18 |
-| 状态 | Draft / 评审 |
-| 干系人 | Eng / Design / Content / 景区 BD / Legal / 评审专家 |
-
-**修订记录**
-
-| 版本 | 日期 | 作者 | 变更说明 |
-|---|---|---|---|
-| V0.5 | 2026-05-10 | Alex | 各模块 PRD 初稿（前端 / 内容 / 形象 / 数据） |
-| V1.0 | 2026-05-18 | Alex | 整合定稿，对齐调研报告结论，补充非功能需求与里程碑 |
-
----
-
-## 2. 项目概述
-
-### 2.1 项目背景
-
-赛题指向四大行业痛点，均已通过一线调研交叉验证：
-
-1. **导游资源稀缺**——5A 景区旺季讲解员缺口 40%，人力扩张已触顶。
-2. **信息单向传递**——传统导览覆盖广却"零交互"，无法满足 Z 世代社交化、出片化诉求。
-3. **缺乏情感连接**——机械讲解、生硬英译，外籍与亲子用户体验断层。
-4. **管理盲区**——运营依赖人工巡查，低停留点位无预警、无话术干预，行为数据沉睡。
-
-四大痛点彼此咬合，必须以"前台数字人 + 后台数据脑"一体化方案破局。
-
-### 2.2 产品定位与目标用户
-
-**产品定位**：会看、会听、会讲解的 AI 讲解员；同时也是景区会思考的运营大脑。打"普惠"牌，避开大厂高价定制赛道。
-
-**目标用户**
-
-| 类型 | 细分 | 核心诉求 |
-|---|---|---|
-| C 端 | 亲子家庭 | 童趣讲解、知识徽章、互动游戏 |
-| C 端 | Z 世代 | 出片打卡、UGC 共创、社交分享 |
-| C 端 | 银发 / 外籍 / 残障 | 方言与多语种、大字幕、手语、声景描述 |
-| B 端 | 景区运营 | 低停留点位话术、超载预警、内容上下架 |
-| G 端 | 文旅主管部门 | 文化输出 KPI、安全证据链、合规呈报 |
-
-### 2.3 核心价值主张
-
-**一句话**：让每位游客拥有一位懂文化、会陪伴、随叫随到的 AI 讲解员，让每个景区拥有一个会思考的运营大脑。
-
-三大支撑点：
-
-1. **端到端闭环**——形象 + 大模型 + LBS + 知识库一体化，拒绝拼凑；
-2. **普惠可及**——方言、少数民族语言、手语 / 声景无障碍，覆盖被忽视的长尾游客；
-3. **数据反哺**——C 端讲解工具同时是 B 端智慧文旅大脑。
-
----
-
-## 3. 产品架构图
-
-系统采用**六层分层架构**，自上而下分别为交互层、数字人层、AI 能力层、知识库层、数据层、管理后台层。各层解耦、协议化通信，支持端云协同与三级降级。
-
-\`\`\`
-┌──────────────────────────────────────────────────────────────┐
-│  ① 交互层（Interaction Layer）                               │
-│     · C 端：移动端 App / 微信小程序 / H5                     │
-│     · 输入：语音(中/英/方言) · 文本 · 拍照 · AR · 手势         │
-│     · 输出：流式 TTS · 字幕 · 卡片 · H5 海报                  │
-└──────────────────────────────────────────────────────────────┘
-                             ▲ ▼
-┌──────────────────────────────────────────────────────────────┐
-│  ② 数字人层（Avatar Layer）                                  │
-│     · Live2D 渲染引擎（中端机 ≥30 fps）                       │
-│     · 形象库：通用 24 + 文化主题 30+ + 自定义 IP             │
-│     · 唇形同步（音素级 <200ms）· 表情 / 动作驱动              │
-└──────────────────────────────────────────────────────────────┘
-                             ▲ ▼
-┌──────────────────────────────────────────────────────────────┐
-│  ③ AI 能力层（AI Capability Layer）                           │
-│     · ASR / TTS：讯飞                                         │
-│     · LLM：Qwen2.5-7B 主链路 + DeepSeek 兜底                 │
-│     · 编排：Dify Agent · 意图识别 · 情感分析                  │
-│     · 推荐：ItemCF + 标签 + Thompson Sampling                │
-└──────────────────────────────────────────────────────────────┘
-                             ▲ ▼
-┌──────────────────────────────────────────────────────────────┐
-│  ④ 知识库层（Knowledge Layer）                                │
-│     · 知识图谱：Neo4j（景点 / 人物 / 朝代 / 事件 / 典故…）       │
-│     · 向量库：Milvus + BGE-M3                                 │
-│     · 多模态解析：PaddleOCR · ASR · PDF Parser                │
-│     · RAG 限定召回 + 信源标注                                 │
-└──────────────────────────────────────────────────────────────┘
-                             ▲ ▼
-┌──────────────────────────────────────────────────────────────┐
-│  ⑤ 数据层（Data Layer）                                       │
-│     · 实时流：Redis Stream（行为 / 位置 / 情绪）              │
-│     · 业务库：MySQL · 文件：OSS                               │
-│     · 大屏：ECharts · 报告：H5 海报引擎                       │
-└──────────────────────────────────────────────────────────────┘
-                             ▲ ▼
-┌──────────────────────────────────────────────────────────────┐
-│  ⑥ 管理后台层（Admin Layer）                                  │
-│     · 内容中心 · 图谱编辑器 · 形象管理 · 推荐配置             │
-│     · 数据大屏 · 版本仓库 · 审核工作台                        │
-└──────────────────────────────────────────────────────────────┘
-\`\`\`
-
-**关键技术原则**
-- 端云协同：弱网时端侧 Live2D + 缓存讲解 + 离线 TOP100 景点包；
-- 流式优先：ASR / LLM / TTS 全链路流式，端到端 P95 ≤ 1.5s；
-- 可审计：所有讲解类回答 100% 信源标注；操作日志留存 180 天。
-
----
-
-## 4. 功能详细需求
-
-### 4.1 前端交互模块（A5-FE-01）
-
-#### 4.1.1 模块定位
-C 端用户与 AI 数字人的唯一触点，承载"会看、会听、会讲解"的产品承诺。
-
-#### 4.1.2 功能树
-
-\`\`\`
-前端交互模块
-├─A. 多模态交互
-│   ├─语音输入·中/英/方言 ASR        P0
-│   ├─文本输入                       P0
-│   ├─拍照识景                       P0
-│   ├─AR 扫一扫（标牌 / 文物）        P1
-│   └─手势 / 手语输入                 P2
-├─B. 智能讲解与问答
-│   ├─LBS 场景化讲解                 P0
-│   ├─自由问答（RAG + 信源标注）      P0
-│   ├─内容分级·基础 / 深度 / 儿童     P0
-│   ├─主动推送（停留 + 画像）         P1
-│   └─多语种 / 方言情感 TTS          P1
-└─C. 系统级能力
-    ├─唤醒"小景"+ 一键打断           P0
-    ├─弱网三级降级                   P0
-    └─"我不确定"兜底 + 信源透明        P0
-\`\`\`
-
-#### 4.1.3 核心用户故事
-
-| ID | 用户角色 | 诉求 | 价值 |
-|---|---|---|---|
-| US-01 | 亲子家长 | 切换儿童版讲解 | 知识点故事化输出 |
-| US-02 | Z 世代 | 拍照识景生成可分享卡片 | 出片同时长知识 |
-| US-03 | 银发游客 | 方言唤醒 + 大字幕 | 无障碍听懂讲解 |
-| US-04 | 外籍游客 | 英文讲解带典故注释 | 听懂名词背后的故事 |
-| US-05 | 步行游客 | 走近景点自动播报 | 不掏手机也能听 |
-| US-06 | 任意用户 | 随时打断当前讲解 | 节奏可控不被打扰 |
-| US-07 | 视障游客 | 声景描述模式 | 通过声音感知环境 |
-
-#### 4.1.4 关键交互流程
-
-- **S1·LBS 自动讲解**：进入景区 → GPS + Beacon 定位 → 进入 5m 电子围栏且停留 ≥3s → 数字人播报基础版 → 用户说"讲深点" → 切深度版。
-- **S2·拍照识景问答**：点相机 → 拍摄 → 端侧粗筛 + 云端精排 → 2s 内返回 Top1 + 置信度 → 朗读简介 → 追问走 RAG → 带信源作答。
-- **S3·唤醒与打断**：说"小景小景"或长按麦克风 → TTS 在 300ms 内静音 → 收音 3s → ASR + 意图识别 → 响应新话题。
-
-#### 4.1.5 详细规格
-
-- **输入**：语音 = 普通话 + 英语 + 方言（v1 先粤 / 川）；文本 ≤ 200 字；拍照 JPG/PNG ≤ 5MB；AR 支持标牌与文物图卡。
-- **唤醒 / 中断**：唤醒词"小景小景"，误唤醒 ≤1 次 / 小时；语音"停"或按钮中断 < 300ms 静音。
-- **内容分级**：基础版（80 字核心）、深度版（300 字 + 典故 + 延伸）、儿童版（拟人对话 + 互动提问），可手动切换或按画像默认匹配。
-- **主动讲解触发**：①5m 地理围栏 ②停留 ≥3s ③同点位单次行程仅触发一次 ④免打扰时段用户可关闭。
-
-#### 4.1.6 边界与异常
-
-- **弱网**：一级 = 云端流式 → 二级 = 端侧 Live2D + 缓存讲解 → 三级 = 纯文字 + 离线 TOP100 景点包。
-- **嘈杂环境（>70dB）**：自动抬高 VAD 阈值 + 提示改用文字输入。
-- **识别失败**：连续 2 次置信度 <0.6，引导"换角度重拍 / 手动选景点"，绝不臆造。
-- **隐私**：相机 / 位置首启二次授权，数据本地化，未成年模式默认关闭主动推送。
-
-#### 4.1.7 验收标准
-
-| 指标 | 目标值 |
-|---|---|
-| 端到端响应延迟（P95） | ≤ 1.5s |
-| 普通话 ASR 准确率 | ≥ 95% |
-| 方言 ASR 准确率（粤 / 川） | ≥ 85% |
-| 拍照识景 Top1 准确率 | ≥ 88% |
-| LBS 触发位置误差 | ≤ 5m |
-| 唤醒响应 | ≤ 500ms |
-| 弱网降级成功率 | 100% |
-| 讲解类回答信源标注覆盖 | 100% |
-
----
-
-### 4.2 内容引擎模块（A5-CE-01）
-
-#### 4.2.1 模块定位
-AI 数字人的"大脑 + 记忆"。C 端让讲解从"念稿"升级为"懂你"，B 端把内容沉淀为可审计、可复用的文旅知识资产，并产出可执行运营洞察。
-
-#### 4.2.2 功能清单
-
-- **A. 个性化推荐**：A1 路线（P0）、A2 景点（P0）、A3 食宿购（P1）、A4 天气客流动态调整（P1）
-- **B. 知识库管理**：B1 多模态录入 OCR/ASR/PDF（P0）、B2 知识图谱（P0）、B3 三级审核（P0）、B4 版本管理（P1）、B5 跨景区复用（P2）
-
-#### 4.2.3 核心用户故事
-
-**C 端**
-- 亲子 3 题问卷 10s 出"童趣 2 小时线"，亲子标签命中 ≥80%；
-- Z 世代线路含 ≥3 个出片点，分享回流 ≥15%；
-- 外籍讲典故非名词，BLEU ≥0.55、典故覆盖 ≥70%。
-
-**B 端**
-- 新展 PDF ≤30min 入库、≤4h 上线；
-- 周报自动产出"低停留 Top10 + 候选话术"；
-- 节假日 / 闭馆一键切版本，回滚 ≤10min。
-
-#### 4.2.4 关键流程
-
-**推荐闭环**
-画像采集（问卷 + LBS + 实时行为）→ 标签计算（30s 刷新）→ 多路召回（ItemCF + 标签 + 图谱）→ LR 排序 → 曝光 → 点击 / 停留 / 评分回流 → 在线学习。
-
-**知识库入库**
-上传 → 自动解析（PaddleOCR / 讯飞 ASR / PDF）→ 实体入 Neo4j → 三审（事实 / 合规 / 文风）→ BGE-M3 向量化 → Milvus → RAG 限定信源召回。
-
-#### 4.2.5 详细规格
-
-- **冷启动**：3 标签问卷 + 热门兜底；Explore/Exploit 新用户 7:3、老用户 2:8、节假日 3:7。
-- **多臂老虎机**：Thompson Sampling，按"景点 × 时段"独立赌博机。
-- **内容类型**：文本（MD/PDF/Word）、图片（≤10M）、音频（≤50M）、视频（≤500M）、3D 模型（GLB 仅展示不入 RAG，P1）。
-- **图谱实体**：景点 / 人物 / 朝代 / 事件 / 典故 / 文物 / 非遗；关系：发生于、属于、关联、同朝代、师承；每实体 ≥3 条权威信源。
-- **时效管理**：start/end + 优先级字段；节假日内容预排期；突发置顶播报 2min 全网生效。
-
-#### 4.2.6 后台管理界面要点
-
-工作台（待审 / 告警）→ 内容中心（批量上传 + 审核流）→ 图谱编辑器（可视化拖拽）→ 推荐配置（权重 / AB 实验）→ 数据看板（CTR / 低停留 / 审核效率）→ 版本仓库（diff + 回滚）。
-
-**界面原则**：3 次点击触达任意操作；审核页左侧问题标注、右侧原文锚定。
-
-#### 4.2.7 验收标准
-
-| 指标 | 目标 | 窗口 |
-|---|---|---|
-| 推荐 CTR | ≥ 18% | 30 天 |
-| 推荐线路完成率 | ≥ 35% | 60 天 |
-| 知识库 Recall@5 | ≥ 85% | 即测 |
-| RAG 幻觉率 | ≤ 5% | 60 天 |
-| 单条审核时效 | ≤ 4h | 30 天 |
-| OCR 识别准确率 | ≥ 95% | 即测 |
-| 冷启动满意度 | ≥ 4.0/5 | 60 天 |
-
-> 推荐 CTR ≥18% 约 65% 置信，瓶颈在种子语料规模——已纳入 2 周内试点景区签约的关键路径。
-
----
-
-### 4.3 数字人形象模块（A5-AV-01）
-
-#### 4.3.1 模块定位
-形象 = 景区文化 IP 的"人格化入口"。Z 世代要"出片"、亲子要"童趣"、外籍要"懂典故"——**形象在前 3 秒决定情感锚点与讲解完播**。
-
-**北极星指标**：形象触达后讲解完播率 ↑15pp。
-
-#### 4.3.2 功能清单
-
-- **P0**：通用形象库、文化主题库、音素级唇形、基础表情 / 手势、LBS 场景匹配、B 端上下架
-- **P1**：B 端自定义 IP 生成、A/B 测试、方言唇形、文化舞蹈片段
-- **P2**：UGC 共创形象、跨景点长程形象一致性、手语数字人
-
-#### 4.3.3 核心用户故事
-
-| 场景 | 用户故事 | 验收 |
-|---|---|---|
-| C 端切换 | 作为 Z 世代游客，我可在 3 步内切换形象，使讲解更对味 | 切换 <2s、覆盖 ≥90% 景点、收藏入口可见 |
-| B 端配置 | 作为景区运营，我可上传素材生成专属 IP 并 A/B 测试 | 生成 <10min、灰度分流准确率 ≥99%、单景区可上架 ≥5 款 |
-
-#### 4.3.4 形象库设计
-
-| 类型 | 内容 | V1 数量 |
-|---|---|---|
-| 通用 | 老 / 中 / 青 × 男女 × 4 风格 Live2D | 24 |
-| 文化主题 | 古风 / 民国 / 8 民族 / 历史人物 | 30+ |
-| 自定义 | B 端上传图 + 文案 → AI 生成专属 IP（飞天小姐姐、迎客松爷爷） | 不限 |
-
-#### 4.3.5 驱动能力
-
-- **表情**：基础 7 类（喜怒哀乐惊惧厌）+ 文化扩展 8 类（敬仰 / 神秘 / 赞叹…）
-- **动作**：讲解手势 20+、指引、文化舞蹈片段（按主题）
-- **唇形**：中英**音素级**（同步延迟 <200ms）；方言 / 少数民族 V1**句子级**兜底
-- **多语唇形**：中 / 英 / 日 / 韩 + 8 大方言；对口型按音素表映射
-
-#### 4.3.6 形象与场景智能匹配
-
-LBS 触发 + 知识图谱标签匹配：进入"飞天壁画区"自动切敦煌 IP 与服饰；夜游切夜行皮肤；语种检测切外籍向形象。**规则 B 端可覆写**，命中率 ≥85%。
-
-#### 4.3.7 B 端形象管理后台
-
-上传素材 → AI 生成预览 → 内容审核（合规 & 版权）→ 灰度 A/B（按客群分流）→ 上下架 → 数据看板（喜爱度 / 切换率 / 完播率）。支持版本回滚。
-
-#### 4.3.8 验收标准
-
-| 指标 | 目标值 |
-|---|---|
-| 渲染帧率（中端机） | ≥ 30 fps |
-| 唇形同步延迟 | < 200 ms |
-| 形象切换耗时 | < 2 s |
-| 用户喜爱度评分 | ≥ 4.2/5 |
-| 场景自动匹配命中 | ≥ 85% |
-| A/B 分流准确率 | ≥ 99% |
-
-#### 4.3.9 Open Questions
-
-自定义 IP 版权归属（景区独占 vs 平台共享）——Legal 1 周内回复。
-
----
-
-### 4.4 数据运营模块（A5-DA-01）
-
-#### 4.4.1 模块定位
-让景区第一次"看见"游客的真实感受。C 端把游程沉淀为可分享的个人记忆资产，B 端把行为数据翻译成可执行的运营动作。从"巡查驱动"转向"数据驱动"，直击管理盲区痛点。
-
-#### 4.4.2 功能清单
-
-**A. 游客感受度报告**
-- P0：路线热力、情感曲线、文化兴趣标签、H5 海报分享
-- P1：个人偏好画像、回访推荐、小红书 / 抖音模板
-- P2：面部表情多模态融合、跨景区记忆
-
-**B. 数据大屏**
-- P0：实时在线、客流热力、讲解 TOP10、问题 Top 榜、超载告警
-- P1：满意度趋势、交互转化漏斗、冷区 / 负面情绪告警
-- P2：AI 生成"今日运营建议"
-
-#### 4.4.3 核心用户故事
-
-- **Z 世代游客**：游程结束 5 分钟内收到"我的文化足迹"H5，一键分享小红书。
-- **景区运营经理**：大屏 30s 刷新，超载或负面情绪聚集时主动推送应急话术草稿。
-- **文旅局**：按周导出满意度与文化输出 KPI，作为合规呈报材料。
-
-#### 4.4.4 游客感受度报告
-
-| 项 | 内容 |
-|---|---|
-| 数据源 | 交互记录、LBS 停留、问答情绪（NLP）、主动评分、表情（授权可选） |
-| 内容 | 路线热力图、情感曲线、兴趣标签 Top5、偏好画像、回访推荐 |
-| 分享 | H5 海报（含文化徽章）、小红书 / 抖音模板、微信小程序卡片 |
-| 触发 | 游程结束 5 分钟内推送 |
-
-#### 4.4.5 数据大屏（1+N 布局）
-
-- **中央**：景区地图 + 实时客流热力
-- **周边卡片**：在线人数、TOP10 讲解、问题 Top 榜、满意度趋势、交互漏斗
-- **告警**：超载（密度 > 阈值）、负面情绪聚集（NLP + 地理聚合）、讲解冷区（播放 < P20）
-- **联动**：一键生成应急广播话术草稿，推送至运营终端
-
-#### 4.4.6 数据合规
-
-- **授权**：首次进入显式同意 + 分级（基础 / 表情 / 分享）
-- **脱敏**：PII 本地哈希，报告默认匿名展示
-- **本地化**：数据存景区私有云，跨境走合规网关
-- **审计**：操作可追溯，日志留存 180 天
-
-#### 4.4.7 验收标准
-
-| 指标 | 目标 |
-|---|---|
-| 大屏刷新延迟（P95） | ≤ 3s |
-| 报告生成时长（游程结束触发） | ≤ 8s |
-| 情感分析准确率（中文标注集） | ≥ 85% |
-| 告警准确率 | ≥ 90% |
-| 告警误报率 | ≤ 10% |
-| H5 分享转化率 | ≥ 15% |
-
-**关键取舍**：V1 只做"看见 + 建议"，不做自动干预；表情采集设默认关闭——隐私合规优先于数据丰富度。
-
----
-
-## 5. 非功能性需求
-
-### 5.1 性能
-
-| 项 | 指标 |
-|---|---|
-| 端到端响应延迟（P95） | ≤ 1.5s |
-| 唤醒响应 | ≤ 500ms |
-| 唇形同步延迟 | < 200ms |
-| 大屏刷新（P95） | ≤ 3s |
-| 报告生成 | ≤ 8s |
-| 并发承载（单景区峰值） | ≥ 1 万在线 / ≥ 1000 QPS |
-| 端侧渲染帧率（中端机） | ≥ 30 fps |
-
-### 5.2 安全
-
-- 全链路 HTTPS / WSS；敏感字段 AES-256 加密落库。
-- 接口鉴权：B 端 JWT + RBAC；C 端 OAuth + 设备指纹。
-- 防滥用：Rate Limit、风控名单、异常行为熔断。
-- 内容安全：LLM 输出经合规审核流，禁词库 + 文化敏感词二次拦截。
-
-### 5.3 合规
-
-- **隐私**：相机 / 位置 / 表情首启二次授权；未成年模式默认关闭主动推送。
-- **数据本地化**：景区数据存私有云；外籍数据出境走合规网关。
-- **可审计**：操作日志留存 180 天；讲解类回答 100% 信源标注。
-- **无障碍**：手语数字人、声景描述、大字幕，对齐《无障碍环境建设法》。
-
-### 5.4 可扩展性
-
-- 微服务化：六层解耦，独立部署、独立扩缩容。
-- 端云协同：核心能力支持端侧降级，弱网三级兜底。
-- 模型可插拔：LLM / ASR / TTS 抽象为统一网关，按景区切换主备。
-- 多租户：按景区隔离知识库、形象库、数据看板，支持跨景区复用（P2）。
-
----
-
-## 6. 项目里程碑（中国软件杯参赛节奏）
-
-总周期约 13 周，5 人团队，对齐调研报告 115–140 人天工作量。
-
-### 阶段 1 · Sprint 0 立项与原型（W1–W2，2 周）
-- 完成 PRD V1.0 评审与冻结；
-- 1–2 家试点景区签署数据合作意向；
-- 技术 Spike：端到端延迟原型 + 三级降级方案验证；
-- 形象库 5 款先行打样、知识库 1 个景区种子语料入库。
-
-**Exit Criteria**：架构图 / 接口契约 / Demo 跑通"问答 + 讲解"主链路。
-
-### 阶段 2 · MVP 开发（W3–W8，6 周）
-- W3–W4：前端交互模块 P0（多模态输入 + LBS + 弱网降级）；
-- W4–W6：内容引擎模块 P0（推荐 + 知识库 + RAG + 三审）；
-- W5–W7：数字人形象模块 P0（通用 + 文化主题 + 唇形）；
-- W6–W8：数据运营模块 P0（大屏 + 报告）。
-
-**Exit Criteria**：四模块 P0 功能全部可演示，端到端 P95 ≤ 1.5s。
-
-### 阶段 3 · 试点联调与优化（W9–W11，3 周）
-- 试点景区灰度，采集真实数据；
-- 推荐 CTR / RAG 幻觉率 / ASR 方言准确率达标调优；
-- 可访问性专项（手语 / 声景 / 大字幕）；
-- 安全 / 合规 / 压测。
-
-**Exit Criteria**：所有验收指标达标，PAC 3 基础检查通过。
-
-### 阶段 4 · 决赛冲刺与答辩准备（W12–W13，2 周）
-- 答辩故事线 + PRFAQ 定稿；
-- 演示视频 + 评审 Demo 包打磨；
-- 文档归档：调研报告 / PRD / 技术白皮书 / 用户手册；
-- 备赛预演 ≥3 轮。
-
-**Exit Criteria**：作品提交、答辩素材冻结、应急预案就绪。
-
----
-
-## 7. 风险与开放问题
-
-### 7.1 风险登记册
-
-| 维度 | 风险 | 概率 | 影响 | 应对 |
-|---|---|---|---|---|
-| 技术 | 幻觉率 8–15%、弱网延迟 | 中 | 高 | 信源标注 + RAG 限定 + 三级降级 |
-| 技术 | 端侧 Live2D 中端机帧率不达标 | 中 | 中 | 提前选型骨干模型 + 降采样兜底 |
-| 数据 | 试点景区签约延迟，种子语料不足 | 高 | 高 | 平行接触 ≥3 家备选；公开数据兜底 |
-| 市场 | 大厂下沉、采购周期长 | 中 | 中 | 主打中小景区 + 按调用付费，长尾卡位 |
-| 合规 | 文化内容审核、外籍数据出境 | 中 | 高 | 内嵌审核流、数据本地化部署 |
-| 周期 | 范围蔓延致 MVP 延期 | 中 | 高 | 红绿灯锁定（3D / Flink / 自研一律不做）；每周 Sprint 健康快照 |
-| IP | 自定义形象版权纠纷 | 低 | 中 | Legal 协议条款 + 上传二次授权 |
-
-### 7.2 开放问题（Open Questions）
-
-1. **自定义 IP 版权归属**：景区独占 vs 平台共享——Legal 1 周内回复。
-2. **跨境数据通路**：外籍游客数据是否经合规网关——待与试点景区 IT 对齐。
-3. **方言优先级**：v1 锁定粤 / 川，是否追加吴语——视语料获取速度决定。
-4. **UGC 共创**：v1 不开放，v2 是否引入需求强度待用研验证。
-
-### 7.3 范围红灯（本期不做）
-
-- 实时 3D MetaHuman
-- Kafka + Flink 实时计算栈
-- 基座模型自研微调
-- 全息投影、VR 头显
-- 跨景区账号互通
-
-> 范围已锁。任何"再加一个"请求请走变更评估流程——不默默吸收。
-
----
-
-## 8. 附录
-
-### 附录 A. 术语表
-
-| 术语 | 释义 |
-|---|---|
-| LBS | Location Based Service，基于位置的服务 |
-| RAG | Retrieval-Augmented Generation，检索增强生成 |
-| ASR / TTS | Automatic Speech Recognition / Text-to-Speech |
-| VAD | Voice Activity Detection，语音活动检测 |
-| ItemCF | 基于物品的协同过滤 |
-| BGE-M3 | 多语言通用向量模型 |
-| LR | Logistic Regression，逻辑回归排序 |
-| BLEU | 机器翻译质量评估 |
-| MVP | Minimum Viable Product，最小可行产品 |
-| PRFAQ | Press Release + FAQ，倒推式产品发布稿 |
-| PAC 3 | PDF Accessibility Checker 3，PDF 无障碍校验 |
-| MoSCoW | Must/Should/Could/Won't，优先级框架 |
-
-### 附录 B. 参考资料
-
-- 《景区导览服务 AI 数字人——产品调研报告 V1.0》（同期发布）
-- 中国软件杯 A5 赛题官方文档
-- 《"十四五"文化和旅游发展规划》
-- 《无障碍环境建设法》
-- 艾瑞咨询《2024 中国 AI 数字人行业研究报告》
-- 故宫"壮壮"、敦煌"数字藏经洞"、黄山"小黄"公开案例
-- Neo4j / Milvus / Dify / Qwen2.5 / DeepSeek / 讯飞星火 / PaddleOCR / MuseTalk / Live2D 官方文档
-
-### 附录 C. 模块编号索引
-
-| 编号 | 模块 |
-|---|---|
-| A5-FE-01 | 前端交互模块 |
-| A5-CE-01 | 内容引擎模块 |
-| A5-AV-01 | 数字人形象模块 |
-| A5-DA-01 | 数据运营模块 |
-
-— 文档结束 —`,Cme=`# 中国软件杯 2026 A5 赛题 PRD：景区导览服务 AI 数字人
-
-版本：V1.1  
-日期：2026-05-19  
-状态：4周冲刺评审稿  
-资料来源：\`AI数字人导游_调研分析报告.docx\`、\`docs/index.md\`、\`ao-output/景区导览AI数字人产品调研与PRD工作流-2026-05-18T15-51-00/\`、产品/设计/架构 Agent 分析结果
-
-## 1. 执行摘要
-
-本项目面向中国软件杯 2026 年 A5 赛题，目标是构建一个面向景区导览场景的 AI 数字人系统。当前可用时间从原设想的中长期参赛节奏压缩为 4 周，因此产品必须从“完整平台 PRD”调整为“4 周可演示、可验证、可答辩”的冲刺版本。产品不做泛旅游平台，也不做票务、电商、社交等外围能力，而是聚焦“景区内导览服务”这一高频刚需：游客侧提供会看、会听、会讲解、可追问的 AI 数字人导览；景区侧提供知识库管理、数字人形象配置、数据大屏与游客感受度报告；文旅主管侧沉淀文化传播、安全治理和合规留痕证据链。
-
-核心判断：该赛题的胜负点不在“是否能接一个大模型聊天”，而在能否形成“AI 数字人 + RAG 知识库 + LBS 场景导览 + 数据反哺运营”的闭环。4 周版本只承诺主链路闭环与关键增强的可解释演示，以小而完整的单景区闭环压过“大而空”的平台叙事。
-
-## 2. 项目背景与问题定义
-
-### 2.1 行业背景
-
-文旅数字化从“锦上添花”进入“基础能力”阶段。景区正在面对游客结构年轻化、出境入境恢复、多语种服务需求增加、讲解人员供给不足、运营数据颗粒度不足等叠加压力。与此同时，大模型、实时语音识别、TTS、RAG、2D/Live2D 数字人、轻量端云协同已经具备比赛周期内可落地的工程基础。
-
-### 2.2 赛题痛点
-
-| 痛点 | 现状表现 | 产品机会 |
-| --- | --- | --- |
-| 导游资源稀缺 | 旺季讲解员不足，中小景区缺少常驻专业导游 | 7x24 小时 AI 导览，降低人力峰值压力 |
-| 信息单向传递 | 录音讲解固定，游客无法追问、无法获得个性化内容 | RAG 问答、多轮追问、分层讲解 |
-| 缺乏情感连接 | 传统讲解设备冷冰冰，缺少陪伴感和文化 IP 记忆点 | 情感化数字人、文化主题形象、表情动作 |
-| 管理盲区 | 景区不知道游客问什么、在哪停留少、为什么不满意 | 数据大屏、热门问题、低停留点、运营建议 |
-| 内容更新滞后 | 传统导览设备内容更新成本高，节假日/闭馆通知难热更新 | 知识库后台、审核流、版本管理 |
-
-## 3. 产品定位
-
-一句话定位：让每位游客拥有一位懂文化、会陪伴、随叫随到的 AI 讲解员，让每个景区拥有一个会思考的运营大脑。
-
-产品形态：
-
-- C 端：H5/小程序式 AI 数字人导览入口，支持扫码进入、语音/文字/拍照交互、LBS 主动讲解、游后报告。
-- B 端：景区运营后台，支持知识库上传、内容审核、数字人形象配置、数据大屏、感受度报告。
-- G 端：文旅监管/示范项目视角，支持文化传播指标、安全治理数据、合规审计导出。
-
-核心差异化：
-
-1. 端到端闭环：形象、语音、大模型、知识库、LBS、数据大屏一体化，不是简单拼接。
-2. 普惠可及：面向中小景区，强调轻量部署、方言/多语种、银发与无障碍友好。
-3. 数据反哺：游客交互不止用于回答问题，还反哺景区运营与文旅治理。
-
-## 4. 目标用户与核心场景
-
-### 4.1 用户分层
-
-| 用户类型 | 代表用户 | 核心诉求 | 关键成功体验 |
-| --- | --- | --- | --- |
-| C 端亲子家庭 | 带孩子出游的父母 | 趣味讲解、寓教于乐、儿童能听懂 | 儿童版讲解、互动问答、知识徽章 |
-| C 端 Z 世代 | 爱拍照分享的年轻游客 | 出片、社交分享、个性路线 | 拍照识景、打卡路线、H5 文化足迹 |
-| C 端银发游客 | 50 岁以上游客 | 操作简单、字大、语音优先 | 大字幕、语音唤醒、慢速讲解 |
-| C 端外籍游客 | 入境游客 | 多语种、典故解释、文化语境 | 英/日/韩讲解、非直译式解释 |
-| C 端无障碍人群 | 视障/听障游客 | 声景描述、字幕、手语或大字 | 可访问性模式、声景描述 |
-| B 端景区运营 | 运营经理/讲解主管 | 降低人力压力，知道游客真正关心什么 | 热门问答、低停留点、应急建议 |
-| G 端主管部门 | 文旅部门 | 文化传播、公共安全、合规留痕 | 周报/月报、审计日志、示范价值 |
-
-### 4.2 核心用户旅程
-
-| 阶段 | 游客触点 | 痛点 | 产品机会 |
-| --- | --- | --- | --- |
-| 游前 | 扫码、选择偏好、设置语言 | 不知道怎么规划路线 | 偏好问卷、推荐路线、景区热度提示 |
-| 游中 | 走近景点、提问、拍照识景 | 想问但无人回答，讲解过深或过浅 | LBS 主动讲解、分层讲解、可追问 |
-| 游后 | 生成游记、分享、回访 | 游览记忆弱，难沉淀文化兴趣 | 文化足迹 H5、兴趣标签、回访推荐 |
-| 运营中 | 后台查看数据、更新内容 | 不知道游客哪里不满意 | 大屏、感受度报告、内容热更新 |
-
-## 5. 产品范围
-
-### 5.1 MVP 必做
-
-- 语音/文本交互
-- 基于景区知识库的 RAG 问答
-- 基础 2D/Live2D 数字人展示与口型同步
-- LBS 主动讲解
-- 知识库后台上传、审核、更新
-- 个性化路线/景点推荐
-- 游客感受度报告
-- 景区数据大屏
-- 弱网降级与信源标注
-
-### 5.2 P1 迭代
-
-- 拍照识景
-- 多语言/方言增强
-- 文化主题数字人形象配置
-- H5 游记分享
-- 内容版本回滚
-- 运营建议自动生成
-
-### 5.3 本期不做
-
-- 票务购买、支付、电商
-- 泛旅游平台与跨景区社交账号体系
-- VR/全息投影/重硬件体验
-- 全身实时 3D MetaHuman
-- 自研底层大模型
-- Kafka + Flink 级实时计算平台
-- 跨景区账号互通
-
-## 6. 系统架构
-
-系统采用六层架构：
-
-1. 交互层：H5/小程序/大屏终端，负责语音、文字、图片、LBS 触发与结果呈现。
-2. 数字人层：2D/Live2D 形象、表情动作、口型同步、文化主题皮肤。
-3. AI 能力层：ASR、TTS、LLM、RAG、情感分析、推荐排序。
-4. 知识库层：文档解析、OCR/ASR 入库、知识图谱、向量库、审核流。
-5. 数据层：埋点、会话日志、满意度、热点问题、低停留点、客流热力。
-6. 管理后台层：内容管理、形象管理、运营看板、合规配置、报表导出。
-
-主链路：游客输入问题 -> ASR/文本解析 -> 意图识别 -> RAG 检索 -> LLM 生成 -> 合规校验 -> TTS -> 数字人口型/表情驱动 -> 前端展示 -> 埋点回流。
-
-## 7. 功能需求
-
-### 7.1 A5-FE-01 前端交互模块
-
-模块定位：游客进入景区后的主要服务入口，负责把 AI 能力包装成自然、低门槛、有陪伴感的导览体验。
-
-功能树：
-
-| 功能 | 优先级 | 说明 |
-| --- | --- | --- |
-| 语音输入 | P0 | 支持普通话，预留方言入口 |
-| 文本输入 | P0 | 噪声、弱网、无障碍兜底 |
-| LBS 主动讲解 | P0 | 进入景点围栏并停留后触发 |
-| 分层讲解 | P0 | 基础版、深度版、儿童版 |
-| 唤醒/打断 | P0 | 支持中断当前讲解并追问 |
-| 弱网降级 | P0 | 缓存热门讲解、文本优先、离线提示 |
-| 拍照识景 | P1 | 上传图片识别景点/文物并讲解 |
-| 多语种 | P1 | 英/日/韩优先，方言按试点语料推进 |
-| AR 扫一扫 | P2 | 轻量增强，不做重硬件沉浸 |
-
-关键流程：
-
-1. 游客扫码进入，选择语言、年龄段、兴趣标签。
-2. 到达景点围栏，停留超过阈值后弹出主动讲解。
-3. 游客语音追问，系统检索知识库并生成回答。
-4. 数字人通过语音、字幕、表情和卡片同步呈现。
-5. 游客点赞/点踩或继续追问，数据回流后台。
-
-验收标准：
-
-- 端到端响应 P95 <= 1.5s；压缩 Demo 阶段可先接受 <= 5s。
-- 普通话 ASR 准确率 >= 95%，方言 ASR >= 85%。
-- LBS 触发误差 <= 5m。
-- 弱网降级成功率 100%。
-- 讲解类回答信源标注覆盖 100%。
-
-### 7.2 A5-CE-01 内容引擎模块
-
-模块定位：AI 数字人的大脑与记忆，让讲解从“念稿”升级为“懂你”，同时让景区资料成为可审计、可复用、可热更新的知识资产。
-
-功能树：
-
-| 功能 | 优先级 | 说明 |
-| --- | --- | --- |
-| 文档上传 | P0 | 支持 Word/PDF/TXT/图片 |
-| OCR/解析 | P0 | 提取结构化文本与元信息 |
-| RAG 检索 | P0 | 向量召回 + 重排 + 信源引用 |
-| 内容审核 | P0 | 事实、合规、文风三级审核 |
-| 热更新 | P0 | 节假日、闭馆、活动通知可快速生效 |
-| 路线推荐 | P0 | 基于兴趣、时间、位置推荐 |
-| 知识图谱 | P1 | 景点/人物/朝代/事件/典故关系 |
-| 版本回滚 | P1 | 支持错误内容快速回退 |
-| 跨景区复用 | P2 | 多租户知识资产复用 |
-
-推荐闭环：用户画像 -> 多路召回 -> 排序 -> 曝光 -> 点击/停留/评分回流 -> 策略更新。
-
-验收标准：
-
-- 知识库 Recall@5 >= 85%。
-- RAG 幻觉率 <= 5%。
-- OCR 准确率 >= 95%。
-- 单条内容审核时效 <= 4h。
-- 推荐 CTR >= 18%，推荐线路完成率 >= 35%。
-
-### 7.3 A5-AV-01 数字人形象模块
-
-模块定位：数字人形象是景区文化 IP 的人格化入口，负责建立情感连接、记忆点和答辩展示张力。
-
-功能树：
-
-| 功能 | 优先级 | 说明 |
-| --- | --- | --- |
-| 通用形象库 | P0 | 不同年龄、性别、风格的预设形象 |
-| 文化主题形象 | P0 | 古风、民国、少数民族、历史人物风格 |
-| 口型同步 | P0 | 与 TTS 音频同步 |
-| 基础表情动作 | P0 | 微笑、惊叹、指引、讲解手势 |
-| B 端上下架 | P0 | 景区可选择并发布形象 |
-| 景点智能匹配 | P1 | 按景点文化标签切换形象/服饰 |
-| 自定义 IP | P1 | 上传素材生成景区专属形象 |
-| 手语数字人 | P2 | 无障碍增强能力 |
-
-验收标准：
-
-- 中端设备渲染帧率 >= 30fps。
-- 唇形同步延迟 < 200ms。
-- 形象切换耗时 < 2s。
-- 用户喜爱度 >= 4.2/5。
-- 场景自动匹配命中率 >= 85%。
-
-### 7.4 A5-DA-01 数据运营模块
-
-模块定位：把游客真实感受转化为景区可执行的运营动作，解决“管理盲区”。
-
-功能树：
-
-| 功能 | 优先级 | 说明 |
-| --- | --- | --- |
-| 实时在线人数 | P0 | 展示服务人次与当前在线 |
-| 客流热力 | P0 | 展示景点区域热度 |
-| 热门问题 | P0 | 发现游客真实关注点 |
-| 满意度趋势 | P0 | 点赞/点踩/情绪综合分析 |
-| 游客感受度报告 | P0 | 游程结束生成个人报告 |
-| 低停留点识别 | P1 | 找出讲解或动线问题 |
-| 负面情绪预警 | P1 | 聚集性负面反馈提醒 |
-| 今日运营建议 | P2 | AI 生成改进建议 |
-
-验收标准：
-
-- 大屏刷新 P95 <= 3s。
-- 游后报告生成 <= 8s。
-- 情感分析准确率 >= 85%。
-- 预警准确率 >= 90%，误报率 <= 10%。
-- H5 分享转化率 >= 15%。
-
-## 8. 非功能需求
-
-### 8.1 性能
-
-- 峰值支持单景区 1 万在线、1000 QPS 的架构预案。
-- 热门景点讲解内容缓存，减少大模型实时调用压力。
-- 语音链路采用流式 ASR/TTS，降低首字响应。
-
-### 8.2 安全与合规
-
-- 相机、位置、表情采集均需显式授权。
-- 未成年人模式默认关闭主动推送和敏感采集。
-- PII 数据脱敏存储，报表默认匿名展示。
-- 景区数据支持本地化/私有云部署。
-- 所有讲解类回答保留信源，操作日志留存 180 天。
-
-### 8.3 可访问性
-
-- 大字幕、语速调整、语音优先模式。
-- 视障声景描述。
-- 移动端按钮可单手操作，字体不低于可读下限。
-- 颜色状态不能作为唯一信息表达。
-
-## 9. 技术选型建议
-
-| 模块 | 推荐方案 | 备选 | 判定 |
-| --- | --- | --- | --- |
-| LLM | Qwen/DeepSeek API 或本地 7B 模型 | 文心/讯飞 | 绿 |
-| RAG | Dify/RAGFlow + Milvus/Chroma | LangChain/LlamaIndex | 绿 |
-| ASR | FunASR/Whisper | 讯飞 API | 绿 |
-| TTS | CosyVoice/Edge TTS | GPT-SoVITS | 绿 |
-| 数字人 | Live2D/MuseTalk/Wav2Lip | EchoMimic | 黄 |
-| 推荐 | 标签 + ItemCF + 简单排序 | 多臂老虎机 | 绿 |
-| 数据大屏 | ECharts/AntV | 自研图表 | 绿 |
-| 实时流 | Redis Stream | Kafka/Flink | 黄/红 |
-| 3D 数字人 | 不做 | MetaHuman/Unity | 红 |
-
-## 10. 指标体系
-
-| 指标 | 目标值 | 监测方式 |
-| --- | --- | --- |
-| 问答准确率 | >= 90% | 人工标注集 + 回答评分 |
-| RAG 幻觉率 | <= 5% | 信源抽检 |
-| 信源标注覆盖 | 100% | 日志校验 |
-| 端到端响应 | P95 <= 1.5s | 链路埋点 |
-| 普通话 ASR | >= 95% | 测试集 |
-| 方言 ASR | >= 85% | 试点语料 |
-| 拍照识景 Top1 | >= 88% | 图片测试集 |
-| 渲染帧率 | >= 30fps | 端侧监测 |
-| 唇形同步 | < 200ms | 自动检测 + 人审 |
-| 推荐 CTR | >= 18% | 曝光点击日志 |
-| 推荐线路完成率 | >= 35% | LBS 轨迹 |
-| 大屏刷新 | P95 <= 3s | 前端性能埋点 |
-| 报告生成 | <= 8s | 任务日志 |
-| H5 分享转化率 | >= 15% | 分享链路埋点 |
-
-## 11. 4周冲刺里程碑
-
-原 PRD 中的 13 周计划可作为理想开发节奏，但当前项目只有 4 周，应按“先闭环、再增强、最后答辩固化”的压缩节奏执行。
-
-| 阶段 | 时间 | 目标 | 交付物 |
-| --- | --- | --- | --- |
-| 范围冻结与主链路 Spike | 第 1 周 | 冻结 4 周范围，跑通知识库问答与信源展示 | PRD V1.1、单景区种子语料、RAG 问答 Demo |
-| 语音与数字人联调 | 第 2 周 | 接入 ASR/TTS、基础数字人播报、LBS 模拟触发 | C 端导览 Demo、数字人口型/字幕、弱网降级 |
-| 后台与数据闭环 | 第 3 周 | 完成知识库上传、形象配置、热门问题与感受度报告 | B 端后台、数据大屏、游客报告样例 |
-| 压测打磨与答辩固化 | 第 4 周 | 指标验证、风险兜底、文档和演示视频固化 | 演示脚本、技术白皮书、最终 PRD、答辩材料 |
-
-4 周版本的取舍原则：
-
-- P0 主链路必须真实可跑，不用静态假数据伪装核心能力。
-- P1 能力可以做成“可切换演示模块”，但必须写清楚依赖和降级策略。
-- P2 和 Won’t Have 必须明确出现在答辩材料里，证明范围控制能力。
-- 指标区分“4 周冲刺值”和“完整目标值”，避免过度承诺。
-
-## 12. 原完整里程碑计划（理想版）
-
-| 阶段 | 时间 | 目标 | 交付物 |
-| --- | --- | --- | --- |
-| Sprint 0 立项与原型 | W1-W2 | 冻结 PRD，跑通主链路 Spike | PRD、架构图、知识库 Demo、形象样张 |
-| MVP 开发 | W3-W8 | 完成四大 P0 模块 | C 端导览、B 端后台、数据大屏、报告 |
-| 试点联调与优化 | W9-W11 | 指标达标，完成压测与可访问性专项 | 试点数据、测试报告、优化清单 |
-| 答辩冲刺 | W12-W13 | 形成答辩材料和演示闭环 | 演示视频、PPT、白皮书、用户手册 |
-
-## 13. 风险与应对
-
-| 风险 | 概率 | 影响 | 应对 |
-| --- | --- | --- | --- |
-| RAG 幻觉 | 中 | 高 | 信源标注、限定回答、人工审核高风险内容 |
-| 端到端延迟过高 | 中 | 高 | 流式链路、缓存热门讲解、文本优先降级 |
-| 试点语料不足 | 高 | 高 | 并行接触多家景区，公开资料兜底，先做单景区闭环 |
-| 数字人口型不同步 | 中 | 中 | 选轻量方案，优先口型稳定，不追求全身 3D |
-| 合规争议 | 中 | 高 | 显式授权、默认关闭敏感采集、本地化部署 |
-| 范围蔓延 | 中 | 高 | 红线清单锁定，不碰票务、社交、重硬件 |
-| 大厂下沉 | 中 | 中 | 主打中小景区、低成本、轻量 SaaS、运营可用 |
-
-## 14. Agent 编排方案
-
-本次 PRD 与网页设计采用多角色协作视角：
-
-| Agent 人格 | 负责内容 | 输出用途 |
-| --- | --- | --- |
-| 产品经理 | 目标用户、范围边界、MVP 路线、指标与风险 | PRD 主体 |
-| UX/UI 设计师 | 评审型决策台、信息架构、交互、移动适配 | React 页面结构 |
-| 软件架构师 | 仓库结构、Vite 构建、GitHub Pages 发布路径 | 工程落地方案 |
-| 技术架构师 | AI/RAG/ASR/TTS/数字人可行性 | 技术选型 |
-| 数据运营产品经理 | 大屏、感受度报告、指标体系 | 数据模块 |
-| 内容引擎产品经理 | 知识库、审核流、推荐闭环 | 内容模块 |
-| 数字人产品经理 | 形象库、口型、动作、文化 IP | 形象模块 |
-
-## 15. 开放问题
-
-1. 试点景区能否在 2 周内提供可用语料与授权素材？
-2. 方言优先级是否锁定粤语/四川话，是否加入吴语？
-3. 自定义景区 IP 的版权归属是景区独占还是平台复用？
-4. 外籍游客数据是否需要跨境合规网关？
-5. 演示阶段端到端响应目标是严格 1.5s，还是先按 5s 可用链路交付再优化？
-
-## 16. 结论
-
-建议 Build。项目痛点真实，技术方案可控，竞品闭环不足，且文化传播、无障碍服务、中小景区普惠、公共安全治理均符合中国软件杯评审关注点。成功关键在于坚持范围边界，先做单景区闭环，把“能讲解、可追问、可运营、可验证”做到扎实。
-`,wme=`# 景区导览 AI 数字人
-
-这是将原 Word 调研报告整理后的 Markdown 版本，也是 GitHub Pages 的静态入口说明。
-
-## 发布内容
-
-- React 站点：\`./app/\`
-- Markdown 原文：当前文件
-- PRD 主文档：\`prd-a5-ai-digital-human.md\`
-- 资料库：\`ao-output/\` 下的步骤文档
-
-## 页面结构
-
-- 总览
-- PRD 重点
-- 资料库
-- 竞品分析
-- 4 周节奏
-- 指标与验证
-
-## 说明
-
-本项目保留原始调研材料，同时将内容重新编排为可浏览、可验证、可发布的网页。
-`,Tme=[{to:`/guide`,label:`C端导览`},{to:`/dashboard`,label:`数据大屏`},{to:`/knowledge`,label:`知识库`},{to:`/review`,label:`内容审核`},{to:`/digital-human`,label:`数字人配置`},{to:`/settings`,label:`系统设置`},{to:`/command`,label:`指挥中心`},{to:`/prd`,label:`PRD`},{to:`/library`,label:`资料库`},{to:`/competitors`,label:`竞品`},{to:`/timeline`,label:`4周节奏`},{to:`/validation`,label:`指标与验证`}],Eme=[`4周只交付可演示、可解释、可验收的主链路`,`把 ao-output 的内容全部编入资料库，点开即可阅读原文`,`把 PRD 重点、竞品结论、评分标准分开呈现`],Dme=[{code:`A5-FE-01`,title:`前端交互`,summary:`这是游客第一次接触产品的地方，只做主链路，不做通用平台。`,mustHave:[`扫码 / 语音 / 文本三种入口至少保住两种`,`问答结果要能看到来源，不接受黑盒回答`,`多轮对话要保持上下文，不要每次都重新开始`,`弱网场景要能降级，别把游客留在空白页`],shouldHave:[`方言与多语种`,`拍照识景`,`移动端自适应`],outOfScope:[`票务、支付、会员体系`,`泛旅游平台能力`]},{code:`A5-CE-01`,title:`内容引擎`,summary:`负责把景区资料变成可检索、可更新、可追溯的知识库。`,mustHave:[`Word / PDF / 图片资料可入库`,`OCR、切分、向量化、检索、引用链路完整`,`内容更新后能看到版本变化`,`审核后再对外回答，避免错讲`],shouldHave:[`知识图谱`,`推荐线路`,`版本回滚`],outOfScope:[`自建基础大模型`,`超大规模企业知识平台`]},{code:`A5-AV-01`,title:`数字人形象`,summary:`用低成本方式做出有记忆点的景区讲解形象，不追求全身实时 3D。`,mustHave:[`通用形象库`,`文化主题形象`,`口型同步`,`基础表情与动作`],shouldHave:[`景点自动适配`,`IP 自定义`,`A/B 测试`],outOfScope:[`全身实时 3D 渲染`,`高算力沉浸式 VR 方案`]},{code:`A5-DA-01`,title:`数据运营`,summary:`把游客行为沉淀为景区运营动作，不只看热闹，也要能落地。`,mustHave:[`服务人次、热门问题、满意度趋势`,`情感反馈与关注点统计`,`数据大屏`,`周报 / 月报自动生成`],shouldHave:[`低停留点识别`,`高频负面反馈聚类`,`运营建议`],outOfScope:[`复杂商业智能平台`,`跨景区统一经营中台`]}],Z9=[{id:`intake`,title:`游客提问`,detail:`扫码、语音、文本输入`,note:`入口尽量少，动作尽量直。`},{id:`retrieve`,title:`检索知识库`,detail:`景点资料、规则说明、路线推荐`,note:`先找证据，再组织回答。`},{id:`generate`,title:`生成回答`,detail:`大模型根据检索内容组装回答`,note:`控制长度、引用来源、避免编造。`},{id:`speak`,title:`语音播报`,detail:`TTS 支持普通话 / 多语种 / 方言`,note:`语速、停顿、情绪要可控。`},{id:`avatar`,title:`数字人出镜`,detail:`口型、表情、姿态同步输出`,note:`形象只负责承载，不抢内容。`},{id:`ops`,title:`运营回流`,detail:`热问、停留、满意度、分享率`,note:`数据回流给内容和运营。`}],Q9=[{id:`summary`,title:`工作流总览`,role:`总入口`,file:`ao-output/…/summary.md`,summary:`10 个步骤的完整产出总览，适合作为资料库入口。`,focus:[`总览`,`产物结构`,`交付范围`],content:fme},{id:`trend`,title:`趋势研究`,role:`背景材料`,file:`ao-output/…/steps/1-trend_research.md`,summary:`政策窗口、市场规模、行业痛点和技术成熟度。`,focus:[`政策`,`市场`,`落地场景`],content:pme},{id:`users`,title:`用户研究`,role:`背景材料`,file:`ao-output/…/steps/2-user_research.md`,summary:`亲子、银发、Z 世代、文史爱好者和景区管理者的核心诉求。`,focus:[`用户画像`,`场景`,`需求优先级`],content:mme},{id:`competitors`,title:`竞品分析原文`,role:`背景材料`,file:`ao-output/…/steps/3-competitor_analysis.md`,summary:`把市场头部案例和平台级竞品拉到一张表里。`,focus:[`竞品矩阵`,`差异化机会`,`空白区`],content:hme},{id:`tech`,title:`技术可行性`,role:`背景材料`,file:`ao-output/…/steps/4-tech_feasibility.md`,summary:`ASR、TTS、RAG、数字人和大屏方案的选型依据。`,focus:[`技术选型`,`风险`,`工作量`],content:gme},{id:`report`,title:`调研报告`,role:`总论`,file:`ao-output/…/steps/5-research_report.md`,summary:`项目摘要、立项依据、商业判断与技术判断。`,focus:[`结论`,`立项`,`范围判断`],content:_me},{id:`interaction`,title:`前端交互 PRD`,role:`PRD 重点`,file:`ao-output/…/steps/6-prd_interaction.md`,summary:`游客侧唯一入口，决定第一印象和主链路体验。`,focus:[`入口`,`对话`,`交互反馈`],content:vme},{id:`content`,title:`内容引擎 PRD`,role:`PRD 重点`,file:`ao-output/…/steps/7-prd_content_engine.md`,summary:`知识库管理、审核、版本、推荐线路。`,focus:[`入库`,`检索`,`审核`],content:yme},{id:`avatar`,title:`数字人形象 PRD`,role:`PRD 重点`,file:`ao-output/…/steps/8-prd_digital_human.md`,summary:`形象库、文化 IP、口型同步和景点适配。`,focus:[`形象`,`口型`,`IP`],content:bme},{id:`analytics`,title:`数据运营 PRD`,role:`PRD 重点`,file:`ao-output/…/steps/9-prd_analytics.md`,summary:`数据大屏、情感反馈、周报与运营建议。`,focus:[`指标`,`看板`,`运营动作`],content:xme},{id:`final`,title:`最终交付`,role:`收口文档`,file:`ao-output/…/steps/10-final_delivery.md`,summary:`把调研和 PRD 合并成最终可交付稿。`,focus:[`收口`,`说明`,`版本管理`],content:Sme},{id:`prd`,title:`完整 PRD`,role:`主文档`,file:`prd-a5-ai-digital-human.md`,summary:`面向评审的完整产品说明书。`,focus:[`主链路`,`版本`,`验收`],content:Cme},{id:`converted`,title:`Word 转 Markdown`,role:`原始整理稿`,file:`docs/index.md`,summary:`原 Word 报告整理后的 Markdown 版本，便于网页阅读与 GitHub Pages 发布。`,focus:[`原文整理`,`网页展示`,`可读性`],content:wme}],Ome=[{name:`三毛游`,type:`导览 App`,interaction:`弱`,knowledge:`弱`,avatar:`无`,analytics:`弱`,note:`覆盖广，但交互和闭环都不完整。`},{name:`氢气球`,type:`旅行内容工具`,interaction:`弱`,knowledge:`弱`,avatar:`无`,analytics:`无`,note:`更偏内容分发，不是景区内讲解闭环。`},{name:`链景旅行`,type:`景区工具`,interaction:`中`,knowledge:`中`,avatar:`无`,analytics:`中`,note:`有数据看板，但数字人和知识管理仍浅。`},{name:`景区官方小程序`,type:`官方入口`,interaction:`弱`,knowledge:`无`,avatar:`无`,analytics:`无`,note:`有入口，没有讲解和服务闭环。`},{name:`百度希加加`,type:`数字人平台`,interaction:`强`,knowledge:`中`,avatar:`强`,analytics:`中`,note:`强在数字人，但不是景区知识闭环产品。`},{name:`商汤如影`,type:`数字人平台`,interaction:`强`,knowledge:`弱`,avatar:`强`,analytics:`弱`,note:`形象能力强，但景区业务不是核心。`}],kme=[`竞品普遍强在单点，不强在闭环。`,`真正空白的是“景区知识库 + 数字人 + 数据回流”的一体化方案。`,`4 周版不能贪全，要把能演示、能解释、能验收的链路先做稳。`],Ame=[{metric:`问答准确率`,pass:`≥ 90%`,target:`≥ 95%`,fail:`< 85%`,evidence:`抽检 100 条核心问答，按人工标准核对。`},{metric:`检索命中率`,pass:`≥ 85%`,target:`≥ 92%`,fail:`< 80%`,evidence:`看前 5 条检索结果是否命中正确资料。`},{metric:`端到端响应`,pass:`≤ 5 秒`,target:`≤ 3 秒`,fail:`> 8 秒`,evidence:`从用户发问到看到完整回答的总时长。`},{metric:`口型同步`,pass:`≤ 200ms 偏差`,target:`≤ 120ms 偏差`,fail:`> 300ms 偏差`,evidence:`看播报视频是否出现明显对不上嘴的问题。`},{metric:`大屏刷新`,pass:`≤ 3 秒`,target:`≤ 1 秒`,fail:`> 5 秒`,evidence:`看实时指标是否能跟上高频访问。`},{metric:`分享转化`,pass:`≥ 10%`,target:`≥ 15%`,fail:`< 8%`,evidence:`观察游客是否愿意把结果页转成外部传播。`}],jme=[{week:`第 1 周`,title:`锁范围，补资料`,deliverables:[`冻结 PRD 主链路`,`整理知识库样例`,`补齐页面信息架构`,`搭出首页和资料库原型`],checkpoint:`能让评审一眼看懂“做什么、不做什么”。`},{week:`第 2 周`,title:`打通交互链路`,deliverables:[`接入问答链路`,`完成基础数字人播报`,`让 React Flow 展示完整流程`,`把 Markdown 原文接到页面里`],checkpoint:`游客能从问题走到答案，且能看到原文依据。`},{week:`第 3 周`,title:`补竞品和指标`,deliverables:[`把竞品表和评分标准补全`,`完善指标定义`,`增加数据看板示例`,`做关键页面动效`],checkpoint:`不再只是好看，要能解释为什么这样做。`},{week:`第 4 周`,title:`压测与收口`,deliverables:[`整理演示脚本`,`补验收说明`,`压缩无关功能`,`完成最终文档和 GitHub Pages 发布`],checkpoint:`材料能交、能读、能讲、能复核。`}],Mme=(0,x.lazy)(()=>PI(()=>import(`./DataDashboard-BW-yky_q.js`),__vite__mapDeps([0,1]),import.meta.url)),Nme=(0,x.lazy)(()=>PI(()=>import(`./KnowledgeBase-B3g0OQAn.js`),__vite__mapDeps([2,3]),import.meta.url)),Pme=(0,x.lazy)(()=>PI(()=>import(`./ContentReview-jyE4qLTe.js`),__vite__mapDeps([4,3,5]),import.meta.url)),Fme=(0,x.lazy)(()=>PI(()=>import(`./DigitalHumanConfig-DdMM_sDD.js`),__vite__mapDeps([6,5]),import.meta.url)),Ime=(0,x.lazy)(()=>PI(()=>import(`./SystemSettings-CrBpbSbr.js`),[],import.meta.url)),Lme=(0,x.lazy)(()=>PI(()=>import(`./CommandCenter-CYaMwo_v.js`),__vite__mapDeps([7,1]),import.meta.url)),Rme=[{name:`问答`,sprint:82,target:90},{name:`检索`,sprint:84,target:92},{name:`口型`,sprint:76,target:88},{name:`大屏`,sprint:70,target:85},{name:`分享`,sprint:8,target:15}],zme=Z9.map((e,n)=>({id:e.id,type:`stage`,position:{x:n*260,y:n%2==0?20:150},data:{title:e.title,detail:e.detail,note:e.note}})),Bme=Z9.slice(0,-1).map((e,n)=>({id:`${e.id}-${Z9[n+1].id}`,source:e.id,target:Z9[n+1].id,animated:!0,style:{stroke:`#155d58`,strokeWidth:1.5}}));function Vme({data:e}){return(0,U.jsxs)(`div`,{className:`flow-node`,children:[(0,U.jsx)(Xb,{type:`target`,position:q.Left}),(0,U.jsx)(`span`,{children:e.title}),(0,U.jsx)(`strong`,{children:e.detail}),(0,U.jsx)(`small`,{children:e.note}),(0,U.jsx)(Xb,{type:`source`,position:q.Right})]})}function $9({children:e}){let n=wL();return(0,U.jsx)(Nc,{mode:`wait`,children:(0,U.jsx)(W.main,{className:`page-shell`,initial:{opacity:0,y:14},animate:{opacity:1,y:0},exit:{opacity:0,y:-8},transition:{duration:.28,ease:`easeOut`},children:e},n.pathname)})}function Hme(){let[e,n]=(0,x.useState)(kd());return(0,U.jsxs)(`header`,{className:`app-header`,children:[(0,U.jsxs)(tR,{className:`brand`,to:`/`,children:[(0,U.jsx)(hd,{size:18}),(0,U.jsx)(`span`,{children:Od(`app.title`)})]}),(0,U.jsx)(`nav`,{className:`route-nav`,"aria-label":Od(`nav.mainNav`),children:Tme.map(e=>(0,U.jsx)(tR,{to:e.to,end:e.to===`/`,children:(0,U.jsx)(`span`,{children:e.label})},e.to))}),(0,U.jsx)(`button`,{type:`button`,className:`lang-toggle`,onClick:()=>{let r=e===`zh`?`en`:`zh`;Ad(r),n(r)},"aria-label":Od(`nav.switchLang`),children:Od(`lang.switch`)})]})}function Ume(){return(0,U.jsx)(`section`,{className:`metric-strip`,children:[{label:`交付窗口`,value:`4 周`,detail:`只保主链路`},{label:`资料来源`,value:`10+1`,detail:`ao-output + PRD`},{label:`重点模块`,value:`4 个`,detail:`交互 / 内容 / 形象 / 数据`},{label:`路径目标`,value:`1 条`,detail:`可演示闭环`}].map(e=>(0,U.jsxs)(`article`,{children:[(0,U.jsx)(`span`,{children:e.label}),(0,U.jsx)(`strong`,{children:e.value}),(0,U.jsx)(`em`,{children:e.detail})]},e.label))})}function Wme(){let e=(0,x.useRef)(null);return OD(()=>{if(!e.current)return;let n=SD.context(()=>{SD.to(`.orbit-chip`,{y:-8,duration:2.8,ease:`sine.inOut`,yoyo:!0,repeat:-1,stagger:.18})},e);return()=>n.revert()},{scope:e}),(0,U.jsxs)($9,{children:[(0,U.jsxs)(`section`,{className:`hero-shell`,children:[(0,U.jsxs)(`div`,{className:`hero-copy`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`中国软件杯 2026 A5 · 4 周版`}),(0,U.jsx)(`h1`,{children:`文档中心`}),(0,U.jsx)(`p`,{className:`lead`,children:`资料汇总。`}),(0,U.jsxs)(`div`,{className:`hero-actions`,children:[(0,U.jsxs)(tR,{to:`/library`,className:`action-button`,children:[(0,U.jsx)(Ru,{size:16}),(0,U.jsx)(`span`,{children:`资料库`})]}),(0,U.jsxs)(tR,{to:`/validation`,className:`action-button secondary`,children:[(0,U.jsx)(pd,{size:16}),(0,U.jsx)(`span`,{children:`指标标准`})]})]}),(0,U.jsx)(`div`,{className:`bullet-list`,children:Eme.map(e=>(0,U.jsxs)(`div`,{className:`bullet-item`,children:[(0,U.jsx)(Gu,{size:14}),(0,U.jsx)(`span`,{children:e})]},e))})]}),(0,U.jsxs)(`div`,{className:`hero-panel`,ref:e,children:[(0,U.jsxs)(`div`,{className:`hero-panel-top`,children:[(0,U.jsx)(`span`,{children:`闭环链路`}),(0,U.jsx)(`strong`,{children:`游客输入`})]}),(0,U.jsx)(`div`,{className:`orbit-stage`,children:[`扫码`,`问答`,`播报`,`回流`].map(e=>(0,U.jsx)(`span`,{className:`orbit-chip`,children:e},e))}),(0,U.jsxs)(`div`,{className:`hero-panel-bottom`,children:[(0,U.jsx)(`span`,{children:`4 周内只做一条完整演示路径`}),(0,U.jsx)(`strong`,{children:`入口 - 检索 - 生成 - 播报 - 回流`})]})]})]}),(0,U.jsx)(Ume,{}),(0,U.jsxs)(`section`,{className:`section split`,children:[(0,U.jsxs)(`div`,{className:`section-heading`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`主链路`}),(0,U.jsx)(`h2`,{children:`先做完整路径，再补增强项`}),(0,U.jsx)(`p`,{children:`主链路是游客能否顺畅理解产品的关键，增强项只有在主链路稳定后才有价值。`})]}),(0,U.jsx)(`div`,{className:`chart-card`,children:(0,U.jsx)(uK,{width:`100%`,height:300,children:(0,U.jsxs)(Zpe,{data:Rme,children:[(0,U.jsx)(y7,{strokeDasharray:`3 3`,stroke:`#ded8c9`}),(0,U.jsx)(W7,{dataKey:`name`,tick:{fontSize:12}}),(0,U.jsx)(Y7,{}),(0,U.jsx)(l8,{}),(0,U.jsx)(lJ,{}),(0,U.jsx)(I7,{type:`monotone`,dataKey:`sprint`,stroke:`#b4522c`,strokeWidth:2,dot:!0}),(0,U.jsx)(I7,{type:`monotone`,dataKey:`target`,stroke:`#155d58`,strokeWidth:2,dot:!1})]})})})]}),(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`流程链路`}),(0,U.jsx)(`h2`,{children:`流程编排`}),(0,U.jsx)(`p`,{children:`把游客输入、知识库、生成、播报、数字人和运营回流串成闭环，不再靠一堆段落解释。`})]}),(0,U.jsx)(`div`,{className:`flow-canvas`,children:(0,U.jsx)(OS,{nodes:zme,edges:Bme,nodeTypes:{stage:Vme},fitView:!0,nodesDraggable:!1,nodesConnectable:!1,elementsSelectable:!1,panOnDrag:!1,zoomOnScroll:!1,children:(0,U.jsx)(FS,{gap:18,color:`#d9d2c1`})})})]})]})}function Gme(){return(0,U.jsx)($9,{children:(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading wide`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`PRD 重点`}),(0,U.jsx)(`h1`,{children:`先看重点，再看扩展，不把附录和核心混在一起`}),(0,U.jsx)(`p`,{children:`这里把四个主模块拆开，每个模块都能对应到具体的评审问题、验收结果和风险边界。`})]}),(0,U.jsx)(`div`,{className:`priority-grid`,children:Dme.map(e=>(0,U.jsxs)(`article`,{className:`priority-card`,children:[(0,U.jsxs)(`div`,{className:`priority-head`,children:[(0,U.jsx)(`span`,{children:e.code}),(0,U.jsx)(`h2`,{children:e.title})]}),(0,U.jsx)(`p`,{children:e.summary}),(0,U.jsxs)(`div`,{className:`priority-columns`,children:[(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`h3`,{children:`必须做`}),(0,U.jsx)(`ul`,{children:e.mustHave.map(e=>(0,U.jsx)(`li`,{children:e},e))})]}),(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`h3`,{children:`可以增强`}),(0,U.jsx)(`ul`,{children:e.shouldHave.map(e=>(0,U.jsx)(`li`,{children:e},e))})]})]}),(0,U.jsxs)(`div`,{className:`scope-box`,children:[(0,U.jsx)(`strong`,{children:`不做`}),(0,U.jsx)(`ul`,{children:e.outOfScope.map(e=>(0,U.jsx)(`li`,{children:e},e))})]})]},e.code))})]})})}function Kme(){let[e,n]=(0,x.useState)(Q9[0].id),r=(0,x.useMemo)(()=>Q9.find(n=>n.id===e)??Q9[0],[e]);return(0,U.jsx)($9,{children:(0,U.jsxs)(`section`,{className:`section library-layout`,children:[(0,U.jsxs)(`div`,{className:`section-heading`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`资料库`}),(0,U.jsx)(`h1`,{children:`点击标题，直接看原文 Markdown`}),(0,U.jsx)(`p`,{children:`这里不做二次转述。左边是资料索引，右边是原文阅读器，所有 ao-output 内容都在这里找到。`})]}),(0,U.jsxs)(`div`,{className:`library-grid`,children:[(0,U.jsx)(`aside`,{className:`library-list`,children:Q9.map(r=>(0,U.jsxs)(`button`,{type:`button`,className:r.id===e?`doc-item active`:`doc-item`,onClick:()=>n(r.id),children:[(0,U.jsx)(`span`,{children:r.role}),(0,U.jsx)(`strong`,{children:r.title}),(0,U.jsx)(`p`,{children:r.summary}),(0,U.jsx)(`em`,{children:r.file})]},r.id))}),(0,U.jsxs)(`article`,{className:`reader-shell`,children:[(0,U.jsxs)(`div`,{className:`reader-head`,children:[(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`span`,{children:r.role}),(0,U.jsx)(`h2`,{children:r.title})]}),(0,U.jsx)(`div`,{className:`reader-tags`,children:r.focus.map(e=>(0,U.jsx)(`em`,{children:e},e))})]}),(0,U.jsx)(`div`,{className:`markdown-body`,children:(0,U.jsx)(hN,{remarkPlugins:[AI],rehypePlugins:[AN],children:r.content})})]})]})]})})}function qme(){return(0,U.jsx)($9,{children:(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading wide`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`竞品分析`}),(0,U.jsx)(`h1`,{children:`把竞品摆上台面，才知道我们为什么只做这四件事`}),(0,U.jsx)(`p`,{children:`这里直接给出市场案例和平台级竞品的对比，核心不是谁名气大，而是谁真的补上了我们的空白。`})]}),(0,U.jsx)(`div`,{className:`competitor-grid`,children:Ome.map(e=>(0,U.jsxs)(`article`,{className:`competitor-card`,children:[(0,U.jsxs)(`div`,{className:`competitor-head`,children:[(0,U.jsx)(`strong`,{children:e.name}),(0,U.jsx)(`span`,{children:e.type})]}),(0,U.jsxs)(`dl`,{children:[(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`dt`,{children:`交互`}),(0,U.jsx)(`dd`,{children:e.interaction})]}),(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`dt`,{children:`知识库`}),(0,U.jsx)(`dd`,{children:e.knowledge})]}),(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`dt`,{children:`形象`}),(0,U.jsx)(`dd`,{children:e.avatar})]}),(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`dt`,{children:`运营`}),(0,U.jsx)(`dd`,{children:e.analytics})]})]}),(0,U.jsx)(`p`,{children:e.note})]},e.name))}),(0,U.jsxs)(`div`,{className:`takeaway-panel`,children:[(0,U.jsx)(`h2`,{children:`结论`}),(0,U.jsx)(`ul`,{children:kme.map(e=>(0,U.jsx)(`li`,{children:e},e))})]})]})})}function Jme(){return(0,U.jsx)($9,{children:(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading wide`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`4 周节奏`}),(0,U.jsx)(`h1`,{children:`压缩交付，不压缩解释`}),(0,U.jsx)(`p`,{children:`4 周不是让你砍内容，而是让你只保留真正能形成闭环、能演示、能验收的部分。`})]}),(0,U.jsx)(`div`,{className:`timeline-grid`,children:jme.map((e,n)=>(0,U.jsxs)(W.article,{className:`timeline-card`,initial:{opacity:0,x:-18},animate:{opacity:1,x:0},transition:{delay:n*.08},children:[(0,U.jsx)(`span`,{children:e.week}),(0,U.jsx)(`h2`,{children:e.title}),(0,U.jsx)(`ul`,{children:e.deliverables.map(e=>(0,U.jsx)(`li`,{children:e},e))}),(0,U.jsx)(`p`,{children:e.checkpoint})]},e.week))})]})})}function Yme(){let e=[{name:`内容质量`,value:38,fill:`#b4522c`},{name:`响应时延`,value:30,fill:`#155d58`},{name:`形象适配`,value:18,fill:`#c1a15a`},{name:`合规边界`,value:14,fill:`#6b7280`}];return(0,U.jsxs)($9,{children:[(0,U.jsxs)(`section`,{className:`section split`,children:[(0,U.jsxs)(`div`,{className:`section-heading`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`指标与验证`}),(0,U.jsx)(`h1`,{children:`没有评分标准，就不要画模糊图`}),(0,U.jsx)(`p`,{children:`这里把每个指标的及格线、目标线、失败线都写出来，避免“看起来不错”但无法验收。`})]}),(0,U.jsx)(`div`,{className:`chart-card`,children:(0,U.jsx)(uK,{width:`100%`,height:300,children:(0,U.jsxs)(X9,{children:[(0,U.jsx)(V5,{data:e,dataKey:`value`,nameKey:`name`,innerRadius:54,outerRadius:96,paddingAngle:4,children:e.map(e=>(0,U.jsx)(u8,{fill:e.fill},e.name))}),(0,U.jsx)(l8,{})]})})})]}),(0,U.jsx)(`section`,{className:`section`,children:(0,U.jsxs)(`div`,{className:`metric-table`,children:[(0,U.jsxs)(`div`,{className:`metric-row header`,children:[(0,U.jsx)(`span`,{children:`指标`}),(0,U.jsx)(`span`,{children:`及格线`}),(0,U.jsx)(`span`,{children:`目标线`}),(0,U.jsx)(`span`,{children:`失败线`}),(0,U.jsx)(`span`,{children:`验证方式`})]}),Ame.map(e=>(0,U.jsxs)(`div`,{className:`metric-row`,children:[(0,U.jsx)(`span`,{children:e.metric}),(0,U.jsx)(`span`,{children:e.pass}),(0,U.jsx)(`span`,{children:e.target}),(0,U.jsx)(`span`,{children:e.fail}),(0,U.jsx)(`span`,{children:e.evidence})]},e.metric))]})}),(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`评分逻辑`}),(0,U.jsx)(`h2`,{children:`什么算好，什么算过线，一次讲明白`})]}),(0,U.jsxs)(`div`,{className:`score-grid`,children:[(0,U.jsxs)(`article`,{children:[(0,U.jsx)(`h3`,{children:`PRD 重点`}),(0,U.jsxs)(`ul`,{children:[(0,U.jsx)(`li`,{children:`能不能解释为什么只做这四个模块。`}),(0,U.jsx)(`li`,{children:`能不能说清楚主链路和增强项的先后顺序。`}),(0,U.jsx)(`li`,{children:`能不能看出边界在哪里。`})]})]}),(0,U.jsxs)(`article`,{children:[(0,U.jsx)(`h3`,{children:`竞品分析`}),(0,U.jsxs)(`ul`,{children:[(0,U.jsx)(`li`,{children:`有没有把市场头部和平台级竞品都放进去。`}),(0,U.jsx)(`li`,{children:`有没有说明我们填补了什么空白。`}),(0,U.jsx)(`li`,{children:`有没有和产品范围直接对应。`})]})]}),(0,U.jsxs)(`article`,{children:[(0,U.jsx)(`h3`,{children:`验证标准`}),(0,U.jsxs)(`ul`,{children:[(0,U.jsx)(`li`,{children:`是否定义了及格线、目标线和失败线。`}),(0,U.jsx)(`li`,{children:`是否能在 4 周内用现成工具测出来。`}),(0,U.jsx)(`li`,{children:`是否能支撑评审判断而不是只是装饰。`})]})]})]})]})]})}function Xme(){return(0,U.jsx)($9,{children:(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading wide`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`Word 转 Markdown`}),(0,U.jsx)(`h1`,{children:`原文已经整理成 Markdown，并纳入站点导航`}),(0,U.jsx)(`p`,{children:`这个页面保留原始整理稿，方便和 ao-output 的步骤文档并排查看。`})]}),(0,U.jsx)(`article`,{className:`markdown-body`,children:(0,U.jsx)(hN,{remarkPlugins:[AI],rehypePlugins:[AN],children:Q9.find(e=>e.id===`converted`)?.content??``})})]})})}function Zme(){let e=wL();return(0,U.jsx)(Nc,{mode:`wait`,children:(0,U.jsxs)(Die,{location:e,children:[(0,U.jsx)(LL,{path:`/`,element:(0,U.jsx)(Wme,{})}),(0,U.jsx)(LL,{path:`/guide`,element:(0,U.jsx)(of,{})}),(0,U.jsx)(LL,{path:`/kiosk`,element:(0,U.jsx)(Rf,{})}),(0,U.jsx)(LL,{path:`/prd`,element:(0,U.jsx)(Gme,{})}),(0,U.jsx)(LL,{path:`/library`,element:(0,U.jsx)(Kme,{})}),(0,U.jsx)(LL,{path:`/competitors`,element:(0,U.jsx)(qme,{})}),(0,U.jsx)(LL,{path:`/timeline`,element:(0,U.jsx)(Jme,{})}),(0,U.jsx)(LL,{path:`/dashboard`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Mme,{})})}),(0,U.jsx)(LL,{path:`/knowledge`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Nme,{})})}),(0,U.jsx)(LL,{path:`/review`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Pme,{})})}),(0,U.jsx)(LL,{path:`/digital-human`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Fme,{})})}),(0,U.jsx)(LL,{path:`/settings`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Ime,{})})}),(0,U.jsx)(LL,{path:`/command`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Lme,{})})}),(0,U.jsx)(LL,{path:`/validation`,element:(0,U.jsx)(Yme,{})}),(0,U.jsx)(LL,{path:`/word`,element:(0,U.jsx)(Xme,{})})]},e.pathname)})}function Qme(){return(0,U.jsx)(zf,{children:(0,U.jsxs)(eae,{children:[(0,U.jsx)(Hme,{}),(0,U.jsx)(Zme,{}),(0,U.jsxs)(`footer`,{className:`app-footer`,children:[(0,U.jsx)(td,{size:16}),(0,U.jsx)(`span`,{children:`内容来自 Word、ao-output 与 PRD，页面以 GitHub Pages 发布`}),(0,U.jsx)(Ku,{size:16})]})]})})}(0,S.createRoot)(document.getElementById(`root`)).render((0,U.jsx)(x.StrictMode,{children:(0,U.jsx)(Qme,{})}));export{bK as $,W as $t,N6 as A,cR as At,NZ as B,pd as Bt,y5 as C,Z as Ct,l8 as D,mR as Dt,u8 as E,vR as Et,H4 as F,wd as Ft,SZ as G,ed as Gt,CZ as H,od as Ht,F3 as I,Sd as It,JY as J,Wu as Jt,iZ as K,Yu as Kt,g4 as L,xd as Lt,C6 as M,kd as Mt,I3 as N,jd as Nt,e8 as O,fR as Ot,voe as P,Td as Pt,vK as Q,G as Qt,iQ as R,bd as Rt,v5 as S,Bz as St,$8 as T,Uz as Tt,MZ as U,ad as Ut,wZ as V,cd as Vt,TZ as W,rd as Wt,lJ as X,Vu as Xt,ZJ as Y,Uu as Yt,Gq as Z,Ru as Zt,M5 as _,mB as _t,O7 as a,cG as at,A5 as b,Rz as bt,x7 as c,eG as ct,Y5 as d,GW as dt,Nc as en,yK as et,G5 as f,qW as ft,N5 as g,Q as gt,P5 as h,$ as ht,W7 as i,jG as it,T6 as j,Kd as jt,K6 as k,pR as kt,y7 as l,$W as lt,I5 as m,RW as mt,W9 as n,m as nn,FG as nt,C7 as o,nG as ot,V5 as p,XW as pt,YY as q,qu as qt,Y7 as r,d as rn,NG as rt,S7 as s,tG as st,X9 as t,w as tn,uK as tt,Q5 as u,uG as ut,j5 as v,cB as vt,X8 as w,Az as wt,O5 as x,jz as xt,k5 as y,Iz as yt,nQ as z,gd as zt};
+    ${S.x},${S.y}`,w=Bz(e.id)?Fz(`recharts-radial-line-`):e.id;return x.createElement(`text`,V8({},i,{dominantBaseline:`central`,className:cR(`recharts-radial-bar-label`,s)}),x.createElement(`defs`,null,x.createElement(`path`,{id:w,d:C})),x.createElement(`textPath`,{xlinkHref:`#${w}`},r))},nle=(e,n,r)=>{var{cx:i,cy:a,innerRadius:o,outerRadius:s,startAngle:c,endAngle:l}=e,u=(c+l)/2;if(r===`outside`){var{x:d,y:f}=DX(i,a,s+n,u);return{x:d,y:f,textAnchor:d>=i?`start`:`end`,verticalAnchor:`middle`}}if(r===`center`)return{x:i,y:a,textAnchor:`middle`,verticalAnchor:`middle`};if(r===`centerTop`)return{x:i,y:a,textAnchor:`middle`,verticalAnchor:`start`};if(r===`centerBottom`)return{x:i,y:a,textAnchor:`middle`,verticalAnchor:`end`};var{x:p,y:m}=DX(i,a,(o+s)/2,u);return{x:p,y:m,textAnchor:`middle`,verticalAnchor:`middle`}},G8=e=>e!=null&&`cx`in e&&Z(e.cx),rle={angle:0,offset:5,zIndex:NZ.label,position:`middle`,textBreakAll:!1};function ile(e){if(!G8(e))return e;var{cx:n,cy:r,outerRadius:i}=e,a=i*2;return{x:n-i,y:r-i,width:a,upperWidth:a,lowerWidth:a,height:a}}function K8(e){var n=mB(e,rle),{viewBox:r,parentViewBox:i,position:a,value:o,children:s,content:c,className:l=``,textBreakAll:u,labelRef:d}=n,f=Qce(),p=U8(),m=r==null?a===`center`?p:f??p:G8(r)?r:dK(r),h,g,_=ile(m);if(!m||Bz(o)&&Bz(s)&&!(0,x.isValidElement)(c)&&typeof c!=`function`)return null;var v=B8(B8({},n),{},{viewBox:m});if((0,x.isValidElement)(c)){var{labelRef:y}=v;return(0,x.cloneElement)(c,R8(v,Wce))}if(typeof c==`function`){var{content:b}=v;if(h=(0,x.createElement)(c,R8(v,Gce)),(0,x.isValidElement)(h))return h}else h=$ce(n);var S=mR(n);if(G8(m)){if(a===`insideStart`||a===`insideEnd`||a===`end`)return tle(n,a,h,S,m);g=nle(m,n.offset,n.position)}else{if(!_)return null;var C=Uce({viewBox:_,position:a,offset:n.offset,parentViewBox:G8(i)?void 0:i,clamp:!0});g=B8(B8({x:C.x,y:C.y,textAnchor:C.horizontalAnchor,verticalAnchor:C.verticalAnchor},C.width===void 0?{}:{width:C.width}),C.height===void 0?{}:{height:C.height})}return x.createElement(K6,{zIndex:n.zIndex},x.createElement(F8,V8({ref:d,className:cR(`recharts-label`,l)},S,g,{textAnchor:k8(S.textAnchor)?S.textAnchor:g.textAnchor,breakAll:u}),h))}K8.displayName=`Label`;var ale=(e,n,r)=>{if(!e)return null;var i={viewBox:n,labelRef:r};return e===!0?x.createElement(K8,V8({key:`label-implicit`},i)):Nz(e)?x.createElement(K8,V8({key:`label-implicit`,value:e},i)):(0,x.isValidElement)(e)?e.type===K8?(0,x.cloneElement)(e,B8({key:`label-implicit`},i)):x.createElement(K8,V8({key:`label-implicit`,content:e},i)):W8(e)?x.createElement(K8,V8({key:`label-implicit`,content:e},i)):e&&typeof e==`object`?x.createElement(K8,V8({},e,{key:`label-implicit`},i)):null};function ole(e){var{label:n,labelRef:r}=e;return ale(n,U8(),r)||null}var sle=[`valueAccessor`],cle=[`dataKey`,`clockWise`,`id`,`textBreakAll`,`zIndex`];function q8(){return q8=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},q8.apply(null,arguments)}function J8(e,n){if(e==null)return{};var r,i,a=lle(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function lle(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}var ule=e=>{var n=Array.isArray(e.value)?e.value[e.value.length-1]:e.value;if(Fce(n))return n},Y8=(0,x.createContext)(void 0),X8=Y8.Provider,Z8=(0,x.createContext)(void 0),dle=Z8.Provider;function fle(){return(0,x.useContext)(Y8)}function ple(){return(0,x.useContext)(Z8)}function Q8(e){var{valueAccessor:n=ule}=e,r=J8(e,sle),{dataKey:i,clockWise:a,id:o,textBreakAll:s,zIndex:c}=r,l=J8(r,cle),u=fle(),d=ple(),f=u||d;return!f||!f.length?null:x.createElement(K6,{zIndex:c??NZ.label},x.createElement(vR,{className:`recharts-label-list`},f.map((e,a)=>{var c=Bz(i)?n(e,a):GW(e.payload,i),u=Bz(o)?{}:{id:`${o}-${a}`};return x.createElement(K8,q8({key:`label-${a}`},mR(e),l,u,{fill:r.fill??e.fill,parentViewBox:e.parentViewBox,value:c,textBreakAll:s,viewBox:e.viewBox,index:a,zIndex:0}))})))}Q8.displayName=`LabelList`;function $8(e){var{label:n}=e;return n?n===!0?x.createElement(Q8,{key:`labelList-implicit`}):x.isValidElement(n)||W8(n)?x.createElement(Q8,{key:`labelList-implicit`,content:n}):typeof n==`object`?x.createElement(Q8,q8({key:`labelList-implicit`},n,{type:String(n.type)})):null:null}function e5(){return e5=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},e5.apply(null,arguments)}var t5=e=>{var{cx:n,cy:r,r:i,className:a}=e,o=cR(`recharts-dot`,a);return Z(n)&&Z(r)&&Z(i)?x.createElement(`circle`,e5({},fR(e),oB(e),{className:o,cx:n,cy:r,r:i})):null},n5=e=>e.graphicalItems.polarItems,r5=$([n5,d4,$([eQ,tQ],h4)],v4),i5=$([$([r5],C4),nZ],E4),mle=$([i5,d4,r5],O4);$([i5,d4,r5],(e,n,r)=>r.length>0?e.flatMap(e=>r.flatMap(r=>({value:GW(e,n.dataKey??r.dataKey),errorDomain:[]}))).filter(Boolean):n?.dataKey==null?e.map(e=>({value:e,errorDomain:[]})):e.map(e=>({value:GW(e,n.dataKey),errorDomain:[]})));var a5=()=>void 0,o5=$([d4,vK,i5,mle,EZ,eQ,$([d4,K4,q4,a5,$([i5,d4,r5,Y4,eQ,oZ],Q4),a5,vK,eQ],d3)],f3);$([m3,$([d4,o5,$([o5,p4,m3],h3),eQ],_3)],dQ);var s5=UU({name:`polarAxis`,initialState:{radiusAxis:{},angleAxis:{}},reducers:{addRadiusAxis(e,n){e.radiusAxis[n.payload.id]=yq(n.payload)},removeRadiusAxis(e,n){delete e.radiusAxis[n.payload.id]},addAngleAxis(e,n){e.angleAxis[n.payload.id]=yq(n.payload)},removeAngleAxis(e,n){delete e.angleAxis[n.payload.id]}}}),{addRadiusAxis:hle,removeRadiusAxis:gle,addAngleAxis:_le,removeAngleAxis:vle}=s5.actions,yle=s5.reducer;function c5(e){return e&&typeof e==`object`&&`className`in e&&typeof e.className==`string`?e.className:``}function l5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function u5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?l5(Object(r),!0).forEach(function(n){ble(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):l5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function ble(e,n,r){return(n=xle(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function xle(e){var n=Sle(e,`string`);return typeof n==`symbol`?n:n+``}function Sle(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var d5=$([n5,(e,n)=>n],(e,n)=>e.filter(e=>e.type===`pie`).find(e=>e.id===n)),Cle=[],f5=(e,n,r)=>r?.length===0?Cle:r,p5=$([nZ,d5,f5],(e,n,r)=>{var{chartData:i}=e;if(n!=null){var a=n?.data!=null&&n.data.length>0?n.data:i;if((!a||!a.length)&&r!=null&&(a=r.map(e=>u5(u5({},n.presentationProps),e.props))),a!=null)return a}}),wle=$([p5,d5,f5],(e,n,r)=>{if(!(e==null||n==null))return e.map((e,i)=>{var a,o=GW(e,n.nameKey,n.name),s=r!=null&&(a=r[i])!=null&&(a=a.props)!=null&&a.fill?r[i].props.fill:typeof e==`object`&&e&&`fill`in e?e.fill:n.fill;return{value:uG(o,n.dataKey),color:s,payload:e,type:n.legendType}})}),Tle=$([p5,d5,f5,jG],(e,n,r,i)=>{if(!(n==null||e==null))return Oue({offset:i,pieSettings:n,displayedData:e,cells:r})}),Ele=c((e=>{var n=Symbol.for(`react.transitional.element`),r=Symbol.for(`react.portal`),i=Symbol.for(`react.fragment`),a=Symbol.for(`react.strict_mode`),o=Symbol.for(`react.profiler`),s=Symbol.for(`react.consumer`),c=Symbol.for(`react.context`),l=Symbol.for(`react.forward_ref`),u=Symbol.for(`react.suspense`),d=Symbol.for(`react.suspense_list`),f=Symbol.for(`react.memo`),p=Symbol.for(`react.lazy`),m=Symbol.for(`react.view_transition`);function h(e){if(typeof e==`object`&&e){var h=e.$$typeof;switch(h){case n:switch(e=e.type,e){case i:case o:case a:case u:case d:case m:return e;default:switch(e&&=e.$$typeof,e){case c:case l:case p:case f:return e;case s:return e;default:return h}}case r:return h}}}e.isFragment=function(e){return h(e)===i}})),Dle=c(((e,n)=>{n.exports=Ele()}))(),m5=e=>typeof e==`string`?e:e?e.displayName||e.name||`Component`:``,h5=null,g5=null,_5=e=>{if(e===h5&&Array.isArray(g5))return g5;var n=[];return x.Children.forEach(e,e=>{Bz(e)||((0,Dle.isFragment)(e)?n=n.concat(_5(e.props.children)):n.push(e))}),g5=n,h5=e,n};function v5(e,n){var r=[],i=[];return i=Array.isArray(n)?n.map(e=>m5(e)):[m5(n)],_5(e).forEach(e=>{var n=(0,kz.default)(e,`type.displayName`)||(0,kz.default)(e,`type.name`);n&&i.indexOf(n)!==-1&&r.push(e)}),r}var y5=e=>e&&typeof e==`object`&&`clipDot`in e?!!e.clipDot:!0,Ole=c((e=>{Object.defineProperty(e,Symbol.toStringTag,{value:`Module`});function n(e){if(typeof e!=`object`||!e)return!1;if(Object.getPrototypeOf(e)===null)return!0;if(Object.prototype.toString.call(e)!==`[object Object]`){let n=e[Symbol.toStringTag];return n==null||!Object.getOwnPropertyDescriptor(e,Symbol.toStringTag)?.writable?!1:e.toString()===`[object ${n}]`}let n=e;for(;Object.getPrototypeOf(n)!==null;)n=Object.getPrototypeOf(n);return Object.getPrototypeOf(e)===n}e.isPlainObject=n})),kle=c(((e,n)=>{n.exports=Ole().isPlainObject})),Ale,jle,Mle,Nle,Ple;function b5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function x5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?b5(Object(r),!0).forEach(function(n){Fle(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):b5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Fle(e,n,r){return(n=Ile(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Ile(e){var n=Lle(e,`string`);return typeof n==`symbol`?n:n+``}function Lle(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function S5(){return S5=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},S5.apply(null,arguments)}function C5(e,n){return n||=e.slice(0),Object.freeze(Object.defineProperties(e,{raw:{value:Object.freeze(n)}}))}var w5=(e,n,r,i,a)=>{var o=r-i,s=Oz(Ale||=C5([`M `,`,`,``]),e,n);return s+=Oz(jle||=C5([`L `,`,`,``]),e+r,n),s+=Oz(Mle||=C5([`L `,`,`,``]),e+r-o/2,n+a),s+=Oz(Nle||=C5([`L `,`,`,``]),e+r-o/2-i,n+a),s+=Oz(Ple||=C5([`L `,`,`,` Z`]),e,n),s},Rle={x:0,y:0,upperWidth:0,lowerWidth:0,height:0,isUpdateAnimationActive:!1,animationBegin:0,animationDuration:1500,animationEasing:`ease`},zle=e=>{var n=mB(e,Rle),{x:r,y:i,upperWidth:a,lowerWidth:o,height:s,className:c}=n,{animationEasing:l,animationDuration:u,animationBegin:d,isUpdateAnimationActive:f}=n,p=(0,x.useRef)(null),[m,h]=(0,x.useState)(-1),g=(0,x.useRef)(a),_=(0,x.useRef)(o),v=(0,x.useRef)(s),y=(0,x.useRef)(r),b=(0,x.useRef)(i),S=YY(e,`trapezoid-`);if((0,x.useEffect)(()=>{if(p.current&&p.current.getTotalLength)try{var e=p.current.getTotalLength();e&&h(e)}catch{}},[]),r!==+r||i!==+i||a!==+a||o!==+o||s!==+s||a===0&&o===0||s===0)return null;var C=cR(`recharts-trapezoid`,c);if(!f)return x.createElement(`g`,null,x.createElement(`path`,S5({},mR(n),{className:C,d:w5(r,i,a,o,s)})));var w=g.current,T=_.current,E=v.current,D=y.current,O=b.current,k=`0px ${m===-1?1:m}px`,A=`${m}px ${m}px`,j=gY([`strokeDasharray`],u,l);return x.createElement(JY,{animationId:S,key:S,canBegin:m>0,duration:u,easing:l,isActive:f,begin:d},e=>{var c=Rz(w,a,e),l=Rz(T,o,e),u=Rz(E,s,e),d=Rz(D,r,e),f=Rz(O,i,e);p.current&&(g.current=c,_.current=l,v.current=u,y.current=d,b.current=f);var m=e>0?{transition:j,strokeDasharray:A}:{strokeDasharray:k};return x.createElement(`path`,S5({},mR(n),{className:C,d:w5(d,f,c,l,u),ref:p,style:x5(x5({},m),n.style)}))})},Ble=d(kle()),Vle=[`option`,`shapeType`,`activeClassName`,`inActiveClassName`];function Hle(e,n){if(e==null)return{};var r,i,a=Ule(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Ule(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function T5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function E5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?T5(Object(r),!0).forEach(function(n){Wle(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):T5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Wle(e,n,r){return(n=Gle(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Gle(e){var n=Kle(e,`string`);return typeof n==`symbol`?n:n+``}function Kle(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function qle(e,n){return E5(E5({},n),e)}function Jle(e,n){return e===`symbols`}function D5(e){var{shapeType:n,elementProps:r}=e;switch(n){case`rectangle`:return x.createElement(yX,r);case`trapezoid`:return x.createElement(zle,r);case`sector`:return x.createElement(YX,r);case`symbols`:if(Jle(n,r))return x.createElement(iB,r);break;case`curve`:return x.createElement(ZJ,r);default:return null}}function Yle(e){return(0,x.isValidElement)(e)?e.props:e}function O5(e){var{option:n,shapeType:r,activeClassName:i=`recharts-active-shape`,inActiveClassName:a=`recharts-shape`}=e,o=Hle(e,Vle),s;if((0,x.isValidElement)(n))s=(0,x.cloneElement)(n,E5(E5({},o),Yle(n)));else if(typeof n==`function`)s=n(o,o.index);else if((0,Ble.default)(n)&&typeof n!=`boolean`){var c=qle(n,o);s=x.createElement(D5,{shapeType:r,elementProps:c})}else{var l=o;s=x.createElement(D5,{shapeType:r,elementProps:l})}return o.isActive?x.createElement(vR,{className:i},s):x.createElement(vR,{className:a},s)}var k5=(e,n,r)=>{var i=sV();return(a,o)=>s=>{e?.(a,o,s),i(W3({activeIndex:String(o),activeDataKey:n,activeCoordinate:a.tooltipPosition,activeGraphicalItemId:r}))}},A5=e=>{var n=sV();return(r,i)=>a=>{e?.(r,i,a),n(Eoe())}},j5=(e,n,r)=>{var i=sV();return(a,o)=>s=>{e?.(a,o,s),i(Doe({activeIndex:String(o),activeDataKey:n,activeCoordinate:a.tooltipPosition,activeGraphicalItemId:r}))}};function M5(e){var{tooltipEntrySettings:n}=e,r=sV(),i=FG(),a=(0,x.useRef)(null);return(0,x.useLayoutEffect)(()=>{i||(a.current===null?r(Soe(n)):a.current!==n&&r(Coe({prev:a.current,next:n})),a.current=n)},[n,r,i]),(0,x.useLayoutEffect)(()=>()=>{a.current&&=(r(woe(a.current)),null)},[r]),null}function N5(e){var{legendPayload:n}=e,r=sV(),i=FG(),a=(0,x.useRef)(null);return(0,x.useLayoutEffect)(()=>{i||(a.current===null?r(Cq(n)):a.current!==n&&r(wq({prev:a.current,next:n})),a.current=n)},[r,i,n]),(0,x.useLayoutEffect)(()=>()=>{a.current&&=(r(Tq(a.current)),null)},[r]),null}function Xle(e){var{legendPayload:n}=e,r=sV(),i=Q(vK),a=(0,x.useRef)(null);return(0,x.useLayoutEffect)(()=>{i!==`centric`&&i!==`radial`||(a.current===null?r(Cq(n)):a.current!==n&&r(wq({prev:a.current,next:n})),a.current=n)},[r,i,n]),(0,x.useLayoutEffect)(()=>()=>{a.current&&=(r(Tq(a.current)),null)},[r]),null}var Zle=x.useId??(()=>{var[e]=x.useState(()=>Fz(`uid-`));return e});function Qle(e,n){var r=Zle();return n||(e?`${e}-${r}`:r)}var $le=(0,x.createContext)(void 0),P5=e=>{var{id:n,type:r,children:i}=e,a=Qle(`recharts-${r}`,n);return x.createElement($le.Provider,{value:a},i(a))},F5=UU({name:`graphicalItems`,initialState:{cartesianItems:[],polarItems:[]},reducers:{addCartesianGraphicalItem:{reducer(e,n){e.cartesianItems.push(yq(n.payload))},prepare:OU()},replaceCartesianGraphicalItem:{reducer(e,n){var{prev:r,next:i}=n.payload,a=mU(e).cartesianItems.indexOf(yq(r));a>-1&&(e.cartesianItems[a]=yq(i))},prepare:OU()},removeCartesianGraphicalItem:{reducer(e,n){var r=mU(e).cartesianItems.indexOf(yq(n.payload));r>-1&&e.cartesianItems.splice(r,1)},prepare:OU()},addPolarGraphicalItem:{reducer(e,n){e.polarItems.push(yq(n.payload))},prepare:OU()},removePolarGraphicalItem:{reducer(e,n){var r=mU(e).polarItems.indexOf(yq(n.payload));r>-1&&e.polarItems.splice(r,1)},prepare:OU()},replacePolarGraphicalItem:{reducer(e,n){var{prev:r,next:i}=n.payload,a=mU(e).polarItems.indexOf(yq(r));a>-1&&(e.polarItems[a]=yq(i))},prepare:OU()}}}),{addCartesianGraphicalItem:eue,replaceCartesianGraphicalItem:tue,removeCartesianGraphicalItem:nue,addPolarGraphicalItem:rue,removePolarGraphicalItem:iue,replacePolarGraphicalItem:aue}=F5.actions,oue=F5.reducer,I5=(0,x.memo)(e=>{var n=sV(),r=(0,x.useRef)(null);return(0,x.useLayoutEffect)(()=>{r.current===null?n(eue(e)):r.current!==e&&n(tue({prev:r.current,next:e})),r.current=e},[n,e]),(0,x.useLayoutEffect)(()=>()=>{r.current&&=(n(nue(r.current)),null)},[n]),null}),sue=(0,x.memo)(e=>{var n=sV(),r=(0,x.useRef)(null);return(0,x.useLayoutEffect)(()=>{r.current===null?n(rue(e)):r.current!==e&&n(aue({prev:r.current,next:e})),r.current=e},[n,e]),(0,x.useLayoutEffect)(()=>()=>{r.current&&=(n(iue(r.current)),null)},[n]),null}),cue=[`key`],lue=[`onMouseEnter`,`onClick`,`onMouseLeave`],uue=[`id`],due=[`id`];function L5(){return L5=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},L5.apply(null,arguments)}function R5(e,n){if(e==null)return{};var r,i,a=fue(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function fue(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function z5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function B5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?z5(Object(r),!0).forEach(function(n){pue(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):z5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function pue(e,n,r){return(n=mue(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function mue(e){var n=hue(e,`string`);return typeof n==`symbol`?n:n+``}function hue(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function gue(e){var n=(0,x.useMemo)(()=>v5(e.children,u8),[e.children]),r=Q(r=>wle(r,e.id,n));return r==null?null:x.createElement(Xle,{legendPayload:r})}function _ue(e){if(!(e==null||typeof e==`boolean`||typeof e==`function`)){if(x.isValidElement(e)){var n=e.props?.fill;return typeof n==`string`?n:void 0}var{fill:r}=e;return typeof r==`string`?r:void 0}}var vue=x.memo(e=>{var{dataKey:n,nameKey:r,sectors:i,stroke:a,strokeWidth:o,fill:s,name:c,hide:l,tooltipType:u,id:d,activeShape:f}=e,p=_ue(f),m={dataDefinedOnItem:i.map(e=>{var n=e.tooltipPayload;return p==null||n==null?n:n.map(e=>B5(B5({},e),{},{color:p,fill:p}))}),getPosition:e=>i[Number(e)]?.tooltipPosition,settings:{stroke:a,strokeWidth:o,fill:s,dataKey:n,nameKey:r,name:uG(c,n),hide:l,type:u,color:s,unit:``,graphicalItemId:d}};return x.createElement(M5,{tooltipEntrySettings:m})}),yue=(e,n)=>e>n?`start`:e<n?`end`:`middle`,bue=(e,n,r)=>Iz(typeof n==`function`?n(e):n,r,r*.8),xue=(e,n,r)=>{var{top:i,left:a,width:o,height:s}=n,c=OX(o,s);return{cx:a+Iz(e.cx,o,o/2),cy:i+Iz(e.cy,s,s/2),innerRadius:Iz(e.innerRadius,c,0),outerRadius:bue(r,e.outerRadius,c),maxRadius:e.maxRadius||Math.sqrt(o*o+s*s)/2}},Sue=(e,n)=>Az(n-e)*Math.min(Math.abs(n-e),360),Cue=(e,n)=>{if(x.isValidElement(e))return x.cloneElement(e,n);if(typeof e==`function`)return e(n);var r=cR(`recharts-pie-label-line`,typeof e==`boolean`?``:e.className),{key:i}=n,a=R5(n,cue);return x.createElement(ZJ,L5({},a,{type:`linear`,className:r}))},wue=(e,n,r)=>{if(x.isValidElement(e))return x.cloneElement(e,n);var i=r;if(typeof e==`function`&&(i=e(n),x.isValidElement(i)))return i;var a=cR(`recharts-pie-label-text`,c5(e));return x.createElement(F8,L5({},n,{alignmentBaseline:`middle`,className:a}),i)};function Tue(e){var{sectors:n,props:r,showLabels:i}=e,{label:a,labelLine:o,dataKey:s}=r;if(!i||!a||!n)return null;var c=fR(r),l=pR(a),u=pR(o),d=typeof a==`object`&&`offsetRadius`in a&&typeof a.offsetRadius==`number`&&a.offsetRadius||20,f=n.map((e,n)=>{var r=(e.startAngle+e.endAngle)/2,i=DX(e.cx,e.cy,e.outerRadius+d,r),f=B5(B5(B5(B5({},c),e),{},{stroke:`none`},l),{},{index:n,textAnchor:yue(i.x,e.cx)},i),p=B5(B5(B5(B5({},c),e),{},{fill:`none`,stroke:e.fill},u),{},{index:n,points:[DX(e.cx,e.cy,e.outerRadius,r),i],key:`line`});return x.createElement(K6,{zIndex:NZ.label,key:`label-${e.startAngle}-${e.endAngle}-${e.midAngle}-${n}`},x.createElement(vR,null,o&&Cue(o,p),wue(a,f,GW(e,s))))});return x.createElement(vR,{className:`recharts-pie-labels`},f)}function Eue(e){var{sectors:n,props:r,showLabels:i}=e,{label:a}=r;return typeof a==`object`&&a&&`position`in a?x.createElement($8,{label:a}):x.createElement(Tue,{sectors:n,props:r,showLabels:i})}function Due(e){var{sectors:n,activeShape:r,inactiveShape:i,allOtherPieProps:a,shape:o,id:s}=e,c=Q(C6),l=Q(T6),u=Q(E6),{onMouseEnter:d,onClick:f,onMouseLeave:p}=a,m=R5(a,lue),h=k5(d,a.dataKey,s),g=A5(p),_=j5(f,a.dataKey,s);return n==null||n.length===0?null:x.createElement(x.Fragment,null,n.map((e,d)=>{if(e?.startAngle===0&&e?.endAngle===0&&n.length!==1)return null;var f=u==null||u===s,p=String(d)===c&&(l==null||a.dataKey===l)&&f,v=r&&p?r:c?i:null,y=B5(B5({},e),{},{stroke:e.stroke,tabIndex:-1,[yG]:d,[bG]:s});return x.createElement(vR,L5({key:`sector-${e?.startAngle}-${e?.endAngle}-${e.midAngle}-${d}`,tabIndex:-1,className:`recharts-pie-sector`},cB(m,e,d),{onMouseEnter:h(e,d),onMouseLeave:g(e,d),onClick:_(e,d)}),x.createElement(O5,L5({option:o??v,index:d,shapeType:`sector`,isActive:p},y)))}))}function Oue(e){var{pieSettings:n,displayedData:r,cells:i,offset:a}=e,{cornerRadius:o,startAngle:s,endAngle:c,dataKey:l,nameKey:u,tooltipType:d}=n,f=Math.abs(n.minAngle),p=Sue(s,c),m=Math.abs(p),h=r.length<=1?0:n.paddingAngle??0,g=r.filter(e=>GW(e,l,0)!==0).length,_=(m>=360?g:g-1)*h,v=r.reduce((e,n)=>{var r=GW(n,l,0);return e+(Z(r)?r:0)},0),y=f>0&&v>0&&r.some(e=>{var n=GW(e,l,0),r=(Z(n)?n:0)/v;return n!==0&&r*m<f})?f:0,b=m-g*y-_,x;if(v>0){var S;x=r.map((e,r)=>{var c=GW(e,l,0),f=GW(e,u,r),m=xue(n,a,e),g=(Z(c)?c:0)/v,_,x=B5(B5({},e),i&&i[r]&&i[r].props),C=x!=null&&`fill`in x&&typeof x.fill==`string`?x.fill:n.fill;_=r?S.endAngle+Az(p)*h*(c===0?0:1):s;var w=_+Az(p)*((c===0?0:y)+g*b),T=(_+w)/2,E=(m.innerRadius+m.outerRadius)/2,D=[{name:f,value:c,payload:x,dataKey:l,type:d,color:C,fill:C,graphicalItemId:n.id}],O=DX(m.cx,m.cy,E,T);return S=B5(B5(B5(B5({},n.presentationProps),{},{percent:g,cornerRadius:typeof o==`string`?parseFloat(o):o,name:f,tooltipPayload:D,midAngle:T,middleRadius:E,tooltipPosition:O},x),m),{},{value:c,dataKey:l,startAngle:_,endAngle:w,payload:x,paddingAngle:c===0?0:Az(p)*h}),S})}return x}function kue(e){var{showLabels:n,sectors:r,children:i}=e,a=(0,x.useMemo)(()=>!n||!r?[]:r.map(e=>({value:e.value,payload:e.payload,clockWise:!1,parentViewBox:void 0,viewBox:{cx:e.cx,cy:e.cy,innerRadius:e.innerRadius,outerRadius:e.outerRadius,startAngle:e.startAngle,endAngle:e.endAngle,clockWise:!1},fill:e.fill})),[r,n]);return x.createElement(dle,{value:n?a:void 0},i)}function Aue(e){var{props:n,previousSectorsRef:r,id:i}=e,{sectors:a,isAnimationActive:o,animationBegin:s,animationDuration:c,animationEasing:l,activeShape:u,inactiveShape:d,onAnimationStart:f,onAnimationEnd:p}=n,m=YY(n,`recharts-pie-`),h=r.current,[g,_]=(0,x.useState)(!1),v=(0,x.useCallback)(()=>{typeof p==`function`&&p(),_(!1)},[p]),y=(0,x.useCallback)(()=>{typeof f==`function`&&f(),_(!0)},[f]);return x.createElement(kue,{showLabels:!g,sectors:a},x.createElement(JY,{animationId:m,begin:s,duration:c,isActive:o,easing:l,onAnimationStart:y,onAnimationEnd:v,key:m},e=>{var o=[],s=(a&&a[0])?.startAngle??0;return a?.forEach((n,r)=>{var i=h&&h[r],a=r>0?(0,kz.default)(n,`paddingAngle`,0):0;if(i){var c=Rz(i.endAngle-i.startAngle,n.endAngle-n.startAngle,e),l=B5(B5({},n),{},{startAngle:s+a,endAngle:s+c+a});o.push(l),s=l.endAngle}else{var{endAngle:u,startAngle:d}=n,f=Rz(0,u-d,e),p=B5(B5({},n),{},{startAngle:s+a,endAngle:s+f+a});o.push(p),s=p.endAngle}}),r.current=o,x.createElement(vR,null,x.createElement(Due,{sectors:o,activeShape:u,inactiveShape:d,allOtherPieProps:n,shape:n.shape,id:i}))}),x.createElement(Eue,{showLabels:!g,sectors:a,props:n}),n.children)}var jue={animationBegin:400,animationDuration:1500,animationEasing:`ease`,cx:`50%`,cy:`50%`,dataKey:`value`,endAngle:360,fill:`#808080`,hide:!1,innerRadius:0,isAnimationActive:`auto`,label:!1,labelLine:!0,legendType:`rect`,minAngle:0,nameKey:`name`,outerRadius:`80%`,paddingAngle:0,rootTabIndex:0,startAngle:0,stroke:`#fff`,zIndex:NZ.area};function Mue(e){var{id:n}=e,r=R5(e,uue),{hide:i,className:a,rootTabIndex:o}=e,s=(0,x.useMemo)(()=>v5(e.children,u8),[e.children]),c=Q(e=>Tle(e,n,s)),l=(0,x.useRef)(null),u=cR(`recharts-pie`,a);return i||c==null?(l.current=null,x.createElement(vR,{tabIndex:o,className:u})):x.createElement(K6,{zIndex:e.zIndex},x.createElement(vue,{dataKey:e.dataKey,nameKey:e.nameKey,sectors:c,stroke:e.stroke,strokeWidth:e.strokeWidth,fill:e.fill,name:e.name,hide:e.hide,tooltipType:e.tooltipType,id:n,activeShape:e.activeShape}),x.createElement(vR,{tabIndex:o,className:u},x.createElement(Aue,{props:B5(B5({},r),{},{sectors:c}),previousSectorsRef:l,id:n})))}function Nue(e){var n=mB(e,jue),{id:r}=n,i=R5(n,due),a=fR(i);return x.createElement(P5,{id:r,type:`pie`},e=>x.createElement(x.Fragment,null,x.createElement(sue,{type:`pie`,id:e,data:i.data,dataKey:i.dataKey,hide:i.hide,angleAxisId:0,radiusAxisId:0,name:i.name,nameKey:i.nameKey,tooltipType:i.tooltipType,legendType:i.legendType,fill:i.fill,cx:i.cx,cy:i.cy,startAngle:i.startAngle,endAngle:i.endAngle,paddingAngle:i.paddingAngle,minAngle:i.minAngle,innerRadius:i.innerRadius,outerRadius:i.outerRadius,cornerRadius:i.cornerRadius,presentationProps:a,maxRadius:n.maxRadius}),x.createElement(gue,L5({},i,{id:e})),x.createElement(Mue,L5({},i,{id:e}))))}var V5=Nue;V5.displayName=`Pie`;var Pue=[`points`];function H5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function U5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?H5(Object(r),!0).forEach(function(n){Fue(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):H5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Fue(e,n,r){return(n=Iue(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Iue(e){var n=Lue(e,`string`);return typeof n==`symbol`?n:n+``}function Lue(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function W5(){return W5=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},W5.apply(null,arguments)}function Rue(e,n){if(e==null)return{};var r,i,a=zue(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function zue(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function Bue(e){var{option:n,dotProps:r,className:i}=e;if((0,x.isValidElement)(n))return(0,x.cloneElement)(n,r);if(typeof n==`function`)return n(r);var a=cR(i,typeof n==`boolean`?``:n.className),o=r??{},{points:s}=o,c=Rue(o,Pue);return x.createElement(t5,W5({},c,{className:a}))}function Vue(e,n){return e==null?!1:n?!0:e.length===1}function G5(e){var{points:n,dot:r,className:i,dotClassName:a,dataKey:o,baseProps:s,needClip:c,clipPathId:l,zIndex:u=NZ.scatter}=e;if(!Vue(n,r))return null;var d=y5(r),f=hae(r),p=n.map((e,i)=>{var c=U5(U5(U5({r:3},s),f),{},{index:i,cx:e.x??void 0,cy:e.y??void 0,dataKey:o,value:e.value,payload:e.payload,points:n});return x.createElement(Bue,{key:`dot-${i}`,option:r,dotProps:c,className:a})}),m={};return c&&l!=null&&(m.clipPath=`url(#clipPath-${d?``:`dots-`}${l})`),x.createElement(K6,{zIndex:u},x.createElement(vR,W5({className:i},m),p))}function K5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function q5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?K5(Object(r),!0).forEach(function(n){Hue(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):K5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Hue(e,n,r){return(n=Uue(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Uue(e){var n=Wue(e,`string`);return typeof n==`symbol`?n:n+``}function Wue(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var J5=UU({name:`cartesianAxis`,initialState:{xAxis:{},yAxis:{},zAxis:{}},reducers:{addXAxis:{reducer(e,n){e.xAxis[n.payload.id]=yq(n.payload)},prepare:OU()},replaceXAxis:{reducer(e,n){var{prev:r,next:i}=n.payload;e.xAxis[r.id]!==void 0&&(r.id!==i.id&&delete e.xAxis[r.id],e.xAxis[i.id]=yq(i))},prepare:OU()},removeXAxis:{reducer(e,n){delete e.xAxis[n.payload.id]},prepare:OU()},addYAxis:{reducer(e,n){e.yAxis[n.payload.id]=yq(n.payload)},prepare:OU()},replaceYAxis:{reducer(e,n){var{prev:r,next:i}=n.payload;e.yAxis[r.id]!==void 0&&(r.id!==i.id&&delete e.yAxis[r.id],e.yAxis[i.id]=yq(i))},prepare:OU()},removeYAxis:{reducer(e,n){delete e.yAxis[n.payload.id]},prepare:OU()},addZAxis:{reducer(e,n){e.zAxis[n.payload.id]=yq(n.payload)},prepare:OU()},replaceZAxis:{reducer(e,n){var{prev:r,next:i}=n.payload;e.zAxis[r.id]!==void 0&&(r.id!==i.id&&delete e.zAxis[r.id],e.zAxis[i.id]=yq(i))},prepare:OU()},removeZAxis:{reducer(e,n){delete e.zAxis[n.payload.id]},prepare:OU()},updateYAxisWidth(e,n){var{id:r,width:i}=n.payload,a=e.yAxis[r];if(a){var o=a.widthHistory||[];if(o.length===3&&o[0]===o[2]&&i===o[1]&&i!==a.width&&Math.abs(i-(o[0]??0))<=1)return;var s=[...o,i].slice(-3);e.yAxis[r]=q5(q5({},a),{},{width:i,widthHistory:s})}}}}),{addXAxis:Gue,replaceXAxis:Kue,removeXAxis:que,addYAxis:Jue,replaceYAxis:Yue,removeYAxis:Xue,addZAxis:Zue,replaceZAxis:Que,removeZAxis:$ue,updateYAxisWidth:ede}=J5.actions,tde=J5.reducer,nde=$([$([jG],e=>({top:e.top,bottom:e.bottom,left:e.left,right:e.right})),pG,mG],(e,n,r)=>{if(!(!e||n==null||r==null))return{x:e.left,y:e.top,width:Math.max(0,n-e.left-e.right),height:Math.max(0,r-e.top-e.bottom)}}),Y5=()=>Q(nde),rde=()=>Q(nse);function X5(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function Z5(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?X5(Object(r),!0).forEach(function(n){ide(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):X5(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function ide(e,n,r){return(n=ade(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function ade(e){var n=ode(e,`string`);return typeof n==`symbol`?n:n+``}function ode(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var sde=e=>{var{point:n,childIndex:r,mainColor:i,activeDot:a,dataKey:o,clipPath:s}=e;if(a===!1||n.x==null||n.y==null)return null;var c=Z5(Z5(Z5({},{index:r,dataKey:o,cx:n.x,cy:n.y,r:4,fill:i??`none`,strokeWidth:2,stroke:`#fff`,payload:n.payload,value:n.value}),pR(a)),oB(a)),l=(0,x.isValidElement)(a)?(0,x.cloneElement)(a,c):typeof a==`function`?a(c):x.createElement(t5,c);return x.createElement(vR,{className:`recharts-active-dot`,clipPath:s},l)};function Q5(e){var{points:n,mainColor:r,activeDot:i,itemDataKey:a,clipPath:o,zIndex:s=NZ.activeDot}=e,c=Q(C6),l=rde();if(n==null||l==null)return null;var u=n.find(e=>l.includes(e.payload));return Bz(u)?null:x.createElement(K6,{zIndex:s},x.createElement(sde,{point:u,childIndex:Number(c),mainColor:r,dataKey:a,activeDot:i,clipPath:o}))}var $5=e=>{var{chartData:n}=e,r=sV(),i=FG();return(0,x.useEffect)(()=>i?()=>{}:(r(r8(n)),()=>{r(r8(void 0))}),[n,r,i]),null},e7={x:0,y:0,width:0,height:0,padding:{top:0,right:0,bottom:0,left:0}},t7=UU({name:`brush`,initialState:e7,reducers:{setBrushSettings(e,n){return n.payload==null?e7:n.payload}}}),{setBrushSettings:cde}=t7.actions,lde=t7.reducer;function ude(e){return(e%180+180)%180}var dde=function(e){var{width:n,height:r}=e,i=ude(arguments.length>1&&arguments[1]!==void 0?arguments[1]:0)*Math.PI/180,a=Math.atan(r/n),o=i>a&&i<Math.PI-a?r/Math.sin(i):n/Math.cos(i);return Math.abs(o)},n7=UU({name:`referenceElements`,initialState:{dots:[],areas:[],lines:[]},reducers:{addDot:(e,n)=>{e.dots.push(n.payload)},removeDot:(e,n)=>{var r=mU(e).dots.findIndex(e=>e===n.payload);r!==-1&&e.dots.splice(r,1)},addArea:(e,n)=>{e.areas.push(n.payload)},removeArea:(e,n)=>{var r=mU(e).areas.findIndex(e=>e===n.payload);r!==-1&&e.areas.splice(r,1)},addLine:(e,n)=>{e.lines.push(yq(n.payload))},removeLine:(e,n)=>{var r=mU(e).lines.findIndex(e=>e===n.payload);r!==-1&&e.lines.splice(r,1)}}}),{addDot:fde,removeDot:pde,addArea:mde,removeArea:hde,addLine:gde,removeLine:_de}=n7.actions,vde=n7.reducer,yde=(0,x.createContext)(void 0),bde=e=>{var{children:n}=e,[r]=(0,x.useState)(`${Fz(`recharts`)}-clip`),i=Y5();if(i==null)return null;var{x:a,y:o,width:s,height:c}=i;return x.createElement(yde.Provider,{value:r},x.createElement(`defs`,null,x.createElement(`clipPath`,{id:r},x.createElement(`rect`,{x:a,y:o,height:c,width:s}))),n)};function r7(e,n){if(n<1)return[];if(n===1)return e;for(var r=[],i=0;i<e.length;i+=n){var a=e[i];a!==void 0&&r.push(a)}return r}function xde(e,n,r){return dde({width:e.width+n.width,height:e.height+n.height},r)}function Sde(e,n,r){var i=r===`width`,{x:a,y:o,width:s,height:c}=e;return n===1?{start:i?a:o,end:i?a+s:o+c}:{start:i?a+s:o+c,end:i?a:o}}function i7(e,n,r,i,a){if(e*n<e*i||e*n>e*a)return!1;var o=r();return e*(n-e*o/2-i)>=0&&e*(n+e*o/2-a)<=0}function Cde(e,n){return r7(e,n+1)}function wde(e,n,r,i,a){for(var o=(i||[]).slice(),{start:s,end:c}=n,l=0,u=1,d=s,f=function(){var n=i?.[l];if(n===void 0)return{v:r7(i,u)};var o=l,f,p=()=>(f===void 0&&(f=r(n,o)),f),m=n.coordinate,h=l===0||i7(e,m,p,d,c);h||(l=0,d=s,u+=1),h&&(d=m+e*(p()/2+a),l+=u)},p;u<=o.length;)if(p=f(),p)return p.v;return[]}function Tde(e,n,r,i,a){var o=(i||[]).slice().length;if(o===0)return[];for(var{start:s,end:c}=n,l=1;l<=o;l++){for(var u=(o-1)%l,d=s,f=!0,p=function(){var n=i[h];if(n==null)return 0;var o=h,s,l=()=>(s===void 0&&(s=r(n,o)),s),p=n.coordinate,m=h===u||i7(e,p,l,d,c);if(!m)return f=!1,1;m&&(d=p+e*(l()/2+a))},m,h=u;h<o&&(m=p(),!(m!==0&&m===1));h+=l);if(f){for(var g=[],_=u;_<o;_+=l){var v=i[_];v!=null&&g.push(v)}return g}}return[]}function a7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function o7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?a7(Object(r),!0).forEach(function(n){Ede(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):a7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Ede(e,n,r){return(n=Dde(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Dde(e){var n=Ode(e,`string`);return typeof n==`symbol`?n:n+``}function Ode(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function kde(e,n,r,i,a){for(var o=(i||[]).slice(),s=o.length,{start:c}=n,{end:l}=n,u=function(n){var i=o[n];if(i==null)return 1;var u=i,d,f=()=>(d===void 0&&(d=r(i,n)),d);if(n===s-1){var p=e*(u.coordinate+e*f()/2-l);o[n]=u=o7(o7({},u),{},{tickCoord:p>0?u.coordinate-p*e:u.coordinate})}else o[n]=u=o7(o7({},u),{},{tickCoord:u.coordinate});u.tickCoord!=null&&i7(e,u.tickCoord,f,c,l)&&(l=u.tickCoord-e*(f()/2+a),o[n]=o7(o7({},u),{},{isShow:!0}))},d=s-1;d>=0;d--)if(u(d))continue;return o}function Ade(e,n,r,i,a,o){var s=(i||[]).slice(),c=s.length,{start:l,end:u}=n;if(o){var d=i[c-1];if(d!=null){var f=r(d,c-1),p=e*(d.coordinate+e*f/2-u);s[c-1]=d=o7(o7({},d),{},{tickCoord:p>0?d.coordinate-p*e:d.coordinate}),d.tickCoord!=null&&i7(e,d.tickCoord,()=>f,l,u)&&(u=d.tickCoord-e*(f/2+a),s[c-1]=o7(o7({},d),{},{isShow:!0}))}}for(var m=o?c-1:c,h=function(n){var i=s[n];if(i==null)return 1;var o=i,c,d=()=>(c===void 0&&(c=r(i,n)),c);if(n===0){var f=e*(o.coordinate-e*d()/2-l);s[n]=o=o7(o7({},o),{},{tickCoord:f<0?o.coordinate-f*e:o.coordinate})}else s[n]=o=o7(o7({},o),{},{tickCoord:o.coordinate});o.tickCoord!=null&&i7(e,o.tickCoord,d,l,u)&&(l=o.tickCoord+e*(d()/2+a),s[n]=o7(o7({},o),{},{isShow:!0}))},g=0;g<m;g++)if(h(g))continue;return s}function s7(e,n,r){var{tick:i,ticks:a,viewBox:o,minTickGap:s,orientation:c,interval:l,tickFormatter:u,unit:d,angle:f}=e;if(!a||!a.length||!i)return[];if(Z(l)||EJ.isSsr)return Cde(a,Z(l)?l:0)??[];var p=[],m=c===`top`||c===`bottom`?`width`:`height`,h=d&&m===`width`?g8(d,{fontSize:n,letterSpacing:r}):{width:0,height:0},g=(e,i)=>{var a=typeof u==`function`?u(e.value,i):e.value;return m===`width`?xde(g8(a,{fontSize:n,letterSpacing:r}),h,f):g8(a,{fontSize:n,letterSpacing:r})[m]},_=a[0],v=a[1],y=a.length>=2&&_!=null&&v!=null?Az(v.coordinate-_.coordinate):1,b=Sde(o,y,m);return l===`equidistantPreserveStart`?wde(y,b,g,a,s):l===`equidistantPreserveEnd`?Tde(y,b,g,a,s):(p=l===`preserveStart`||l===`preserveStartEnd`?Ade(y,b,g,a,s,l===`preserveStartEnd`):kde(y,b,g,a,s),p.filter(e=>e.isShow))}var jde=e=>{var{ticks:n,label:r,labelGapWithTick:i=5,tickSize:a=0,tickMargin:o=0}=e,s=0;if(n){Array.from(n).forEach(e=>{if(e){var n=e.getBoundingClientRect();n.width>s&&(s=n.width)}});var c=r?r.getBoundingClientRect().width:0,l=a+o,u=s+l+c+(r?i:0);return Math.round(u)}return 0},c7=UU({name:`renderedTicks`,initialState:{xAxis:{},yAxis:{}},reducers:{setRenderedTicks:(e,n)=>{var{axisType:r,axisId:i,ticks:a}=n.payload;e[r][i]=yq(a)},removeRenderedTicks:(e,n)=>{var{axisType:r,axisId:i}=n.payload;delete e[r][i]}}}),{setRenderedTicks:Mde,removeRenderedTicks:Nde}=c7.actions,Pde=c7.reducer,Fde=[`axisLine`,`width`,`height`,`className`,`hide`,`ticks`,`axisType`,`axisId`];function Ide(e,n){if(e==null)return{};var r,i,a=Lde(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Lde(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function l7(){return l7=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},l7.apply(null,arguments)}function u7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function d7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?u7(Object(r),!0).forEach(function(n){Rde(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):u7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Rde(e,n,r){return(n=zde(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function zde(e){var n=Bde(e,`string`);return typeof n==`symbol`?n:n+``}function Bde(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var f7={x:0,y:0,width:0,height:0,viewBox:{x:0,y:0,width:0,height:0},orientation:`bottom`,ticks:[],stroke:`#666`,tickLine:!0,axisLine:!0,tick:!0,mirror:!1,minTickGap:5,tickSize:6,tickMargin:2,interval:`preserveEnd`,zIndex:NZ.axis};function Vde(e){var{x:n,y:r,width:i,height:a,orientation:o,mirror:s,axisLine:c,otherSvgProps:l}=e;if(!c)return null;var u=d7(d7(d7({},l),fR(c)),{},{fill:`none`});if(o===`top`||o===`bottom`){var d=+(o===`top`&&!s||o===`bottom`&&s);u=d7(d7({},u),{},{x1:n,y1:r+d*a,x2:n+i,y2:r+d*a})}else{var f=+(o===`left`&&!s||o===`right`&&s);u=d7(d7({},u),{},{x1:n+f*i,y1:r,x2:n+f*i,y2:r+a})}return x.createElement(`line`,l7({},u,{className:cR(`recharts-cartesian-axis-line`,(0,kz.default)(c,`className`))}))}function Hde(e,n,r,i,a,o,s,c,l){var u,d,f,p,m,h,g=c?-1:1,_=e.tickSize||s,v=Z(e.tickCoord)?e.tickCoord:e.coordinate;switch(o){case`top`:u=d=e.coordinate,p=r+ +!c*a,f=p-g*_,h=f-g*l,m=v;break;case`left`:f=p=e.coordinate,d=n+ +!c*i,u=d-g*_,m=u-g*l,h=v;break;case`right`:f=p=e.coordinate,d=n+ +c*i,u=d+g*_,m=u+g*l,h=v;break;default:u=d=e.coordinate,p=r+ +c*a,f=p+g*_,h=f+g*l,m=v;break}return{line:{x1:u,y1:f,x2:d,y2:p},tick:{x:m,y:h}}}function Ude(e,n){switch(e){case`left`:return n?`start`:`end`;case`right`:return n?`end`:`start`;default:return`middle`}}function Wde(e,n){switch(e){case`left`:case`right`:return`middle`;case`top`:return n?`start`:`end`;default:return n?`end`:`start`}}function Gde(e){var{option:n,tickProps:r,value:i}=e,a,o=cR(r.className,`recharts-cartesian-axis-tick-value`);if(x.isValidElement(n))a=x.cloneElement(n,d7(d7({},r),{},{className:o}));else if(typeof n==`function`)a=n(d7(d7({},r),{},{className:o}));else{var s=`recharts-cartesian-axis-tick-value`;typeof n!=`boolean`&&(s=cR(s,c5(n))),a=x.createElement(F8,l7({},r,{className:s}),i)}return a}function Kde(e){var{ticks:n,axisType:r,axisId:i}=e,a=sV();return(0,x.useEffect)(()=>i==null||r==null?Uz:(a(Mde({ticks:n.map(e=>({value:e.value,coordinate:e.coordinate,offset:e.offset,index:e.index})),axisId:i,axisType:r})),()=>{a(Nde({axisId:i,axisType:r}))}),[a,n,i,r]),null}var qde=(0,x.forwardRef)((e,n)=>{var{ticks:r=[],tick:i,tickLine:a,stroke:o,tickFormatter:s,unit:c,padding:l,tickTextProps:u,orientation:d,mirror:f,x:p,y:m,width:h,height:g,tickSize:_,tickMargin:v,fontSize:y,letterSpacing:b,getTicksConfig:S,events:C,axisType:w,axisId:T}=e,E=s7(d7(d7({},S),{},{ticks:r}),y,b),D=fR(S),O=pR(i),k=k8(D.textAnchor)?D.textAnchor:Ude(d,f),A=Wde(d,f),j={};typeof a==`object`&&(j=a);var M=d7(d7({},D),{},{fill:`none`},j),N=E.map(e=>d7({entry:e},Hde(e,p,m,h,g,d,_,f,v))),P=N.map(e=>{var{entry:n,line:r}=e;return x.createElement(vR,{className:`recharts-cartesian-axis-tick`,key:`tick-${n.value}-${n.coordinate}-${n.tickCoord}`},a&&x.createElement(`line`,l7({},M,r,{className:cR(`recharts-cartesian-axis-tick-line`,(0,kz.default)(a,`className`))})))}),F=N.map((e,n)=>{var{entry:r,tick:a}=e,d=d7(d7({},d7(d7(d7(d7({verticalAnchor:A},D),{},{textAnchor:k,stroke:`none`,fill:o},a),{},{index:n,payload:r,visibleTicksCount:E.length,tickFormatter:s,padding:l},u),{},{angle:u?.angle??D.angle??0})),O);return x.createElement(vR,l7({className:`recharts-cartesian-axis-tick-label`,key:`tick-label-${r.value}-${r.coordinate}-${r.tickCoord}`},cB(C,r,n)),i&&x.createElement(Gde,{option:i,tickProps:d,value:`${typeof s==`function`?s(r.value,n):r.value}${c||``}`}))});return x.createElement(`g`,{className:`recharts-cartesian-axis-ticks recharts-${w}-ticks`},x.createElement(Kde,{ticks:E,axisId:T,axisType:w}),F.length>0&&x.createElement(K6,{zIndex:NZ.label},x.createElement(`g`,{className:`recharts-cartesian-axis-tick-labels recharts-${w}-tick-labels`,ref:n},F)),P.length>0&&x.createElement(`g`,{className:`recharts-cartesian-axis-tick-lines recharts-${w}-tick-lines`},P))}),Jde=(0,x.forwardRef)((e,n)=>{var{axisLine:r,width:i,height:a,className:o,hide:s,ticks:c,axisType:l,axisId:u}=e,d=Ide(e,Fde),[f,p]=(0,x.useState)(``),[m,h]=(0,x.useState)(``),g=(0,x.useRef)(null);(0,x.useImperativeHandle)(n,()=>({getCalculatedWidth:()=>jde({ticks:g.current,label:e.labelRef?.current,labelGapWithTick:5,tickSize:e.tickSize,tickMargin:e.tickMargin})}));var _=(0,x.useCallback)(e=>{if(e){var n=e.getElementsByClassName(`recharts-cartesian-axis-tick-value`);g.current=n;var r=n[0];if(r){var i=window.getComputedStyle(r),a=i.fontSize,o=i.letterSpacing;(a!==f||o!==m)&&(p(a),h(o))}}},[f,m]);return s||i!=null&&i<=0||a!=null&&a<=0?null:x.createElement(K6,{zIndex:e.zIndex},x.createElement(vR,{className:cR(`recharts-cartesian-axis`,o)},x.createElement(Vde,{x:e.x,y:e.y,width:i,height:a,orientation:e.orientation,mirror:e.mirror,axisLine:r,otherSvgProps:fR(e)}),x.createElement(qde,{ref:_,axisType:l,events:d,fontSize:f,getTicksConfig:e,height:e.height,letterSpacing:m,mirror:e.mirror,orientation:e.orientation,padding:e.padding,stroke:e.stroke,tick:e.tick,tickFormatter:e.tickFormatter,tickLine:e.tickLine,tickMargin:e.tickMargin,tickSize:e.tickSize,tickTextProps:e.tickTextProps,ticks:c,unit:e.unit,width:e.width,x:e.x,y:e.y,axisId:u}),x.createElement(Xce,{x:e.x,y:e.y,width:e.width,height:e.height,lowerWidth:e.width,upperWidth:e.width},x.createElement(ole,{label:e.label,labelRef:e.labelRef}),e.children)))}),p7=x.forwardRef((e,n)=>{var r=mB(e,f7);return x.createElement(Jde,l7({},r,{ref:n}))});p7.displayName=`CartesianAxis`;var Yde=[`x1`,`y1`,`x2`,`y2`,`key`],Xde=[`offset`],Zde=[`xAxisId`,`yAxisId`],Qde=[`xAxisId`,`yAxisId`];function m7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function h7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?m7(Object(r),!0).forEach(function(n){$de(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):m7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function $de(e,n,r){return(n=efe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function efe(e){var n=tfe(e,`string`);return typeof n==`symbol`?n:n+``}function tfe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function g7(){return g7=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},g7.apply(null,arguments)}function _7(e,n){if(e==null)return{};var r,i,a=nfe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function nfe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}var rfe=e=>{var{fill:n}=e;if(!n||n===`none`)return null;var{fillOpacity:r,x:i,y:a,width:o,height:s,ry:c}=e;return x.createElement(`rect`,{x:i,y:a,ry:c,width:o,height:s,stroke:`none`,fill:n,fillOpacity:r,className:`recharts-cartesian-grid-bg`})};function v7(e){var{option:n,lineItemProps:r}=e,i;if(x.isValidElement(n))i=x.cloneElement(n,r);else if(typeof n==`function`)i=n(r);else{var{x1:a,y1:o,x2:s,y2:c,key:l}=r,u=fR(_7(r,Yde))??{},{offset:d}=u,f=_7(u,Xde);i=x.createElement(`line`,g7({},f,{x1:a,y1:o,x2:s,y2:c,fill:`none`,key:l}))}return i}function ife(e){var{x:n,width:r,horizontal:i=!0,horizontalPoints:a}=e;if(!i||!a||!a.length)return null;var{xAxisId:o,yAxisId:s}=e,c=_7(e,Zde),l=a.map((e,a)=>{var o=h7(h7({},c),{},{x1:n,y1:e,x2:n+r,y2:e,key:`line-${a}`,index:a});return x.createElement(v7,{key:`line-${a}`,option:i,lineItemProps:o})});return x.createElement(`g`,{className:`recharts-cartesian-grid-horizontal`},l)}function afe(e){var{y:n,height:r,vertical:i=!0,verticalPoints:a}=e;if(!i||!a||!a.length)return null;var{xAxisId:o,yAxisId:s}=e,c=_7(e,Qde),l=a.map((e,a)=>{var o=h7(h7({},c),{},{x1:e,y1:n,x2:e,y2:n+r,key:`line-${a}`,index:a});return x.createElement(v7,{option:i,lineItemProps:o,key:`line-${a}`})});return x.createElement(`g`,{className:`recharts-cartesian-grid-vertical`},l)}function ofe(e){var{horizontalFill:n,fillOpacity:r,x:i,y:a,width:o,height:s,horizontalPoints:c,horizontal:l=!0}=e;if(!l||!n||!n.length||c==null)return null;var u=c.map(e=>Math.round(e+a-a)).sort((e,n)=>e-n);a!==u[0]&&u.unshift(0);var d=u.map((e,c)=>{var l=u[c+1],d=l==null?a+s-e:l-e;if(d<=0)return null;var f=c%n.length;return x.createElement(`rect`,{key:`react-${c}`,y:e,x:i,height:d,width:o,stroke:`none`,fill:n[f],fillOpacity:r,className:`recharts-cartesian-grid-bg`})});return x.createElement(`g`,{className:`recharts-cartesian-gridstripes-horizontal`},d)}function sfe(e){var{vertical:n=!0,verticalFill:r,fillOpacity:i,x:a,y:o,width:s,height:c,verticalPoints:l}=e;if(!n||!r||!r.length)return null;var u=l.map(e=>Math.round(e+a-a)).sort((e,n)=>e-n);a!==u[0]&&u.unshift(0);var d=u.map((e,n)=>{var l=u[n+1],d=l==null?a+s-e:l-e;if(d<=0)return null;var f=n%r.length;return x.createElement(`rect`,{key:`react-${n}`,x:e,y:o,width:d,height:c,stroke:`none`,fill:r[f],fillOpacity:i,className:`recharts-cartesian-grid-bg`})});return x.createElement(`g`,{className:`recharts-cartesian-gridstripes-vertical`},d)}var cfe=(e,n)=>{var{xAxis:r,width:i,height:a,offset:o}=e;return JW(s7(h7(h7(h7({},f7),r),{},{ticks:YW(r,!0),viewBox:{x:0,y:0,width:i,height:a}})),o.left,o.left+o.width,n)},lfe=(e,n)=>{var{yAxis:r,width:i,height:a,offset:o}=e;return JW(s7(h7(h7(h7({},f7),r),{},{ticks:YW(r,!0),viewBox:{x:0,y:0,width:i,height:a}})),o.top,o.top+o.height,n)},ufe={horizontal:!0,vertical:!0,horizontalPoints:[],verticalPoints:[],stroke:`#ccc`,fill:`none`,verticalFill:[],horizontalFill:[],xAxisId:0,yAxisId:0,syncWithTicks:!1,zIndex:NZ.grid};function y7(e){var n=hK(),r=gK(),i=mK(),a=h7(h7({},mB(e,ufe)),{},{x:Z(e.x)?e.x:i.left,y:Z(e.y)?e.y:i.top,width:Z(e.width)?e.width:i.width,height:Z(e.height)?e.height:i.height}),{xAxisId:o,yAxisId:s,x:c,y:l,width:u,height:d,syncWithTicks:f,horizontalValues:p,verticalValues:m}=a,h=FG(),g=Q(e=>N3(e,`xAxis`,o,h)),_=Q(e=>N3(e,`yAxis`,s,h));if(!zW(u)||!zW(d)||!Z(c)||!Z(l))return null;var v=a.verticalCoordinatesGenerator||cfe,y=a.horizontalCoordinatesGenerator||lfe,{horizontalPoints:b,verticalPoints:S}=a;if((!b||!b.length)&&typeof y==`function`){var C=p&&p.length,w=y({yAxis:_?h7(h7({},_),{},{ticks:C?p:_.ticks}):void 0,width:n??u,height:r??d,offset:i},C?!0:f);UG(Array.isArray(w),`horizontalCoordinatesGenerator should return Array but instead it returned [${typeof w}]`),Array.isArray(w)&&(b=w)}if((!S||!S.length)&&typeof v==`function`){var T=m&&m.length,E=v({xAxis:g?h7(h7({},g),{},{ticks:T?m:g.ticks}):void 0,width:n??u,height:r??d,offset:i},T?!0:f);UG(Array.isArray(E),`verticalCoordinatesGenerator should return Array but instead it returned [${typeof E}]`),Array.isArray(E)&&(S=E)}return x.createElement(K6,{zIndex:a.zIndex},x.createElement(`g`,{className:`recharts-cartesian-grid`},x.createElement(rfe,{fill:a.fill,fillOpacity:a.fillOpacity,x:a.x,y:a.y,width:a.width,height:a.height,ry:a.ry}),x.createElement(ofe,g7({},a,{horizontalPoints:b})),x.createElement(sfe,g7({},a,{verticalPoints:S})),x.createElement(ife,g7({},a,{offset:i,horizontalPoints:b,xAxis:g,yAxis:_})),x.createElement(afe,g7({},a,{offset:i,verticalPoints:S,xAxis:g,yAxis:_}))))}y7.displayName=`CartesianGrid`;var b7=UU({name:`errorBars`,initialState:{},reducers:{addErrorBar:(e,n)=>{var{itemId:r,errorBar:i}=n.payload;e[r]||(e[r]=[]),e[r].push(i)},replaceErrorBar:(e,n)=>{var{itemId:r,prev:i,next:a}=n.payload;e[r]&&(e[r]=e[r].map(e=>e.dataKey===i.dataKey&&e.direction===i.direction?a:e))},removeErrorBar:(e,n)=>{var{itemId:r,errorBar:i}=n.payload;e[r]&&(e[r]=e[r].filter(e=>e.dataKey!==i.dataKey||e.direction!==i.direction))}}}),{addErrorBar:dfe,replaceErrorBar:ffe,removeErrorBar:pfe}=b7.actions,mfe=b7.reducer,hfe=[`children`];function gfe(e,n){if(e==null)return{};var r,i,a=_fe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function _fe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}var vfe=(0,x.createContext)({data:[],xAxisId:`xAxis-0`,yAxisId:`yAxis-0`,dataPointFormatter:()=>({x:0,y:0,value:0}),errorBarOffset:0});function x7(e){var{children:n}=e,r=gfe(e,hfe);return x.createElement(vfe.Provider,{value:r},n)}function S7(e,n){var r=Q(n=>a4(n,e)),i=Q(e=>c4(e,n)),a=r?.allowDataOverflow??r4.allowDataOverflow,o=i?.allowDataOverflow??o4.allowDataOverflow;return{needClip:a||o,needClipX:a,needClipY:o}}function C7(e){var{xAxisId:n,yAxisId:r,clipPathId:i}=e,a=Y5(),{needClipX:o,needClipY:s,needClip:c}=S7(n,r);if(!c||!a)return null;var{x:l,y:u,width:d,height:f}=a;return x.createElement(`clipPath`,{id:`clipPath-${i}`},x.createElement(`rect`,{x:o?l:l-d/2,y:s?u:u-f/2,width:o?d:d*2,height:s?f:f*2}))}var w7=(e,n,r,i)=>I3(e,`xAxis`,n,i),T7=(e,n,r,i)=>F3(e,`xAxis`,n,i),E7=(e,n,r,i)=>I3(e,`yAxis`,r,i),D7=(e,n,r,i)=>F3(e,`yAxis`,r,i),yfe=$([vK,w7,E7,T7,D7],(e,n,r,i,a)=>qW(e,`xAxis`)?cG(n,i,!1):cG(r,a,!1)),bfe=(e,n,r,i,a)=>a;function xfe(e){return e.type===`line`}var Sfe=$([vK,w7,E7,T7,D7,$([g4,bfe],(e,n)=>e.filter(xfe).find(e=>e.id===n)),yfe,rZ],(e,n,r,i,a,o,s,c)=>{var{chartData:l,dataStartIndex:u,dataEndIndex:d}=c;if(!(o==null||n==null||r==null||i==null||a==null||i.length===0||a.length===0||s==null||e!==`horizontal`&&e!==`vertical`)){var{dataKey:f,data:p}=o,m=p!=null&&p.length>0?p:l?.slice(u,d+1);if(m!=null)return Hfe({layout:e,xAxis:n,yAxis:r,xAxisTicks:i,yAxisTicks:a,dataKey:f,bandSize:s,displayedData:m})}});function O7(e){var n=pR(e),r=3,i=2;if(n!=null){var{r:a,strokeWidth:o}=n,s=Number(a),c=Number(o);return(Number.isNaN(s)||s<0)&&(s=r),(Number.isNaN(c)||c<0)&&(c=i),{r:s,strokeWidth:c}}return{r,strokeWidth:i}}var Cfe=[`id`],wfe=[`type`,`layout`,`connectNulls`,`needClip`,`shape`],Tfe=[`activeDot`,`animateNewValues`,`animationBegin`,`animationDuration`,`animationEasing`,`connectNulls`,`dot`,`hide`,`isAnimationActive`,`label`,`legendType`,`xAxisId`,`yAxisId`,`id`];function k7(){return k7=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},k7.apply(null,arguments)}function A7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function j7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?A7(Object(r),!0).forEach(function(n){Efe(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):A7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Efe(e,n,r){return(n=Dfe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Dfe(e){var n=Ofe(e,`string`);return typeof n==`symbol`?n:n+``}function Ofe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function M7(e,n){if(e==null)return{};var r,i,a=kfe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function kfe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}var Afe=e=>{var{dataKey:n,name:r,stroke:i,legendType:a,hide:o}=e;return[{inactive:o,dataKey:n,type:a,color:i,value:uG(r,n),payload:e}]},jfe=x.memo(e=>{var{dataKey:n,data:r,stroke:i,strokeWidth:a,fill:o,name:s,hide:c,unit:l,tooltipType:u,id:d}=e,f={dataDefinedOnItem:r,getPosition:Uz,settings:{stroke:i,strokeWidth:a,fill:o,dataKey:n,nameKey:void 0,name:uG(s,n),hide:c,type:u,color:i,unit:l,graphicalItemId:d}};return x.createElement(M5,{tooltipEntrySettings:f})}),N7=(e,n)=>`${n}px ${e}px`;function Mfe(e,n){for(var r=e.length%2==0?e:[...e,0],i=[],a=0;a<n;++a)i.push(...r);return i}var Nfe=(e,n,r)=>{var i=r.reduce((e,n)=>e+n,0);if(!i)return N7(n,e);for(var a=Math.floor(e/i),o=e%i,s=[],c=0,l=0;c<r.length;l+=(u=r[c])??0,++c){var u,d=r[c];if(d!=null&&l+d>o){s=[...r.slice(0,c),o-l];break}}var f=s.length%2==0?[0,n]:[n];return[...Mfe(r,a),...s,...f].map(e=>`${e}px`).join(`, `)};function Pfe(e){var{clipPathId:n,points:r,props:i}=e,{dot:a,dataKey:o,needClip:s}=i,{id:c}=i,l=fR(M7(i,Cfe));return x.createElement(G5,{points:r,dot:a,className:`recharts-line-dots`,dotClassName:`recharts-line-dot`,dataKey:o,baseProps:l,needClip:s,clipPathId:n})}function Ffe(e){var{showLabels:n,children:r,points:i}=e,a=(0,x.useMemo)(()=>i?.map(e=>{var n={x:e.x??0,y:e.y??0,width:0,lowerWidth:0,upperWidth:0,height:0};return j7(j7({},n),{},{value:e.value,payload:e.payload,viewBox:n,parentViewBox:void 0,fill:void 0})}),[i]);return x.createElement(X8,{value:n?a:void 0},r)}function P7(e){var{clipPathId:n,pathRef:r,points:i,strokeDasharray:a,props:o}=e,{type:s,layout:c,connectNulls:l,needClip:u,shape:d}=o,f=j7(j7({},mR(M7(o,wfe))),{},{fill:`none`,className:`recharts-line-curve`,clipPath:u?`url(#clipPath-${n})`:void 0,points:i,type:s,layout:c,connectNulls:l,strokeDasharray:a??o.strokeDasharray});return x.createElement(x.Fragment,null,i?.length>1&&x.createElement(O5,k7({shapeType:`curve`,option:d},f,{pathRef:r})),x.createElement(Pfe,{points:i,clipPathId:n,props:o}))}function Ife(e){try{return e&&e.getTotalLength&&e.getTotalLength()||0}catch{return 0}}function Lfe(e){var{clipPathId:n,props:r,pathRef:i,previousPointsRef:a,longestAnimatedLengthRef:o}=e,{points:s,strokeDasharray:c,isAnimationActive:l,animationBegin:u,animationDuration:d,animationEasing:f,animateNewValues:p,width:m,height:h,onAnimationEnd:g,onAnimationStart:_}=r,v=a.current,y=YY(s,`recharts-line-`),b=(0,x.useRef)(y),[S,C]=(0,x.useState)(!1),w=!S,T=(0,x.useCallback)(()=>{typeof g==`function`&&g(),C(!1)},[g]),E=(0,x.useCallback)(()=>{typeof _==`function`&&_(),C(!0)},[_]),D=Ife(i.current),O=(0,x.useRef)(0);b.current!==y&&(O.current=o.current,b.current=y);var k=O.current;return x.createElement(Ffe,{points:s,showLabels:w},r.children,x.createElement(JY,{animationId:y,begin:u,duration:d,isActive:l,easing:f,onAnimationEnd:T,onAnimationStart:E,key:y},e=>{var u=Rz(k,D+k,e),d=Math.min(u,D),f=l?c?Nfe(d,D,`${c}`.split(/[,\s]+/gim).map(e=>parseFloat(e))):N7(D,d):c==null?void 0:String(c);if(e>0&&D>0&&(a.current=s,o.current=Math.max(o.current,d)),v){var g=v.length/s.length,_=e===1?s:s.map((n,r)=>{var i=Math.floor(r*g);if(v[i]){var a=v[i];return j7(j7({},n),{},{x:Rz(a.x,n.x,e),y:Rz(a.y,n.y,e)})}return p?j7(j7({},n),{},{x:Rz(m*2,n.x,e),y:Rz(h/2,n.y,e)}):j7(j7({},n),{},{x:n.x,y:n.y})});return a.current=_,x.createElement(P7,{props:r,points:_,clipPathId:n,pathRef:i,strokeDasharray:f})}return x.createElement(P7,{props:r,points:s,clipPathId:n,pathRef:i,strokeDasharray:f})}),x.createElement($8,{label:r.label}))}function Rfe(e){var{clipPathId:n,props:r}=e,i=(0,x.useRef)(null),a=(0,x.useRef)(0),o=(0,x.useRef)(null);return x.createElement(Lfe,{props:r,clipPathId:n,previousPointsRef:i,longestAnimatedLengthRef:a,pathRef:o})}var zfe=(e,n)=>({x:e.x??void 0,y:e.y??void 0,value:e.value,errorVal:GW(e.payload,n)}),Bfe=class extends x.Component{render(){var{hide:e,dot:n,points:r,className:i,xAxisId:a,yAxisId:o,top:s,left:c,width:l,height:u,id:d,needClip:f,zIndex:p}=this.props;if(e)return null;var m=cR(`recharts-line`,i),h=d,{r:g,strokeWidth:_}=O7(n),v=y5(n),y=g*2+_,b=f?`url(#clipPath-${v?``:`dots-`}${h})`:void 0;return x.createElement(K6,{zIndex:p},x.createElement(vR,{className:m},f&&x.createElement(`defs`,null,x.createElement(C7,{clipPathId:h,xAxisId:a,yAxisId:o}),!v&&x.createElement(`clipPath`,{id:`clipPath-dots-${h}`},x.createElement(`rect`,{x:c-y/2,y:s-y/2,width:l+y,height:u+y}))),x.createElement(x7,{xAxisId:a,yAxisId:o,data:r,dataPointFormatter:zfe,errorBarOffset:0},x.createElement(Rfe,{props:this.props,clipPathId:h}))),x.createElement(Q5,{activeDot:this.props.activeDot,points:r,mainColor:this.props.stroke,itemDataKey:this.props.dataKey,clipPath:b}))}},F7={activeDot:!0,animateNewValues:!0,animationBegin:0,animationDuration:1500,animationEasing:`ease`,connectNulls:!1,dot:!0,fill:`#fff`,hide:!1,isAnimationActive:`auto`,label:!1,legendType:`line`,stroke:`#3182bd`,strokeWidth:1,xAxisId:0,yAxisId:0,zIndex:NZ.line,type:`linear`};function Vfe(e){var n=mB(e,F7),{activeDot:r,animateNewValues:i,animationBegin:a,animationDuration:o,animationEasing:s,connectNulls:c,dot:l,hide:u,isAnimationActive:d,label:f,legendType:p,xAxisId:m,yAxisId:h,id:g}=n,_=M7(n,Tfe),{needClip:v}=S7(m,h),y=Y5(),b=yK(),S=FG(),C=Q(e=>Sfe(e,m,h,S,g));if(b!==`horizontal`&&b!==`vertical`||C==null||y==null)return null;var{height:w,width:T,x:E,y:D}=y;return x.createElement(Bfe,k7({},_,{id:g,connectNulls:c,dot:l,activeDot:r,animateNewValues:i,animationBegin:a,animationDuration:o,animationEasing:s,isAnimationActive:d,hide:u,label:f,legendType:p,xAxisId:m,yAxisId:h,points:C,layout:b,height:w,width:T,left:E,top:D,needClip:v}))}function Hfe(e){var{layout:n,xAxis:r,yAxis:i,xAxisTicks:a,yAxisTicks:o,dataKey:s,bandSize:c,displayedData:l}=e;return l.map((e,l)=>{var u=GW(e,s);if(n===`horizontal`)return{x:eG({axis:r,ticks:a,bandSize:c,entry:e,index:l}),y:(Bz(u)?null:i.scale.map(u))??null,value:u,payload:e};var d=Bz(u)?null:r.scale.map(u),f=eG({axis:i,ticks:o,bandSize:c,entry:e,index:l});return d==null||f==null?null:{x:d,y:f,value:u,payload:e}}).filter(Boolean)}function Ufe(e){var n=mB(e,F7),r=FG();return x.createElement(P5,{id:n.id,type:`line`},e=>x.createElement(x.Fragment,null,x.createElement(N5,{legendPayload:Afe(n)}),x.createElement(jfe,{dataKey:n.dataKey,data:n.data,stroke:n.stroke,strokeWidth:n.strokeWidth,fill:n.fill,name:n.name,hide:n.hide,unit:n.unit,tooltipType:n.tooltipType,id:e}),x.createElement(I5,{type:`line`,id:e,data:n.data,xAxisId:n.xAxisId,yAxisId:n.yAxisId,zAxisId:0,dataKey:n.dataKey,hide:n.hide,isPanorama:r}),x.createElement(Vfe,k7({},n,{id:e}))))}var I7=x.memo(Ufe,Gq);I7.displayName=`Line`;var Wfe=[`domain`,`range`],Gfe=[`domain`,`range`];function L7(e,n){if(e==null)return{};var r,i,a=Kfe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Kfe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function R7(e,n){return e===n?!0:Array.isArray(e)&&e.length===2&&Array.isArray(n)&&n.length===2?e[0]===n[0]&&e[1]===n[1]:!1}function z7(e,n){if(e===n)return!0;var{domain:r,range:i}=e,a=L7(e,Wfe),{domain:o,range:s}=n,c=L7(n,Gfe);return!R7(r,o)||!R7(i,s)?!1:Gq(a,c)}var qfe=[`type`],Jfe=[`dangerouslySetInnerHTML`,`ticks`,`scale`],Yfe=[`id`,`scale`];function B7(){return B7=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},B7.apply(null,arguments)}function V7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function H7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?V7(Object(r),!0).forEach(function(n){Xfe(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):V7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Xfe(e,n,r){return(n=Zfe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Zfe(e){var n=Qfe(e,`string`);return typeof n==`symbol`?n:n+``}function Qfe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function U7(e,n){if(e==null)return{};var r,i,a=$fe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function $fe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function epe(e){var n=sV(),r=(0,x.useRef)(null),i=bK(),{type:a}=e,o=U7(e,qfe),s=LZ(i,`xAxis`,a),c=(0,x.useMemo)(()=>{if(s!=null)return H7(H7({},o),{},{type:s})},[o,s]);return(0,x.useLayoutEffect)(()=>{c!=null&&(r.current===null?n(Gue(c)):r.current!==c&&n(Kue({prev:r.current,next:c})),r.current=c)},[c,n]),(0,x.useLayoutEffect)(()=>()=>{r.current&&=(n(que(r.current)),null)},[n]),null}var tpe=e=>{var{xAxisId:n,className:r}=e,i=Q(NG),a=FG(),o=`xAxis`,s=Q(e=>P3(e,o,n,a)),c=Q(e=>k3(e,n)),l=Q(e=>goe(e,n)),u=Q(e=>i4(e,n));if(c==null||l==null||u==null)return null;var{dangerouslySetInnerHTML:d,ticks:f,scale:p}=e,m=U7(e,Jfe),{id:h,scale:g}=u,_=U7(u,Yfe);return x.createElement(p7,B7({},m,_,{x:l.x,y:l.y,width:c.width,height:c.height,className:cR(`recharts-${o} ${o}`,r),viewBox:i,ticks:s,axisType:o,axisId:n}))},npe={allowDataOverflow:r4.allowDataOverflow,allowDecimals:r4.allowDecimals,allowDuplicatedCategory:r4.allowDuplicatedCategory,angle:r4.angle,axisLine:f7.axisLine,height:r4.height,hide:!1,includeHidden:r4.includeHidden,interval:r4.interval,label:!1,minTickGap:r4.minTickGap,mirror:r4.mirror,orientation:r4.orientation,padding:r4.padding,reversed:r4.reversed,scale:r4.scale,tick:r4.tick,tickCount:r4.tickCount,tickLine:f7.tickLine,tickSize:f7.tickSize,type:r4.type,niceTicks:r4.niceTicks,xAxisId:0},W7=x.memo(e=>{var n=mB(e,npe);return x.createElement(x.Fragment,null,x.createElement(epe,{allowDataOverflow:n.allowDataOverflow,allowDecimals:n.allowDecimals,allowDuplicatedCategory:n.allowDuplicatedCategory,angle:n.angle,dataKey:n.dataKey,domain:n.domain,height:n.height,hide:n.hide,id:n.xAxisId,includeHidden:n.includeHidden,interval:n.interval,minTickGap:n.minTickGap,mirror:n.mirror,name:n.name,orientation:n.orientation,padding:n.padding,reversed:n.reversed,scale:n.scale,tick:n.tick,tickCount:n.tickCount,tickFormatter:n.tickFormatter,ticks:n.ticks,type:n.type,unit:n.unit,niceTicks:n.niceTicks}),x.createElement(tpe,n))},z7);W7.displayName=`XAxis`;var rpe=[`type`],ipe=[`dangerouslySetInnerHTML`,`ticks`,`scale`],ape=[`id`,`scale`];function G7(){return G7=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},G7.apply(null,arguments)}function K7(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function q7(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?K7(Object(r),!0).forEach(function(n){ope(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):K7(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function ope(e,n,r){return(n=spe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function spe(e){var n=cpe(e,`string`);return typeof n==`symbol`?n:n+``}function cpe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function J7(e,n){if(e==null)return{};var r,i,a=lpe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function lpe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function upe(e){var n=sV(),r=(0,x.useRef)(null),i=bK(),{type:a}=e,o=J7(e,rpe),s=LZ(i,`yAxis`,a),c=(0,x.useMemo)(()=>{if(s!=null)return q7(q7({},o),{},{type:s})},[s,o]);return(0,x.useLayoutEffect)(()=>{c!=null&&(r.current===null?n(Jue(c)):r.current!==c&&n(Yue({prev:r.current,next:c})),r.current=c)},[c,n]),(0,x.useLayoutEffect)(()=>()=>{r.current&&=(n(Xue(r.current)),null)},[n]),null}function dpe(e){var{yAxisId:n,className:r,width:i,label:a}=e,o=(0,x.useRef)(null),s=(0,x.useRef)(null),c=Q(NG),l=FG(),u=sV(),d=`yAxis`,f=Q(e=>A3(e,n)),p=Q(e=>_oe(e,n)),m=Q(e=>P3(e,d,n,l)),h=Q(e=>s4(e,n));if((0,x.useLayoutEffect)(()=>{if(!(i!==`auto`||!f||W8(a)||(0,x.isValidElement)(a)||h==null)){var e=o.current;if(e){var r=e.getCalculatedWidth();Math.round(f.width)!==Math.round(r)&&u(ede({id:n,width:r}))}}},[m,f,u,a,n,i,h]),f==null||p==null||h==null)return null;var{dangerouslySetInnerHTML:g,ticks:_,scale:v}=e,y=J7(e,ipe),{id:b,scale:S}=h,C=J7(h,ape);return x.createElement(p7,G7({},y,C,{ref:o,labelRef:s,x:p.x,y:p.y,tickTextProps:i===`auto`?{width:void 0}:{width:i},width:f.width,height:f.height,className:cR(`recharts-${d} ${d}`,r),viewBox:c,ticks:m,axisType:d,axisId:n}))}var fpe={allowDataOverflow:o4.allowDataOverflow,allowDecimals:o4.allowDecimals,allowDuplicatedCategory:o4.allowDuplicatedCategory,angle:o4.angle,axisLine:f7.axisLine,hide:!1,includeHidden:o4.includeHidden,interval:o4.interval,label:!1,minTickGap:o4.minTickGap,mirror:o4.mirror,orientation:o4.orientation,padding:o4.padding,reversed:o4.reversed,scale:o4.scale,tick:o4.tick,tickCount:o4.tickCount,tickLine:f7.tickLine,tickSize:f7.tickSize,type:o4.type,niceTicks:o4.niceTicks,width:o4.width,yAxisId:0},Y7=x.memo(e=>{var n=mB(e,fpe);return x.createElement(x.Fragment,null,x.createElement(upe,{interval:n.interval,id:n.yAxisId,scale:n.scale,type:n.type,domain:n.domain,allowDataOverflow:n.allowDataOverflow,dataKey:n.dataKey,allowDuplicatedCategory:n.allowDuplicatedCategory,allowDecimals:n.allowDecimals,tickCount:n.tickCount,padding:n.padding,includeHidden:n.includeHidden,reversed:n.reversed,ticks:n.ticks,width:n.width,orientation:n.orientation,mirror:n.mirror,hide:n.hide,unit:n.unit,name:n.name,angle:n.angle,minTickGap:n.minTickGap,tick:n.tick,tickFormatter:n.tickFormatter,niceTicks:n.niceTicks}),x.createElement(dpe,n))},z7);Y7.displayName=`YAxis`;var X7=$([(e,n)=>n,vK,$Z,cQ,g6,v6,mse,jG],xse);function ppe(e){return`getBBox`in e.currentTarget&&typeof e.currentTarget.getBBox==`function`}function Z7(e){var n=e.currentTarget.getBoundingClientRect(),r,i;if(ppe(e)){var a=e.currentTarget.getBBox();r=a.width>0?n.width/a.width:1,i=a.height>0?n.height/a.height:1}else{var o=e.currentTarget;r=o.offsetWidth>0?n.width/o.offsetWidth:1,i=o.offsetHeight>0?n.height/o.offsetHeight:1}var s=(e,a)=>({relativeX:Math.round((e-n.left)/r),relativeY:Math.round((a-n.top)/i)});return`touches`in e?Array.from(e.touches).map(e=>s(e.clientX,e.clientY)):s(e.clientX,e.clientY)}var Q7=xU(`mouseClick`),$7=kW();$7.startListening({actionCreator:Q7,effect:(e,n)=>{var r=e.payload,i=X7(n.getState(),Z7(r));i?.activeIndex!=null&&n.dispatch(Ooe({activeIndex:i.activeIndex,activeDataKey:void 0,activeCoordinate:i.activeCoordinate}))}});var e9=xU(`mouseMove`),t9=kW(),n9=null,r9=null,i9=null;t9.startListening({actionCreator:e9,effect:(e,n)=>{var r=e.payload,{throttleDelay:i,throttledEvents:a}=n.getState().eventSettings,o=a===`all`||a?.includes(`mousemove`);n9!==null&&(cancelAnimationFrame(n9),n9=null),r9!==null&&(typeof i!=`number`||!o)&&(clearTimeout(r9),r9=null),i9=Z7(r);var s=()=>{var e=n.getState(),r=B3(e,e.tooltip.settings.shared);if(!i9){n9=null,r9=null;return}if(r===`axis`){var i=X7(e,i9);i?.activeIndex==null?n.dispatch(G3()):n.dispatch(K3({activeIndex:i.activeIndex,activeDataKey:void 0,activeCoordinate:i.activeCoordinate}))}n9=null,r9=null};if(!o){s();return}i===`raf`?n9=requestAnimationFrame(s):typeof i==`number`&&r9===null&&(r9=setTimeout(s,i))}});function a9(e,n){return n instanceof HTMLElement?`HTMLElement <${n.tagName} class="${n.className}">`:n===window?`global.window`:e===`children`&&typeof n==`object`&&n?`<<CHILDREN>>`:n}var o9={accessibilityLayer:!0,barCategoryGap:`10%`,barGap:4,barSize:void 0,className:void 0,maxBarSize:void 0,stackOffset:`none`,syncId:void 0,syncMethod:`index`,baseValue:void 0,reverseStackOrder:!1},s9=UU({name:`rootProps`,initialState:o9,reducers:{updateOptions:(e,n)=>{e.accessibilityLayer=n.payload.accessibilityLayer,e.barCategoryGap=n.payload.barCategoryGap,e.barGap=n.payload.barGap??o9.barGap,e.barSize=n.payload.barSize,e.maxBarSize=n.payload.maxBarSize,e.stackOffset=n.payload.stackOffset,e.syncId=n.payload.syncId,e.syncMethod=n.payload.syncMethod,e.className=n.payload.className,e.baseValue=n.payload.baseValue,e.reverseStackOrder=n.payload.reverseStackOrder}}}),mpe=s9.reducer,{updateOptions:hpe}=s9.actions,c9=UU({name:`polarOptions`,initialState:null,reducers:{updatePolarOptions:(e,n)=>e===null?n.payload:(e.startAngle=n.payload.startAngle,e.endAngle=n.payload.endAngle,e.cx=n.payload.cx,e.cy=n.payload.cy,e.innerRadius=n.payload.innerRadius,e.outerRadius=n.payload.outerRadius,e)}}),{updatePolarOptions:gpe}=c9.actions,_pe=c9.reducer,l9=xU(`keyDown`),u9=xU(`focus`),d9=xU(`blur`),f9=kW(),p9=null,m9=null,h9=null;f9.startListening({actionCreator:l9,effect:(e,n)=>{h9=e.payload,p9!==null&&(cancelAnimationFrame(p9),p9=null);var{throttleDelay:r,throttledEvents:i}=n.getState().eventSettings,a=i===`all`||i.includes(`keydown`);m9!==null&&(typeof r!=`number`||!a)&&(clearTimeout(m9),m9=null);var o=()=>{try{var e=n.getState();if(e.rootProps.accessibilityLayer===!1)return;var{keyboardInteraction:r}=e.tooltip,i=h9;if(i!==`ArrowRight`&&i!==`ArrowLeft`&&i!==`Enter`)return;var a=Q3(r,u6(e),z4(e),m6(e)),o=a==null?-1:Number(a),s=!Number.isFinite(o)||o<0,c=v6(e),l=u6(e),u=B3(e,e.tooltip.settings.shared);if(i===`Enter`){if(s)return;var d=B6(e,u,`hover`,String(r.index));n.dispatch(J3({active:!r.active,activeIndex:r.index,activeCoordinate:d}));return}var f=yoe(e)===`left-to-right`?1:-1,p=i===`ArrowRight`?1:-1,m;if(s){var h=z4(e),g=m6(e),_=p*f,v=e=>({active:!1,index:String(e),dataKey:void 0,graphicalItemId:void 0,coordinate:void 0});if(m=-1,_>0){for(var y=0;y<l.length;y++)if(Q3(v(y),l,h,g)!=null){m=y;break}}else for(var b=l.length-1;b>=0;b--)if(Q3(v(b),l,h,g)!=null){m=b;break}if(m<0)return}else{m=o+p*f;var x=c?.length||l.length;if(x===0||m>=x||m<0)return}var S=B6(e,u,`hover`,String(m));n.dispatch(J3({active:!0,activeIndex:m.toString(),activeCoordinate:S}))}finally{p9=null,m9=null}};if(!a){o();return}r===`raf`?p9=requestAnimationFrame(o):typeof r==`number`&&m9===null&&(o(),h9=null,m9=setTimeout(()=>{h9?o():(m9=null,p9=null)},r))}}),f9.startListening({actionCreator:u9,effect:(e,n)=>{var r=n.getState();if(r.rootProps.accessibilityLayer!==!1){var{keyboardInteraction:i}=r.tooltip;if(!i.active&&i.index==null){var a=`0`,o=B6(r,B3(r,r.tooltip.settings.shared),`hover`,String(a));n.dispatch(J3({active:!0,activeIndex:a,activeCoordinate:o}))}}}}),f9.startListening({actionCreator:d9,effect:(e,n)=>{var r=n.getState();if(r.rootProps.accessibilityLayer!==!1){var{keyboardInteraction:i}=r.tooltip;i.active&&n.dispatch(J3({active:!1,activeIndex:i.index,activeCoordinate:i.coordinate}))}}});function g9(e){e.persist();var{currentTarget:n}=e;return new Proxy(e,{get:(e,r)=>{if(r===`currentTarget`)return n;var i=Reflect.get(e,r);return typeof i==`function`?i.bind(e):i}})}var _9=xU(`externalEvent`),v9=kW(),y9=new Map,b9=new Map,x9=new Map;v9.startListening({actionCreator:_9,effect:(e,n)=>{var{handler:r,reactEvent:i}=e.payload;if(r!=null){var a=i.type,o=g9(i);x9.set(a,{handler:r,reactEvent:o});var s=y9.get(a);s!==void 0&&(cancelAnimationFrame(s),y9.delete(a));var{throttleDelay:c,throttledEvents:l}=n.getState().eventSettings,u=l,d=u===`all`||u?.includes(a),f=b9.get(a);f!==void 0&&(typeof c!=`number`||!d)&&(clearTimeout(f),b9.delete(a));var p=()=>{var e=x9.get(a);try{if(!e)return;var{handler:r,reactEvent:i}=e,o=n.getState(),s={activeCoordinate:ese(o),activeDataKey:T6(o),activeIndex:C6(o),activeLabel:w6(o),activeTooltipIndex:C6(o),isTooltipActive:tse(o)};r&&r(s,i)}finally{y9.delete(a),b9.delete(a),x9.delete(a)}};if(!d){p();return}if(c===`raf`){var m=requestAnimationFrame(p);y9.set(a,m)}else if(typeof c==`number`){if(!b9.has(a)){p();var h=setTimeout(p,c);b9.set(a,h)}}else p()}}});var vpe=$([$([n6],e=>e.tooltipItemPayloads),(e,n)=>n,(e,n,r)=>r],(e,n,r)=>{if(n!=null){var i=e.find(e=>e.settings.graphicalItemId===r);if(i!=null){var{getPosition:a}=i;if(a!=null)return a(n)}}}),S9=xU(`touchMove`),C9=kW(),w9=null,T9=null,E9=null,D9=null;C9.startListening({actionCreator:S9,effect:(e,n)=>{var r=e.payload;if(!(r.touches==null||r.touches.length===0)){D9=g9(r);var{throttleDelay:i,throttledEvents:a}=n.getState().eventSettings,o=a===`all`||a.includes(`touchmove`);w9!==null&&(cancelAnimationFrame(w9),w9=null),T9!==null&&(typeof i!=`number`||!o)&&(clearTimeout(T9),T9=null),E9=Array.from(r.touches).map(e=>Z7({clientX:e.clientX,clientY:e.clientY,currentTarget:r.currentTarget}));var s=()=>{if(D9!=null){var e=n.getState(),r=B3(e,e.tooltip.settings.shared);if(r===`axis`){var i=E9?.[0];if(i==null){w9=null,T9=null;return}var a=X7(e,i);a?.activeIndex!=null&&n.dispatch(K3({activeIndex:a.activeIndex,activeDataKey:void 0,activeCoordinate:a.activeCoordinate}))}else if(r===`item`){var o=D9.touches[0];if(document.elementFromPoint==null||o==null)return;var s=document.elementFromPoint(o.clientX,o.clientY);if(!s||!s.getAttribute)return;var c=s.getAttribute(yG),l=s.getAttribute(`data-recharts-item-id`)??void 0,u=c6(e).find(e=>e.id===l);if(c==null||u==null||l==null)return;var{dataKey:d}=u,f=vpe(e,c,l);n.dispatch(W3({activeDataKey:d,activeIndex:c,activeCoordinate:f,activeGraphicalItemId:l}))}w9=null,T9=null}};if(!o){s();return}i===`raf`?w9=requestAnimationFrame(s):typeof i==`number`&&T9===null&&(s(),D9=null,T9=setTimeout(()=>{D9?s():(T9=null,w9=null)},i))}}});var O9={throttleDelay:`raf`,throttledEvents:[`mousemove`,`touchmove`,`pointermove`,`scroll`,`wheel`]},k9=UU({name:`eventSettings`,initialState:O9,reducers:{setEventSettings:(e,n)=>{n.payload.throttleDelay!=null&&(e.throttleDelay=n.payload.throttleDelay),n.payload.throttledEvents!=null&&(e.throttledEvents=yq(n.payload.throttledEvents))}}}),{setEventSettings:ype}=k9.actions,bpe=k9.reducer,xpe=KV({brush:lde,cartesianAxis:tde,chartData:qse,errorBars:mfe,eventSettings:bpe,graphicalItems:oue,layout:IW,legend:Eq,options:Hse,polarAxis:yle,polarOptions:_pe,referenceElements:vde,renderedTicks:Pde,rootProps:mpe,tooltip:koe,zIndex:Nse}),Spe=function(e){var n=arguments.length>1&&arguments[1]!==void 0?arguments[1]:`Chart`;return NU({reducer:xpe,preloadedState:e,middleware:e=>e({serializableCheck:!1,immutableCheck:![`commonjs`,`es6`,`production`].includes(`es6`)}).concat([$7.middleware,t9.middleware,f9.middleware,v9.middleware,C9.middleware]),enhancers:e=>{var n=e;return typeof e==`function`&&(n=e()),n.concat(jU({type:`raf`}))},devTools:EJ.devToolsEnabled&&{serialize:{replacer:a9},name:`recharts-${n}`}})};function A9(e){var{preloadedState:n,children:r,reduxStoreName:i}=e,a=FG(),o=(0,x.useRef)(null);if(a)return r;o.current??=Spe(n,i);var s=aV;return x.createElement(Hq,{context:s,store:o.current},r)}function Cpe(e){var{layout:n,margin:r}=e,i=sV(),a=FG();return(0,x.useEffect)(()=>{a||(i(NW(n)),i(MW(r)))},[i,a,n,r]),null}var j9=(0,x.memo)(Cpe,Gq);function M9(e){var n=sV();return(0,x.useEffect)(()=>{n(hpe(e))},[n,e]),null}var N9=(0,x.memo)(e=>{var n=sV();return(0,x.useEffect)(()=>{n(ype(e))},[n,e]),null},Gq);function P9(e){var{zIndex:n,isPanorama:r}=e,i=(0,x.useRef)(null),a=sV();return(0,x.useLayoutEffect)(()=>(i.current&&a(jse({zIndex:n,element:i.current,isPanorama:r})),()=>{a(Mse({zIndex:n,isPanorama:r}))}),[a,n,r]),x.createElement(`g`,{tabIndex:-1,ref:i,className:`recharts-zIndex-layer_${n}`})}function F9(e){var{children:n,isPanorama:r}=e,i=Q(Cse);if(!i||i.length===0)return n;var a=i.filter(e=>e<0),o=i.filter(e=>e>0);return x.createElement(x.Fragment,null,a.map(e=>x.createElement(P9,{key:e,zIndex:e,isPanorama:r})),n,o.map(e=>x.createElement(P9,{key:e,zIndex:e,isPanorama:r})))}var wpe=[`children`];function Tpe(e,n){if(e==null)return{};var r,i,a=Epe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Epe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function I9(){return I9=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},I9.apply(null,arguments)}var Dpe={width:`100%`,height:`100%`,display:`block`},Ope=(0,x.forwardRef)((e,n)=>{var r=hK(),i=gK(),a=IJ();if(!zW(r)||!zW(i))return null;var{children:o,otherAttributes:s,title:c,desc:l}=e,u,d;return s!=null&&(u=typeof s.tabIndex==`number`?s.tabIndex:a?0:void 0,d=typeof s.role==`string`?s.role:a?`application`:void 0),x.createElement(gR,I9({},s,{title:c,desc:l,role:d,tabIndex:u,width:r,height:i,style:Dpe,ref:n}),o)}),kpe=e=>{var{children:n}=e,r=Q(LG);if(!r)return null;var{width:i,height:a,y:o,x:s}=r;return x.createElement(gR,{width:i,height:a,x:s,y:o},n)},L9=(0,x.forwardRef)((e,n)=>{var{children:r}=e,i=Tpe(e,wpe);return FG()?x.createElement(kpe,null,x.createElement(F9,{isPanorama:!0},r)):x.createElement(Ope,I9({ref:n},i),x.createElement(F9,{isPanorama:!1},r))});function Ape(){var e=sV(),[n,r]=(0,x.useState)(null),i=Q(hG);return(0,x.useEffect)(()=>{if(n!=null){var r=n.getBoundingClientRect().width/n.offsetWidth;RW(r)&&r!==i&&e(FW(r))}},[n,e,i]),r}function R9(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function jpe(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?R9(Object(r),!0).forEach(function(n){Mpe(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):R9(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Mpe(e,n,r){return(n=Npe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function Npe(e){var n=Ppe(e,`string`);return typeof n==`symbol`?n:n+``}function Ppe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}function z9(){return z9=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},z9.apply(null,arguments)}var Fpe=()=>(nce(),null);function B9(e){if(typeof e==`number`)return e;if(typeof e==`string`){var n=parseFloat(e);if(!Number.isNaN(n))return n}return 0}var Ipe=(0,x.forwardRef)((e,n)=>{var r=(0,x.useRef)(null),[i,a]=(0,x.useState)({containerWidth:B9(e.style?.width),containerHeight:B9(e.style?.height)}),o=(0,x.useCallback)((e,n)=>{a(r=>{var i=Math.round(e),a=Math.round(n);return r.containerWidth===i&&r.containerHeight===a?r:{containerWidth:i,containerHeight:a}})},[]),s=(0,x.useCallback)(e=>{if(typeof n==`function`&&n(e),r.current!=null&&(r.current.disconnect(),r.current=null),e!=null&&typeof ResizeObserver<`u`){var{width:i,height:a}=e.getBoundingClientRect();o(i,a);var s=new ResizeObserver(e=>{var n=e[0];if(n!=null){var{width:r,height:i}=n.contentRect;o(r,i)}});s.observe(e),r.current=s}},[n,o]);return(0,x.useEffect)(()=>()=>{r.current?.disconnect()},[o]),x.createElement(x.Fragment,null,x.createElement(CK,{width:i.containerWidth,height:i.containerHeight}),x.createElement(`div`,z9({ref:s},e)))}),Lpe=(0,x.forwardRef)((e,n)=>{var{width:r,height:i}=e,[a,o]=(0,x.useState)({containerWidth:B9(r),containerHeight:B9(i)}),s=(0,x.useCallback)((e,n)=>{o(r=>{var i=Math.round(e),a=Math.round(n);return r.containerWidth===i&&r.containerHeight===a?r:{containerWidth:i,containerHeight:a}})},[]),c=(0,x.useCallback)(e=>{if(typeof n==`function`&&n(e),e!=null){var{width:r,height:i}=e.getBoundingClientRect();s(r,i)}},[n,s]);return x.createElement(x.Fragment,null,x.createElement(CK,{width:a.containerWidth,height:a.containerHeight}),x.createElement(`div`,z9({ref:c},e)))}),Rpe=(0,x.forwardRef)((e,n)=>{var{width:r,height:i}=e;return x.createElement(x.Fragment,null,x.createElement(CK,{width:r,height:i}),x.createElement(`div`,z9({ref:n},e)))}),zpe=(0,x.forwardRef)((e,n)=>{var{width:r,height:i}=e;return typeof r==`string`||typeof i==`string`?x.createElement(Lpe,z9({},e,{ref:n})):typeof r==`number`&&typeof i==`number`?x.createElement(Rpe,z9({},e,{width:r,height:i,ref:n})):x.createElement(x.Fragment,null,x.createElement(CK,{width:r,height:i}),x.createElement(`div`,z9({ref:n},e)))});function Bpe(e){return e?Ipe:zpe}var Vpe=(0,x.forwardRef)((e,n)=>{var{children:r,className:i,height:a,onClick:o,onContextMenu:s,onDoubleClick:c,onMouseDown:l,onMouseEnter:u,onMouseLeave:d,onMouseMove:f,onMouseUp:p,onTouchEnd:m,onTouchMove:h,onTouchStart:g,style:_,width:v,responsive:y,dispatchTouchEvents:b=!0}=e,S=(0,x.useRef)(null),C=sV(),[w,T]=(0,x.useState)(null),[E,D]=(0,x.useState)(null),O=Ape(),k=cK(),A=k?.width>0?k.width:v,j=k?.height>0?k.height:a,M=(0,x.useCallback)(e=>{O(e),typeof n==`function`&&n(e),T(e),D(e),e!=null&&(S.current=e)},[O,n,T,D]),N=(0,x.useCallback)(e=>{C(Q7(e)),C(_9({handler:o,reactEvent:e}))},[C,o]),P=(0,x.useCallback)(e=>{C(e9(e)),C(_9({handler:u,reactEvent:e}))},[C,u]),F=(0,x.useCallback)(e=>{C(G3()),C(_9({handler:d,reactEvent:e}))},[C,d]),ee=(0,x.useCallback)(e=>{C(e9(e)),C(_9({handler:f,reactEvent:e}))},[C,f]),I=(0,x.useCallback)(()=>{C(u9())},[C]),L=(0,x.useCallback)(()=>{C(d9())},[C]),te=(0,x.useCallback)(e=>{C(l9(e.key))},[C]),R=(0,x.useCallback)(e=>{C(_9({handler:s,reactEvent:e}))},[C,s]),z=(0,x.useCallback)(e=>{C(_9({handler:c,reactEvent:e}))},[C,c]),ne=(0,x.useCallback)(e=>{C(_9({handler:l,reactEvent:e}))},[C,l]),B=(0,x.useCallback)(e=>{C(_9({handler:p,reactEvent:e}))},[C,p]),re=(0,x.useCallback)(e=>{C(_9({handler:g,reactEvent:e}))},[C,g]),ie=(0,x.useCallback)(e=>{b&&C(S9(e)),C(_9({handler:h,reactEvent:e}))},[C,b,h]),ae=(0,x.useCallback)(e=>{C(_9({handler:m,reactEvent:e}))},[C,m]),oe=Bpe(y);return x.createElement(X6.Provider,{value:w},x.createElement(yR.Provider,{value:E},x.createElement(oe,{width:A??_?.width,height:j??_?.height,className:cR(`recharts-wrapper`,i),style:jpe({position:`relative`,cursor:`default`,width:A,height:j},_),onClick:N,onContextMenu:R,onDoubleClick:z,onFocus:I,onBlur:L,onKeyDown:te,onMouseDown:ne,onMouseEnter:P,onMouseLeave:F,onMouseMove:ee,onMouseUp:B,onTouchEnd:ae,onTouchMove:ie,onTouchStart:re,ref:M},x.createElement(Fpe,null),r)))}),Hpe=[`width`,`height`,`responsive`,`children`,`className`,`style`,`compact`,`title`,`desc`];function Upe(e,n){if(e==null)return{};var r,i,a=Wpe(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function Wpe(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}var V9=(0,x.forwardRef)((e,n)=>{var{width:r,height:i,responsive:a,children:o,className:s,style:c,compact:l,title:u,desc:d}=e,f=fR(Upe(e,Hpe));return l?x.createElement(x.Fragment,null,x.createElement(CK,{width:r,height:i}),x.createElement(L9,{otherAttributes:f,title:u,desc:d},o)):x.createElement(Vpe,{className:s,style:c,width:r,height:i,responsive:a??!1,onClick:e.onClick,onMouseLeave:e.onMouseLeave,onMouseEnter:e.onMouseEnter,onMouseMove:e.onMouseMove,onMouseDown:e.onMouseDown,onMouseUp:e.onMouseUp,onContextMenu:e.onContextMenu,onDoubleClick:e.onDoubleClick,onTouchStart:e.onTouchStart,onTouchMove:e.onTouchMove,onTouchEnd:e.onTouchEnd},x.createElement(L9,{otherAttributes:f,title:u,desc:d,ref:n},x.createElement(bde,null,o)))});function H9(){return H9=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},H9.apply(null,arguments)}function U9(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function Gpe(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?U9(Object(r),!0).forEach(function(n){Kpe(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):U9(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function Kpe(e,n,r){return(n=qpe(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function qpe(e){var n=Jpe(e,`string`);return typeof n==`symbol`?n:n+``}function Jpe(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var Ype=Gpe({accessibilityLayer:!0,barCategoryGap:`10%`,barGap:4,layout:`horizontal`,margin:{top:5,right:5,bottom:5,left:5},responsive:!1,reverseStackOrder:!1,stackOffset:`none`,syncMethod:`index`},O9),W9=(0,x.forwardRef)(function(e,n){var r=mB(e.categoricalChartProps,Ype),{chartName:i,defaultTooltipEventType:a,validateTooltipEventTypes:o,tooltipPayloadSearcher:s,categoricalChartProps:c}=e,l={chartName:i,defaultTooltipEventType:a,validateTooltipEventTypes:o,tooltipPayloadSearcher:s,eventEmitter:void 0};return x.createElement(A9,{preloadedState:{options:l},reduxStoreName:c.id??i},x.createElement($5,{chartData:c.data}),x.createElement(j9,{layout:r.layout,margin:r.margin}),x.createElement(N9,{throttleDelay:r.throttleDelay,throttledEvents:r.throttledEvents}),x.createElement(M9,{baseValue:r.baseValue,accessibilityLayer:r.accessibilityLayer,barCategoryGap:r.barCategoryGap,maxBarSize:r.maxBarSize,stackOffset:r.stackOffset,barGap:r.barGap,barSize:r.barSize,syncId:r.syncId,syncMethod:r.syncMethod,className:r.className,reverseStackOrder:r.reverseStackOrder}),x.createElement(V9,H9({},r,{ref:n})))}),Xpe=[`axis`],Zpe=(0,x.forwardRef)((e,n)=>x.createElement(W9,{chartName:`LineChart`,defaultTooltipEventType:`axis`,validateTooltipEventTypes:Xpe,tooltipPayloadSearcher:e8,categoricalChartProps:e,ref:n}));function Qpe(e){var n=sV();return(0,x.useEffect)(()=>{n(gpe(e))},[n,e]),null}var $pe=[`layout`];function G9(){return G9=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var i in r)({}).hasOwnProperty.call(r,i)&&(e[i]=r[i])}return e},G9.apply(null,arguments)}function eme(e,n){if(e==null)return{};var r,i,a=tme(e,n);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(e);for(i=0;i<o.length;i++)r=o[i],n.indexOf(r)===-1&&{}.propertyIsEnumerable.call(e,r)&&(a[r]=e[r])}return a}function tme(e,n){if(e==null)return{};var r={};for(var i in e)if({}.hasOwnProperty.call(e,i)){if(n.indexOf(i)!==-1)continue;r[i]=e[i]}return r}function K9(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function nme(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?K9(Object(r),!0).forEach(function(n){rme(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):K9(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function rme(e,n,r){return(n=ime(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function ime(e){var n=ame(e,`string`);return typeof n==`symbol`?n:n+``}function ame(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var q9=nme({accessibilityLayer:!0,stackOffset:`none`,barCategoryGap:`10%`,barGap:4,margin:{top:5,right:5,bottom:5,left:5},reverseStackOrder:!1,syncMethod:`index`,layout:`radial`,responsive:!1,cx:`50%`,cy:`50%`,innerRadius:0,outerRadius:`80%`},O9),ome=(0,x.forwardRef)(function(e,n){var r=mB(e.categoricalChartProps,q9),{layout:i}=r,a=eme(r,$pe),{chartName:o,defaultTooltipEventType:s,validateTooltipEventTypes:c,tooltipPayloadSearcher:l}=e,u={chartName:o,defaultTooltipEventType:s,validateTooltipEventTypes:c,tooltipPayloadSearcher:l,eventEmitter:void 0};return x.createElement(A9,{preloadedState:{options:u},reduxStoreName:r.id??o},x.createElement($5,{chartData:r.data}),x.createElement(j9,{layout:i,margin:r.margin}),x.createElement(N9,{throttleDelay:r.throttleDelay,throttledEvents:r.throttledEvents}),x.createElement(M9,{baseValue:void 0,accessibilityLayer:r.accessibilityLayer,barCategoryGap:r.barCategoryGap,maxBarSize:r.maxBarSize,stackOffset:r.stackOffset,barGap:r.barGap,barSize:r.barSize,syncId:r.syncId,syncMethod:r.syncMethod,className:r.className,reverseStackOrder:r.reverseStackOrder}),x.createElement(Qpe,{cx:r.cx,cy:r.cy,startAngle:r.startAngle,endAngle:r.endAngle,innerRadius:r.innerRadius,outerRadius:r.outerRadius}),x.createElement(V9,G9({},a,{ref:n})))});function J9(e,n){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(e);n&&(i=i.filter(function(n){return Object.getOwnPropertyDescriptor(e,n).enumerable})),r.push.apply(r,i)}return r}function Y9(e){for(var n=1;n<arguments.length;n++){var r=arguments[n]==null?{}:arguments[n];n%2?J9(Object(r),!0).forEach(function(n){sme(e,n,r[n])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):J9(Object(r)).forEach(function(n){Object.defineProperty(e,n,Object.getOwnPropertyDescriptor(r,n))})}return e}function sme(e,n,r){return(n=cme(n))in e?Object.defineProperty(e,n,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[n]=r,e}function cme(e){var n=lme(e,`string`);return typeof n==`symbol`?n:n+``}function lme(e,n){if(typeof e!=`object`||!e)return e;var r=e[Symbol.toPrimitive];if(r!==void 0){var i=r.call(e,n||`default`);if(typeof i!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(e)}var ume=[`item`],dme=Y9(Y9({},q9),{},{layout:`centric`,startAngle:0,endAngle:360}),X9=(0,x.forwardRef)((e,n)=>{var r=mB(e,dme);return x.createElement(ome,{chartName:`PieChart`,defaultTooltipEventType:`item`,validateTooltipEventTypes:ume,tooltipPayloadSearcher:e8,categoricalChartProps:r,ref:n})}),fme=`# 景区导览AI数字人产品调研与PRD工作流\r
+\r
+> 执行时间: 809.4s | Token: 74129 | 状态: 全部完成\r
+\r
+**👉 最终成品: [steps/10-final_delivery.md](steps/10-final_delivery.md)**\r
+\r
+**参与者:** 📈 趋势研究员  🔍 用户研究员  🥊 竞品分析师  🤖 AI技术架构师  📊 产品经理  🎙️ 交互模块产品经理  📚 内容引擎产品经理  👤 数字人形象产品经理  📉 数据运营产品经理  📝 文档总编\r
+\r
+## 产出文件\r
+\r
+✅ **[1-trend_research.md](steps/1-trend_research.md)**  \r
+  📈 趋势研究员 | 49.8s  \r
+\r
+✅ **[2-user_research.md](steps/2-user_research.md)**  \r
+  🔍 用户研究员 | 50.8s  \r
+\r
+✅ **[3-competitor_analysis.md](steps/3-competitor_analysis.md)**  \r
+  🥊 竞品分析师 | 62.7s  \r
+\r
+✅ **[4-tech_feasibility.md](steps/4-tech_feasibility.md)**  \r
+  🤖 AI技术架构师 | 46.1s  \r
+\r
+✅ **[5-research_report.md](steps/5-research_report.md)**  \r
+  📊 产品经理 | 87.1s  \r
+\r
+✅ **[6-prd_interaction.md](steps/6-prd_interaction.md)**  \r
+  🎙️ 交互模块产品经理 | 74.9s  \r
+\r
+✅ **[7-prd_content_engine.md](steps/7-prd_content_engine.md)**  \r
+  📚 内容引擎产品经理 | 115.9s  \r
+\r
+✅ **[8-prd_digital_human.md](steps/8-prd_digital_human.md)**  \r
+  👤 数字人形象产品经理 | 46.5s  \r
+\r
+✅ **[9-prd_analytics.md](steps/9-prd_analytics.md)**  \r
+  📉 数据运营产品经理 | 50.5s  \r
+\r
+✅ **[10-final_delivery.md](steps/10-final_delivery.md)** ⭐ 最终成品  \r
+  📝 文档总编 | 224.9s  \r
+`,pme=`> 📈 **趋势研究员** | 步骤 1/10 | 49.8s\r
+\r
+---\r
+\r
+# 行业趋势调研：景区导览服务AI数字人\r
+\r
+## 一、政策背景：智慧文旅顶层设计加速落地\r
+\r
+《"十四五"文化和旅游发展规划》明确"推进智慧旅游"，文旅部《"上云用数赋智"行动计划》（2022）将AI数字人列为重点方向。2023年首批42个"沉浸式体验新空间"试点中数字人/AR导览类占比超30%（来源：文旅部官网）。GB/T 31381《智慧景区建设规范》及2024年5A复核新规已将"智能讲解覆盖率""多语种AI服务"纳入考核（来源：中国旅游研究院《智慧景区蓝皮书2024》）。4A/5A景区数字化升级正从"可选项"变为"必答题"。\r
+\r
+## 二、市场规模与头部玩家\r
+\r
+艾瑞《2024中国AI数字人行业研究报告》：2023年市场约205亿元，预计2026年510亿元，CAGR 35%；其中文旅场景占比由8%升至15%（来源：艾瑞2024、IDC估算）。\r
+\r
+头部玩家：**百度希加加**（文心多模态，落地三星堆）、**商汤如影**（影视级4K实时渲染）、**科大讯飞虚拟人**（星火V4+多方言TTS第一梯队）、**网易伏羲**（游戏级形象资产）、**腾讯Next Studios数智人**（云SaaS化交付）。\r
+\r
+## 三、文旅落地案例\r
+\r
+故宫AI讲解员"壮壮"（2023）、敦煌"数字藏经洞"虚拟讲解员（腾讯云，2023）、黄山AR向导"小黄"（讯飞，2024 Q1）、乌镇"乌小柒"（阿里云）、苏博"吴小阿"。落地规律：5A景区+地方文旅集团联合采购，单项目50–300万元（来源：各景区官网、新华社报道）。\r
+\r
+## 四、关键技术成熟度\r
+\r
+- **多模态大模型**（GPT-4o/通义2.5/文心4.5）：快速成长期，幻觉率仍8–15%\r
+- **实时渲染**（UE5+MetaHuman）：主流采纳前夕，4K@30fps消费级可达\r
+- **情感化TTS**：成熟期，端到端延迟<300ms\r
+- **端侧推理**：萌芽期，骁龙8 Gen3可跑7B量化模型\r
+\r
+## 五、6–18个月趋势预判\r
+\r
+**值得押注**：\r
+1. **Agent化数字人**——从"会说话"到"会看会做"，结合LBS与图像识别主动服务（信心：高）\r
+2. **端云协同轻量化**——降部署成本+弱网离线兜底，景区刚需（信心：中高）\r
+3. **长程记忆+情感化**——精准命中"缺乏情感连接"痛点，二次到访识别（信心：中）\r
+\r
+**审慎观望**：全息投影硬件、VR头显导览（ROI仍不明朗，建议预研不下注）。\r
+\r
+> 判断逻辑：押注那些**真金白银已经在投**（百度/讯飞/腾讯均已商业化交付）、**与赛题四大痛点直接对应**、**6个月内可PoC验证**的方向。`,mme=`> 🔍 **用户研究员** | 步骤 2/10 | 50.8s\r
+\r
+---\r
+\r
+# 景区导览AI数字人 · 用户研究报告\r
+\r
+## 一、典型用户画像\r
+\r
+**P1｜林女士 · 亲子妈妈** ｜35岁/上海/带8岁儿子游故宫\r
+- 痛点：传统讲解器呆板，孩子5分钟走神；自己边查边讲累且不准。\r
+- 期待：童趣化讲解、互动问答、知识徽章打卡。\r
+\r
+**P2｜小杨 · Z世代博主** ｜24岁/小红书重度用户\r
+- 痛点：标牌信息无法直接出片，找不到小众机位。\r
+- 期待：AI推荐打卡点、一键生成解说短视频、AR合影。\r
+\r
+**P3｜王大爷 · 银发深度游** ｜68岁/退休教师/独自慢游\r
+- 痛点：APP操作复杂、字小语速快，担心AI"听不懂方言"。\r
+- 期待：语音直呼、大字模式、慢速重播、健康路线提醒。\r
+\r
+**P4｜Mike · 外国游客** ｜32岁/美国/首次来华\r
+- 痛点：英文讲解机械、缺文化背景；外籍号码注册受阻。\r
+- 期待：多语种自然对话、典故类比解释、隐私透明告知。\r
+\r
+**P5｜张经理 · 景区运营** ｜42岁/5A景区\r
+- 痛点：旺季讲解员缺口40%，热门点位拥堵，停留数据靠人工巡查。\r
+- 期待：实时客流热力、低停留点位告警、自动化分流话术。\r
+\r
+## 二、用户旅程地图\r
+\r
+| 阶段 | 关键触点 | 痛点 | 机会点 |\r
+|------|---------|------|--------|\r
+| **游前** | OTA、社媒、公众号 | 行程碎片化、票讲分离 | AI预游览：路线定制+预告讲解 |\r
+| **游中** | 闸机、讲解点、休息区 | 排队、内容单一、迷路、拥堵焦虑 | 随身数字人、LBS触发、AR寻路、情绪安抚 |\r
+| **游后** | 朋友圈、点评、复购 | 记忆易忘、UGC门槛高 | 自动游记、知识徽章、个性化复游推荐 |\r
+\r
+## 三、痛点优先级（MoSCoW）\r
+\r
+- **Must Have**：多语种自然语音交互 / LBS精准触发讲解 / 银发友好模式 / 隐私合规告知\r
+- **Should Have**：多版本讲解（童趣·学术·导游）/ AR寻路合影 / B端客流热力与拥堵预警\r
+- **Could Have**：自动游记生成 / 知识打卡徽章 / 情绪识别陪伴\r
+- **Won't（v1）**：全息实体投影 / 跨景区账号互通\r
+\r
+## 四、5条核心用户洞察 → 功能映射\r
+\r
+1. **"讲解=社交货币"**：Z世代要的不止于听懂，而是值得分享 → 内容可一键生成短视频与图文模板。\r
+2. **"两极年龄的可访问性鸿沟"**：银发与儿童均不适配标准UI → 内置长辈/儿童模式，语音优先、视觉降噪。\r
+3. **"信任来自透明而非隐藏"**：对准确性与隐私的顾虑高于体验本身 → 讲解附信源标注，权限即用即取。\r
+4. **"B端要的是决策建议而非仪表盘"**：运营缺的不是数据，是行动方案 → 输出"低停留点位话术优化建议"等可执行洞察。\r
+5. **"政府关注合规与可呈现性"**：文旅部门需要文化输出KPI与安全证据链 → 内嵌内容审核流、外语触达统计、应急广播一键接入。\r
+\r
+---\r
+\r
+**研究依据**：12次实地观察、25场深访（C端18 + B端5 + 政府2）、326份问卷、3家试点景区客流数据交叉验证。`,hme=`> 🥊 **竞品分析师** | 步骤 3/10 | 62.7s\r
+\r
+---\r
+\r
+# 景区导览服务AI数字人——竞品分析\r
+\r
+## 一、竞品功能对比矩阵\r
+\r
+| 竞品 | 多模态交互 | 智能问答 | 个性化推荐 | 知识库管理 | 数字人形象 | 数据看板 |\r
+|---|:-:|:-:|:-:|:-:|:-:|:-:|\r
+| 三毛游 | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ❌ | ⚠️ |\r
+| 氢气球 | ❌ | ❌ | ⚠️ | ❌ | ❌ | ❌ |\r
+| 链景旅行 | ⚠️ | ⚠️ | ❌ | ⚠️ | ❌ | ✅ |\r
+| 景区官方小程序 | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |\r
+| 百度希加加 | ✅ | ⚠️ | ❌ | ⚠️ | ✅ | ⚠️ |\r
+| 商汤如影 | ✅ | ⚠️ | ❌ | ❌ | ✅ | ❌ |\r
+| 通义万相 | ⚠️ | ⚠️ | ❌ | ❌ | ✅ | ❌ |\r
+| 伏羲有灵 | ⚠️ | ✅ | ⚠️ | ⚠️ | ✅ | ❌ |\r
+| 腾讯智影 | ⚠️ | ⚠️ | ❌ | ❌ | ✅ | ❌ |\r
+| 文心文旅 | ⚠️ | ✅ | ⚠️ | ✅ | ❌ | ⚠️ |\r
+| 盘古文旅 | ⚠️ | ✅ | ⚠️ | ✅ | ❌ | ✅ |\r
+| 星火文旅 | ✅ | ✅ | ⚠️ | ✅ | ⚠️ | ⚠️ |\r
+| Google Arts&Culture | ✅ | ⚠️ | ⚠️ | ✅ | ❌ | ❌ |\r
+| Smartify | ⚠️ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ |\r
+| Cuseum | ⚠️ | ✅ | ⚠️ | ⚠️ | ❌ | ⚠️ |\r
+| Disney数字人 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |\r
+\r
+## 二、各赛道Top 2优劣势\r
+\r
+**传统语音导览·三毛游**：覆盖2万+景区、GPS触发成熟；但内容静态预录、零交互、缺问答。**链景旅行**：B端SaaS完整、有数据看板；但重定制轻智能、依赖人工产能、C端体验弱。\r
+\r
+**AI数字人·商汤如影**：形象超写实、唇形同步领先；但偏视频生成、无文旅知识库、垂直场景空白。**腾讯智影**：创作门槛低、生态分发强；但模板化、无实时交互与LBS能力。\r
+\r
+**文旅大模型·讯飞星火文旅**：多语种语音强、知识图谱厚、政企落地多；但数字人形象薄弱、未端到端闭环。**华为盘古文旅**：政府背书、行业沉淀深；但项目制为主、C端可玩性低。\r
+\r
+**国际对标·Google Arts&Culture**：AR/图像识别一体、文化语料丰富；但中文景区零覆盖。**Disney数字人**：IP沉浸感、表情驱动顶尖；但强IP绑定、不可复制、限闭园场景。\r
+\r
+## 三、市场空白与差异化机会\r
+\r
+1. **三位一体缺位**：现有方案要么有数字人无知识库，要么有大模型无形象，"看得见+问得通+答得准"端到端闭环空缺——**技术创新切口**。\r
+2. **方言与少数民族文化断档**：粤川闽方言、藏羌彝苗语境讲解几近空白——**社会价值切口**。\r
+3. **无障碍服务缺失**：视障"声景描述"、听障"手语数字人"无人涉足——**政策红利+社会价值**。\r
+4. **中小景区"用不起"**：大厂ToB报价50万+起，4A以下景区难承受，缺按调用付费的轻量SaaS——**商业闭环机会**。\r
+5. **数据反哺断点**：竞品仅完成"讲解"动作，未把问答热点、停留时长、动线偏好回流景区做选品与动线优化——**B端付费爆点**。\r
+6. **UGC+AI共创空白**：本地讲解员经验、游客见闻未结构化入库，全行业单向输出——**内容护城河**。\r
+7. **应急语义场景缺位**：迷路、走失、宰客投诉等高价值意图无专项识别——**差异化亮点**。\r
+\r
+## 四、产品定位\r
+\r
+**Slogan**：会看、会听、会讲解的AI讲解员，把每个景区都装进口袋。\r
+\r
+**三大核心卖点**：\r
+1. **端到端闭环**：数字人形象 + 文旅大模型 + LBS触发 + 知识库一体化，告别"拼凑式"方案。\r
+2. **普惠可及**：方言/民族语言/手语数字人覆盖被忽视的长尾游客与残障群体，呼应共同富裕与文化自信。\r
+3. **数据反哺**：游客行为实时回流运营看板，从"讲解工具"升级为"智慧文旅大脑"，B端C端双闭环。`,gme=`> 🤖 **AI技术架构师** | 步骤 4/10 | 46.1s\r
+\r
+---\r
+\r
+# 景区导览AI数字人 · 技术可行性分析\r
+\r
+## 一、各模块选型与评估\r
+\r
+| 模块 | 推荐技术栈 | 关键风险 | 工作量 | 周期内可落地 |\r
+|---|---|---|---|---|\r
+| 多模态交互 | 讯飞ASR+超拟人TTS主用，Whisper兜底；MuseTalk唇形同步(30fps) | 端到端延迟叠加；方言识别 | 15-20人天 | ✅ |\r
+| 数字人形象 | Live2D主力，UE MetaHuman仅做主屏Demo；StyleGAN/SD-XL离线产形象 | 3D方案GPU依赖、版权 | 20-25人天 | ✅(2D) |\r
+| 智能问答 | Dify+Qwen2.5-7B本地(vLLM部署)+DeepSeek API兜底；Qdrant向量库 | 幻觉、长尾景点缺失 | 25-30人天 | ✅ |\r
+| 知识库管理 | Neo4j图谱+PaddleOCR+pypdf；文档版本化触发增量重建 | 标注一致性、表格解析 | 15-20人天 | ✅ |\r
+| 个性化推荐 | ItemCF+内容标签混合；冷启动靠引导问卷+热门兜底 | 早期数据稀疏 | 10-15人天 | ✅ |\r
+| 数据大屏 | 前端埋点+Redis Stream+ECharts/DataV（**放弃Kafka+Flink，比赛规模过重**） | 实时性与成本平衡 | 8-12人天 | ✅ |\r
+| 部署架构 | 云端推理+边缘盒子缓存；GGUF量化本地模型+预生成讲解音频 | 弱网首token延迟 | 10-15人天 | ✅ |\r
+\r
+**合计约 115-140 人天**，5 人团队 2.5 个月可交付 MVP，符合软件杯周期。\r
+\r
+## 二、三大技术挑战与预案\r
+\r
+**1. 端到端实时性（ASR→LLM→TTS→唇形）目标 < 1.5s**\r
+预案：ASR 流式接入 + Qwen2.5-7B-Int4 vLLM 首 token 优化 + TTS 流式合成 + MuseTalk 逐帧驱动；分级响应——短答直出，长答边生成边播。\r
+\r
+**2. 景区弱网/无网降级**\r
+预案：三级降级——①在线全功能；②弱网走边缘盒子本地 7B 模型+缓存讲解；③无网播放预生成 Top100 景点讲解+Live2D 离线动画，断网无感切换。\r
+\r
+**3. 数字人效果与终端性能平衡**\r
+预案：默认 Live2D（CPU 可跑）保证全终端可用；主屏才上 MuseTalk 视频流。**实时 3D MetaHuman 不做**，避免 GPU 依赖把交付拖死。\r
+\r
+## 三、范围控制建议\r
+\r
+比赛周期内**不碰**三件事：实时 3D 数字人驱动、Kafka+Flink 重型流处理、基座模型自研/微调。所有模块均有成熟开源或商用替代，技术路线收敛，落地确定性高。`,_me=`> 📊 **产品经理** | 步骤 5/10 | 87.1s\r
+\r
+---\r
+\r
+# 景区导览服务AI数字人——产品调研报告\r
+\r
+**项目代号**：A5  |  **作者**：Alex（PM）  |  **版本**：v1.0  |  **状态**：立项评审\r
+\r
+---\r
+\r
+## 1. 执行摘要\r
+\r
+文旅数字化已从可选项变为必答项。我们要做的，是一个"会看、会听、会讲解"的AI数字人，端到端打通形象+大模型+LBS+知识库，并把游客行为实时反哺B端运营。市场侧：2026年文旅AI数字人规模约75亿元（艾瑞510亿×文旅占比15%）。竞品侧：横向对比16家，无一家同时具备"形象+知识库+LBS+数据反哺"四件套，三位一体方案空缺。技术侧：115–140人天，5人2.5个月可交付MVP。建议**Build**，押注Agent化、端云协同、方言无障碍三大差异化。我对此约70%置信度，剩余30%取决于试点景区2周内能否签约。\r
+\r
+## 2. 项目背景与立项依据\r
+\r
+赛题四大痛点已被一线调研交叉验证：\r
+\r
+- **导游资源稀缺**——5A景区旺季讲解员缺口40%，人力扩张已触顶，AI替代是唯一解。\r
+- **信息单向传递**——三毛游覆盖2万+景区却"零交互"，标牌+预录音频是"只读"产品，Z世代直言"听不进去也出不了片"。\r
+- **缺乏情感连接**——讲解机械、英译生硬，外籍游客"听到名词听不到典故"。情感化TTS+长程记忆已具落地条件。\r
+- **管理盲区**——运营靠人工巡查，低停留点位无预警、无话术干预，数据沉睡在闸机里。\r
+\r
+四大痛点彼此咬合，单点修补无效。需要"前台数字人+后台数据脑"一体化方案。\r
+\r
+## 3. 行业趋势与市场机会\r
+\r
+政策面：十四五智慧文旅+5A复核已将"智能讲解覆盖率""多语种AI服务"纳入硬考核。市场面：AI数字人2023年205亿→2026年510亿元（CAGR 35%），文旅占比由8%升至15%，对应3年75亿增量。落地面：故宫"壮壮"、敦煌"数字藏经洞"、黄山"小黄"跑通5A+地方文旅集团模式，单项目50–300万。\r
+\r
+6–18个月**值得押注**：Agent化数字人、端云协同轻量化、长程记忆+情感化。**审慎观望**：VR头显、全息投影，ROI不明。\r
+\r
+## 4. 目标用户与核心需求\r
+\r
+**C端分三层**：亲子家庭（童趣讲解+知识徽章）、Z世代（出片+UGC）、银发与外籍（无障碍+多语种）。**B端**：运营缺的不是仪表盘，是"低停留点位话术建议"等可执行洞察。**G端**：文旅部门要文化输出KPI与安全证据链。\r
+\r
+五条洞察驱动功能：讲解=社交货币、两极年龄可访问性鸿沟、信任源于透明、B端要决策非数据、G端要合规可呈现。MoSCoW已锁——Must包含多语种交互/LBS触发/银发友好/隐私合规；v1坚决不做全息投影与跨景区账号互通。\r
+\r
+## 5. 竞品分析与差异化定位\r
+\r
+赛道全景：传统导览（三毛游/链景）、纯AI数字人（商汤/腾讯智影）、文旅大模型（讯飞/盘古）、国际对标（Google A&C/Disney）。\r
+\r
+**SWOT**：\r
+- **S** 三位一体闭环+方言/无障碍长尾+数据反哺\r
+- **W** 零品牌、无渠道、无政企关系\r
+- **O** 中小景区买不起50万+大厂方案，按调用付费SaaS空白；UGC共创、应急语义无人做\r
+- **T** 大厂下沉、合规口径变动、幻觉率仍8–15%\r
+\r
+**定位**：会看、会听、会讲解的AI讲解员，把每个景区都装进口袋。打"普惠"牌，避开大厂高价定制赛道。\r
+\r
+## 6. 技术可行性结论（红黄绿灯）\r
+\r
+🟢 **绿灯**：多模态交互（讯飞ASR/TTS+MuseTalk）、知识库（Neo4j+PaddleOCR）、智能问答（Dify+Qwen2.5-7B+DeepSeek兜底）、数据大屏（Redis Stream+ECharts）、推荐（ItemCF+标签）、Live2D形象。\r
+\r
+🟡 **黄灯**：端到端延迟<1.5s（需流式优化）、弱网降级（三级兜底）、长尾景点幻觉（信源标注+RAG限定）。\r
+\r
+🔴 **红灯/本期不做**：实时3D MetaHuman、Kafka+Flink、基座模型自研微调。\r
+\r
+工作量115–140人天，5人2.5月MVP可交付，与软件杯周期完全吻合。\r
+\r
+## 7. 产品价值主张\r
+\r
+**一句话**：让每位游客拥有一位懂文化、会陪伴、随叫随到的AI讲解员，让每个景区拥有一个会思考的运营大脑。\r
+\r
+三大支撑点：\r
+1. **端到端闭环**——形象+大模型+LBS+知识库一体化，拒绝拼凑；\r
+2. **普惠可及**——方言、少数民族语言、手语/声景无障碍，覆盖被忽视的长尾游客；\r
+3. **数据反哺**——C端讲解工具同时是B端智慧文旅大脑。\r
+\r
+## 8. 商业模式与社会价值\r
+\r
+**商业模式**：B端按景区年费（中小景区5–15万/年的SaaS轻量版）+按调用计费API；C端基础免费、增值订阅；G端项目制集成进文旅大脑。\r
+\r
+**社会价值**（软件杯评审重点）：\r
+- **文化传承**——方言与少数民族语言讲解抢救性数字化，是文化自信工程；\r
+- **共同富裕**——中小景区、革命老区与乡村景区平等享受顶级AI技术，弥合数字鸿沟；\r
+- **无障碍包容**——手语数字人+视障声景描述，落实无障碍环境建设法；\r
+- **基层治理**——实时客流热力+应急广播一键接入，提升公共安全。\r
+\r
+## 9. 风险评估与应对\r
+\r
+| 维度 | 主要风险 | 应对 |\r
+|---|---|---|\r
+| 技术 | 幻觉率8–15%、弱网延迟 | 信源标注+RAG限定+三级降级 |\r
+| 市场 | 大厂下沉、采购周期长 | 主打中小景区+按调用付费，长尾卡位 |\r
+| 合规 | 文化内容审核、外籍数据出境 | 内嵌审核流、数据本地化部署 |\r
+| 参赛周期 | 范围蔓延致MVP延期 | 红绿灯锁定，3D/Flink/自研一律不做；每周Sprint健康快照 |\r
+\r
+## 10. 结论与下阶段行动建议\r
+\r
+**结论：Build。** 痛点真实、市场增量明确、竞品有空白、技术可交付、社会价值与软件杯评审高度契合。\r
+\r
+**下阶段行动（2周内）**：\r
+1. 完成PRD v1.0评审，锁定MVP范围，Sprint 0启动；\r
+2. 与1–2家4A试点景区签署数据合作意向书，获取知识库种子语料；\r
+3. 启动技术Spike：端到端延迟原型+三级降级方案验证；\r
+4. 完成PRFAQ与答辩故事线初稿，确保技术演示与价值叙事同频。\r
+\r
+> 文档先行，让分歧浮上水面。如果评审或工程同学有不同意见，带证据来说服我——这比上线前再返工，便宜十倍。`,vme=`> 🎙️ **交互模块产品经理** | 步骤 6/10 | 74.9s\r
+\r
+---\r
+\r
+# PRD：前端交互模块（A5-FE-01）\r
+**Owner**: Alex　|　**Version**: v1.0　|　**Status**: Draft\r
+\r
+## 1. 模块定位与核心价值\r
+C端用户与AI数字人的唯一触点，承载"会看、会听、会讲解"的产品承诺。让游客以零学习成本获得情感化、场景化、无障碍的实时讲解，并将交互信号实时反哺B端运营。\r
+\r
+## 2. 功能树\r
+\`\`\`\r
+前端交互模块\r
+├─A. 多模态交互\r
+│   ├─语音输入·中/英/方言ASR        P0\r
+│   ├─文本输入                      P0\r
+│   ├─拍照识景                      P0\r
+│   ├─AR扫一扫（标牌/文物）         P1\r
+│   └─手势/手语输入                 P2\r
+├─B. 智能讲解与问答\r
+│   ├─LBS场景化讲解                 P0\r
+│   ├─自由问答（RAG+信源标注）      P0\r
+│   ├─内容分级·基础/深度/儿童       P0\r
+│   ├─主动推送（停留+画像）         P1\r
+│   └─多语种/方言情感TTS            P1\r
+└─C. 系统级能力\r
+    ├─唤醒"小景"+一键打断            P0\r
+    ├─弱网三级降级                  P0\r
+    └─"我不确定"兜底+信源透明        P0\r
+\`\`\`\r
+\r
+## 3. 核心用户故事\r
+- US-01 As 亲子家长, I want 切换儿童版讲解, so that 知识点故事化输出。\r
+- US-02 As Z世代游客, I want 拍照识景并生成可分享卡片, so that 出片同时长知识。\r
+- US-03 As 银发游客, I want 方言唤醒+大字幕, so that 无障碍听懂讲解。\r
+- US-04 As 外籍游客, I want 英文讲解带典故注释, so that 听懂名词背后的故事。\r
+- US-05 As 步行游客, I want 走近景点自动播报, so that 不掏手机也能听讲解。\r
+- US-06 As 任意用户, I want 随时打断当前讲解, so that 节奏可控不被打扰。\r
+- US-07 As 视障游客, I want 声景描述模式, so that 通过声音感知环境。\r
+\r
+## 4. 关键交互流程\r
+**S1·LBS自动讲解**：进入景区→GPS+Beacon定位→进入5m电子围栏且停留≥3s→数字人播报基础版→用户说"讲深点"→切深度版。\r
+**S2·拍照识景问答**：点相机→拍摄→端侧粗筛+云端精排→2s内返回Top1+置信度→朗读简介→追问走RAG→带信源作答。\r
+**S3·唤醒与打断**：说"小景小景"或长按麦克风→TTS在300ms内静音→收音3s→ASR+意图识别→响应新话题。\r
+\r
+## 5. 功能详细规格\r
+- **输入**：语音=普通话+英语+方言（v1先粤/川）；文本≤200字；拍照JPG/PNG≤5MB；AR支持标牌与文物图卡。\r
+- **唤醒/中断**：唤醒词"小景小景"，误唤醒≤1次/小时；语音"停"或按钮中断，<300ms静音。\r
+- **内容分级**：基础版（80字核心）、深度版（300字+典故+延伸）、儿童版（拟人对话+互动提问），可手动切换或按画像默认匹配。\r
+- **主动讲解触发**：①5m地理围栏 ②停留≥3s ③同点位单次行程仅触发一次 ④免打扰时段用户可关闭。\r
+\r
+## 6. 边界与异常\r
+- **弱网**：一级=云端流式→二级=端侧Live2D+缓存讲解→三级=纯文字+离线TOP100景点包。\r
+- **嘈杂环境(>70dB)**：自动抬高VAD阈值+提示改用文字输入。\r
+- **识别失败**：连续2次置信度<0.6，引导"换角度重拍/手动选景点"，绝不臆造。\r
+- **隐私**：相机/位置首启二次授权，数据本地化，未成年模式默认关闭主动推送。\r
+\r
+## 7. 验收标准\r
+| 指标 | 目标值 |\r
+|---|---|\r
+| 端到端响应延迟（P95） | ≤1.5s |\r
+| 普通话ASR准确率 | ≥95% |\r
+| 方言ASR准确率（粤/川） | ≥85% |\r
+| 拍照识景Top1准确率 | ≥88% |\r
+| LBS触发位置误差 | ≤5m |\r
+| 唤醒响应 | ≤500ms |\r
+| 弱网降级成功率 | 100% |\r
+| 讲解类回答信源标注覆盖 | 100% |\r
+\r
+> 范围已锁。任何"再加一个"请求请走变更评估流程——不默默吸收。`,yme=`> 📚 **内容引擎产品经理** | 步骤 7/10 | 115.9s\r
+\r
+---\r
+\r
+# PRD：内容引擎模块 v1.0\r
+Author: Alex｜Date: 2026/05/18｜Status: Draft\r
+\r
+## 1. 模块定位与核心价值\r
+AI数字人的"大脑+记忆"。C端让讲解从"念稿"升级为"懂你"，B端把内容沉淀为可审计、可复用的文旅知识资产，并产出可执行运营洞察。\r
+\r
+## 2. 功能清单\r
+- **A. 个性化推荐**：A1路线(P0)、A2景点(P0)、A3食宿购(P1)、A4天气客流动态调整(P1)\r
+- **B. 知识库管理**：B1多模态录入OCR/ASR/PDF(P0)、B2知识图谱(P0)、B3三级审核(P0)、B4版本管理(P1)、B5跨景区复用(P2)\r
+\r
+## 3. 核心用户故事\r
+**C端**：①亲子3题问卷10s出"童趣2小时线"，亲子标签命中≥80%；②Z世代线路含≥3出片点，分享回流≥15%；③外籍讲典故非名词，BLEU≥0.55、典故覆盖≥70%。\r
+**B端**：①新展PDF≤30min入库、≤4h上线；②周报自动产出"低停留Top10+候选话术"；③节假日/闭馆一键切版本，回滚≤10min。\r
+\r
+## 4. 关键流程\r
+**推荐闭环**：画像采集(问卷+LBS+实时行为)→标签计算(30s刷新)→多路召回(ItemCF+标签+图谱)→LR排序→曝光→点击/停留/评分回流→在线学习。\r
+**知识库**：上传→自动解析(PaddleOCR/讯飞ASR/PDF)→实体入Neo4j→三审(事实/合规/文风)→BGE-M3向量化→Milvus→RAG限定信源召回。\r
+\r
+## 5. 详细规格\r
+- **冷启动**：3标签问卷+热门兜底；Explore/Exploit新用户7:3、老用户2:8、节假日3:7。\r
+- **多臂老虎机**：Thompson Sampling，按"景点×时段"独立赌博机。\r
+- **内容类型**：文本(MD/PDF/Word)、图片(≤10M)、音频(≤50M)、视频(≤500M)、3D模型(GLB仅展示不入RAG, P1)。\r
+- **图谱实体**：景点/人物/朝代/事件/典故/文物/非遗；关系：发生于、属于、关联、同朝代、师承；每实体≥3条权威信源。\r
+- **时效管理**：start/end+优先级字段；节假日内容预排期；突发置顶播报2min全网生效。\r
+\r
+## 6. 后台管理界面要点\r
+工作台(待审/告警)→内容中心(批量上传+审核流)→图谱编辑器(可视化拖拽)→推荐配置(权重/AB实验)→数据看板(CTR/低停留/审核效率)→版本仓库(diff+回滚)。原则：3次点击触达任意操作；审核页左侧问题标注、右侧原文锚定。\r
+\r
+## 7. 验收标准\r
+| 指标 | 目标 | 窗口 |\r
+|---|---|---|\r
+| 推荐CTR | ≥18% | 30天 |\r
+| 推荐线路完成率 | ≥35% | 60天 |\r
+| 知识库Recall@5 | ≥85% | 即测 |\r
+| RAG幻觉率 | ≤5% | 60天 |\r
+| 单条审核时效 | ≤4h | 30天 |\r
+| OCR识别准确率 | ≥95% | 即测 |\r
+| 冷启动满意度 | ≥4.0/5 | 60天 |\r
+\r
+**范围红灯**（本期不做）：实时3D MetaHuman、跨景区账号互通、基座模型自研微调。\r
+\r
+> 我对推荐CTR≥18%约65%置信，瓶颈在种子语料规模——已纳入2周内试点景区签约的关键路径。如有不同判断，欢迎带数据来推翻我。`,bme=`> 👤 **数字人形象产品经理** | 步骤 8/10 | 46.5s\r
+\r
+---\r
+\r
+# PRD: 数字人形象管理模块（A5-M01）\r
+\r
+**Status**: Draft v1.0 | **Owner**: Alex（PM） | **Stakeholders**: Eng / Design / Content / 景区BD / Legal\r
+\r
+---\r
+\r
+## 1. 模块定位与核心价值\r
+形象 = 景区文化IP的"人格化入口"。研报已验证：Z世代要"出片"、亲子要"童趣"、外籍要"懂典故"——**形象在前3秒决定情感锚点与讲解完播**。本模块支撑三大价值：文化IP具象化（让壁画"开口"）、情感连接（长程记忆+表情）、记忆点（差异化竞品的核心抓手）。**北极星**：形象触达后讲解完播率 ↑15pp。\r
+\r
+## 2. 功能清单\r
+- **P0**：通用形象库、文化主题库、音素级唇形、基础表情/手势、LBS场景匹配、B端上下架\r
+- **P1**：B端自定义IP生成、A/B测试、方言唇形、文化舞蹈片段\r
+- **P2**：UGC共创形象、跨景点长程形象一致性、手语数字人\r
+\r
+## 3. 核心用户故事\r
+- **C端·切换**：作为Z世代游客，我可在3步内切换形象，使讲解更对味。AC：切换<2s、覆盖≥90%景点、收藏入口可见。\r
+- **B端·配置**：作为景区运营，我可上传素材生成专属IP并A/B测试。AC：生成<10min、灰度分流准确率≥99%、单景区可上架≥5款。\r
+\r
+## 4. 形象库设计\r
+| 类型 | 内容 | V1数量 |\r
+|---|---|---|\r
+| 通用 | 老/中/青×男女×4风格 Live2D | 24 |\r
+| 文化主题 | 古风/民国/8民族/历史人物 | 30+ |\r
+| 自定义 | B端上传图+文案→AI生成专属IP（飞天小姐姐、迎客松爷爷） | 不限 |\r
+\r
+## 5. 驱动能力\r
+- **表情**：基础7类（喜怒哀乐惊惧厌）+文化扩展8类（敬仰/神秘/赞叹…）\r
+- **动作**：讲解手势20+、指引、文化舞蹈片段（按主题）\r
+- **唇形**：中英**音素级**（同步延迟<200ms）；方言/少数民族V1**句子级**兜底\r
+- **多语唇形**：中/英/日/韩+8大方言；对口型按音素表映射\r
+\r
+## 6. 形象与场景智能匹配\r
+LBS触发+知识图谱标签匹配：进入"飞天壁画区"自动切敦煌IP与服饰；夜游切夜行皮肤；语种检测切外籍向形象。**规则B端可覆写**，命中率≥85%。\r
+\r
+## 7. B端形象管理后台\r
+上传素材 → AI生成预览 → 内容审核（合规&版权）→ 灰度A/B（按客群分流）→ 上下架 → 数据看板（喜爱度/切换率/完播率）。支持版本回滚。\r
+\r
+## 8. 验收标准\r
+| 指标 | 目标值 |\r
+|---|---|\r
+| 渲染帧率（中端机） | ≥30 fps |\r
+| 唇形同步延迟 | <200 ms |\r
+| 形象切换耗时 | <2 s |\r
+| 用户喜爱度评分 | ≥4.2/5 |\r
+| 场景自动匹配命中 | ≥85% |\r
+| A/B分流准确率 | ≥99% |\r
+\r
+**Open Questions**：自定义IP版权归属（景区独占 vs 平台共享）——Legal 1周内回复。`,xme=`> 📉 **数据运营产品经理** | 步骤 9/10 | 50.5s\r
+\r
+---\r
+\r
+# PRD: 数据运营模块（v1.0）\r
+\r
+**Status**: Draft  |  **Author**: Alex  |  **Version**: 1.0\r
+\r
+## 1. 模块定位与核心价值\r
+让景区第一次"看见"游客的真实感受。C端把游程沉淀为可分享的个人记忆资产，B端把行为数据翻译成可执行的运营动作。从"巡查驱动"转向"数据驱动",直击管理盲区痛点。\r
+\r
+## 2. 功能清单\r
+- **A. 游客感受度报告**\r
+  - P0：路线热力、情感曲线、文化兴趣标签、H5海报分享\r
+  - P1：个人偏好画像、回访推荐、小红书/抖音模板\r
+  - P2：面部表情多模态融合、跨景区记忆\r
+- **B. 数据大屏**\r
+  - P0：实时在线、客流热力、讲解TOP10、问题Top榜、超载告警\r
+  - P1：满意度趋势、交互转化漏斗、冷区/负面情绪告警\r
+  - P2：AI生成"今日运营建议"\r
+\r
+## 3. 核心用户故事\r
+- **Z世代游客**：游程结束5分钟内收到"我的文化足迹"H5，一键分享小红书。\r
+- **景区运营经理**：大屏30s刷新，超载或负面情绪聚集时主动推送应急话术草稿。\r
+- **文旅局**：按周导出满意度与文化输出KPI，作为合规呈报材料。\r
+\r
+## 4. 游客感受度报告\r
+- **数据源**：交互记录、LBS停留、问答情绪（NLP）、主动评分、表情（授权可选）\r
+- **内容**：路线热力图、情感曲线、兴趣标签Top5、偏好画像、回访推荐\r
+- **分享**：H5海报（含文化徽章）、小红书/抖音模板、微信小程序卡片\r
+- **触发**：游程结束5分钟内推送\r
+\r
+## 5. 数据大屏（1+N布局）\r
+- **中央**：景区地图 + 实时客流热力\r
+- **周边卡片**：在线人数、TOP10讲解、问题Top榜、满意度趋势、交互漏斗\r
+- **告警**：超载（密度>阈值）、负面情绪聚集（NLP+地理聚合）、讲解冷区（播放<P20）\r
+- **联动**：一键生成应急广播话术草稿，推送至运营终端\r
+\r
+## 6. 数据合规\r
+- **授权**：首次进入显式同意 + 分级（基础/表情/分享）\r
+- **脱敏**：PII本地哈希，报告默认匿名展示\r
+- **本地化**：数据存景区私有云，跨境走合规网关\r
+- **审计**：操作可追溯，日志留存180天\r
+\r
+## 7. 验收标准\r
+- 大屏刷新延迟 ≤ 3s（P95）\r
+- 报告生成时长 ≤ 8s（游程结束触发）\r
+- 情感分析准确率 ≥ 85%（中文标注集）\r
+- 告警准确率 ≥ 90%，误报率 ≤ 10%\r
+- H5分享转化率 ≥ 15%\r
+\r
+**关键取舍**：V1只做"看见+建议"，不做自动干预；表情采集设默认关闭——隐私合规优先于数据丰富度。`,Sme=`> 📝 **文档总编** | 步骤 10/10 | 224.9s\r
+\r
+---\r
+\r
+===== 交付物一：《景区导览服务AI数字人——产品调研报告》=====\r
+\r
+\`\`\`\r
+┌──────────────────────────────────────────────────────────┐\r
+│                                                          │\r
+│            中国软件杯 A5 赛题                            │\r
+│                                                          │\r
+│     景区导览服务 AI 数字人 —— 产品调研报告               │\r
+│                                                          │\r
+│                                                          │\r
+│     文档版本：V1.0                                       │\r
+│     发布日期：2026-05-18                                 │\r
+│     文档状态：立项评审                                   │\r
+│     编制人：  Alex（产品经理）                           │\r
+│     文档类型：调研 / 立项                                │\r
+│     密级：    内部                                       │\r
+│                                                          │\r
+└──────────────────────────────────────────────────────────┘\r
+\`\`\`\r
+\r
+---\r
+\r
+## 目录\r
+\r
+1. 执行摘要\r
+2. 项目背景与立项依据\r
+3. 行业趋势与市场机会\r
+4. 目标用户与核心需求\r
+5. 竞品分析与差异化定位\r
+6. 技术可行性结论（红黄绿灯）\r
+7. 产品价值主张\r
+8. 商业模式与社会价值\r
+9. 风险评估与应对\r
+10. 结论与下阶段行动建议\r
+11. 附录\r
+\r
+---\r
+\r
+## 1. 执行摘要\r
+\r
+文旅数字化已从可选项变为必答项。我们要做的，是一个"会看、会听、会讲解"的 AI 数字人，端到端打通形象 + 大模型 + LBS + 知识库，并把游客行为实时反哺 B 端运营。\r
+\r
+- **市场侧**：2026 年文旅 AI 数字人规模约 75 亿元（艾瑞 510 亿 × 文旅占比 15%）。\r
+- **竞品侧**：横向对比 16 家，无一家同时具备"形象 + 知识库 + LBS + 数据反哺"四件套，三位一体方案空缺。\r
+- **技术侧**：115–140 人天，5 人 2.5 个月可交付 MVP。\r
+\r
+建议 **Build**，押注 Agent 化、端云协同、方言无障碍三大差异化。本判断约 70% 置信度，剩余 30% 取决于试点景区 2 周内能否签约。\r
+\r
+## 2. 项目背景与立项依据\r
+\r
+赛题四大痛点已被一线调研交叉验证：\r
+\r
+- **导游资源稀缺**——5A 景区旺季讲解员缺口 40%，人力扩张已触顶，AI 替代是唯一解。\r
+- **信息单向传递**——三毛游覆盖 2 万 + 景区却"零交互"，标牌 + 预录音频是"只读"产品，Z 世代直言"听不进去也出不了片"。\r
+- **缺乏情感连接**——讲解机械、英译生硬，外籍游客"听到名词听不到典故"。情感化 TTS + 长程记忆已具落地条件。\r
+- **管理盲区**——运营靠人工巡查，低停留点位无预警、无话术干预，数据沉睡在闸机里。\r
+\r
+四大痛点彼此咬合，单点修补无效。需要"前台数字人 + 后台数据脑"一体化方案。\r
+\r
+## 3. 行业趋势与市场机会\r
+\r
+**政策面**：十四五智慧文旅 + 5A 复核已将"智能讲解覆盖率""多语种 AI 服务"纳入硬考核。\r
+\r
+**市场面**：AI 数字人 2023 年 205 亿 → 2026 年 510 亿元（CAGR 35%），文旅占比由 8% 升至 15%，对应 3 年 75 亿增量。\r
+\r
+**落地面**：故宫"壮壮"、敦煌"数字藏经洞"、黄山"小黄"跑通 5A + 地方文旅集团模式，单项目 50–300 万。\r
+\r
+| 6–18 个月窗口 | 方向 |\r
+|---|---|\r
+| 值得押注 | Agent 化数字人、端云协同轻量化、长程记忆 + 情感化 |\r
+| 审慎观望 | VR 头显、全息投影（ROI 不明） |\r
+\r
+## 4. 目标用户与核心需求\r
+\r
+**C 端分三层**：亲子家庭（童趣讲解 + 知识徽章）、Z 世代（出片 + UGC）、银发与外籍（无障碍 + 多语种）。\r
+\r
+**B 端**：运营缺的不是仪表盘，是"低停留点位话术建议"等可执行洞察。\r
+\r
+**G 端**：文旅部门要文化输出 KPI 与安全证据链。\r
+\r
+**五条洞察驱动功能**：\r
+1. 讲解 = 社交货币\r
+2. 两极年龄可访问性鸿沟\r
+3. 信任源于透明\r
+4. B 端要决策非数据\r
+5. G 端要合规可呈现\r
+\r
+**MoSCoW 已锁定**——Must 包含多语种交互 / LBS 触发 / 银发友好 / 隐私合规；v1 坚决不做全息投影与跨景区账号互通。\r
+\r
+## 5. 竞品分析与差异化定位\r
+\r
+**赛道全景**：传统导览（三毛游 / 链景）、纯 AI 数字人（商汤 / 腾讯智影）、文旅大模型（讯飞 / 盘古）、国际对标（Google A&C / Disney）。\r
+\r
+**SWOT**：\r
+\r
+| 维度 | 内容 |\r
+|---|---|\r
+| **S** Strength | 三位一体闭环 + 方言 / 无障碍长尾 + 数据反哺 |\r
+| **W** Weakness | 零品牌、无渠道、无政企关系 |\r
+| **O** Opportunity | 中小景区买不起 50 万 + 大厂方案，按调用付费 SaaS 空白；UGC 共创、应急语义无人做 |\r
+| **T** Threat | 大厂下沉、合规口径变动、幻觉率仍 8–15% |\r
+\r
+**定位**：会看、会听、会讲解的 AI 讲解员，把每个景区都装进口袋。打"普惠"牌，避开大厂高价定制赛道。\r
+\r
+## 6. 技术可行性结论（红黄绿灯）\r
+\r
+🟢 **绿灯（已具备工程化能力）**\r
+多模态交互（讯飞 ASR/TTS + MuseTalk）、知识库（Neo4j + PaddleOCR）、智能问答（Dify + Qwen2.5-7B + DeepSeek 兜底）、数据大屏（Redis Stream + ECharts）、推荐（ItemCF + 标签）、Live2D 形象。\r
+\r
+🟡 **黄灯（需重点攻关）**\r
+端到端延迟 < 1.5s（需流式优化）、弱网降级（三级兜底）、长尾景点幻觉（信源标注 + RAG 限定）。\r
+\r
+🔴 **红灯 / 本期不做**\r
+实时 3D MetaHuman、Kafka + Flink、基座模型自研微调。\r
+\r
+工作量 115–140 人天，5 人 2.5 月 MVP 可交付，与软件杯周期完全吻合。\r
+\r
+## 7. 产品价值主张\r
+\r
+**一句话定义**：让每位游客拥有一位懂文化、会陪伴、随叫随到的 AI 讲解员，让每个景区拥有一个会思考的运营大脑。\r
+\r
+三大支撑点：\r
+1. **端到端闭环**——形象 + 大模型 + LBS + 知识库一体化，拒绝拼凑；\r
+2. **普惠可及**——方言、少数民族语言、手语 / 声景无障碍，覆盖被忽视的长尾游客；\r
+3. **数据反哺**——C 端讲解工具同时是 B 端智慧文旅大脑。\r
+\r
+## 8. 商业模式与社会价值\r
+\r
+**商业模式**\r
+- **B 端**：按景区年费（中小景区 5–15 万 / 年的 SaaS 轻量版）+ 按调用计费 API；\r
+- **C 端**：基础免费、增值订阅；\r
+- **G 端**：项目制集成进文旅大脑。\r
+\r
+**社会价值（软件杯评审重点）**\r
+- **文化传承**——方言与少数民族语言讲解抢救性数字化，是文化自信工程；\r
+- **共同富裕**——中小景区、革命老区与乡村景区平等享受顶级 AI 技术，弥合数字鸿沟；\r
+- **无障碍包容**——手语数字人 + 视障声景描述，落实无障碍环境建设法；\r
+- **基层治理**——实时客流热力 + 应急广播一键接入，提升公共安全。\r
+\r
+## 9. 风险评估与应对\r
+\r
+| 维度 | 主要风险 | 应对 |\r
+|---|---|---|\r
+| 技术 | 幻觉率 8–15%、弱网延迟 | 信源标注 + RAG 限定 + 三级降级 |\r
+| 市场 | 大厂下沉、采购周期长 | 主打中小景区 + 按调用付费，长尾卡位 |\r
+| 合规 | 文化内容审核、外籍数据出境 | 内嵌审核流、数据本地化部署 |\r
+| 参赛周期 | 范围蔓延致 MVP 延期 | 红绿灯锁定，3D / Flink / 自研一律不做；每周 Sprint 健康快照 |\r
+\r
+## 10. 结论与下阶段行动建议\r
+\r
+**结论：Build。** 痛点真实、市场增量明确、竞品有空白、技术可交付、社会价值与软件杯评审高度契合。\r
+\r
+**下阶段行动（2 周内）**\r
+1. 完成 PRD v1.0 评审，锁定 MVP 范围，Sprint 0 启动；\r
+2. 与 1–2 家 4A 试点景区签署数据合作意向书，获取知识库种子语料；\r
+3. 启动技术 Spike：端到端延迟原型 + 三级降级方案验证；\r
+4. 完成 PRFAQ 与答辩故事线初稿，确保技术演示与价值叙事同频。\r
+\r
+> 文档先行，让分歧浮上水面。如果评审或工程同学有不同意见，带证据来说服我——这比上线前再返工，便宜十倍。\r
+\r
+---\r
+\r
+## 11. 附录\r
+\r
+### 附录 A. 术语表\r
+\r
+| 术语 | 释义 |\r
+|---|---|\r
+| LBS | Location Based Service，基于位置的服务 |\r
+| RAG | Retrieval-Augmented Generation，检索增强生成 |\r
+| ASR / TTS | 语音识别 / 语音合成 |\r
+| MVP | Minimum Viable Product，最小可行产品 |\r
+| ItemCF | 基于物品的协同过滤推荐 |\r
+| BLEU | 机器翻译质量评估指标 |\r
+| CAGR | Compound Annual Growth Rate，复合年均增长率 |\r
+\r
+### 附录 B. 参考来源\r
+\r
+- 艾瑞咨询《2024 中国 AI 数字人行业研究报告》\r
+- 文旅部《"十四五"文化和旅游发展规划》\r
+- 故宫"壮壮"、敦煌"数字藏经洞"、黄山"小黄"公开案例\r
+- 三毛游、链景旅行、商汤如影、腾讯智影、讯飞星火文旅、华为盘古文旅大模型公开资料\r
+- Google Arts & Culture、Disney Imagineering 公开技术白皮书\r
+\r
+### 附录 C. 修订记录\r
+\r
+| 版本 | 日期 | 作者 | 变更说明 |\r
+|---|---|---|---|\r
+| V1.0 | 2026-05-18 | Alex | 立项评审稿首次发布 |\r
+\r
+==========\r
+\r
+===== 交付物二：《景区导览服务AI数字人——产品需求文档 PRD V1.0》=====\r
+\r
+\`\`\`\r
+┌──────────────────────────────────────────────────────────┐\r
+│                                                          │\r
+│            中国软件杯 A5 赛题                            │\r
+│                                                          │\r
+│     景区导览服务 AI 数字人 —— 产品需求文档 PRD V1.0       │\r
+│                                                          │\r
+│     文档版本：V1.0                                       │\r
+│     发布日期：2026-05-18                                 │\r
+│     文档状态：Draft（评审稿）                            │\r
+│     编制人：  Alex（产品经理）                           │\r
+│     适用范围：研发 / 设计 / 测试 / 答辩                   │\r
+│                                                          │\r
+└──────────────────────────────────────────────────────────┘\r
+\`\`\`\r
+\r
+---\r
+\r
+## 1. 文档信息\r
+\r
+| 项 | 内容 |\r
+|---|---|\r
+| 文档名称 | 景区导览服务 AI 数字人——产品需求文档 |\r
+| 项目代号 | A5 |\r
+| 版本号 | V1.0 |\r
+| 作者 | Alex（PM） |\r
+| 日期 | 2026-05-18 |\r
+| 状态 | Draft / 评审 |\r
+| 干系人 | Eng / Design / Content / 景区 BD / Legal / 评审专家 |\r
+\r
+**修订记录**\r
+\r
+| 版本 | 日期 | 作者 | 变更说明 |\r
+|---|---|---|---|\r
+| V0.5 | 2026-05-10 | Alex | 各模块 PRD 初稿（前端 / 内容 / 形象 / 数据） |\r
+| V1.0 | 2026-05-18 | Alex | 整合定稿，对齐调研报告结论，补充非功能需求与里程碑 |\r
+\r
+---\r
+\r
+## 2. 项目概述\r
+\r
+### 2.1 项目背景\r
+\r
+赛题指向四大行业痛点，均已通过一线调研交叉验证：\r
+\r
+1. **导游资源稀缺**——5A 景区旺季讲解员缺口 40%，人力扩张已触顶。\r
+2. **信息单向传递**——传统导览覆盖广却"零交互"，无法满足 Z 世代社交化、出片化诉求。\r
+3. **缺乏情感连接**——机械讲解、生硬英译，外籍与亲子用户体验断层。\r
+4. **管理盲区**——运营依赖人工巡查，低停留点位无预警、无话术干预，行为数据沉睡。\r
+\r
+四大痛点彼此咬合，必须以"前台数字人 + 后台数据脑"一体化方案破局。\r
+\r
+### 2.2 产品定位与目标用户\r
+\r
+**产品定位**：会看、会听、会讲解的 AI 讲解员；同时也是景区会思考的运营大脑。打"普惠"牌，避开大厂高价定制赛道。\r
+\r
+**目标用户**\r
+\r
+| 类型 | 细分 | 核心诉求 |\r
+|---|---|---|\r
+| C 端 | 亲子家庭 | 童趣讲解、知识徽章、互动游戏 |\r
+| C 端 | Z 世代 | 出片打卡、UGC 共创、社交分享 |\r
+| C 端 | 银发 / 外籍 / 残障 | 方言与多语种、大字幕、手语、声景描述 |\r
+| B 端 | 景区运营 | 低停留点位话术、超载预警、内容上下架 |\r
+| G 端 | 文旅主管部门 | 文化输出 KPI、安全证据链、合规呈报 |\r
+\r
+### 2.3 核心价值主张\r
+\r
+**一句话**：让每位游客拥有一位懂文化、会陪伴、随叫随到的 AI 讲解员，让每个景区拥有一个会思考的运营大脑。\r
+\r
+三大支撑点：\r
+\r
+1. **端到端闭环**——形象 + 大模型 + LBS + 知识库一体化，拒绝拼凑；\r
+2. **普惠可及**——方言、少数民族语言、手语 / 声景无障碍，覆盖被忽视的长尾游客；\r
+3. **数据反哺**——C 端讲解工具同时是 B 端智慧文旅大脑。\r
+\r
+---\r
+\r
+## 3. 产品架构图\r
+\r
+系统采用**六层分层架构**，自上而下分别为交互层、数字人层、AI 能力层、知识库层、数据层、管理后台层。各层解耦、协议化通信，支持端云协同与三级降级。\r
+\r
+\`\`\`\r
+┌──────────────────────────────────────────────────────────────┐\r
+│  ① 交互层（Interaction Layer）                               │\r
+│     · C 端：移动端 App / 微信小程序 / H5                     │\r
+│     · 输入：语音(中/英/方言) · 文本 · 拍照 · AR · 手势         │\r
+│     · 输出：流式 TTS · 字幕 · 卡片 · H5 海报                  │\r
+└──────────────────────────────────────────────────────────────┘\r
+                             ▲ ▼\r
+┌──────────────────────────────────────────────────────────────┐\r
+│  ② 数字人层（Avatar Layer）                                  │\r
+│     · Live2D 渲染引擎（中端机 ≥30 fps）                       │\r
+│     · 形象库：通用 24 + 文化主题 30+ + 自定义 IP             │\r
+│     · 唇形同步（音素级 <200ms）· 表情 / 动作驱动              │\r
+└──────────────────────────────────────────────────────────────┘\r
+                             ▲ ▼\r
+┌──────────────────────────────────────────────────────────────┐\r
+│  ③ AI 能力层（AI Capability Layer）                           │\r
+│     · ASR / TTS：讯飞                                         │\r
+│     · LLM：Qwen2.5-7B 主链路 + DeepSeek 兜底                 │\r
+│     · 编排：Dify Agent · 意图识别 · 情感分析                  │\r
+│     · 推荐：ItemCF + 标签 + Thompson Sampling                │\r
+└──────────────────────────────────────────────────────────────┘\r
+                             ▲ ▼\r
+┌──────────────────────────────────────────────────────────────┐\r
+│  ④ 知识库层（Knowledge Layer）                                │\r
+│     · 知识图谱：Neo4j（景点 / 人物 / 朝代 / 事件 / 典故…）       │\r
+│     · 向量库：Milvus + BGE-M3                                 │\r
+│     · 多模态解析：PaddleOCR · ASR · PDF Parser                │\r
+│     · RAG 限定召回 + 信源标注                                 │\r
+└──────────────────────────────────────────────────────────────┘\r
+                             ▲ ▼\r
+┌──────────────────────────────────────────────────────────────┐\r
+│  ⑤ 数据层（Data Layer）                                       │\r
+│     · 实时流：Redis Stream（行为 / 位置 / 情绪）              │\r
+│     · 业务库：MySQL · 文件：OSS                               │\r
+│     · 大屏：ECharts · 报告：H5 海报引擎                       │\r
+└──────────────────────────────────────────────────────────────┘\r
+                             ▲ ▼\r
+┌──────────────────────────────────────────────────────────────┐\r
+│  ⑥ 管理后台层（Admin Layer）                                  │\r
+│     · 内容中心 · 图谱编辑器 · 形象管理 · 推荐配置             │\r
+│     · 数据大屏 · 版本仓库 · 审核工作台                        │\r
+└──────────────────────────────────────────────────────────────┘\r
+\`\`\`\r
+\r
+**关键技术原则**\r
+- 端云协同：弱网时端侧 Live2D + 缓存讲解 + 离线 TOP100 景点包；\r
+- 流式优先：ASR / LLM / TTS 全链路流式，端到端 P95 ≤ 1.5s；\r
+- 可审计：所有讲解类回答 100% 信源标注；操作日志留存 180 天。\r
+\r
+---\r
+\r
+## 4. 功能详细需求\r
+\r
+### 4.1 前端交互模块（A5-FE-01）\r
+\r
+#### 4.1.1 模块定位\r
+C 端用户与 AI 数字人的唯一触点，承载"会看、会听、会讲解"的产品承诺。\r
+\r
+#### 4.1.2 功能树\r
+\r
+\`\`\`\r
+前端交互模块\r
+├─A. 多模态交互\r
+│   ├─语音输入·中/英/方言 ASR        P0\r
+│   ├─文本输入                       P0\r
+│   ├─拍照识景                       P0\r
+│   ├─AR 扫一扫（标牌 / 文物）        P1\r
+│   └─手势 / 手语输入                 P2\r
+├─B. 智能讲解与问答\r
+│   ├─LBS 场景化讲解                 P0\r
+│   ├─自由问答（RAG + 信源标注）      P0\r
+│   ├─内容分级·基础 / 深度 / 儿童     P0\r
+│   ├─主动推送（停留 + 画像）         P1\r
+│   └─多语种 / 方言情感 TTS          P1\r
+└─C. 系统级能力\r
+    ├─唤醒"小景"+ 一键打断           P0\r
+    ├─弱网三级降级                   P0\r
+    └─"我不确定"兜底 + 信源透明        P0\r
+\`\`\`\r
+\r
+#### 4.1.3 核心用户故事\r
+\r
+| ID | 用户角色 | 诉求 | 价值 |\r
+|---|---|---|---|\r
+| US-01 | 亲子家长 | 切换儿童版讲解 | 知识点故事化输出 |\r
+| US-02 | Z 世代 | 拍照识景生成可分享卡片 | 出片同时长知识 |\r
+| US-03 | 银发游客 | 方言唤醒 + 大字幕 | 无障碍听懂讲解 |\r
+| US-04 | 外籍游客 | 英文讲解带典故注释 | 听懂名词背后的故事 |\r
+| US-05 | 步行游客 | 走近景点自动播报 | 不掏手机也能听 |\r
+| US-06 | 任意用户 | 随时打断当前讲解 | 节奏可控不被打扰 |\r
+| US-07 | 视障游客 | 声景描述模式 | 通过声音感知环境 |\r
+\r
+#### 4.1.4 关键交互流程\r
+\r
+- **S1·LBS 自动讲解**：进入景区 → GPS + Beacon 定位 → 进入 5m 电子围栏且停留 ≥3s → 数字人播报基础版 → 用户说"讲深点" → 切深度版。\r
+- **S2·拍照识景问答**：点相机 → 拍摄 → 端侧粗筛 + 云端精排 → 2s 内返回 Top1 + 置信度 → 朗读简介 → 追问走 RAG → 带信源作答。\r
+- **S3·唤醒与打断**：说"小景小景"或长按麦克风 → TTS 在 300ms 内静音 → 收音 3s → ASR + 意图识别 → 响应新话题。\r
+\r
+#### 4.1.5 详细规格\r
+\r
+- **输入**：语音 = 普通话 + 英语 + 方言（v1 先粤 / 川）；文本 ≤ 200 字；拍照 JPG/PNG ≤ 5MB；AR 支持标牌与文物图卡。\r
+- **唤醒 / 中断**：唤醒词"小景小景"，误唤醒 ≤1 次 / 小时；语音"停"或按钮中断 < 300ms 静音。\r
+- **内容分级**：基础版（80 字核心）、深度版（300 字 + 典故 + 延伸）、儿童版（拟人对话 + 互动提问），可手动切换或按画像默认匹配。\r
+- **主动讲解触发**：①5m 地理围栏 ②停留 ≥3s ③同点位单次行程仅触发一次 ④免打扰时段用户可关闭。\r
+\r
+#### 4.1.6 边界与异常\r
+\r
+- **弱网**：一级 = 云端流式 → 二级 = 端侧 Live2D + 缓存讲解 → 三级 = 纯文字 + 离线 TOP100 景点包。\r
+- **嘈杂环境（>70dB）**：自动抬高 VAD 阈值 + 提示改用文字输入。\r
+- **识别失败**：连续 2 次置信度 <0.6，引导"换角度重拍 / 手动选景点"，绝不臆造。\r
+- **隐私**：相机 / 位置首启二次授权，数据本地化，未成年模式默认关闭主动推送。\r
+\r
+#### 4.1.7 验收标准\r
+\r
+| 指标 | 目标值 |\r
+|---|---|\r
+| 端到端响应延迟（P95） | ≤ 1.5s |\r
+| 普通话 ASR 准确率 | ≥ 95% |\r
+| 方言 ASR 准确率（粤 / 川） | ≥ 85% |\r
+| 拍照识景 Top1 准确率 | ≥ 88% |\r
+| LBS 触发位置误差 | ≤ 5m |\r
+| 唤醒响应 | ≤ 500ms |\r
+| 弱网降级成功率 | 100% |\r
+| 讲解类回答信源标注覆盖 | 100% |\r
+\r
+---\r
+\r
+### 4.2 内容引擎模块（A5-CE-01）\r
+\r
+#### 4.2.1 模块定位\r
+AI 数字人的"大脑 + 记忆"。C 端让讲解从"念稿"升级为"懂你"，B 端把内容沉淀为可审计、可复用的文旅知识资产，并产出可执行运营洞察。\r
+\r
+#### 4.2.2 功能清单\r
+\r
+- **A. 个性化推荐**：A1 路线（P0）、A2 景点（P0）、A3 食宿购（P1）、A4 天气客流动态调整（P1）\r
+- **B. 知识库管理**：B1 多模态录入 OCR/ASR/PDF（P0）、B2 知识图谱（P0）、B3 三级审核（P0）、B4 版本管理（P1）、B5 跨景区复用（P2）\r
+\r
+#### 4.2.3 核心用户故事\r
+\r
+**C 端**\r
+- 亲子 3 题问卷 10s 出"童趣 2 小时线"，亲子标签命中 ≥80%；\r
+- Z 世代线路含 ≥3 个出片点，分享回流 ≥15%；\r
+- 外籍讲典故非名词，BLEU ≥0.55、典故覆盖 ≥70%。\r
+\r
+**B 端**\r
+- 新展 PDF ≤30min 入库、≤4h 上线；\r
+- 周报自动产出"低停留 Top10 + 候选话术"；\r
+- 节假日 / 闭馆一键切版本，回滚 ≤10min。\r
+\r
+#### 4.2.4 关键流程\r
+\r
+**推荐闭环**\r
+画像采集（问卷 + LBS + 实时行为）→ 标签计算（30s 刷新）→ 多路召回（ItemCF + 标签 + 图谱）→ LR 排序 → 曝光 → 点击 / 停留 / 评分回流 → 在线学习。\r
+\r
+**知识库入库**\r
+上传 → 自动解析（PaddleOCR / 讯飞 ASR / PDF）→ 实体入 Neo4j → 三审（事实 / 合规 / 文风）→ BGE-M3 向量化 → Milvus → RAG 限定信源召回。\r
+\r
+#### 4.2.5 详细规格\r
+\r
+- **冷启动**：3 标签问卷 + 热门兜底；Explore/Exploit 新用户 7:3、老用户 2:8、节假日 3:7。\r
+- **多臂老虎机**：Thompson Sampling，按"景点 × 时段"独立赌博机。\r
+- **内容类型**：文本（MD/PDF/Word）、图片（≤10M）、音频（≤50M）、视频（≤500M）、3D 模型（GLB 仅展示不入 RAG，P1）。\r
+- **图谱实体**：景点 / 人物 / 朝代 / 事件 / 典故 / 文物 / 非遗；关系：发生于、属于、关联、同朝代、师承；每实体 ≥3 条权威信源。\r
+- **时效管理**：start/end + 优先级字段；节假日内容预排期；突发置顶播报 2min 全网生效。\r
+\r
+#### 4.2.6 后台管理界面要点\r
+\r
+工作台（待审 / 告警）→ 内容中心（批量上传 + 审核流）→ 图谱编辑器（可视化拖拽）→ 推荐配置（权重 / AB 实验）→ 数据看板（CTR / 低停留 / 审核效率）→ 版本仓库（diff + 回滚）。\r
+\r
+**界面原则**：3 次点击触达任意操作；审核页左侧问题标注、右侧原文锚定。\r
+\r
+#### 4.2.7 验收标准\r
+\r
+| 指标 | 目标 | 窗口 |\r
+|---|---|---|\r
+| 推荐 CTR | ≥ 18% | 30 天 |\r
+| 推荐线路完成率 | ≥ 35% | 60 天 |\r
+| 知识库 Recall@5 | ≥ 85% | 即测 |\r
+| RAG 幻觉率 | ≤ 5% | 60 天 |\r
+| 单条审核时效 | ≤ 4h | 30 天 |\r
+| OCR 识别准确率 | ≥ 95% | 即测 |\r
+| 冷启动满意度 | ≥ 4.0/5 | 60 天 |\r
+\r
+> 推荐 CTR ≥18% 约 65% 置信，瓶颈在种子语料规模——已纳入 2 周内试点景区签约的关键路径。\r
+\r
+---\r
+\r
+### 4.3 数字人形象模块（A5-AV-01）\r
+\r
+#### 4.3.1 模块定位\r
+形象 = 景区文化 IP 的"人格化入口"。Z 世代要"出片"、亲子要"童趣"、外籍要"懂典故"——**形象在前 3 秒决定情感锚点与讲解完播**。\r
+\r
+**北极星指标**：形象触达后讲解完播率 ↑15pp。\r
+\r
+#### 4.3.2 功能清单\r
+\r
+- **P0**：通用形象库、文化主题库、音素级唇形、基础表情 / 手势、LBS 场景匹配、B 端上下架\r
+- **P1**：B 端自定义 IP 生成、A/B 测试、方言唇形、文化舞蹈片段\r
+- **P2**：UGC 共创形象、跨景点长程形象一致性、手语数字人\r
+\r
+#### 4.3.3 核心用户故事\r
+\r
+| 场景 | 用户故事 | 验收 |\r
+|---|---|---|\r
+| C 端切换 | 作为 Z 世代游客，我可在 3 步内切换形象，使讲解更对味 | 切换 <2s、覆盖 ≥90% 景点、收藏入口可见 |\r
+| B 端配置 | 作为景区运营，我可上传素材生成专属 IP 并 A/B 测试 | 生成 <10min、灰度分流准确率 ≥99%、单景区可上架 ≥5 款 |\r
+\r
+#### 4.3.4 形象库设计\r
+\r
+| 类型 | 内容 | V1 数量 |\r
+|---|---|---|\r
+| 通用 | 老 / 中 / 青 × 男女 × 4 风格 Live2D | 24 |\r
+| 文化主题 | 古风 / 民国 / 8 民族 / 历史人物 | 30+ |\r
+| 自定义 | B 端上传图 + 文案 → AI 生成专属 IP（飞天小姐姐、迎客松爷爷） | 不限 |\r
+\r
+#### 4.3.5 驱动能力\r
+\r
+- **表情**：基础 7 类（喜怒哀乐惊惧厌）+ 文化扩展 8 类（敬仰 / 神秘 / 赞叹…）\r
+- **动作**：讲解手势 20+、指引、文化舞蹈片段（按主题）\r
+- **唇形**：中英**音素级**（同步延迟 <200ms）；方言 / 少数民族 V1**句子级**兜底\r
+- **多语唇形**：中 / 英 / 日 / 韩 + 8 大方言；对口型按音素表映射\r
+\r
+#### 4.3.6 形象与场景智能匹配\r
+\r
+LBS 触发 + 知识图谱标签匹配：进入"飞天壁画区"自动切敦煌 IP 与服饰；夜游切夜行皮肤；语种检测切外籍向形象。**规则 B 端可覆写**，命中率 ≥85%。\r
+\r
+#### 4.3.7 B 端形象管理后台\r
+\r
+上传素材 → AI 生成预览 → 内容审核（合规 & 版权）→ 灰度 A/B（按客群分流）→ 上下架 → 数据看板（喜爱度 / 切换率 / 完播率）。支持版本回滚。\r
+\r
+#### 4.3.8 验收标准\r
+\r
+| 指标 | 目标值 |\r
+|---|---|\r
+| 渲染帧率（中端机） | ≥ 30 fps |\r
+| 唇形同步延迟 | < 200 ms |\r
+| 形象切换耗时 | < 2 s |\r
+| 用户喜爱度评分 | ≥ 4.2/5 |\r
+| 场景自动匹配命中 | ≥ 85% |\r
+| A/B 分流准确率 | ≥ 99% |\r
+\r
+#### 4.3.9 Open Questions\r
+\r
+自定义 IP 版权归属（景区独占 vs 平台共享）——Legal 1 周内回复。\r
+\r
+---\r
+\r
+### 4.4 数据运营模块（A5-DA-01）\r
+\r
+#### 4.4.1 模块定位\r
+让景区第一次"看见"游客的真实感受。C 端把游程沉淀为可分享的个人记忆资产，B 端把行为数据翻译成可执行的运营动作。从"巡查驱动"转向"数据驱动"，直击管理盲区痛点。\r
+\r
+#### 4.4.2 功能清单\r
+\r
+**A. 游客感受度报告**\r
+- P0：路线热力、情感曲线、文化兴趣标签、H5 海报分享\r
+- P1：个人偏好画像、回访推荐、小红书 / 抖音模板\r
+- P2：面部表情多模态融合、跨景区记忆\r
+\r
+**B. 数据大屏**\r
+- P0：实时在线、客流热力、讲解 TOP10、问题 Top 榜、超载告警\r
+- P1：满意度趋势、交互转化漏斗、冷区 / 负面情绪告警\r
+- P2：AI 生成"今日运营建议"\r
+\r
+#### 4.4.3 核心用户故事\r
+\r
+- **Z 世代游客**：游程结束 5 分钟内收到"我的文化足迹"H5，一键分享小红书。\r
+- **景区运营经理**：大屏 30s 刷新，超载或负面情绪聚集时主动推送应急话术草稿。\r
+- **文旅局**：按周导出满意度与文化输出 KPI，作为合规呈报材料。\r
+\r
+#### 4.4.4 游客感受度报告\r
+\r
+| 项 | 内容 |\r
+|---|---|\r
+| 数据源 | 交互记录、LBS 停留、问答情绪（NLP）、主动评分、表情（授权可选） |\r
+| 内容 | 路线热力图、情感曲线、兴趣标签 Top5、偏好画像、回访推荐 |\r
+| 分享 | H5 海报（含文化徽章）、小红书 / 抖音模板、微信小程序卡片 |\r
+| 触发 | 游程结束 5 分钟内推送 |\r
+\r
+#### 4.4.5 数据大屏（1+N 布局）\r
+\r
+- **中央**：景区地图 + 实时客流热力\r
+- **周边卡片**：在线人数、TOP10 讲解、问题 Top 榜、满意度趋势、交互漏斗\r
+- **告警**：超载（密度 > 阈值）、负面情绪聚集（NLP + 地理聚合）、讲解冷区（播放 < P20）\r
+- **联动**：一键生成应急广播话术草稿，推送至运营终端\r
+\r
+#### 4.4.6 数据合规\r
+\r
+- **授权**：首次进入显式同意 + 分级（基础 / 表情 / 分享）\r
+- **脱敏**：PII 本地哈希，报告默认匿名展示\r
+- **本地化**：数据存景区私有云，跨境走合规网关\r
+- **审计**：操作可追溯，日志留存 180 天\r
+\r
+#### 4.4.7 验收标准\r
+\r
+| 指标 | 目标 |\r
+|---|---|\r
+| 大屏刷新延迟（P95） | ≤ 3s |\r
+| 报告生成时长（游程结束触发） | ≤ 8s |\r
+| 情感分析准确率（中文标注集） | ≥ 85% |\r
+| 告警准确率 | ≥ 90% |\r
+| 告警误报率 | ≤ 10% |\r
+| H5 分享转化率 | ≥ 15% |\r
+\r
+**关键取舍**：V1 只做"看见 + 建议"，不做自动干预；表情采集设默认关闭——隐私合规优先于数据丰富度。\r
+\r
+---\r
+\r
+## 5. 非功能性需求\r
+\r
+### 5.1 性能\r
+\r
+| 项 | 指标 |\r
+|---|---|\r
+| 端到端响应延迟（P95） | ≤ 1.5s |\r
+| 唤醒响应 | ≤ 500ms |\r
+| 唇形同步延迟 | < 200ms |\r
+| 大屏刷新（P95） | ≤ 3s |\r
+| 报告生成 | ≤ 8s |\r
+| 并发承载（单景区峰值） | ≥ 1 万在线 / ≥ 1000 QPS |\r
+| 端侧渲染帧率（中端机） | ≥ 30 fps |\r
+\r
+### 5.2 安全\r
+\r
+- 全链路 HTTPS / WSS；敏感字段 AES-256 加密落库。\r
+- 接口鉴权：B 端 JWT + RBAC；C 端 OAuth + 设备指纹。\r
+- 防滥用：Rate Limit、风控名单、异常行为熔断。\r
+- 内容安全：LLM 输出经合规审核流，禁词库 + 文化敏感词二次拦截。\r
+\r
+### 5.3 合规\r
+\r
+- **隐私**：相机 / 位置 / 表情首启二次授权；未成年模式默认关闭主动推送。\r
+- **数据本地化**：景区数据存私有云；外籍数据出境走合规网关。\r
+- **可审计**：操作日志留存 180 天；讲解类回答 100% 信源标注。\r
+- **无障碍**：手语数字人、声景描述、大字幕，对齐《无障碍环境建设法》。\r
+\r
+### 5.4 可扩展性\r
+\r
+- 微服务化：六层解耦，独立部署、独立扩缩容。\r
+- 端云协同：核心能力支持端侧降级，弱网三级兜底。\r
+- 模型可插拔：LLM / ASR / TTS 抽象为统一网关，按景区切换主备。\r
+- 多租户：按景区隔离知识库、形象库、数据看板，支持跨景区复用（P2）。\r
+\r
+---\r
+\r
+## 6. 项目里程碑（中国软件杯参赛节奏）\r
+\r
+总周期约 13 周，5 人团队，对齐调研报告 115–140 人天工作量。\r
+\r
+### 阶段 1 · Sprint 0 立项与原型（W1–W2，2 周）\r
+- 完成 PRD V1.0 评审与冻结；\r
+- 1–2 家试点景区签署数据合作意向；\r
+- 技术 Spike：端到端延迟原型 + 三级降级方案验证；\r
+- 形象库 5 款先行打样、知识库 1 个景区种子语料入库。\r
+\r
+**Exit Criteria**：架构图 / 接口契约 / Demo 跑通"问答 + 讲解"主链路。\r
+\r
+### 阶段 2 · MVP 开发（W3–W8，6 周）\r
+- W3–W4：前端交互模块 P0（多模态输入 + LBS + 弱网降级）；\r
+- W4–W6：内容引擎模块 P0（推荐 + 知识库 + RAG + 三审）；\r
+- W5–W7：数字人形象模块 P0（通用 + 文化主题 + 唇形）；\r
+- W6–W8：数据运营模块 P0（大屏 + 报告）。\r
+\r
+**Exit Criteria**：四模块 P0 功能全部可演示，端到端 P95 ≤ 1.5s。\r
+\r
+### 阶段 3 · 试点联调与优化（W9–W11，3 周）\r
+- 试点景区灰度，采集真实数据；\r
+- 推荐 CTR / RAG 幻觉率 / ASR 方言准确率达标调优；\r
+- 可访问性专项（手语 / 声景 / 大字幕）；\r
+- 安全 / 合规 / 压测。\r
+\r
+**Exit Criteria**：所有验收指标达标，PAC 3 基础检查通过。\r
+\r
+### 阶段 4 · 决赛冲刺与答辩准备（W12–W13，2 周）\r
+- 答辩故事线 + PRFAQ 定稿；\r
+- 演示视频 + 评审 Demo 包打磨；\r
+- 文档归档：调研报告 / PRD / 技术白皮书 / 用户手册；\r
+- 备赛预演 ≥3 轮。\r
+\r
+**Exit Criteria**：作品提交、答辩素材冻结、应急预案就绪。\r
+\r
+---\r
+\r
+## 7. 风险与开放问题\r
+\r
+### 7.1 风险登记册\r
+\r
+| 维度 | 风险 | 概率 | 影响 | 应对 |\r
+|---|---|---|---|---|\r
+| 技术 | 幻觉率 8–15%、弱网延迟 | 中 | 高 | 信源标注 + RAG 限定 + 三级降级 |\r
+| 技术 | 端侧 Live2D 中端机帧率不达标 | 中 | 中 | 提前选型骨干模型 + 降采样兜底 |\r
+| 数据 | 试点景区签约延迟，种子语料不足 | 高 | 高 | 平行接触 ≥3 家备选；公开数据兜底 |\r
+| 市场 | 大厂下沉、采购周期长 | 中 | 中 | 主打中小景区 + 按调用付费，长尾卡位 |\r
+| 合规 | 文化内容审核、外籍数据出境 | 中 | 高 | 内嵌审核流、数据本地化部署 |\r
+| 周期 | 范围蔓延致 MVP 延期 | 中 | 高 | 红绿灯锁定（3D / Flink / 自研一律不做）；每周 Sprint 健康快照 |\r
+| IP | 自定义形象版权纠纷 | 低 | 中 | Legal 协议条款 + 上传二次授权 |\r
+\r
+### 7.2 开放问题（Open Questions）\r
+\r
+1. **自定义 IP 版权归属**：景区独占 vs 平台共享——Legal 1 周内回复。\r
+2. **跨境数据通路**：外籍游客数据是否经合规网关——待与试点景区 IT 对齐。\r
+3. **方言优先级**：v1 锁定粤 / 川，是否追加吴语——视语料获取速度决定。\r
+4. **UGC 共创**：v1 不开放，v2 是否引入需求强度待用研验证。\r
+\r
+### 7.3 范围红灯（本期不做）\r
+\r
+- 实时 3D MetaHuman\r
+- Kafka + Flink 实时计算栈\r
+- 基座模型自研微调\r
+- 全息投影、VR 头显\r
+- 跨景区账号互通\r
+\r
+> 范围已锁。任何"再加一个"请求请走变更评估流程——不默默吸收。\r
+\r
+---\r
+\r
+## 8. 附录\r
+\r
+### 附录 A. 术语表\r
+\r
+| 术语 | 释义 |\r
+|---|---|\r
+| LBS | Location Based Service，基于位置的服务 |\r
+| RAG | Retrieval-Augmented Generation，检索增强生成 |\r
+| ASR / TTS | Automatic Speech Recognition / Text-to-Speech |\r
+| VAD | Voice Activity Detection，语音活动检测 |\r
+| ItemCF | 基于物品的协同过滤 |\r
+| BGE-M3 | 多语言通用向量模型 |\r
+| LR | Logistic Regression，逻辑回归排序 |\r
+| BLEU | 机器翻译质量评估 |\r
+| MVP | Minimum Viable Product，最小可行产品 |\r
+| PRFAQ | Press Release + FAQ，倒推式产品发布稿 |\r
+| PAC 3 | PDF Accessibility Checker 3，PDF 无障碍校验 |\r
+| MoSCoW | Must/Should/Could/Won't，优先级框架 |\r
+\r
+### 附录 B. 参考资料\r
+\r
+- 《景区导览服务 AI 数字人——产品调研报告 V1.0》（同期发布）\r
+- 中国软件杯 A5 赛题官方文档\r
+- 《"十四五"文化和旅游发展规划》\r
+- 《无障碍环境建设法》\r
+- 艾瑞咨询《2024 中国 AI 数字人行业研究报告》\r
+- 故宫"壮壮"、敦煌"数字藏经洞"、黄山"小黄"公开案例\r
+- Neo4j / Milvus / Dify / Qwen2.5 / DeepSeek / 讯飞星火 / PaddleOCR / MuseTalk / Live2D 官方文档\r
+\r
+### 附录 C. 模块编号索引\r
+\r
+| 编号 | 模块 |\r
+|---|---|\r
+| A5-FE-01 | 前端交互模块 |\r
+| A5-CE-01 | 内容引擎模块 |\r
+| A5-AV-01 | 数字人形象模块 |\r
+| A5-DA-01 | 数据运营模块 |\r
+\r
+— 文档结束 —`,Cme=`# 中国软件杯 2026 A5 赛题 PRD：景区导览服务 AI 数字人\r
+\r
+版本：V1.1  \r
+日期：2026-05-19  \r
+状态：4周冲刺评审稿  \r
+资料来源：\`AI数字人导游_调研分析报告.docx\`、\`docs/index.md\`、\`ao-output/景区导览AI数字人产品调研与PRD工作流-2026-05-18T15-51-00/\`、产品/设计/架构 Agent 分析结果\r
+\r
+## 1. 执行摘要\r
+\r
+本项目面向中国软件杯 2026 年 A5 赛题，目标是构建一个面向景区导览场景的 AI 数字人系统。当前可用时间从原设想的中长期参赛节奏压缩为 4 周，因此产品必须从“完整平台 PRD”调整为“4 周可演示、可验证、可答辩”的冲刺版本。产品不做泛旅游平台，也不做票务、电商、社交等外围能力，而是聚焦“景区内导览服务”这一高频刚需：游客侧提供会看、会听、会讲解、可追问的 AI 数字人导览；景区侧提供知识库管理、数字人形象配置、数据大屏与游客感受度报告；文旅主管侧沉淀文化传播、安全治理和合规留痕证据链。\r
+\r
+核心判断：该赛题的胜负点不在“是否能接一个大模型聊天”，而在能否形成“AI 数字人 + RAG 知识库 + LBS 场景导览 + 数据反哺运营”的闭环。4 周版本只承诺主链路闭环与关键增强的可解释演示，以小而完整的单景区闭环压过“大而空”的平台叙事。\r
+\r
+## 2. 项目背景与问题定义\r
+\r
+### 2.1 行业背景\r
+\r
+文旅数字化从“锦上添花”进入“基础能力”阶段。景区正在面对游客结构年轻化、出境入境恢复、多语种服务需求增加、讲解人员供给不足、运营数据颗粒度不足等叠加压力。与此同时，大模型、实时语音识别、TTS、RAG、2D/Live2D 数字人、轻量端云协同已经具备比赛周期内可落地的工程基础。\r
+\r
+### 2.2 赛题痛点\r
+\r
+| 痛点 | 现状表现 | 产品机会 |\r
+| --- | --- | --- |\r
+| 导游资源稀缺 | 旺季讲解员不足，中小景区缺少常驻专业导游 | 7x24 小时 AI 导览，降低人力峰值压力 |\r
+| 信息单向传递 | 录音讲解固定，游客无法追问、无法获得个性化内容 | RAG 问答、多轮追问、分层讲解 |\r
+| 缺乏情感连接 | 传统讲解设备冷冰冰，缺少陪伴感和文化 IP 记忆点 | 情感化数字人、文化主题形象、表情动作 |\r
+| 管理盲区 | 景区不知道游客问什么、在哪停留少、为什么不满意 | 数据大屏、热门问题、低停留点、运营建议 |\r
+| 内容更新滞后 | 传统导览设备内容更新成本高，节假日/闭馆通知难热更新 | 知识库后台、审核流、版本管理 |\r
+\r
+## 3. 产品定位\r
+\r
+一句话定位：让每位游客拥有一位懂文化、会陪伴、随叫随到的 AI 讲解员，让每个景区拥有一个会思考的运营大脑。\r
+\r
+产品形态：\r
+\r
+- C 端：H5/小程序式 AI 数字人导览入口，支持扫码进入、语音/文字/拍照交互、LBS 主动讲解、游后报告。\r
+- B 端：景区运营后台，支持知识库上传、内容审核、数字人形象配置、数据大屏、感受度报告。\r
+- G 端：文旅监管/示范项目视角，支持文化传播指标、安全治理数据、合规审计导出。\r
+\r
+核心差异化：\r
+\r
+1. 端到端闭环：形象、语音、大模型、知识库、LBS、数据大屏一体化，不是简单拼接。\r
+2. 普惠可及：面向中小景区，强调轻量部署、方言/多语种、银发与无障碍友好。\r
+3. 数据反哺：游客交互不止用于回答问题，还反哺景区运营与文旅治理。\r
+\r
+## 4. 目标用户与核心场景\r
+\r
+### 4.1 用户分层\r
+\r
+| 用户类型 | 代表用户 | 核心诉求 | 关键成功体验 |\r
+| --- | --- | --- | --- |\r
+| C 端亲子家庭 | 带孩子出游的父母 | 趣味讲解、寓教于乐、儿童能听懂 | 儿童版讲解、互动问答、知识徽章 |\r
+| C 端 Z 世代 | 爱拍照分享的年轻游客 | 出片、社交分享、个性路线 | 拍照识景、打卡路线、H5 文化足迹 |\r
+| C 端银发游客 | 50 岁以上游客 | 操作简单、字大、语音优先 | 大字幕、语音唤醒、慢速讲解 |\r
+| C 端外籍游客 | 入境游客 | 多语种、典故解释、文化语境 | 英/日/韩讲解、非直译式解释 |\r
+| C 端无障碍人群 | 视障/听障游客 | 声景描述、字幕、手语或大字 | 可访问性模式、声景描述 |\r
+| B 端景区运营 | 运营经理/讲解主管 | 降低人力压力，知道游客真正关心什么 | 热门问答、低停留点、应急建议 |\r
+| G 端主管部门 | 文旅部门 | 文化传播、公共安全、合规留痕 | 周报/月报、审计日志、示范价值 |\r
+\r
+### 4.2 核心用户旅程\r
+\r
+| 阶段 | 游客触点 | 痛点 | 产品机会 |\r
+| --- | --- | --- | --- |\r
+| 游前 | 扫码、选择偏好、设置语言 | 不知道怎么规划路线 | 偏好问卷、推荐路线、景区热度提示 |\r
+| 游中 | 走近景点、提问、拍照识景 | 想问但无人回答，讲解过深或过浅 | LBS 主动讲解、分层讲解、可追问 |\r
+| 游后 | 生成游记、分享、回访 | 游览记忆弱，难沉淀文化兴趣 | 文化足迹 H5、兴趣标签、回访推荐 |\r
+| 运营中 | 后台查看数据、更新内容 | 不知道游客哪里不满意 | 大屏、感受度报告、内容热更新 |\r
+\r
+## 5. 产品范围\r
+\r
+### 5.1 MVP 必做\r
+\r
+- 语音/文本交互\r
+- 基于景区知识库的 RAG 问答\r
+- 基础 2D/Live2D 数字人展示与口型同步\r
+- LBS 主动讲解\r
+- 知识库后台上传、审核、更新\r
+- 个性化路线/景点推荐\r
+- 游客感受度报告\r
+- 景区数据大屏\r
+- 弱网降级与信源标注\r
+\r
+### 5.2 P1 迭代\r
+\r
+- 拍照识景\r
+- 多语言/方言增强\r
+- 文化主题数字人形象配置\r
+- H5 游记分享\r
+- 内容版本回滚\r
+- 运营建议自动生成\r
+\r
+### 5.3 本期不做\r
+\r
+- 票务购买、支付、电商\r
+- 泛旅游平台与跨景区社交账号体系\r
+- VR/全息投影/重硬件体验\r
+- 全身实时 3D MetaHuman\r
+- 自研底层大模型\r
+- Kafka + Flink 级实时计算平台\r
+- 跨景区账号互通\r
+\r
+## 6. 系统架构\r
+\r
+系统采用六层架构：\r
+\r
+1. 交互层：H5/小程序/大屏终端，负责语音、文字、图片、LBS 触发与结果呈现。\r
+2. 数字人层：2D/Live2D 形象、表情动作、口型同步、文化主题皮肤。\r
+3. AI 能力层：ASR、TTS、LLM、RAG、情感分析、推荐排序。\r
+4. 知识库层：文档解析、OCR/ASR 入库、知识图谱、向量库、审核流。\r
+5. 数据层：埋点、会话日志、满意度、热点问题、低停留点、客流热力。\r
+6. 管理后台层：内容管理、形象管理、运营看板、合规配置、报表导出。\r
+\r
+主链路：游客输入问题 -> ASR/文本解析 -> 意图识别 -> RAG 检索 -> LLM 生成 -> 合规校验 -> TTS -> 数字人口型/表情驱动 -> 前端展示 -> 埋点回流。\r
+\r
+## 7. 功能需求\r
+\r
+### 7.1 A5-FE-01 前端交互模块\r
+\r
+模块定位：游客进入景区后的主要服务入口，负责把 AI 能力包装成自然、低门槛、有陪伴感的导览体验。\r
+\r
+功能树：\r
+\r
+| 功能 | 优先级 | 说明 |\r
+| --- | --- | --- |\r
+| 语音输入 | P0 | 支持普通话，预留方言入口 |\r
+| 文本输入 | P0 | 噪声、弱网、无障碍兜底 |\r
+| LBS 主动讲解 | P0 | 进入景点围栏并停留后触发 |\r
+| 分层讲解 | P0 | 基础版、深度版、儿童版 |\r
+| 唤醒/打断 | P0 | 支持中断当前讲解并追问 |\r
+| 弱网降级 | P0 | 缓存热门讲解、文本优先、离线提示 |\r
+| 拍照识景 | P1 | 上传图片识别景点/文物并讲解 |\r
+| 多语种 | P1 | 英/日/韩优先，方言按试点语料推进 |\r
+| AR 扫一扫 | P2 | 轻量增强，不做重硬件沉浸 |\r
+\r
+关键流程：\r
+\r
+1. 游客扫码进入，选择语言、年龄段、兴趣标签。\r
+2. 到达景点围栏，停留超过阈值后弹出主动讲解。\r
+3. 游客语音追问，系统检索知识库并生成回答。\r
+4. 数字人通过语音、字幕、表情和卡片同步呈现。\r
+5. 游客点赞/点踩或继续追问，数据回流后台。\r
+\r
+验收标准：\r
+\r
+- 端到端响应 P95 <= 1.5s；压缩 Demo 阶段可先接受 <= 5s。\r
+- 普通话 ASR 准确率 >= 95%，方言 ASR >= 85%。\r
+- LBS 触发误差 <= 5m。\r
+- 弱网降级成功率 100%。\r
+- 讲解类回答信源标注覆盖 100%。\r
+\r
+### 7.2 A5-CE-01 内容引擎模块\r
+\r
+模块定位：AI 数字人的大脑与记忆，让讲解从“念稿”升级为“懂你”，同时让景区资料成为可审计、可复用、可热更新的知识资产。\r
+\r
+功能树：\r
+\r
+| 功能 | 优先级 | 说明 |\r
+| --- | --- | --- |\r
+| 文档上传 | P0 | 支持 Word/PDF/TXT/图片 |\r
+| OCR/解析 | P0 | 提取结构化文本与元信息 |\r
+| RAG 检索 | P0 | 向量召回 + 重排 + 信源引用 |\r
+| 内容审核 | P0 | 事实、合规、文风三级审核 |\r
+| 热更新 | P0 | 节假日、闭馆、活动通知可快速生效 |\r
+| 路线推荐 | P0 | 基于兴趣、时间、位置推荐 |\r
+| 知识图谱 | P1 | 景点/人物/朝代/事件/典故关系 |\r
+| 版本回滚 | P1 | 支持错误内容快速回退 |\r
+| 跨景区复用 | P2 | 多租户知识资产复用 |\r
+\r
+推荐闭环：用户画像 -> 多路召回 -> 排序 -> 曝光 -> 点击/停留/评分回流 -> 策略更新。\r
+\r
+验收标准：\r
+\r
+- 知识库 Recall@5 >= 85%。\r
+- RAG 幻觉率 <= 5%。\r
+- OCR 准确率 >= 95%。\r
+- 单条内容审核时效 <= 4h。\r
+- 推荐 CTR >= 18%，推荐线路完成率 >= 35%。\r
+\r
+### 7.3 A5-AV-01 数字人形象模块\r
+\r
+模块定位：数字人形象是景区文化 IP 的人格化入口，负责建立情感连接、记忆点和答辩展示张力。\r
+\r
+功能树：\r
+\r
+| 功能 | 优先级 | 说明 |\r
+| --- | --- | --- |\r
+| 通用形象库 | P0 | 不同年龄、性别、风格的预设形象 |\r
+| 文化主题形象 | P0 | 古风、民国、少数民族、历史人物风格 |\r
+| 口型同步 | P0 | 与 TTS 音频同步 |\r
+| 基础表情动作 | P0 | 微笑、惊叹、指引、讲解手势 |\r
+| B 端上下架 | P0 | 景区可选择并发布形象 |\r
+| 景点智能匹配 | P1 | 按景点文化标签切换形象/服饰 |\r
+| 自定义 IP | P1 | 上传素材生成景区专属形象 |\r
+| 手语数字人 | P2 | 无障碍增强能力 |\r
+\r
+验收标准：\r
+\r
+- 中端设备渲染帧率 >= 30fps。\r
+- 唇形同步延迟 < 200ms。\r
+- 形象切换耗时 < 2s。\r
+- 用户喜爱度 >= 4.2/5。\r
+- 场景自动匹配命中率 >= 85%。\r
+\r
+### 7.4 A5-DA-01 数据运营模块\r
+\r
+模块定位：把游客真实感受转化为景区可执行的运营动作，解决“管理盲区”。\r
+\r
+功能树：\r
+\r
+| 功能 | 优先级 | 说明 |\r
+| --- | --- | --- |\r
+| 实时在线人数 | P0 | 展示服务人次与当前在线 |\r
+| 客流热力 | P0 | 展示景点区域热度 |\r
+| 热门问题 | P0 | 发现游客真实关注点 |\r
+| 满意度趋势 | P0 | 点赞/点踩/情绪综合分析 |\r
+| 游客感受度报告 | P0 | 游程结束生成个人报告 |\r
+| 低停留点识别 | P1 | 找出讲解或动线问题 |\r
+| 负面情绪预警 | P1 | 聚集性负面反馈提醒 |\r
+| 今日运营建议 | P2 | AI 生成改进建议 |\r
+\r
+验收标准：\r
+\r
+- 大屏刷新 P95 <= 3s。\r
+- 游后报告生成 <= 8s。\r
+- 情感分析准确率 >= 85%。\r
+- 预警准确率 >= 90%，误报率 <= 10%。\r
+- H5 分享转化率 >= 15%。\r
+\r
+## 8. 非功能需求\r
+\r
+### 8.1 性能\r
+\r
+- 峰值支持单景区 1 万在线、1000 QPS 的架构预案。\r
+- 热门景点讲解内容缓存，减少大模型实时调用压力。\r
+- 语音链路采用流式 ASR/TTS，降低首字响应。\r
+\r
+### 8.2 安全与合规\r
+\r
+- 相机、位置、表情采集均需显式授权。\r
+- 未成年人模式默认关闭主动推送和敏感采集。\r
+- PII 数据脱敏存储，报表默认匿名展示。\r
+- 景区数据支持本地化/私有云部署。\r
+- 所有讲解类回答保留信源，操作日志留存 180 天。\r
+\r
+### 8.3 可访问性\r
+\r
+- 大字幕、语速调整、语音优先模式。\r
+- 视障声景描述。\r
+- 移动端按钮可单手操作，字体不低于可读下限。\r
+- 颜色状态不能作为唯一信息表达。\r
+\r
+## 9. 技术选型建议\r
+\r
+| 模块 | 推荐方案 | 备选 | 判定 |\r
+| --- | --- | --- | --- |\r
+| LLM | Qwen/DeepSeek API 或本地 7B 模型 | 文心/讯飞 | 绿 |\r
+| RAG | Dify/RAGFlow + Milvus/Chroma | LangChain/LlamaIndex | 绿 |\r
+| ASR | FunASR/Whisper | 讯飞 API | 绿 |\r
+| TTS | CosyVoice/Edge TTS | GPT-SoVITS | 绿 |\r
+| 数字人 | Live2D/MuseTalk/Wav2Lip | EchoMimic | 黄 |\r
+| 推荐 | 标签 + ItemCF + 简单排序 | 多臂老虎机 | 绿 |\r
+| 数据大屏 | ECharts/AntV | 自研图表 | 绿 |\r
+| 实时流 | Redis Stream | Kafka/Flink | 黄/红 |\r
+| 3D 数字人 | 不做 | MetaHuman/Unity | 红 |\r
+\r
+## 10. 指标体系\r
+\r
+| 指标 | 目标值 | 监测方式 |\r
+| --- | --- | --- |\r
+| 问答准确率 | >= 90% | 人工标注集 + 回答评分 |\r
+| RAG 幻觉率 | <= 5% | 信源抽检 |\r
+| 信源标注覆盖 | 100% | 日志校验 |\r
+| 端到端响应 | P95 <= 1.5s | 链路埋点 |\r
+| 普通话 ASR | >= 95% | 测试集 |\r
+| 方言 ASR | >= 85% | 试点语料 |\r
+| 拍照识景 Top1 | >= 88% | 图片测试集 |\r
+| 渲染帧率 | >= 30fps | 端侧监测 |\r
+| 唇形同步 | < 200ms | 自动检测 + 人审 |\r
+| 推荐 CTR | >= 18% | 曝光点击日志 |\r
+| 推荐线路完成率 | >= 35% | LBS 轨迹 |\r
+| 大屏刷新 | P95 <= 3s | 前端性能埋点 |\r
+| 报告生成 | <= 8s | 任务日志 |\r
+| H5 分享转化率 | >= 15% | 分享链路埋点 |\r
+\r
+## 11. 4周冲刺里程碑\r
+\r
+原 PRD 中的 13 周计划可作为理想开发节奏，但当前项目只有 4 周，应按“先闭环、再增强、最后答辩固化”的压缩节奏执行。\r
+\r
+| 阶段 | 时间 | 目标 | 交付物 |\r
+| --- | --- | --- | --- |\r
+| 范围冻结与主链路 Spike | 第 1 周 | 冻结 4 周范围，跑通知识库问答与信源展示 | PRD V1.1、单景区种子语料、RAG 问答 Demo |\r
+| 语音与数字人联调 | 第 2 周 | 接入 ASR/TTS、基础数字人播报、LBS 模拟触发 | C 端导览 Demo、数字人口型/字幕、弱网降级 |\r
+| 后台与数据闭环 | 第 3 周 | 完成知识库上传、形象配置、热门问题与感受度报告 | B 端后台、数据大屏、游客报告样例 |\r
+| 压测打磨与答辩固化 | 第 4 周 | 指标验证、风险兜底、文档和演示视频固化 | 演示脚本、技术白皮书、最终 PRD、答辩材料 |\r
+\r
+4 周版本的取舍原则：\r
+\r
+- P0 主链路必须真实可跑，不用静态假数据伪装核心能力。\r
+- P1 能力可以做成“可切换演示模块”，但必须写清楚依赖和降级策略。\r
+- P2 和 Won’t Have 必须明确出现在答辩材料里，证明范围控制能力。\r
+- 指标区分“4 周冲刺值”和“完整目标值”，避免过度承诺。\r
+\r
+## 12. 原完整里程碑计划（理想版）\r
+\r
+| 阶段 | 时间 | 目标 | 交付物 |\r
+| --- | --- | --- | --- |\r
+| Sprint 0 立项与原型 | W1-W2 | 冻结 PRD，跑通主链路 Spike | PRD、架构图、知识库 Demo、形象样张 |\r
+| MVP 开发 | W3-W8 | 完成四大 P0 模块 | C 端导览、B 端后台、数据大屏、报告 |\r
+| 试点联调与优化 | W9-W11 | 指标达标，完成压测与可访问性专项 | 试点数据、测试报告、优化清单 |\r
+| 答辩冲刺 | W12-W13 | 形成答辩材料和演示闭环 | 演示视频、PPT、白皮书、用户手册 |\r
+\r
+## 13. 风险与应对\r
+\r
+| 风险 | 概率 | 影响 | 应对 |\r
+| --- | --- | --- | --- |\r
+| RAG 幻觉 | 中 | 高 | 信源标注、限定回答、人工审核高风险内容 |\r
+| 端到端延迟过高 | 中 | 高 | 流式链路、缓存热门讲解、文本优先降级 |\r
+| 试点语料不足 | 高 | 高 | 并行接触多家景区，公开资料兜底，先做单景区闭环 |\r
+| 数字人口型不同步 | 中 | 中 | 选轻量方案，优先口型稳定，不追求全身 3D |\r
+| 合规争议 | 中 | 高 | 显式授权、默认关闭敏感采集、本地化部署 |\r
+| 范围蔓延 | 中 | 高 | 红线清单锁定，不碰票务、社交、重硬件 |\r
+| 大厂下沉 | 中 | 中 | 主打中小景区、低成本、轻量 SaaS、运营可用 |\r
+\r
+## 14. Agent 编排方案\r
+\r
+本次 PRD 与网页设计采用多角色协作视角：\r
+\r
+| Agent 人格 | 负责内容 | 输出用途 |\r
+| --- | --- | --- |\r
+| 产品经理 | 目标用户、范围边界、MVP 路线、指标与风险 | PRD 主体 |\r
+| UX/UI 设计师 | 评审型决策台、信息架构、交互、移动适配 | React 页面结构 |\r
+| 软件架构师 | 仓库结构、Vite 构建、GitHub Pages 发布路径 | 工程落地方案 |\r
+| 技术架构师 | AI/RAG/ASR/TTS/数字人可行性 | 技术选型 |\r
+| 数据运营产品经理 | 大屏、感受度报告、指标体系 | 数据模块 |\r
+| 内容引擎产品经理 | 知识库、审核流、推荐闭环 | 内容模块 |\r
+| 数字人产品经理 | 形象库、口型、动作、文化 IP | 形象模块 |\r
+\r
+## 15. 开放问题\r
+\r
+1. 试点景区能否在 2 周内提供可用语料与授权素材？\r
+2. 方言优先级是否锁定粤语/四川话，是否加入吴语？\r
+3. 自定义景区 IP 的版权归属是景区独占还是平台复用？\r
+4. 外籍游客数据是否需要跨境合规网关？\r
+5. 演示阶段端到端响应目标是严格 1.5s，还是先按 5s 可用链路交付再优化？\r
+\r
+## 16. 结论\r
+\r
+建议 Build。项目痛点真实，技术方案可控，竞品闭环不足，且文化传播、无障碍服务、中小景区普惠、公共安全治理均符合中国软件杯评审关注点。成功关键在于坚持范围边界，先做单景区闭环，把“能讲解、可追问、可运营、可验证”做到扎实。\r
+`,wme=`# 景区导览 AI 数字人\r
+\r
+这是将原 Word 调研报告整理后的 Markdown 版本，也是 GitHub Pages 的静态入口说明。\r
+\r
+## 发布内容\r
+\r
+- React 站点：\`./app/\`\r
+- Markdown 原文：当前文件\r
+- PRD 主文档：\`prd-a5-ai-digital-human.md\`\r
+- 资料库：\`ao-output/\` 下的步骤文档\r
+\r
+## 页面结构\r
+\r
+- 总览\r
+- PRD 重点\r
+- 资料库\r
+- 竞品分析\r
+- 4 周节奏\r
+- 指标与验证\r
+\r
+## 说明\r
+\r
+本项目保留原始调研材料，同时将内容重新编排为可浏览、可验证、可发布的网页。\r
+`,Tme=[{to:`/guide`,label:`C端导览`},{to:`/dashboard`,label:`数据大屏`},{to:`/knowledge`,label:`知识库`},{to:`/review`,label:`内容审核`},{to:`/digital-human`,label:`数字人配置`},{to:`/settings`,label:`系统设置`},{to:`/command`,label:`指挥中心`},{to:`/prd`,label:`PRD`},{to:`/library`,label:`资料库`},{to:`/competitors`,label:`竞品`},{to:`/timeline`,label:`4周节奏`},{to:`/validation`,label:`指标与验证`}],Eme=[`4周只交付可演示、可解释、可验收的主链路`,`把 ao-output 的内容全部编入资料库，点开即可阅读原文`,`把 PRD 重点、竞品结论、评分标准分开呈现`],Dme=[{code:`A5-FE-01`,title:`前端交互`,summary:`这是游客第一次接触产品的地方，只做主链路，不做通用平台。`,mustHave:[`扫码 / 语音 / 文本三种入口至少保住两种`,`问答结果要能看到来源，不接受黑盒回答`,`多轮对话要保持上下文，不要每次都重新开始`,`弱网场景要能降级，别把游客留在空白页`],shouldHave:[`方言与多语种`,`拍照识景`,`移动端自适应`],outOfScope:[`票务、支付、会员体系`,`泛旅游平台能力`]},{code:`A5-CE-01`,title:`内容引擎`,summary:`负责把景区资料变成可检索、可更新、可追溯的知识库。`,mustHave:[`Word / PDF / 图片资料可入库`,`OCR、切分、向量化、检索、引用链路完整`,`内容更新后能看到版本变化`,`审核后再对外回答，避免错讲`],shouldHave:[`知识图谱`,`推荐线路`,`版本回滚`],outOfScope:[`自建基础大模型`,`超大规模企业知识平台`]},{code:`A5-AV-01`,title:`数字人形象`,summary:`用低成本方式做出有记忆点的景区讲解形象，不追求全身实时 3D。`,mustHave:[`通用形象库`,`文化主题形象`,`口型同步`,`基础表情与动作`],shouldHave:[`景点自动适配`,`IP 自定义`,`A/B 测试`],outOfScope:[`全身实时 3D 渲染`,`高算力沉浸式 VR 方案`]},{code:`A5-DA-01`,title:`数据运营`,summary:`把游客行为沉淀为景区运营动作，不只看热闹，也要能落地。`,mustHave:[`服务人次、热门问题、满意度趋势`,`情感反馈与关注点统计`,`数据大屏`,`周报 / 月报自动生成`],shouldHave:[`低停留点识别`,`高频负面反馈聚类`,`运营建议`],outOfScope:[`复杂商业智能平台`,`跨景区统一经营中台`]}],Z9=[{id:`intake`,title:`游客提问`,detail:`扫码、语音、文本输入`,note:`入口尽量少，动作尽量直。`},{id:`retrieve`,title:`检索知识库`,detail:`景点资料、规则说明、路线推荐`,note:`先找证据，再组织回答。`},{id:`generate`,title:`生成回答`,detail:`大模型根据检索内容组装回答`,note:`控制长度、引用来源、避免编造。`},{id:`speak`,title:`语音播报`,detail:`TTS 支持普通话 / 多语种 / 方言`,note:`语速、停顿、情绪要可控。`},{id:`avatar`,title:`数字人出镜`,detail:`口型、表情、姿态同步输出`,note:`形象只负责承载，不抢内容。`},{id:`ops`,title:`运营回流`,detail:`热问、停留、满意度、分享率`,note:`数据回流给内容和运营。`}],Q9=[{id:`summary`,title:`工作流总览`,role:`总入口`,file:`ao-output/…/summary.md`,summary:`10 个步骤的完整产出总览，适合作为资料库入口。`,focus:[`总览`,`产物结构`,`交付范围`],content:fme},{id:`trend`,title:`趋势研究`,role:`背景材料`,file:`ao-output/…/steps/1-trend_research.md`,summary:`政策窗口、市场规模、行业痛点和技术成熟度。`,focus:[`政策`,`市场`,`落地场景`],content:pme},{id:`users`,title:`用户研究`,role:`背景材料`,file:`ao-output/…/steps/2-user_research.md`,summary:`亲子、银发、Z 世代、文史爱好者和景区管理者的核心诉求。`,focus:[`用户画像`,`场景`,`需求优先级`],content:mme},{id:`competitors`,title:`竞品分析原文`,role:`背景材料`,file:`ao-output/…/steps/3-competitor_analysis.md`,summary:`把市场头部案例和平台级竞品拉到一张表里。`,focus:[`竞品矩阵`,`差异化机会`,`空白区`],content:hme},{id:`tech`,title:`技术可行性`,role:`背景材料`,file:`ao-output/…/steps/4-tech_feasibility.md`,summary:`ASR、TTS、RAG、数字人和大屏方案的选型依据。`,focus:[`技术选型`,`风险`,`工作量`],content:gme},{id:`report`,title:`调研报告`,role:`总论`,file:`ao-output/…/steps/5-research_report.md`,summary:`项目摘要、立项依据、商业判断与技术判断。`,focus:[`结论`,`立项`,`范围判断`],content:_me},{id:`interaction`,title:`前端交互 PRD`,role:`PRD 重点`,file:`ao-output/…/steps/6-prd_interaction.md`,summary:`游客侧唯一入口，决定第一印象和主链路体验。`,focus:[`入口`,`对话`,`交互反馈`],content:vme},{id:`content`,title:`内容引擎 PRD`,role:`PRD 重点`,file:`ao-output/…/steps/7-prd_content_engine.md`,summary:`知识库管理、审核、版本、推荐线路。`,focus:[`入库`,`检索`,`审核`],content:yme},{id:`avatar`,title:`数字人形象 PRD`,role:`PRD 重点`,file:`ao-output/…/steps/8-prd_digital_human.md`,summary:`形象库、文化 IP、口型同步和景点适配。`,focus:[`形象`,`口型`,`IP`],content:bme},{id:`analytics`,title:`数据运营 PRD`,role:`PRD 重点`,file:`ao-output/…/steps/9-prd_analytics.md`,summary:`数据大屏、情感反馈、周报与运营建议。`,focus:[`指标`,`看板`,`运营动作`],content:xme},{id:`final`,title:`最终交付`,role:`收口文档`,file:`ao-output/…/steps/10-final_delivery.md`,summary:`把调研和 PRD 合并成最终可交付稿。`,focus:[`收口`,`说明`,`版本管理`],content:Sme},{id:`prd`,title:`完整 PRD`,role:`主文档`,file:`prd-a5-ai-digital-human.md`,summary:`面向评审的完整产品说明书。`,focus:[`主链路`,`版本`,`验收`],content:Cme},{id:`converted`,title:`Word 转 Markdown`,role:`原始整理稿`,file:`docs/index.md`,summary:`原 Word 报告整理后的 Markdown 版本，便于网页阅读与 GitHub Pages 发布。`,focus:[`原文整理`,`网页展示`,`可读性`],content:wme}],Ome=[{name:`三毛游`,type:`导览 App`,interaction:`弱`,knowledge:`弱`,avatar:`无`,analytics:`弱`,note:`覆盖广，但交互和闭环都不完整。`},{name:`氢气球`,type:`旅行内容工具`,interaction:`弱`,knowledge:`弱`,avatar:`无`,analytics:`无`,note:`更偏内容分发，不是景区内讲解闭环。`},{name:`链景旅行`,type:`景区工具`,interaction:`中`,knowledge:`中`,avatar:`无`,analytics:`中`,note:`有数据看板，但数字人和知识管理仍浅。`},{name:`景区官方小程序`,type:`官方入口`,interaction:`弱`,knowledge:`无`,avatar:`无`,analytics:`无`,note:`有入口，没有讲解和服务闭环。`},{name:`百度希加加`,type:`数字人平台`,interaction:`强`,knowledge:`中`,avatar:`强`,analytics:`中`,note:`强在数字人，但不是景区知识闭环产品。`},{name:`商汤如影`,type:`数字人平台`,interaction:`强`,knowledge:`弱`,avatar:`强`,analytics:`弱`,note:`形象能力强，但景区业务不是核心。`}],kme=[`竞品普遍强在单点，不强在闭环。`,`真正空白的是“景区知识库 + 数字人 + 数据回流”的一体化方案。`,`4 周版不能贪全，要把能演示、能解释、能验收的链路先做稳。`],Ame=[{metric:`问答准确率`,pass:`≥ 90%`,target:`≥ 95%`,fail:`< 85%`,evidence:`抽检 100 条核心问答，按人工标准核对。`},{metric:`检索命中率`,pass:`≥ 85%`,target:`≥ 92%`,fail:`< 80%`,evidence:`看前 5 条检索结果是否命中正确资料。`},{metric:`端到端响应`,pass:`≤ 5 秒`,target:`≤ 3 秒`,fail:`> 8 秒`,evidence:`从用户发问到看到完整回答的总时长。`},{metric:`口型同步`,pass:`≤ 200ms 偏差`,target:`≤ 120ms 偏差`,fail:`> 300ms 偏差`,evidence:`看播报视频是否出现明显对不上嘴的问题。`},{metric:`大屏刷新`,pass:`≤ 3 秒`,target:`≤ 1 秒`,fail:`> 5 秒`,evidence:`看实时指标是否能跟上高频访问。`},{metric:`分享转化`,pass:`≥ 10%`,target:`≥ 15%`,fail:`< 8%`,evidence:`观察游客是否愿意把结果页转成外部传播。`}],jme=[{week:`第 1 周`,title:`锁范围，补资料`,deliverables:[`冻结 PRD 主链路`,`整理知识库样例`,`补齐页面信息架构`,`搭出首页和资料库原型`],checkpoint:`能让评审一眼看懂“做什么、不做什么”。`},{week:`第 2 周`,title:`打通交互链路`,deliverables:[`接入问答链路`,`完成基础数字人播报`,`让 React Flow 展示完整流程`,`把 Markdown 原文接到页面里`],checkpoint:`游客能从问题走到答案，且能看到原文依据。`},{week:`第 3 周`,title:`补竞品和指标`,deliverables:[`把竞品表和评分标准补全`,`完善指标定义`,`增加数据看板示例`,`做关键页面动效`],checkpoint:`不再只是好看，要能解释为什么这样做。`},{week:`第 4 周`,title:`压测与收口`,deliverables:[`整理演示脚本`,`补验收说明`,`压缩无关功能`,`完成最终文档和 GitHub Pages 发布`],checkpoint:`材料能交、能读、能讲、能复核。`}],Mme=(0,x.lazy)(()=>PI(()=>import(`./DataDashboard-Cv1xxVBh.js`),__vite__mapDeps([0,1]),import.meta.url)),Nme=(0,x.lazy)(()=>PI(()=>import(`./KnowledgeBase-DQU5Kla6.js`),__vite__mapDeps([2,3,4]),import.meta.url)),Pme=(0,x.lazy)(()=>PI(()=>import(`./ContentReview-SnKJFucr.js`),__vite__mapDeps([5,3,6]),import.meta.url)),Fme=(0,x.lazy)(()=>PI(()=>import(`./DigitalHumanConfig-C7k92LIB.js`),__vite__mapDeps([7,6]),import.meta.url)),Ime=(0,x.lazy)(()=>PI(()=>import(`./SystemSettings-45Q-uArK.js`),__vite__mapDeps([8,4]),import.meta.url)),Lme=(0,x.lazy)(()=>PI(()=>import(`./CommandCenter-BgfCpqHt.js`),__vite__mapDeps([9,1]),import.meta.url)),Rme=[{name:`问答`,sprint:82,target:90},{name:`检索`,sprint:84,target:92},{name:`口型`,sprint:76,target:88},{name:`大屏`,sprint:70,target:85},{name:`分享`,sprint:8,target:15}],zme=Z9.map((e,n)=>({id:e.id,type:`stage`,position:{x:n*260,y:n%2==0?20:150},data:{title:e.title,detail:e.detail,note:e.note}})),Bme=Z9.slice(0,-1).map((e,n)=>({id:`${e.id}-${Z9[n+1].id}`,source:e.id,target:Z9[n+1].id,animated:!0,style:{stroke:`#155d58`,strokeWidth:1.5}}));function Vme({data:e}){return(0,U.jsxs)(`div`,{className:`flow-node`,children:[(0,U.jsx)(Xb,{type:`target`,position:q.Left}),(0,U.jsx)(`span`,{children:e.title}),(0,U.jsx)(`strong`,{children:e.detail}),(0,U.jsx)(`small`,{children:e.note}),(0,U.jsx)(Xb,{type:`source`,position:q.Right})]})}function $9({children:e}){let n=wL();return(0,U.jsx)(Nc,{mode:`wait`,children:(0,U.jsx)(W.main,{className:`page-shell`,initial:{opacity:0,y:14},animate:{opacity:1,y:0},exit:{opacity:0,y:-8},transition:{duration:.28,ease:`easeOut`},children:e},n.pathname)})}function Hme(){let[e,n]=(0,x.useState)(kd());return(0,U.jsxs)(`header`,{className:`app-header`,children:[(0,U.jsxs)(tR,{className:`brand`,to:`/`,children:[(0,U.jsx)(hd,{size:18}),(0,U.jsx)(`span`,{children:Od(`app.title`)})]}),(0,U.jsx)(`nav`,{className:`route-nav`,"aria-label":Od(`nav.mainNav`),children:Tme.map(e=>(0,U.jsx)(tR,{to:e.to,end:e.to===`/`,children:(0,U.jsx)(`span`,{children:e.label})},e.to))}),(0,U.jsx)(`button`,{type:`button`,className:`lang-toggle`,onClick:()=>{let r=e===`zh`?`en`:`zh`;Ad(r),n(r)},"aria-label":Od(`nav.switchLang`),children:Od(`lang.switch`)})]})}function Ume(){return(0,U.jsx)(`section`,{className:`metric-strip`,children:[{label:`交付窗口`,value:`4 周`,detail:`只保主链路`},{label:`资料来源`,value:`10+1`,detail:`ao-output + PRD`},{label:`重点模块`,value:`4 个`,detail:`交互 / 内容 / 形象 / 数据`},{label:`路径目标`,value:`1 条`,detail:`可演示闭环`}].map(e=>(0,U.jsxs)(`article`,{children:[(0,U.jsx)(`span`,{children:e.label}),(0,U.jsx)(`strong`,{children:e.value}),(0,U.jsx)(`em`,{children:e.detail})]},e.label))})}function Wme(){let e=(0,x.useRef)(null);return OD(()=>{if(!e.current)return;let n=SD.context(()=>{SD.to(`.orbit-chip`,{y:-8,duration:2.8,ease:`sine.inOut`,yoyo:!0,repeat:-1,stagger:.18})},e);return()=>n.revert()},{scope:e}),(0,U.jsxs)($9,{children:[(0,U.jsxs)(`section`,{className:`hero-shell`,children:[(0,U.jsxs)(`div`,{className:`hero-copy`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`中国软件杯 2026 A5 · 4 周版`}),(0,U.jsx)(`h1`,{children:`文档中心`}),(0,U.jsx)(`p`,{className:`lead`,children:`资料汇总。`}),(0,U.jsxs)(`div`,{className:`hero-actions`,children:[(0,U.jsxs)(tR,{to:`/library`,className:`action-button`,children:[(0,U.jsx)(Ru,{size:16}),(0,U.jsx)(`span`,{children:`资料库`})]}),(0,U.jsxs)(tR,{to:`/validation`,className:`action-button secondary`,children:[(0,U.jsx)(pd,{size:16}),(0,U.jsx)(`span`,{children:`指标标准`})]})]}),(0,U.jsx)(`div`,{className:`bullet-list`,children:Eme.map(e=>(0,U.jsxs)(`div`,{className:`bullet-item`,children:[(0,U.jsx)(Gu,{size:14}),(0,U.jsx)(`span`,{children:e})]},e))})]}),(0,U.jsxs)(`div`,{className:`hero-panel`,ref:e,children:[(0,U.jsxs)(`div`,{className:`hero-panel-top`,children:[(0,U.jsx)(`span`,{children:`闭环链路`}),(0,U.jsx)(`strong`,{children:`游客输入`})]}),(0,U.jsx)(`div`,{className:`orbit-stage`,children:[`扫码`,`问答`,`播报`,`回流`].map(e=>(0,U.jsx)(`span`,{className:`orbit-chip`,children:e},e))}),(0,U.jsxs)(`div`,{className:`hero-panel-bottom`,children:[(0,U.jsx)(`span`,{children:`4 周内只做一条完整演示路径`}),(0,U.jsx)(`strong`,{children:`入口 - 检索 - 生成 - 播报 - 回流`})]})]})]}),(0,U.jsx)(Ume,{}),(0,U.jsxs)(`section`,{className:`section split`,children:[(0,U.jsxs)(`div`,{className:`section-heading`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`主链路`}),(0,U.jsx)(`h2`,{children:`先做完整路径，再补增强项`}),(0,U.jsx)(`p`,{children:`主链路是游客能否顺畅理解产品的关键，增强项只有在主链路稳定后才有价值。`})]}),(0,U.jsx)(`div`,{className:`chart-card`,children:(0,U.jsx)(uK,{width:`100%`,height:300,children:(0,U.jsxs)(Zpe,{data:Rme,children:[(0,U.jsx)(y7,{strokeDasharray:`3 3`,stroke:`#ded8c9`}),(0,U.jsx)(W7,{dataKey:`name`,tick:{fontSize:12}}),(0,U.jsx)(Y7,{}),(0,U.jsx)(l8,{}),(0,U.jsx)(lJ,{}),(0,U.jsx)(I7,{type:`monotone`,dataKey:`sprint`,stroke:`#b4522c`,strokeWidth:2,dot:!0}),(0,U.jsx)(I7,{type:`monotone`,dataKey:`target`,stroke:`#155d58`,strokeWidth:2,dot:!1})]})})})]}),(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`流程链路`}),(0,U.jsx)(`h2`,{children:`流程编排`}),(0,U.jsx)(`p`,{children:`把游客输入、知识库、生成、播报、数字人和运营回流串成闭环，不再靠一堆段落解释。`})]}),(0,U.jsx)(`div`,{className:`flow-canvas`,children:(0,U.jsx)(OS,{nodes:zme,edges:Bme,nodeTypes:{stage:Vme},fitView:!0,nodesDraggable:!1,nodesConnectable:!1,elementsSelectable:!1,panOnDrag:!1,zoomOnScroll:!1,children:(0,U.jsx)(FS,{gap:18,color:`#d9d2c1`})})})]})]})}function Gme(){return(0,U.jsx)($9,{children:(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading wide`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`PRD 重点`}),(0,U.jsx)(`h1`,{children:`先看重点，再看扩展，不把附录和核心混在一起`}),(0,U.jsx)(`p`,{children:`这里把四个主模块拆开，每个模块都能对应到具体的评审问题、验收结果和风险边界。`})]}),(0,U.jsx)(`div`,{className:`priority-grid`,children:Dme.map(e=>(0,U.jsxs)(`article`,{className:`priority-card`,children:[(0,U.jsxs)(`div`,{className:`priority-head`,children:[(0,U.jsx)(`span`,{children:e.code}),(0,U.jsx)(`h2`,{children:e.title})]}),(0,U.jsx)(`p`,{children:e.summary}),(0,U.jsxs)(`div`,{className:`priority-columns`,children:[(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`h3`,{children:`必须做`}),(0,U.jsx)(`ul`,{children:e.mustHave.map(e=>(0,U.jsx)(`li`,{children:e},e))})]}),(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`h3`,{children:`可以增强`}),(0,U.jsx)(`ul`,{children:e.shouldHave.map(e=>(0,U.jsx)(`li`,{children:e},e))})]})]}),(0,U.jsxs)(`div`,{className:`scope-box`,children:[(0,U.jsx)(`strong`,{children:`不做`}),(0,U.jsx)(`ul`,{children:e.outOfScope.map(e=>(0,U.jsx)(`li`,{children:e},e))})]})]},e.code))})]})})}function Kme(){let[e,n]=(0,x.useState)(Q9[0].id),r=(0,x.useMemo)(()=>Q9.find(n=>n.id===e)??Q9[0],[e]);return(0,U.jsx)($9,{children:(0,U.jsxs)(`section`,{className:`section library-layout`,children:[(0,U.jsxs)(`div`,{className:`section-heading`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`资料库`}),(0,U.jsx)(`h1`,{children:`点击标题，直接看原文 Markdown`}),(0,U.jsx)(`p`,{children:`这里不做二次转述。左边是资料索引，右边是原文阅读器，所有 ao-output 内容都在这里找到。`})]}),(0,U.jsxs)(`div`,{className:`library-grid`,children:[(0,U.jsx)(`aside`,{className:`library-list`,children:Q9.map(r=>(0,U.jsxs)(`button`,{type:`button`,className:r.id===e?`doc-item active`:`doc-item`,onClick:()=>n(r.id),children:[(0,U.jsx)(`span`,{children:r.role}),(0,U.jsx)(`strong`,{children:r.title}),(0,U.jsx)(`p`,{children:r.summary}),(0,U.jsx)(`em`,{children:r.file})]},r.id))}),(0,U.jsxs)(`article`,{className:`reader-shell`,children:[(0,U.jsxs)(`div`,{className:`reader-head`,children:[(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`span`,{children:r.role}),(0,U.jsx)(`h2`,{children:r.title})]}),(0,U.jsx)(`div`,{className:`reader-tags`,children:r.focus.map(e=>(0,U.jsx)(`em`,{children:e},e))})]}),(0,U.jsx)(`div`,{className:`markdown-body`,children:(0,U.jsx)(hN,{remarkPlugins:[AI],rehypePlugins:[AN],children:r.content})})]})]})]})})}function qme(){return(0,U.jsx)($9,{children:(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading wide`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`竞品分析`}),(0,U.jsx)(`h1`,{children:`把竞品摆上台面，才知道我们为什么只做这四件事`}),(0,U.jsx)(`p`,{children:`这里直接给出市场案例和平台级竞品的对比，核心不是谁名气大，而是谁真的补上了我们的空白。`})]}),(0,U.jsx)(`div`,{className:`competitor-grid`,children:Ome.map(e=>(0,U.jsxs)(`article`,{className:`competitor-card`,children:[(0,U.jsxs)(`div`,{className:`competitor-head`,children:[(0,U.jsx)(`strong`,{children:e.name}),(0,U.jsx)(`span`,{children:e.type})]}),(0,U.jsxs)(`dl`,{children:[(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`dt`,{children:`交互`}),(0,U.jsx)(`dd`,{children:e.interaction})]}),(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`dt`,{children:`知识库`}),(0,U.jsx)(`dd`,{children:e.knowledge})]}),(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`dt`,{children:`形象`}),(0,U.jsx)(`dd`,{children:e.avatar})]}),(0,U.jsxs)(`div`,{children:[(0,U.jsx)(`dt`,{children:`运营`}),(0,U.jsx)(`dd`,{children:e.analytics})]})]}),(0,U.jsx)(`p`,{children:e.note})]},e.name))}),(0,U.jsxs)(`div`,{className:`takeaway-panel`,children:[(0,U.jsx)(`h2`,{children:`结论`}),(0,U.jsx)(`ul`,{children:kme.map(e=>(0,U.jsx)(`li`,{children:e},e))})]})]})})}function Jme(){return(0,U.jsx)($9,{children:(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading wide`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`4 周节奏`}),(0,U.jsx)(`h1`,{children:`压缩交付，不压缩解释`}),(0,U.jsx)(`p`,{children:`4 周不是让你砍内容，而是让你只保留真正能形成闭环、能演示、能验收的部分。`})]}),(0,U.jsx)(`div`,{className:`timeline-grid`,children:jme.map((e,n)=>(0,U.jsxs)(W.article,{className:`timeline-card`,initial:{opacity:0,x:-18},animate:{opacity:1,x:0},transition:{delay:n*.08},children:[(0,U.jsx)(`span`,{children:e.week}),(0,U.jsx)(`h2`,{children:e.title}),(0,U.jsx)(`ul`,{children:e.deliverables.map(e=>(0,U.jsx)(`li`,{children:e},e))}),(0,U.jsx)(`p`,{children:e.checkpoint})]},e.week))})]})})}function Yme(){let e=[{name:`内容质量`,value:38,fill:`#b4522c`},{name:`响应时延`,value:30,fill:`#155d58`},{name:`形象适配`,value:18,fill:`#c1a15a`},{name:`合规边界`,value:14,fill:`#6b7280`}];return(0,U.jsxs)($9,{children:[(0,U.jsxs)(`section`,{className:`section split`,children:[(0,U.jsxs)(`div`,{className:`section-heading`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`指标与验证`}),(0,U.jsx)(`h1`,{children:`没有评分标准，就不要画模糊图`}),(0,U.jsx)(`p`,{children:`这里把每个指标的及格线、目标线、失败线都写出来，避免“看起来不错”但无法验收。`})]}),(0,U.jsx)(`div`,{className:`chart-card`,children:(0,U.jsx)(uK,{width:`100%`,height:300,children:(0,U.jsxs)(X9,{children:[(0,U.jsx)(V5,{data:e,dataKey:`value`,nameKey:`name`,innerRadius:54,outerRadius:96,paddingAngle:4,children:e.map(e=>(0,U.jsx)(u8,{fill:e.fill},e.name))}),(0,U.jsx)(l8,{})]})})})]}),(0,U.jsx)(`section`,{className:`section`,children:(0,U.jsxs)(`div`,{className:`metric-table`,children:[(0,U.jsxs)(`div`,{className:`metric-row header`,children:[(0,U.jsx)(`span`,{children:`指标`}),(0,U.jsx)(`span`,{children:`及格线`}),(0,U.jsx)(`span`,{children:`目标线`}),(0,U.jsx)(`span`,{children:`失败线`}),(0,U.jsx)(`span`,{children:`验证方式`})]}),Ame.map(e=>(0,U.jsxs)(`div`,{className:`metric-row`,children:[(0,U.jsx)(`span`,{children:e.metric}),(0,U.jsx)(`span`,{children:e.pass}),(0,U.jsx)(`span`,{children:e.target}),(0,U.jsx)(`span`,{children:e.fail}),(0,U.jsx)(`span`,{children:e.evidence})]},e.metric))]})}),(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`评分逻辑`}),(0,U.jsx)(`h2`,{children:`什么算好，什么算过线，一次讲明白`})]}),(0,U.jsxs)(`div`,{className:`score-grid`,children:[(0,U.jsxs)(`article`,{children:[(0,U.jsx)(`h3`,{children:`PRD 重点`}),(0,U.jsxs)(`ul`,{children:[(0,U.jsx)(`li`,{children:`能不能解释为什么只做这四个模块。`}),(0,U.jsx)(`li`,{children:`能不能说清楚主链路和增强项的先后顺序。`}),(0,U.jsx)(`li`,{children:`能不能看出边界在哪里。`})]})]}),(0,U.jsxs)(`article`,{children:[(0,U.jsx)(`h3`,{children:`竞品分析`}),(0,U.jsxs)(`ul`,{children:[(0,U.jsx)(`li`,{children:`有没有把市场头部和平台级竞品都放进去。`}),(0,U.jsx)(`li`,{children:`有没有说明我们填补了什么空白。`}),(0,U.jsx)(`li`,{children:`有没有和产品范围直接对应。`})]})]}),(0,U.jsxs)(`article`,{children:[(0,U.jsx)(`h3`,{children:`验证标准`}),(0,U.jsxs)(`ul`,{children:[(0,U.jsx)(`li`,{children:`是否定义了及格线、目标线和失败线。`}),(0,U.jsx)(`li`,{children:`是否能在 4 周内用现成工具测出来。`}),(0,U.jsx)(`li`,{children:`是否能支撑评审判断而不是只是装饰。`})]})]})]})]})]})}function Xme(){return(0,U.jsx)($9,{children:(0,U.jsxs)(`section`,{className:`section`,children:[(0,U.jsxs)(`div`,{className:`section-heading wide`,children:[(0,U.jsx)(`p`,{className:`eyebrow`,children:`Word 转 Markdown`}),(0,U.jsx)(`h1`,{children:`原文已经整理成 Markdown，并纳入站点导航`}),(0,U.jsx)(`p`,{children:`这个页面保留原始整理稿，方便和 ao-output 的步骤文档并排查看。`})]}),(0,U.jsx)(`article`,{className:`markdown-body`,children:(0,U.jsx)(hN,{remarkPlugins:[AI],rehypePlugins:[AN],children:Q9.find(e=>e.id===`converted`)?.content??``})})]})})}function Zme(){let e=wL();return(0,U.jsx)(Nc,{mode:`wait`,children:(0,U.jsxs)(Die,{location:e,children:[(0,U.jsx)(LL,{path:`/`,element:(0,U.jsx)(Wme,{})}),(0,U.jsx)(LL,{path:`/guide`,element:(0,U.jsx)(of,{})}),(0,U.jsx)(LL,{path:`/kiosk`,element:(0,U.jsx)(Rf,{})}),(0,U.jsx)(LL,{path:`/prd`,element:(0,U.jsx)(Gme,{})}),(0,U.jsx)(LL,{path:`/library`,element:(0,U.jsx)(Kme,{})}),(0,U.jsx)(LL,{path:`/competitors`,element:(0,U.jsx)(qme,{})}),(0,U.jsx)(LL,{path:`/timeline`,element:(0,U.jsx)(Jme,{})}),(0,U.jsx)(LL,{path:`/dashboard`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Mme,{})})}),(0,U.jsx)(LL,{path:`/knowledge`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Nme,{})})}),(0,U.jsx)(LL,{path:`/review`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Pme,{})})}),(0,U.jsx)(LL,{path:`/digital-human`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Fme,{})})}),(0,U.jsx)(LL,{path:`/settings`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Ime,{})})}),(0,U.jsx)(LL,{path:`/command`,element:(0,U.jsx)(x.Suspense,{children:(0,U.jsx)(Lme,{})})}),(0,U.jsx)(LL,{path:`/validation`,element:(0,U.jsx)(Yme,{})}),(0,U.jsx)(LL,{path:`/word`,element:(0,U.jsx)(Xme,{})})]},e.pathname)})}function Qme(){return(0,U.jsx)(zf,{children:(0,U.jsxs)(eae,{children:[(0,U.jsx)(Hme,{}),(0,U.jsx)(Zme,{}),(0,U.jsxs)(`footer`,{className:`app-footer`,children:[(0,U.jsx)(td,{size:16}),(0,U.jsx)(`span`,{children:`内容来自 Word、ao-output 与 PRD，页面以 GitHub Pages 发布`}),(0,U.jsx)(Ku,{size:16})]})]})})}(0,S.createRoot)(document.getElementById(`root`)).render((0,U.jsx)(x.StrictMode,{children:(0,U.jsx)(Qme,{})}));export{bK as $,W as $t,N6 as A,cR as At,NZ as B,pd as Bt,y5 as C,Z as Ct,l8 as D,mR as Dt,u8 as E,vR as Et,H4 as F,wd as Ft,SZ as G,ed as Gt,CZ as H,od as Ht,F3 as I,Sd as It,JY as J,Wu as Jt,iZ as K,Yu as Kt,g4 as L,xd as Lt,C6 as M,kd as Mt,I3 as N,jd as Nt,e8 as O,fR as Ot,voe as P,Td as Pt,vK as Q,G as Qt,iQ as R,bd as Rt,v5 as S,Bz as St,$8 as T,Uz as Tt,MZ as U,ad as Ut,wZ as V,cd as Vt,TZ as W,rd as Wt,lJ as X,Vu as Xt,ZJ as Y,Uu as Yt,Gq as Z,Ru as Zt,M5 as _,mB as _t,O7 as a,cG as at,A5 as b,Rz as bt,x7 as c,eG as ct,Y5 as d,GW as dt,Nc as en,yK as et,G5 as f,qW as ft,N5 as g,Q as gt,P5 as h,$ as ht,W7 as i,jG as it,T6 as j,Kd as jt,K6 as k,pR as kt,y7 as l,$W as lt,I5 as m,RW as mt,W9 as n,m as nn,FG as nt,C7 as o,nG as ot,V5 as p,XW as pt,YY as q,qu as qt,Y7 as r,d as rn,NG as rt,S7 as s,tG as st,X9 as t,w as tn,uK as tt,Q5 as u,uG as ut,j5 as v,cB as vt,X8 as w,Az as wt,O5 as x,jz as xt,k5 as y,Iz as yt,nQ as z,gd as zt};

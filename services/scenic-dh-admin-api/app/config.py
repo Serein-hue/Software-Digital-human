@@ -12,7 +12,7 @@ class Settings(BaseSettings):
 
     # 上游服务
     BUSINESS_API_URL: str = "http://localhost:8001/v1"
-    RAG_SERVICE_URL: str = "http://localhost:8003/api/v1"
+    RAG_SERVICE_URL: str = "http://127.0.0.1:5010/api/v1"
     FAY_RUNTIME_URL: str = "http://localhost:8005/internal/v1"
 
     # 内部服务 token

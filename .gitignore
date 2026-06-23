@@ -3,6 +3,11 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Python virtual environments
+.venv/
+rag/.venv/
+*.venv/
+
 # Fay runtime generated
 samples/
 logs/
@@ -31,3 +36,8 @@ Thumbs.db
 # RAG generated data
 rag/chroma_db/
 backend/rag/
+
+# Database files (shared SQLite)
+*.db
+*.db-shm
+*.db-wal

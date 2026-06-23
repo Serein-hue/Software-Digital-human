@@ -1,136 +1,65 @@
-import { useState } from 'react'
+/** 知识库工坊 — 上传文档→解析→知识候选→采纳→重建闭环 */
+
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  FileText, Upload, Search, ChevronRight, Clock, CheckCircle,
-  AlertCircle, Layers, Hash, EyeOff, X,
+  Upload, FileText, Search, CheckCircle, XCircle, AlertCircle,
+  Clock, Database, Layers, Hash, BookOpen, Zap, RefreshCw,
+  Trash2, Plus, Eye, Loader2, Award, BarChart3, ChevronRight,
+  X, AlertTriangle, MessageSquare, CheckCheck, FileUp,
 } from 'lucide-react'
 import { useT } from '../../i18n'
+import {
+  fetchKbStatus,
+  fetchSources,
+  fetchQAList,
+  fetchLowConfidenceQueries,
+  uploadDocument,
+  registerQA,
+  testQuery,
+  triggerReindex,
+  type KbStatus,
+  type SourceItem,
+  type QAItem,
+  type LowConfidenceItem,
+  type TestQueryResult,
+} from '../../api/admin'
 
-type DocType = 'spotData' | 'guideInfo' | 'dataset' | 'image' | 'rule'
+// ── Tab 定义 ──────────────────────────────────────────────────────────
 
-interface DocEntry {
-  id: string
-  name: string
-  source: string
-  type: DocType
-  status: 'ready' | 'processing' | 'error' | 'pending'
-  chunks: number
-  size: string
-  updatedAt: string
-  tags: string[]
-}
+type TabKey = 'documents' | 'candidates' | 'qa' | 'sources' | 'test' | 'rebuild'
 
-const MOCK_DOCS: DocEntry[] = [
-  {
-    id: 'doc-1',
-    name: '灵山胜境景点结构化数据集',
-    source: '示范景区公开资料包',
-    type: 'spotData',
-    status: 'ready',
-    chunks: 86,
-    size: '45 KB',
-    updatedAt: '2026-05-30',
-    tags: ['景点', '结构化', '灵山'],
-  },
-  {
-    id: 'doc-2',
-    name: '灵山胜境游览指南',
-    source: '示范景区公开资料包',
-    type: 'guideInfo',
-    status: 'ready',
-    chunks: 134,
-    size: '30 KB',
-    updatedAt: '2026-05-30',
-    tags: ['导游', '路线', '历史'],
-  },
-  {
-    id: 'doc-3',
-    name: '景点行为分析数据',
-    source: '示范景区公开资料包',
-    type: 'dataset',
-    status: 'ready',
-    chunks: 522,
-    size: '16.7 MB',
-    updatedAt: '2026-05-30',
-    tags: ['数据', '分析', '游客行为'],
-  },
-  {
-    id: 'doc-4',
-    name: '景区门票与优惠政策',
-    source: '景区官网',
-    type: 'rule',
-    status: 'processing',
-    chunks: 12,
-    size: '8 KB',
-    updatedAt: '2026-05-29',
-    tags: ['规则', '门票', '政策'],
-  },
-  {
-    id: 'doc-5',
-    name: '灵山大佛高清图集',
-    source: '景区素材库',
-    type: 'image',
-    status: 'pending',
-    chunks: 0,
-    size: '124 MB',
-    updatedAt: '—',
-    tags: ['图片', '灵山大佛'],
-  },
-  {
-    id: 'doc-6',
-    name: '梵宫艺术展品说明',
-    source: '景区素材库',
-    type: 'spotData',
-    status: 'error',
-    chunks: 3,
-    size: '52 KB',
-    updatedAt: '2026-05-28',
-    tags: ['艺术', '梵宫', '展品'],
-  },
+const TABS: { key: TabKey; label: string; icon: typeof FileText }[] = [
+  { key: 'documents', label: '文档管理', icon: FileText },
+  { key: 'candidates', label: '知识候选', icon: Award },
+  { key: 'qa', label: '问答管理', icon: MessageSquare },
+  { key: 'sources', label: '来源管理', icon: Database },
+  { key: 'test', label: '召回测试', icon: BarChart3 },
+  { key: 'rebuild', label: '索引重建', icon: Zap },
 ]
 
-const STATUS_ICONS: Record<DocEntry['status'], typeof CheckCircle> = {
-  ready: CheckCircle,
-  processing: Clock,
-  error: AlertCircle,
-  pending: EyeOff,
+// ── Toast 反馈 ────────────────────────────────────────────────────────
+
+interface Toast {
+  id: string
+  type: 'success' | 'error' | 'info'
+  message: string
 }
 
-const STATUS_COLORS: Record<DocEntry['status'], string> = {
-  ready: 'var(--teal)',
-  processing: '#e89460',
-  error: '#b4522c',
-  pending: 'var(--muted)',
-}
+let toastId = 0
 
-const STATUS_LABEL_KEYS: Record<DocEntry['status'], string> = {
-  ready: 'admin.ready',
-  processing: 'admin.processing',
-  error: 'admin.failed',
-  pending: 'admin.pending',
-}
-
-const TYPE_TAGS: DocType[] = ['spotData', 'guideInfo', 'dataset', 'image', 'rule']
-
-const TYPE_I18N: Record<DocType, string> = {
-  spotData: 'admin.docTypeSpotData',
-  guideInfo: 'admin.docTypeGuide',
-  dataset: 'admin.docTypeDataset',
-  image: 'admin.docTypeImage',
-  rule: 'admin.docTypeRule',
-}
+// ── 主组件 ────────────────────────────────────────────────────────────
 
 export default function KnowledgeBase() {
-  const [search, setSearch] = useState('')
-  const [typeFilter, setTypeFilter] = useState<DocEntry['type'] | null>(null)
-  const [selected, setSelected] = useState<DocEntry | null>(null)
   const t = useT()
+  const [activeTab, setActiveTab] = useState<TabKey>('documents')
+  const [toasts, setToasts] = useState<Toast[]>([])
 
-  const filtered = MOCK_DOCS.filter((d) => {
-    if (typeFilter && d.type !== typeFilter) return false
-    if (search && !d.name.includes(search) && !d.tags.some((t) => t.includes(search))) return false
-    return true
-  })
+  const addToast = useCallback((type: Toast['type'], message: string) => {
+    const id = `toast-${++toastId}`
+    setToasts((prev) => [...prev, { id, type, message }])
+    setTimeout(() => setToasts((prev) => prev.filter((x) => x.id !== id)), 3500)
+  }, [])
 
   return (
     <motion.div
@@ -139,164 +68,916 @@ export default function KnowledgeBase() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
     >
+      {/* Header */}
       <div className="dashboard-head">
         <div>
-          <h2>{t('admin.knowledgeBase')}</h2>
-          <span>{t('admin.knowledgeDesc')}</span>
+          <h2>知识库工坊</h2>
+          <span>上传文档 → 解析 → 知识候选 → 采纳 → 重建索引</span>
         </div>
-        <motion.button
-          type="button"
-          className="kb-upload-btn"
-          whileTap={{ scale: 0.97 }}
-        >
-          <Upload size={15} />
-          <span>{t('admin.uploadDoc')}</span>
-        </motion.button>
       </div>
 
-      {/* Toolbar */}
-      <div className="kb-toolbar">
-        <div className="kb-search-wrap">
-          <Search size={14} />
-          <input
-            type="text"
-            className="kb-search-input"
-            placeholder={t('admin.searchPlaceholder')}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          {search && (
-            <button type="button" className="kb-search-clear" onClick={() => setSearch('')}>
-              <X size={14} />
-            </button>
-          )}
-        </div>
-        <div className="kb-type-filters">
-          {TYPE_TAGS.map((dt) => (
-            <button
-              key={dt}
-              type="button"
-              className={`kb-type-chip ${typeFilter === dt ? 'active' : ''}`}
-              onClick={() => setTypeFilter(typeFilter === dt ? null : dt)}
+      {/* Tabs */}
+      <div className="kb-tabs">
+        {TABS.map(({ key, label, icon: Icon }) => (
+          <button
+            key={key}
+            type="button"
+            className={`kb-tab ${activeTab === key ? 'active' : ''}`}
+            onClick={() => setActiveTab(key)}
+          >
+            <Icon size={15} />
+            <span>{label}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Content */}
+      <div className="kb-tab-content">
+        {activeTab === 'documents' && <DocumentsTab addToast={addToast} />}
+        {activeTab === 'candidates' && <CandidatesTab addToast={addToast} />}
+        {activeTab === 'qa' && <QATab addToast={addToast} />}
+        {activeTab === 'sources' && <SourcesTab />}
+        {activeTab === 'test' && <TestQueryTab />}
+        {activeTab === 'rebuild' && <RebuildTab addToast={addToast} />}
+      </div>
+
+      {/* Toasts */}
+      <div className="kb-toast-container">
+        <AnimatePresence>
+          {toasts.map((toast) => (
+            <motion.div
+              key={toast.id}
+              className={`kb-toast kb-toast-${toast.type}`}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
             >
-              {t(TYPE_I18N[dt])}
-            </button>
+              {toast.type === 'success' && <CheckCircle size={16} />}
+              {toast.type === 'error' && <XCircle size={16} />}
+              {toast.type === 'info' && <AlertCircle size={16} />}
+              <span>{toast.message}</span>
+            </motion.div>
           ))}
-        </div>
-      </div>
-
-      {/* Document list */}
-      <div className="kb-list">
-        {filtered.length === 0 ? (
-          <div className="kb-empty">
-            <FileText size={32} />
-            <span>{t('admin.noMatch')}</span>
-          </div>
-        ) : (
-          filtered.map((doc) => {
-            const Icon = STATUS_ICONS[doc.status]
-            return (
-              <motion.div
-                key={doc.id}
-                className={`kb-doc-card ${selected?.id === doc.id ? 'expanded' : ''}`}
-                layout
-                onClick={() => setSelected(selected?.id === doc.id ? null : doc)}
-              >
-                <div className="kb-doc-main">
-                  <div className="kb-doc-icon" style={{ background: STATUS_COLORS[doc.status] + '18' }}>
-                    <FileText size={18} style={{ color: STATUS_COLORS[doc.status] }} />
-                  </div>
-                  <div className="kb-doc-body">
-                    <div className="kb-doc-top">
-                      <strong>{doc.name}</strong>
-                      <span className={`kb-status-badge ${doc.status}`}>
-                        <Icon size={12} />
-                        {t(STATUS_LABEL_KEYS[doc.status])}
-                      </span>
-                    </div>
-                    <div className="kb-doc-meta">
-                      <span>{doc.source}</span>
-                      <span>{doc.size}</span>
-                      <span><Layers size={11} /> {doc.chunks} {t('admin.chunks')}</span>
-                      <span>{doc.updatedAt}</span>
-                    </div>
-                    <div className="kb-doc-tags">
-                      <span className="kb-type-badge">{t(TYPE_I18N[doc.type])}</span>
-                      {doc.tags.map((tag) => (
-                        <span key={tag} className="kb-tag">{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <ChevronRight
-                    size={16}
-                    className={`kb-doc-chevron ${selected?.id === doc.id ? 'open' : ''}`}
-                  />
-                </div>
-
-                <AnimatePresence initial={false}>
-                  {selected?.id === doc.id && (
-                    <motion.div
-                      className="kb-doc-detail"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.22 }}
-                    >
-                      <div className="kb-detail-grid">
-                        <div className="kb-detail-stat">
-                          <Hash size={13} />
-                          <div>
-                            <strong>{doc.chunks}</strong>
-                            <span>{t('admin.slices')}</span>
-                          </div>
-                        </div>
-                        <div className="kb-detail-stat">
-                          <Layers size={13} />
-                          <div>
-                            <strong>{t(TYPE_I18N[doc.type])}</strong>
-                            <span>{t('admin.docType')}</span>
-                          </div>
-                        </div>
-                        <div className="kb-detail-stat">
-                          <Clock size={13} />
-                          <div>
-                            <strong>{doc.updatedAt}</strong>
-                            <span>{t('admin.lastUpdate')}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="kb-detail-actions">
-                        <button type="button" className="kb-action-btn">
-                          {t('admin.reparse')}
-                        </button>
-                        <button type="button" className="kb-action-btn">
-                          {t('admin.viewSlices')}
-                        </button>
-                        <button type="button" className="kb-action-btn danger">
-                          {t('admin.delete')}
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            )
-          })
-        )}
-      </div>
-
-      {/* Stats footer */}
-      <div className="kb-stats-bar">
-        <div><strong>{MOCK_DOCS.length}</strong> {t('admin.documents')}</div>
-        <div><strong>{MOCK_DOCS.filter((d) => d.status === 'ready').length}</strong> {t('admin.ready')}</div>
-        <div><strong>{MOCK_DOCS.reduce((s, d) => s + d.chunks, 0)}</strong> {t('admin.chunks')}</div>
-        <div><strong>{MOCK_DOCS.reduce((s, d) => {
-          const num = parseFloat(d.size)
-          if (d.size.includes('GB')) return s + num * 1024
-          if (d.size.includes('KB')) return s + num / 1024
-          return s + (d.size.includes('MB') ? num : num / 1024)
-        }, 0).toFixed(1)} MB</strong> {t('admin.totalSize')}</div>
+        </AnimatePresence>
       </div>
     </motion.div>
+  )
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// Tab 1: 文档管理
+// ═══════════════════════════════════════════════════════════════════════
+
+function DocumentsTab({ addToast }: { addToast: (t: string, m: string) => void }) {
+  const [status, setStatus] = useState<KbStatus | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [showUpload, setShowUpload] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  const fileRef = useRef<HTMLInputElement>(null)
+  const [fileName, setFileName] = useState('')
+  const [sourceName, setSourceName] = useState('')
+  const [domain, setDomain] = useState('general')
+
+  useEffect(() => {
+    setLoading(true)
+    fetchKbStatus().then((data) => {
+      setStatus(data)
+      setLoading(false)
+    })
+  }, [])
+
+  const handleUpload = async () => {
+    const file = fileRef.current?.files?.[0]
+    if (!file) {
+      addToast('error', '请选择文件')
+      return
+    }
+    setUploading(true)
+    try {
+      const result = await uploadDocument(file, sourceName || file.name, domain)
+      if (result?.success) {
+        addToast('success', `入库成功: ${result.chunks} 个切片`)
+        setShowUpload(false)
+        setFileName('')
+        setSourceName('')
+        // Refresh status
+        const newStatus = await fetchKbStatus()
+        if (newStatus) setStatus(newStatus)
+      } else {
+        addToast('error', result?.message || '入库失败')
+      }
+    } catch {
+      addToast('error', '上传失败，请检查 RAG 服务')
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="kb-loading">
+        <Loader2 size={28} className="spin" />
+        <span>加载知识库状态...</span>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      {/* Status bar */}
+      <div className="kb-metrics">
+        <div className="kb-metric-card">
+          <Database size={18} />
+          <div>
+            <strong>{status?.vectors ?? 0}</strong>
+            <span>向量数</span>
+          </div>
+        </div>
+        <div className="kb-metric-card">
+          <Layers size={18} />
+          <div>
+            <strong>{status?.sourcesCount ?? 0}</strong>
+            <span>来源</span>
+          </div>
+        </div>
+        <div className="kb-metric-card">
+          <Hash size={18} />
+          <div>
+            <strong>{status?.qaCount ?? 0}</strong>
+            <span>问答对</span>
+          </div>
+        </div>
+        <div className="kb-metric-card">
+          <BarChart3 size={18} />
+          <div>
+            <strong>{(status?.scoreThreshold ?? 0) * 100}%</strong>
+            <span>置信阈值</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Upload button */}
+      <div className="kb-section-head">
+        <h3>已入库文档</h3>
+        <button type="button" className="kb-btn kb-btn-primary" onClick={() => setShowUpload(true)}>
+          <Upload size={14} />
+          <span>上传文档</span>
+        </button>
+      </div>
+
+      {/* Sources list would go here - for now show the status */}
+      <div className="kb-empty-state">
+        <FileText size={36} />
+        <strong>知识库状态</strong>
+        <p>
+          模型: {status?.embeddingModel ?? '-'} · 切片大小: {status?.chunkSize ?? '-'}
+        </p>
+        <p>
+          状态: {status?.status === 'unreachable' ? '⚠️ 服务不可达' : '✅ 运行中'}
+        </p>
+      </div>
+
+      {/* Upload Modal */}
+      <AnimatePresence>
+        {showUpload && (
+          <motion.div
+            className="kb-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => !uploading && setShowUpload(false)}
+          >
+            <motion.div
+              className="kb-modal"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="kb-modal-head">
+                <h3>上传文档</h3>
+                <button type="button" className="kb-modal-close" onClick={() => !uploading && setShowUpload(false)}>
+                  <X size={16} />
+                </button>
+              </div>
+              <div className="kb-modal-body">
+                <label className="kb-field">
+                  <span>文件 (.md/.txt/.docx/.pdf)</span>
+                  <input
+                    type="file"
+                    ref={fileRef}
+                    accept=".md,.txt,.docx,.pdf"
+                    onChange={(e) => setFileName(e.target.files?.[0]?.name ?? '')}
+                    disabled={uploading}
+                  />
+                </label>
+                {fileName && (
+                  <label className="kb-field">
+                    <span>来源名称（可选）</span>
+                    <input
+                      type="text"
+                      value={sourceName}
+                      onChange={(e) => setSourceName(e.target.value)}
+                      placeholder={fileName}
+                      disabled={uploading}
+                    />
+                  </label>
+                )}
+                <label className="kb-field">
+                  <span>领域分类</span>
+                  <select value={domain} onChange={(e) => setDomain(e.target.value)} disabled={uploading}>
+                    <option value="general">通用</option>
+                    <option value="spot">景点</option>
+                    <option value="route">路线</option>
+                    <option value="ticket">票务</option>
+                    <option value="service">服务设施</option>
+                    <option value="rule">规则</option>
+                  </select>
+                </label>
+              </div>
+              <div className="kb-modal-foot">
+                <button
+                  type="button"
+                  className="kb-btn"
+                  onClick={() => setShowUpload(false)}
+                  disabled={uploading}
+                >
+                  取消
+                </button>
+                <button
+                  type="button"
+                  className="kb-btn kb-btn-primary"
+                  onClick={handleUpload}
+                  disabled={uploading || !fileName}
+                >
+                  {uploading ? (
+                    <><Loader2 size={14} className="spin" /> 解析入库中...</>
+                  ) : (
+                    <><FileUp size={14} /> 开始上传</>
+                  )}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// Tab 2: 知识候选
+// ═══════════════════════════════════════════════════════════════════════
+
+function CandidatesTab({ addToast }: { addToast: (t: string, m: string) => void }) {
+  const [items, setItems] = useState<LowConfidenceItem[]>([])
+  const [loading, setLoading] = useState(true)
+  const [adoptTarget, setAdoptTarget] = useState<LowConfidenceItem | null>(null)
+  const [editQuestion, setEditQuestion] = useState('')
+  const [editAnswer, setEditAnswer] = useState('')
+  const [adopting, setAdopting] = useState(false)
+
+  useEffect(() => {
+    fetchLowConfidenceQueries().then((data) => {
+      setItems(data?.items ?? [])
+      setLoading(false)
+    })
+  }, [])
+
+  const handleAdopt = async () => {
+    if (!adoptTarget) return
+    setAdopting(true)
+    try {
+      const result = await registerQA(editQuestion, editAnswer, 'low_confidence_adopt')
+      if (result) {
+        addToast('success', '已采纳为问答对')
+        setItems((prev) => prev.filter((x) => x.id !== adoptTarget.id))
+        setAdoptTarget(null)
+      } else {
+        addToast('error', '采纳失败')
+      }
+    } catch {
+      addToast('error', '采纳失败，请检查 RAG 服务')
+    } finally {
+      setAdopting(false)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="kb-loading">
+        <Loader2 size={28} className="spin" />
+        <span>加载知识候选...</span>
+      </div>
+    )
+  }
+
+  if (items.length === 0) {
+    return (
+      <div className="kb-empty-state">
+        <Award size={40} />
+        <strong>暂无知识候选</strong>
+        <p>当游客提问触发了低置信回答（fallback）时，会出现在这里供您审核采纳</p>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <div className="kb-section-head">
+        <h3>低置信问答（{items.length}）</h3>
+        <span className="kb-hint">以下问题的 AI 回答置信度较低，建议审核后采纳为知识库</span>
+      </div>
+
+      <div className="kb-candidate-list">
+        {items.map((item) => (
+          <div key={item.id} className="kb-candidate-card">
+            <div className="kb-candidate-q">
+              <span className="kb-label">游客提问</span>
+              <p>{item.userQuestion || '(无关联问题)'}</p>
+            </div>
+            <div className="kb-candidate-a">
+              <span className="kb-label">AI 回答</span>
+              <p>{item.assistantReply}</p>
+            </div>
+            <div className="kb-candidate-meta">
+              <span className={`kb-confidence ${(item.confidence ?? 1) < 0.4 ? 'low' : 'medium'}`}>
+                置信度: {(item.confidence ?? 0).toFixed(2)}
+              </span>
+              {item.fallbackReason && <span className="kb-fallback-reason">原因: {item.fallbackReason}</span>}
+              <span className="kb-date">{item.createdAt}</span>
+            </div>
+            <button
+              type="button"
+              className="kb-candidate-adopt"
+              onClick={() => {
+                setAdoptTarget(item)
+                setEditQuestion(item.userQuestion || '')
+                setEditAnswer(item.assistantReply)
+              }}
+            >
+              <CheckCheck size={14} />
+              采纳为问答
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Adopt Modal */}
+      <AnimatePresence>
+        {adoptTarget && (
+          <motion.div
+            className="kb-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => !adopting && setAdoptTarget(null)}
+          >
+            <motion.div
+              className="kb-modal kb-modal-lg"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="kb-modal-head">
+                <h3>采纳为问答对</h3>
+                <button type="button" className="kb-modal-close" onClick={() => !adopting && setAdoptTarget(null)}>
+                  <X size={16} />
+                </button>
+              </div>
+              <div className="kb-modal-body">
+                <label className="kb-field">
+                  <span>问题</span>
+                  <textarea
+                    rows={2}
+                    value={editQuestion}
+                    onChange={(e) => setEditQuestion(e.target.value)}
+                    disabled={adopting}
+                  />
+                </label>
+                <label className="kb-field">
+                  <span>答案</span>
+                  <textarea
+                    rows={4}
+                    value={editAnswer}
+                    onChange={(e) => setEditAnswer(e.target.value)}
+                    disabled={adopting}
+                  />
+                </label>
+              </div>
+              <div className="kb-modal-foot">
+                <button type="button" className="kb-btn" onClick={() => setAdoptTarget(null)} disabled={adopting}>
+                  取消
+                </button>
+                <button
+                  type="button"
+                  className="kb-btn kb-btn-primary"
+                  onClick={handleAdopt}
+                  disabled={adopting || !editQuestion.trim() || !editAnswer.trim()}
+                >
+                  {adopting ? <><Loader2 size={14} className="spin" /> 提交中...</> : <><CheckCheck size={14} /> 确认采纳</>}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// Tab 3: 问答管理
+// ═══════════════════════════════════════════════════════════════════════
+
+function QATab({ addToast }: { addToast: (t: string, m: string) => void }) {
+  const [items, setItems] = useState<QAItem[]>([])
+  const [loading, setLoading] = useState(true)
+  const [page, setPage] = useState(1)
+  const [total, setTotal] = useState(0)
+  const [totalPages, setTotalPages] = useState(1)
+  const [showCreate, setShowCreate] = useState(false)
+  const [newQ, setNewQ] = useState('')
+  const [newA, setNewA] = useState('')
+  const [newSource, setNewSource] = useState('')
+  const [creating, setCreating] = useState(false)
+  const [expandedId, setExpandedId] = useState<number | null>(null)
+
+  const load = useCallback((p: number) => {
+    setLoading(true)
+    fetchQAList(p).then((data) => {
+      if (data) {
+        setItems(data.items)
+        setTotal(data.pagination.total)
+        setTotalPages(data.pagination.total_pages)
+      }
+      setLoading(false)
+    })
+  }, [])
+
+  useEffect(() => { load(page) }, [page, load])
+
+  const handleCreate = async () => {
+    if (!newQ.trim() || !newA.trim()) return
+    setCreating(true)
+    try {
+      const result = await registerQA(newQ, newA, newSource || 'manual')
+      if (result) {
+        addToast('success', '问答对已创建')
+        setShowCreate(false)
+        setNewQ('')
+        setNewA('')
+        setNewSource('')
+        load(1)
+      } else {
+        addToast('error', '创建失败')
+      }
+    } catch {
+      addToast('error', '创建失败，请检查 RAG 服务')
+    } finally {
+      setCreating(false)
+    }
+  }
+
+  return (
+    <div>
+      <div className="kb-section-head">
+        <h3>问答对（{total}）</h3>
+        <button type="button" className="kb-btn kb-btn-primary" onClick={() => setShowCreate(true)}>
+          <Plus size={14} />
+          <span>新增问答</span>
+        </button>
+      </div>
+
+      {loading ? (
+        <div className="kb-loading"><Loader2 size={28} className="spin" /><span>加载问答对...</span></div>
+      ) : items.length === 0 ? (
+        <div className="kb-empty-state">
+          <MessageSquare size={36} />
+          <strong>暂无问答对</strong>
+          <p>采纳知识候选或手动添加问答对</p>
+        </div>
+      ) : (
+        <>
+          <div className="kb-qa-list">
+            {items.map((item, idx) => {
+              const isExpanded = expandedId === idx
+              return (
+                <div
+                  key={idx}
+                  className={`kb-qa-card ${isExpanded ? 'expanded' : ''}`}
+                  onClick={() => setExpandedId(isExpanded ? null : idx)}
+                >
+                  <div className="kb-qa-q">
+                    <span className="kb-label">Q</span>
+                    <p>{item.question}</p>
+                    <ChevronRight size={14} className={`kb-chevron ${isExpanded ? 'open' : ''}`} />
+                  </div>
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        className="kb-qa-a"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.18 }}
+                      >
+                        <div className="kb-label">A</div>
+                        <p>{item.answer}</p>
+                        <div className="kb-qa-meta">
+                          <span>来源: {item.source || '-'}</span>
+                          <span>领域: {item.domain || '-'}</span>
+                          <span>{item.createdAt}</span>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )
+            })}
+          </div>
+
+          {totalPages > 1 && (
+            <div className="kb-pagination">
+              <button type="button" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>上一页</button>
+              <span>{page} / {totalPages}</span>
+              <button type="button" disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)}>下一页</button>
+            </div>
+          )}
+        </>
+      )}
+
+      {/* Create Modal */}
+      <AnimatePresence>
+        {showCreate && (
+          <motion.div
+            className="kb-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => !creating && setShowCreate(false)}
+          >
+            <motion.div
+              className="kb-modal kb-modal-lg"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="kb-modal-head">
+                <h3>新增问答对</h3>
+                <button type="button" className="kb-modal-close" onClick={() => !creating && setShowCreate(false)}>
+                  <X size={16} />
+                </button>
+              </div>
+              <div className="kb-modal-body">
+                <label className="kb-field">
+                  <span>问题 *</span>
+                  <input
+                    type="text"
+                    value={newQ}
+                    onChange={(e) => setNewQ(e.target.value)}
+                    placeholder="输入常见游客问题"
+                    disabled={creating}
+                  />
+                </label>
+                <label className="kb-field">
+                  <span>答案 *</span>
+                  <textarea
+                    rows={4}
+                    value={newA}
+                    onChange={(e) => setNewA(e.target.value)}
+                    placeholder="输入标准答案"
+                    disabled={creating}
+                  />
+                </label>
+                <label className="kb-field">
+                  <span>来源（可选）</span>
+                  <input
+                    type="text"
+                    value={newSource}
+                    onChange={(e) => setNewSource(e.target.value)}
+                    placeholder="manual"
+                    disabled={creating}
+                  />
+                </label>
+              </div>
+              <div className="kb-modal-foot">
+                <button type="button" className="kb-btn" onClick={() => setShowCreate(false)} disabled={creating}>
+                  取消
+                </button>
+                <button
+                  type="button"
+                  className="kb-btn kb-btn-primary"
+                  onClick={handleCreate}
+                  disabled={creating || !newQ.trim() || !newA.trim()}
+                >
+                  {creating ? <><Loader2 size={14} className="spin" /> 创建中...</> : <><Plus size={14} /> 创建</>}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// Tab 4: 来源管理
+// ═══════════════════════════════════════════════════════════════════════
+
+function SourcesTab() {
+  const [items, setItems] = useState<SourceItem[]>([])
+  const [loading, setLoading] = useState(true)
+  const [page, setPage] = useState(1)
+  const [total, setTotal] = useState(0)
+  const [totalPages, setTotalPages] = useState(1)
+
+  useEffect(() => {
+    setLoading(true)
+    fetchSources(page).then((data) => {
+      if (data) {
+        setItems(data.items)
+        setTotal(data.pagination.total)
+        setTotalPages(data.pagination.total_pages)
+      }
+      setLoading(false)
+    })
+  }, [page])
+
+  if (loading) {
+    return <div className="kb-loading"><Loader2 size={28} className="spin" /><span>加载来源...</span></div>
+  }
+
+  if (items.length === 0) {
+    return (
+      <div className="kb-empty-state">
+        <Database size={36} />
+        <strong>暂无资料来源</strong>
+        <p>上传文档后将自动登记来源</p>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <div className="kb-section-head">
+        <h3>资料来源（{total}）</h3>
+      </div>
+      <div className="kb-source-list">
+        {items.map((item, idx) => (
+          <div key={idx} className="kb-source-card">
+            <div className="kb-source-icon"><FileText size={18} /></div>
+            <div className="kb-source-body">
+              <strong>{item.name}</strong>
+              <span className="kb-source-path">{item.filepath}</span>
+              <div className="kb-source-meta">
+                <span className="kb-domain-tag">{item.domain || 'general'}</span>
+                {item.tags?.map((tag) => <span key={tag} className="kb-tag">{tag}</span>)}
+              </div>
+              {item.description && <p>{item.description}</p>}
+              <span className="kb-date">{item.createdAt}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      {totalPages > 1 && (
+        <div className="kb-pagination">
+          <button type="button" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>上一页</button>
+          <span>{page} / {totalPages}</span>
+          <button type="button" disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)}>下一页</button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// Tab 5: 召回测试
+// ═══════════════════════════════════════════════════════════════════════
+
+function TestQueryTab() {
+  const [query, setQuery] = useState('')
+  const [topK, setTopK] = useState(5)
+  const [result, setResult] = useState<TestQueryResult | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleTest = async () => {
+    if (!query.trim()) return
+    setLoading(true)
+    setError('')
+    setResult(null)
+    try {
+      const data = await testQuery(query, topK)
+      if (data) {
+        setResult(data)
+      } else {
+        setError('查询失败，RAG 服务不可达')
+      }
+    } catch {
+      setError('查询失败')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div>
+      <div className="kb-section-head">
+        <h3>召回测试</h3>
+        <span className="kb-hint">输入问题测试知识库检索效果</span>
+      </div>
+
+      <div className="kb-test-bar">
+        <div className="kb-test-input-wrap">
+          <Search size={15} />
+          <input
+            type="text"
+            className="kb-test-input"
+            placeholder="输入测试问题，如：灵山大佛有多高？"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleTest()}
+            disabled={loading}
+          />
+        </div>
+        <div className="kb-test-options">
+          <label>
+            <span>Top-K:</span>
+            <select value={topK} onChange={(e) => setTopK(Number(e.target.value))} disabled={loading}>
+              {[3, 5, 10].map((n) => <option key={n} value={n}>{n}</option>)}
+            </select>
+          </label>
+          <button
+            type="button"
+            className="kb-btn kb-btn-primary"
+            onClick={handleTest}
+            disabled={loading || !query.trim()}
+          >
+            {loading ? <><Loader2 size={14} className="spin" /> 查询中...</> : <><Search size={14} /> 测试</>}
+          </button>
+        </div>
+      </div>
+
+      {error && (
+        <div className="kb-test-error">
+          <AlertTriangle size={16} />
+          <span>{error}</span>
+        </div>
+      )}
+
+      {result && (
+        <div className="kb-test-result">
+          <div className="kb-test-result-head">
+            <div className={`kb-answerable-badge ${result.answerable ? 'ok' : 'no'}`}>
+              {result.answerable ? '可回答' : '低置信'}
+            </div>
+            <span>最高分: {(result.score * 100).toFixed(1)}%</span>
+            <span>延迟: {result.latencyMs}ms</span>
+          </div>
+
+          {result.fallback && (
+            <div className="kb-test-fallback">
+              <AlertTriangle size={14} />
+              <span>兜底: {result.fallback.reason} — {result.fallback.message}</span>
+            </div>
+          )}
+
+          {result.contexts.length > 0 && (
+            <div className="kb-test-contexts">
+              <h4>召回上下文（{result.contexts.length}）</h4>
+              {result.contexts.map((ctx, idx) => (
+                <div key={idx} className="kb-context-item">
+                  <div className="kb-context-score">
+                    <div className="kb-score-bar" style={{ width: `${(ctx.score * 100).toFixed(0)}%` }} />
+                    <span>{(ctx.score * 100).toFixed(1)}%</span>
+                  </div>
+                  <p>{ctx.text}</p>
+                  <div className="kb-context-meta">
+                    <span>来源: {ctx.source || '-'}</span>
+                    <span>领域: {ctx.domain || '-'}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {result.citations.length > 0 && (
+            <div className="kb-test-citations">
+              <h4>引用来源（{result.citations.length}）</h4>
+              {result.citations.map((cit, idx) => (
+                <div key={idx} className="kb-citation-item">
+                  <BookOpen size={12} />
+                  <span>{typeof cit === 'string' ? cit : JSON.stringify(cit)}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// Tab 6: 索引重建
+// ═══════════════════════════════════════════════════════════════════════
+
+function RebuildTab({ addToast }: { addToast: (t: string, m: string) => void }) {
+  const [confirming, setConfirming] = useState(false)
+  const [rebuilding, setRebuilding] = useState(false)
+  const [status, setStatus] = useState<KbStatus | null>(null)
+
+  useEffect(() => {
+    fetchKbStatus().then(setStatus)
+  }, [])
+
+  const handleRebuild = async () => {
+    setRebuilding(true)
+    try {
+      const result = await triggerReindex()
+      if (result) {
+        addToast('info', result.message || '重建任务已提交')
+        setConfirming(false)
+        // Refresh status
+        const newStatus = await fetchKbStatus()
+        if (newStatus) setStatus(newStatus)
+      } else {
+        addToast('error', '重建失败，RAG 服务不可达')
+      }
+    } catch {
+      addToast('error', '重建失败')
+    } finally {
+      setRebuilding(false)
+    }
+  }
+
+  return (
+    <div>
+      <div className="kb-section-head">
+        <h3>索引重建</h3>
+        <span className="kb-hint">清空当前向量索引后需要重新入库文档</span>
+      </div>
+
+      <div className="kb-rebuild-panel">
+        <div className="kb-rebuild-info">
+          <div className="kb-rebuild-stat">
+            <Database size={20} />
+            <div>
+              <span>当前向量数</span>
+              <strong>{status?.vectors ?? '-'}</strong>
+            </div>
+          </div>
+          <div className="kb-rebuild-stat">
+            <Layers size={20} />
+            <div>
+              <span>模型</span>
+              <strong>{status?.embeddingModel || '-'}</strong>
+            </div>
+          </div>
+          <div className="kb-rebuild-stat">
+            <Clock size={20} />
+            <div>
+              <span>切片大小</span>
+              <strong>{status?.chunkSize || '-'}</strong>
+            </div>
+          </div>
+        </div>
+
+        {!confirming ? (
+          <button
+            type="button"
+            className="kb-btn kb-btn-danger"
+            onClick={() => setConfirming(true)}
+          >
+            <Zap size={14} />
+            <span>重建索引</span>
+          </button>
+        ) : (
+          <div className="kb-rebuild-confirm">
+            <AlertTriangle size={18} />
+            <strong>确认重建索引？</strong>
+            <p>此操作将清空当前所有向量数据，已有文档需要重新入库。问答对数据不受影响。</p>
+            <div className="kb-rebuild-actions">
+              <button type="button" className="kb-btn" onClick={() => setConfirming(false)} disabled={rebuilding}>
+                取消
+              </button>
+              <button
+                type="button"
+                className="kb-btn kb-btn-danger"
+                onClick={handleRebuild}
+                disabled={rebuilding}
+              >
+                {rebuilding ? <><Loader2 size={14} className="spin" /> 重建中...</> : <><RefreshCw size={14} /> 确认重建</>}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
