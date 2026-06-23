@@ -170,6 +170,62 @@ def rebuild():
         return _res(code=50001, msg="Rebuild failed", trace_id=trace_id), 500
 
 
+# ═══════════════════════════════════════════════════════════════════════
+# LLM 问答
+# ═══════════════════════════════════════════════════════════════════════
+
+@rag_bp.route("/answer", methods=["POST"])
+@require_auth
+def answer():
+    """检索 + LLM 生成 — 返回完整回答和引用来源。"""
+    trace_id = _get_trace_id()
+    try:
+        body = request.get_json(force=True)
+    except Exception:
+        return _res(code=10001, msg="Invalid JSON body", trace_id=trace_id), 400
+
+    query_text = (body.get("query") or "").strip()
+    if not query_text:
+        return _res(code=10001, msg="Missing query", trace_id=trace_id), 400
+
+    top_k = body.get("top_k", 5)
+
+    try:
+        # Step 1: 检索
+        result = engine.query(
+            query_text=query_text,
+            top_k=top_k,
+            trace_id=trace_id,
+        )
+        contexts = result.get("contexts", [])
+
+        # Step 2: 生成回答
+        from rag.llm_client import generate_answer
+        llm_result = generate_answer(query_text, contexts)
+
+        return _res(data={
+            "answerable": result.get("answerable", False),
+            "answer": llm_result.get("answer", ""),
+            "contexts": [
+                {
+                    "text": ctx.get("text", "")[:300],
+                    "score": ctx.get("score", 0),
+                    "source": ctx.get("source_name", ""),
+                    "domain": ctx.get("domain", ""),
+                }
+                for ctx in contexts
+            ],
+            "citations": result.get("citations", []),
+            "fallback": result.get("fallback"),
+            "tokens": llm_result.get("tokens", 0),
+            "llmError": llm_result.get("error"),
+            "latencyMs": result.get("latency_ms", 0),
+        }, trace_id=trace_id)
+    except Exception as exc:
+        logger.error("Answer error: %s", exc, exc_info=True)
+        return _res(code=50001, msg="Answer failed", trace_id=trace_id), 500
+
+
 @rag_bp.route("/debug_raw_query", methods=["POST"])
 @require_auth
 def debug_raw_query():

@@ -296,8 +296,104 @@ async def test_query(body: TestQueryRequest, request: Request):
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# 低置信问答列表
+# LLM 问答（检索+生成）
 # ═══════════════════════════════════════════════════════════════════════
+
+@router.post("/knowledge/answer")
+async def answer_query(body: TestQueryRequest, request: Request):
+    """检索 + LLM 生成 — 返回完整 AI 回答"""
+    trace_id = request.state.trace_id
+    try:
+        resp = await _rag_post("/answer", {
+            "query": body.query,
+            "top_k": body.top_k,
+        }, trace_id, timeout=60.0)
+        data = resp.get("data", {})
+
+        return ok({
+            "answerable": data.get("answerable", False),
+            "answer": data.get("answer", ""),
+            "contexts": [
+                {
+                    "text": ctx.get("text", "")[:300],
+                    "score": ctx.get("score", 0),
+                    "source": ctx.get("source", ""),
+                    "domain": ctx.get("domain", ""),
+                }
+                for ctx in (data.get("contexts") or [])
+            ],
+            "citations": data.get("citations", []),
+            "fallback": data.get("fallback"),
+            "tokens": data.get("tokens", 0),
+            "llmError": data.get("llmError"),
+            "latencyMs": data.get("latency_ms", 0),
+        }, trace_id)
+    except httpx.ConnectError:
+        return err(50300, "RAG 服务不可达", trace_id)
+    except Exception as e:
+        logger.error("Answer query failed: %s", e)
+        return err(50000, f"问答失败: {e}", trace_id)
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 问答 + 数字人播报
+# ═══════════════════════════════════════════════════════════════════════
+
+@router.post("/knowledge/answer-and-broadcast")
+async def answer_and_broadcast(body: TestQueryRequest, request: Request):
+    """检索 + LLM 生成 + 发送到 Fay 数字人播报 — 一键测试"""
+    trace_id = request.state.trace_id
+
+    # Step 1: 获取 AI 回答
+    try:
+        resp = await _rag_post("/answer", {
+            "query": body.query,
+            "top_k": body.top_k or 5,
+        }, trace_id, timeout=60.0)
+        data = resp.get("data", {})
+    except Exception as e:
+        return err(50000, f"问答失败: {e}", trace_id)
+
+    answer = (data.get("answer") or "").strip()
+    if not answer:
+        return ok({
+            "answer": "",
+            "broadcastStatus": "skipped",
+            "broadcastMessage": "AI 未生成回答，跳过播报",
+            "llmError": data.get("llmError"),
+        }, trace_id)
+
+    # Step 2: 发送到 Fay 播报（调 admin-api 自身的 runtime/broadcast 端点）
+    broadcast_status = "unknown"
+    broadcast_message = ""
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            bc_resp = await client.post(
+                f"http://127.0.0.1:8002/v1/runtime/broadcast",
+                json={"text": answer, "speaker": "小景"},
+                headers={"Authorization": f"Bearer {settings.ADMIN_TOKEN}", "X-Trace-Id": trace_id},
+            )
+            if bc_resp.status_code < 400:
+                broadcast_status = "sent"
+                broadcast_message = "已发送至数字人播报队列"
+            else:
+                broadcast_status = "fay_offline"
+                broadcast_message = "Fay 数字人未启动（播报接口返回异常）"
+    except httpx.ConnectError:
+        broadcast_status = "fay_offline"
+        broadcast_message = "Fay 数字人未启动，回答已生成但未播报"
+    except Exception as e:
+        broadcast_status = "error"
+        broadcast_message = f"播报失败: {e}"
+
+    return ok({
+        "answer": answer,
+        "answerable": data.get("answerable", False),
+        "tokens": data.get("tokens", 0),
+        "llmError": data.get("llmError"),
+        "broadcastStatus": broadcast_status,
+        "broadcastMessage": broadcast_message,
+    }, trace_id)
 
 @router.get("/knowledge/low-confidence-queries")
 async def list_low_confidence(page: int = Query(1, ge=1), page_size: int = Query(20, ge=1, le=100), request: Request = None):

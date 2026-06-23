@@ -3723,6 +3723,54 @@ li {
   color: var(--muted);
 }
 
+/* ── AI 回答展示 ──────────────────────────── */
+
+.kb-ai-answer {
+  padding: 16px;
+  background: var(--paper-light);
+  border-radius: 8px;
+  line-height: 1.7;
+}
+
+.kb-ai-answer p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+
+/* ── AI 问答操作按钮 ──────────────────────── */
+
+.kb-ai-actions {
+  padding: 10px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.kb-ai-broadcast-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  background: var(--teal);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.kb-ai-broadcast-btn:hover:not(:disabled) {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
+}
+
+.kb-ai-broadcast-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* ── Tab: Rebuild ─────────────────────────── */
 
 .kb-rebuild-panel {

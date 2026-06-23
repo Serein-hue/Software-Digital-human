@@ -1,6 +1,7 @@
-/** Admin API — 对接 scenic-dh-admin-api (http://localhost:8002/v1/admin) */
+/** Admin API — 对接 scenic-dh-admin-api (http://localhost:8002/v1) */
 
-const ADMIN_BASE = import.meta.env.VITE_ADMIN_API_BASE ?? 'http://localhost:8002/v1/admin'
+const ADMIN_BASE = import.meta.env.VITE_ADMIN_API_BASE ?? 'http://localhost:8002/v1'
+const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN ?? 'adm-dev-token'
 
 interface ApiResponse<T> {
   code: number
@@ -93,6 +94,7 @@ export interface LowConfidenceItem {
 async function apiGet<T>(path: string): Promise<T | null> {
   try {
     const res = await fetch(`${ADMIN_BASE}${path}`, {
+      headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` },
       signal: AbortSignal.timeout(8_000),
     })
     if (!res.ok) return null
@@ -104,11 +106,15 @@ async function apiGet<T>(path: string): Promise<T | null> {
 }
 
 async function apiPost<T>(path: string, body?: unknown): Promise<T | null> {
+  const isFormData = body instanceof FormData
   try {
     const res = await fetch(`${ADMIN_BASE}${path}`, {
       method: 'POST',
-      headers: body instanceof FormData ? {} : { 'Content-Type': 'application/json' },
-      body: body instanceof FormData ? body : body ? JSON.stringify(body) : undefined,
+      headers: isFormData ? { 'Authorization': `Bearer ${ADMIN_TOKEN}` } : {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ADMIN_TOKEN}`,
+      },
+      body: isFormData ? body : body ? JSON.stringify(body) : undefined,
       signal: AbortSignal.timeout(body instanceof FormData ? 120_000 : 10_000),
     })
     if (!res.ok) return null
@@ -160,6 +166,29 @@ export async function registerQA(
 
 export async function testQuery(query: string, topK = 5): Promise<TestQueryResult | null> {
   return apiPost<TestQueryResult>('/knowledge/test-query', { query, top_k: topK })
+}
+
+export interface AnswerResult extends TestQueryResult {
+  answer: string
+  tokens: number
+  llmError: string | null
+}
+
+export async function answerQuery(query: string, topK = 5): Promise<AnswerResult | null> {
+  return apiPost<AnswerResult>('/knowledge/answer', { query, top_k: topK })
+}
+
+export interface AnswerAndBroadcastResult {
+  answer: string
+  answerable: boolean
+  tokens: number
+  llmError: string | null
+  broadcastStatus: 'sent' | 'fay_offline' | 'error' | 'skipped' | 'unknown'
+  broadcastMessage: string
+}
+
+export async function answerAndBroadcast(query: string, topK = 5): Promise<AnswerAndBroadcastResult | null> {
+  return apiPost<AnswerAndBroadcastResult>('/knowledge/answer-and-broadcast', { query, top_k: topK })
 }
 
 export async function fetchLowConfidenceQueries(

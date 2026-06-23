@@ -6,7 +6,7 @@ import {
   Upload, FileText, Search, CheckCircle, XCircle, AlertCircle,
   Clock, Database, Layers, Hash, BookOpen, Zap, RefreshCw,
   Trash2, Plus, Eye, Loader2, Award, BarChart3, ChevronRight,
-  X, AlertTriangle, MessageSquare, CheckCheck, FileUp,
+  X, AlertTriangle, MessageSquare, CheckCheck, FileUp, Play,
 } from 'lucide-react'
 import { useT } from '../../i18n'
 import {
@@ -17,12 +17,16 @@ import {
   uploadDocument,
   registerQA,
   testQuery,
+  answerQuery,
+  answerAndBroadcast,
   triggerReindex,
   type KbStatus,
   type SourceItem,
   type QAItem,
   type LowConfidenceItem,
   type TestQueryResult,
+  type AnswerResult,
+  type AnswerAndBroadcastResult,
 } from '../../api/admin'
 
 // ── Tab 定义 ──────────────────────────────────────────────────────────
@@ -97,7 +101,7 @@ export default function KnowledgeBase() {
         {activeTab === 'candidates' && <CandidatesTab addToast={addToast} />}
         {activeTab === 'qa' && <QATab addToast={addToast} />}
         {activeTab === 'sources' && <SourcesTab />}
-        {activeTab === 'test' && <TestQueryTab />}
+        {activeTab === 'test' && <TestQueryTab addToast={addToast} />}
         {activeTab === 'rebuild' && <RebuildTab addToast={addToast} />}
       </div>
 
@@ -759,24 +763,32 @@ function SourcesTab() {
 // Tab 5: 召回测试
 // ═══════════════════════════════════════════════════════════════════════
 
-function TestQueryTab() {
+function TestQueryTab({ addToast }: { addToast?: (t: string, m: string) => void }) {
   const [query, setQuery] = useState('')
   const [topK, setTopK] = useState(5)
   const [result, setResult] = useState<TestQueryResult | null>(null)
+  const [answerResult, setAnswerResult] = useState<AnswerResult | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [mode, setMode] = useState<'retrieval' | 'qa'>('retrieval')
 
   const handleTest = async () => {
     if (!query.trim()) return
     setLoading(true)
     setError('')
     setResult(null)
+    setAnswerResult(null)
     try {
-      const data = await testQuery(query, topK)
-      if (data) {
-        setResult(data)
+      if (mode === 'retrieval') {
+        const data = await testQuery(query, topK)
+        if (data) setResult(data)
+        else setError('查询失败，RAG 服务不可达')
       } else {
-        setError('查询失败，RAG 服务不可达')
+        const data = await answerQuery(query, topK)
+        if (data) {
+          setAnswerResult(data)
+          if (data.llmError) setError(`LLM 提示: ${data.llmError}`)
+        } else setError('问答失败，RAG 服务不可达')
       }
     } catch {
       setError('查询失败')
@@ -785,11 +797,20 @@ function TestQueryTab() {
     }
   }
 
+  const aiAnswer = answerResult?.answer
+
   return (
     <div>
       <div className="kb-section-head">
-        <h3>召回测试</h3>
-        <span className="kb-hint">输入问题测试知识库检索效果</span>
+        <h3>{mode === 'retrieval' ? '召回测试' : 'AI 问答'}</h3>
+        <div className="kb-type-filters">
+          <button type="button" className={`kb-type-chip ${mode === 'retrieval' ? 'active' : ''}`} onClick={() => { setMode('retrieval'); setResult(null); setAnswerResult(null); setError('') }}>
+            召回测试
+          </button>
+          <button type="button" className={`kb-type-chip ${mode === 'qa' ? 'active' : ''}`} onClick={() => { setMode('qa'); setResult(null); setAnswerResult(null); setError('') }}>
+            AI 问答
+          </button>
+        </div>
       </div>
 
       <div className="kb-test-bar">
@@ -818,7 +839,7 @@ function TestQueryTab() {
             onClick={handleTest}
             disabled={loading || !query.trim()}
           >
-            {loading ? <><Loader2 size={14} className="spin" /> 查询中...</> : <><Search size={14} /> 测试</>}
+            {loading ? <><Loader2 size={14} className="spin" /> 查询中...</> : <><Search size={14} /> {mode === 'retrieval' ? '测试' : '提问'}</>}
           </button>
         </div>
       </div>
@@ -830,7 +851,69 @@ function TestQueryTab() {
         </div>
       )}
 
-      {result && (
+      {/* AI 问答模式：显示回答 */}
+      {aiAnswer && (
+        <div className="kb-test-result" style={{ marginBottom: 16 }}>
+          <div className="kb-test-result-head">
+            <div className={`kb-answerable-badge ${answerResult?.answerable ? 'ok' : 'no'}`}>
+              {answerResult?.answerable ? '已回答' : '低置信'}
+            </div>
+            <span>Token: {answerResult?.tokens ?? 0}</span>
+            <span>延迟: {answerResult?.latencyMs ?? 0}ms</span>
+          </div>
+          <div className="kb-ai-answer">
+            <p>{aiAnswer}</p>
+          </div>
+          <div className="kb-ai-actions">
+            <button
+              type="button"
+              className="kb-ai-broadcast-btn"
+              onClick={async () => {
+                setLoading(true)
+                try {
+                  const r = await answerAndBroadcast(query, topK)
+                  if (r?.broadcastStatus === 'sent') {
+                    addToast('success', '✅ 已发送至数字人播报队列')
+                  } else if (r?.broadcastStatus === 'fay_offline') {
+                    addToast('info', '⚠️ Fay 未启动，回答已生成但未播报')
+                  } else {
+                    addToast('error', r?.broadcastMessage || '播报失败')
+                  }
+                } catch {
+                  addToast('error', '播报异常')
+                } finally {
+                  setLoading(false)
+                }
+              }}
+              disabled={loading}
+            >
+              {loading ? <Loader2 size={14} className="spin" /> : <Play size={14} />}
+              <span>{loading ? '播报中...' : '问答并播报 🎤'}</span>
+            </button>
+          </div>
+          {answerResult?.tokens && answerResult.tokens > 0 && (
+            <div className="kb-test-contexts" style={{ marginTop: 12 }}>
+              <h4>参考上下文（{answerResult?.contexts?.length ?? 0}）</h4>
+              {answerResult?.contexts?.map((ctx, idx) => (
+                <div key={idx} className="kb-context-item">
+                  <div className="kb-context-score">
+                    <div className="kb-score-bar" style={{ width: `${(ctx.score * 100).toFixed(0)}%` }} />
+                    <span>{(ctx.score * 100).toFixed(1)}%</span>
+                  </div>
+                  <p>{ctx.text}</p>
+                  <div className="kb-context-meta">
+                    <span>来源: {ctx.source || '-'}</span>
+                    <span>领域: {ctx.domain || '-'}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* 召回测试模式：原有结果展示 */}
+      {result && !aiAnswer && (
         <div className="kb-test-result">
           <div className="kb-test-result-head">
             <div className={`kb-answerable-badge ${result.answerable ? 'ok' : 'no'}`}>

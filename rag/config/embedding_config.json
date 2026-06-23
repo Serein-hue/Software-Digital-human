@@ -2,7 +2,7 @@
   "_说明": "Embedding 模型配置，支持本地/云端切换",
   "provider": "local",
   "local": {
-    "model_name": "BAAI/bge-large-zh-v1.5",
+    "model_name": "BAAI/bge-small-zh-v1.5",
     "device": "cpu",
     "batch_size": 16,
     "max_seq_length": 512,

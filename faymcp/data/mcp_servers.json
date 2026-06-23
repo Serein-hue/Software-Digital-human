@@ -80,7 +80,7 @@
         "id": 6,
         "name": "课程知识库",
         "ip": "",
-        "connection_time": "2026-06-01 20:31:19",
+        "connection_time": "2026-06-23 15:38:42",
         "key": "",
         "transport": "stdio",
         "command": "python",
