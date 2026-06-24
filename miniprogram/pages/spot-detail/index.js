@@ -144,4 +144,10 @@ Page({
     if (this.audioTimer) clearTimeout(this.audioTimer)
     wx.navigateBack()
   },
+
+  onPullDownRefresh() {
+    const id = this.data.spot ? this.data.spot.id : 'lingshan-buddha'
+    this.loadSpot(id)
+    wx.stopPullDownRefresh()
+  },
 })

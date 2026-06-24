@@ -28,6 +28,11 @@
   </view>
 
   <view wx:else class="route-list">
+    <view wx:if="{{routes.length === 0}}" class="empty-state">
+      <text style="font-size:48rpx;">🗺</text>
+      <text>暂无路线数据</text>
+      <text class="text-muted">下拉刷新试试</text>
+    </view>
     <view wx:for="{{routes}}" wx:key="id" class="route-card {{expandedId === item.id ? 'expanded' : ''}}">
       <view class="route-card-main" bindtap="toggleExpand" data-id="{{item.id}}">
         <view class="route-card-top">

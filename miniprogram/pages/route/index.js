@@ -100,4 +100,9 @@ Page({
   goBack() {
     wx.navigateBack()
   },
+
+  onPullDownRefresh() {
+    this.loadRoutes(this.data.activePref)
+    wx.stopPullDownRefresh()
+  },
 })

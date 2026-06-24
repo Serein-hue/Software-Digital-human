@@ -1,23 +1,37 @@
 <view class="photo-page">
   <view class="photo-header">
-    <button class="photo-back-btn" bindtap="goBack">
-      <text>◀</text>
-    </button>
+    <button class="photo-back-btn" bindtap="goBack"><text>◀</text></button>
     <text class="photo-title">{{pageTitle}}</text>
     <text class="photo-hint">{{pageHint}}</text>
   </view>
 
-  <!-- Viewfinder -->
+  <!-- Viewfinder / Photo Preview -->
   <view class="photo-viewfinder">
     <image wx:if="{{photoPath}}" class="photo-preview" src="{{photoPath}}" mode="aspectFill" />
     <view wx:else class="photo-grid" />
-    <view class="photo-corner tl" />
-    <view class="photo-corner tr" />
-    <view class="photo-corner bl" />
-    <view class="photo-corner br" />
+    <view class="photo-corner tl" /><view class="photo-corner tr" />
+    <view class="photo-corner bl" /><view class="photo-corner br" />
     <view wx:if="{{phase === 'scanning'}}" class="photo-scan-beam" />
-    <view wx:if="{{phase === 'scanning'}}" class="photo-ripple r1" />
-    <view wx:if="{{phase === 'scanning'}}" class="photo-ripple r2" />
+  </view>
+
+  <!-- Idle: just show capture button -->
+  <view wx:if="{{phase === 'idle'}}" class="photo-prompt">
+    <text class="prompt-icon">📸</text>
+    <text class="prompt-text">拍摄景点照片，AI 帮你识别讲解</text>
+  </view>
+
+  <!-- Captured: ask what they saw -->
+  <view wx:if="{{phase === 'captured'}}" class="photo-question-area">
+    <text class="question-label">📝 照片里是什么？</text>
+    <view class="question-input-row">
+      <input class="question-input" placeholder="{{questionPlaceholder}}" value="{{question}}" bindinput="onQuestionInput" bindconfirm="onSubmitQuestion" confirm-type="search" />
+      <button class="question-submit" bindtap="onSubmitQuestion">识别</button>
+    </view>
+    <text class="question-hint">或者快速选择：</text>
+    <view class="quick-spots">
+      <button wx:for="{{['灵山大佛','灵山梵宫','九龙灌浴','五印坛城','祥符禅寺']}}" wx:key="*this" class="quick-spot-chip" bindtap="onQuickSpot" data-name="{{item}}">{{item}}</button>
+    </view>
+    <button class="photo-retake-btn" bindtap="retakePhoto">📷 重新拍摄</button>
   </view>
 
   <!-- Scanning state -->
@@ -29,16 +43,14 @@
     <text class="photo-status-hint">{{scanningHint}}</text>
   </view>
 
-  <!-- Results -->
+  <!-- Results from RAG -->
   <view wx:if="{{phase === 'results'}}" class="photo-results">
     <view class="photo-results-head">
       <text>✨ {{resultsLabel}}</text>
       <button class="photo-rescan-btn" bindtap="startScan">{{rescanLabel}}</button>
     </view>
     <view wx:for="{{results}}" wx:key="id" class="photo-result-card">
-      <view class="photo-result-rank">
-        <text>{{index + 1}}</text>
-      </view>
+      <view class="photo-result-rank"><text>{{index + 1}}</text></view>
       <view class="photo-result-info">
         <view class="photo-result-top">
           <text class="result-name">{{item.name}}</text>
@@ -60,7 +72,7 @@
 
   <!-- Bottom actions -->
   <view class="photo-bottom-actions safe-bottom">
-    <button wx:if="{{phase !== 'scanning'}}" class="photo-capture-btn" bindtap="takePhoto">
+    <button wx:if="{{phase !== 'scanning' && phase !== 'captured'}}" class="photo-capture-btn" bindtap="takePhoto">
       <text>📷 {{captureLabel}}</text>
     </button>
   </view>
