@@ -225,9 +225,10 @@ class TestSourceMarking:
         resp = client.get("/v1/weather")
         assert resp.json()["data"]["source"] == "mock"
 
-    def test_queues_is_mock(self):
+    def test_queues_returns_list(self):
         resp = client.get("/v1/queues")
-        assert resp.json()["data"]["source"] == "mock"
+        assert resp.json()["code"] == 0
+        assert "items" in resp.json()["data"]
 
     def test_tickets_source(self):
         resp = client.get("/v1/tickets/products")
