@@ -111,7 +111,7 @@ Page({
       { regex: /路线|推荐.*(路|游|逛)|怎么(逛|玩|游)|游览.*(顺序|路线)/, handler: 'routes' },
       { regex: /门票|票价|多少钱|价格/, handler: 'tickets' },
       { regex: /演出|表演|几点.*(演|表|开)|吉祥颂|九龙.*(表演|几点)/, handler: 'events' },
-      { regex: /洗手间|厕所|卫生间|餐饮|吃饭|停车场|在哪|服务设施/, handler: 'services' },
+      { regex: /洗手间|厕所|卫生间|餐饮|吃饭|停车场(在|有|位)|哪有.*(厕所|洗手间|卫生间|餐厅|饭)/, handler: 'services' },
       { regex: /天气/, handler: 'weather' },
     ]
     for (const p of patterns) {
@@ -132,6 +132,11 @@ Page({
     this.setData({ messages, inputText: '', isListening: true, isLoading: true, scrollToId: `msg-${userMsg.id}` })
 
     if (this.data.isOffline) { this.replyLocal(text); return }
+
+    // 确保 session 已就绪（防止 race condition）
+    if (!this.sessionId) {
+      try { this.sessionId = await session.ensure({ source: 'miniprogram' }) } catch (_) {}
+    }
 
     // 存用户消息
     if (this.sessionId) {
