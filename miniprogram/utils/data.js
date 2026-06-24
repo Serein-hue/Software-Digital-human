@@ -288,6 +288,8 @@ const QUICK_ACTIONS = [
   { icon: '🗺', i18nKey: 'quick.route', action: 'route', askText: '推荐路线' },
   { icon: '📷', i18nKey: 'quick.camera', action: 'camera', askText: '拍照识景' },
   { icon: '📖', i18nKey: 'quick.detail', action: 'detail', askText: '深度讲解' },
+  { icon: '🎫', i18nKey: 'quick.tickets', action: 'tickets', askText: '门票信息' },
+  { icon: '🚻', i18nKey: 'quick.services', action: 'services', askText: '服务设施' },
   { icon: '⏱', i18nKey: 'quick.duration', action: 'ask', askText: '游览时长' },
 ]
 

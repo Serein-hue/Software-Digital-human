@@ -1,0 +1,16 @@
+.page { min-height:100vh; background:var(--paper); padding-bottom:safe-bottom; }
+.header { display:flex; align-items:center; padding:24rpx 32rpx; gap:16rpx; }
+.back-btn { width:64rpx; height:64rpx; display:flex; align-items:center; justify-content:center; background:#fff; border:1rpx solid var(--line); border-radius:16rpx; font-size:28rpx; }
+.title { font-size:36rpx; font-weight:700; color:var(--ink); }
+.spacer { flex:1; }
+
+.loading, .list { padding:24rpx 32rpx; }
+.section-label { font-size:24rpx; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:2rpx; margin-bottom:16rpx; }
+
+.event-card { display:flex; gap:20rpx; background:#fff; border:1rpx solid var(--line); border-radius:20rpx; padding:24rpx; margin-bottom:16rpx; }
+.ev-icon { width:72rpx; height:72rpx; border-radius:16rpx; background:rgba(21,93,88,0.06); display:flex; align-items:center; justify-content:center; font-size:36rpx; flex-shrink:0; }
+.ev-body { flex:1; display:flex; flex-direction:column; gap:8rpx; }
+.ev-name { font-size:30rpx; font-weight:700; color:var(--ink); }
+.ev-time { display:flex; align-items:center; gap:8rpx; font-size:26rpx; color:var(--teal); font-weight:600; }
+.ev-clock { font-size:22rpx; }
+.ev-desc { font-size:24rpx; color:var(--muted); line-height:1.5; }

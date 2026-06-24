@@ -1,0 +1,28 @@
+.page { min-height:100vh; background:var(--paper); padding-bottom:safe-bottom; }
+.header { display:flex; align-items:center; padding:24rpx 32rpx; gap:16rpx; }
+.back-btn { width:64rpx; height:64rpx; display:flex; align-items:center; justify-content:center; background:#fff; border:1rpx solid var(--line); border-radius:16rpx; font-size:28rpx; }
+.title { font-size:36rpx; font-weight:700; color:var(--ink); }
+.spacer { flex:1; }
+
+.form { padding:24rpx 32rpx; display:flex; flex-direction:column; gap:24rpx; }
+
+.type-row { display:flex; gap:16rpx; }
+.type-btn { flex:1; padding:20rpx 16rpx; background:#fff; border:2rpx solid var(--line); border-radius:16rpx; font-size:26rpx; font-weight:600; color:var(--ink); text-align:center; }
+.type-btn.active { border-color:var(--rust); background:rgba(180,82,44,0.06); color:var(--rust); }
+
+.loc-row { display:flex; align-items:center; gap:12rpx; padding:20rpx 24rpx; background:#fff; border:1rpx solid var(--line); border-radius:16rpx; }
+.loc-label { font-size:24rpx; color:var(--muted); }
+.loc-val { font-size:24rpx; color:var(--ink); }
+
+.desc-input { width:100%; min-height:200rpx; padding:24rpx; background:#fff; border:2rpx solid var(--line); border-radius:16rpx; font-size:28rpx; box-sizing:border-box; }
+.contact-input { padding:20rpx 24rpx; background:#fff; border:2rpx solid var(--line); border-radius:16rpx; font-size:28rpx; }
+
+.submit-btn { padding:24rpx; background:var(--rust); color:#fff; border-radius:20rpx; font-size:32rpx; font-weight:700; border:none; }
+.tip { text-align:center; font-size:22rpx; color:var(--muted); }
+
+.sent-box { display:flex; flex-direction:column; align-items:center; gap:24rpx; padding:80rpx 40rpx; text-align:center; }
+.sent-icon { font-size:72rpx; }
+.sent-title { font-size:32rpx; font-weight:700; color:var(--ink); }
+.sent-msg { font-size:26rpx; color:var(--muted); line-height:1.6; }
+.sent-id { font-size:24rpx; color:var(--teal); font-family:monospace; }
+.reset-btn { margin-top:24rpx; padding:20rpx 48rpx; background:#fff; border:2rpx solid var(--line); border-radius:20rpx; font-size:28rpx; color:var(--ink); }

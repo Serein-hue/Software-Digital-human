@@ -12,6 +12,11 @@
 .route-header-title { color: #fff; font-size: 36rpx; font-weight: 800; display: block; }
 .route-header-sub { color: rgba(255,255,255,0.6); font-size: 24rpx; }
 
+.pref-bar { white-space:nowrap; padding:20rpx 24rpx; }
+.pref-chip { display:inline-flex; align-items:center; gap:6rpx; padding:14rpx 24rpx; margin-right:16rpx; background:#fff; border:1rpx solid var(--line); border-radius:24rpx; font-size:26rpx; color:var(--ink); }
+.pref-chip.active { background:var(--teal); color:#fff; border-color:var(--teal); }
+.loading { padding:24rpx; }
+
 .route-list { padding: 24rpx; display: flex; flex-direction: column; gap: 20rpx; }
 
 .route-card {

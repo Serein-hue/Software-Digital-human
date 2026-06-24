@@ -9,7 +9,25 @@
     </view>
   </view>
 
-  <view class="route-list">
+  <!-- Preference filter -->
+  <scroll-view class="pref-bar" scroll-x>
+    <button
+      wx:for="{{prefOptions}}"
+      wx:key="key"
+      class="pref-chip {{activePref === item.key ? 'active' : ''}}"
+      bindtap="onPrefTap"
+      data-pref="{{item.key}}"
+    >
+      <text>{{item.icon}} {{item.label}}</text>
+    </button>
+  </scroll-view>
+
+  <!-- Loading -->
+  <view wx:if="{{isLoading}}" class="loading">
+    <view class="skeleton" style="height:200rpx;margin-bottom:24rpx;" wx:for="{{2}}" wx:key="*this" />
+  </view>
+
+  <view wx:else class="route-list">
     <view wx:for="{{routes}}" wx:key="id" class="route-card {{expandedId === item.id ? 'expanded' : ''}}">
       <view class="route-card-main" bindtap="toggleExpand" data-id="{{item.id}}">
         <view class="route-card-top">

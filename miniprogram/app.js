@@ -1,9 +1,12 @@
+const session = require('./utils/session')
+
 App({
   globalData: {
     spotName: '灵山胜境',
     spotId: 'lingshan-buddha',
     isOnline: true,
     messages: [],
+    sessionId: null,
   },
 
   onLaunch() {
@@ -11,8 +14,13 @@ App({
       success: (res) => {
         this.globalData.safeArea = res.safeArea
         this.globalData.statusBarHeight = res.statusBarHeight
-      }
+      },
     })
+
+    // 预创建会话（后台静默，不阻塞启动）
+    session.ensure({ source: 'miniprogram' }).then((sid) => {
+      this.globalData.sessionId = sid
+    }).catch(() => {})
   },
 
   // 全局消息管理
