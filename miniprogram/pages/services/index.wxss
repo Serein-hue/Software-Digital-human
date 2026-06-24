@@ -1,0 +1,18 @@
+.page { min-height:100vh; background:var(--paper); padding-bottom:safe-bottom; }
+.header { display:flex; align-items:center; padding:24rpx 32rpx; gap:16rpx; }
+.back-btn { width:64rpx; height:64rpx; display:flex; align-items:center; justify-content:center; background:#fff; border:1rpx solid var(--line); border-radius:16rpx; font-size:28rpx; }
+.title { font-size:36rpx; font-weight:700; color:var(--ink); }
+.spacer { flex:1; }
+
+.cat-tabs { white-space:nowrap; padding:16rpx 32rpx; }
+.cat-chip { display:inline-flex; align-items:center; gap:8rpx; padding:14rpx 24rpx; margin-right:16rpx; background:#fff; border:1rpx solid var(--line); border-radius:24rpx; font-size:26rpx; color:var(--ink); }
+.cat-chip.active { background:var(--teal); color:#fff; border-color:var(--teal); }
+
+.loading, .list { padding:24rpx 32rpx; }
+
+.service-card { display:flex; align-items:center; gap:20rpx; background:#fff; border:1rpx solid var(--line); border-radius:20rpx; padding:24rpx; margin-bottom:16rpx; }
+.card-left { width:80rpx; height:80rpx; border-radius:16rpx; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.card-body { flex:1; display:flex; flex-direction:column; gap:8rpx; }
+.svc-name { font-size:28rpx; font-weight:600; color:var(--ink); }
+.svc-loc { font-size:24rpx; color:var(--muted); }
+.card-right { flex-shrink:0; }

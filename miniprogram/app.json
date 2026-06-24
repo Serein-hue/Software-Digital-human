@@ -3,7 +3,12 @@
     "pages/guide/index",
     "pages/spot-detail/index",
     "pages/route/index",
-    "pages/photo/index"
+    "pages/photo/index",
+    "pages/services/index",
+    "pages/events/index",
+    "pages/tickets/index",
+    "pages/emergency/index",
+    "pages/feedback/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#155d58",

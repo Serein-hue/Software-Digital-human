@@ -1,0 +1,46 @@
+<view class="page">
+  <view class="header">
+    <button class="back-btn" bindtap="goBack"><text>←</text></button>
+    <text class="title">{{title}}</text>
+    <view class="spacer" />
+  </view>
+
+  <view wx:if="{{!done}}" class="form">
+    <!-- 星级评分 -->
+    <view class="rating-section">
+      <text class="section-label">{{ratingLabel}}</text>
+      <view class="stars-row">
+        <text
+          wx:for="{{stars}}"
+          wx:key="*this"
+          class="star {{item <= rating ? 'on' : ''}}"
+          bindtap="onStarTap"
+          data-star="{{item}}"
+        >{{item <= rating ? '⭐' : '☆'}}</text>
+      </view>
+    </view>
+
+    <!-- 是否解决 -->
+    <view class="toggle-row" bindtap="onResolvedToggle">
+      <text class="toggle-label">{{resolvedLabel}}</text>
+      <view class="toggle-switch {{resolved ? 'on' : ''}}">
+        <view class="toggle-knob" />
+      </view>
+    </view>
+
+    <!-- 留言 -->
+    <view class="comment-section">
+      <text class="section-label">{{commentLabel}}</text>
+      <textarea class="comment-input" placeholder="您的建议帮助我们做得更好..." value="{{comment}}" bindinput="onCommentInput" maxlength="300" />
+    </view>
+
+    <button class="submit-btn" bindtap="onSubmit" loading="{{submitting}}">{{submitLabel}}</button>
+  </view>
+
+  <!-- 提交成功 -->
+  <view wx:else class="done-box">
+    <text class="done-icon">🎉</text>
+    <text class="done-text">{{thanksLabel}}</text>
+    <button class="reset-btn" bindtap="onReset">再写一条</button>
+  </view>
+</view>

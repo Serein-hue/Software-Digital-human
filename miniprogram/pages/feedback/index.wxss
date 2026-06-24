@@ -1,0 +1,29 @@
+.page { min-height:100vh; background:var(--paper); padding-bottom:safe-bottom; }
+.header { display:flex; align-items:center; padding:24rpx 32rpx; gap:16rpx; }
+.back-btn { width:64rpx; height:64rpx; display:flex; align-items:center; justify-content:center; background:#fff; border:1rpx solid var(--line); border-radius:16rpx; font-size:28rpx; }
+.title { font-size:36rpx; font-weight:700; color:var(--ink); }
+.spacer { flex:1; }
+
+.form { padding:24rpx 32rpx; display:flex; flex-direction:column; gap:32rpx; }
+.section-label { font-size:26rpx; font-weight:600; color:var(--muted); margin-bottom:12rpx; display:block; }
+
+.rating-section { }
+.stars-row { display:flex; gap:16rpx; }
+.star { font-size:48rpx; opacity:0.3; }
+.star.on { opacity:1; }
+
+.toggle-row { display:flex; align-items:center; justify-content:space-between; padding:20rpx 24rpx; background:#fff; border:1rpx solid var(--line); border-radius:16rpx; }
+.toggle-label { font-size:28rpx; color:var(--ink); }
+.toggle-switch { width:88rpx; height:48rpx; background:var(--line); border-radius:24rpx; position:relative; }
+.toggle-switch.on { background:var(--teal); }
+.toggle-knob { width:40rpx; height:40rpx; background:#fff; border-radius:50%; position:absolute; top:4rpx; left:4rpx; transition:transform 0.2s; }
+.toggle-switch.on .toggle-knob { transform:translateX(40rpx); }
+
+.comment-input { width:100%; min-height:180rpx; padding:24rpx; background:#fff; border:2rpx solid var(--line); border-radius:16rpx; font-size:28rpx; box-sizing:border-box; }
+
+.submit-btn { padding:24rpx; background:var(--teal); color:#fff; border-radius:20rpx; font-size:32rpx; font-weight:700; border:none; }
+
+.done-box { display:flex; flex-direction:column; align-items:center; gap:24rpx; padding:100rpx 40rpx; text-align:center; }
+.done-icon { font-size:72rpx; }
+.done-text { font-size:32rpx; font-weight:700; color:var(--ink); }
+.reset-btn { margin-top:24rpx; padding:20rpx 48rpx; background:#fff; border:2rpx solid var(--line); border-radius:20rpx; font-size:28rpx; color:var(--ink); }

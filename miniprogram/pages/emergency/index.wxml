@@ -1,0 +1,47 @@
+<view class="page">
+  <view class="header">
+    <button class="back-btn" bindtap="goBack"><text>←</text></button>
+    <text class="title">{{title}}</text>
+    <view class="spacer" />
+  </view>
+
+  <!-- 求助前 -->
+  <view wx:if="{{!sent}}" class="form">
+    <!-- 类型选择 -->
+    <view class="type-row">
+      <button
+        wx:for="{{types}}"
+        wx:key="key"
+        class="type-btn {{activeType === item.key ? 'active' : ''}}"
+        bindtap="onTypeTap"
+        data-type="{{item.key}}"
+      >{{item.label}}</button>
+    </view>
+
+    <!-- 位置 -->
+    <view class="loc-row">
+      <text class="loc-label">{{locationLabel}}</text>
+      <text class="loc-val">📍 {{location}}</text>
+    </view>
+
+    <!-- 描述 -->
+    <textarea class="desc-input" placeholder="{{descPlaceholder}}" value="{{desc}}" bindinput="onDescInput" maxlength="500" />
+
+    <!-- 联系方式 -->
+    <input class="contact-input" placeholder="{{contactPlaceholder}}" value="{{contact}}" bindinput="onContactInput" type="number" maxlength="11" />
+
+    <!-- 提交 -->
+    <button class="submit-btn" bindtap="onSubmit" loading="{{submitting}}">🆘 {{submitLabel}}</button>
+
+    <text class="tip">紧急情况请直接拨打 110 / 120</text>
+  </view>
+
+  <!-- 求助后 -->
+  <view wx:else class="sent-box">
+    <text class="sent-icon">✅</text>
+    <text class="sent-title">{{sentLabel}}</text>
+    <text class="sent-msg">{{resultMsg}}</text>
+    <text wx:if="{{resultId}}" class="sent-id">编号: {{resultId}}</text>
+    <button class="reset-btn" bindtap="onReset">发起新求助</button>
+  </view>
+</view>
