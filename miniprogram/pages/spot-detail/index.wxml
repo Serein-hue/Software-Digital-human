@@ -26,6 +26,10 @@
 
   <!-- Content -->
   <view class="sd-content">
+    <view wx:if="{{spot.tags}}" class="sd-tags">
+      <text wx:for="{{spot.tags}}" wx:key="*this" class="sd-tag">{{item}}</text>
+    </view>
+    <text wx:if="{{spot.location}}" class="sd-location">📍 {{spot.location}}</text>
     <text wx:for="{{paragraphs}}" wx:key="*this" class="sd-para">{{item}}</text>
     <view class="sd-source">
       <text>📖 {{spot.source}}</text>

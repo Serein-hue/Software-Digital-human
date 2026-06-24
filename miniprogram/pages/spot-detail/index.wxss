@@ -45,6 +45,14 @@
   border-radius: 12rpx; font-size: 24rpx; color: var(--teal);
 }
 
+/* API 补充字段 */
+.sd-tags { display: flex; flex-wrap: wrap; gap: 10rpx; margin-bottom: 16rpx; }
+.sd-tag {
+  padding: 6rpx 16rpx; background: rgba(21,93,88,0.06);
+  border-radius: 12rpx; font-size: 22rpx; color: var(--teal);
+}
+.sd-location { font-size: 26rpx; color: var(--muted); margin-bottom: 12rpx; display: block; }
+
 /* Audio */
 .sd-audio {
   display: flex; align-items: center; gap: 16rpx;

@@ -1,5 +1,6 @@
 const { SPOTS, MOCK_KNOWLEDGE, QUICK_ACTIONS } = require('../../utils/data')
 const { t, getLang, toggleLang, getSuggestions } = require('../../utils/i18n')
+const api = require('../../utils/api')
 
 Page({
   data: {
@@ -30,6 +31,9 @@ Page({
     voiceRecordingHint: '',
     voiceIdleHint: '',
     voiceSuggestionsLabel: '',
+    // 服务状态
+    _sessionId: null,  // 当前会话 ID
+    _apiOnline: false, // business-api 是否可达
   },
 
   refreshDisplay() {
@@ -70,6 +74,9 @@ Page({
       }],
     })
 
+    // 尝试连接 business-api，创建会话
+    this._initSession()
+
     this.recorderManager = wx.getRecorderManager()
     this.recorderManager.onStop((res) => {
       this.setData({ voiceRecording: false })
@@ -85,6 +92,22 @@ Page({
 
     this.speakingTimer = null
     this.listeningTimer = null
+  },
+
+  // ── 初始化会话 ────────────────────────────────────────────────────
+  _initSession() {
+    api.createSession('SA-001').then((data) => {
+      const sessionId = data && (data.id || data.sessionId)
+      if (sessionId) {
+        this.data._sessionId = sessionId
+        this.data._apiOnline = true
+        console.log('[Guide] API session created:', sessionId)
+      }
+    }).catch(() => {
+      // API 不可达，使用本地 mock
+      this.data._apiOnline = false
+      console.log('[Guide] API offline, using local mock')
+    })
   },
 
   onUnload() {
@@ -107,24 +130,55 @@ Page({
     const messages = [...this.data.messages, userMsg]
     this.setData({ messages, inputText: '', isListening: true, scrollToId: `msg-${userMsg.id}` })
 
-    this.listeningTimer = setTimeout(() => {
-      const matched = MOCK_KNOWLEDGE[text]
-        || Object.entries(MOCK_KNOWLEDGE).find(([key]) => text.includes(key.slice(0, 4)))?.[1]
-        || MOCK_KNOWLEDGE.default
+    const sessionId = this.data._sessionId
+    if (sessionId && this.data._apiOnline) {
+      // 走 API：发送消息到 business-api
+      api.sendMessage(sessionId, text).then((data) => {
+        this.setData({ isListening: false })
+        // API 返回的消息数组
+        const replies = Array.isArray(data) ? data : (data && data.items ? data.items : [data])
+        const lastReply = Array.isArray(replies) ? replies[replies.length - 1] : replies
+        const replyText = (lastReply && (lastReply.content || lastReply.text || lastReply.answer)) || ''
+        if (replyText) {
+          this._showGuideResponse(replyText, lastReply.source || '灵山胜境官方资料')
+        } else {
+          // API 无回复，走本地 mock
+          this._localAnswer(text)
+        }
+      }).catch(() => {
+        // API 失败，回退本地
+        this.setData({ isListening: false })
+        this._localAnswer(text)
+      })
+    } else {
+      // 本地 mock 回答
+      setTimeout(() => {
+        this.setData({ isListening: false })
+        this._localAnswer(text)
+      }, 600)
+    }
+  },
 
-      this.setData({ isListening: false, isSpeaking: true })
+  // ── 本地 mock 回答 ────────────────────────────────────────────────
+  _localAnswer(text) {
+    const matched = MOCK_KNOWLEDGE[text]
+      || Object.entries(MOCK_KNOWLEDGE).find(([key]) => text.includes(key.slice(0, 4)))?.[1]
+      || MOCK_KNOWLEDGE.default
+    this._showGuideResponse(matched.text, matched.source)
+  },
 
-      const guideMsg = {
-        id: `g-${Date.now()}`,
-        role: 'guide',
-        text: matched.text,
-        source: matched.source,
-      }
-      const updated = [...this.data.messages, guideMsg]
-      this.setData({ messages: updated, scrollToId: `msg-${guideMsg.id}` })
+  _showGuideResponse(text, source) {
+    this.setData({ isSpeaking: true })
+    const guideMsg = {
+      id: `g-${Date.now()}`,
+      role: 'guide',
+      text,
+      source: source || '灵山胜境官方资料',
+    }
+    const updated = [...this.data.messages, guideMsg]
+    this.setData({ messages: updated, scrollToId: `msg-${guideMsg.id}` })
 
-      this.speakingTimer = setTimeout(() => this.setData({ isSpeaking: false }), matched.text.length * 35)
-    }, 800)
+    this.speakingTimer = setTimeout(() => this.setData({ isSpeaking: false }), text.length * 35)
   },
 
   onQuickAction(e) {
