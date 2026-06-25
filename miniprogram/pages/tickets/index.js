@@ -35,7 +35,7 @@ Page({
   async loadProducts() {
     this.setData({ isLoading: true })
     try {
-      const data = await api.get('/tickets/products')
+      const data = await api.getCached('/tickets/products', {}, { ttl: 120000 })
       this.setData({
         products: (data.items || []).map((p) => ({
           id: p.id,

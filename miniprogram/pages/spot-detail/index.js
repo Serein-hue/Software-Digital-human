@@ -48,8 +48,8 @@ Page({
 
     try {
       const [spotData, guideData] = await Promise.all([
-        api.get(`/spots/${id}`).catch(() => null),
-        api.get(`/spots/${id}/guide`).catch(() => null),
+        api.getCached(`/spots/${id}`, {}, { ttl: 120000 }).catch(() => null),
+        api.getCached(`/spots/${id}/guide`, {}, { ttl: 120000 }).catch(() => null),
       ])
 
       if (spotData) {

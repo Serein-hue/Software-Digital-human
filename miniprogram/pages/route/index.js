@@ -43,7 +43,7 @@ Page({
         this.setData({ routes: this.normalizeRoutes(items), routeCount: t('route.count', { n: items.length }), isLoading: false })
         return
       } else {
-        data = await api.get('/routes')
+        data = await api.getCached('/routes', {}, { ttl: 120000 })
         const items = data.items || []
         this.setData({ routes: this.normalizeRoutes(items), routeCount: t('route.count', { n: items.length }), isLoading: false })
         return

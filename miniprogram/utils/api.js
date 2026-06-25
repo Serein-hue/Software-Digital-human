@@ -122,10 +122,39 @@ function patch(path, data, options) {
   return request('PATCH', path, data, options)
 }
 
+// ── 简单内存缓存（同一会话内避免重复请求） ──
+const _cache = new Map()
+const CACHE_TTL = 60000 // 60 秒
+
+/**
+ * 带缓存的 GET 请求（仅缓存 code=0 的成功响应）
+ */
+function getCached(path, params, options = {}) {
+  const ttl = options.ttl || CACHE_TTL
+  const cacheKey = path + '?' + JSON.stringify(params || {})
+  const cached = _cache.get(cacheKey)
+  if (cached && Date.now() - cached.time < ttl) {
+    return Promise.resolve(cached.data)
+  }
+  return get(path, params, options).then((data) => {
+    _cache.set(cacheKey, { data, time: Date.now() })
+    return data
+  })
+}
+
+/**
+ * 清除缓存（切换语言/刷新时调用）
+ */
+function clearCache() {
+  _cache.clear()
+}
+
 module.exports = {
   get,
+  getCached,
   post,
   patch,
   setBaseUrl,
   getBaseUrl,
+  clearCache,
 }

@@ -20,7 +20,7 @@ Page({
   async loadEvents() {
     this.setData({ isLoading: true })
     try {
-      const data = await api.get('/events')
+      const data = await api.getCached('/events', {}, { ttl: 120000 })
       this.setData({
         events: (data.items || []).map((ev) => ({
           id: ev.id,

@@ -28,7 +28,7 @@ Page({
     this.setData({ isLoading: true })
     try {
       const params = category && category !== 'all' ? { category } : {}
-      const data = await api.get('/services', params)
+      const data = await api.getCached('/services', params, { ttl: 120000 })
       this.setData({
         services: (data.items || []).map((s) => ({
           id: s.id,
