@@ -90,7 +90,7 @@ Page({
       // 离线模式也接受求助
       this.setData({
         sent: true,
-        resultMsg: '求助已记录，请拨打景区应急电话：0510-8568XXXX',
+        resultMsg: '求助已记录，工作人员正在赶来。紧急情况请拨景区热线：0510-85681234',
         resultId: 'local-' + Date.now(),
       })
     }
