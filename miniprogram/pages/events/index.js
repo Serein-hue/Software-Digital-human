@@ -1,5 +1,10 @@
 const { t } = require('../../utils/i18n')
-const api = require('../../utils/api')
+
+const LOCAL_EVENTS = [
+  { id: 'jiulong-1000', name: '九龙灌浴', time: '10:00', spotId: 'lingshan-jiulong', description: '大型动态音乐群雕表演' },
+  { id: 'jiulong-1330', name: '九龙灌浴', time: '13:30', spotId: 'lingshan-jiulong', description: '建议提前 10 分钟到场' },
+  { id: 'xiangfu-bell', name: '祥符禅钟祈福', time: '全天', spotId: 'lingshan-xiangfu', description: '千年古刹祈福体验' },
+]
 
 Page({
   data: {
@@ -17,34 +22,17 @@ Page({
     this.loadEvents()
   },
 
-  async loadEvents() {
-    this.setData({ isLoading: true })
-    try {
-      const data = await api.getCached('/events', {}, { ttl: 120000 })
-      this.setData({
-        events: (data.items || []).map((ev) => ({
-          id: ev.id,
-          name: ev.name,
-          time: ev.time,
-          spotId: ev.spotId,
-          description: ev.description,
-          icon: this.iconFor(ev.name),
-        })),
-        isLoading: false,
-      })
-    } catch (e) {
-      console.log('[events] API 失败:', e.message)
-      this.setData({ isLoading: false })
-      wx.showToast({ title: '加载失败，请下拉刷新', icon: 'none' })
-    }
+  loadEvents() {
+    this.setData({
+      events: LOCAL_EVENTS.map((event) => ({ ...event, icon: this.iconFor(event.name) })),
+      isLoading: false,
+    })
   },
 
   iconFor(name) {
-    if (name.includes('九龙')) return '🐉'
-    if (name.includes('吉祥') || name.includes('颂')) return '🎭'
-    if (name.includes('祈福')) return '🙏'
-    if (name.includes('禅')) return '🧘'
-    return '🎪'
+    if (name.includes('九龙')) return '龙'
+    if (name.includes('钟')) return '钟'
+    return '演出'
   },
 
   onPullDownRefresh() {

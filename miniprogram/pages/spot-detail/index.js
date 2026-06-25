@@ -24,60 +24,51 @@ Page({
       playingLabel: t('spot.playing'),
       nearbySpots: t('spot.nearbySpots'),
       tiers: [
-        { key: 'oneLiner', label: '⏱ ' + t('spot.oneLine') },
-        { key: 'shortIntro', label: '⏱ ' + t('spot.shortVersion') },
-        { key: 'fullIntro', label: '📖 ' + t('spot.deepGuide') },
+        { key: 'oneLiner', label: '概览' },
+        { key: 'shortIntro', label: t('spot.shortVersion') },
+        { key: 'fullIntro', label: t('spot.deepGuide') },
       ],
     })
-    const id = options.id || 'lingshan-buddha'
-    this.loadSpot(id)
+    this.loadSpot(options.id || 'lingshan-buddha')
   },
 
   onUnload() {
     if (this.audioTimer) clearTimeout(this.audioTimer)
-    if (this.innerAudioContext) {
-      this.innerAudioContext.destroy()
-    }
+    if (this.innerAudioContext) this.innerAudioContext.destroy()
   },
 
-  /**
-   * 加载景点 — API 优先，失败降级到本地 SPOTS
-   */
   async loadSpot(id) {
     this.setData({ isLoading: true, loadError: false })
 
     try {
-      const [spotData, guideData] = await Promise.all([
-        api.getCached(`/spots/${id}`, {}, { ttl: 120000 }).catch(() => null),
-        api.getCached(`/spots/${id}/guide`, {}, { ttl: 120000 }).catch(() => null),
+      const [spotData, relatedData] = await Promise.all([
+        api.getCached(`/spots/${id}`, {}, { ttl: 120000 }),
+        api.getCached(`/spots/${id}/related`, {}, { ttl: 120000 }).catch(() => []),
       ])
-
-      if (spotData) {
-        const spot = {
-          id: spotData.id,
-          name: spotData.name,
-          category: (spotData.tags || []).join('·') || '灵山胜境',
-          heroGradient: this.pickGradient(spotData.id),
-          oneLiner: spotData.summary || '',
-          shortIntro: spotData.intro || spotData.summary || '',
-          fullIntro: spotData.intro || spotData.summary || '',
-          source: spotData.source || '灵山胜境官方资料',
-          audioDuration: '3:00',
-          related: [],
-        }
-        if (guideData) {
-          spot.shortIntro = guideData.briefText || spot.shortIntro
-          spot.fullIntro = guideData.longText || spot.fullIntro
-          spot.oneLiner = guideData.shortText || spot.oneLiner
-        }
-        this.renderSpot(spot)
-        return
-      }
+      const spot = this.normalizeSpot(spotData)
+      const relatedSpots = (relatedData || []).map((item) => this.normalizeSpot(item))
+      this.renderSpot(spot, relatedSpots)
+      return
     } catch (e) {
-      console.log('[spot-detail] API 失败，降级本地:', e.message)
+      console.log('[spot-detail] API failed, using local fallback:', e.message)
     }
 
     this.loadSpotLocal(id)
+  },
+
+  normalizeSpot(spot) {
+    return {
+      id: spot.id,
+      name: spot.name,
+      category: spot.category || '',
+      heroGradient: spot.heroGradient || this.pickGradient(spot.id),
+      oneLiner: spot.oneLiner || spot.params || spot.shortIntro || '',
+      shortIntro: spot.shortIntro || '',
+      fullIntro: spot.fullIntro || spot.shortIntro || '',
+      source: spot.source || '',
+      audioDuration: spot.audioDuration || '3:00',
+      related: spot.related || [],
+    }
   },
 
   pickGradient(id) {
@@ -97,17 +88,19 @@ Page({
       this.setData({ isLoading: false, loadError: true })
       return
     }
-    this.renderSpot(spot)
+    const relatedSpots = (spot.related || []).map((rid) => SPOTS[rid]).filter(Boolean)
+    this.renderSpot(spot, relatedSpots)
   },
 
-  renderSpot(spot) {
+  renderSpot(spot, relatedSpots) {
     const tier = this.data.tier || 'shortIntro'
-    const content = spot[tier] || spot.shortIntro
+    const content = spot[tier] || spot.shortIntro || ''
     const paragraphs = content.split('\n').filter(Boolean)
-    const relatedSpots = (spot.related || []).map((rid) => SPOTS[rid]).filter(Boolean)
 
     this.setData({
-      spot, paragraphs, relatedSpots,
+      spot,
+      paragraphs,
+      relatedSpots: relatedSpots || [],
       heroGradient: spot.heroGradient || '',
       isLoading: false,
     })
@@ -117,9 +110,8 @@ Page({
     const tier = e.currentTarget.dataset.tier
     const spot = this.data.spot
     if (!spot) return
-    const content = spot[tier] || spot.shortIntro
-    const paragraphs = content.split('\n').filter(Boolean)
-    this.setData({ tier, paragraphs })
+    const content = spot[tier] || spot.shortIntro || ''
+    this.setData({ tier, paragraphs: content.split('\n').filter(Boolean) })
   },
 
   togglePlay() {
@@ -127,10 +119,11 @@ Page({
     this.setData({ isPlaying })
 
     if (this.audioTimer) clearTimeout(this.audioTimer)
-
     if (isPlaying) {
-      const dur = (this.data.spot.audioDuration || '2:00').split(':').reduce((m, s) => m * 60 + +s, 0) * 1000
-      this.audioTimer = setTimeout(() => this.setData({ isPlaying: false }), dur)
+      const duration = (this.data.spot.audioDuration || '2:00')
+        .split(':')
+        .reduce((minutes, seconds) => minutes * 60 + Number(seconds), 0) * 1000
+      this.audioTimer = setTimeout(() => this.setData({ isPlaying: false }), duration)
     }
   },
 

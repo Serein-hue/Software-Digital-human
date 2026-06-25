@@ -1,5 +1,4 @@
 const { t } = require('../../utils/i18n')
-const api = require('../../utils/api')
 const session = require('../../utils/session')
 
 Page({
@@ -71,19 +70,12 @@ Page({
 
     this.setData({ submitting: true })
     try {
-      const sid = await session.ensure()
-      const data = await api.post('/emergency/requests', {
-        session_id: sid,
-        emergency_type: this.data.activeType,
-        location: this.data.location,
-        contact: this.data.contact,
-        description: this.data.desc,
-      })
+      await session.ensure()
       this.setData({
         sent: true,
         submitting: false,
-        resultMsg: data.message || t('emergency.sent'),
-        resultId: data.emergencyId,
+        resultMsg: t('emergency.sent'),
+        resultId: 'local-' + Date.now(),
       })
     } catch (e) {
       this.setData({ submitting: false })

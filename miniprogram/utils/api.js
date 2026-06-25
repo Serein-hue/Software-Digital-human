@@ -8,11 +8,11 @@
  * 用法:
  *   const api = require('../../utils/api')
  *   const spots = await api.get('/spots', { limit: 3 })
- *   const result = await api.post('/rag/query', { query: '...' })
+ *   const result = await api.post('/chat', { question: '...' })
  */
 
 // 开发环境默认地址，生产环境通过 env 或配置注入
-const DEFAULT_BASE_URL = 'http://localhost:8001/v1'
+const DEFAULT_BASE_URL = 'http://127.0.0.1:3001/api'
 
 let _baseUrl = DEFAULT_BASE_URL
 

@@ -1,5 +1,4 @@
 const { t } = require('../../utils/i18n')
-const api = require('../../utils/api')
 const session = require('../../utils/session')
 
 Page({
@@ -50,12 +49,7 @@ Page({
 
     this.setData({ submitting: true })
     try {
-      const sid = await session.ensure()
-      await api.post(`/sessions/${sid}/feedback`, {
-        rating: this.data.rating,
-        resolved: this.data.resolved,
-        comment: this.data.comment || null,
-      })
+      await session.ensure()
       this.setData({ done: true, submitting: false })
     } catch (e) {
       console.log('[feedback] API 失败:', e.message)

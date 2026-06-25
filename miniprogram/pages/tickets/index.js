@@ -1,5 +1,10 @@
 const { t } = require('../../utils/i18n')
-const api = require('../../utils/api')
+
+const LOCAL_PRODUCTS = [
+  { id: 'adult', name: '成人票', price: 210, status: 'available' },
+  { id: 'student', name: '学生票', price: 105, status: 'available' },
+  { id: 'senior', name: '60-69 周岁老人票', price: 105, status: 'available' },
+]
 
 Page({
   data: {
@@ -32,51 +37,30 @@ Page({
     this.loadProducts()
   },
 
-  async loadProducts() {
-    this.setData({ isLoading: true })
-    try {
-      const data = await api.getCached('/tickets/products', {}, { ttl: 120000 })
-      this.setData({
-        products: (data.items || []).map((p) => ({
-          id: p.id,
-          name: p.name,
-          price: p.price,
-          status: p.status,
-        })),
-        isLoading: false,
-      })
-    } catch (e) {
-      console.log('[tickets] API 失败:', e.message)
-      this.setData({ isLoading: false })
-    }
+  loadProducts() {
+    this.setData({ products: LOCAL_PRODUCTS, isLoading: false })
   },
 
   onCodeInput(e) {
     this.setData({ verifyCode: e.detail.value })
   },
 
-  async onVerify() {
+  onVerify() {
     const code = this.data.verifyCode.trim()
     if (!code) return
 
     this.setData({ verifying: true, verifyResult: null })
-    try {
-      const data = await api.post('/tickets/verify', { ticket_code: code })
+    setTimeout(() => {
       this.setData({
         verifyResult: {
           code,
-          status: data.status,
-          names: data.ticketNames || [],
-          disclaimer: data.disclaimer || '',
+          status: 'offline',
+          names: [],
+          disclaimer: '当前演示后端未接入票务核销，真实验票请以景区官方系统为准。',
         },
         verifying: false,
       })
-    } catch (e) {
-      this.setData({
-        verifyResult: { code, status: 'invalid', names: [], disclaimer: e.message },
-        verifying: false,
-      })
-    }
+    }, 300)
   },
 
   onPullDownRefresh() {

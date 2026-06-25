@@ -1,5 +1,13 @@
 const { t } = require('../../utils/i18n')
-const api = require('../../utils/api')
+
+const LOCAL_SERVICES = [
+  { id: 'toilet-buddha', category: 'toilet', name: '大佛广场卫生间', location: '灵山大佛广场东侧' },
+  { id: 'toilet-fanpalace', category: 'toilet', name: '梵宫一层卫生间', location: '梵宫入口内侧' },
+  { id: 'restaurant-suxiang', category: 'restaurant', name: '灵山精舍素斋馆', location: '出口商业街旁' },
+  { id: 'restaurant-fanpalace', category: 'restaurant', name: '梵宫自助餐厅', location: '梵宫一层' },
+  { id: 'parking-p1', category: 'parking', name: 'P1 南门停车场', location: '景区南门入口' },
+  { id: 'help-center', category: 'help_point', name: '游客服务中心', location: '南门入园后右侧' },
+]
 
 Page({
   data: {
@@ -14,37 +22,29 @@ Page({
     this.setData({
       title: t('services.title'),
       categories: [
-        { key: 'all', label: t('services.all'), icon: '📍' },
-        { key: 'toilet', label: t('services.toilet'), icon: '🚻' },
-        { key: 'restaurant', label: t('services.restaurant'), icon: '🍽' },
-        { key: 'parking', label: t('services.parking'), icon: '🅿' },
-        { key: 'help_point', label: t('services.help_point'), icon: '🆘' },
+        { key: 'all', label: t('services.all'), icon: '全部' },
+        { key: 'toilet', label: t('services.toilet'), icon: '卫生间' },
+        { key: 'restaurant', label: t('services.restaurant'), icon: '餐饮' },
+        { key: 'parking', label: t('services.parking'), icon: '停车' },
+        { key: 'help_point', label: t('services.help_point'), icon: '求助' },
       ],
     })
     this.loadServices()
   },
 
-  async loadServices(category) {
-    this.setData({ isLoading: true })
-    try {
-      const params = category && category !== 'all' ? { category } : {}
-      const data = await api.getCached('/services', params, { ttl: 120000 })
-      this.setData({
-        services: (data.items || []).map((s) => ({
-          id: s.id,
-          category: s.category,
-          name: s.name,
-          location: s.location,
-          icon: this.iconFor(s.category),
-          color: this.colorFor(s.category),
-        })),
-        isLoading: false,
-      })
-    } catch (e) {
-      console.log('[services] API 失败:', e.message)
-      this.setData({ isLoading: false })
-      wx.showToast({ title: '加载失败，请下拉刷新', icon: 'none' })
-    }
+  loadServices(category) {
+    const services = category && category !== 'all'
+      ? LOCAL_SERVICES.filter((service) => service.category === category)
+      : LOCAL_SERVICES
+
+    this.setData({
+      services: services.map((service) => ({
+        ...service,
+        icon: this.iconFor(service.category),
+        color: this.colorFor(service.category),
+      })),
+      isLoading: false,
+    })
   },
 
   onCategoryTap(e) {
@@ -53,14 +53,14 @@ Page({
     this.loadServices(category)
   },
 
-  iconFor(cat) {
-    const map = { toilet: '🚻', restaurant: '🍽', parking: '🅿', help_point: '🆘', shop: '🛍', medical: '🏥' }
-    return map[cat] || '📍'
+  iconFor(category) {
+    const map = { toilet: '卫', restaurant: '餐', parking: '停', help_point: '助', shop: '店', medical: '医' }
+    return map[category] || '点'
   },
 
-  colorFor(cat) {
+  colorFor(category) {
     const map = { toilet: '#4a90d9', restaurant: '#e89460', parking: '#5a8a4a', help_point: '#d94a4a', shop: '#8a6a4a', medical: '#d94a4a' }
-    return map[cat] || '#155d58'
+    return map[category] || '#155d58'
   },
 
   onPullDownRefresh() {
