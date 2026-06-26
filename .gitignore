@@ -33,6 +33,8 @@ live2d-avatar/CubismSdkForWeb-5-r.4/Samples/TypeScript/Demo/node_modules/
 .DS_Store
 Thumbs.db
 
+# 老师的 uni-app 仓库（独立项目，单独推送）
+_teacher-miniprogram/
 # RAG generated data
 rag/chroma_db/
 backend/rag/
