@@ -349,3 +349,62 @@ export async function fetchFeedbacks(
   if (minRating !== undefined) params.set('min_rating', String(minRating))
   return apiGet<PaginatedData<Feedback>>(`/feedbacks?${params}`)
 }
+
+// ═══════════════════════════════════════════════════════════════════════
+// 运营分析（大屏数据）
+// ═══════════════════════════════════════════════════════════════════════
+
+export interface OverviewData {
+  activeVisitors: number
+  totalSpots: number
+  pendingWorkOrders: number
+  pendingEmergencies: number
+  avgRating: number
+}
+
+export interface SpotHeatItem {
+  id: string
+  name: string
+  activeVisitors: number
+}
+
+export interface SpotHeatData {
+  items: SpotHeatItem[]
+  totalActive: number
+}
+
+export interface CrowdFlowItem {
+  hour: string
+  count: number
+}
+
+export interface CrowdFlowData {
+  items: CrowdFlowItem[]
+}
+
+export interface QueueStatItem {
+  spot: string
+  queueMinutes: number
+  crowdLevel: string
+  activeTickets: number
+}
+
+export interface QueueStatsData {
+  items: QueueStatItem[]
+}
+
+export async function fetchOverview(): Promise<OverviewData | null> {
+  return apiGet<OverviewData>('/admin/analytics/overview')
+}
+
+export async function fetchSpotHeat(minutes = 5): Promise<SpotHeatData | null> {
+  return apiGet<SpotHeatData>(`/admin/analytics/spot-heat?minutes=${minutes}`)
+}
+
+export async function fetchCrowdFlow(): Promise<CrowdFlowData | null> {
+  return apiGet<CrowdFlowData>('/admin/analytics/crowd-flow')
+}
+
+export async function fetchQueueStats(): Promise<QueueStatsData | null> {
+  return apiGet<QueueStatsData>('/admin/analytics/queue')
+}

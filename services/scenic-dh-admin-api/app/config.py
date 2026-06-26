@@ -10,6 +10,9 @@ class Settings(BaseSettings):
     PORT: int = 8002
     DEBUG: bool = False
 
+    # 共享数据库（与 business-api 同一个 SQLite 文件）
+    DATABASE_URL: str = "sqlite:///../scenic-dh-business-api/scenic_business.db"
+
     # 上游服务
     BUSINESS_API_URL: str = "http://localhost:8001/v1"
     RAG_SERVICE_URL: str = "http://127.0.0.1:5010/api/v1"
