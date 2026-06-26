@@ -1,64 +1,116 @@
-"""admin-api 数据库 — 共享 SQLite（与 business-api 相同文件）"""
+"""共享数据库 — 反馈、工单、应急求助表
 
-import logging
-import os
-import sqlalchemy as sa
-from sqlalchemy import create_engine, event
-from sqlalchemy.orm import sessionmaker, declarative_base, Session as SASession
-from fastapi import Depends
-from typing import Annotated
+与 business-api 共用同一个 SQLite 文件。
+迁移只跑一次，不丢数据。
+"""
+
+import sqlite3
+import threading
+from pathlib import Path
 
 from app.config import settings
 
-logger = logging.getLogger("admin-api.db")
-
-# 解析数据库路径 — 与 business-api 共享 DB
-# DATABASE_URL = "sqlite:///./scenic_business.db" → 解析为 project_root/services/scenic-dh-business-api/
-_db_url = settings.DATABASE_URL  # e.g. "sqlite:///./scenic_business.db"
-if _db_url.startswith("sqlite:///./"):
-    # 相对于 business-api 目录
-    _filename = _db_url.replace("sqlite:///./", "")
-    _admin_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    _project_root = os.path.dirname(_admin_dir)  # services/
-    _bus_dir = os.path.join(_project_root, "scenic-dh-business-api")
-    _db_path = os.path.join(_bus_dir, _filename)
-else:
-    _db_path = _db_url
-
-engine = create_engine(
-    f"sqlite:///{_db_path}",
-    connect_args={"check_same_thread": False},
-    echo=False,
-    pool_pre_ping=True,
-)
-
-@event.listens_for(engine, "connect")
-def set_sqlite_pragma(dbapi_connection, connection_record):
-    cursor = dbapi_connection.cursor()
-    cursor.execute("PRAGMA journal_mode=WAL")
-    cursor.execute("PRAGMA foreign_keys=ON")
-    cursor.close()
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
+_local = threading.local()
+_migrated = False
 
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+def _get_db_path() -> str:
+    url = settings.DATABASE_URL
+    if url.startswith("sqlite:///"):
+        return url[len("sqlite:///"):]
+    return url
 
 
-DbSession = Annotated[SASession, Depends(get_db)]
+def get_conn() -> sqlite3.Connection:
+    global _migrated
+    if not hasattr(_local, "conn") or _local.conn is None:
+        db_path = _get_db_path()
+        Path(db_path).parent.mkdir(parents=True, exist_ok=True)
+        conn = sqlite3.connect(db_path, check_same_thread=False)
+        conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA journal_mode=WAL")
+        conn.execute("PRAGMA foreign_keys=ON")
+        _local.conn = conn
+        _init_tables(conn)
+        if not _migrated:
+            _migrated = True
+            _run_migration(conn)
+    return _local.conn
 
 
-def init_db():
-    """创建 admin-api 专属表。业务表由 business-api 启动时创建。"""
-    from app.models_admin import (  # noqa: F401
-        AdminUser, Role, Permission, ContentVersion,
-        PersonaConfig, BroadcastLog,
-    )
-    Base.metadata.create_all(bind=engine)
-    logger.info("Admin tables created / verified")
+def _init_tables(conn: sqlite3.Connection):
+    conn.executescript("""
+        CREATE TABLE IF NOT EXISTS feedbacks (
+            id TEXT PRIMARY KEY,
+            session_id TEXT NOT NULL DEFAULT '',
+            type TEXT NOT NULL DEFAULT 'feedback',
+            content TEXT NOT NULL DEFAULT '',
+            contact TEXT NOT NULL DEFAULT '',
+            image TEXT NOT NULL DEFAULT '',
+            location TEXT NOT NULL DEFAULT '',
+            category TEXT NOT NULL DEFAULT '',
+            rating INTEGER DEFAULT 3,
+            resolved INTEGER DEFAULT 0,
+            comment TEXT NOT NULL DEFAULT '',
+            created_at TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE TABLE IF NOT EXISTS work_orders (
+            id TEXT PRIMARY KEY,
+            session_id TEXT NOT NULL DEFAULT '',
+            category TEXT NOT NULL DEFAULT 'complaint',
+            description TEXT NOT NULL DEFAULT '',
+            location TEXT NOT NULL DEFAULT '',
+            contact TEXT NOT NULL DEFAULT '',
+            status TEXT NOT NULL DEFAULT 'pending',
+            handler TEXT DEFAULT NULL,
+            resolution TEXT DEFAULT NULL,
+            created_at TEXT NOT NULL DEFAULT (datetime('now')),
+            updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE TABLE IF NOT EXISTS emergencies (
+            id TEXT PRIMARY KEY,
+            session_id TEXT NOT NULL DEFAULT '',
+            emergency_type TEXT NOT NULL DEFAULT 'sos',
+            description TEXT NOT NULL DEFAULT '',
+            location TEXT NOT NULL DEFAULT '',
+            contact TEXT NOT NULL DEFAULT '',
+            status TEXT NOT NULL DEFAULT 'pending',
+            dispatcher TEXT DEFAULT NULL,
+            resolved_at TEXT DEFAULT NULL,
+            created_at TEXT NOT NULL DEFAULT (datetime('now')),
+            updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE TABLE IF NOT EXISTS locations (
+            session_id TEXT PRIMARY KEY,
+            latitude REAL NOT NULL DEFAULT 0,
+            longitude REAL NOT NULL DEFAULT 0,
+            accuracy REAL DEFAULT 0,
+            near_spot_id TEXT DEFAULT '',
+            reported_at TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+    """)
+    conn.commit()
+
+
+def _run_migration(conn: sqlite3.Connection):
+    cursor = conn.execute("PRAGMA table_info(feedbacks)")
+    cols = {r[1] for r in cursor.fetchall()}
+    if "type" not in cols:
+        conn.execute("DROP TABLE IF EXISTS feedbacks")
+        conn.executescript("""
+            CREATE TABLE feedbacks (
+                id TEXT PRIMARY KEY,
+                session_id TEXT NOT NULL DEFAULT '',
+                type TEXT NOT NULL DEFAULT 'feedback',
+                content TEXT NOT NULL DEFAULT '',
+                contact TEXT NOT NULL DEFAULT '',
+                image TEXT NOT NULL DEFAULT '',
+                location TEXT NOT NULL DEFAULT '',
+                category TEXT NOT NULL DEFAULT '',
+                rating INTEGER DEFAULT 3,
+                resolved INTEGER DEFAULT 0,
+                comment TEXT NOT NULL DEFAULT '',
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+        """)
+        conn.commit()

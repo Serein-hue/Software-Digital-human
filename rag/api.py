@@ -17,7 +17,6 @@ import uuid
 from functools import wraps
 from flask import Blueprint, jsonify, request
 from rag.rag_engine import engine
-from rag.manager import register_source, list_sources, register_qa, list_qa
 
 logger = logging.getLogger("rag.api")
 rag_bp = Blueprint("rag", __name__)
@@ -154,7 +153,7 @@ def query():
         )
         return _res(data=result, trace_id=trace_id)
     except Exception as exc:
-        logger.error("Query error: %s", exc, exc_info=True)
+        logger.error("Query error: %s", exc)
         return _res(code=50001, msg="Query failed", trace_id=trace_id), 500
 
 
@@ -172,96 +171,59 @@ def rebuild():
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# H-03 管理接口
+# LLM 问答
 # ═══════════════════════════════════════════════════════════════════════
 
-@rag_bp.route("/sources", methods=["POST"])
+@rag_bp.route("/answer", methods=["POST"])
 @require_auth
-def sources():
-    """登记资料来源 — 管理员录入一份新的资料。"""
+def answer():
+    """检索 + LLM 生成 — 返回完整回答和引用来源。"""
     trace_id = _get_trace_id()
     try:
         body = request.get_json(force=True)
     except Exception:
         return _res(code=10001, msg="Invalid JSON body", trace_id=trace_id), 400
 
-    name = (body.get("name") or "").strip()
-    filepath = (body.get("filepath") or "").strip()
-    if not name:
-        return _res(code=10001, msg="Missing name", trace_id=trace_id), 400
-    if not filepath:
-        return _res(code=10001, msg="Missing filepath", trace_id=trace_id), 400
+    query_text = (body.get("query") or "").strip()
+    if not query_text:
+        return _res(code=10001, msg="Missing query", trace_id=trace_id), 400
+
+    top_k = body.get("top_k", 5)
 
     try:
-        result = register_source(
-            name=name,
-            filepath=filepath,
-            domain=body.get("domain"),
-            description=body.get("description"),
-            tags=body.get("tags"),
+        # Step 1: 检索
+        result = engine.query(
+            query_text=query_text,
+            top_k=top_k,
+            trace_id=trace_id,
         )
-        return _res(data=result, trace_id=trace_id)
+        contexts = result.get("contexts", [])
+
+        # Step 2: 生成回答
+        from rag.llm_client import generate_answer
+        llm_result = generate_answer(query_text, contexts)
+
+        return _res(data={
+            "answerable": result.get("answerable", False),
+            "answer": llm_result.get("answer", ""),
+            "contexts": [
+                {
+                    "text": ctx.get("text", "")[:300],
+                    "score": ctx.get("score", 0),
+                    "source": ctx.get("source_name", ""),
+                    "domain": ctx.get("domain", ""),
+                }
+                for ctx in contexts
+            ],
+            "citations": result.get("citations", []),
+            "fallback": result.get("fallback"),
+            "tokens": llm_result.get("tokens", 0),
+            "llmError": llm_result.get("error"),
+            "latencyMs": result.get("latency_ms", 0),
+        }, trace_id=trace_id)
     except Exception as exc:
-        logger.error("Register source error: %s", exc)
-        return _res(code=50001, msg="Failed to register source", trace_id=trace_id), 500
-
-
-@rag_bp.route("/sources", methods=["GET"])
-@require_auth
-def sources_list():
-    """分页列出已登记的资料来源。"""
-    trace_id = _get_trace_id()
-    page, page_size = _pagination()
-    try:
-        data = list_sources(page=page, page_size=page_size)
-        return _res(data=data, trace_id=trace_id)
-    except Exception as exc:
-        logger.error("List sources error: %s", exc)
-        return _res(code=50001, msg="Failed to list sources", trace_id=trace_id), 500
-
-
-@rag_bp.route("/qa", methods=["POST"])
-@require_auth
-def qa():
-    """采纳问答对 — 管理员手动录入一问一答。"""
-    trace_id = _get_trace_id()
-    try:
-        body = request.get_json(force=True)
-    except Exception:
-        return _res(code=10001, msg="Invalid JSON body", trace_id=trace_id), 400
-
-    question = (body.get("question") or "").strip()
-    answer = (body.get("answer") or "").strip()
-    if not question:
-        return _res(code=10001, msg="Missing question", trace_id=trace_id), 400
-    if not answer:
-        return _res(code=10001, msg="Missing answer", trace_id=trace_id), 400
-
-    try:
-        result = register_qa(
-            question=question,
-            answer=answer,
-            source=body.get("source"),
-            domain=body.get("domain"),
-        )
-        return _res(data=result, trace_id=trace_id)
-    except Exception as exc:
-        logger.error("Register QA error: %s", exc)
-        return _res(code=50001, msg="Failed to register QA", trace_id=trace_id), 500
-
-
-@rag_bp.route("/qa", methods=["GET"])
-@require_auth
-def qa_list():
-    """分页列出已采纳的问答对。"""
-    trace_id = _get_trace_id()
-    page, page_size = _pagination()
-    try:
-        data = list_qa(page=page, page_size=page_size)
-        return _res(data=data, trace_id=trace_id)
-    except Exception as exc:
-        logger.error("List QA error: %s", exc)
-        return _res(code=50001, msg="Failed to list QA", trace_id=trace_id), 500
+        logger.error("Answer error: %s", exc, exc_info=True)
+        return _res(code=50001, msg="Answer failed", trace_id=trace_id), 500
 
 
 @rag_bp.route("/debug_raw_query", methods=["POST"])

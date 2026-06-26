@@ -1,12 +1,12 @@
-const session = require('./utils/session')
+const api = require('./utils/api')
 
 App({
   globalData: {
     spotName: '灵山胜境',
     spotId: 'lingshan-buddha',
-    isOnline: true,
+    isOnline: true,        // 网络可达
+    apiOnline: false,      // business-api 服务可达
     messages: [],
-    sessionId: null,
   },
 
   onLaunch() {
@@ -14,13 +14,22 @@ App({
       success: (res) => {
         this.globalData.safeArea = res.safeArea
         this.globalData.statusBarHeight = res.statusBarHeight
-      },
+      }
     })
 
-    // 预创建会话（后台静默，不阻塞启动）
-    session.ensure({ source: 'miniprogram' }).then((sid) => {
-      this.globalData.sessionId = sid
-    }).catch(() => {})
+    // 探测 business-api 是否在线
+    this._checkApi()
+  },
+
+  _checkApi() {
+    // 用天气接口做轻量探测
+    api.getWeather().then(() => {
+      this.globalData.apiOnline = true
+      console.log('[App] business-api online')
+    }).catch(() => {
+      this.globalData.apiOnline = false
+      console.log('[App] business-api offline, using mock data')
+    })
   },
 
   // 全局消息管理

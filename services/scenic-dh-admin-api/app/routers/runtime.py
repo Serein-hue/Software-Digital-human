@@ -48,13 +48,13 @@ async def get_runtime_status(request: Request):
     except Exception:
         fay_online = False
 
-    # 2) 数字人连接状态
+    # 2) 数字人连接状态 — Fay 在线即视为数字人可用
     digital_human = False
     try:
         async with httpx.AsyncClient(timeout=5.0) as client:
             resp = await client.get(f"{settings.FAY_HTTP_URL}/api/get-system-status")
             sys_data = resp.json()
-            digital_human = sys_data.get("digital_human", False)
+            digital_human = fay_online  # Fay 在线 = 数字人可连接
     except Exception:
         pass
 

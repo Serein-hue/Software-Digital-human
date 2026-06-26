@@ -1,160 +1,166 @@
 /**
- * HTTP Client — 封装 wx.request，统一处理 business-api 响应格式
- *
- * 响应信封: { code: 0, message: "success", data: {...}, trace_id: "..." }
- *   - code === 0  → resolve(data)
- *   - code !== 0  → reject({ code, message, trace_id })
+ * API 层 — 对接 business-api (:8001)
  *
  * 用法:
  *   const api = require('../../utils/api')
- *   const spots = await api.get('/spots', { limit: 3 })
- *   const result = await api.post('/chat', { question: '...' })
+ *   api.getSpots().then(data => ...)
+ *
+ * 所有 API 返回格式: { code: 0, message: 'success', data: ..., trace_id: '...' }
+ * data 可能是数组({items})，也可能是普通对象。
  */
 
-// 开发环境默认地址，生产环境通过 env 或配置注入
-const DEFAULT_BASE_URL = 'http://127.0.0.1:3001/api'
+// ── 配置 ──────────────────────────────────────────────────────────────
+// 开发时改成你电脑的局域网 IP，让手机也能连
+const BASE_URL = 'http://192.168.43.30:8001/v1'
+const TIMEOUT = 8000
 
-let _baseUrl = DEFAULT_BASE_URL
+// ── 基础请求 ──────────────────────────────────────────────────────────
 
-/**
- * 设置 API 基础地址（可在 app.js onLaunch 中调用）
- */
-function setBaseUrl(url) {
-  _baseUrl = url
-}
-
-/**
- * 获取当前 API 基础地址
- */
-function getBaseUrl() {
-  return _baseUrl
-}
-
-/**
- * 核心请求方法
- */
-function request(method, path, data, options = {}) {
-  const url = _baseUrl + path
-
-  // GET 请求将 data 转为 query string
-  let finalUrl = url
-  if (method === 'GET' && data) {
-    const params = Object.entries(data)
-      .filter(([, v]) => v != null)
-      .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
-      .join('&')
-    if (params) finalUrl += '?' + params
-  }
-
+function request(method, path, data) {
   return new Promise((resolve, reject) => {
-    const startTime = Date.now()
-
+    const url = BASE_URL + path
     wx.request({
-      url: finalUrl,
+      url,
       method,
-      data: method === 'GET' ? undefined : data,
-      header: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
-      timeout: options.timeout || 15000,
+      data,
+      timeout: TIMEOUT,
+      header: { 'Content-Type': 'application/json' },
       success(res) {
-        const elapsed = Date.now() - startTime
         const body = res.data
-
-        if (!body || typeof body.code === 'undefined') {
-          // 非标准响应（可能是网关错误页）
-          reject({
-            code: -1,
-            message: '服务响应异常',
-            trace_id: '',
-            elapsed,
-          })
-          return
-        }
-
-        if (body.code === 0) {
+        if (body && body.code === 0) {
           resolve(body.data)
         } else {
-          reject({
-            code: body.code,
-            message: body.message || '未知错误',
-            trace_id: body.trace_id || '',
-            elapsed,
-          })
-        }
-
-        // 开发环境打印请求日志
-        if (options.debug !== false) {
-          console.log(`[api] ${method} ${path} → ${body.code} (${elapsed}ms)`)
+          console.warn(`[API] ${method} ${path} failed:`, body)
+          reject(body || { code: -1, message: '网络异常' })
         }
       },
       fail(err) {
-        reject({
-          code: -1,
-          message: '网络连接失败，请检查网络',
-          trace_id: '',
-          detail: err,
-        })
+        console.warn(`[API] ${method} ${path} network error:`, err)
+        // 业务方自己处理 fallback
+        reject({ code: -1, message: '网络不可达', raw: err })
       },
     })
   })
 }
 
-/**
- * GET 请求
- */
-function get(path, params, options) {
-  return request('GET', path, params, options)
-}
+function GET(path)  { return request('GET', path) }
+function POST(path, data) { return request('POST', path, data) }
 
-/**
- * POST 请求
- */
-function post(path, data, options) {
-  return request('POST', path, data, options)
-}
+// ── 提取分页包装中的 items ────────────────────────────────────────────
 
-/**
- * PATCH 请求
- */
-function patch(path, data, options) {
-  return request('PATCH', path, data, options)
-}
-
-// ── 简单内存缓存（同一会话内避免重复请求） ──
-const _cache = new Map()
-const CACHE_TTL = 60000 // 60 秒
-
-/**
- * 带缓存的 GET 请求（仅缓存 code=0 的成功响应）
- */
-function getCached(path, params, options = {}) {
-  const ttl = options.ttl || CACHE_TTL
-  const cacheKey = path + '?' + JSON.stringify(params || {})
-  const cached = _cache.get(cacheKey)
-  if (cached && Date.now() - cached.time < ttl) {
-    return Promise.resolve(cached.data)
+function unwrap(data) {
+  // data 可能是 { items: [...], pagination: {...} }
+  // 也可能是直接数组，也可能是直接对象
+  if (data && typeof data === 'object' && Array.isArray(data.items)) {
+    return data.items
   }
-  return get(path, params, options).then((data) => {
-    _cache.set(cacheKey, { data, time: Date.now() })
-    return data
-  })
+  return data
 }
 
-/**
- * 清除缓存（切换语言/刷新时调用）
- */
-function clearCache() {
-  _cache.clear()
+// ═══════════════════════════════════════════════════════════════════════
+// 景点
+// ═══════════════════════════════════════════════════════════════════════
+
+/** 景点列表 */
+function getSpots(params = {}) {
+  return GET('/spots').then(unwrap)
 }
+
+/** 单个景点详情 */
+function getSpotDetail(spotId) {
+  return GET(`/spots/${spotId}`)
+}
+
+/** 景点讲解词 */
+function getSpotGuide(spotId) {
+  return GET(`/spots/${spotId}/guide`)
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// 路线
+// ═══════════════════════════════════════════════════════════════════════
+
+/** 路线列表 */
+function getRoutes(params = {}) {
+  return GET('/routes').then(unwrap)
+}
+
+/** 路线详情 */
+function getRouteDetail(routeId) {
+  return GET(`/routes/${routeId}`)
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// 会话 & 消息（AI 对话）
+// ═══════════════════════════════════════════════════════════════════════
+
+/** 创建新会话 */
+function createSession(scenicId) {
+  return POST('/sessions', { scenicId: scenicId || 'SA-001' })
+}
+
+/** 发送消息（提问） */
+function sendMessage(sessionId, text) {
+  return POST(`/sessions/${sessionId}/messages`, { role: 'user', text })
+}
+
+/** 获取消息历史 */
+function getMessages(sessionId, limit = 50) {
+  return GET(`/sessions/${sessionId}/messages?limit=${limit}`)
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// 公共
+// ═══════════════════════════════════════════════════════════════════════
+
+/** 公告列表 */
+function getNotices() {
+  return GET('/notices').then(unwrap)
+}
+
+/** 活动列表 */
+function getEvents() {
+  return GET('/events').then(unwrap)
+}
+
+/** 服务设施 */
+function getServices() {
+  return GET('/services').then(unwrap)
+}
+
+/** 天气 */
+function getWeather() {
+  return GET('/weather')
+}
+
+/** 排队 */
+function getQueues() {
+  return GET('/queues')
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// 导出
+// ═══════════════════════════════════════════════════════════════════════
 
 module.exports = {
-  get,
-  getCached,
-  post,
-  patch,
-  setBaseUrl,
-  getBaseUrl,
-  clearCache,
+  // 基础
+  request,
+  BASE_URL,
+  // 景点
+  getSpots,
+  getSpotDetail,
+  getSpotGuide,
+  // 路线
+  getRoutes,
+  getRouteDetail,
+  // 会话
+  createSession,
+  sendMessage,
+  getMessages,
+  // 公共
+  getNotices,
+  getEvents,
+  getServices,
+  getWeather,
+  getQueues,
 }

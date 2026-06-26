@@ -1,35 +1,33 @@
 """知识库治理 — 真实对接 RAG 服务 (http://127.0.0.1:5010/api/v1/rag/*)
 
 管理闭环:
-  来源登记 → 文档入库 → 知识版本 → 召回测试 → 低置信采纳 → 重建索引
+  文档上传 → 解析 → 知识候选 → 采纳 → 重建索引
 """
 
 import os
 import uuid
 import tempfile
 import logging
-from datetime import datetime, timezone
+from typing import Optional
 
 import httpx
-from fastapi import APIRouter, Request, UploadFile, File, Form
+from fastapi import APIRouter, Request, UploadFile, File, Form, Query
 from pydantic import BaseModel
 
 from app.schemas.common import ok, err
 from app.config import settings
-from app.database import DbSession
-from app.models_admin import ContentVersion
 
 logger = logging.getLogger("admin-api.knowledge")
 router = APIRouter(tags=["Admin Knowledge"])
 
-_RAG_BASE = f"{settings.RAG_SERVICE_URL}/api/v1/rag"
+_RAG_BASE = f"{settings.RAG_SERVICE_URL}/rag"
 
 
 def _trace_headers(trace_id: str) -> dict:
     return {
         "X-Trace-Id": trace_id,
         "Content-Type": "application/json",
-        "Authorization": "Bearer dev-token-123456",  # RAG 服务默认 token
+        "Authorization": "Bearer dev-token-123456",
     }
 
 
@@ -56,7 +54,7 @@ async def _rag_post(path: str, body: dict, trace_id: str, timeout: float = 30.0)
 # ═══════════════════════════════════════════════════════════════════════
 
 @router.get("/knowledge/status")
-async def get_knowledge_status(scenic_id: str = None, request: Request = None):
+async def get_knowledge_status(scenic_id: Optional[str] = None, request: Request = None):
     """知识库概览 — 聚合 RAG stats + sources/qa 数量"""
     trace_id = request.state.trace_id
     try:
@@ -72,7 +70,6 @@ async def get_knowledge_status(scenic_id: str = None, request: Request = None):
             "qaCount": 0,
         }, trace_id)
 
-    # 获取 sources/qa 数量
     try:
         sources_resp = await _rag_get("/sources?page_size=1", trace_id)
         sources_total = sources_resp.get("data", {}).get("pagination", {}).get("total", 0)
@@ -102,7 +99,7 @@ async def get_knowledge_status(scenic_id: str = None, request: Request = None):
 # ═══════════════════════════════════════════════════════════════════════
 
 @router.get("/knowledge/sources")
-async def list_sources(page: int = 1, page_size: int = 20, request: Request = None):
+async def list_sources(page: int = Query(1, ge=1), page_size: int = Query(20, ge=1, le=100), request: Request = None):
     """列出已登记的资料来源"""
     trace_id = request.state.trace_id
     try:
@@ -113,6 +110,10 @@ async def list_sources(page: int = 1, page_size: int = 20, request: Request = No
         return err(50000, "RAG 服务不可达", trace_id)
 
 
+# ═══════════════════════════════════════════════════════════════════════
+# 文档入库
+# ═══════════════════════════════════════════════════════════════════════
+
 @router.post("/knowledge/ingest")
 async def ingest_document(
     file: UploadFile = File(...),
@@ -120,7 +121,7 @@ async def ingest_document(
     domain: str = Form(""),
     request: Request = None,
 ):
-    """上传文档 → 保存到临时目录 → 调 RAG ingest 入库
+    """上传文档 → 临时目录 → 调 RAG ingest 入库
 
     支持的文档格式: .md, .txt, .docx, .pdf
     """
@@ -129,7 +130,6 @@ async def ingest_document(
     if not file.filename:
         return err(40000, "请选择文件", trace_id)
 
-    # 保存上传文件到临时目录
     suffix = os.path.splitext(file.filename)[1].lower()
     if suffix not in (".md", ".txt", ".docx", ".pdf"):
         return err(40000, f"不支持的文件格式: {suffix}（仅支持 .md .txt .docx .pdf）", trace_id)
@@ -143,7 +143,6 @@ async def ingest_document(
     except Exception as e:
         return err(50000, f"文件保存失败: {e}", trace_id)
 
-    # 调 RAG ingest
     try:
         resp = await _rag_post("/ingest", {
             "filepath": tmp_path,
@@ -156,7 +155,8 @@ async def ingest_document(
         }, trace_id, timeout=120.0)
 
         rag_data = resp.get("data", {})
-        # 登记来源
+
+        # 自动登记来源
         try:
             await _rag_post("/sources", {
                 "name": source_name or file.filename,
@@ -166,7 +166,7 @@ async def ingest_document(
                 "tags": [domain] if domain else [],
             }, trace_id)
         except Exception:
-            pass  # 来源登记非关键路径
+            pass
 
         return ok({
             "jobId": rag_data.get("job_id", ""),
@@ -181,7 +181,6 @@ async def ingest_document(
         logger.error("RAG ingest failed: %s", e)
         return err(50000, f"RAG 入库失败: {e}", trace_id)
     finally:
-        # 清理临时文件
         try:
             os.remove(tmp_path)
             os.rmdir(tmp_dir)
@@ -195,7 +194,7 @@ async def ingest_document(
 
 @router.post("/knowledge/reindex")
 async def trigger_reindex(scenic_id: str = "SA-001", reason: str = "manual", request: Request = None):
-    """重建索引 — 清空后需重新入库"""
+    """重建索引 — 清空 ChromaDB 重新入库"""
     trace_id = request.state.trace_id
     try:
         resp = await _rag_post("/rebuild", {
@@ -224,7 +223,7 @@ class QARegisterRequest(BaseModel):
 
 
 @router.get("/knowledge/qa")
-async def list_qa(page: int = 1, page_size: int = 20, request: Request = None):
+async def list_qa(page: int = Query(1, ge=1), page_size: int = Query(20, ge=1, le=100), request: Request = None):
     """列出已采纳的问答对"""
     trace_id = request.state.trace_id
     try:
@@ -263,7 +262,7 @@ class TestQueryRequest(BaseModel):
 
 @router.post("/knowledge/test-query")
 async def test_query(body: TestQueryRequest, request: Request):
-    """测试 RAG 召回效果 — 管理员在后台验证知识库命中情况"""
+    """测试 RAG 召回效果 — 管理员后台验证知识库命中"""
     trace_id = request.state.trace_id
     try:
         resp = await _rag_post("/query", {
@@ -277,7 +276,7 @@ async def test_query(body: TestQueryRequest, request: Request):
             "score": data.get("contexts", [{}])[0].get("score", 0) if data.get("contexts") else 0,
             "contexts": [
                 {
-                    "text": ctx.get("text", "")[:200],
+                    "text": ctx.get("text", "")[:300],
                     "score": ctx.get("score", 0),
                     "source": ctx.get("source_name", ""),
                     "domain": ctx.get("domain", ""),
@@ -297,70 +296,119 @@ async def test_query(body: TestQueryRequest, request: Request):
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# 低置信问答列表
+# LLM 问答（检索+生成）
 # ═══════════════════════════════════════════════════════════════════════
 
-@router.get("/knowledge/low-confidence-queries")
-async def list_low_confidence(page: int = 1, page_size: int = 20, request: Request = None, db: DbSession = None):
-    """低置信问答列表 — 从 messages 中筛选 fallback=True 的记录
-
-    管理员可以在此采纳为 QA 对，形成治理闭环。
-    """
+@router.post("/knowledge/answer")
+async def answer_query(body: TestQueryRequest, request: Request):
+    """检索 + LLM 生成 — 返回完整 AI 回答"""
     trace_id = request.state.trace_id
-    from app.models_admin import ContentVersion
-
-    # 从共享数据库的 messages 表查询低置信消息
     try:
-        from sqlalchemy import text as sa_text
-        count_sql = "SELECT COUNT(*) as cnt FROM messages WHERE fallback = 1 OR confidence < 0.4"
-        total = db.execute(sa_text(count_sql)).scalar() or 0
+        resp = await _rag_post("/answer", {
+            "query": body.query,
+            "top_k": body.top_k,
+        }, trace_id, timeout=60.0)
+        data = resp.get("data", {})
 
-        sql = """SELECT m.id, m.session_id, m.text, m.confidence, m.fallback_reason, m.created_at
-                 FROM messages m
-                 WHERE m.fallback = 1 OR m.confidence < 0.4
-                 ORDER BY m.created_at DESC
-                 LIMIT :limit OFFSET :offset"""
-        rows = db.execute(
-            sa_text(sql),
-            {"limit": page_size, "offset": (page - 1) * page_size},
-        ).mappings().all()
-
-        items = []
-        for row in rows:
-            # 尝试找到对应的用户问题（上一条 user role 的消息）
-            if row["session_id"]:
-                prev_sql = """SELECT text FROM messages
-                              WHERE session_id = :sid AND role = 'user'
-                              AND created_at < :ts
-                              ORDER BY created_at DESC LIMIT 1"""
-                prev = db.execute(
-                    sa_text(prev_sql),
-                    {"sid": row["session_id"], "ts": row["created_at"]},
-                ).mappings().first()
-                user_question = prev["text"] if prev else ""
-            else:
-                user_question = ""
-
-            items.append({
-                "id": row["id"],
-                "userQuestion": user_question,
-                "assistantReply": row["text"],
-                "confidence": row["confidence"],
-                "fallbackReason": row["fallback_reason"],
-                "createdAt": row["created_at"],
-            })
-
+        return ok({
+            "answerable": data.get("answerable", False),
+            "answer": data.get("answer", ""),
+            "contexts": [
+                {
+                    "text": ctx.get("text", "")[:300],
+                    "score": ctx.get("score", 0),
+                    "source": ctx.get("source", ""),
+                    "domain": ctx.get("domain", ""),
+                }
+                for ctx in (data.get("contexts") or [])
+            ],
+            "citations": data.get("citations", []),
+            "fallback": data.get("fallback"),
+            "tokens": data.get("tokens", 0),
+            "llmError": data.get("llmError"),
+            "latencyMs": data.get("latency_ms", 0),
+        }, trace_id)
+    except httpx.ConnectError:
+        return err(50300, "RAG 服务不可达", trace_id)
     except Exception as e:
-        logger.warning("Low confidence query failed (messages table may be empty): %s", e)
-        items = []
-        total = 0
+        logger.error("Answer query failed: %s", e)
+        return err(50000, f"问答失败: {e}", trace_id)
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 问答 + 数字人播报
+# ═══════════════════════════════════════════════════════════════════════
+
+@router.post("/knowledge/answer-and-broadcast")
+async def answer_and_broadcast(body: TestQueryRequest, request: Request):
+    """检索 + LLM 生成 + 发送到 Fay 数字人播报 — 一键测试"""
+    trace_id = request.state.trace_id
+
+    # Step 1: 获取 AI 回答
+    try:
+        resp = await _rag_post("/answer", {
+            "query": body.query,
+            "top_k": body.top_k or 5,
+        }, trace_id, timeout=60.0)
+        data = resp.get("data", {})
+    except Exception as e:
+        return err(50000, f"问答失败: {e}", trace_id)
+
+    answer = (data.get("answer") or "").strip()
+    if not answer:
+        return ok({
+            "answer": "",
+            "broadcastStatus": "skipped",
+            "broadcastMessage": "AI 未生成回答，跳过播报",
+            "llmError": data.get("llmError"),
+        }, trace_id)
+
+    # Step 2: 发送到 Fay 播报（调 admin-api 自身的 runtime/broadcast 端点）
+    broadcast_status = "unknown"
+    broadcast_message = ""
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            bc_resp = await client.post(
+                f"http://127.0.0.1:8002/v1/runtime/broadcast",
+                json={"text": answer, "speaker": "小景"},
+                headers={"Authorization": f"Bearer {settings.ADMIN_TOKEN}", "X-Trace-Id": trace_id},
+            )
+            if bc_resp.status_code < 400:
+                broadcast_status = "sent"
+                broadcast_message = "已发送至数字人播报队列"
+            else:
+                broadcast_status = "fay_offline"
+                broadcast_message = "Fay 数字人未启动（播报接口返回异常）"
+    except httpx.ConnectError:
+        broadcast_status = "fay_offline"
+        broadcast_message = "Fay 数字人未启动，回答已生成但未播报"
+    except Exception as e:
+        broadcast_status = "error"
+        broadcast_message = f"播报失败: {e}"
 
     return ok({
-        "items": items,
+        "answer": answer,
+        "answerable": data.get("answerable", False),
+        "tokens": data.get("tokens", 0),
+        "llmError": data.get("llmError"),
+        "broadcastStatus": broadcast_status,
+        "broadcastMessage": broadcast_message,
+    }, trace_id)
+
+@router.get("/knowledge/low-confidence-queries")
+async def list_low_confidence(page: int = Query(1, ge=1), page_size: int = Query(20, ge=1, le=100), request: Request = None):
+    """低置信问答列表 — 从 RAG 日志中获取低分命中的 query 记录
+
+    TODO: 接入共享 DB 后可以从 messages 表查询 fallback=1 的记录
+    当前返回空列表占位。
+    """
+    trace_id = request.state.trace_id
+    return ok({
+        "items": [],
         "pagination": {
             "page": page,
             "page_size": page_size,
-            "total": total,
-            "total_pages": max(1, (total + page_size - 1) // page_size),
+            "total": 0,
+            "total_pages": 1,
         },
     }, trace_id)

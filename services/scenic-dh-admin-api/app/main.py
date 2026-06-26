@@ -6,7 +6,6 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.openapi.utils import get_openapi
 
 from app.config import settings
 from app.middleware import TraceMiddleware, admin_auth_middleware
@@ -22,28 +21,6 @@ logger = logging.getLogger("admin-api")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info(f"{settings.SERVICE_NAME} v{settings.SERVICE_VERSION} starting on port {settings.PORT}")
-    from app.database import init_db
-    init_db()
-    # 创建默认管理员（首次启动时）
-    try:
-        from seeds.seed_admin import seed
-        seed()
-    except Exception as e:
-        logger.warning("Admin seed skipped: %s", e)
-    # 注入 OpenAPI Bearer 安全方案 -> Swagger Authorize 按钮
-    try:
-        schema = get_openapi(title=app.title, version=app.version, description=app.description, routes=app.routes)
-        schema.setdefault("components", {})["securitySchemes"] = {
-            "BearerAuth": {"type": "http", "scheme": "bearer", "bearerFormat": "JWT", "description": "输入: adm-dev-token"}
-        }
-        for path, methods in schema.get("paths", {}).items():
-            for method in methods.values():
-                if path != "/health":
-                    method["security"] = [{"BearerAuth": []}]
-        app.openapi_schema = schema
-        logger.info("Swagger Authorize button enabled")
-    except Exception as e:
-        logger.warning("OpenAPI patch failed: %s", e)
     yield
     logger.info(f"{settings.SERVICE_NAME} shutting down")
 
@@ -51,7 +28,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="scenic-dh-admin-api",
     version=settings.SERVICE_VERSION,
-    description="运营管理接口 — 内容管理、知识库、人设、播报、审计",
+    description="运营管理接口 — 知识库、人设、播报、审计、分析、运行控制",
     docs_url="/docs",
     lifespan=lifespan,
 )
@@ -64,20 +41,22 @@ app.middleware("http")(admin_auth_middleware)
 @app.get("/health", tags=["Health"])
 def health():
     from app.schemas.common import ok
+    from fastapi import Request
     trace_id = "startup"
-    return ok({"status": "ok", "version": settings.SERVICE_VERSION, "dependencies": {"business_api": settings.BUSINESS_API_URL}}, trace_id)
+    return ok(
+        {"status": "ok", "version": settings.SERVICE_VERSION, "dependencies": {"business_api": settings.BUSINESS_API_URL}},
+        trace_id,
+    )
 
 
 # Routers
-from app.routers import knowledge, personas, broadcasts, audit, analytics, runtime, data_gaps, audit_logs, auth, content  # noqa: E402
+from app.routers import knowledge, personas, broadcasts, audit, analytics, runtime, data_gaps, work_orders  # noqa: E402
 
-app.include_router(auth.router, prefix="/v1/admin")
-app.include_router(content.router, prefix="/v1/admin")
-app.include_router(knowledge.router, prefix="/v1/admin")
-app.include_router(personas.router, prefix="/v1/admin")
-app.include_router(broadcasts.router, prefix="/v1/admin")
-app.include_router(audit.router, prefix="/v1/admin")
-app.include_router(analytics.router, prefix="/v1/admin")
-app.include_router(runtime.router, prefix="/v1/admin")
-app.include_router(data_gaps.router, prefix="/v1/admin")
-app.include_router(audit_logs.router, prefix="/v1/admin")
+app.include_router(knowledge.router, prefix="/v1")
+app.include_router(personas.router, prefix="/v1")
+app.include_router(broadcasts.router, prefix="/v1")
+app.include_router(audit.router, prefix="/v1")
+app.include_router(analytics.router, prefix="/v1")
+app.include_router(runtime.router, prefix="/v1")
+app.include_router(data_gaps.router, prefix="/v1")
+app.include_router(work_orders.router, prefix="/v1")

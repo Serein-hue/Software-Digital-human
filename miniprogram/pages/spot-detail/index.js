@@ -2,6 +2,18 @@ const { SPOTS } = require('../../utils/data')
 const { t } = require('../../utils/i18n')
 const api = require('../../utils/api')
 
+// 本地 SPOTS key ↔ API spotId 映射（通过景点名称关联）
+const SPOT_NAME_MAP = {
+  'lingshan-buddha':    { apiId: 'LS-001', name: '灵山大佛' },
+  'lingshan-fanpalace': { apiId: 'LS-002', name: '灵山梵宫' },
+  'lingshan-jiulong':   { apiId: 'LS-003', name: '九龙灌浴' },
+  'lingshan-mandala':   { apiId: 'LS-004', name: '五印坛城' },
+  'lingshan-xiangfu':   { apiId: 'LS-005', name: '祥符禅寺' },
+  'lingshan-dazhaobi':  { apiId: 'LS-006', name: '阿育王柱' },
+  'lingshan-manfeilong':{ apiId: 'LS-010', name: '曼飞龙塔' },
+  'lingshan-wuzhimen':  { apiId: 'LS-009', name: '天下第一掌' },
+}
+
 Page({
   data: {
     spot: null,
@@ -10,12 +22,12 @@ Page({
     paragraphs: [],
     relatedSpots: [],
     isPlaying: false,
-    isLoading: true,
     heroGradient: '',
     aiNarration: '',
     playingLabel: '',
     nearbySpots: '',
-    loadError: false,
+    _localKey: '', // 本地数据 key
+    _apiLoaded: false,
   },
 
   onLoad(options) {
@@ -24,94 +36,67 @@ Page({
       playingLabel: t('spot.playing'),
       nearbySpots: t('spot.nearbySpots'),
       tiers: [
-        { key: 'oneLiner', label: '概览' },
-        { key: 'shortIntro', label: t('spot.shortVersion') },
-        { key: 'fullIntro', label: t('spot.deepGuide') },
+        { key: 'oneLiner', label: '⏱ ' + t('spot.oneLine') },
+        { key: 'shortIntro', label: '⏱ ' + t('spot.shortVersion') },
+        { key: 'fullIntro', label: '📖 ' + t('spot.deepGuide') },
       ],
     })
-    this.loadSpot(options.id || 'lingshan-buddha')
+    const id = options.id || 'lingshan-buddha'
+    this.loadSpot(id)
   },
 
   onUnload() {
     if (this.audioTimer) clearTimeout(this.audioTimer)
-    if (this.innerAudioContext) this.innerAudioContext.destroy()
-  },
-
-  async loadSpot(id) {
-    this.setData({ isLoading: true, loadError: false })
-
-    try {
-      const [spotData, relatedData] = await Promise.all([
-        api.getCached(`/spots/${id}`, {}, { ttl: 120000 }),
-        api.getCached(`/spots/${id}/related`, {}, { ttl: 120000 }).catch(() => []),
-      ])
-      const spot = this.normalizeSpot(spotData)
-      const relatedSpots = (relatedData || []).map((item) => this.normalizeSpot(item))
-      this.renderSpot(spot, relatedSpots)
-      return
-    } catch (e) {
-      console.log('[spot-detail] API failed, using local fallback:', e.message)
-    }
-
-    this.loadSpotLocal(id)
-  },
-
-  normalizeSpot(spot) {
-    return {
-      id: spot.id,
-      name: spot.name,
-      category: spot.category || '',
-      heroGradient: spot.heroGradient || this.pickGradient(spot.id),
-      oneLiner: spot.oneLiner || spot.params || spot.shortIntro || '',
-      shortIntro: spot.shortIntro || '',
-      fullIntro: spot.fullIntro || spot.shortIntro || '',
-      source: spot.source || '',
-      audioDuration: spot.audioDuration || '3:00',
-      related: spot.related || [],
+    if (this.innerAudioContext) {
+      this.innerAudioContext.destroy()
     }
   },
 
-  pickGradient(id) {
-    const map = {
-      'lingshan-buddha': 'linear-gradient(160deg, #1a3a2a 0%, #2a5a3a 30%, #5a8a4a 70%, #3a6a2a 100%)',
-      'lingshan-fanpalace': 'linear-gradient(160deg, #3a2a1a 0%, #5a3a2a 30%, #8a5a3a 70%, #5a3a1a 100%)',
-      'lingshan-jiulong': 'linear-gradient(160deg, #1a3a5a 0%, #2a4a6a 30%, #3a6a8a 70%, #1a4a6a 100%)',
-      'lingshan-mandala': 'linear-gradient(160deg, #3a1a2a 0%, #5a1a3a 30%, #8a2a4a 70%, #5a1a3a 100%)',
-      'lingshan-xiangfu': 'linear-gradient(160deg, #2a3a1a 0%, #3a4a2a 30%, #4a5a3a 70%, #2a3a1a 100%)',
-    }
-    return map[id] || 'linear-gradient(160deg, #1a3a2a 0%, #2a5a3a 30%, #5a8a4a 70%, #3a6a2a 100%)'
-  },
+  loadSpot(id) {
+    // 1. 从本地数据加载（含 rich content）
+    const localKey = SPOTS[id] ? id : (SPOT_NAME_MAP[id] ? id : 'lingshan-buddha')
+    this.data._localKey = localKey
+    const localSpot = SPOTS[localKey]
+    if (!localSpot) return
 
-  loadSpotLocal(id) {
-    const spot = SPOTS[id] || SPOTS['lingshan-buddha']
-    if (!spot) {
-      this.setData({ isLoading: false, loadError: true })
-      return
-    }
-    const relatedSpots = (spot.related || []).map((rid) => SPOTS[rid]).filter(Boolean)
-    this.renderSpot(spot, relatedSpots)
-  },
-
-  renderSpot(spot, relatedSpots) {
     const tier = this.data.tier || 'shortIntro'
-    const content = spot[tier] || spot.shortIntro || ''
+    const content = localSpot[tier] || localSpot.shortIntro
     const paragraphs = content.split('\n').filter(Boolean)
+    const relatedSpots = (localSpot.related || []).map((rid) => SPOTS[rid]).filter(Boolean)
 
-    this.setData({
-      spot,
-      paragraphs,
-      relatedSpots: relatedSpots || [],
-      heroGradient: spot.heroGradient || '',
-      isLoading: false,
-    })
+    this.setData({ spot: localSpot, paragraphs, relatedSpots, heroGradient: localSpot.heroGradient || '' })
+
+    // 2. 尝试从 API 加载补充数据（若已加载过跳过）
+    if (this.data._apiLoaded) return
+    const mapping = SPOT_NAME_MAP[localKey]
+    if (!mapping) return
+    this.data._apiLoaded = true
+
+    api.getSpotDetail(mapping.apiId).then((apiSpot) => {
+      if (!apiSpot) return
+      // 用 API 的 summary 补充 local 没有的字段
+      const merged = { ...this.data.spot }
+      if (apiSpot.summary && !merged.oneLiner) merged.oneLiner = apiSpot.summary
+      if (apiSpot.tags) merged.tags = apiSpot.tags
+      if (apiSpot.location) merged.location = apiSpot.location
+      if (apiSpot.highlights) merged.highlights = apiSpot.highlights
+      this.setData({ spot: merged })
+    }).catch(() => { /* 静默失败，保留本地数据 */ })
+
+    // 3. 尝试从 API 获取讲解词
+    api.getSpotGuide(mapping.apiId).then((guide) => {
+      if (!guide) return
+      // 把讲解词注入 spot 以便展示
+    }).catch(() => {})
   },
 
   setTier(e) {
     const tier = e.currentTarget.dataset.tier
     const spot = this.data.spot
     if (!spot) return
-    const content = spot[tier] || spot.shortIntro || ''
-    this.setData({ tier, paragraphs: content.split('\n').filter(Boolean) })
+    const content = spot[tier] || spot.shortIntro
+    const paragraphs = content.split('\n').filter(Boolean)
+    this.setData({ tier, paragraphs })
   },
 
   togglePlay() {
@@ -119,28 +104,22 @@ Page({
     this.setData({ isPlaying })
 
     if (this.audioTimer) clearTimeout(this.audioTimer)
+
     if (isPlaying) {
-      const duration = (this.data.spot.audioDuration || '2:00')
-        .split(':')
-        .reduce((minutes, seconds) => minutes * 60 + Number(seconds), 0) * 1000
-      this.audioTimer = setTimeout(() => this.setData({ isPlaying: false }), duration)
+      const dur = (this.data.spot.audioDuration || '2:00').split(':').reduce((m, s) => m * 60 + +s, 0) * 1000
+      this.audioTimer = setTimeout(() => this.setData({ isPlaying: false }), dur)
     }
   },
 
   navigateTo(e) {
     const { id } = e.currentTarget.dataset
-    if (id) this.loadSpot(id)
+    this.data._apiLoaded = false
+    this.loadSpot(id)
     wx.pageScrollTo({ scrollTop: 0, duration: 300 })
   },
 
   goBack() {
     if (this.audioTimer) clearTimeout(this.audioTimer)
     wx.navigateBack()
-  },
-
-  onPullDownRefresh() {
-    const id = this.data.spot ? this.data.spot.id : 'lingshan-buddha'
-    this.loadSpot(id)
-    wx.stopPullDownRefresh()
   },
 })

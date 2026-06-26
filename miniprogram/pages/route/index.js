@@ -2,21 +2,20 @@ const { ROUTES } = require('../../utils/data')
 const { t } = require('../../utils/i18n')
 const api = require('../../utils/api')
 
+// 路线类型 → 标签 & 难度映射
+const ROUTE_TYPE_MAP = {
+  culture: { tags: ['推荐', '深度', '人文'], difficulty: '中等', distance: '5.2 km' },
+  nature:  { tags: ['风光', '休闲', '拍照'], difficulty: '轻松', distance: '4.5 km' },
+  family:  { tags: ['亲子', '轻松', '互动'], difficulty: '轻松', distance: '3.0 km' },
+}
+
 Page({
   data: {
     routes: [],
     expandedId: null,
-    isLoading: true,
     routeTitle: '',
     routeCount: '',
     startNav: '',
-    prefOptions: [
-      { key: 'all', label: '全部', icon: '路线' },
-      { key: '亲子', label: '亲子', icon: '家庭' },
-      { key: '深度', label: '深度', icon: '文化' },
-      { key: '休闲', label: '休闲', icon: '风景' },
-    ],
-    activePref: 'all',
   },
 
   onLoad() {
@@ -24,58 +23,47 @@ Page({
       routeTitle: t('route.title'),
       startNav: t('route.startNav'),
     })
-    this.loadRoutes()
+    this._loadRoutes()
   },
 
-  async loadRoutes(pref) {
-    this.setData({ isLoading: true })
-
-    try {
-      const params = pref && pref !== 'all' ? { search: pref } : {}
-      const data = await api.getCached('/routes', params, { ttl: 120000 })
-      const items = data.items || []
-      this.setData({
-        routes: this.normalizeRoutes(items),
-        routeCount: t('route.count', { n: items.length }),
-        isLoading: false,
-      })
-      return
-    } catch (e) {
-      console.log('[route] API failed, using local fallback:', e.message)
-    }
-
-    const fallback = pref && pref !== 'all'
-      ? ROUTES.filter((route) => JSON.stringify(route).includes(pref))
-      : ROUTES
-    this.setData({
-      routes: fallback,
-      routeCount: t('route.count', { n: fallback.length }),
-      isLoading: false,
+  // ── 从 API 加载 ──────────────────────────────────────────────────
+  _loadRoutes() {
+    api.getRoutes().then((items) => {
+      if (!items || !items.length) {
+        this._useLocalRoutes()
+        return
+      }
+      const routes = items.map((r, idx) => this._mapRoute(r, idx))
+      this.setData({ routes, routeCount: t('route.count', { n: routes.length }) })
+    }).catch(() => {
+      this._useLocalRoutes()
     })
   },
 
-  normalizeRoutes(items) {
-    return items.map((route) => ({
-      id: route.id,
-      title: route.title || route.name || '',
-      description: route.description || route.persona || '',
-      duration: route.duration || '',
-      distance: route.distance || '',
-      difficulty: route.difficulty || '',
-      tags: route.tags || (route.type ? [route.type] : []),
-      steps: (route.steps || route.stops || []).map((step) => ({
-        spot: step.spot || step.spotName || step.spotId || '',
-        duration: step.duration || step.stayDuration || '',
-        note: step.note || step.description || '',
-      })),
-    }))
+  _useLocalRoutes() {
+    this.setData({
+      routes: ROUTES,
+      routeCount: t('route.count', { n: ROUTES.length }),
+    })
   },
 
-  onPrefTap(e) {
-    const pref = e.currentTarget.dataset.pref
-    if (pref === this.data.activePref) return
-    this.setData({ activePref: pref })
-    this.loadRoutes(pref)
+  // API 格式 → 页面格式
+  _mapRoute(r, idx) {
+    const typeInfo = ROUTE_TYPE_MAP[r.type] || { tags: ['推荐'], difficulty: '中等', distance: '—' }
+    return {
+      id: r.id || `api-${idx}`,
+      title: r.name,
+      description: r.persona || '探索灵山胜境的独特魅力',
+      duration: r.duration,
+      distance: typeInfo.distance,
+      difficulty: typeInfo.difficulty,
+      tags: typeInfo.tags,
+      steps: (r.stops || []).map((stop) => ({
+        spot: stop.spotName,
+        duration: stop.stayDuration,
+        note: stop.description || '',
+      })),
+    }
   },
 
   toggleExpand(e) {
@@ -87,10 +75,5 @@ Page({
 
   goBack() {
     wx.navigateBack()
-  },
-
-  onPullDownRefresh() {
-    this.loadRoutes(this.data.activePref)
-    wx.stopPullDownRefresh()
   },
 })

@@ -30,6 +30,14 @@ class Settings(BaseSettings):
     # 默认景区
     DEFAULT_SCENIC_ID: str = "SA-001"
 
+    # 和风天气（QWeather）— 用于真实天气数据
+    # 注册免费: https://dev.qweather.com  → 控制台 → 创建项目 → 获取 key
+    QWEATHER_API_KEY: str = ""
+    QWEATHER_BASE_URL: str = "https://devapi.qweather.com/v7"
+    # 景区经纬度（灵山胜境）
+    WEATHER_LATITUDE: str = "31.433"
+    WEATHER_LONGITUDE: str = "120.093"
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"

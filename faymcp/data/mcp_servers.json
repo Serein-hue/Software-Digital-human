@@ -80,7 +80,7 @@
         "id": 6,
         "name": "课程知识库",
         "ip": "",
-        "connection_time": "2026-06-01 20:31:19",
+        "connection_time": "2026-06-24 18:15:20",
         "key": "",
         "transport": "stdio",
         "command": "python",
@@ -91,6 +91,24 @@
         ],
         "cwd": "",
         "env": {},
+        "autostart": true
+    },
+    {
+        "id": 7,
+        "name": "景区实时数据",
+        "ip": "",
+        "connection_time": "2026-06-26 21:00:00",
+        "key": "",
+        "transport": "stdio",
+        "command": "python",
+        "args": [
+            "mcp_servers/scenic_data/server.py"
+        ],
+        "cwd": "",
+        "env": {
+            "ADMIN_API_URL": "http://localhost:8002/v1",
+            "ADMIN_TOKEN": "adm-dev-token"
+        },
         "autostart": true
     }
 ]

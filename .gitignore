@@ -3,6 +3,11 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Python virtual environments
+.venv/
+rag/.venv/
+*.venv/
+
 # Fay runtime generated
 samples/
 logs/
@@ -28,12 +33,13 @@ live2d-avatar/CubismSdkForWeb-5-r.4/Samples/TypeScript/Demo/node_modules/
 .DS_Store
 Thumbs.db
 
-# RAG
+# 老师的 uni-app 仓库（独立项目，单独推送）
+_teacher-miniprogram/
+# RAG generated data
 rag/chroma_db/
-rag/.venv/
 backend/rag/
-*.db-shm
-*.db-wal
+
+# Database files (shared SQLite)
 *.db
 *.db-shm
 *.db-wal

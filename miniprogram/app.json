@@ -24,12 +24,6 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "permission": {
-    "scope.record": {
-      "desc": "用于语音提问AI导游"
-    },
-    "scope.camera": {
-      "desc": "用于拍照识别景点"
-    },
     "scope.userLocation": {
       "desc": "用于LBS定位推荐附近景点讲解"
     }

@@ -41,6 +41,10 @@ async def admin_auth_middleware(request: Request, call_next):
     if request.url.path == "/v1/admin/auth/login":
         return await call_next(request)
 
+    # CORS 预检请求不需要鉴权
+    if request.method == "OPTIONS":
+        return await call_next(request)
+
     from app.schemas.common import err
 
     auth = request.headers.get("Authorization", "")
