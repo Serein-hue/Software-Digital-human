@@ -1,8 +1,15 @@
 """冒烟测试：health check + core endpoints"""
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from fastapi.testclient import TestClient
-import pytest
 from app.main import app
+from seeds.seed_db import seed
+
+seed()
 
 client = TestClient(app)
 

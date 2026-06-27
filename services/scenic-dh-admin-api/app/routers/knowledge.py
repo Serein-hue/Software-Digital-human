@@ -24,11 +24,13 @@ _RAG_BASE = f"{settings.RAG_SERVICE_URL}/rag"
 
 
 def _trace_headers(trace_id: str) -> dict:
-    return {
+    headers = {
         "X-Trace-Id": trace_id,
         "Content-Type": "application/json",
-        "Authorization": "Bearer dev-token-123456",
     }
+    if settings.RAG_API_KEY:
+        headers["Authorization"] = f"Bearer {settings.RAG_API_KEY}"
+    return headers
 
 
 async def _rag_get(path: str, trace_id: str, timeout: float = 10.0):
@@ -363,25 +365,19 @@ async def answer_and_broadcast(body: TestQueryRequest, request: Request):
             "llmError": data.get("llmError"),
         }, trace_id)
 
-    # Step 2: 发送到 Fay 播报（调 admin-api 自身的 runtime/broadcast 端点）
+    # Step 2: send directly to Fay instead of calling our own protected HTTP endpoint.
     broadcast_status = "unknown"
     broadcast_message = ""
     try:
-        async with httpx.AsyncClient(timeout=10.0) as client:
-            bc_resp = await client.post(
-                f"http://127.0.0.1:8002/v1/runtime/broadcast",
-                json={"text": answer, "speaker": "小景"},
-                headers={"Authorization": f"Bearer {settings.ADMIN_TOKEN}", "X-Trace-Id": trace_id},
-            )
-            if bc_resp.status_code < 400:
-                broadcast_status = "sent"
-                broadcast_message = "已发送至数字人播报队列"
-            else:
-                broadcast_status = "fay_offline"
-                broadcast_message = "Fay 数字人未启动（播报接口返回异常）"
-    except httpx.ConnectError:
-        broadcast_status = "fay_offline"
-        broadcast_message = "Fay 数字人未启动，回答已生成但未播报"
+        from app.fay_client import send_broadcast
+
+        result = send_broadcast(text=answer, speaker="小景", user="admin", queue=True)
+        if result.get("code", 0) == 0:
+            broadcast_status = "sent"
+            broadcast_message = "已发送至数字人播报队列"
+        else:
+            broadcast_status = "fay_offline"
+            broadcast_message = result.get("message", "Fay 数字人未启动，回答已生成但未播报")
     except Exception as e:
         broadcast_status = "error"
         broadcast_message = f"播报失败: {e}"

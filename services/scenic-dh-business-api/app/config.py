@@ -1,42 +1,38 @@
-"""scenic-dh-business-api 配置"""
+"""Configuration for scenic-dh-business-api."""
 
 from pydantic_settings import BaseSettings
-from typing import Optional
 
 
 class Settings(BaseSettings):
-    # 服务
     SERVICE_NAME: str = "scenic-dh-business-api"
     SERVICE_VERSION: str = "1.0.0"
     HOST: str = "0.0.0.0"
     PORT: int = 8001
     DEBUG: bool = False
 
-    # 数据库
     DATABASE_URL: str = "sqlite:///./scenic_business.db"
 
-    # 上游服务
     RAG_SERVICE_URL: str = "http://127.0.0.1:5010"
-    RAG_API_KEY: str = "dev-token-123456"
+    RAG_API_KEY: str = ""
     AVATAR_ORCHESTRATOR_URL: str = "http://localhost:8004/v1"
 
-    # 内部服务 token
     SERVICE_TOKEN: str = "svc-dev-token"
 
-    # 日志
+    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173"
+
     LOG_LEVEL: str = "INFO"
     LOG_FORMAT: str = "json"
 
-    # 默认景区
     DEFAULT_SCENIC_ID: str = "SA-001"
 
-    # 和风天气（QWeather）— 用于真实天气数据
-    # 注册免费: https://dev.qweather.com  → 控制台 → 创建项目 → 获取 key
     QWEATHER_API_KEY: str = ""
     QWEATHER_BASE_URL: str = "https://devapi.qweather.com/v7"
-    # 景区经纬度（灵山胜境）
     WEATHER_LATITUDE: str = "31.433"
     WEATHER_LONGITUDE: str = "120.093"
+
+    @property
+    def cors_origins(self) -> list[str]:
+        return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
 
     class Config:
         env_file = ".env"

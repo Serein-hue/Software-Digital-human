@@ -107,7 +107,7 @@
         "cwd": "",
         "env": {
             "ADMIN_API_URL": "http://localhost:8002/v1",
-            "ADMIN_TOKEN": "adm-dev-token"
+            "ADMIN_TOKEN": "${ADMIN_TOKEN}"
         },
         "autostart": true
     }

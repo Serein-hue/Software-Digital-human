@@ -1,32 +1,41 @@
-# scenic-dh 鉴权策略
+# scenic-dh Authentication Contract
 
-版本 1.0.0 ｜ MVP 阶段占位方案
+Version: 1.1.0
 
-## 三层鉴权
+## Authentication Layers
 
-| 层级 | Token | Header | 用途 |
-|------|-------|--------|------|
-| 游客会话 | `sess-<uuid>` | `Authorization: Bearer sess-xxx` | 创建 session 时下发，访问自身数据 |
-| 内部服务 | `svc-dev-token` | `Authorization: Bearer svc-dev-token` | 服务间调用（business↔RAG↔avatar↔fay） |
-| 运营管理 | `adm-dev-token` | `Authorization: Bearer adm-dev-token` | 管理端操作（admin-api 全部写操作） |
+| Layer | Credential | Header | Scope |
+| --- | --- | --- | --- |
+| Visitor session | `sess-<uuid>` | `Authorization: Bearer sess-xxx` | Visitor-owned session data |
+| Internal service | `SERVICE_TOKEN` | `Authorization: Bearer <SERVICE_TOKEN>` | Service-to-service calls |
+| Admin session | Login-issued `adm_<uuid>` | `Authorization: Bearer adm_xxx` | Admin API operations |
 
-## MVP 阶段（当前）
+## Admin Login
 
-- 游客：匿名 session，无真实用户认证
-- 内部：固定 token，环境变量注入，全信任模式
-- 管理：固定 token，单用户模式
+Admin clients must call:
 
-## 赛前固化计划
+```http
+POST /v1/auth/login
+Content-Type: application/json
 
-1. 内部服务 token → JWT 签名，含 `iss`/`aud`/`exp`
-2. 管理 token → 对接真实账号体系（或至少支持多 key）
-3. 游客 → 保持匿名 session，增加签名防篡改
-4. 所有 token 支持轮换，旧 token 有 5 分钟过渡期
+{"username":"<admin-user>","password":"<admin-password>"}
+```
 
-## 安全边界
+The returned `data.token` is then sent as:
 
-- `/health` 端点无需鉴权
-- `/docs` / `/redoc` 仅在 DEBUG=true 时暴露
-- 内部接口（`/internal/` 前缀）仅接受内部服务 token
-- 管理接口仅接受管理 token
-- 游客只能访问自己 session 的数据（当前未强制校验）
+```http
+Authorization: Bearer <data.token>
+```
+
+The old fixed admin token is disabled by default. `ALLOW_LEGACY_ADMIN_TOKEN=true` is only allowed for local compatibility demos and must not be enabled in exposed environments.
+
+## Bootstrap User
+
+Set `ADMIN_BOOTSTRAP_PASSWORD` before the first admin-api start to create the initial admin user. If the variable is empty, the service creates roles only and no default password can be used to log in.
+
+## Security Boundaries
+
+- `/health`, `/docs`, `/redoc`, `/openapi.json`, and `/v1/auth/login` are public.
+- All other admin-api endpoints require a valid admin session token.
+- Internal endpoints use `SERVICE_TOKEN`; do not reuse admin session tokens for service-to-service calls.
+- Environment-specific tokens and passwords must be injected through `.env`, deployment secrets, or CI/CD secret storage.

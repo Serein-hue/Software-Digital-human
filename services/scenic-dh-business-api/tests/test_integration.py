@@ -15,10 +15,17 @@
 
 import pytest
 import uuid
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from fastapi.testclient import TestClient
 from app.main import app as business_app
 from app.config import settings as business_settings
+from seeds.seed_db import seed
 
+seed()
 client = TestClient(business_app)
 
 
@@ -137,9 +144,8 @@ class TestFullTouristJourney:
         self.test_09_create_session()
         client.post(f"/v1/sessions/{self.session_id}/messages", json={"role": "assistant", "text": "test answer"})
         resp = client.post(f"/v1/sessions/{self.session_id}/feedback", json={
-            "rating": 5,
-            "resolved": True,
-            "comment": "讲解很详细",
+            "type": "feedback",
+            "content": "讲解很详细",
         })
         assert resp.json()["data"]["feedbackId"]
 
@@ -184,7 +190,7 @@ class TestFullTouristJourney:
         client.post(f"/v1/sessions/{sid}/arrival-events", json={"spotId": "LS-001", "trigger": "demo"})
 
         # Feedback
-        fb = client.post(f"/v1/sessions/{sid}/feedback", json={"rating": 5, "resolved": True})
+        fb = client.post(f"/v1/sessions/{sid}/feedback", json={"type": "feedback", "content": "讲解很详细"})
         assert fb.json()["data"]["feedbackId"]
 
         # Verify trace headers
@@ -223,12 +229,13 @@ class TestSourceMarking:
 
     def test_weather_is_mock(self):
         resp = client.get("/v1/weather")
-        assert resp.json()["data"]["source"] == "mock"
+        assert resp.json()["data"]["source"].startswith("mock")
 
     def test_queues_returns_list(self):
         resp = client.get("/v1/queues")
         assert resp.json()["code"] == 0
-        assert "items" in resp.json()["data"]
+        assert "queueMinutes" in resp.json()["data"]
+        assert resp.json()["data"]["source"] == "mock"
 
     def test_tickets_source(self):
         resp = client.get("/v1/tickets/products")

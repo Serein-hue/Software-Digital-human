@@ -1,21 +1,34 @@
-"""共享数据库 — 反馈、工单、应急求助表
+"""Database access for scenic-dh-business-api.
 
-business-api 和 admin-api 共用同一个 SQLite 文件。
-业务数据使用内置 sqlite3，零额外依赖，WAL 模式支持并发读。
+SQLAlchemy is the primary ORM for scenic reference data and journey records.
+Some lightweight operational tables are also exposed through sqlite3 helpers
+because several routers share them directly with admin-api.
 """
 
 import sqlite3
 import threading
 from pathlib import Path
+from typing import Annotated
+
+from fastapi import Depends
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
 from app.config import settings
 
+Base = declarative_base()
+
+engine = create_engine(
+    settings.DATABASE_URL,
+    connect_args={"check_same_thread": False} if settings.DATABASE_URL.startswith("sqlite") else {},
+)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 _local = threading.local()
-_migrated = False  # 迁移只跑一次
+_migrated = False
 
 
 def _get_db_path() -> str:
-    """从 DATABASE_URL 解析出文件路径"""
     url = settings.DATABASE_URL
     if url.startswith("sqlite:///"):
         return url[len("sqlite:///"):]
@@ -23,7 +36,6 @@ def _get_db_path() -> str:
 
 
 def get_conn() -> sqlite3.Connection:
-    """每个线程一个连接（FastAPI 每个请求一个线程）"""
     global _migrated
     if not hasattr(_local, "conn") or _local.conn is None:
         db_path = _get_db_path()
@@ -33,20 +45,34 @@ def get_conn() -> sqlite3.Connection:
         conn.execute("PRAGMA journal_mode=WAL")
         conn.execute("PRAGMA foreign_keys=ON")
         _local.conn = conn
-
-        # 建表（首次连接时运行）
-        _init_tables(conn)
-
-        # 迁移：仅在首次启动时跑一次
+        _init_operational_tables(conn)
         if not _migrated:
             _migrated = True
             _run_migration(conn)
-
     return _local.conn
 
 
-def _init_tables(conn: sqlite3.Connection):
-    conn.executescript("""
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+DbSession = Annotated[Session, Depends(get_db)]
+
+
+def init_db() -> None:
+    from app import models  # noqa: F401
+
+    Base.metadata.create_all(bind=engine)
+    get_conn()
+
+
+def _init_operational_tables(conn: sqlite3.Connection) -> None:
+    conn.executescript(
+        """
         CREATE TABLE IF NOT EXISTS feedbacks (
             id TEXT PRIMARY KEY,
             session_id TEXT NOT NULL DEFAULT '',
@@ -98,18 +124,18 @@ def _init_tables(conn: sqlite3.Connection):
             near_spot_id TEXT DEFAULT '',
             reported_at TEXT NOT NULL DEFAULT (datetime('now'))
         );
-    """)
+        """
+    )
     conn.commit()
 
 
-def _run_migration(conn: sqlite3.Connection):
-    """迁移旧版 SQLAlchemy 建的表（只跑一次，不丢数据）"""
+def _run_migration(conn: sqlite3.Connection) -> None:
     cursor = conn.execute("PRAGMA table_info(feedbacks)")
-    cols = {r[1] for r in cursor.fetchall()}
+    cols = {row[1] for row in cursor.fetchall()}
     if "type" not in cols:
-        # 旧版 feedbacks 表缺 type/content 列 → 重建
         conn.execute("DROP TABLE IF EXISTS feedbacks")
-        conn.executescript("""
+        conn.executescript(
+            """
             CREATE TABLE feedbacks (
                 id TEXT PRIMARY KEY,
                 session_id TEXT NOT NULL DEFAULT '',
@@ -124,5 +150,6 @@ def _run_migration(conn: sqlite3.Connection):
                 comment TEXT NOT NULL DEFAULT '',
                 created_at TEXT NOT NULL DEFAULT (datetime('now'))
             );
-        """)
+            """
+        )
         conn.commit()

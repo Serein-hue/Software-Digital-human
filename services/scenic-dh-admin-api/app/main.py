@@ -1,4 +1,4 @@
-"""scenic-dh-admin-api — 运营管理接口"""
+"""scenic-dh-admin-api: operations management API."""
 
 import logging
 import sys
@@ -20,20 +20,30 @@ logger = logging.getLogger("admin-api")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info(f"{settings.SERVICE_NAME} v{settings.SERVICE_VERSION} starting on port {settings.PORT}")
+    from app.database import init_db
+
+    logger.info("%s v%s starting on port %s", settings.SERVICE_NAME, settings.SERVICE_VERSION, settings.PORT)
+    init_db()
     yield
-    logger.info(f"{settings.SERVICE_NAME} shutting down")
+    logger.info("%s shutting down", settings.SERVICE_NAME)
 
 
 app = FastAPI(
     title="scenic-dh-admin-api",
     version=settings.SERVICE_VERSION,
-    description="运营管理接口 — 知识库、人设、播报、审计、分析、运行控制",
+    description="Operations API for knowledge, personas, broadcasts, audit, analytics, and runtime control.",
     docs_url="/docs",
+    redoc_url="/redoc",
     lifespan=lifespan,
 )
 
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.cors_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.add_middleware(TraceMiddleware)
 app.middleware("http")(admin_auth_middleware)
 
@@ -41,17 +51,24 @@ app.middleware("http")(admin_auth_middleware)
 @app.get("/health", tags=["Health"])
 def health():
     from app.schemas.common import ok
-    from fastapi import Request
-    trace_id = "startup"
+
     return ok(
-        {"status": "ok", "version": settings.SERVICE_VERSION, "dependencies": {"business_api": settings.BUSINESS_API_URL}},
-        trace_id,
+        {
+            "status": "ok",
+            "version": settings.SERVICE_VERSION,
+            "dependencies": {
+                "business_api": settings.BUSINESS_API_URL,
+                "rag_service": settings.RAG_SERVICE_URL,
+                "fay_core": settings.FAY_CORE_URL,
+            },
+        },
+        "startup",
     )
 
 
-# Routers
-from app.routers import knowledge, personas, broadcasts, audit, analytics, runtime, data_gaps, work_orders  # noqa: E402
+from app.routers import analytics, audit, auth, broadcasts, data_gaps, knowledge, personas, runtime, work_orders  # noqa: E402
 
+app.include_router(auth.router, prefix="/v1")
 app.include_router(knowledge.router, prefix="/v1")
 app.include_router(personas.router, prefix="/v1")
 app.include_router(broadcasts.router, prefix="/v1")

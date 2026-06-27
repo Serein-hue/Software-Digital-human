@@ -395,7 +395,7 @@
 | 请求头 | 必填 | 示例 | 说明 |
 |--------|------|------|------|
 | `X-Trace-Id` | 否 | `"my-custom-trace-001"` | 链路追踪 ID，调用方传入。会原样出现在响应 `trace_id` 中。不传则服务自动生成 |
-| `Authorization` | **是**（除 `/health`） | `"Bearer dev-token-123456"` | Bearer Token 鉴权。Token 值由环境变量 `RAG_API_KEY` 配置，默认 `dev-token-123456` |
+| `Authorization` | **是**（除 `/health`） | `"Bearer <RAG_API_KEY>"` | Bearer Token 鉴权。Token 值由环境变量 `RAG_API_KEY` 配置，不应使用代码内默认密钥 |
 
 ---
 
@@ -421,7 +421,7 @@ GET /api/v1/rag/health
 
 ```json
 POST /api/v1/rag/query
-Authorization: Bearer dev-token-123456
+Authorization: Bearer <RAG_API_KEY>
 Content-Type: application/json
 
 {
@@ -477,7 +477,7 @@ Content-Type: application/json
 
 ```json
 POST /api/v1/rag/query
-Authorization: Bearer dev-token-123456
+Authorization: Bearer <RAG_API_KEY>
 Content-Type: application/json
 
 {
@@ -509,7 +509,7 @@ Content-Type: application/json
 
 ```json
 POST /api/v1/rag/ingest
-Authorization: Bearer dev-token-123456
+Authorization: Bearer <RAG_API_KEY>
 Content-Type: application/json
 
 {

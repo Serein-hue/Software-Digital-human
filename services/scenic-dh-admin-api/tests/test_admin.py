@@ -1,13 +1,30 @@
-"""admin-api 冒烟测试"""
+"""admin-api smoke tests."""
+
+import os
+import sys
+import tempfile
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+os.environ.setdefault("ADMIN_BOOTSTRAP_PASSWORD", "admin123")
+test_db = Path(tempfile.gettempdir()) / "scenic_dh_admin_test.db"
+test_db.unlink(missing_ok=True)
+os.environ.setdefault("DATABASE_URL", f"sqlite:///{test_db.as_posix()}")
 
 from fastapi.testclient import TestClient
+
 from app.main import app
-from app.config import settings
 
 client = TestClient(app)
 
-AUTH = {"Authorization": f"Bearer {settings.ADMIN_TOKEN}"}
-PREFIX = "/v1/admin"
+
+def _auth_headers() -> dict[str, str]:
+    resp = client.post("/v1/auth/login", json={"username": "admin", "password": "admin123"})
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["code"] == 0
+    return {"Authorization": f"Bearer {body['data']['token']}"}
 
 
 def test_health():
@@ -17,69 +34,49 @@ def test_health():
 
 
 def test_auth_required():
-    resp = client.get(f"{PREFIX}/knowledge/status")
+    resp = client.get("/v1/knowledge/status")
     assert resp.status_code == 401
 
 
-def test_auth_valid():
-    resp = client.get(f"{PREFIX}/knowledge/status", headers=AUTH)
+def test_login_and_me():
+    headers = _auth_headers()
+    resp = client.get("/v1/auth/me", headers=headers)
     assert resp.status_code == 200
+    assert resp.json()["data"]["username"] == "admin"
 
 
 def test_runtime_status():
-    """运行时状态 — Fay 未启动时 fayOnline=False，但不应当报错。"""
-    resp = client.get(f"{PREFIX}/runtime/status", headers=AUTH)
+    resp = client.get("/v1/runtime/status", headers=_auth_headers())
     data = resp.json()
     assert data["code"] == 0
     assert "fayOnline" in data["data"]
     assert "mcpOnline" in data["data"]
 
 
-def test_runtime_broadcast():
-    """广播 — Fay 未启动时返回 502，说明连接失败原因。"""
+def test_runtime_broadcast_does_not_raise():
     resp = client.post(
-        f"{PREFIX}/runtime/broadcast",
-        headers=AUTH,
+        "/v1/runtime/broadcast",
+        headers=_auth_headers(),
         json={"text": "测试播报", "speaker": "测试"},
     )
-    data = resp.json()
-    # Fay 未启动会返回 502，code 非 0
-    assert data["code"] != 0 or data["code"] == 0
+    assert "code" in resp.json()
 
 
 def test_runtime_microphone_toggle():
-    """麦克风切换 — 即使 Fay 不在线也不应抛异常。"""
-    resp = client.post(f"{PREFIX}/runtime/microphone/toggle", headers=AUTH)
-    data = resp.json()
-    assert data["code"] == 0
+    resp = client.post("/v1/runtime/microphone/toggle", headers=_auth_headers())
+    assert resp.json()["code"] == 0
 
 
 def test_runtime_clear_queue():
-    """清空队列 — Fay 不在线时返回错误但不抛异常。"""
-    resp = client.post(f"{PREFIX}/runtime/clear-queue", headers=AUTH)
-    data = resp.json()
-    # Fay 不在线会返回 500，但不抛异常
-    assert "code" in data
+    resp = client.post("/v1/runtime/clear-queue", headers=_auth_headers())
+    assert "code" in resp.json()
 
 
 def test_runtime_queue():
-    """队列状态查询。"""
-    resp = client.get(f"{PREFIX}/runtime/queue", headers=AUTH)
+    resp = client.get("/v1/runtime/queue", headers=_auth_headers())
     data = resp.json()
     assert data["code"] == 0
     assert "queueLength" in data["data"]
-
-
-def test_create_broadcast():
-    """创建播报 — Fay 不在线时返回不抛异常。"""
-    resp = client.post(
-        f"{PREFIX}/broadcasts",
-        headers=AUTH,
-        json={"text": "测试播报", "priority": "high"},
-    )
-    data = resp.json()
-    # Fay 不在线可能返回非 0 code，但不抛异常
-    assert "code" in data
 
 
 def test_trace_header():

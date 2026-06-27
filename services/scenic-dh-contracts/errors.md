@@ -1,77 +1,45 @@
-# scenic-dh 统一错误码
+# scenic-dh Error Contract
 
-对齐 RAG 服务格式：`code` 为整数，`0`=成功，正数=业务错误，负数=系统错误。
+All services return a consistent envelope:
 
-## 响应格式
-
-成功：
 ```json
 {
   "code": 0,
   "message": "success",
-  "data": { "... 具体数据 ..." },
-  "trace_id": "trace_a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
-}
-```
-
-错误：
-```json
-{
-  "code": 40401,
-  "message": "景点 LS-099 不存在",
-  "data": null,
-  "trace_id": "trace_a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
-}
-```
-
-分页数据：
-```json
-{
-  "code": 0,
-  "message": "success",
-  "data": {
-    "items": ["..."],
-    "pagination": { "page": 1, "page_size": 20, "total": 96, "total_pages": 5 }
-  },
+  "data": {},
   "trace_id": "trace_..."
 }
 ```
 
-## 错误码表
+`code = 0` means success. Non-zero codes describe business or system errors.
 
-| code | HTTP | 说明 |
-|------|------|------|
-| 0 | 200 | 成功 |
-| 20000 | 200 | fallback 触发 |
-| 20001 | 200 | RAG 低置信度 |
-| 40000 | 400 | 请求参数校验失败 |
-| 40001 | 400 | 缺少鉴权头 |
-| 40002 | 400 | 字段格式错误 |
-| 40100 | 401 | 鉴权令牌无效 |
-| 40101 | 401 | 鉴权令牌过期 |
-| 40300 | 403 | 无权限 |
-| 40400 | 404 | 资源不存在 |
-| 40401 | 404 | 景点不存在 |
-| 40402 | 404 | 路线不存在 |
-| 40403 | 404 | 会话不存在 |
-| 40404 | 404 | 消息不存在 |
-| 40900 | 409 | 资源冲突 |
-| 41000 | 410 | 会话已过期 |
-| 42900 | 429 | 请求频率超限 |
-| 50000 | 500 | 内部服务错误 |
-| 50001 | 500 | 查询/统计失败 |
-| 50200 | 502 | 上游服务失败 |
-| 50300 | 503 | 服务不可用 |
-| 50301 | 503 | Fay 运行时离线 |
-| 50400 | 504 | 上游服务超时 |
+## Common Codes
 
-## 鉴权
+| Code | HTTP | Meaning |
+| --- | --- | --- |
+| `40000` | 400 | Request validation failed |
+| `40001` | 400 | Missing authentication header |
+| `40100` | 401 | Invalid credential |
+| `40101` | 401 | Expired or invalid token |
+| `40300` | 403 | Permission denied |
+| `40400` | 404 | Resource not found |
+| `42900` | 429 | Rate limit exceeded |
+| `50000` | 500 | Internal service error |
+| `50200` | 502 | Upstream service error |
+| `50300` | 503 | Service unavailable |
+| `50301` | 503 | Fay runtime offline |
+| `50400` | 504 | Upstream timeout |
 
-所有服务统一使用 `Authorization: Bearer <token>` 头（health 除外）：
-- 内部服务间：`Bearer svc-dev-token`
-- 管理端：`Bearer adm-dev-token`
-- 游客会话：`Bearer sess-<session_id>`
+## Authentication Errors
 
-## trace_id
+All protected endpoints use:
 
-从请求头 `X-Trace-Id` 读取，未传则服务端自动生成 `trace_` + 32 位 hex。贯穿整条调用链。
+```http
+Authorization: Bearer <token>
+```
+
+- Business internal calls use `SERVICE_TOKEN`.
+- Admin calls use a session token returned by `POST /v1/auth/login`.
+- Visitor calls use a visitor session token where applicable.
+
+Fixed admin tokens such as historical local demo values are not part of the current contract.

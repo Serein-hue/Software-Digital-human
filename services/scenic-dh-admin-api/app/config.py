@@ -1,4 +1,4 @@
-"""scenic-dh-admin-api 配置"""
+"""Configuration for scenic-dh-admin-api."""
 
 from pydantic_settings import BaseSettings
 
@@ -10,24 +10,32 @@ class Settings(BaseSettings):
     PORT: int = 8002
     DEBUG: bool = False
 
-    # 共享数据库（与 business-api 同一个 SQLite 文件）
     DATABASE_URL: str = "sqlite:///../scenic-dh-business-api/scenic_business.db"
 
-    # 上游服务
     BUSINESS_API_URL: str = "http://localhost:8001/v1"
     RAG_SERVICE_URL: str = "http://127.0.0.1:5010/api/v1"
 
-    # Fay 数字人运行时（标准部署端口）
-    FAY_HTTP_URL: str = "http://127.0.0.1:5000"       # Fay GUI / core HTTP
-    FAY_CORE_URL: str = "http://127.0.0.1:5000"       # Fay GUI / core HTTP（同 FAY_HTTP_URL）
-    FAY_MCP_URL: str = "http://127.0.0.1:5010"        # Fay MCP 管理服务（与 RAG 同端口复用）
-    FAY_WS_URL: str = "ws://127.0.0.1:10000"          # Fay WebSocket
+    FAY_HTTP_URL: str = "http://127.0.0.1:5000"
+    FAY_CORE_URL: str = "http://127.0.0.1:5000"
+    FAY_MCP_URL: str = "http://127.0.0.1:5010"
+    FAY_WS_URL: str = "ws://127.0.0.1:10000"
 
-    # 内部服务 token
     INTERNAL_SERVICE_TOKEN: str = "svc-dev-token"
-    ADMIN_TOKEN: str = "adm-dev-token"
+    RAG_API_KEY: str = ""
+    ADMIN_TOKEN: str = ""
+    ALLOW_LEGACY_ADMIN_TOKEN: bool = False
+    JWT_EXPIRE_HOURS: int = 8
+    ADMIN_BOOTSTRAP_USERNAME: str = "admin"
+    ADMIN_BOOTSTRAP_PASSWORD: str = ""
+    ADMIN_BOOTSTRAP_DISPLAY_NAME: str = "系统管理员"
+
+    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173"
 
     LOG_LEVEL: str = "INFO"
+
+    @property
+    def cors_origins(self) -> list[str]:
+        return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
 
     class Config:
         env_file = ".env"

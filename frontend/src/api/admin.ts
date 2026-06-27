@@ -1,7 +1,16 @@
-/** Admin API — 对接 scenic-dh-admin-api (http://localhost:8002/v1) */
+/** Admin API client for scenic-dh-admin-api. */
 
 const ADMIN_BASE = import.meta.env.VITE_ADMIN_API_BASE ?? 'http://localhost:8002/v1'
-const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN ?? 'adm-dev-token'
+const ADMIN_TOKEN_STORAGE_KEY = 'scenic_admin_token'
+
+function getAdminToken(): string | null {
+  return window.localStorage.getItem(ADMIN_TOKEN_STORAGE_KEY)
+}
+
+function authHeaders(extra?: HeadersInit): HeadersInit {
+  const token = getAdminToken()
+  return token ? { ...extra, Authorization: `Bearer ${token}` } : { ...extra }
+}
 
 interface ApiResponse<T> {
   code: number
@@ -94,7 +103,7 @@ export interface LowConfidenceItem {
 async function apiGet<T>(path: string): Promise<T | null> {
   try {
     const res = await fetch(`${ADMIN_BASE}${path}`, {
-      headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` },
+      headers: authHeaders(),
       signal: AbortSignal.timeout(8_000),
     })
     if (!res.ok) return null
@@ -110,10 +119,7 @@ async function apiPost<T>(path: string, body?: unknown): Promise<T | null> {
   try {
     const res = await fetch(`${ADMIN_BASE}${path}`, {
       method: 'POST',
-      headers: isFormData ? { 'Authorization': `Bearer ${ADMIN_TOKEN}` } : {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${ADMIN_TOKEN}`,
-      },
+      headers: isFormData ? authHeaders() : authHeaders({ 'Content-Type': 'application/json' }),
       body: isFormData ? body : body ? JSON.stringify(body) : undefined,
       signal: AbortSignal.timeout(body instanceof FormData ? 120_000 : 10_000),
     })
@@ -123,6 +129,31 @@ async function apiPost<T>(path: string, body?: unknown): Promise<T | null> {
   } catch {
     return null
   }
+}
+
+// ── Auth API ─────────────────────────────────────────────────────────
+
+export interface AdminUser {
+  id: string
+  username: string
+  displayName: string
+  roleId?: string
+}
+
+export async function loginAdmin(username: string, password: string): Promise<AdminUser | null> {
+  const result = await apiPost<{ token: string; user: AdminUser }>('/auth/login', { username, password })
+  if (!result?.token) return null
+  window.localStorage.setItem(ADMIN_TOKEN_STORAGE_KEY, result.token)
+  return result.user
+}
+
+export async function logoutAdmin(): Promise<void> {
+  await apiPost('/auth/logout')
+  window.localStorage.removeItem(ADMIN_TOKEN_STORAGE_KEY)
+}
+
+export async function fetchCurrentAdmin(): Promise<AdminUser | null> {
+  return apiGet<AdminUser>('/auth/me')
 }
 
 // ── API 函数 ──────────────────────────────────────────────────────────
