@@ -18,7 +18,11 @@ class Settings(BaseSettings):
 
     SERVICE_TOKEN: str = "svc-dev-token"
 
-    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173"
+    CORS_ORIGINS: str = (
+        "http://localhost:5173,http://127.0.0.1:5173,"
+        "http://localhost:4173,http://127.0.0.1:4173,"
+        "http://localhost:9000,http://127.0.0.1:9000"
+    )
 
     LOG_LEVEL: str = "INFO"
     LOG_FORMAT: str = "json"
