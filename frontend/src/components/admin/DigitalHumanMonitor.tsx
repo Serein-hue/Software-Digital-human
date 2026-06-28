@@ -3,12 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Activity, Mic, MicOff, Speaker, Volume2, Wifi, WifiOff,
+  Activity, Mic, MicOff, Speaker, Volume2, WifiOff,
   Radio, RadioTower, List, Send, RefreshCw, Trash2,
   AlertTriangle, CheckCircle, XCircle, Clock, Loader2,
-  Terminal, MessageSquare, Play, Square,
+  Terminal, MessageSquare,
 } from 'lucide-react'
-import { useT } from '../../i18n'
 import {
   fetchRuntimeStatus,
   fetchQueueStatus,
@@ -45,7 +44,6 @@ function addLog(
 // ── 主组件 ────────────────────────────────────────────────────────────
 
 export default function DigitalHumanMonitor() {
-  const t = useT()
   const [status, setStatus] = useState<RuntimeStatus | null>(null)
   const [queueLen, setQueueLen] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -70,7 +68,7 @@ export default function DigitalHumanMonitor() {
   }, [])
 
   useEffect(() => {
-    refresh()
+    queueMicrotask(refresh)
     return () => {
       if (pollRef.current) clearInterval(pollRef.current)
     }

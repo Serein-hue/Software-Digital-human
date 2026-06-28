@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, Clock, Footprints, Star, MapPin, ChevronRight, Navigation } from 'lucide-react'
+import { ChevronLeft, Clock, Footprints, Star, ChevronRight, Navigation } from 'lucide-react'
 import { useT } from '../../i18n'
 
 interface RouteStep {
@@ -95,7 +95,7 @@ interface Props {
   onSpotClick: (spotId: string) => void
 }
 
-export default function RouteRecommend({ onClose, onSpotClick }: Props) {
+export default function RouteRecommend({ onClose }: Props) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const t = useT()
 

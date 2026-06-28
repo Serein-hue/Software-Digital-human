@@ -96,16 +96,16 @@ export default function ShareCard({ isOpen, onClose, messages, spotName = 'ÁÅµÂ±
 
             {/* Template picker */}
             <div className="share-template-picker">
-              {TEMPLATES.map((t) => (
+              {TEMPLATES.map((templateOption) => (
                 <button
-                  key={t.id}
+                  key={templateOption.id}
                   type="button"
-                  className={`share-template-dot ${templateId === t.id ? 'active' : ''}`}
-                  style={{ background: t.id === templateId ? t.accent : t.gradient }}
-                  onClick={() => setTemplateId(t.id)}
-                  aria-label={t(t.labelKey)}
+                  className={`share-template-dot ${templateId === templateOption.id ? 'active' : ''}`}
+                  style={{ background: templateOption.id === templateId ? templateOption.accent : templateOption.gradient }}
+                  onClick={() => setTemplateId(templateOption.id)}
+                  aria-label={t(templateOption.labelKey)}
                 >
-                  {templateId === t.id && <span className="share-template-check" />}
+                  {templateId === templateOption.id && <span className="share-template-check" />}
                 </button>
               ))}
             </div>

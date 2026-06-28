@@ -2,7 +2,7 @@
 
 import httpx
 from fastapi import APIRouter, Request
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.schemas.common import ok, err
 from app.config import settings
@@ -14,8 +14,8 @@ RAG_HEALTH_URL = f"{settings.RAG_SERVICE_URL}/api/v1/rag/health"
 
 
 class RagQueryRequest(BaseModel):
-    query: str
-    top_k: int = 5
+    query: str = Field(min_length=1, max_length=500)
+    top_k: int = Field(default=5, ge=1, le=10)
     filters: dict | None = None
 
 

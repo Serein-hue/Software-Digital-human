@@ -12,7 +12,7 @@ from fastapi import APIRouter, Request
 from pydantic import BaseModel
 
 from app.database import get_conn
-from app.schemas.common import ok
+from app.schemas.common import err, ok
 
 logger = logging.getLogger("business-api")
 
@@ -141,6 +141,4 @@ def get_emergency(request_id: str, request: Request):
 @router.get("/feedback")
 def list_feedback(request: Request):
     trace_id = request.state.trace_id
-    rows = get_conn().execute("SELECT * FROM feedbacks ORDER BY created_at DESC").fetchall()
-    items = [dict(r) for r in rows]
-    return ok({"items": items}, trace_id)
+    return err(40400, "反馈列表仅开放给管理端", trace_id, status_code=404)

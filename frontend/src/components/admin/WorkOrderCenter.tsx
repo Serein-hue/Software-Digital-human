@@ -3,12 +3,11 @@
 import { useCallback, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  ClipboardList, Siren, MessageSquare, AlertTriangle, CheckCircle,
-  XCircle, Clock, Loader2, Search, ChevronRight, X, SendHorizonal,
-  UserCheck, Phone, MapPin, Star, ThumbsDown, ThumbsUp, Filter,
-  RefreshCw, ExternalLink, Trash2,
+  ClipboardList, Siren, MessageSquare, CheckCircle,
+  XCircle, Clock, Loader2, ChevronRight, X, SendHorizonal,
+  UserCheck, Phone, MapPin, Star, ThumbsDown, ThumbsUp,
+  ExternalLink,
 } from 'lucide-react'
-import { useT } from '../../i18n'
 import {
   fetchWorkOrders,
   fetchEmergencies,
@@ -37,6 +36,7 @@ const TABS: { key: TabKey; label: string; icon: typeof ClipboardList }[] = [
 
 let tid = 0
 interface Toast { id: string; type: 'success' | 'error'; message: string }
+type AddToast = (type: Toast['type'], message: string) => void
 
 // ── 状态色和文案 ─────────────────────────────────────────────────────
 
@@ -65,7 +65,6 @@ const STATUS_FILTERS_EM = ['all', 'pending', 'dispatching', 'arrived', 'resolved
 // ── 主组件 ────────────────────────────────────────────────────────────
 
 export default function WorkOrderCenter() {
-  const t = useT()
   const [activeTab, setActiveTab] = useState<TabKey>('work-orders')
   const [toasts, setToasts] = useState<Toast[]>([])
 
@@ -107,7 +106,7 @@ export default function WorkOrderCenter() {
       <div className="kb-tab-content">
         {activeTab === 'work-orders' && <WorkOrdersTab addToast={addToast} />}
         {activeTab === 'emergencies' && <EmergenciesTab addToast={addToast} />}
-        {activeTab === 'feedbacks' && <FeedbacksTab addToast={addToast} />}
+        {activeTab === 'feedbacks' && <FeedbacksTab />}
       </div>
 
       {/* Toasts */}
@@ -136,11 +135,11 @@ export default function WorkOrderCenter() {
 // Tab: 工单
 // ═══════════════════════════════════════════════════════════════════════
 
-function WorkOrdersTab({ addToast }: { addToast: (t: string, m: string) => void }) {
+function WorkOrdersTab({ addToast }: { addToast: AddToast }) {
   const [items, setItems] = useState<WorkOrder[]>([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
-  const [total, setTotal] = useState(0)
+  const [, setTotal] = useState(0)
   const [totalPages, setTotalPages] = useState(1)
   const [statusFilter, setStatusFilter] = useState('all')
   const [expandedId, setExpandedId] = useState<string | null>(null)
@@ -158,7 +157,9 @@ function WorkOrdersTab({ addToast }: { addToast: (t: string, m: string) => void 
     })
   }, [])
 
-  useEffect(() => { load(page, statusFilter) }, [page, statusFilter, load])
+  useEffect(() => {
+    queueMicrotask(() => load(page, statusFilter))
+  }, [page, statusFilter, load])
 
   const doAction = async (id: string, action: () => Promise<unknown>, msg: string) => {
     setActionLoading(id)
@@ -299,11 +300,11 @@ function WorkOrdersTab({ addToast }: { addToast: (t: string, m: string) => void 
 // Tab: 应急求助
 // ═══════════════════════════════════════════════════════════════════════
 
-function EmergenciesTab({ addToast }: { addToast: (t: string, m: string) => void }) {
+function EmergenciesTab({ addToast }: { addToast: AddToast }) {
   const [items, setItems] = useState<Emergency[]>([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
-  const [total, setTotal] = useState(0)
+  const [, setTotal] = useState(0)
   const [totalPages, setTotalPages] = useState(1)
   const [statusFilter, setStatusFilter] = useState('all')
   const [expandedId, setExpandedId] = useState<string | null>(null)
@@ -321,7 +322,9 @@ function EmergenciesTab({ addToast }: { addToast: (t: string, m: string) => void
     })
   }, [])
 
-  useEffect(() => { load(page, statusFilter) }, [page, statusFilter, load])
+  useEffect(() => {
+    queueMicrotask(() => load(page, statusFilter))
+  }, [page, statusFilter, load])
 
   return (
     <div>
@@ -447,11 +450,11 @@ function EmergenciesTab({ addToast }: { addToast: (t: string, m: string) => void
 // Tab: 用户反馈
 // ═══════════════════════════════════════════════════════════════════════
 
-function FeedbacksTab({ addToast }: { addToast: (t: string, m: string) => void }) {
+function FeedbacksTab() {
   const [items, setItems] = useState<Feedback[]>([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
-  const [total, setTotal] = useState(0)
+  const [, setTotal] = useState(0)
   const [totalPages, setTotalPages] = useState(1)
   const [filterLow, setFilterLow] = useState(false)
 
@@ -467,7 +470,9 @@ function FeedbacksTab({ addToast }: { addToast: (t: string, m: string) => void }
     })
   }, [])
 
-  useEffect(() => { load(page, filterLow) }, [page, filterLow, load])
+  useEffect(() => {
+    queueMicrotask(() => load(page, filterLow))
+  }, [page, filterLow, load])
 
   return (
     <div>

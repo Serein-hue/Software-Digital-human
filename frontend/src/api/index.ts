@@ -55,9 +55,10 @@ interface AnalyticsData {
 }
 
 let backendAvailable: boolean | null = null
+let backendRetryAt = 0
 
 async function apiFetch<T>(path: string, options?: RequestInit): Promise<T | null> {
-  if (backendAvailable === false) return null
+  if (backendAvailable === false && Date.now() < backendRetryAt) return null
   try {
     const res = await fetch(`${BASE}${path}`, {
       ...options,
@@ -68,6 +69,7 @@ async function apiFetch<T>(path: string, options?: RequestInit): Promise<T | nul
     return res.json()
   } catch {
     backendAvailable = false
+    backendRetryAt = Date.now() + 5_000
     return null
   }
 }

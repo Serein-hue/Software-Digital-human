@@ -41,7 +41,7 @@ def test_spots_detail():
 
 def test_spots_not_found():
     resp = client.get("/v1/spots/LS-999")
-    assert resp.status_code == 200
+    assert resp.status_code == 404
     data = resp.json()
     assert data["code"] != 0
     assert data["code"] == 40401

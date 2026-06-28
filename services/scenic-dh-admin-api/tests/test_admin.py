@@ -38,6 +38,12 @@ def test_auth_required():
     assert resp.status_code == 401
 
 
+def test_login_failure_uses_http_unauthorized():
+    resp = client.post("/v1/auth/login", json={"username": "admin", "password": "wrong"})
+    assert resp.status_code == 401
+    assert resp.json()["code"] == 40100
+
+
 def test_login_and_me():
     headers = _auth_headers()
     resp = client.get("/v1/auth/me", headers=headers)

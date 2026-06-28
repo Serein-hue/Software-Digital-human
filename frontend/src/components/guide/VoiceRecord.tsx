@@ -9,6 +9,42 @@ interface Props {
   onResult: (text: string) => void
 }
 
+interface SpeechRecognitionResultLike {
+  isFinal: boolean
+  0: { transcript: string }
+}
+
+interface SpeechRecognitionEventLike {
+  results: {
+    length: number
+    [index: number]: SpeechRecognitionResultLike
+  }
+}
+
+interface SpeechRecognitionErrorLike {
+  error: string
+}
+
+interface SpeechRecognitionLike {
+  lang: string
+  interimResults: boolean
+  maxAlternatives: number
+  continuous: boolean
+  onresult: ((event: SpeechRecognitionEventLike) => void) | null
+  onerror: ((event: SpeechRecognitionErrorLike) => void) | null
+  onend: (() => void) | null
+  start: () => void
+  stop: () => void
+}
+
+type SpeechRecognitionConstructor = new () => SpeechRecognitionLike
+
+const VOICE_BARS = Array.from({ length: 16 }, (_, i) => ({
+  key: i,
+  height: 12 + ((i * 7) % 28),
+  duration: 0.6 + (i % 5) * 0.08,
+}))
+
 const SUGGESTIONS_ZH = [
   '灵山大佛有多高？',
   '帮我推荐一条游览路线',
@@ -27,7 +63,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
   const [phase, setPhase] = useState<Phase>('listening')
   const [transcript, setTranscript] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
-  const recognitionRef = useRef<any>(null)
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null)
   const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const phaseRef = useRef<Phase>('listening')
   const t = useT()
@@ -44,7 +80,11 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
   }, [])
 
   const startListening = useCallback(() => {
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
+    const speechWindow = window as Window & {
+      SpeechRecognition?: SpeechRecognitionConstructor
+      webkitSpeechRecognition?: SpeechRecognitionConstructor
+    }
+    const SpeechRecognition = speechWindow.SpeechRecognition || speechWindow.webkitSpeechRecognition
     if (!SpeechRecognition) {
       setPhase('error')
       setErrorMsg(t('voice.unsupported'))
@@ -59,7 +99,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
     recognition.maxAlternatives = 1
     recognition.continuous = false
 
-    recognition.onresult = (event: any) => {
+    recognition.onresult = (event) => {
       const result = event.results[event.results.length - 1]
       const text = result[0].transcript.trim()
       setTranscript(text)
@@ -76,7 +116,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
       }
     }
 
-    recognition.onerror = (event: any) => {
+    recognition.onerror = (event) => {
       if (event.error === 'not-allowed') {
         setPhase('error')
         setErrorMsg(t('voice.denied'))
@@ -107,10 +147,10 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
       setPhase('error')
       setErrorMsg(t('voice.cantStart'))
     }
-  }, [onResult, onClose, stopListening])
+  }, [onResult, onClose, stopListening, t])
 
   useEffect(() => {
-    if (isOpen) startListening()
+    if (isOpen) queueMicrotask(startListening)
     return () => stopListening()
   }, [isOpen, startListening, stopListening])
 
@@ -177,19 +217,19 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
                 )}
 
                 <div className="voice-bars">
-                  {Array.from({ length: 16 }).map((_, i) => (
+                  {VOICE_BARS.map((bar) => (
                     <motion.span
-                      key={i}
+                      key={bar.key}
                       className="voice-bar"
                       animate={{
                         height: phase === 'listening'
-                          ? [4, 12 + Math.random() * 28, 4]
+                          ? [4, bar.height, 4]
                           : 4,
                       }}
                       transition={{
                         repeat: phase === 'listening' ? Infinity : 0,
-                        duration: 0.6 + Math.random() * 0.4,
-                        delay: i * 0.06,
+                        duration: bar.duration,
+                        delay: bar.key * 0.06,
                         ease: 'easeInOut',
                       }}
                     />

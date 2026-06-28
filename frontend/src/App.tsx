@@ -7,7 +7,6 @@ import {
   PlayCircle,
   ShieldCheck,
   Sparkles,
-  Monitor,
 } from 'lucide-react'
 import GuidePage from './components/guide/GuidePage'
 import KioskPage from './components/guide/KioskPage'

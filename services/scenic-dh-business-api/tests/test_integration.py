@@ -149,6 +149,29 @@ class TestFullTouristJourney:
         })
         assert resp.json()["data"]["feedbackId"]
 
+    def test_feedback_list_is_not_public(self):
+        resp = client.get("/v1/feedback")
+        assert resp.status_code == 404
+        assert resp.json()["code"] == 40400
+
+    def test_missing_session_uses_http_not_found(self):
+        resp = client.get("/v1/sessions/missing-session")
+        assert resp.status_code == 404
+        assert resp.json()["code"] == 40403
+
+    def test_rag_query_validates_bounds(self):
+        resp = client.post("/v1/rag/query", json={"query": "x", "top_k": 999})
+        assert resp.status_code == 422
+
+    def test_internal_default_token_is_rejected(self):
+        resp = client.post(
+            "/internal/v1/context/query",
+            headers={"Authorization": f"Bearer {business_settings.SERVICE_TOKEN}"},
+            json={"intent": "general"},
+        )
+        assert resp.status_code == 503
+        assert resp.json()["code"] == 50301
+
     def test_17_full_journey(self):
         """一键跑通完整游客旅程"""
         # Create session

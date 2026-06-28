@@ -30,6 +30,7 @@ interface Props {
 function ConfidenceBadge({ confidence }: { confidence: 'high' | 'medium' | 'low' }) {
   const cfg = CONFIDENCE_CONFIG[confidence]
   const Icon = cfg.icon
+  const t = useT()
   return (
     <span className={`confidence-badge ${cfg.cls}`}>
       <Icon size={12} />

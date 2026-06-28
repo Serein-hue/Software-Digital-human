@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { MapPin, Clock, ChevronLeft, Play, Pause, BookOpen, Compass } from 'lucide-react'
 import { useT } from '../../i18n'
 import { fetchSpot, fetchRelatedSpots } from '../../api'
@@ -123,6 +123,12 @@ const TIER_LABELS: { tier: Tier; icon: typeof Clock; descKey: string }[] = [
   { tier: 'shortIntro', icon: Clock, descKey: 'spot.shortVersion' },
   { tier: 'fullIntro', icon: BookOpen, descKey: 'spot.deepGuide' },
 ]
+
+const AUDIO_BARS = Array.from({ length: 7 }, (_, i) => ({
+  key: i,
+  height: 14 + ((i * 5) % 18),
+  duration: 0.5 + (i % 4) * 0.08,
+}))
 
 interface Props {
   spotId: string
@@ -264,12 +270,12 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
         </div>
         {isPlaying && (
           <div className="spot-audio-bars">
-            {Array.from({ length: 7 }).map((_, i) => (
+            {AUDIO_BARS.map((bar) => (
               <motion.span
-                key={i}
+                key={bar.key}
                 className="spot-audio-bar-inner"
-                animate={{ height: [6, 14 + Math.random() * 18, 6] }}
-                transition={{ repeat: Infinity, duration: 0.5 + Math.random() * 0.3, delay: i * 0.1 }}
+                animate={{ height: [6, bar.height, 6] }}
+                transition={{ repeat: Infinity, duration: bar.duration, delay: bar.key * 0.1 }}
               />
             ))}
           </div>

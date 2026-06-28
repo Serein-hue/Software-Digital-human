@@ -9,7 +9,7 @@ import SpotDetail from './SpotDetail'
 import RouteRecommend from './RouteRecommend'
 import PhotoRecognition from './PhotoRecognition'
 import ShareCard from './ShareCard'
-import { useT } from '../../i18n'
+import { getLang, useT } from '../../i18n'
 import { fetchChatAnswer } from '../../api'
 
 const MOCK_KNOWLEDGE: Record<string, { text: string; source: string }> = {
@@ -139,6 +139,7 @@ const QUICK_ACTIONS = [
 ]
 
 export default function GuidePage() {
+  const t = useT()
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome',
@@ -156,8 +157,6 @@ export default function GuidePage() {
   const [routeOpen, setRouteOpen] = useState(false)
   const listeningTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const speakingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const t = useT()
-
   const langRef = useRef(getLang())
 
   useEffect(() => {
@@ -171,7 +170,7 @@ export default function GuidePage() {
         return prev
       })
     }
-  })
+  }, [t])
 
   useEffect(() => {
     return () => {

@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
-  TrendingUp, Users, Clock, Wallet, Star, MapPin, List, AlertTriangle,
+  TrendingUp, Users, Clock, Star, MapPin, List, AlertTriangle,
 } from 'lucide-react'
 import {
   CartesianGrid,
-  Pie, PieChart, Cell,
+  Cell,
   BarChart, Bar,
   ResponsiveContainer,
-  Tooltip, XAxis, YAxis, Legend,
+  Tooltip, XAxis, YAxis,
   Area, AreaChart,
 } from 'recharts'
-import { useT, getLang } from '../../i18n'
+import { useT } from '../../i18n'
 import {
   fetchOverview,
   fetchSpotHeat,
@@ -25,8 +25,6 @@ import {
 
 export default function DataDashboard() {
   const t = useT()
-  const lang = getLang()
-  const isEn = lang === 'en'
 
   const [overview, setOverview] = useState<OverviewData>({
     activeVisitors: 0,
@@ -57,8 +55,6 @@ export default function DataDashboard() {
       setError('无法加载运营数据')
     }).finally(() => setLoading(false))
   }, [])
-
-  const visitsKey = isEn ? 'Visitors' : '游客量'
 
   // 基础统计数据
   const safeOverview = overview || { activeVisitors: 0, totalSpots: 0, pendingWorkOrders: 0, pendingEmergencies: 0, avgRating: 0 }
@@ -174,7 +170,7 @@ export default function DataDashboard() {
           </div>
           {queueChartData.length > 0 ? (
             <div style={{ padding: '4px 0' }}>
-              {queueChartData.map((q, i) => (
+              {queueChartData.map((q) => (
                 <div key={q.spot} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, fontSize: 13 }}>
                   <span style={{
                     width: 6, height: 6, borderRadius: '50%', flexShrink: 0,

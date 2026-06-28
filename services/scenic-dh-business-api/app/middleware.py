@@ -10,6 +10,7 @@ from starlette.responses import JSONResponse
 from app.config import settings
 
 logger = logging.getLogger("business-api")
+DEFAULT_SERVICE_TOKEN = "svc-dev-token"
 
 
 class TraceMiddleware(BaseHTTPMiddleware):
@@ -47,6 +48,16 @@ class TraceMiddleware(BaseHTTPMiddleware):
 async def internal_auth_middleware(request: Request, call_next):
     """内部服务间鉴权校验"""
     if request.url.path.startswith("/internal/"):
+        if not settings.SERVICE_TOKEN or settings.SERVICE_TOKEN == DEFAULT_SERVICE_TOKEN:
+            return JSONResponse(
+                status_code=503,
+                content={
+                    "code": 50301,
+                    "message": "内部服务 token 未安全配置",
+                    "data": None,
+                    "trace_id": getattr(request.state, "trace_id", "unknown"),
+                },
+            )
         auth_header = request.headers.get("Authorization", "")
         if not auth_header.startswith("Bearer ") or auth_header[7:] != settings.SERVICE_TOKEN:
             return JSONResponse(

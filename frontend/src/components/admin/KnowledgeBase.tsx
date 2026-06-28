@@ -5,10 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Upload, FileText, Search, CheckCircle, XCircle, AlertCircle,
   Clock, Database, Layers, Hash, BookOpen, Zap, RefreshCw,
-  Trash2, Plus, Eye, Loader2, Award, BarChart3, ChevronRight,
+  Plus, Loader2, Award, BarChart3, ChevronRight,
   X, AlertTriangle, MessageSquare, CheckCheck, FileUp, Play,
 } from 'lucide-react'
-import { useT } from '../../i18n'
 import {
   fetchKbStatus,
   fetchSources,
@@ -26,7 +25,6 @@ import {
   type LowConfidenceItem,
   type TestQueryResult,
   type AnswerResult,
-  type AnswerAndBroadcastResult,
 } from '../../api/admin'
 
 // ── Tab 定义 ──────────────────────────────────────────────────────────
@@ -50,12 +48,13 @@ interface Toast {
   message: string
 }
 
+type AddToast = (type: Toast['type'], message: string) => void
+
 let toastId = 0
 
 // ── 主组件 ────────────────────────────────────────────────────────────
 
 export default function KnowledgeBase() {
-  const t = useT()
   const [activeTab, setActiveTab] = useState<TabKey>('documents')
   const [toasts, setToasts] = useState<Toast[]>([])
 
@@ -133,7 +132,7 @@ export default function KnowledgeBase() {
 // Tab 1: 文档管理
 // ═══════════════════════════════════════════════════════════════════════
 
-function DocumentsTab({ addToast }: { addToast: (t: string, m: string) => void }) {
+function DocumentsTab({ addToast }: { addToast: AddToast }) {
   const [status, setStatus] = useState<KbStatus | null>(null)
   const [loading, setLoading] = useState(true)
   const [showUpload, setShowUpload] = useState(false)
@@ -144,10 +143,12 @@ function DocumentsTab({ addToast }: { addToast: (t: string, m: string) => void }
   const [domain, setDomain] = useState('general')
 
   useEffect(() => {
-    setLoading(true)
-    fetchKbStatus().then((data) => {
-      setStatus(data)
-      setLoading(false)
+    queueMicrotask(() => {
+      setLoading(true)
+      fetchKbStatus().then((data) => {
+        setStatus(data)
+        setLoading(false)
+      })
     })
   }, [])
 
@@ -334,7 +335,7 @@ function DocumentsTab({ addToast }: { addToast: (t: string, m: string) => void }
 // Tab 2: 知识候选
 // ═══════════════════════════════════════════════════════════════════════
 
-function CandidatesTab({ addToast }: { addToast: (t: string, m: string) => void }) {
+function CandidatesTab({ addToast }: { addToast: AddToast }) {
   const [items, setItems] = useState<LowConfidenceItem[]>([])
   const [loading, setLoading] = useState(true)
   const [adoptTarget, setAdoptTarget] = useState<LowConfidenceItem | null>(null)
@@ -496,7 +497,7 @@ function CandidatesTab({ addToast }: { addToast: (t: string, m: string) => void 
 // Tab 3: 问答管理
 // ═══════════════════════════════════════════════════════════════════════
 
-function QATab({ addToast }: { addToast: (t: string, m: string) => void }) {
+function QATab({ addToast }: { addToast: AddToast }) {
   const [items, setItems] = useState<QAItem[]>([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
@@ -521,7 +522,9 @@ function QATab({ addToast }: { addToast: (t: string, m: string) => void }) {
     })
   }, [])
 
-  useEffect(() => { load(page) }, [page, load])
+  useEffect(() => {
+    queueMicrotask(() => load(page))
+  }, [page, load])
 
   const handleCreate = async () => {
     if (!newQ.trim() || !newA.trim()) return
@@ -701,14 +704,16 @@ function SourcesTab() {
   const [totalPages, setTotalPages] = useState(1)
 
   useEffect(() => {
-    setLoading(true)
-    fetchSources(page).then((data) => {
-      if (data) {
-        setItems(data.items)
-        setTotal(data.pagination.total)
-        setTotalPages(data.pagination.total_pages)
-      }
-      setLoading(false)
+    queueMicrotask(() => {
+      setLoading(true)
+      fetchSources(page).then((data) => {
+        if (data) {
+          setItems(data.items)
+          setTotal(data.pagination.total)
+          setTotalPages(data.pagination.total_pages)
+        }
+        setLoading(false)
+      })
     })
   }, [page])
 
@@ -763,7 +768,7 @@ function SourcesTab() {
 // Tab 5: 召回测试
 // ═══════════════════════════════════════════════════════════════════════
 
-function TestQueryTab({ addToast }: { addToast?: (t: string, m: string) => void }) {
+function TestQueryTab({ addToast }: { addToast: AddToast }) {
   const [query, setQuery] = useState('')
   const [topK, setTopK] = useState(5)
   const [result, setResult] = useState<TestQueryResult | null>(null)
@@ -970,7 +975,7 @@ function TestQueryTab({ addToast }: { addToast?: (t: string, m: string) => void 
 // Tab 6: 索引重建
 // ═══════════════════════════════════════════════════════════════════════
 
-function RebuildTab({ addToast }: { addToast: (t: string, m: string) => void }) {
+function RebuildTab({ addToast }: { addToast: AddToast }) {
   const [confirming, setConfirming] = useState(false)
   const [rebuilding, setRebuilding] = useState(false)
   const [status, setStatus] = useState<KbStatus | null>(null)

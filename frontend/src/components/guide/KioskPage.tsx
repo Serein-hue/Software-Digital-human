@@ -91,7 +91,7 @@ export default function KioskPage() {
     } else {
       if (triviaTimerRef.current) clearInterval(triviaTimerRef.current)
     }
-  }, [mode])
+  }, [mode, trivia.length])
 
   useEffect(() => {
     return () => {
