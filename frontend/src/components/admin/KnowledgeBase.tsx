@@ -1,4 +1,4 @@
-/** 知识库工坊 — 上传文档→解析→知识候选→采纳→重建闭环 */
+/** 知识库工坊 — 上传资料→审核沉淀→问答质检→内容更新闭环 */
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -36,8 +36,8 @@ const TABS: { key: TabKey; label: string; icon: typeof FileText }[] = [
   { key: 'candidates', label: '知识候选', icon: Award },
   { key: 'qa', label: '问答管理', icon: MessageSquare },
   { key: 'sources', label: '来源管理', icon: Database },
-  { key: 'test', label: '召回测试', icon: BarChart3 },
-  { key: 'rebuild', label: '索引重建', icon: Zap },
+  { key: 'test', label: '问答质检', icon: BarChart3 },
+  { key: 'rebuild', label: '内容更新', icon: Zap },
 ]
 
 // ── Toast 反馈 ────────────────────────────────────────────────────────
@@ -75,7 +75,7 @@ export default function KnowledgeBase() {
       <div className="dashboard-head">
         <div>
           <h2>知识库工坊</h2>
-          <span>上传文档 → 解析 → 知识候选 → 采纳 → 重建索引</span>
+          <span>上传资料 → 审核沉淀 → 问答质检 → 内容更新</span>
         </div>
       </div>
 
@@ -173,7 +173,7 @@ function DocumentsTab({ addToast }: { addToast: AddToast }) {
         addToast('error', result?.message || '入库失败')
       }
     } catch {
-      addToast('error', '上传失败，请检查 RAG 服务')
+      addToast('error', '上传失败，请检查知识服务')
     } finally {
       setUploading(false)
     }
@@ -196,7 +196,7 @@ function DocumentsTab({ addToast }: { addToast: AddToast }) {
           <Database size={18} />
           <div>
             <strong>{status?.vectors ?? 0}</strong>
-            <span>向量数</span>
+            <span>知识片段</span>
           </div>
         </div>
         <div className="kb-metric-card">
@@ -236,10 +236,10 @@ function DocumentsTab({ addToast }: { addToast: AddToast }) {
         <FileText size={36} />
         <strong>知识库状态</strong>
         <p>
-          模型: {status?.embeddingModel ?? '-'} · 切片大小: {status?.chunkSize ?? '-'}
+          知识服务: {status?.provider ?? '-'} · 片段长度: {status?.chunkSize ?? '-'}
         </p>
         <p>
-          状态: {status?.status === 'unreachable' ? '⚠️ 服务不可达' : '✅ 运行中'}
+          状态: {status?.status === 'unreachable' ? '服务不可达' : '运行中'}
         </p>
       </div>
 
@@ -363,7 +363,7 @@ function CandidatesTab({ addToast }: { addToast: AddToast }) {
         addToast('error', '采纳失败')
       }
     } catch {
-      addToast('error', '采纳失败，请检查 RAG 服务')
+      addToast('error', '采纳失败，请检查知识服务')
     } finally {
       setAdopting(false)
     }
@@ -383,7 +383,7 @@ function CandidatesTab({ addToast }: { addToast: AddToast }) {
       <div className="kb-empty-state">
         <Award size={40} />
         <strong>暂无知识候选</strong>
-        <p>当游客提问触发了低置信回答（fallback）时，会出现在这里供您审核采纳</p>
+        <p>当游客问题缺少可靠答案时，会出现在这里供您审核采纳</p>
       </div>
     )
   }
@@ -410,7 +410,7 @@ function CandidatesTab({ addToast }: { addToast: AddToast }) {
               <span className={`kb-confidence ${(item.confidence ?? 1) < 0.4 ? 'low' : 'medium'}`}>
                 置信度: {(item.confidence ?? 0).toFixed(2)}
               </span>
-              {item.fallbackReason && <span className="kb-fallback-reason">原因: {item.fallbackReason}</span>}
+              {item.fallbackReason && <span className="kb-fallback-reason">待完善原因: {item.fallbackReason}</span>}
               <span className="kb-date">{item.createdAt}</span>
             </div>
             <button
@@ -542,7 +542,7 @@ function QATab({ addToast }: { addToast: AddToast }) {
         addToast('error', '创建失败')
       }
     } catch {
-      addToast('error', '创建失败，请检查 RAG 服务')
+      addToast('error', '创建失败，请检查知识服务')
     } finally {
       setCreating(false)
     }
@@ -765,7 +765,7 @@ function SourcesTab() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// Tab 5: 召回测试
+// Tab 5: 问答质检
 // ═══════════════════════════════════════════════════════════════════════
 
 function TestQueryTab({ addToast }: { addToast: AddToast }) {
@@ -777,6 +777,13 @@ function TestQueryTab({ addToast }: { addToast: AddToast }) {
   const [error, setError] = useState('')
   const [mode, setMode] = useState<'retrieval' | 'qa'>('retrieval')
 
+  const serviceErrorText = (hasDetail: boolean) => {
+    if (!hasDetail) return '知识服务暂未返回可用结果'
+    return '知识生成服务异常，请稍后重试或联系运维处理'
+  }
+
+  const fallbackText = () => '当前问题缺少可靠知识依据，建议补充资料或采纳为标准问答'
+
   const handleTest = async () => {
     if (!query.trim()) return
     setLoading(true)
@@ -787,13 +794,13 @@ function TestQueryTab({ addToast }: { addToast: AddToast }) {
       if (mode === 'retrieval') {
         const data = await testQuery(query, topK)
         if (data) setResult(data)
-        else setError('查询失败，RAG 服务不可达')
+        else setError('查询失败，知识服务不可用')
       } else {
         const data = await answerQuery(query, topK)
         if (data) {
           setAnswerResult(data)
-          if (data.llmError) setError(`LLM 提示: ${data.llmError}`)
-        } else setError('问答失败，RAG 服务不可达')
+          if (data.llmError) setError(serviceErrorText(Boolean(data.llmError)))
+        } else setError('问答失败，知识服务不可用')
       }
     } catch {
       setError('查询失败')
@@ -807,13 +814,13 @@ function TestQueryTab({ addToast }: { addToast: AddToast }) {
   return (
     <div>
       <div className="kb-section-head">
-        <h3>{mode === 'retrieval' ? '召回测试' : 'AI 问答'}</h3>
+        <h3>{mode === 'retrieval' ? '命中验证' : '问答预览'}</h3>
         <div className="kb-type-filters">
           <button type="button" className={`kb-type-chip ${mode === 'retrieval' ? 'active' : ''}`} onClick={() => { setMode('retrieval'); setResult(null); setAnswerResult(null); setError('') }}>
-            召回测试
+            命中验证
           </button>
           <button type="button" className={`kb-type-chip ${mode === 'qa' ? 'active' : ''}`} onClick={() => { setMode('qa'); setResult(null); setAnswerResult(null); setError('') }}>
-            AI 问答
+            问答预览
           </button>
         </div>
       </div>
@@ -833,7 +840,7 @@ function TestQueryTab({ addToast }: { addToast: AddToast }) {
         </div>
         <div className="kb-test-options">
           <label>
-            <span>Top-K:</span>
+            <span>依据数量:</span>
             <select value={topK} onChange={(e) => setTopK(Number(e.target.value))} disabled={loading}>
               {[3, 5, 10].map((n) => <option key={n} value={n}>{n}</option>)}
             </select>
@@ -844,7 +851,7 @@ function TestQueryTab({ addToast }: { addToast: AddToast }) {
             onClick={handleTest}
             disabled={loading || !query.trim()}
           >
-            {loading ? <><Loader2 size={14} className="spin" /> 查询中...</> : <><Search size={14} /> {mode === 'retrieval' ? '测试' : '提问'}</>}
+            {loading ? <><Loader2 size={14} className="spin" /> 查询中...</> : <><Search size={14} /> {mode === 'retrieval' ? '验证' : '提问'}</>}
           </button>
         </div>
       </div>
@@ -861,9 +868,9 @@ function TestQueryTab({ addToast }: { addToast: AddToast }) {
         <div className="kb-test-result" style={{ marginBottom: 16 }}>
           <div className="kb-test-result-head">
             <div className={`kb-answerable-badge ${answerResult?.answerable ? 'ok' : 'no'}`}>
-              {answerResult?.answerable ? '已回答' : '低置信'}
+              {answerResult?.answerable ? '已回答' : '需完善'}
             </div>
-            <span>Token: {answerResult?.tokens ?? 0}</span>
+            <span>回答长度: {answerResult?.tokens ?? 0}</span>
             <span>延迟: {answerResult?.latencyMs ?? 0}ms</span>
           </div>
           <div className="kb-ai-answer">
@@ -878,9 +885,9 @@ function TestQueryTab({ addToast }: { addToast: AddToast }) {
                 try {
                   const r = await answerAndBroadcast(query, topK)
                   if (r?.broadcastStatus === 'sent') {
-                    addToast('success', '✅ 已发送至数字人播报队列')
+                    addToast('success', '已发送至数字人播报队列')
                   } else if (r?.broadcastStatus === 'fay_offline') {
-                    addToast('info', '⚠️ Fay 未启动，回答已生成但未播报')
+                    addToast('info', '数字人播报服务未连接，回答已生成但未播报')
                   } else {
                     addToast('error', r?.broadcastMessage || '播报失败')
                   }
@@ -893,12 +900,12 @@ function TestQueryTab({ addToast }: { addToast: AddToast }) {
               disabled={loading}
             >
               {loading ? <Loader2 size={14} className="spin" /> : <Play size={14} />}
-              <span>{loading ? '播报中...' : '问答并播报 🎤'}</span>
+              <span>{loading ? '播报中...' : '问答并播报'}</span>
             </button>
           </div>
           {answerResult?.tokens && answerResult.tokens > 0 && (
             <div className="kb-test-contexts" style={{ marginTop: 12 }}>
-              <h4>参考上下文（{answerResult?.contexts?.length ?? 0}）</h4>
+              <h4>内容依据（{answerResult?.contexts?.length ?? 0}）</h4>
               {answerResult?.contexts?.map((ctx, idx) => (
                 <div key={idx} className="kb-context-item">
                   <div className="kb-context-score">
@@ -917,27 +924,27 @@ function TestQueryTab({ addToast }: { addToast: AddToast }) {
         </div>
       )}
 
-      {/* 召回测试模式：原有结果展示 */}
+      {/* 命中验证模式：原有结果展示 */}
       {result && !aiAnswer && (
         <div className="kb-test-result">
           <div className="kb-test-result-head">
             <div className={`kb-answerable-badge ${result.answerable ? 'ok' : 'no'}`}>
-              {result.answerable ? '可回答' : '低置信'}
+              {result.answerable ? '可回答' : '需完善'}
             </div>
-            <span>最高分: {(result.score * 100).toFixed(1)}%</span>
+            <span>匹配度: {(result.score * 100).toFixed(1)}%</span>
             <span>延迟: {result.latencyMs}ms</span>
           </div>
 
           {result.fallback && (
             <div className="kb-test-fallback">
               <AlertTriangle size={14} />
-              <span>兜底: {result.fallback.reason} — {result.fallback.message}</span>
+              <span>需人工完善: {fallbackText()}</span>
             </div>
           )}
 
           {result.contexts.length > 0 && (
             <div className="kb-test-contexts">
-              <h4>召回上下文（{result.contexts.length}）</h4>
+              <h4>命中依据（{result.contexts.length}）</h4>
               {result.contexts.map((ctx, idx) => (
                 <div key={idx} className="kb-context-item">
                   <div className="kb-context-score">
@@ -972,7 +979,7 @@ function TestQueryTab({ addToast }: { addToast: AddToast }) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// Tab 6: 索引重建
+// Tab 6: 内容更新
 // ═══════════════════════════════════════════════════════════════════════
 
 function RebuildTab({ addToast }: { addToast: AddToast }) {
@@ -995,10 +1002,10 @@ function RebuildTab({ addToast }: { addToast: AddToast }) {
         const newStatus = await fetchKbStatus()
         if (newStatus) setStatus(newStatus)
       } else {
-        addToast('error', '重建失败，RAG 服务不可达')
+        addToast('error', '更新失败，知识服务不可用')
       }
     } catch {
-      addToast('error', '重建失败')
+      addToast('error', '更新失败')
     } finally {
       setRebuilding(false)
     }
@@ -1007,8 +1014,8 @@ function RebuildTab({ addToast }: { addToast: AddToast }) {
   return (
     <div>
       <div className="kb-section-head">
-        <h3>索引重建</h3>
-        <span className="kb-hint">清空当前向量索引后需要重新入库文档</span>
+        <h3>内容更新</h3>
+        <span className="kb-hint">重新生成问答检索内容，适用于资料批量调整后刷新服务</span>
       </div>
 
       <div className="kb-rebuild-panel">
@@ -1016,21 +1023,21 @@ function RebuildTab({ addToast }: { addToast: AddToast }) {
           <div className="kb-rebuild-stat">
             <Database size={20} />
             <div>
-              <span>当前向量数</span>
+              <span>当前知识片段</span>
               <strong>{status?.vectors ?? '-'}</strong>
             </div>
           </div>
           <div className="kb-rebuild-stat">
             <Layers size={20} />
             <div>
-              <span>模型</span>
-              <strong>{status?.embeddingModel || '-'}</strong>
+              <span>服务状态</span>
+              <strong>{status?.status === 'unreachable' ? '不可用' : '运行中'}</strong>
             </div>
           </div>
           <div className="kb-rebuild-stat">
             <Clock size={20} />
             <div>
-              <span>切片大小</span>
+              <span>片段长度</span>
               <strong>{status?.chunkSize || '-'}</strong>
             </div>
           </div>
@@ -1043,13 +1050,13 @@ function RebuildTab({ addToast }: { addToast: AddToast }) {
             onClick={() => setConfirming(true)}
           >
             <Zap size={14} />
-            <span>重建索引</span>
+            <span>更新知识内容</span>
           </button>
         ) : (
           <div className="kb-rebuild-confirm">
             <AlertTriangle size={18} />
-            <strong>确认重建索引？</strong>
-            <p>此操作将清空当前所有向量数据，已有文档需要重新入库。问答对数据不受影响。</p>
+            <strong>确认更新知识内容？</strong>
+            <p>此操作会刷新当前问答检索内容。已有问答对数据不受影响，资料更新完成前可能短暂不可检索。</p>
             <div className="kb-rebuild-actions">
               <button type="button" className="kb-btn" onClick={() => setConfirming(false)} disabled={rebuilding}>
                 取消
@@ -1060,7 +1067,7 @@ function RebuildTab({ addToast }: { addToast: AddToast }) {
                 onClick={handleRebuild}
                 disabled={rebuilding}
               >
-                {rebuilding ? <><Loader2 size={14} className="spin" /> 重建中...</> : <><RefreshCw size={14} /> 确认重建</>}
+                {rebuilding ? <><Loader2 size={14} className="spin" /> 更新中...</> : <><RefreshCw size={14} /> 确认更新</>}
               </button>
             </div>
           </div>

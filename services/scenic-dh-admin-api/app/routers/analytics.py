@@ -50,6 +50,78 @@ MOCK_QUEUE_STATS = [
     {"spot": "五印坛城", "queueMinutes": 5, "crowdLevel": "low", "activeTickets": 6},
 ]
 
+MOCK_COMMAND_CENTER = {
+    "source": "backend_mock",
+    "refreshIntervalSeconds": 5,
+    "weather": {"temperatureC": 28, "condition": "晴"},
+    "kpis": {
+        "todayVisitors": {"total": 4363, "inPark": 522, "online": 3841},
+        "realtimeInPark": {"value": 1247, "deltaPct": 8},
+        "todayRevenue": {"amount": 471230, "perCapita": 901},
+        "todaySatisfaction": {"score": 4.08, "goodRatePct": 92},
+        "crowd": {"level": "舒适", "loadRatePct": 52},
+    },
+    "monthlyVisits": [
+        {"month": "1月", "monthEn": "Jan", "visitors": 10, "revenue": 90},
+        {"month": "2月", "monthEn": "Feb", "visitors": 13, "revenue": 117},
+        {"month": "3月", "monthEn": "Mar", "visitors": 35, "revenue": 315},
+        {"month": "4月", "monthEn": "Apr", "visitors": 49, "revenue": 441},
+        {"month": "5月", "monthEn": "May", "visitors": 54, "revenue": 487},
+        {"month": "6月", "monthEn": "Jun", "visitors": 49, "revenue": 441},
+        {"month": "7月", "monthEn": "Jul", "visitors": 42, "revenue": 378},
+        {"month": "8月", "monthEn": "Aug", "visitors": 68, "revenue": 613},
+        {"month": "9月", "monthEn": "Sep", "visitors": 73, "revenue": 658},
+        {"month": "10月", "monthEn": "Oct", "visitors": 38, "revenue": 342},
+        {"month": "11月", "monthEn": "Nov", "visitors": 31, "revenue": 279},
+        {"month": "12月", "monthEn": "Dec", "visitors": 60, "revenue": 541},
+    ],
+    "ageDistribution": [
+        {"key": "under30", "value": 153},
+        {"key": "30to49", "value": 221},
+        {"key": "over50", "value": 148},
+    ],
+    "genderDistribution": [
+        {"key": "male", "value": 275},
+        {"key": "female", "value": 247},
+    ],
+    "spendingDistribution": [
+        {"key": "ticket", "value": 203},
+        {"key": "food", "value": 228},
+        {"key": "shopping", "value": 236},
+        {"key": "transport", "value": 48},
+        {"key": "entertainment", "value": 185},
+    ],
+    "satisfactionDistribution": [
+        {"stars": 5, "value": 8},
+        {"stars": 4, "value": 114},
+        {"stars": 3, "value": 314},
+        {"stars": 2, "value": 62},
+        {"stars": 1, "value": 24},
+    ],
+    "topSpots": [
+        {"name": "灵山大佛", "visitors": 418, "pct": 80.1},
+        {"name": "灵山梵宫", "visitors": 385, "pct": 73.8},
+        {"name": "九龙灌浴", "visitors": 352, "pct": 67.4},
+        {"name": "五印坛城", "visitors": 296, "pct": 56.7},
+        {"name": "祥符禅寺", "visitors": 273, "pct": 52.3},
+    ],
+    "facilities": [
+        {"name": "南门闸机", "status": "ok", "load": 62},
+        {"name": "东门闸机", "status": "ok", "load": 34},
+        {"name": "大佛电梯", "status": "ok", "load": 78},
+        {"name": "梵宫展厅", "status": "warn", "load": 91},
+        {"name": "停车场 A", "status": "ok", "load": 45},
+        {"name": "停车场 B", "status": "ok", "load": 28},
+        {"name": "观光车站", "status": "ok", "load": 55},
+    ],
+    "alerts": [
+        {"level": "warn", "title": "梵宫展厅客流预警", "message": "承载率 91%，建议限流", "timeAgo": "2 分钟前"},
+        {"level": "info", "title": "九龙灌浴演出正常", "message": "下场演出 15:00", "timeAgo": "12 分钟前"},
+        {"level": "info", "title": "全部系统运行正常", "message": "核心接口响应稳定", "timeAgo": "刚刚"},
+    ],
+    "heatmapCells": [0.2, 0.6, 0.3, 0.8, 0.95, 0.7, 0.15, 0.4, 0.55],
+}
+
 
 def _haversine(lat1: float, lng1: float, lat2: float, lng2: float) -> float:
     """球面距离（千米）"""
@@ -158,3 +230,15 @@ def get_queue_stats(request: Request = None):
     """排队实况"""
     trace_id = request.state.trace_id
     return ok({"items": MOCK_QUEUE_STATS}, trace_id)
+
+
+@router.get("/admin/analytics/command-center")
+def get_command_center(request: Request = None):
+    """命令中心看板数据。
+
+    当前交付环境缺少票务、闸机、支付、评价等生产数据源，统一由后端提供
+    mock 数据，避免前端组件内散落业务指标常量。后续接入真实系统时只需
+    替换此聚合函数的来源。
+    """
+    trace_id = request.state.trace_id
+    return ok(MOCK_COMMAND_CENTER, trace_id)

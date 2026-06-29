@@ -424,6 +424,55 @@ export interface QueueStatsData {
   items: QueueStatItem[]
 }
 
+export interface CommandCenterData {
+  source: 'backend_mock' | 'live'
+  refreshIntervalSeconds: number
+  weather: {
+    temperatureC: number
+    condition: string
+  }
+  kpis: {
+    todayVisitors: {
+      total: number
+      inPark: number
+      online: number
+    }
+    realtimeInPark: {
+      value: number
+      deltaPct: number
+    }
+    todayRevenue: {
+      amount: number
+      perCapita: number
+    }
+    todaySatisfaction: {
+      score: number
+      goodRatePct: number
+    }
+    crowd: {
+      level: string
+      loadRatePct: number
+    }
+  }
+  monthlyVisits: Array<{
+    month: string
+    monthEn: string
+    visitors: number
+    revenue: number
+  }>
+  ageDistribution: Array<{ key: 'under30' | '30to49' | 'over50'; value: number }>
+  genderDistribution: Array<{ key: 'male' | 'female'; value: number }>
+  spendingDistribution: Array<{
+    key: 'ticket' | 'food' | 'shopping' | 'transport' | 'entertainment'
+    value: number
+  }>
+  satisfactionDistribution: Array<{ stars: number; value: number }>
+  topSpots: Array<{ name: string; visitors: number; pct: number }>
+  facilities: Array<{ name: string; status: 'ok' | 'warn'; load: number }>
+  alerts: Array<{ level: 'warn' | 'info'; title: string; message: string; timeAgo: string }>
+  heatmapCells: number[]
+}
+
 export async function fetchOverview(): Promise<OverviewData | null> {
   return apiGet<OverviewData>('/admin/analytics/overview')
 }
@@ -438,4 +487,8 @@ export async function fetchCrowdFlow(): Promise<CrowdFlowData | null> {
 
 export async function fetchQueueStats(): Promise<QueueStatsData | null> {
   return apiGet<QueueStatsData>('/admin/analytics/queue')
+}
+
+export async function fetchCommandCenter(): Promise<CommandCenterData | null> {
+  return apiGet<CommandCenterData>('/admin/analytics/command-center')
 }
