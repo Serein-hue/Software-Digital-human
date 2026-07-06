@@ -1,0 +1,1720 @@
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>景区数字人小程序原型</title>
+  <style>
+    :root {
+      --bg: oklch(98% 0.004 240);
+      --surface: oklch(100% 0 0);
+      --fg: oklch(20% 0.02 240);
+      --muted: oklch(50% 0.018 240);
+      --border: oklch(90% 0.006 240);
+      --accent: oklch(56% 0.12 170);
+      --accent-2: oklch(62% 0.16 205);
+      --warn: oklch(72% 0.14 75);
+      --danger: oklch(62% 0.18 25);
+      --ok: oklch(58% 0.14 150);
+      --soft: oklch(95% 0.025 170);
+      --blue-soft: oklch(94% 0.025 225);
+      --font-display: "Avenir Next", "PingFang SC", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", system-ui, sans-serif;
+      --shadow: 0 22px 60px rgba(18, 44, 40, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: var(--font-body);
+      background:
+        radial-gradient(circle at 10% 6%, rgba(88, 204, 170, .18), transparent 28%),
+        radial-gradient(circle at 88% 16%, rgba(98, 169, 232, .18), transparent 30%),
+        linear-gradient(180deg, #f7fbfa 0%, #eef6f4 100%);
+      color: var(--fg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    .workspace {
+      min-height: 100vh;
+      padding: 36px clamp(18px, 4vw, 56px);
+      display: grid;
+      grid-template-columns: minmax(260px, 340px) minmax(390px, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .brief {
+      position: sticky;
+      top: 28px;
+      background: rgba(255,255,255,.76);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 30px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: color-mix(in oklch, var(--accent) 78%, #063);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px color-mix(in oklch, var(--accent) 18%, transparent);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.02;
+      letter-spacing: -.04em;
+      margin: 16px 0 12px;
+    }
+
+    .lead {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+      margin: 0 0 22px;
+    }
+
+    .role-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 5px;
+      background: #edf5f3;
+      border-radius: 999px;
+      margin: 18px 0;
+    }
+
+    .role-switch button {
+      border: 0;
+      background: transparent;
+      border-radius: 999px;
+      padding: 11px 12px;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 800;
+      transition: .18s ease;
+    }
+
+    .role-switch button.active {
+      color: var(--fg);
+      background: white;
+      box-shadow: 0 8px 24px rgba(34, 81, 74, .12);
+    }
+
+    .screen-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .screen-list button {
+      width: 100%;
+      border: 1px solid transparent;
+      background: rgba(255,255,255,.68);
+      padding: 14px 14px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      color: var(--fg);
+      transition: .18s ease;
+      text-align: left;
+    }
+
+    .screen-list button:hover {
+      transform: translateY(-1px);
+      border-color: color-mix(in oklch, var(--accent) 34%, var(--border));
+    }
+
+    .screen-list button.active {
+      background: color-mix(in oklch, var(--accent) 12%, white);
+      border-color: color-mix(in oklch, var(--accent) 38%, var(--border));
+    }
+
+    .screen-list strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .screen-list span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 800;
+      background: white;
+      color: color-mix(in oklch, var(--accent) 80%, #064);
+      white-space: nowrap;
+    }
+
+    .notes {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      gap: 12px;
+    }
+
+    .note {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .note-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: var(--soft);
+      display: grid;
+      place-items: center;
+      color: color-mix(in oklch, var(--accent) 85%, #063);
+      font-weight: 900;
+    }
+
+    .stage-wrap {
+      display: grid;
+      justify-items: center;
+      gap: 22px;
+    }
+
+    .device {
+      width: min(430px, 100%);
+      min-height: 860px;
+      border-radius: 46px;
+      padding: 14px;
+      background: #111719;
+      box-shadow:
+        0 40px 90px rgba(13, 35, 34, .24),
+        inset 0 0 0 1px rgba(255,255,255,.08);
+      position: relative;
+    }
+
+    .phone {
+      min-height: 832px;
+      background: var(--bg);
+      border-radius: 36px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .status {
+      height: 46px;
+      padding: 13px 22px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 13px;
+      font-weight: 800;
+      background: var(--bg);
+    }
+
+    .status-icons {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .signal {
+      width: 17px;
+      height: 10px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #141b1d 25%, transparent 25% 34%, #141b1d 34% 58%, transparent 58% 67%, #141b1d 67%);
+      opacity: .84;
+    }
+
+    .battery {
+      width: 22px;
+      height: 11px;
+      border: 1.8px solid #141b1d;
+      border-radius: 3px;
+      position: relative;
+    }
+    .battery:after {
+      content: "";
+      position: absolute;
+      right: -4px;
+      top: 3px;
+      width: 2px;
+      height: 4px;
+      background: #141b1d;
+      border-radius: 2px;
+    }
+    .battery:before {
+      content: "";
+      position: absolute;
+      inset: 2px 6px 2px 2px;
+      background: #141b1d;
+      border-radius: 1px;
+    }
+
+    .mini-titlebar {
+      height: 44px;
+      padding: 0 18px;
+      display: grid;
+      grid-template-columns: 44px 1fr 64px;
+      align-items: center;
+      background: var(--bg);
+    }
+
+    .back {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      background: transparent;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--fg);
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .mini-title {
+      text-align: center;
+      font-weight: 900;
+      letter-spacing: -.02em;
+      font-size: 16px;
+    }
+
+    .capsule {
+      justify-self: end;
+      width: 62px;
+      height: 30px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.9);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 7px;
+    }
+
+    .capsule i {
+      width: 4px;
+      height: 4px;
+      background: #111;
+      border-radius: 50%;
+      box-shadow: 8px 0 0 #111, 16px 0 0 #111;
+      transform: translateX(-8px);
+    }
+
+    .capsule b {
+      width: 15px;
+      height: 15px;
+      border: 1.8px solid #111;
+      border-radius: 50%;
+    }
+
+    .screen {
+      display: none;
+      height: 742px;
+      overflow: auto;
+      padding: 0 18px 92px;
+      scrollbar-width: none;
+    }
+    .screen::-webkit-scrollbar { display: none; }
+    .screen.active { display: block; }
+
+    .bottom-nav {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 82px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(18px);
+      border-top: 1px solid var(--border);
+      display: none;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 9px 12px 12px;
+      z-index: 5;
+    }
+    .bottom-nav.active { display: grid; }
+
+    .nav-item {
+      border: 0;
+      background: transparent;
+      border-radius: 18px;
+      color: var(--muted);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .nav-item svg { width: 22px; height: 22px; stroke-width: 2.2; }
+    .nav-item.active {
+      color: color-mix(in oklch, var(--accent) 82%, #064);
+      background: color-mix(in oklch, var(--accent) 11%, transparent);
+    }
+
+    .hero-card {
+      margin-top: 8px;
+      min-height: 188px;
+      border-radius: 30px;
+      padding: 22px;
+      color: white;
+      background:
+        radial-gradient(circle at 82% 28%, rgba(255,255,255,.32), transparent 18%),
+        linear-gradient(135deg, #138d79 0%, #31b887 55%, #74c9f2 100%);
+      box-shadow: 0 18px 42px rgba(27, 145, 120, .25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card:after {
+      content: "";
+      position: absolute;
+      width: 210px;
+      height: 120px;
+      right: -28px;
+      bottom: -24px;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(255,255,255,.9) 0 20%, transparent 21%),
+        radial-gradient(ellipse at 42% 100%, rgba(255,255,255,.48) 0 33%, transparent 34%);
+      opacity: .55;
+      border-radius: 50%;
+    }
+
+    .weather {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      opacity: .9;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card h2 {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-display);
+      font-size: 31px;
+      line-height: 1.08;
+      letter-spacing: -.04em;
+      margin: 28px 0 10px;
+      max-width: 260px;
+    }
+
+    .hero-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 240px;
+      line-height: 1.55;
+      opacity: .92;
+      font-size: 13px;
+    }
+
+    .search-pill {
+      margin: 16px 0;
+      height: 48px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.86);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 15px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 14px 0 20px;
+    }
+
+    .quick {
+      border: 0;
+      background: white;
+      min-height: 76px;
+      border-radius: 20px;
+      padding: 9px 6px;
+      display: grid;
+      place-items: center;
+      gap: 6px;
+      cursor: pointer;
+      color: var(--fg);
+      box-shadow: 0 10px 24px rgba(35, 58, 60, .06);
+    }
+
+    .quick .ico {
+      width: 32px;
+      height: 32px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      color: color-mix(in oklch, var(--accent) 82%, #064);
+    }
+
+    .quick span {
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin: 20px 0 12px;
+    }
+    .section-title h3 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+    .section-title a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .route-card, .ticket-card, .queue-card, .staff-card, .report-card {
+      background: rgba(255,255,255,.9);
+      border: 1px solid rgba(255,255,255,.75);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(40, 64, 64, .07);
+    }
+
+    .route-card {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .thumb {
+      height: 86px;
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(69, 169, 134, .9), rgba(97, 171, 226, .7)),
+        radial-gradient(circle at 60% 20%, white 0 14%, transparent 15%);
+      position: relative;
+      overflow: hidden;
+    }
+    .thumb:before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 36px;
+      left: -18px;
+      bottom: 10px;
+      background: rgba(255,255,255,.52);
+      border-radius: 50%;
+    }
+    .thumb:after {
+      content: "";
+      position: absolute;
+      width: 54px;
+      height: 54px;
+      right: -8px;
+      bottom: -9px;
+      background: rgba(7, 87, 64, .25);
+      border-radius: 40% 60% 50% 50%;
+    }
+
+    .route-card h4, .ticket-card h4, .queue-card h4 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+    .route-card p, .ticket-card p, .queue-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 12px;
+    }
+
+    .meta-row {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #eef7f5;
+      color: #197866;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .ai-header {
+      background:
+        radial-gradient(circle at 85% 20%, rgba(104, 196, 245, .35), transparent 25%),
+        linear-gradient(180deg, #e9fbf5, #f8fbff);
+      border-radius: 28px;
+      padding: 18px;
+      margin-top: 6px;
+      border: 1px solid rgba(255,255,255,.85);
+    }
+
+    .ai-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 35% 32%, white 0 8%, transparent 9%),
+        radial-gradient(circle at 64% 32%, white 0 8%, transparent 9%),
+        linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 14px 28px rgba(35, 150, 130, .22);
+      position: relative;
+    }
+    .ai-avatar:after {
+      content: "";
+      position: absolute;
+      left: 23px;
+      top: 42px;
+      width: 25px;
+      height: 8px;
+      border-radius: 999px;
+      border-bottom: 3px solid rgba(255,255,255,.86);
+    }
+
+    .ai-header h2 {
+      margin: 14px 0 6px;
+      font-size: 24px;
+      letter-spacing: -.04em;
+    }
+
+    .ai-header p {
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.55;
+      font-size: 13px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 14px 0 6px;
+      scrollbar-width: none;
+    }
+    .chips::-webkit-scrollbar { display: none; }
+
+    .chip {
+      flex: 0 0 auto;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-weight: 800;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .chat {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+      padding-bottom: 14px;
+    }
+
+    .msg {
+      max-width: 84%;
+      padding: 12px 14px;
+      border-radius: 18px;
+      line-height: 1.55;
+      font-size: 13px;
+      animation: pop .22s ease both;
+    }
+    @keyframes pop {
+      from { transform: translateY(4px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .msg.bot {
+      background: white;
+      border: 1px solid var(--border);
+      border-top-left-radius: 6px;
+    }
+
+    .msg.user {
+      justify-self: end;
+      color: white;
+      background: linear-gradient(135deg, #168872, #25a784);
+      border-top-right-radius: 6px;
+    }
+
+    .chat-input {
+      position: sticky;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: 1fr 44px;
+      gap: 8px;
+      padding: 10px 0 0;
+      background: linear-gradient(180deg, transparent, var(--bg) 20%);
+    }
+
+    .chat-input input {
+      height: 44px;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 16px;
+      padding: 0 14px;
+      outline: none;
+    }
+
+    .send {
+      border: 0;
+      border-radius: 16px;
+      background: var(--accent);
+      color: white;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .map-shell {
+      height: 474px;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 30% 25%, #bfe7c9 0 9%, transparent 10%),
+        radial-gradient(circle at 75% 42%, #b2dff3 0 10%, transparent 11%),
+        linear-gradient(135deg, #eaf8ec, #e6f5ff);
+      margin-top: 8px;
+      border: 1px solid rgba(255,255,255,.88);
+      box-shadow: 0 18px 40px rgba(38, 69, 69, .08);
+    }
+
+    .path {
+      position: absolute;
+      inset: 68px 38px 110px;
+      border: 8px solid rgba(255,255,255,.82);
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      transform: rotate(18deg);
+    }
+
+    .lake {
+      position: absolute;
+      right: 38px;
+      top: 170px;
+      width: 118px;
+      height: 74px;
+      background: rgba(75, 170, 226, .48);
+      border-radius: 54% 46% 55% 45%;
+    }
+
+    .pin {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border-radius: 50% 50% 50% 8px;
+      transform: rotate(-45deg);
+      background: white;
+      border: 8px solid var(--accent);
+      box-shadow: 0 10px 22px rgba(25, 95, 82, .18);
+      cursor: pointer;
+    }
+    .pin:after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      background: white;
+      border-radius: 50%;
+    }
+    .pin span {
+      position: absolute;
+      transform: rotate(45deg);
+      left: 24px;
+      top: 20px;
+      white-space: nowrap;
+      background: white;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(0,0,0,.08);
+      color: var(--fg);
+      z-index: 2;
+    }
+    .pin.p1 { left: 64px; top: 96px; }
+    .pin.p2 { right: 82px; top: 118px; border-color: var(--accent-2); }
+    .pin.p3 { left: 126px; bottom: 102px; border-color: var(--warn); }
+
+    .map-card {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      background: rgba(255,255,255,.94);
+      border-radius: 24px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .map-card h4 { margin: 0 0 4px; }
+    .map-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .primary-btn, .ghost-btn {
+      min-height: 44px;
+      border: 0;
+      border-radius: 16px;
+      padding: 0 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 12px 24px color-mix(in oklch, var(--accent) 24%, transparent);
+    }
+
+    .ghost-btn {
+      background: #eef6f4;
+      color: color-mix(in oklch, var(--accent) 80%, #064);
+    }
+
+    .queue-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .queue-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .queue-number {
+      min-width: 70px;
+      text-align: right;
+    }
+    .queue-number strong {
+      display: block;
+      font-size: 24px;
+      letter-spacing: -.04em;
+    }
+    .queue-number span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .progress {
+      margin-top: 12px;
+      height: 8px;
+      background: #edf4f2;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress b {
+      display: block;
+      height: 100%;
+      width: var(--w, 50%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    .ticket-card {
+      margin-top: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ticket-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: start;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .qr {
+      width: 86px;
+      height: 86px;
+      border-radius: 18px;
+      background:
+        linear-gradient(90deg, #111 8px, transparent 8px 14px, #111 14px 22px, transparent 22px 30px, #111 30px 38px, transparent 38px),
+        linear-gradient(#111 8px, transparent 8px 14px, #111 14px 22px, transparent 22px 30px, #111 30px 38px, transparent 38px);
+      background-size: 38px 38px;
+      background-color: white;
+      border: 10px solid white;
+      box-shadow: inset 0 0 0 1px #dfe6e4, 0 10px 20px rgba(0,0,0,.06);
+    }
+
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .order-row strong {
+      color: var(--fg);
+    }
+
+    .profile {
+      margin-top: 8px;
+      background: linear-gradient(135deg, white, #effaf7);
+      border-radius: 28px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 12px 30px rgba(40,64,64,.07);
+    }
+
+    .avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #9ee2c6, #66aee8);
+      position: relative;
+    }
+    .avatar:before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      left: 19px;
+      top: 14px;
+      border-radius: 50%;
+      background: white;
+      opacity: .9;
+    }
+    .avatar:after {
+      content: "";
+      position: absolute;
+      width: 34px;
+      height: 18px;
+      left: 12px;
+      bottom: 10px;
+      border-radius: 18px 18px 8px 8px;
+      background: rgba(255,255,255,.9);
+    }
+
+    .profile h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+    }
+    .profile p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .stats-grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .stat {
+      background: white;
+      border-radius: 20px;
+      padding: 14px 10px;
+      text-align: center;
+      box-shadow: 0 10px 22px rgba(40,64,64,.05);
+    }
+    .stat strong {
+      display: block;
+      font-size: 20px;
+      letter-spacing: -.04em;
+    }
+    .stat span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .list-item {
+      background: white;
+      border-radius: 20px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid rgba(255,255,255,.8);
+    }
+
+    .list-item div strong {
+      display: block;
+      font-size: 14px;
+    }
+    .list-item div span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .staff-hero {
+      margin-top: 8px;
+      padding: 20px;
+      border-radius: 28px;
+      background: #101b1d;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .staff-hero:after {
+      content: "";
+      position: absolute;
+      right: -38px;
+      top: -50px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(73,203,165,.56), transparent 70%);
+    }
+    .staff-hero h2 {
+      position: relative;
+      margin: 18px 0 6px;
+      font-size: 27px;
+      letter-spacing: -.04em;
+    }
+    .staff-hero p {
+      position: relative;
+      margin: 0;
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .scan-box {
+      margin: 18px 0 12px;
+      height: 256px;
+      border-radius: 30px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.18) 50%, transparent 50%),
+        linear-gradient(rgba(255,255,255,.18) 50%, transparent 50%),
+        #132225;
+      background-size: 28px 28px;
+      border: 1px solid rgba(255,255,255,.1);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .scan-frame {
+      width: 174px;
+      height: 174px;
+      border: 4px solid rgba(255,255,255,.86);
+      border-radius: 24px;
+      position: relative;
+    }
+    .scan-frame:before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 74px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 22px var(--accent);
+      animation: scan 2s ease-in-out infinite;
+    }
+    @keyframes scan {
+      0%,100% { transform: translateY(-66px); }
+      50% { transform: translateY(66px); }
+    }
+
+    .verify-result {
+      display: none;
+      margin-top: 12px;
+      background: color-mix(in oklch, var(--ok) 13%, white);
+      border: 1px solid color-mix(in oklch, var(--ok) 35%, white);
+      border-radius: 22px;
+      padding: 14px;
+    }
+    .verify-result.show { display: block; }
+    .verify-result strong {
+      display: block;
+      color: color-mix(in oklch, var(--ok) 75%, #073);
+      margin-bottom: 5px;
+    }
+    .verify-result span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 7px;
+      margin: 12px 0;
+    }
+    .form-field label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 900;
+    }
+    .form-field input, .form-field textarea, .form-field select {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 16px;
+      padding: 12px;
+      outline: none;
+      min-height: 44px;
+    }
+    .form-field textarea {
+      min-height: 88px;
+      resize: vertical;
+    }
+
+    .toast {
+      position: absolute;
+      left: 50%;
+      bottom: 102px;
+      transform: translateX(-50%) translateY(12px);
+      background: rgba(10, 20, 22, .9);
+      color: white;
+      border-radius: 999px;
+      padding: 11px 15px;
+      font-size: 12px;
+      font-weight: 800;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s ease;
+      z-index: 10;
+      white-space: nowrap;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .screen-caption {
+      width: min(430px, 100%);
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.84);
+      border-radius: 24px;
+      padding: 16px 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+      box-shadow: 0 12px 28px rgba(25, 61, 61, .08);
+    }
+    .screen-caption strong {
+      color: var(--fg);
+    }
+
+    @media (max-width: 900px) {
+      .workspace {
+        grid-template-columns: 1fr;
+        padding: 20px 14px 32px;
+      }
+      .brief {
+        position: static;
+      }
+      .device {
+        width: min(430px, calc(100vw - 28px));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="workspace">
+    <aside class="brief">
+      <span class="eyebrow"><span class="dot"></span> Scenic Mini Program</span>
+      <h1>景区游玩与工作人员协同小程序</h1>
+      <p class="lead">面向游客提供数字人问答、导览、排队、票券订单；面向工作人员提供核销与问题上报。交互按微信小程序体验组织，页面尽量贴近可落地产品。</p>
+
+      <div class="role-switch" aria-label="角色切换">
+        <button class="active" data-role="visitor">游客端</button>
+        <button data-role="staff">工作人员</button>
+      </div>
+
+      <div class="screen-list" id="screenList"></div>
+
+      <div class="notes">
+        <div class="note">
+          <div class="note-icon">A</div>
+          <div>视觉系统选择现代极简 + 亲和插画感：白底卡片、山林青绿主色、轻量地图纹理，避免后台感太重。</div>
+        </div>
+        <div class="note">
+          <div class="note-icon">I</div>
+          <div>数字人问答、线上排队、票券核销都做了可点击状态，方便后续转成真实小程序交互。</div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="stage-wrap">
+      <div class="device" aria-label="微信小程序手机原型">
+        <div class="phone">
+          <div class="status">
+            <span>09:41</span>
+            <span class="status-icons"><span class="signal"></span><span>5G</span><span class="battery"></span></span>
+          </div>
+          <div class="mini-titlebar">
+            <button class="back" aria-label="返回">‹</button>
+            <div class="mini-title" id="miniTitle">云溪山景区</div>
+            <div class="capsule" aria-hidden="true"><i></i><b></b></div>
+          </div>
+
+          <section class="screen active" id="home" data-title="云溪山景区">
+            <div class="hero-card">
+              <div class="weather"><span>云溪山 · 今日舒适</span><strong>23°C</strong></div>
+              <h2>你好，今天想从哪里开始游玩？</h2>
+              <p>数字人导游已在线，可根据体力、时间和人流推荐路线。</p>
+            </div>
+
+            <div class="search-pill">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+              搜索景点、厕所、餐饮、服务点
+            </div>
+
+            <div class="quick-grid">
+              <button class="quick" data-jump="ai"><span class="ico">问</span><span>数字人</span></button>
+              <button class="quick" data-jump="map"><span class="ico">导</span><span>导览</span></button>
+              <button class="quick" data-jump="queue"><span class="ico">排</span><span>排队</span></button>
+              <button class="quick" data-jump="mine"><span class="ico">票</span><span>票券</span></button>
+            </div>
+
+            <div class="section-title">
+              <h3>推荐游线</h3>
+              <a href="#">换一条</a>
+            </div>
+
+            <article class="route-card">
+              <div class="thumb"></div>
+              <div>
+                <h4>2 小时轻松游</h4>
+                <p>游客中心 → 云溪湖 → 竹林栈道 → 山顶观景台</p>
+                <div class="meta-row">
+                  <span class="pill">步行 2.8km</span>
+                  <span class="pill">人流适中</span>
+                </div>
+              </div>
+            </article>
+
+            <div class="section-title">
+              <h3>现场提醒</h3>
+              <a href="#">全部</a>
+            </div>
+            <div class="list">
+              <div class="list-item">
+                <div><strong>观景索道当前等候约 18 分钟</strong><span>建议先游览云溪湖，错峰后前往。</span></div>
+                <span class="tag">实时</span>
+              </div>
+              <div class="list-item">
+                <div><strong>东门检票口客流较少</strong><span>持电子票游客可从东门快速入园。</span></div>
+                <span class="tag">推荐</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="screen" id="ai" data-title="数字人问答">
+            <div class="ai-header">
+              <div class="ai-avatar" aria-hidden="true"></div>
+              <h2>云溪数字导游</h2>
+              <p>可以问路线、讲解、餐饮、排队、失物招领，也可以让我按“亲子 / 老人 / 半日游”生成计划。</p>
+            </div>
+
+            <div class="chips">
+              <button class="chip" data-question="帮我规划一条不累的亲子路线">亲子路线</button>
+              <button class="chip" data-question="观景台现在排队多久？">排队多久</button>
+              <button class="chip" data-question="附近哪里有卫生间？">找卫生间</button>
+              <button class="chip" data-question="给我讲讲云溪湖的故事">景点讲解</button>
+            </div>
+
+            <div class="chat" id="chat">
+              <div class="msg bot">你好，我是云溪数字导游。你可以直接告诉我游玩时长、同行人群和想看的景点。</div>
+              <div class="msg user">我带老人游玩，想少走路。</div>
+              <div class="msg bot">建议选择“云溪湖环线”：游客中心乘接驳车到湖畔，下车后 600 米平缓步道可到观景平台。全程约 70 分钟，中途有 3 个休息点。</div>
+            </div>
+
+            <div class="chat-input">
+              <input id="chatInput" placeholder="输入你的问题…" />
+              <button class="send" id="sendBtn">发</button>
+            </div>
+          </section>
+
+          <section class="screen" id="map" data-title="景区导览">
+            <div class="map-shell">
+              <div class="path"></div>
+              <div class="lake"></div>
+              <button class="pin p1" data-spot="游客中心 · 检票 / 咨询 / 租赁"><span>游客中心</span></button>
+              <button class="pin p2" data-spot="云溪湖 · 推荐拍照点，人流舒适"><span>云溪湖</span></button>
+              <button class="pin p3" data-spot="观景索道 · 当前等候 18 分钟"><span>观景索道</span></button>
+              <div class="map-card">
+                <div>
+                  <h4 id="spotTitle">游客中心 · 检票 / 咨询 / 租赁</h4>
+                  <p>距你 120 米 · 可步行 3 分钟到达</p>
+                </div>
+                <button class="primary-btn" id="routeBtn">去这里</button>
+              </div>
+            </div>
+
+            <div class="section-title">
+              <h3>附近服务</h3>
+              <a href="#">筛选</a>
+            </div>
+            <div class="list">
+              <div class="list-item">
+                <div><strong>卫生间 A 区</strong><span>约 80 米 · 无障碍卫生间开放</span></div>
+                <span class="tag">最近</span>
+              </div>
+              <div class="list-item">
+                <div><strong>湖畔轻食</strong><span>约 210 米 · 当前无需排队</span></div>
+                <span class="tag">餐饮</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="screen" id="queue" data-title="线上排队">
+            <div class="section-title">
+              <h3>可预约项目</h3>
+              <a href="#">规则</a>
+            </div>
+
+            <div class="queue-list">
+              <article class="queue-card">
+                <div>
+                  <h4>观景索道</h4>
+                  <p>当前叫号 A026，预计等待 18 分钟。</p>
+                  <div class="progress"><b style="--w:62%"></b></div>
+                </div>
+                <div class="queue-number">
+                  <strong>A041</strong>
+                  <span>我的号</span>
+                </div>
+              </article>
+
+              <article class="queue-card">
+                <div>
+                  <h4>竹林漂流</h4>
+                  <p>当前叫号 B108，雨天可能临时暂停。</p>
+                  <div class="progress"><b style="--w:38%"></b></div>
+                </div>
+                <button class="primary-btn queueJoin">取号</button>
+              </article>
+
+              <article class="queue-card">
+                <div>
+                  <h4>云溪剧场</h4>
+                  <p>14:30 场剩余 36 席，建议提前 10 分钟入场。</p>
+                  <div class="progress"><b style="--w:74%"></b></div>
+                </div>
+                <button class="ghost-btn queueJoin">预约</button>
+              </article>
+            </div>
+
+            <div class="section-title">
+              <h3>叫号提醒</h3>
+            </div>
+            <div class="list-item">
+              <div><strong>距离你的号码还有 15 位</strong><span>进入前 5 位时将通过小程序服务通知提醒。</span></div>
+              <span class="tag">已开启</span>
+            </div>
+          </section>
+
+          <section class="screen" id="mine" data-title="我的 / 订单">
+            <div class="profile">
+              <div class="avatar"></div>
+              <div>
+                <h3>游客 0826</h3>
+                <p>今日已入园 · 游玩时长 1 小时 24 分</p>
+              </div>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat"><strong>2</strong><span>电子票</span></div>
+              <div class="stat"><strong>1</strong><span>排队中</span></div>
+              <div class="stat"><strong>4</strong><span>收藏点</span></div>
+            </div>
+
+            <div class="section-title">
+              <h3>今日票券</h3>
+              <a href="#">全部订单</a>
+            </div>
+
+            <article class="ticket-card">
+              <div class="ticket-top">
+                <div>
+                  <h4>云溪山成人票</h4>
+                  <p>有效期：今日 18:00 前 · 可核销 1 次</p>
+                  <div class="meta-row">
+                    <span class="pill">未使用</span>
+                    <span class="pill">订单尾号 3921</span>
+                  </div>
+                </div>
+                <div class="qr" aria-label="核销二维码"></div>
+              </div>
+              <div class="order-row"><span>入园人</span><strong>张*明</strong></div>
+              <div class="order-row"><span>购买渠道</span><strong>小程序官方商城</strong></div>
+            </article>
+
+            <div class="section-title">
+              <h3>常用服务</h3>
+            </div>
+            <div class="list">
+              <div class="list-item"><div><strong>我的排队</strong><span>查看叫号、取消排队、提醒设置</span></div><span>›</span></div>
+              <div class="list-item"><div><strong>问题反馈</strong><span>遗失物品、服务投诉、设施故障</span></div><span>›</span></div>
+            </div>
+          </section>
+
+          <section class="screen" id="verify" data-title="票券核销">
+            <div class="staff-hero">
+              <span class="eyebrow"><span class="dot"></span> Staff Check-in</span>
+              <h2>扫码核销游客票券</h2>
+              <p>支持电子票二维码、订单号、身份证后四位辅助检索。</p>
+            </div>
+
+            <div class="scan-box">
+              <div class="scan-frame"></div>
+            </div>
+
+            <button class="primary-btn" id="scanBtn" style="width:100%">模拟扫码核销</button>
+
+            <div class="verify-result" id="verifyResult">
+              <strong>核销成功 · 成人票 1 张</strong>
+              <span>订单尾号 3921 · 入园人 张*明 · 09:41 已入园</span>
+            </div>
+
+            <div class="section-title">
+              <h3>今日核销概览</h3>
+            </div>
+            <div class="stats-grid">
+              <div class="stat"><strong>428</strong><span>已核销</span></div>
+              <div class="stat"><strong>36</strong><span>待入园</span></div>
+              <div class="stat"><strong>3</strong><span>异常单</span></div>
+            </div>
+          </section>
+
+          <section class="screen" id="report" data-title="问题上报">
+            <div class="staff-card" style="margin-top:8px">
+              <h3 style="margin:0 0 6px">上报现场问题</h3>
+              <p style="margin:0;color:var(--muted);font-size:13px;line-height:1.55">用于工作人员快速记录设施故障、游客求助、拥堵、安全隐患等问题。</p>
+            </div>
+
+            <div class="form-field">
+              <label for="reportType">问题类型</label>
+              <select id="reportType">
+                <option>设施故障</option>
+                <option>游客求助</option>
+                <option>客流拥堵</option>
+                <option>安全隐患</option>
+                <option>环境卫生</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="reportPlace">发生位置</label>
+              <input id="reportPlace" value="观景索道入口" />
+            </div>
+
+            <div class="form-field">
+              <label for="reportText">问题描述</label>
+              <textarea id="reportText" placeholder="请描述现场情况、影响范围、是否需要支援…">入口闸机右侧通道识别不稳定，游客排队变慢，需要设备人员检查。</textarea>
+            </div>
+
+            <div class="form-field">
+              <label>处理优先级</label>
+              <div class="chips" style="padding:0">
+                <button class="chip priority active">普通</button>
+                <button class="chip priority">紧急</button>
+                <button class="chip priority">需支援</button>
+              </div>
+            </div>
+
+            <button class="primary-btn" id="submitReport" style="width:100%;margin-top:8px">提交上报</button>
+
+            <div class="section-title">
+              <h3>最近上报</h3>
+            </div>
+            <div class="list">
+              <div class="list-item"><div><strong>云溪湖栏杆松动</strong><span>已派单 · 维护组处理中</span></div><span class="tag">处理中</span></div>
+              <div class="list-item"><div><strong>东门客流短时升高</strong><span>已通知疏导岗增援</span></div><span class="tag">已响应</span></div>
+            </div>
+          </section>
+
+          <nav class="bottom-nav active" id="visitorNav" aria-label="游客端底部导航">
+            <button class="nav-item active" data-jump="home">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+              首页
+            </button>
+            <button class="nav-item" data-jump="map">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 18-6 3V6l6-3 6 3 6-3v15l-6 3-6-3Z"/><path d="M9 3v15M15 6v15"/></svg>
+              导览
+            </button>
+            <button class="nav-item" data-jump="queue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 7h14M5 12h14M5 17h10"/></svg>
+              排队
+            </button>
+            <button class="nav-item" data-jump="mine">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.8-4 5-6 8-6s6.2 2 8 6"/></svg>
+              我的
+            </button>
+          </nav>
+
+          <nav class="bottom-nav" id="staffNav" aria-label="工作人员底部导航" style="grid-template-columns:repeat(2,1fr)">
+            <button class="nav-item active" data-jump="verify">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2"/><path d="M7 12h10"/></svg>
+              核销
+            </button>
+            <button class="nav-item" data-jump="report">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 9v4M12 17h.01"/><path d="M10.3 4.3 2.8 18a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0Z"/></svg>
+              上报
+            </button>
+          </nav>
+
+          <div class="toast" id="toast">已完成</div>
+        </div>
+      </div>
+
+      <div class="screen-caption" id="caption">
+        <strong>首页 / 游玩入口：</strong>集中呈现天气、人流、路线推荐与四个高频入口，适合作为游客端默认首屏。
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const visitorScreens = [
+      { id: "home", title: "首页 / 游玩入口", desc: "天气、人流、推荐路线、快捷入口", tag: "游客" },
+      { id: "ai", title: "数字人问答", desc: "路线规划、讲解、排队、服务咨询", tag: "游客" },
+      { id: "map", title: "景区导览 / 地图", desc: "景点定位、服务点、路线导航", tag: "游客" },
+      { id: "queue", title: "线上排队", desc: "取号、预约、叫号提醒", tag: "游客" },
+      { id: "mine", title: "我的 / 订单", desc: "电子票、二维码、游玩记录", tag: "游客" }
+    ];
+
+    const staffScreens = [
+      { id: "verify", title: "票券核销", desc: "扫码核销、异常提示、今日统计", tag: "员工" },
+      { id: "report", title: "问题上报", desc: "现场问题记录、优先级、派单状态", tag: "员工" }
+    ];
+
+    const captions = {
+      home: "<strong>首页 / 游玩入口：</strong>集中呈现天气、人流、路线推荐与四个高频入口，适合作为游客端默认首屏。",
+      ai: "<strong>数字人问答：</strong>用真实聊天结构承载导游问答，支持快捷问题与输入发送，后续可接入知识库与语音播报。",
+      map: "<strong>景区导览 / 地图：</strong>轻量地图展示景点、服务设施与排队点，点击点位会更新下方目的地卡片。",
+      queue: "<strong>线上排队：</strong>展示当前叫号、我的号码、预计等待与预约入口，避免游客在现场长时间聚集。",
+      mine: "<strong>我的 / 订单：</strong>票券二维码、订单信息、排队记录与常用服务集中在一个用户中心。",
+      verify: "<strong>票券核销：</strong>工作人员端核心动作，扫码后显示核销结果与今日概览，适合检票口高频使用。",
+      report: "<strong>问题上报：</strong>工作人员可快速选择类型、位置、描述与优先级，提交后用于后台派单流转。"
+    };
+
+    let currentRole = "visitor";
+    let currentScreen = "home";
+
+    const screenList = document.getElementById("screenList");
+    const roleButtons = document.querySelectorAll(".role-switch button");
+    const screens = document.querySelectorAll(".screen");
+    const miniTitle = document.getElementById("miniTitle");
+    const caption = document.getElementById("caption");
+    const visitorNav = document.getElementById("visitorNav");
+    const staffNav = document.getElementById("staffNav");
+    const toast = document.getElementById("toast");
+
+    function renderScreenList() {
+      const data = currentRole === "visitor" ? visitorScreens : staffScreens;
+      screenList.innerHTML = data.map(item => `
+        <button data-screen="${item.id}" class="${item.id === currentScreen ? "active" : ""}">
+          <span><strong>${item.title}</strong><span>${item.desc}</span></span>
+          <em class="tag">${item.tag}</em>
+        </button>
+      `).join("");
+
+      screenList.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => showScreen(btn.dataset.screen));
+      });
+    }
+
+    function showScreen(id) {
+      currentScreen = id;
+      screens.forEach(screen => screen.classList.toggle("active", screen.id === id));
+      const title = document.getElementById(id).dataset.title || "云溪山景区";
+      miniTitle.textContent = title;
+      caption.innerHTML = captions[id] || "";
+      renderScreenList();
+      updateNav();
+    }
+
+    function setRole(role) {
+      currentRole = role;
+      roleButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.role === role));
+      visitorNav.classList.toggle("active", role === "visitor");
+      staffNav.classList.toggle("active", role === "staff");
+      currentScreen = role === "visitor" ? "home" : "verify";
+      showScreen(currentScreen);
+    }
+
+    function updateNav() {
+      document.querySelectorAll(".nav-item").forEach(item => {
+        item.classList.toggle("active", item.dataset.jump === currentScreen);
+      });
+    }
+
+    function showToast(text) {
+      toast.textContent = text;
+      toast.classList.add("show");
+      window.setTimeout(() => toast.classList.remove("show"), 1600);
+    }
+
+    roleButtons.forEach(btn => {
+      btn.addEventListener("click", () => setRole(btn.dataset.role));
+    });
+
+    document.querySelectorAll("[data-jump]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.jump;
+        const staffIds = staffScreens.map(s => s.id);
+        const visitorIds = visitorScreens.map(s => s.id);
+        if (staffIds.includes(target)) {
+          currentRole = "staff";
+          roleButtons.forEach(b => b.classList.toggle("active", b.dataset.role === "staff"));
+          visitorNav.classList.remove("active");
+          staffNav.classList.add("active");
+        }
+        if (visitorIds.includes(target)) {
+          currentRole = "visitor";
+          roleButtons.forEach(b => b.classList.toggle("active", b.dataset.role === "visitor"));
+          visitorNav.classList.add("active");
+          staffNav.classList.remove("active");
+        }
+        showScreen(target);
+      });
+    });
+
+    document.querySelectorAll(".pin").forEach(pin => {
+      pin.addEventListener("click", () => {
+        document.getElementById("spotTitle").textContent = pin.dataset.spot;
+      });
+    });
+
+    document.getElementById("routeBtn").addEventListener("click", () => {
+      showToast("已为你规划步行路线");
+    });
+
+    document.querySelectorAll(".queueJoin").forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.textContent = "已预约";
+        btn.classList.remove("primary-btn");
+        btn.classList.add("ghost-btn");
+        showToast("已开启叫号提醒");
+      });
+    });
+
+    const chat = document.getElementById("chat");
+    const chatInput = document.getElementById("chatInput");
+    const sendBtn = document.getElementById("sendBtn");
+
+    function addMessage(type, text) {
+      const div = document.createElement("div");
+      div.className = "msg " + type;
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.parentElement.scrollTop = chat.parentElement.scrollHeight;
+    }
+
+    function answerQuestion(text) {
+      addMessage("user", text);
+      const lower = text;
+      let answer = "我建议先从游客中心出发，结合当前位置、人流和体力选择路线。你也可以告诉我同行人群和预计游玩时长，我会给你更具体的安排。";
+      if (lower.includes("亲子")) answer = "亲子路线建议：游客中心 → 云溪湖喂鱼点 → 竹林轻步道 → 湖畔轻食。全程约 90 分钟，避开台阶较多的山顶线。";
+      if (lower.includes("排队") || lower.includes("多久")) answer = "观景索道当前预计等待 18 分钟，竹林漂流约 25 分钟。你可以先线上取号，接近叫号时再前往。";
+      if (lower.includes("卫生间")) answer = "最近卫生间在游客中心右侧，距离约 80 米；云溪湖东侧也有无障碍卫生间，步行约 5 分钟。";
+      if (lower.includes("故事") || lower.includes("讲")) answer = "云溪湖是景区最核心的水系景观，湖边保留了老茶道遗迹。傍晚光线会从西侧山脊照入湖面，是最适合拍照的时段。";
+      window.setTimeout(() => addMessage("bot", answer), 360);
+    }
+
+    sendBtn.addEventListener("click", () => {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      chatInput.value = "";
+      answerQuestion(text);
+    });
+
+    chatInput.addEventListener("keydown", e => {
+      if (e.key === "Enter") sendBtn.click();
+    });
+
+    document.querySelectorAll("[data-question]").forEach(btn => {
+      btn.addEventListener("click", () => answerQuestion(btn.dataset.question));
+    });
+
+    document.getElementById("scanBtn").addEventListener("click", () => {
+      document.getElementById("verifyResult").classList.add("show");
+      showToast("核销成功");
+    });
+
+    document.querySelectorAll(".priority").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".priority").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        btn.style.background = "color-mix(in oklch, var(--accent) 12%, white)";
+      });
+    });
+
+    document.getElementById("submitReport").addEventListener("click", () => {
+      showToast("问题已提交，等待派单");
+    });
+
+    renderScreenList();
+    showScreen("home");
+  </script>
+</body>
+</html>

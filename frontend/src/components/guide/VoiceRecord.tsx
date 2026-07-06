@@ -45,18 +45,6 @@ const VOICE_BARS = Array.from({ length: 16 }, (_, i) => ({
   duration: 0.6 + (i % 5) * 0.08,
 }))
 
-const SUGGESTIONS_ZH = [
-  '灵山大佛有多高？',
-  '帮我推荐一条游览路线',
-  '九龙灌浴每天几场表演？',
-]
-
-const SUGGESTIONS_EN = [
-  'How tall is the Grand Buddha?',
-  'Recommend a tour route',
-  'When are the Nine Dragons shows?',
-]
-
 type Phase = 'listening' | 'result' | 'error' | 'idle'
 
 export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
@@ -67,6 +55,11 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
   const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const phaseRef = useRef<Phase>('listening')
   const t = useT()
+  const lang = getLang()
+
+  const SUGGESTIONS = lang === 'en'
+    ? ['How tall is the Grand Buddha?', 'Recommend a tour route', 'When are the Nine Dragons shows?']
+    : ['灵山大佛有多高？', '帮我推荐一条游览路线', '九龙灌浴每天几场表演？']
 
   // Keep phaseRef synced so recognition.onend reads current phase without stale closure
   useEffect(() => { phaseRef.current = phase }, [phase])
@@ -271,7 +264,7 @@ export default function VoiceRecord({ isOpen, onClose, onResult }: Props) {
             {(phase === 'idle' || phase === 'error') && (
               <div className="voice-suggestions">
                 <span>{t('voice.suggestions')}</span>
-                {(getLang() === 'en' ? SUGGESTIONS_EN : SUGGESTIONS_ZH).map((text) => (
+                {(SUGGESTIONS).map((text) => (
                   <motion.button
                     key={text}
                     type="button"

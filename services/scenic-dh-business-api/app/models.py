@@ -268,6 +268,33 @@ class EmergencyRequest(Base):
     created_at = Column(String(32), default=_utcnow)
 
 
+class User(Base):
+    """小程序用户"""
+    __tablename__ = "users"
+
+    id = Column(String(36), primary_key=True, default=_uuid)
+    openid = Column(String(64), unique=True, nullable=False, index=True)
+    nickname = Column(String(100), default="")
+    avatar = Column(String(500), default="")
+    role = Column(String(20), default="visitor")        # visitor / staff
+    staff_name = Column(String(50), default=None, nullable=True)
+    staff_title = Column(String(50), default=None, nullable=True)
+    is_active = Column(Boolean, default=True)
+    last_login = Column(String(32), default=None, nullable=True)
+    created_at = Column(String(32), default=_utcnow)
+
+
+class UserSessionToken(Base):
+    """用户 session token"""
+    __tablename__ = "user_session_tokens"
+
+    id = Column(String(36), primary_key=True, default=_uuid)
+    user_id = Column(String(36), ForeignKey("users.id"), nullable=False, index=True)
+    token = Column(String(128), unique=True, nullable=False, index=True)
+    expires_at = Column(String(32), nullable=False)
+    created_at = Column(String(32), default=_utcnow)
+
+
 class OfflinePackage(Base):
     """离线包版本"""
     __tablename__ = "offline_packages"

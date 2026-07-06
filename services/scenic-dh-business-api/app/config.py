@@ -29,6 +29,16 @@ class Settings(BaseSettings):
 
     DEFAULT_SCENIC_ID: str = "SA-001"
 
+    # 微信小程序登录
+    WECHAT_APPID: str = ""
+    WECHAT_SECRET: str = ""
+    WECHAT_LOGIN_URL: str = "https://api.weixin.qq.com/sns/jscode2session"
+    # dev 模式：不调微信接口，直接根据 code 生成 openid
+    WECHAT_DEV_MODE: bool = True
+
+    # Token 有效期（小时）
+    TOKEN_EXPIRE_HOURS: int = 72
+
     QWEATHER_API_KEY: str = ""
     QWEATHER_BASE_URL: str = "https://devapi.qweather.com/v7"
     WEATHER_LATITUDE: str = "31.433"

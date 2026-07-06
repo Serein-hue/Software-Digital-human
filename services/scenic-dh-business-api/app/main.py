@@ -71,7 +71,7 @@ def health():
     )
 
 
-from app.routers import arrivals, feedback, internal, messages, operations, rag_proxy, routes, scenic, sessions, spots  # noqa: E402
+from app.routers import arrivals, auth, feedback, internal, messages, operations, rag_proxy, routes, scenic, sessions, spots, staff  # noqa: E402
 
 app.include_router(spots.router, prefix="/v1")
 app.include_router(routes.router, prefix="/v1")
@@ -83,3 +83,5 @@ app.include_router(scenic.router, prefix="/v1")
 app.include_router(rag_proxy.router, prefix="/v1")
 app.include_router(operations.router, prefix="/v1")
 app.include_router(internal.router)
+app.include_router(auth.router, prefix="/v1")
+app.include_router(staff.router, prefix="/v1")

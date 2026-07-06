@@ -66,7 +66,7 @@ def health():
     )
 
 
-from app.routers import analytics, audit, auth, broadcasts, data_gaps, knowledge, personas, runtime, work_orders  # noqa: E402
+from app.routers import analytics, audit, auth, broadcasts, data_gaps, digital_human, knowledge, personas, runtime, staff_users, system_config, work_orders  # noqa: E402
 
 app.include_router(auth.router, prefix="/v1")
 app.include_router(knowledge.router, prefix="/v1")
@@ -77,3 +77,6 @@ app.include_router(analytics.router, prefix="/v1")
 app.include_router(runtime.router, prefix="/v1")
 app.include_router(data_gaps.router, prefix="/v1")
 app.include_router(work_orders.router, prefix="/v1")
+app.include_router(digital_human.router, prefix="/v1")
+app.include_router(system_config.router, prefix="/v1")
+app.include_router(staff_users.router, prefix="/v1")

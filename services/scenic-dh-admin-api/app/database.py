@@ -121,11 +121,39 @@ def _init_tables(conn: sqlite3.Connection) -> None:
             near_spot_id TEXT DEFAULT '',
             reported_at TEXT NOT NULL DEFAULT (datetime('now'))
         );
+        CREATE TABLE IF NOT EXISTS users (
+            id TEXT PRIMARY KEY,
+            openid TEXT UNIQUE NOT NULL,
+            nickname TEXT NOT NULL DEFAULT '',
+            avatar TEXT NOT NULL DEFAULT '',
+            role TEXT NOT NULL DEFAULT 'visitor',
+            staff_name TEXT DEFAULT NULL,
+            staff_title TEXT DEFAULT NULL,
+            is_active INTEGER NOT NULL DEFAULT 1,
+            last_login TEXT DEFAULT NULL,
+            created_at TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE TABLE IF NOT EXISTS user_session_tokens (
+            id TEXT PRIMARY KEY,
+            user_id TEXT NOT NULL,
+            token TEXT UNIQUE NOT NULL,
+            expires_at TEXT NOT NULL,
+            created_at TEXT NOT NULL DEFAULT (datetime('now')),
+            FOREIGN KEY(user_id) REFERENCES users(id)
+        );
         CREATE TABLE IF NOT EXISTS admin_roles (
             id TEXT PRIMARY KEY,
             name TEXT UNIQUE NOT NULL,
             description TEXT NOT NULL DEFAULT '',
             created_at TEXT NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS admin_permissions (
+            id TEXT PRIMARY KEY,
+            role_id TEXT NOT NULL,
+            resource TEXT NOT NULL,
+            action TEXT NOT NULL,
+            scope TEXT NOT NULL DEFAULT '*',
+            FOREIGN KEY(role_id) REFERENCES admin_roles(id)
         );
         CREATE TABLE IF NOT EXISTS admin_users (
             id TEXT PRIMARY KEY,
@@ -146,10 +174,121 @@ def _init_tables(conn: sqlite3.Connection) -> None:
             created_at TEXT NOT NULL,
             FOREIGN KEY(user_id) REFERENCES admin_users(id)
         );
+        CREATE TABLE IF NOT EXISTS audit_logs (
+            id TEXT PRIMARY KEY,
+            action TEXT NOT NULL,
+            operator TEXT NOT NULL DEFAULT '',
+            target TEXT NOT NULL DEFAULT '',
+            detail TEXT NOT NULL DEFAULT '{}',
+            trace_id TEXT NOT NULL DEFAULT '',
+            created_at TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE TABLE IF NOT EXISTS system_configs (
+            config_key TEXT PRIMARY KEY,
+            config_value TEXT NOT NULL DEFAULT '',
+            description TEXT NOT NULL DEFAULT '',
+            updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE TABLE IF NOT EXISTS content_versions (
+            id TEXT PRIMARY KEY,
+            content_type TEXT NOT NULL,
+            content_id TEXT NOT NULL,
+            version INTEGER DEFAULT 1,
+            status TEXT NOT NULL DEFAULT 'draft',
+            data TEXT NOT NULL DEFAULT '{}',
+            change_log TEXT NOT NULL DEFAULT '',
+            created_by TEXT,
+            reviewed_by TEXT,
+            reviewed_at TEXT,
+            reject_reason TEXT,
+            published_at TEXT,
+            created_at TEXT NOT NULL DEFAULT (datetime('now')),
+            FOREIGN KEY(created_by) REFERENCES admin_users(id),
+            FOREIGN KEY(reviewed_by) REFERENCES admin_users(id)
+        );
+        CREATE TABLE IF NOT EXISTS persona_configs (
+            id TEXT PRIMARY KEY,
+            name TEXT NOT NULL,
+            description TEXT NOT NULL DEFAULT '',
+            tone TEXT NOT NULL DEFAULT 'friendly',
+            system_prompt TEXT NOT NULL DEFAULT '',
+            fallback_policy TEXT NOT NULL DEFAULT '{}',
+            tools_enabled TEXT NOT NULL DEFAULT '[]',
+            status TEXT NOT NULL DEFAULT 'active',
+            version INTEGER DEFAULT 1,
+            updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE TABLE IF NOT EXISTS broadcast_logs (
+            id TEXT PRIMARY KEY,
+            text TEXT NOT NULL,
+            target TEXT NOT NULL DEFAULT 'all',
+            target_id TEXT,
+            priority TEXT NOT NULL DEFAULT 'normal',
+            status TEXT NOT NULL DEFAULT 'queued',
+            error TEXT,
+            created_by TEXT,
+            created_at TEXT NOT NULL DEFAULT (datetime('now')),
+            FOREIGN KEY(created_by) REFERENCES admin_users(id)
+        );
         """
     )
     _seed_admin(conn)
     conn.commit()
+
+
+def _seed_admin(conn: sqlite3.Connection) -> None:
+    """初始化或更新管理员角色和引导用户"""
+    now = _utcnow()
+    conn.execute(
+        "INSERT OR IGNORE INTO admin_roles (id, name, description, created_at) VALUES (?, ?, ?, ?)",
+        ("ROLE_ADMIN", "超级管理员", "系统管理员，拥有所有权限", now),
+    )
+    conn.execute(
+        "INSERT OR IGNORE INTO admin_roles (id, name, description, created_at) VALUES (?, ?, ?, ?)",
+        ("ROLE_EDITOR", "内容编辑", "可管理内容但不能修改系统设置", now),
+    )
+    conn.execute(
+        "INSERT OR IGNORE INTO admin_roles (id, name, description, created_at) VALUES (?, ?, ?, ?)",
+        ("ROLE_OPERATOR", "运营管理员", "可查看数据大屏、处理工单，不能管理知识库", now),
+    )
+    conn.execute(
+        "INSERT OR IGNORE INTO admin_roles (id, name, description, created_at) VALUES (?, ?, ?, ?)",
+        ("ROLE_SERVICE", "客服人员", "仅可处理工单和查看反馈", now),
+    )
+    conn.execute(
+        "INSERT OR IGNORE INTO admin_roles (id, name, description, created_at) VALUES (?, ?, ?, ?)",
+        ("ROLE_VIEWER", "游客", "仅可查看公开信息", now),
+    )
+    _seed_permissions(conn)
+    _seed_system_configs(conn)
+    active_admins = conn.execute("SELECT COUNT(*) FROM admin_users WHERE is_active = 1").fetchone()[0]
+    if active_admins == 0 and settings.ADMIN_BOOTSTRAP_PASSWORD:
+        password_hash = _hash_password(settings.ADMIN_BOOTSTRAP_PASSWORD)
+        updated = conn.execute(
+            """
+            UPDATE admin_users
+            SET password_hash = ?, display_name = ?, role_id = ?, is_active = 1
+            WHERE username = ?
+            """,
+            (password_hash, settings.ADMIN_BOOTSTRAP_DISPLAY_NAME, "ROLE_ADMIN", settings.ADMIN_BOOTSTRAP_USERNAME),
+        ).rowcount
+        if updated == 0:
+            conn.execute(
+                """
+                INSERT INTO admin_users
+                    (id, username, password_hash, display_name, role_id, is_active, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    str(uuid.uuid4()),
+                    settings.ADMIN_BOOTSTRAP_USERNAME,
+                    password_hash,
+                    settings.ADMIN_BOOTSTRAP_DISPLAY_NAME,
+                    "ROLE_ADMIN",
+                    1,
+                    now,
+                ),
+            )
 
 
 def _run_migration(conn: sqlite3.Connection) -> None:
@@ -184,44 +323,75 @@ def _run_migration(conn: sqlite3.Connection) -> None:
     conn.commit()
 
 
-def _seed_admin(conn: sqlite3.Connection) -> None:
-    now = _utcnow()
-    conn.execute(
-        "INSERT OR IGNORE INTO admin_roles (id, name, description, created_at) VALUES (?, ?, ?, ?)",
-        ("ROLE_ADMIN", "超级管理员", "系统管理员，拥有所有权限", now),
-    )
-    conn.execute(
-        "INSERT OR IGNORE INTO admin_roles (id, name, description, created_at) VALUES (?, ?, ?, ?)",
-        ("ROLE_EDITOR", "内容编辑", "可管理内容但不能修改系统设置", now),
-    )
-    active_admins = conn.execute("SELECT COUNT(*) FROM admin_users WHERE is_active = 1").fetchone()[0]
-    if active_admins == 0 and settings.ADMIN_BOOTSTRAP_PASSWORD:
-        password_hash = _hash_password(settings.ADMIN_BOOTSTRAP_PASSWORD)
-        updated = conn.execute(
-            """
-            UPDATE admin_users
-            SET password_hash = ?, display_name = ?, role_id = ?, is_active = 1
-            WHERE username = ?
-            """,
-            (password_hash, settings.ADMIN_BOOTSTRAP_DISPLAY_NAME, "ROLE_ADMIN", settings.ADMIN_BOOTSTRAP_USERNAME),
-        ).rowcount
-        if updated == 0:
-            conn.execute(
-                """
-                INSERT INTO admin_users
-                    (id, username, password_hash, display_name, role_id, is_active, created_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    str(uuid.uuid4()),
-                    settings.ADMIN_BOOTSTRAP_USERNAME,
-                    password_hash,
-                    settings.ADMIN_BOOTSTRAP_DISPLAY_NAME,
-                    "ROLE_ADMIN",
-                    1,
-                    now,
-                ),
-            )
+def _seed_permissions(conn: sqlite3.Connection) -> None:
+    """播种权限数据，为每个角色定义可访问的资源"""
+    existing = conn.execute("SELECT COUNT(*) FROM admin_permissions").fetchone()[0]
+    if existing > 0:
+        return
+    permissions = [
+        # 超级管理员 — 所有资源所有操作
+        ("ROLE_ADMIN", "*", "*", "*"),
+        # 内容编辑 — 景点/公告/活动/知识库 读写
+        ("ROLE_EDITOR", "spots", "read", "*"),
+        ("ROLE_EDITOR", "spots", "update", "*"),
+        ("ROLE_EDITOR", "notices", "create", "*"),
+        ("ROLE_EDITOR", "notices", "read", "*"),
+        ("ROLE_EDITOR", "notices", "update", "*"),
+        ("ROLE_EDITOR", "events", "create", "*"),
+        ("ROLE_EDITOR", "events", "read", "*"),
+        ("ROLE_EDITOR", "events", "update", "*"),
+        ("ROLE_EDITOR", "knowledge", "read", "*"),
+        ("ROLE_EDITOR", "knowledge", "update", "*"),
+        ("ROLE_EDITOR", "digital_human", "read", "*"),
+        # 运营管理员 — 大屏/工单/应急/反馈 读写
+        ("ROLE_OPERATOR", "analytics", "read", "*"),
+        ("ROLE_OPERATOR", "work_orders", "read", "*"),
+        ("ROLE_OPERATOR", "work_orders", "update", "*"),
+        ("ROLE_OPERATOR", "emergencies", "read", "*"),
+        ("ROLE_OPERATOR", "emergencies", "update", "*"),
+        ("ROLE_OPERATOR", "feedbacks", "read", "*"),
+        ("ROLE_OPERATOR", "notices", "read", "*"),
+        ("ROLE_OPERATOR", "runtime", "read", "*"),
+        ("ROLE_OPERATOR", "runtime", "update", "*"),
+        # 客服人员 — 仅工单和反馈
+        ("ROLE_SERVICE", "work_orders", "read", "*"),
+        ("ROLE_SERVICE", "work_orders", "update", "*"),
+        ("ROLE_SERVICE", "emergencies", "read", "*"),
+        ("ROLE_SERVICE", "emergencies", "update", "*"),
+        ("ROLE_SERVICE", "feedbacks", "read", "*"),
+        # 游客 — 仅基本信息
+        ("ROLE_VIEWER", "spots", "read", "*"),
+        ("ROLE_VIEWER", "routes", "read", "*"),
+        ("ROLE_VIEWER", "notices", "read", "*"),
+    ]
+    import uuid
+    for role_id, resource, action, scope in permissions:
+        conn.execute(
+            "INSERT OR IGNORE INTO admin_permissions (id, role_id, resource, action, scope) VALUES (?, ?, ?, ?, ?)",
+            (str(uuid.uuid4()), role_id, resource, action, scope),
+        )
+    conn.commit()
+
+
+def _seed_system_configs(conn: sqlite3.Connection) -> None:
+    """播种系统配置默认值"""
+    defaults = [
+        ("app_name", "灵山胜境·AI数字人导览", "系统名称"),
+        ("app_language", "zh", "默认语言"),
+        ("refresh_interval_seconds", "30", "运营大屏自动刷新间隔"),
+        ("rag_score_threshold", "0.5", "RAG检索评分阈值"),
+        ("rag_top_k_default", "5", "RAG默认检索条数"),
+        ("digital_human_default_avatar", "avatar-1", "默认数字人形象ID"),
+        ("digital_human_default_voice", "voice-1", "默认数字人音色ID"),
+        ("business_api_base", "http://localhost:8001/v1", "导游业务API地址"),
+        ("rag_api_base", "http://127.0.0.1:5010/api/v1", "RAG服务API地址"),
+    ]
+    for key, value, desc in defaults:
+        conn.execute(
+            "INSERT OR IGNORE INTO system_configs (config_key, config_value, description, updated_at) VALUES (?, ?, ?, ?)",
+            (key, value, desc, _utcnow()),
+        )
+    conn.commit()
 
 
 def verify_admin_password(username: str, password: str) -> dict | None:

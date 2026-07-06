@@ -88,3 +88,26 @@ def test_runtime_queue():
 def test_trace_header():
     resp = client.get("/health")
     assert "x-trace-id" in resp.headers
+
+
+def test_system_config_list():
+    resp = client.get("/v1/system-config", headers=_auth_headers())
+    data = resp.json()
+    assert data["code"] == 0
+    assert len(data["data"]["items"]) >= 5
+    keys = [item["key"] for item in data["data"]["items"]]
+    assert "app_name" in keys
+    assert "rag_score_threshold" in keys
+
+
+def test_system_config_update():
+    headers = _auth_headers()
+    resp = client.put("/v1/system-config/rag_score_threshold", headers=headers, json={"value": "0.6"})
+    assert resp.json()["code"] == 0
+    assert resp.json()["data"]["value"] == "0.6"
+
+    resp = client.get("/v1/system-config/rag_score_threshold", headers=headers)
+    assert resp.json()["data"]["value"] == "0.6"
+
+    # 重置回默认值
+    client.put("/v1/system-config/rag_score_threshold", headers=headers, json={"value": "0.5"})

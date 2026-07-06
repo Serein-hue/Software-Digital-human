@@ -6,32 +6,10 @@ import {
   X, Users, Sunrise, Volume2,
 } from 'lucide-react'
 import DigitalHuman from './DigitalHuman'
-import { SPOTS } from './SpotDetail'
-import { ROUTES } from './RouteRecommend'
 import { useT, getLang } from '../../i18n'
-
-const TRIVIA_ZH = [
-  '灵山大佛通高88米，是世界最高的露天青铜释迦牟尼立像',
-  '灵山梵宫造价18亿，被誉为"东方卢浮宫"',
-  '九龙灌浴每天4-5场表演，太子佛从莲花中旋转升起',
-  '五印坛城四面环水，被称为"小布达拉宫"',
-  '祥符禅寺始建于唐贞观年间，玄奘法师弟子开创',
-  '灵山胜境是国家5A级景区，世界佛教论坛永久会址',
-  '登216级登云道抱佛脚，俯瞰太湖全景',
-]
-
-const TRIVIA_EN = [
-  'The Grand Buddha stands 88m tall — the world\'s tallest outdoor bronze standing Buddha',
-  'The Fan Palace cost ¥1.8B and is known as the "Louvre of the East"',
-  'Nine Dragons Bathing performs 4-5 shows daily — the Prince Buddha rises from a lotus',
-  'Five Mudra Mandala is surrounded by water, nicknamed "Little Potala Palace"',
-  'Xiangfu Temple dates to Tang Dynasty (627 AD), founded by Xuanzang\'s disciple',
-  'Lingshan is a national 5A scenic area and permanent World Buddhist Forum site',
-  'Climb 216 steps to touch the Buddha\'s foot and overlook Taihu Lake',
-]
+import { fetchSpots, fetchRoutes, type SpotItem, type RouteItem } from '../../api'
 
 const IDLE_TIMEOUT = 60_000
-const TRIVIA_INTERVAL = 30_000
 
 export default function KioskPage() {
   const [mode, setMode] = useState<'idle' | 'active'>('idle')
@@ -40,15 +18,20 @@ export default function KioskPage() {
   const [isListening, setIsListening] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [responseText, setResponseText] = useState<string | null>(null)
-  const [triviaIndex, setTriviaIndex] = useState(0)
   const [qrOpen, setQrOpen] = useState(false)
   const [timeStr, setTimeStr] = useState('')
+  const [spots, setSpots] = useState<SpotItem[]>([])
+  const [routes, setRoutes] = useState<RouteItem[]>([])
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const triviaTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const listenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const speakTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const t = useT()
-  const trivia = getLang() === 'en' ? TRIVIA_EN : TRIVIA_ZH
+  const lang = getLang()
+
+  useEffect(() => {
+    fetchSpots().then((data) => { if (data) setSpots(data) })
+    fetchRoutes().then((data) => { if (data) setRoutes(data) })
+  }, [])
 
   const resetIdleTimer = useCallback(() => {
     if (idleTimerRef.current) clearTimeout(idleTimerRef.current)
@@ -81,19 +64,6 @@ export default function KioskPage() {
   }, [])
 
   useEffect(() => {
-    if (mode === 'idle') {
-      triviaTimerRef.current = setInterval(() => {
-        setTriviaIndex((prev) => (prev + 1) % trivia.length)
-      }, TRIVIA_INTERVAL)
-      return () => {
-        if (triviaTimerRef.current) clearInterval(triviaTimerRef.current)
-      }
-    } else {
-      if (triviaTimerRef.current) clearInterval(triviaTimerRef.current)
-    }
-  }, [mode, trivia.length])
-
-  useEffect(() => {
     return () => {
       if (listenTimerRef.current) clearTimeout(listenTimerRef.current)
       if (speakTimerRef.current) clearTimeout(speakTimerRef.current)
@@ -101,10 +71,7 @@ export default function KioskPage() {
   }, [])
 
   const handleWake = () => {
-    if (mode === 'idle') {
-      setMode('active')
-      setTriviaIndex(0)
-    }
+    if (mode === 'idle') setMode('active')
   }
 
   const handleVoice = () => {
@@ -117,7 +84,9 @@ export default function KioskPage() {
       listenTimerRef.current = setTimeout(() => {
         setIsListening(false)
         setIsSpeaking(true)
-        setResponseText('灵山胜境位于无锡太湖之滨，是国家5A级旅游景区。核心景点包括灵山大佛、灵山梵宫、九龙灌浴、五印坛城和祥符禅寺。建议游览时间4-6小时，南门入园，沿中轴线依次游览。')
+        setResponseText(lang === 'en'
+          ? 'Lingshan is a national 5A scenic area by Taihu Lake. Main spots include the Grand Buddha, Fan Palace, Nine Dragons Bathing, Five Mudra Mandala, and Xiangfu Temple. Suggested visit: 4-6 hours.'
+          : '灵山胜境位于无锡太湖之滨，是国家5A级旅游景区。核心景点包括灵山大佛、灵山梵宫、九龙灌浴、五印坛城和祥符禅寺。建议游览时间4-6小时，南门入园，沿中轴线依次游览。')
 
         speakTimerRef.current = setTimeout(() => {
           setIsSpeaking(false)
@@ -128,11 +97,10 @@ export default function KioskPage() {
     resetIdleTimer()
   }
 
-  const spot = selectedSpot ? SPOTS[selectedSpot] : null
+  const spot = selectedSpot ? spots.find((s) => s.id === selectedSpot) : null
 
   return (
     <div className="kiosk-root" onClick={handleWake}>
-      {/* Ambient background */}
       <div className="kiosk-bg">
         <div className="kiosk-bg-pulse" />
         <div className="kiosk-bg-grid" />
@@ -170,16 +138,6 @@ export default function KioskPage() {
             >
               {t('kiosk.tapToStart')}
             </motion.h1>
-            <motion.p
-              className="kiosk-idle-trivia"
-              key={triviaIndex}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.5 }}
-            >
-              {trivia[triviaIndex]}
-            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -199,7 +157,6 @@ export default function KioskPage() {
               <div className="kiosk-dh-wrap">
                 <DigitalHuman isSpeaking={isSpeaking} spotName="灵山胜境" />
               </div>
-
               {responseText && (
                 <motion.div
                   className="kiosk-response"
@@ -214,18 +171,17 @@ export default function KioskPage() {
 
             {/* Right: Content */}
             <div className="kiosk-right">
-              {/* Tabs */}
               <div className="kiosk-tabs">
                 {[
-                  { key: 'spots', i18nKey: 'kiosk.tabSpots' as const, icon: MapPin },
-                  { key: 'routes', i18nKey: 'kiosk.tabRoutes' as const, icon: Clock },
-                  { key: 'about', i18nKey: 'kiosk.tabAbout' as const, icon: Users },
+                  { key: 'spots' as const, i18nKey: 'kiosk.tabSpots' as const, icon: MapPin },
+                  { key: 'routes' as const, i18nKey: 'kiosk.tabRoutes' as const, icon: Clock },
+                  { key: 'about' as const, i18nKey: 'kiosk.tabAbout' as const, icon: Users },
                 ].map(({ key, i18nKey, icon: Icon }) => (
                   <button
                     key={key}
                     type="button"
                     className={`kiosk-tab ${activeTab === key ? 'active' : ''}`}
-                    onClick={(e) => { e.stopPropagation(); setActiveTab(key as typeof activeTab); setSelectedSpot(null); resetIdleTimer() }}
+                    onClick={(e) => { e.stopPropagation(); setActiveTab(key); setSelectedSpot(null); resetIdleTimer() }}
                   >
                     <Icon size={18} />
                     <span>{t(i18nKey)}</span>
@@ -233,12 +189,11 @@ export default function KioskPage() {
                 ))}
               </div>
 
-              {/* Tab Content */}
               <div className="kiosk-content">
                 {/* Spots */}
                 {activeTab === 'spots' && !selectedSpot && (
                   <div className="kiosk-spots-grid">
-                    {Object.values(SPOTS).map((s) => (
+                    {spots.map((s) => (
                       <motion.button
                         key={s.id}
                         type="button"
@@ -246,10 +201,10 @@ export default function KioskPage() {
                         whileTap={{ scale: 0.97 }}
                         onClick={(e) => { e.stopPropagation(); setSelectedSpot(s.id); resetIdleTimer() }}
                       >
-                        <div className="kiosk-spot-card-bg" style={{ background: s.heroGradient }} />
+                        <div className="kiosk-spot-card-bg" style={{ background: 'linear-gradient(160deg, #1a3a2a 0%, #2a5a3a 30%, #5a8a4a 70%, #3a6a2a 100%)' }} />
                         <div className="kiosk-spot-card-content">
                           <strong>{s.name}</strong>
-                          <span>{s.category}</span>
+                          <span>{(s.tags ?? [])[0] ?? ''}</span>
                         </div>
                       </motion.button>
                     ))}
@@ -266,15 +221,12 @@ export default function KioskPage() {
                       <ChevronRight size={18} style={{ transform: 'rotate(180deg)' }} />
                       <span>{t('kiosk.backToList')}</span>
                     </button>
-                    <div className="kiosk-spot-hero" style={{ background: spot.heroGradient }}>
+                    <div className="kiosk-spot-hero" style={{ background: 'linear-gradient(160deg, #1a3a2a 0%, #2a5a3a 30%, #5a8a4a 70%, #3a6a2a 100%)' }}>
                       <h2>{spot.name}</h2>
-                      <span>{spot.category}</span>
+                      <span>{(spot.tags ?? [])[0] ?? ''}</span>
                     </div>
                     <div className="kiosk-spot-body">
-                      <p>{spot.shortIntro}</p>
-                      <div className="kiosk-spot-meta">
-                        <span>{t('kiosk.audioDuration', { dur: spot.audioDuration })}</span>
-                      </div>
+                      <p>{spot.summary ?? spot.intro ?? ''}</p>
                     </div>
                   </div>
                 )}
@@ -282,7 +234,7 @@ export default function KioskPage() {
                 {/* Routes */}
                 {activeTab === 'routes' && (
                   <div className="kiosk-routes-list">
-                    {ROUTES.map((r) => (
+                    {routes.map((r) => (
                       <motion.div
                         key={r.id}
                         className="kiosk-route-card"
@@ -290,13 +242,11 @@ export default function KioskPage() {
                         onClick={() => resetIdleTimer()}
                       >
                         <div className="kiosk-route-card-head">
-                          <strong>{r.title}</strong>
-                          <span style={{ color: r.difficultyColor }}>{r.difficulty}</span>
+                          <strong>{r.name}</strong>
                         </div>
-                        <p>{r.description}</p>
+                        <p>{r.persona ?? ''}</p>
                         <div className="kiosk-route-card-meta">
                           <span><Clock size={13} /> {r.duration}</span>
-                          <span><MapPin size={13} /> {r.distance}</span>
                         </div>
                       </motion.div>
                     ))}

@@ -1,0 +1,1838 @@
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>景区小程序 Creative Director 优化版</title>
+  <style>
+    :root {
+      --bg: oklch(98% 0.006 178);
+      --surface: oklch(100% 0 0);
+      --surface-2: oklch(96% 0.018 178);
+      --fg: oklch(20% 0.025 210);
+      --muted: oklch(51% 0.018 210);
+      --subtle: oklch(68% 0.012 210);
+      --border: oklch(90% 0.008 190);
+
+      --green: oklch(56% 0.13 165);
+      --green-deep: oklch(38% 0.105 165);
+      --blue: oklch(58% 0.17 235);
+      --blue-deep: oklch(42% 0.14 245);
+      --yellow: oklch(76% 0.15 82);
+      --red: oklch(60% 0.18 28);
+      --ok: oklch(56% 0.14 150);
+
+      --tourist: var(--green);
+      --staff: oklch(48% 0.12 190);
+      --admin: var(--blue);
+
+      --font-display: "Avenir Next", "PingFang SC", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", system-ui, sans-serif;
+      --shadow: 0 24px 70px rgba(20, 58, 55, 0.14);
+      --soft-shadow: 0 12px 34px rgba(34, 76, 74, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: var(--font-body);
+      color: var(--fg);
+      background:
+        radial-gradient(circle at 8% 8%, color-mix(in oklch, var(--green) 19%, transparent), transparent 28%),
+        radial-gradient(circle at 88% 12%, color-mix(in oklch, var(--blue) 17%, transparent), transparent 31%),
+        linear-gradient(180deg, #f7fbfa 0%, #eef7f5 100%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+
+    .workspace {
+      min-height: 100vh;
+      padding: 34px clamp(16px, 4vw, 56px);
+      display: grid;
+      grid-template-columns: minmax(290px, 370px) minmax(390px, 1fr);
+      gap: 30px;
+      align-items: start;
+    }
+
+    .director-panel {
+      position: sticky;
+      top: 26px;
+      background: rgba(255,255,255,.76);
+      backdrop-filter: blur(22px);
+      border: 1px solid rgba(255,255,255,.9);
+      box-shadow: var(--shadow);
+      border-radius: 32px;
+      padding: 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: color-mix(in oklch, var(--green) 78%, #063);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: var(--green);
+      box-shadow: 0 0 0 6px color-mix(in oklch, var(--green) 18%, transparent);
+    }
+
+    h1 {
+      margin: 15px 0 12px;
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .quality {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(255,255,255,.85);
+    }
+    .quality h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: -.02em;
+    }
+    .quality ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .quality li {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 8px;
+    }
+    .quality b { color: var(--fg); }
+
+    .role-switch {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 5px;
+      background: #edf5f3;
+      border-radius: 999px;
+      margin: 18px 0;
+    }
+    .role-switch button {
+      border: 0;
+      background: transparent;
+      border-radius: 999px;
+      padding: 11px 7px;
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 13px;
+      transition: .18s ease;
+    }
+    .role-switch button.active {
+      color: var(--fg);
+      background: white;
+      box-shadow: 0 8px 22px rgba(34, 81, 74, .12);
+    }
+
+    .screen-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .screen-list button {
+      width: 100%;
+      border: 1px solid transparent;
+      background: rgba(255,255,255,.68);
+      padding: 14px;
+      border-radius: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      color: var(--fg);
+      text-align: left;
+      transition: .18s ease;
+    }
+    .screen-list button.active {
+      background: color-mix(in oklch, var(--green) 12%, white);
+      border-color: color-mix(in oklch, var(--green) 36%, var(--border));
+    }
+    .screen-list strong { display: block; font-size: 14px; }
+    .screen-list span { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+
+    .tag {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 900;
+      background: white;
+      color: color-mix(in oklch, var(--green) 82%, #064);
+      white-space: nowrap;
+    }
+    .tag.staff { color: color-mix(in oklch, var(--staff) 82%, #064); }
+    .tag.admin { color: color-mix(in oklch, var(--admin) 82%, #124); }
+    .tag.warn { color: #8a5d00; background: #fff6dc; }
+    .tag.danger { color: #a3301e; background: #fff0ed; }
+    .tag.ok { color: #0f7452; background: #e8f8ef; }
+
+    .stage-wrap {
+      display: grid;
+      justify-items: center;
+      gap: 18px;
+    }
+
+    .device {
+      width: min(430px, 100%);
+      min-height: 864px;
+      padding: 14px;
+      border-radius: 46px;
+      background: #111719;
+      box-shadow: 0 40px 90px rgba(13,35,34,.24), inset 0 0 0 1px rgba(255,255,255,.08);
+    }
+    .phone {
+      min-height: 836px;
+      border-radius: 36px;
+      overflow: hidden;
+      background: var(--bg);
+      position: relative;
+    }
+
+    .status {
+      height: 46px;
+      padding: 13px 22px 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .status-icons { display: flex; gap: 5px; align-items: center; }
+    .signal {
+      width: 17px;
+      height: 10px;
+      background: linear-gradient(90deg, #141b1d 25%, transparent 25% 34%, #141b1d 34% 58%, transparent 58% 67%, #141b1d 67%);
+      border-radius: 2px;
+    }
+    .battery {
+      width: 22px;
+      height: 11px;
+      border: 1.8px solid #141b1d;
+      border-radius: 3px;
+      position: relative;
+    }
+    .battery:before {
+      content: "";
+      position: absolute;
+      inset: 2px 6px 2px 2px;
+      background: #141b1d;
+      border-radius: 1px;
+    }
+    .battery:after {
+      content: "";
+      position: absolute;
+      right: -4px;
+      top: 3px;
+      width: 2px;
+      height: 4px;
+      background: #141b1d;
+      border-radius: 2px;
+    }
+
+    .titlebar {
+      height: 44px;
+      padding: 0 18px;
+      display: grid;
+      grid-template-columns: 44px 1fr 64px;
+      align-items: center;
+    }
+    .back {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      background: transparent;
+      border-radius: 50%;
+      font-size: 24px;
+      color: var(--fg);
+    }
+    .mini-title {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+    .capsule {
+      justify-self: end;
+      width: 62px;
+      height: 30px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.9);
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 7px;
+    }
+    .capsule i {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #111;
+      box-shadow: 8px 0 0 #111, 16px 0 0 #111;
+      transform: translateX(-8px);
+    }
+    .capsule b {
+      width: 15px;
+      height: 15px;
+      border: 1.8px solid #111;
+      border-radius: 50%;
+    }
+
+    .screen {
+      display: none;
+      height: 746px;
+      overflow: auto;
+      padding: 0 18px 92px;
+      scrollbar-width: none;
+    }
+    .screen::-webkit-scrollbar { display: none; }
+    .screen.active { display: block; }
+
+    .bottom-nav {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 82px;
+      display: none;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 9px 12px 12px;
+      background: rgba(255,255,255,.93);
+      backdrop-filter: blur(18px);
+      border-top: 1px solid var(--border);
+      z-index: 5;
+    }
+    .bottom-nav.active { display: grid; }
+    .nav-item {
+      border: 0;
+      background: transparent;
+      border-radius: 18px;
+      color: var(--muted);
+      display: grid;
+      place-items: center;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .nav-item svg { width: 22px; height: 22px; stroke-width: 2.2; }
+    .nav-item.active {
+      color: color-mix(in oklch, var(--green) 82%, #064);
+      background: color-mix(in oklch, var(--green) 11%, transparent);
+    }
+    .admin-nav .nav-item.active {
+      color: color-mix(in oklch, var(--admin) 82%, #124);
+      background: color-mix(in oklch, var(--admin) 10%, transparent);
+    }
+
+    .hero {
+      margin-top: 8px;
+      min-height: 190px;
+      border-radius: 30px;
+      padding: 22px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 42px rgba(27, 145, 120, .24);
+    }
+    .hero:after {
+      content: "";
+      position: absolute;
+      right: -42px;
+      bottom: -52px;
+      width: 210px;
+      height: 150px;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(255,255,255,.72) 0 22%, transparent 23%),
+        radial-gradient(ellipse at 45% 100%, rgba(255,255,255,.38) 0 38%, transparent 39%);
+      opacity: .82;
+    }
+    .hero.tourist {
+      background:
+        radial-gradient(circle at 84% 22%, rgba(255,255,255,.34), transparent 18%),
+        linear-gradient(135deg, #107967 0%, #2fb985 55%, #73c9ef 100%);
+    }
+    .hero.staff {
+      background:
+        radial-gradient(circle at 84% 22%, rgba(255,255,255,.22), transparent 20%),
+        linear-gradient(135deg, #101b1d 0%, #137766 58%, #3da8d7 100%);
+    }
+    .hero.admin {
+      background:
+        radial-gradient(circle at 82% 18%, rgba(255,255,255,.22), transparent 22%),
+        linear-gradient(135deg, #27347c 0%, #397fe8 54%, #42c2a1 100%);
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      opacity: .94;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h2 {
+      position: relative;
+      z-index: 1;
+      margin: 28px 0 10px;
+      max-width: 295px;
+      font-size: 30px;
+      line-height: 1.08;
+      letter-spacing: -.045em;
+      font-family: var(--font-display);
+    }
+    .hero p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 285px;
+      font-size: 13px;
+      line-height: 1.55;
+      opacity: .92;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin: 20px 0 12px;
+    }
+    .section-title h3 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -.025em;
+    }
+    .section-title a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .card {
+      background: rgba(255,255,255,.93);
+      border: 1px solid rgba(255,255,255,.78);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: var(--soft-shadow);
+    }
+    .card h4 { margin: 0 0 6px; font-size: 16px; letter-spacing: -.02em; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.5; font-size: 12px; }
+
+    .search {
+      margin: 16px 0;
+      height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.88);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 15px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 14px 0 20px;
+    }
+    .quick {
+      min-height: 76px;
+      border: 0;
+      border-radius: 20px;
+      background: white;
+      color: var(--fg);
+      display: grid;
+      place-items: center;
+      gap: 6px;
+      box-shadow: 0 10px 24px rgba(35,58,60,.06);
+    }
+    .quick .ico {
+      width: 32px;
+      height: 32px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: color-mix(in oklch, var(--green) 13%, white);
+      color: color-mix(in oklch, var(--green) 82%, #064);
+      font-weight: 900;
+    }
+    .quick span { font-size: 11px; font-weight: 900; }
+
+    .route-card {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+    .thumb {
+      height: 86px;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 66% 25%, rgba(255,255,255,.9) 0 11%, transparent 12%),
+        linear-gradient(145deg, rgba(55,160,129,.95), rgba(94,172,226,.78));
+      position: relative;
+      overflow: hidden;
+    }
+    .thumb:before {
+      content: "";
+      position: absolute;
+      left: -18px;
+      bottom: 10px;
+      width: 120px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.52);
+    }
+
+    .meta-row {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #eef7f5;
+      color: #197866;
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .pill.blue { background: #eef3ff; color: #3155bd; }
+    .pill.warn { background: #fff6db; color: #8a5d00; }
+    .pill.danger { background: #fff0ed; color: #b23520; }
+    .pill.ok { background: #e8f8ef; color: #0f7452; }
+
+    .list {
+      display: grid;
+      gap: 10px;
+    }
+    .list-item {
+      background: white;
+      border: 1px solid rgba(255,255,255,.82);
+      border-radius: 20px;
+      padding: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 20px rgba(40,64,64,.045);
+    }
+    .list-item strong {
+      display: block;
+      font-size: 14px;
+      letter-spacing: -.01em;
+    }
+    .list-item span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .ai-head {
+      margin-top: 8px;
+      border-radius: 28px;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 86% 20%, rgba(104,196,245,.35), transparent 25%),
+        linear-gradient(180deg, #e9fbf5, #f8fbff);
+      border: 1px solid rgba(255,255,255,.85);
+    }
+    .ai-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 35% 32%, white 0 8%, transparent 9%),
+        radial-gradient(circle at 64% 32%, white 0 8%, transparent 9%),
+        linear-gradient(135deg, var(--green), var(--blue));
+      box-shadow: 0 14px 28px rgba(35,150,130,.22);
+      position: relative;
+    }
+    .ai-avatar:after {
+      content: "";
+      position: absolute;
+      left: 23px;
+      top: 42px;
+      width: 25px;
+      height: 8px;
+      border-radius: 999px;
+      border-bottom: 3px solid rgba(255,255,255,.86);
+    }
+    .ai-head h2 {
+      margin: 14px 0 6px;
+      font-size: 24px;
+      letter-spacing: -.04em;
+    }
+    .ai-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .chips {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 14px 0 6px;
+      scrollbar-width: none;
+    }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip {
+      flex: 0 0 auto;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--fg);
+    }
+    .chip.active {
+      border-color: color-mix(in oklch, var(--green) 34%, var(--border));
+      background: color-mix(in oklch, var(--green) 11%, white);
+      color: color-mix(in oklch, var(--green) 80%, #064);
+    }
+
+    .chat {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+      padding-bottom: 14px;
+    }
+    .msg {
+      max-width: 84%;
+      padding: 12px 14px;
+      border-radius: 18px;
+      line-height: 1.55;
+      font-size: 13px;
+      animation: pop .22s ease both;
+    }
+    @keyframes pop {
+      from { transform: translateY(4px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .msg.bot {
+      background: white;
+      border: 1px solid var(--border);
+      border-top-left-radius: 6px;
+    }
+    .msg.user {
+      justify-self: end;
+      color: white;
+      background: linear-gradient(135deg, #168872, #25a784);
+      border-top-right-radius: 6px;
+    }
+    .chat-input {
+      position: sticky;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: 1fr 44px;
+      gap: 8px;
+      padding: 10px 0 0;
+      background: linear-gradient(180deg, transparent, var(--bg) 22%);
+    }
+    .chat-input input {
+      height: 44px;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 16px;
+      padding: 0 14px;
+      outline: none;
+    }
+    .send {
+      border: 0;
+      border-radius: 16px;
+      background: var(--green);
+      color: white;
+      font-weight: 900;
+    }
+
+    .map-shell {
+      height: 475px;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      margin-top: 8px;
+      border: 1px solid rgba(255,255,255,.88);
+      background:
+        radial-gradient(circle at 30% 25%, #bfe7c9 0 9%, transparent 10%),
+        radial-gradient(circle at 75% 42%, #b2dff3 0 10%, transparent 11%),
+        linear-gradient(135deg, #eaf8ec, #e6f5ff);
+      box-shadow: 0 18px 40px rgba(38,69,69,.08);
+    }
+    .path {
+      position: absolute;
+      inset: 68px 38px 110px;
+      border: 8px solid rgba(255,255,255,.82);
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      transform: rotate(18deg);
+    }
+    .lake {
+      position: absolute;
+      right: 38px;
+      top: 170px;
+      width: 118px;
+      height: 74px;
+      border-radius: 54% 46% 55% 45%;
+      background: rgba(75,170,226,.48);
+    }
+    .pin {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border-radius: 50% 50% 50% 8px;
+      transform: rotate(-45deg);
+      background: white;
+      border: 8px solid var(--green);
+      box-shadow: 0 10px 22px rgba(25,95,82,.18);
+    }
+    .pin span {
+      position: absolute;
+      transform: rotate(45deg);
+      left: 24px;
+      top: 20px;
+      white-space: nowrap;
+      background: white;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--fg);
+      box-shadow: 0 8px 18px rgba(0,0,0,.08);
+      z-index: 2;
+    }
+    .pin.p1 { left: 64px; top: 96px; }
+    .pin.p2 { right: 82px; top: 118px; border-color: var(--blue); }
+    .pin.p3 { left: 126px; bottom: 102px; border-color: var(--yellow); }
+    .map-card {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      background: rgba(255,255,255,.94);
+      border-radius: 24px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+    .map-card h4 { margin: 0 0 4px; font-size: 15px; }
+    .map-card p { margin: 0; color: var(--muted); font-size: 12px; }
+
+    .btn, .primary-btn, .ghost-btn, .danger-btn {
+      min-height: 44px;
+      border: 0;
+      border-radius: 16px;
+      padding: 0 14px;
+      font-weight: 900;
+    }
+    .primary-btn {
+      background: var(--green);
+      color: white;
+      box-shadow: 0 12px 24px color-mix(in oklch, var(--green) 24%, transparent);
+    }
+    .primary-btn.blue {
+      background: var(--blue);
+      box-shadow: 0 12px 24px color-mix(in oklch, var(--blue) 22%, transparent);
+    }
+    .ghost-btn {
+      background: #eef6f4;
+      color: color-mix(in oklch, var(--green) 80%, #064);
+    }
+    .danger-btn {
+      background: color-mix(in oklch, var(--red) 12%, white);
+      color: color-mix(in oklch, var(--red) 80%, #712);
+    }
+
+    .queue-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+    .queue-number { min-width: 70px; text-align: right; }
+    .queue-number strong {
+      display: block;
+      font-size: 24px;
+      letter-spacing: -.045em;
+      font-variant-numeric: tabular-nums;
+    }
+    .queue-number span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .progress {
+      margin-top: 12px;
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #edf4f2;
+    }
+    .progress b {
+      display: block;
+      height: 100%;
+      width: var(--w, 50%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+    }
+
+    .profile {
+      margin-top: 8px;
+      padding: 18px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, white, #effaf7);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: var(--soft-shadow);
+    }
+    .profile.admin-profile { background: linear-gradient(135deg, white, #eef3ff); }
+    .avatar {
+      flex: 0 0 auto;
+      width: 58px;
+      height: 58px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #9ee2c6, #66aee8);
+      position: relative;
+    }
+    .avatar.staff { background: linear-gradient(135deg, #27b68d, #215f6d); }
+    .avatar.admin { background: linear-gradient(135deg, #7086ff, #24c59a); }
+    .avatar:before {
+      content: "";
+      position: absolute;
+      left: 19px;
+      top: 14px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: white;
+      opacity: .9;
+    }
+    .avatar:after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      bottom: 10px;
+      width: 34px;
+      height: 18px;
+      border-radius: 18px 18px 8px 8px;
+      background: rgba(255,255,255,.9);
+    }
+    .profile h3 { margin: 0 0 4px; font-size: 18px; }
+    .profile p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+
+    .stats-grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .stat {
+      background: white;
+      border-radius: 20px;
+      padding: 14px 10px;
+      text-align: center;
+      box-shadow: 0 10px 22px rgba(40,64,64,.05);
+    }
+    .stat strong {
+      display: block;
+      font-size: 20px;
+      letter-spacing: -.045em;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .ticket-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: start;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--border);
+    }
+    .qr {
+      flex: 0 0 auto;
+      width: 86px;
+      height: 86px;
+      border: 10px solid white;
+      border-radius: 18px;
+      background:
+        linear-gradient(90deg, #111 8px, transparent 8px 14px, #111 14px 22px, transparent 22px 30px, #111 30px 38px, transparent 38px),
+        linear-gradient(#111 8px, transparent 8px 14px, #111 14px 22px, transparent 22px 30px, #111 30px 38px, transparent 38px);
+      background-size: 38px 38px;
+      background-color: white;
+      box-shadow: inset 0 0 0 1px #dfe6e4, 0 10px 20px rgba(0,0,0,.06);
+    }
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .order-row strong { color: var(--fg); }
+
+    .scan-workbench {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .scan-box {
+      height: 250px;
+      border-radius: 30px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.18) 50%, transparent 50%),
+        linear-gradient(rgba(255,255,255,.18) 50%, transparent 50%),
+        #132225;
+      background-size: 28px 28px;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .scan-frame {
+      width: 174px;
+      height: 174px;
+      border: 4px solid rgba(255,255,255,.86);
+      border-radius: 24px;
+      position: relative;
+    }
+    .scan-frame:before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 74px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 22px var(--green);
+      animation: scan 2s ease-in-out infinite;
+    }
+    @keyframes scan {
+      0%, 100% { transform: translateY(-66px); }
+      50% { transform: translateY(66px); }
+    }
+    .verify-result {
+      display: none;
+      padding: 14px;
+      border-radius: 22px;
+      background: color-mix(in oklch, var(--ok) 13%, white);
+      border: 1px solid color-mix(in oklch, var(--ok) 35%, white);
+    }
+    .verify-result.show { display: block; }
+    .verify-result strong {
+      display: block;
+      margin-bottom: 5px;
+      color: color-mix(in oklch, var(--ok) 75%, #073);
+    }
+    .verify-result span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 7px;
+      margin: 12px 0;
+    }
+    .form-field label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      outline: none;
+      background: white;
+    }
+    .form-field textarea { min-height: 88px; resize: vertical; }
+
+    .dashboard-grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .metric-card {
+      min-height: 112px;
+      padding: 15px;
+      border-radius: 22px;
+      background: white;
+      box-shadow: 0 10px 24px rgba(40,64,64,.06);
+    }
+    .metric-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .metric-card strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 28px;
+      letter-spacing: -.055em;
+      font-variant-numeric: tabular-nums;
+    }
+    .metric-card em {
+      display: block;
+      margin-top: 6px;
+      color: color-mix(in oklch, var(--ok) 80%, #073);
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 900;
+    }
+    .metric-card.alert em { color: #b35a00; }
+
+    .alert-strip {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 22px;
+      background: #fff7e0;
+      border: 1px solid #f0dfa8;
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+    .alert-strip b {
+      width: 36px;
+      height: 36px;
+      border-radius: 14px;
+      background: #f7c948;
+      display: grid;
+      place-items: center;
+      color: #503500;
+    }
+    .alert-strip strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .alert-strip span {
+      display: block;
+      color: #7b5a00;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .bar-chart {
+      margin-top: 14px;
+      height: 128px;
+      padding: 12px;
+      border-radius: 18px;
+      background: #f4f7f8;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      align-items: end;
+      gap: 8px;
+    }
+    .bar {
+      height: var(--h);
+      border-radius: 999px 999px 5px 5px;
+      background: linear-gradient(180deg, var(--blue), var(--green));
+    }
+
+    .tabs {
+      margin: 14px 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .tabs button {
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 14px;
+      padding: 10px 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .tabs button.active {
+      color: #3155bd;
+      background: #eef3ff;
+      border-color: #cdd8ff;
+    }
+    .case-panel { display: none; }
+    .case-panel.active { display: grid; gap: 10px; }
+
+    .toast {
+      position: absolute;
+      left: 50%;
+      bottom: 102px;
+      transform: translateX(-50%) translateY(12px);
+      padding: 11px 15px;
+      border-radius: 999px;
+      background: rgba(10,20,22,.9);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s ease;
+      z-index: 10;
+      white-space: nowrap;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .caption {
+      width: min(430px, 100%);
+      padding: 16px 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.84);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+      box-shadow: 0 12px 28px rgba(25,61,61,.08);
+    }
+    .caption strong { color: var(--fg); }
+
+    @media (max-width: 900px) {
+      .workspace {
+        grid-template-columns: 1fr;
+        padding: 20px 14px 32px;
+      }
+      .director-panel { position: static; }
+      .device { width: min(430px, calc(100vw - 28px)); }
+    }
+  </style>
+</head>
+<body>
+  <main class="workspace">
+    <aside class="director-panel">
+      <span class="eyebrow"><span class="dot"></span> Creative Direction</span>
+      <h1>自然智慧型景区小程序</h1>
+      <p class="lead">默认采用“自然可信 + 智慧运营 + 亲和服务”的产品方向：游客轻松游玩，员工高效执行，管理员移动处理异常。</p>
+
+      <div class="role-switch" aria-label="角色切换">
+        <button class="active" data-role="visitor">游客</button>
+        <button data-role="staff">员工</button>
+        <button data-role="admin">管理员</button>
+      </div>
+
+      <div class="screen-list" id="screenList"></div>
+
+      <section class="quality">
+        <h3>本轮审美标准</h3>
+        <ul>
+          <li><b>01</b><span><b>游客端</b>像游玩助手：路线、导览、排队、票券要轻。</span></li>
+          <li><b>02</b><span><b>员工端</b>像现场工具：扫码、上报、班次、任务优先。</span></li>
+          <li><b>03</b><span><b>管理员端</b>像移动指挥台：数据不是装饰，要能触发处理动作。</span></li>
+          <li><b>04</b><span>避免模板感：不堆万能白卡，不把桌面后台缩成手机。</span></li>
+        </ul>
+      </section>
+    </aside>
+
+    <section class="stage-wrap">
+      <div class="device" aria-label="微信小程序手机原型">
+        <div class="phone">
+          <div class="status">
+            <span>09:41</span>
+            <span class="status-icons"><span class="signal"></span><span>5G</span><span class="battery"></span></span>
+          </div>
+
+          <div class="titlebar">
+            <button class="back" aria-label="返回">‹</button>
+            <div class="mini-title" id="miniTitle">云溪山景区</div>
+            <div class="capsule" aria-hidden="true"><i></i><b></b></div>
+          </div>
+
+          <section class="screen active" id="home" data-title="云溪山景区">
+            <div class="hero tourist">
+              <div class="hero-meta"><span>云溪山 · 今日舒适</span><strong>23°C</strong></div>
+              <h2>今天适合一条轻松山水线</h2>
+              <p>数字人已根据天气、人流和你的入园时间，推荐低拥堵游玩路线。</p>
+            </div>
+
+            <div class="search">搜索景点、厕所、餐饮、服务点</div>
+
+            <div class="quick-grid">
+              <button class="quick" data-jump="ai"><span class="ico">问</span><span>数字人</span></button>
+              <button class="quick" data-jump="map"><span class="ico">导</span><span>导览</span></button>
+              <button class="quick" data-jump="queue"><span class="ico">排</span><span>排队</span></button>
+              <button class="quick" data-jump="mine"><span class="ico">票</span><span>票券</span></button>
+            </div>
+
+            <div class="section-title">
+              <h3>今日推荐</h3>
+              <a href="#">换一条</a>
+            </div>
+
+            <article class="card route-card">
+              <div class="thumb"></div>
+              <div>
+                <h4>2 小时轻松游</h4>
+                <p>游客中心 → 云溪湖 → 竹林栈道 → 山顶观景台</p>
+                <div class="meta-row">
+                  <span class="pill">步行 2.8km</span>
+                  <span class="pill">人流适中</span>
+                  <span class="pill warn">索道 18 分钟</span>
+                </div>
+              </div>
+            </article>
+
+            <div class="section-title">
+              <h3>现场提醒</h3>
+              <a href="#">全部</a>
+            </div>
+            <div class="list">
+              <div class="list-item">
+                <div><strong>观景索道当前等候约 18 分钟</strong><span>建议先游览云溪湖，接近叫号时再前往。</span></div>
+                <span class="tag warn">实时</span>
+              </div>
+              <div class="list-item">
+                <div><strong>东门检票口客流较少</strong><span>持电子票游客可从东门快速入园。</span></div>
+                <span class="tag ok">推荐</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="screen" id="ai" data-title="数字人问答">
+            <div class="ai-head">
+              <div class="ai-avatar" aria-hidden="true"></div>
+              <h2>云溪数字导游</h2>
+              <p>可以问路线、讲解、餐饮、排队、失物招领，也可以让我按亲子、老人、半日游生成计划。</p>
+            </div>
+
+            <div class="chips">
+              <button class="chip" data-question="帮我规划一条不累的亲子路线">亲子路线</button>
+              <button class="chip" data-question="观景台现在排队多久？">排队多久</button>
+              <button class="chip" data-question="附近哪里有卫生间？">找卫生间</button>
+              <button class="chip" data-question="给我讲讲云溪湖的故事">景点讲解</button>
+            </div>
+
+            <div class="chat" id="chat">
+              <div class="msg bot">你好，我是云溪数字导游。告诉我游玩时长、同行人群和想看的景点，我会给你安排路线。</div>
+              <div class="msg user">我带老人游玩，想少走路。</div>
+              <div class="msg bot">建议选择“云溪湖环线”：游客中心乘接驳车到湖畔，下车后 600 米平缓步道可到观景平台。全程约 70 分钟。</div>
+            </div>
+
+            <div class="chat-input">
+              <input id="chatInput" placeholder="输入你的问题…" />
+              <button class="send" id="sendBtn">发</button>
+            </div>
+          </section>
+
+          <section class="screen" id="map" data-title="景区导览">
+            <div class="map-shell">
+              <div class="path"></div>
+              <div class="lake"></div>
+              <button class="pin p1" data-spot="游客中心 · 检票 / 咨询 / 租赁"><span>游客中心</span></button>
+              <button class="pin p2" data-spot="云溪湖 · 推荐拍照点，人流舒适"><span>云溪湖</span></button>
+              <button class="pin p3" data-spot="观景索道 · 当前等候 18 分钟"><span>观景索道</span></button>
+              <div class="map-card">
+                <div>
+                  <h4 id="spotTitle">游客中心 · 检票 / 咨询 / 租赁</h4>
+                  <p>距你 120 米 · 可步行 3 分钟到达</p>
+                </div>
+                <button class="primary-btn" id="routeBtn">去这里</button>
+              </div>
+            </div>
+
+            <div class="section-title"><h3>附近服务</h3><a href="#">筛选</a></div>
+            <div class="list">
+              <div class="list-item"><div><strong>卫生间 A 区</strong><span>约 80 米 · 无障碍卫生间开放</span></div><span class="tag ok">最近</span></div>
+              <div class="list-item"><div><strong>湖畔轻食</strong><span>约 210 米 · 当前无需排队</span></div><span class="tag">餐饮</span></div>
+            </div>
+          </section>
+
+          <section class="screen" id="queue" data-title="线上排队">
+            <div class="section-title"><h3>可预约项目</h3><a href="#">规则</a></div>
+            <div class="list">
+              <article class="card queue-card">
+                <div>
+                  <h4>观景索道</h4>
+                  <p>当前叫号 A026，预计等待 18 分钟。</p>
+                  <div class="progress"><b style="--w:62%"></b></div>
+                </div>
+                <div class="queue-number"><strong>A041</strong><span>我的号</span></div>
+              </article>
+
+              <article class="card queue-card">
+                <div>
+                  <h4>竹林漂流</h4>
+                  <p>当前叫号 B108，雨天可能临时暂停。</p>
+                  <div class="progress"><b style="--w:38%"></b></div>
+                </div>
+                <button class="primary-btn queueJoin">取号</button>
+              </article>
+
+              <article class="card queue-card">
+                <div>
+                  <h4>云溪剧场</h4>
+                  <p>14:30 场剩余 36 席，建议提前 10 分钟入场。</p>
+                  <div class="progress"><b style="--w:74%"></b></div>
+                </div>
+                <button class="ghost-btn queueJoin">预约</button>
+              </article>
+            </div>
+          </section>
+
+          <section class="screen" id="mine" data-title="我的 / 订单">
+            <div class="profile">
+              <div class="avatar"></div>
+              <div>
+                <h3>游客 0826</h3>
+                <p>普通游客权限 · 今日已入园 · 游玩时长 1 小时 24 分</p>
+              </div>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat"><strong>2</strong><span>电子票</span></div>
+              <div class="stat"><strong>1</strong><span>排队中</span></div>
+              <div class="stat"><strong>4</strong><span>收藏点</span></div>
+            </div>
+
+            <div class="section-title"><h3>今日票券</h3><a href="#">全部订单</a></div>
+            <article class="card">
+              <div class="ticket-top">
+                <div>
+                  <h4>云溪山成人票</h4>
+                  <p>有效期：今日 18:00 前 · 可核销 1 次</p>
+                  <div class="meta-row"><span class="pill">未使用</span><span class="pill">订单尾号 3921</span></div>
+                </div>
+                <div class="qr" aria-label="核销二维码"></div>
+              </div>
+              <div class="order-row"><span>入园人</span><strong>张*明</strong></div>
+              <div class="order-row"><span>购买渠道</span><strong>小程序官方商城</strong></div>
+            </article>
+          </section>
+
+          <section class="screen" id="verify" data-title="票券核销">
+            <div class="hero staff">
+              <div class="hero-meta"><span>工作人员端</span><strong>检票口 A</strong></div>
+              <h2>现场核销工作台</h2>
+              <p>高频扫码、异常票登记、手动检索和今日核销数据集中在一个操作页。</p>
+            </div>
+
+            <div class="scan-workbench">
+              <div class="scan-box"><div class="scan-frame"></div></div>
+              <button class="primary-btn" id="scanBtn">模拟扫码核销</button>
+              <div class="verify-result" id="verifyResult">
+                <strong>核销成功 · 成人票 1 张</strong>
+                <span>订单尾号 3921 · 入园人 张*明 · 09:41 已入园</span>
+              </div>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat"><strong>428</strong><span>已核销</span></div>
+              <div class="stat"><strong>36</strong><span>待入园</span></div>
+              <div class="stat"><strong>3</strong><span>异常单</span></div>
+            </div>
+
+            <div class="section-title"><h3>最近核销</h3></div>
+            <div class="list">
+              <div class="list-item"><div><strong>成人票 · 张*明</strong><span>09:41 · 检票口 A · 正常入园</span></div><span class="tag ok">成功</span></div>
+              <div class="list-item"><div><strong>亲子套票 · 刘*婷</strong><span>09:38 · 二维码已过期，需重新拉取</span></div><span class="tag danger">异常</span></div>
+            </div>
+          </section>
+
+          <section class="screen" id="report" data-title="问题上报">
+            <div class="card" style="margin-top:8px">
+              <h4>上报现场问题</h4>
+              <p>用于工作人员记录设施故障、游客求助、拥堵、安全隐患等问题，提交后进入管理员工单处理流。</p>
+            </div>
+
+            <div class="form-field">
+              <label for="reportType">问题类型</label>
+              <select id="reportType">
+                <option>设施故障</option>
+                <option>游客求助</option>
+                <option>客流拥堵</option>
+                <option>安全隐患</option>
+                <option>环境卫生</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="reportPlace">发生位置</label>
+              <input id="reportPlace" value="观景索道入口" />
+            </div>
+
+            <div class="form-field">
+              <label for="reportText">问题描述</label>
+              <textarea id="reportText">入口闸机右侧通道识别不稳定，游客排队变慢，需要设备人员检查。</textarea>
+            </div>
+
+            <div class="form-field">
+              <label>处理优先级</label>
+              <div class="chips" style="padding:0">
+                <button class="chip priority active">普通</button>
+                <button class="chip priority">紧急</button>
+                <button class="chip priority">需支援</button>
+              </div>
+            </div>
+
+            <button class="primary-btn" id="submitReport" style="width:100%;margin-top:8px">提交上报</button>
+          </section>
+
+          <section class="screen" id="staffMine" data-title="员工我的">
+            <div class="profile">
+              <div class="avatar staff"></div>
+              <div>
+                <h3>李师傅 · 检票岗</h3>
+                <p>员工权限 · 今日班次 08:30–17:30 · 检票口 A</p>
+              </div>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat"><strong>428</strong><span>核销数</span></div>
+              <div class="stat"><strong>6</strong><span>已上报</span></div>
+              <div class="stat"><strong>2</strong><span>待跟进</span></div>
+            </div>
+
+            <div class="section-title"><h3>我的工作</h3><a href="#">班次</a></div>
+            <div class="list">
+              <div class="list-item"><div><strong>当前岗位</strong><span>检票口 A · 支持扫码核销、异常登记</span></div><span class="tag staff">在岗</span></div>
+              <div class="list-item"><div><strong>我的上报</strong><span>查看已提交问题、处理状态与管理员回复</span></div><span>›</span></div>
+              <div class="list-item"><div><strong>交接记录</strong><span>班次结束前填写现场事项与待跟进问题</span></div><span>›</span></div>
+            </div>
+          </section>
+
+          <section class="screen" id="adminDashboard" data-title="管理数据总览">
+            <div class="hero admin">
+              <div class="hero-meta"><span>管理员端</span><strong>实时</strong></div>
+              <h2>移动运营指挥台</h2>
+              <p>先看异常，再看趋势；把客流、核销、排队和工单转成可处理动作。</p>
+            </div>
+
+            <div class="alert-strip">
+              <b>!</b>
+              <div>
+                <strong>观景索道入口出现核销拥堵</strong>
+                <span>当前等待约 18 分钟，闸机异常工单未派单。建议增派维护组与疏导岗。</span>
+              </div>
+            </div>
+
+            <div class="dashboard-grid">
+              <div class="metric-card"><span>当前在园</span><strong>3,286</strong><em>较昨日 +8.4%</em></div>
+              <div class="metric-card"><span>今日核销</span><strong>1,842</strong><em>峰值 10:30</em></div>
+              <div class="metric-card"><span>排队中</span><strong>216</strong><em>索道压力较高</em></div>
+              <div class="metric-card alert"><span>待处理工单</span><strong>9</strong><em>2 个紧急</em></div>
+            </div>
+
+            <div class="section-title"><h3>分时客流</h3><a href="#">详情</a></div>
+            <div class="card">
+              <p>08:00–14:00 客流趋势，用于判断是否需要临时增派岗位。</p>
+              <div class="bar-chart" aria-label="分时客流柱状图">
+                <span class="bar" style="--h:38%"></span>
+                <span class="bar" style="--h:54%"></span>
+                <span class="bar" style="--h:88%"></span>
+                <span class="bar" style="--h:76%"></span>
+                <span class="bar" style="--h:62%"></span>
+                <span class="bar" style="--h:45%"></span>
+                <span class="bar" style="--h:32%"></span>
+              </div>
+            </div>
+          </section>
+
+          <section class="screen" id="adminCases" data-title="工单处理">
+            <div class="card" style="margin-top:8px">
+              <h4>管理员移动处理台</h4>
+              <p>处理员工上报的问题，支持分派、升级、关闭和备注。默认优先显示紧急事项。</p>
+            </div>
+
+            <div class="tabs">
+              <button class="case-tab active" data-panel="pending">待处理</button>
+              <button class="case-tab" data-panel="assigned">已派单</button>
+              <button class="case-tab" data-panel="closed">已关闭</button>
+            </div>
+
+            <div class="case-panel active" id="pending">
+              <div class="list-item">
+                <div><strong>观景索道入口闸机异常</strong><span>李师傅 09:31 上报 · 影响核销效率</span></div>
+                <span class="tag danger">紧急</span>
+              </div>
+              <div class="list-item">
+                <div><strong>云溪湖栏杆松动</strong><span>巡逻岗 09:18 上报 · 需维护组确认</span></div>
+                <span class="tag warn">普通</span>
+              </div>
+              <button class="primary-btn blue caseAction">派给维护组</button>
+              <button class="danger-btn caseAction">升级为紧急</button>
+            </div>
+
+            <div class="case-panel" id="assigned">
+              <div class="list-item">
+                <div><strong>东门客流短时升高</strong><span>已派给疏导组 · 预计 10 分钟到位</span></div>
+                <span class="tag admin">跟进中</span>
+              </div>
+              <div class="list-item">
+                <div><strong>游客中心失物求助</strong><span>已派给服务台 · 等待游客确认</span></div>
+                <span class="tag admin">待确认</span>
+              </div>
+            </div>
+
+            <div class="case-panel" id="closed">
+              <div class="list-item">
+                <div><strong>湖畔餐饮排队拥堵</strong><span>已增加临时队列引导，09:20 关闭</span></div>
+                <span class="tag ok">已关闭</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="screen" id="adminMine" data-title="管理员我的">
+            <div class="profile admin-profile">
+              <div class="avatar admin"></div>
+              <div>
+                <h3>王经理 · 运营管理员</h3>
+                <p>管理员权限 · 可查看全园数据、处理工单、配置员工权限</p>
+              </div>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat"><strong>12</strong><span>管理景点</span></div>
+              <div class="stat"><strong>48</strong><span>员工账号</span></div>
+              <div class="stat"><strong>9</strong><span>待处理</span></div>
+            </div>
+
+            <div class="section-title"><h3>管理功能</h3></div>
+            <div class="list">
+              <div class="list-item"><div><strong>角色与权限</strong><span>配置员工、组长、管理员可访问的模块</span></div><span>›</span></div>
+              <div class="list-item"><div><strong>消息与预警设置</strong><span>客流阈值、排队阈值、紧急工单提醒</span></div><span>›</span></div>
+              <div class="list-item"><div><strong>数据报表导出</strong><span>按日 / 周 / 月查看核销、排队、客流数据</span></div><span>›</span></div>
+            </div>
+          </section>
+
+          <nav class="bottom-nav active" id="visitorNav" aria-label="游客端底部导航">
+            <button class="nav-item active" data-jump="home">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+              首页
+            </button>
+            <button class="nav-item" data-jump="map">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 18-6 3V6l6-3 6 3 6-3v15l-6 3-6-3Z"/><path d="M9 3v15M15 6v15"/></svg>
+              导览
+            </button>
+            <button class="nav-item" data-jump="queue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 7h14M5 12h14M5 17h10"/></svg>
+              排队
+            </button>
+            <button class="nav-item" data-jump="mine">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.8-4 5-6 8-6s6.2 2 8 6"/></svg>
+              我的
+            </button>
+          </nav>
+
+          <nav class="bottom-nav" id="staffNav" aria-label="工作人员底部导航" style="grid-template-columns:repeat(3,1fr)">
+            <button class="nav-item active" data-jump="verify">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2"/><path d="M7 12h10"/></svg>
+              核销
+            </button>
+            <button class="nav-item" data-jump="report">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 9v4M12 17h.01"/><path d="M10.3 4.3 2.8 18a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0Z"/></svg>
+              上报
+            </button>
+            <button class="nav-item" data-jump="staffMine">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.8-4 5-6 8-6s6.2 2 8 6"/></svg>
+              我的
+            </button>
+          </nav>
+
+          <nav class="bottom-nav admin-nav" id="adminNav" aria-label="管理员底部导航" style="grid-template-columns:repeat(3,1fr)">
+            <button class="nav-item active" data-jump="adminDashboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5M9 19v-7M14 19V9M19 19V4"/></svg>
+              总览
+            </button>
+            <button class="nav-item" data-jump="adminCases">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+              处理
+            </button>
+            <button class="nav-item" data-jump="adminMine">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.8-4 5-6 8-6s6.2 2 8 6"/></svg>
+              我的
+            </button>
+          </nav>
+
+          <div class="toast" id="toast">已完成</div>
+        </div>
+      </div>
+
+      <div class="caption" id="caption">
+        <strong>游客首页：</strong>重构为“今日游玩助手”，把天气、人流、路线、排队和数字人入口放在同一决策场景里，减少普通模板首页感。
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const roleConfig = {
+      visitor: {
+        start: "home",
+        nav: "visitorNav",
+        screens: [
+          { id: "home", title: "首页 / 游玩入口", desc: "今日推荐、服务入口、现场提醒", tag: "游客" },
+          { id: "ai", title: "数字人问答", desc: "路线规划、讲解、排队、服务咨询", tag: "游客" },
+          { id: "map", title: "景区导览 / 地图", desc: "景点定位、服务点、路线导航", tag: "游客" },
+          { id: "queue", title: "线上排队", desc: "取号、预约、叫号提醒", tag: "游客" },
+          { id: "mine", title: "我的 / 订单", desc: "电子票、二维码、游玩记录", tag: "游客" }
+        ]
+      },
+      staff: {
+        start: "verify",
+        nav: "staffNav",
+        screens: [
+          { id: "verify", title: "票券核销", desc: "扫码核销、异常提示、最近核销", tag: "员工" },
+          { id: "report", title: "问题上报", desc: "现场问题、优先级、流转状态", tag: "员工" },
+          { id: "staffMine", title: "员工我的", desc: "个人班次、岗位、任务统计", tag: "员工" }
+        ]
+      },
+      admin: {
+        start: "adminDashboard",
+        nav: "adminNav",
+        screens: [
+          { id: "adminDashboard", title: "管理数据总览", desc: "客流、核销、排队、异常提醒", tag: "管理员" },
+          { id: "adminCases", title: "工单处理", desc: "派单、升级、关闭、移动审批", tag: "管理员" },
+          { id: "adminMine", title: "管理员我的", desc: "权限配置、报表、安全设置", tag: "管理员" }
+        ]
+      }
+    };
+
+    const captions = {
+      home: "<strong>游客首页：</strong>重构为“今日游玩助手”，把天气、人流、路线、排队和数字人入口放在同一决策场景里，减少普通模板首页感。",
+      ai: "<strong>数字人问答：</strong>保留聊天真实交互，并把快捷问题设置为景区高频咨询：亲子路线、排队、卫生间、景点讲解。",
+      map: "<strong>景区导览：</strong>地图不只是装饰，而是把景点、服务点和排队点区分出来，点击点位会更新目的地卡片。",
+      queue: "<strong>线上排队：</strong>突出当前叫号、我的号码、预计等待和预约动作，避免游客在现场聚集。",
+      mine: "<strong>游客我的：</strong>只呈现游客自己的票券、订单、排队和收藏，严格不暴露员工或管理员功能。",
+      verify: "<strong>员工核销：</strong>升级为现场工作台，扫码、核销结果、异常票和今日统计都服务于高频检票场景。",
+      report: "<strong>员工上报：</strong>员工可以记录类型、位置、描述和优先级，提交后进入管理员工单流。",
+      staffMine: "<strong>员工我的：</strong>补齐员工个人工作台，包含班次、岗位、核销数、上报记录和待跟进事项。",
+      adminDashboard: "<strong>管理员总览：</strong>移动指挥台优先呈现异常提醒，再给出客流、核销、排队、工单数据，帮助管理员决策。",
+      adminCases: "<strong>管理员工单处理：</strong>默认显示待处理紧急事项，支持派单、升级、切换处理状态，不只是静态列表。",
+      adminMine: "<strong>管理员我的：</strong>聚合权限、预警、报表和安全设置，体现管理员与员工的权限差异。"
+    };
+
+    let currentRole = "visitor";
+    let currentScreen = "home";
+
+    const screenList = document.getElementById("screenList");
+    const roleButtons = document.querySelectorAll(".role-switch button");
+    const screens = document.querySelectorAll(".screen");
+    const miniTitle = document.getElementById("miniTitle");
+    const caption = document.getElementById("caption");
+    const toast = document.getElementById("toast");
+    const navs = ["visitorNav", "staffNav", "adminNav"].map(id => document.getElementById(id));
+
+    function screenIds(role) {
+      return roleConfig[role].screens.map(s => s.id);
+    }
+
+    function inferRole(id) {
+      if (screenIds("staff").includes(id)) return "staff";
+      if (screenIds("admin").includes(id)) return "admin";
+      return "visitor";
+    }
+
+    function roleTagClass(role) {
+      if (role === "staff") return "staff";
+      if (role === "admin") return "admin";
+      return "";
+    }
+
+    function renderScreenList() {
+      const data = roleConfig[currentRole].screens;
+      screenList.innerHTML = data.map(item => `
+        <button data-screen="${item.id}" class="${item.id === currentScreen ? "active" : ""}">
+          <span><strong>${item.title}</strong><span>${item.desc}</span></span>
+          <em class="tag ${roleTagClass(currentRole)}">${item.tag}</em>
+        </button>
+      `).join("");
+
+      screenList.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => showScreen(btn.dataset.screen));
+      });
+    }
+
+    function updateNav() {
+      navs.forEach(nav => nav.classList.remove("active"));
+      document.getElementById(roleConfig[currentRole].nav).classList.add("active");
+      document.querySelectorAll(".nav-item").forEach(item => {
+        item.classList.toggle("active", item.dataset.jump === currentScreen);
+      });
+    }
+
+    function setRole(role) {
+      currentRole = role;
+      currentScreen = roleConfig[role].start;
+      roleButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.role === role));
+      showScreen(currentScreen, false);
+    }
+
+    function showScreen(id, shouldInfer = true) {
+      if (shouldInfer) {
+        currentRole = inferRole(id);
+        roleButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.role === currentRole));
+      }
+      currentScreen = id;
+      screens.forEach(screen => screen.classList.toggle("active", screen.id === id));
+      const target = document.getElementById(id);
+      miniTitle.textContent = target.dataset.title || "云溪山景区";
+      caption.innerHTML = captions[id] || "";
+      renderScreenList();
+      updateNav();
+    }
+
+    function showToast(text) {
+      toast.textContent = text;
+      toast.classList.add("show");
+      window.setTimeout(() => toast.classList.remove("show"), 1600);
+    }
+
+    roleButtons.forEach(btn => {
+      btn.addEventListener("click", () => setRole(btn.dataset.role));
+    });
+
+    document.querySelectorAll("[data-jump]").forEach(btn => {
+      btn.addEventListener("click", () => showScreen(btn.dataset.jump));
+    });
+
+    document.querySelectorAll(".pin").forEach(pin => {
+      pin.addEventListener("click", () => {
+        document.getElementById("spotTitle").textContent = pin.dataset.spot;
+      });
+    });
+
+    document.getElementById("routeBtn").addEventListener("click", () => {
+      showToast("已为你规划步行路线");
+    });
+
+    document.querySelectorAll(".queueJoin").forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.textContent = "已预约";
+        btn.classList.remove("primary-btn");
+        btn.classList.add("ghost-btn");
+        showToast("已开启叫号提醒");
+      });
+    });
+
+    const chat = document.getElementById("chat");
+    const chatInput = document.getElementById("chatInput");
+    const sendBtn = document.getElementById("sendBtn");
+
+    function addMessage(type, text) {
+      const div = document.createElement("div");
+      div.className = "msg " + type;
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.parentElement.scrollTop = chat.parentElement.scrollHeight;
+    }
+
+    function answerQuestion(text) {
+      addMessage("user", text);
+      let answer = "我建议先从游客中心出发，结合当前位置、人流和体力选择路线。你也可以告诉我同行人群和预计游玩时长。";
+      if (text.includes("亲子")) answer = "亲子路线建议：游客中心 → 云溪湖喂鱼点 → 竹林轻步道 → 湖畔轻食。全程约 90 分钟，避开台阶较多的山顶线。";
+      if (text.includes("排队") || text.includes("多久")) answer = "观景索道当前预计等待 18 分钟，竹林漂流约 25 分钟。你可以先线上取号，接近叫号时再前往。";
+      if (text.includes("卫生间")) answer = "最近卫生间在游客中心右侧，距离约 80 米；云溪湖东侧也有无障碍卫生间，步行约 5 分钟。";
+      if (text.includes("故事") || text.includes("讲")) answer = "云溪湖是景区最核心的水系景观，湖边保留了老茶道遗迹。傍晚光线会从西侧山脊照入湖面，是最适合拍照的时段。";
+      window.setTimeout(() => addMessage("bot", answer), 360);
+    }
+
+    sendBtn.addEventListener("click", () => {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      chatInput.value = "";
+      answerQuestion(text);
+    });
+
+    chatInput.addEventListener("keydown", e => {
+      if (e.key === "Enter") sendBtn.click();
+    });
+
+    document.querySelectorAll("[data-question]").forEach(btn => {
+      btn.addEventListener("click", () => answerQuestion(btn.dataset.question));
+    });
+
+    document.getElementById("scanBtn").addEventListener("click", () => {
+      document.getElementById("verifyResult").classList.add("show");
+      showToast("核销成功");
+    });
+
+    document.querySelectorAll(".priority").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".priority").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+
+    document.getElementById("submitReport").addEventListener("click", () => {
+      showToast("问题已提交，等待管理员处理");
+    });
+
+    document.querySelectorAll(".case-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".case-tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".case-panel").forEach(p => p.classList.remove("active"));
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.panel).classList.add("active");
+      });
+    });
+
+    document.querySelectorAll(".caseAction").forEach(btn => {
+      btn.addEventListener("click", () => showToast(btn.textContent + "已执行"));
+    });
+
+    renderScreenList();
+    showScreen("home");
+  </script>
+</body>
+</html>

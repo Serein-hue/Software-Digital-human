@@ -492,3 +492,85 @@ export async function fetchQueueStats(): Promise<QueueStatsData | null> {
 export async function fetchCommandCenter(): Promise<CommandCenterData | null> {
   return apiGet<CommandCenterData>('/admin/analytics/command-center')
 }
+
+// ── 数字人配置 ─────────────────────────────────────────────────
+
+export interface AvatarItem {
+  id: string
+  name: string
+  style: string
+  description: string
+  gradient: string
+}
+
+export interface VoiceItem {
+  id: string
+  name: string
+  desc: string
+}
+
+export async function fetchAvatars(): Promise<AvatarItem[] | null> {
+  const data = await apiGet<{ items: AvatarItem[] }>('/digital-human/avatars')
+  return data?.items ?? null
+}
+
+export async function fetchVoices(): Promise<VoiceItem[] | null> {
+  const data = await apiGet<{ items: VoiceItem[] }>('/digital-human/voices')
+  return data?.items ?? null
+}
+
+// ── 内容审核 ─────────────────────────────────────────────────
+
+export interface ReviewItem {
+  id: string
+  question: string
+  answer: string
+  source: string
+  spot: string
+  submittedAt: string
+  reviewer?: string
+  reviewedAt?: string
+  status: 'pending' | 'approved' | 'rejected'
+  rejectReason?: string
+}
+
+export async function fetchReviews(page = 1, pageSize = 20): Promise<{ items: ReviewItem[] } | null> {
+  return apiGet<{ items: ReviewItem[] }>(`/knowledge/low-confidence-queries?page=${page}&page_size=${pageSize}`)
+}
+
+// ── 系统配置 ─────────────────────────────────────────────────
+
+export interface ConfigItem {
+  key: string
+  value: string
+  description: string
+  updatedAt: string
+}
+
+export async function fetchConfigs(): Promise<ConfigItem[] | null> {
+  const data = await apiGet<{ items: ConfigItem[] }>('/system-config')
+  return data?.items ?? null
+}
+
+export async function fetchConfig(configKey: string): Promise<ConfigItem | null> {
+  return apiGet<ConfigItem>(`/system-config/${configKey}`)
+}
+
+export async function updateConfig(configKey: string, value: string): Promise<ConfigItem | null> {
+  const token = window.localStorage.getItem('scenic_admin_token')
+  try {
+    const res = await fetch(`${ADMIN_BASE}/system-config/${configKey}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ value }),
+    })
+    if (!res.ok) return null
+    const json: ApiResponse<ConfigItem> = await res.json()
+    return json.code === 0 ? json.data : null
+  } catch {
+    return null
+  }
+}

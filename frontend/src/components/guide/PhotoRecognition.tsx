@@ -12,37 +12,6 @@ interface RecogResult {
   spotId?: string
 }
 
-const MOCK_RESULTS: RecogResult[] = [
-  {
-    id: 'r1',
-    name: '灵山大佛',
-    category: '青铜佛像·世界之最',
-    confidence: 97.3,
-    description: '世界最高露天青铜释迦牟尼立像，通高88米',
-    spotId: 'lingshan-buddha',
-  },
-  {
-    id: 'r2',
-    name: '灵山梵宫',
-    category: '佛教艺术殿堂',
-    confidence: 91.2,
-    description: '"东方卢浮宫"，世界佛教论坛永久会址',
-    spotId: 'lingshan-fanpalace',
-  },
-  {
-    id: 'r3',
-    name: '九龙灌浴',
-    category: '动态音乐群雕',
-    confidence: 84.5,
-    description: '大型音乐动态群雕，重现"花开见佛"祥瑞场景',
-    spotId: 'lingshan-jiulong',
-  },
-]
-
-const RECENT_HISTORY = [
-  { name: '五印坛城', time: '3分钟前' },
-  { name: '祥符禅寺', time: '15分钟前' },
-]
 
 interface Props {
   isOpen: boolean
@@ -153,74 +122,10 @@ export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk 
                 </div>
 
                 <div className="photo-result-list">
-                  {MOCK_RESULTS.map((item, i) => (
-                    <motion.div
-                      key={item.id}
-                      className="photo-result-card"
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.12 }}
-                    >
-                      <div className="photo-result-rank">
-                        <span>{i + 1}</span>
-                      </div>
-                      <div className="photo-result-info">
-                        <div className="photo-result-top">
-                          <strong>{item.name}</strong>
-                          <span className="photo-result-cat">{item.category}</span>
-                        </div>
-                        <p>{item.description}</p>
-                        <div className="photo-result-bottom">
-                          <span className="photo-confidence">
-                            {t('photo.confidence')} {item.confidence}%
-                          </span>
-                        </div>
-                      </div>
-                      <div className="photo-result-actions">
-                        {item.spotId && (
-                          <motion.button
-                            type="button"
-                            className="photo-action-btn"
-                            whileTap={{ scale: 0.94 }}
-                            onClick={() => {
-                              onClose()
-                              setTimeout(() => onSpotDetail(item.spotId!), 300)
-                            }}
-                          >
-                            <MapPin size={14} />
-                          </motion.button>
-                        )}
-                        <motion.button
-                          type="button"
-                          className="photo-action-btn ask"
-                          whileTap={{ scale: 0.94 }}
-                          onClick={() => {
-                            onClose()
-                            setTimeout(() => onAsk(t('photo.tellMeAbout', { name: item.name })), 300)
-                          }}
-                        >
-                          <span>{t('photo.ask')}</span>
-                          <ChevronRight size={14} />
-                        </motion.button>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {RECENT_HISTORY.length > 0 && (
-                  <div className="photo-history">
-                    <div className="photo-history-head">
-                      <History size={14} />
-                      <span>{t('photo.recent')}</span>
-                    </div>
-                    {RECENT_HISTORY.map((item) => (
-                      <div key={item.name} className="photo-history-item">
-                        <span>{item.name}</span>
-                        <span className="photo-history-time">{item.time}</span>
-                      </div>
-                    ))}
+                  <div className="dashboard-empty">
+                    <span>拍照识别功能需要调用摄像头，请连接后端服务后使用。</span>
                   </div>
-                )}
+                </div>
               </div>
             )}
           </div>

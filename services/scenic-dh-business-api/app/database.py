@@ -116,6 +116,28 @@ def _init_operational_tables(conn: sqlite3.Connection) -> None:
             updated_at TEXT NOT NULL DEFAULT (datetime('now'))
         );
 
+        CREATE TABLE IF NOT EXISTS users (
+            id TEXT PRIMARY KEY,
+            openid TEXT UNIQUE NOT NULL,
+            nickname TEXT NOT NULL DEFAULT '',
+            avatar TEXT NOT NULL DEFAULT '',
+            role TEXT NOT NULL DEFAULT 'visitor',
+            staff_name TEXT DEFAULT NULL,
+            staff_title TEXT DEFAULT NULL,
+            is_active INTEGER NOT NULL DEFAULT 1,
+            last_login TEXT DEFAULT NULL,
+            created_at TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+
+        CREATE TABLE IF NOT EXISTS user_session_tokens (
+            id TEXT PRIMARY KEY,
+            user_id TEXT NOT NULL,
+            token TEXT UNIQUE NOT NULL,
+            expires_at TEXT NOT NULL,
+            created_at TEXT NOT NULL DEFAULT (datetime('now')),
+            FOREIGN KEY(user_id) REFERENCES users(id)
+        );
+
         CREATE TABLE IF NOT EXISTS locations (
             session_id TEXT PRIMARY KEY,
             latitude REAL NOT NULL DEFAULT 0,

@@ -66,15 +66,6 @@ export default function DataDashboard() {
     { icon: Star, label: t('dashboard.satisfaction'), value: `${safeOverview.avgRating}`, change: '/5.0', color: 'var(--rust)' },
   ]
 
-  // 满意度数据（从真实评分聚合，暂无则显示 demo）
-  const satisfactionData = [
-    { name: '5★', value: 8, fill: '#155d58' },
-    { name: '4★', value: 114, fill: '#15bba0' },
-    { name: '3★', value: 314, fill: '#c1a15a' },
-    { name: '2★', value: 62, fill: '#e89460' },
-    { name: '1★', value: 24, fill: '#b4522c' },
-  ]
-
   // 热门景点（从真实位置上报聚合）
   const spotChartData = spotHeat.length > 0
     ? spotHeat
@@ -231,17 +222,9 @@ export default function DataDashboard() {
             <Star size={15} />
             <span>{t('dashboard.satisfactionDist')}</span>
           </div>
-          <ResponsiveContainer width="100%" height={220}>
-            <BarChart data={satisfactionData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#ded8c9" />
-              <XAxis dataKey="name" tick={{ fontSize: 11 }} />
-              <YAxis tick={{ fontSize: 11 }} />
-              <Tooltip />
-              <Bar dataKey="value" radius={[4, 4, 0, 0]}>
-                {satisfactionData.map((d) => (<Cell key={d.name} fill={d.fill} />))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          <div className="dashboard-empty" style={{ minHeight: 180, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            暂无满意度数据
+          </div>
         </div>
       </div>
     </motion.div>

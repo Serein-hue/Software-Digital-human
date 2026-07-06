@@ -1,111 +1,154 @@
-const BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:3001'
+/** API client for scenic-dh-business-api (:8001/v1) */
 
-interface SpotSummary {
-  id: string
-  name: string
-  category: string
-  location: string
-  shortIntro: string
-  heroGradient: string
+const BUSINESS_BASE = import.meta.env.VITE_BUSINESS_API_BASE ?? 'http://localhost:8001/v1'
+
+// ── Response helpers ─────────────────────────────────────────────
+
+interface ApiResponse<T> {
+  code: number
+  message: string
+  data: T
+  trace_id: string
 }
 
-interface SpotDetail extends SpotSummary {
-  params: string
-  fullIntro: string
-  highlights: string[]
-  openInfo: string
-  source: string
-  related: string[]
+interface Pagination {
+  page: number
+  page_size: number
+  total: number
+  total_pages: number
 }
 
-interface RouteStep {
-  spot: string
-  duration: string
-  note: string
-  spotId?: string
+interface PaginatedData<T> {
+  items: T[]
+  pagination: Pagination
 }
 
-interface RouteData {
-  id: string
-  title: string
-  description: string
-  duration: string
-  distance: string
-  difficulty: string
-  difficultyColor: string
-  steps: RouteStep[]
-  highlights: string[]
-  tags: string[]
-}
-
-interface ChatResponse {
-  answer: string
-  source: string
-  confidence: 'high' | 'medium' | 'low'
-}
-
-interface AnalyticsData {
-  todayVisitors: number
-  weekTrend: number[]
-  hourlyDistribution: { hour: string; count: number }[]
-  spotPopularity: { name: string; visitors: number; avgStay: number }[]
-  deviceDistribution: { name: string; value: number }[]
-  facilityStatus: { name: string; status: string; load: number }[]
-  alerts: { level: string; text: string; time: string }[]
-}
-
-let backendAvailable: boolean | null = null
-let backendRetryAt = 0
-
-async function apiFetch<T>(path: string, options?: RequestInit): Promise<T | null> {
-  if (backendAvailable === false && Date.now() < backendRetryAt) return null
+async function apiGet<T>(path: string): Promise<T | null> {
   try {
-    const res = await fetch(`${BASE}${path}`, {
-      ...options,
-      signal: AbortSignal.timeout(3000),
+    const res = await fetch(`${BUSINESS_BASE}${path}`, {
+      signal: AbortSignal.timeout(8_000),
     })
     if (!res.ok) return null
-    backendAvailable = true
-    return res.json()
+    const json: ApiResponse<T> = await res.json()
+    return json.code === 0 ? json.data : null
   } catch {
-    backendAvailable = false
-    backendRetryAt = Date.now() + 5_000
     return null
   }
 }
 
-export async function fetchSpots(): Promise<SpotSummary[] | null> {
-  return apiFetch<SpotSummary[]>('/api/spots')
+async function apiPost<T>(path: string, body?: unknown): Promise<T | null> {
+  try {
+    const res = await fetch(`${BUSINESS_BASE}${path}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: body ? JSON.stringify(body) : undefined,
+      signal: AbortSignal.timeout(15_000),
+    })
+    if (!res.ok) return null
+    const json: ApiResponse<T> = await res.json()
+    return json.code === 0 ? json.data : null
+  } catch {
+    return null
+  }
 }
 
-export async function fetchSpot(id: string): Promise<SpotDetail | null> {
-  return apiFetch<SpotDetail>(`/api/spots/${id}`)
+// ── Types ────────────────────────────────────────────────────────
+
+export interface SpotItem {
+  id: string
+  name: string
+  nameEn?: string
+  tags: string[]
+  location: string
+  summary: string
+  intro: string
+  highlights: string[]
+  source: string
+  freshnessLevel?: string
+  scenicId?: string
 }
 
-export async function fetchRelatedSpots(id: string): Promise<SpotSummary[] | null> {
-  return apiFetch<SpotSummary[]>(`/api/spots/${id}/related`)
+export interface SpotGuideItem {
+  spotId: string
+  shortText: string
+  briefText: string
+  longText: string
+  fallbackText: string
+  source: string
 }
 
-export async function fetchRoutes(): Promise<RouteData[] | null> {
-  return apiFetch<RouteData[]>('/api/routes')
+export interface RouteItem {
+  id: string
+  name: string
+  type: string
+  duration: string
+  persona: string
+  tips: string
+  source: string
+  stops: RouteStopItem[]
 }
 
-export async function fetchRoute(id: string): Promise<RouteData | null> {
-  return apiFetch<RouteData>(`/api/routes/${id}`)
+export interface RouteStopItem {
+  order: number
+  spotId: string
+  spotName: string
+  stayDuration: string
+  description: string
 }
 
-export async function fetchChatAnswer(question: string): Promise<ChatResponse | null> {
-  return apiFetch<ChatResponse>('/api/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ question }),
+export interface RagQueryResult {
+  answerable: boolean
+  answer: string
+  contexts: Array<{ text: string; score: number; source: string; domain: string }>
+  citations: string[]
+  fallback: { reason: string; message: string } | null
+  latencyMs: number
+}
+
+// ── API functions ────────────────────────────────────────────────
+
+export async function fetchSpots(): Promise<SpotItem[] | null> {
+  const data = await apiGet<SpotItem[]>('/spots')
+  return data
+}
+
+export async function fetchSpot(id: string): Promise<SpotItem | null> {
+  return apiGet<SpotItem>(`/spots/${id}`)
+}
+
+export async function fetchSpotGuide(spotId: string): Promise<SpotGuideItem | null> {
+  return apiGet<SpotGuideItem>(`/spots/${spotId}/guide`)
+}
+
+export async function fetchRoutes(): Promise<RouteItem[] | null> {
+  const data = await apiGet<{ items: RouteItem[] }>('/routes')
+  return data?.items ?? null
+}
+
+export async function fetchRoute(id: string): Promise<RouteItem | null> {
+  return apiGet<RouteItem>(`/routes/${id}`)
+}
+
+export async function fetchChatAnswer(question: string): Promise<{ answer: string; source: string; confidence: 'high' | 'medium' | 'low' } | null> {
+  const result = await apiPost<RagQueryResult>('/rag/query', {
+    query: question,
+    top_k: 5,
   })
+  if (!result) return null
+  // 将 RAG 查询结果映射到聊天面板需要的格式
+  const source = result.contexts?.[0]?.source ?? '知识库'
+  let confidence: 'high' | 'medium' | 'low' = 'low'
+  if (result.answerable && result.contexts?.length) {
+    const topScore = result.contexts[0].score
+    confidence = topScore >= 0.65 ? 'high' : topScore >= 0.45 ? 'medium' : 'low'
+  }
+  return {
+    answer: result.answer || '抱歉，没有找到相关答案。',
+    source,
+    confidence,
+  }
 }
 
-export async function fetchAnalytics(): Promise<AnalyticsData | null> {
-  return apiFetch<AnalyticsData>('/api/analytics')
-}
-
-export function isBackendAvailable(): boolean | null {
-  return backendAvailable
+export async function fetchAnalytics(): Promise<Record<string, unknown> | null> {
+  return apiGet<Record<string, unknown>>('/analytics')
 }
