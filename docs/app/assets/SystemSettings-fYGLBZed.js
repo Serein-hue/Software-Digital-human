@@ -1,0 +1,39 @@
+import{n as e,t}from"./circle-x-c5hwlQe-.js";import{t as n}from"./loader-circle-BOAw9aE6.js";import{t as r}from"./database-CDG2opBP.js";import{P as i,at as a,c as o,ct as s,j as c,ot as l,pt as u,st as d,ut as f}from"./index-DdV-8SqW.js";var p=a(`globe`,[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}],[`path`,{d:`M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20`,key:`13o1zl`}],[`path`,{d:`M2 12h20`,key:`9i4pu4`}]]),m=a(`info`,[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}],[`path`,{d:`M12 16v-4`,key:`1dtifu`}],[`path`,{d:`M12 8h.01`,key:`e9boi3`}]]),h=a(`key`,[[`path`,{d:`m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4`,key:`g0fldk`}],[`path`,{d:`m21 2-9.6 9.6`,key:`1j0ho8`}],[`circle`,{cx:`7.5`,cy:`15.5`,r:`5.5`,key:`yqb3hr`}]]),g=a(`save`,[[`path`,{d:`M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z`,key:`1c8476`}],[`path`,{d:`M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7`,key:`1ydtos`}],[`path`,{d:`M7 3v4a1 1 0 0 0 1 1h7`,key:`t51u73`}]]),_=u(f(),1),v=s(),y=0;function b(){let[a,s]=(0,_.useState)([]),[u,f]=(0,_.useState)({}),[b,x]=(0,_.useState)(!0),[S,C]=(0,_.useState)(!1),[w,T]=(0,_.useState)([]),E=i(),D=(0,_.useCallback)((e,t)=>{let n=String(++y);T(r=>[...r,{id:n,type:e,message:t}]),setTimeout(()=>T(e=>e.filter(e=>e.id!==n)),3e3)},[]);(0,_.useEffect)(()=>{o().then(e=>{if(e){s(e);let t={};e.forEach(e=>{t[e.key]=e.value}),f(t)}x(!1)}).catch(()=>x(!1))},[]);let O=(e,t)=>{f(n=>({...n,[e]:t}))},k=a.filter(e=>u[e.key]!==e.value).length,A=async()=>{C(!0);let e=0,t=0;for(let n of a){let r=u[n.key];r!==n.value&&(await c(n.key,r)?e++:t++)}let n=await o();if(n){s(n);let e={};n.forEach(t=>{e[t.key]=t.value}),f(e)}C(!1),t===0?D(`success`,`已保存 ${e} 项配置`):D(`error`,`成功 ${e} 项，失败 ${t} 项`)},j=a.filter(e=>[`app_name`,`app_language`,`refresh_interval_seconds`].includes(e.key)),M=a.filter(e=>[`rag_score_threshold`,`rag_top_k_default`].includes(e.key)),N=a.filter(e=>[`digital_human_default_avatar`,`digital_human_default_voice`].includes(e.key)),P=a.filter(e=>[`business_api_base`,`rag_api_base`].includes(e.key));return b?(0,v.jsx)(`div`,{className:`page-loading`,children:(0,v.jsx)(`span`,{children:`加载配置...`})}):(0,v.jsxs)(l.div,{className:`settings-root`,initial:{opacity:0,y:16},animate:{opacity:1,y:0},transition:{duration:.35},children:[(0,v.jsxs)(`div`,{className:`dashboard-head`,children:[(0,v.jsxs)(`div`,{children:[(0,v.jsx)(`h2`,{children:E(`admin.systemSettings`)}),(0,v.jsx)(`span`,{children:E(`admin.settingsDesc`)})]}),(0,v.jsx)(`div`,{style:{display:`flex`,gap:8,alignItems:`center`},children:k>0&&(0,v.jsxs)(`span`,{style:{fontSize:12,color:`var(--rust)`},children:[`有 `,k,` 项未保存`]})})]}),(0,v.jsx)(`div`,{className:`settings-toast-container`,children:(0,v.jsx)(d,{children:w.map(n=>(0,v.jsxs)(l.div,{className:`settings-toast ${n.type}`,initial:{opacity:0,y:-20},animate:{opacity:1,y:0},exit:{opacity:0,y:-20},children:[n.type===`success`?(0,v.jsx)(e,{size:14}):(0,v.jsx)(t,{size:14}),(0,v.jsx)(`span`,{children:n.message})]},n.id))})}),(0,v.jsxs)(`div`,{className:`settings-grid`,children:[(0,v.jsxs)(`div`,{className:`settings-card`,children:[(0,v.jsxs)(`div`,{className:`settings-card-head`,children:[(0,v.jsx)(p,{size:15}),(0,v.jsx)(`span`,{children:E(`admin.basicConfig`)})]}),(0,v.jsx)(`div`,{className:`settings-fields`,children:j.map(e=>(0,v.jsxs)(`label`,{className:`settings-field`,children:[(0,v.jsx)(`span`,{children:e.description}),(0,v.jsx)(`input`,{type:`text`,value:u[e.key]??``,onChange:t=>O(e.key,t.target.value),className:`settings-input ${u[e.key]===e.value?``:`settings-input-dirty`}`})]},e.key))})]}),(0,v.jsxs)(`div`,{className:`settings-card`,children:[(0,v.jsxs)(`div`,{className:`settings-card-head`,children:[(0,v.jsx)(r,{size:15}),(0,v.jsx)(`span`,{children:`RAG 检索配置`})]}),(0,v.jsx)(`div`,{className:`settings-fields`,children:M.map(e=>(0,v.jsxs)(`label`,{className:`settings-field`,children:[(0,v.jsx)(`span`,{children:e.description}),(0,v.jsx)(`input`,{type:`text`,value:u[e.key]??``,onChange:t=>O(e.key,t.target.value),className:`settings-input ${u[e.key]===e.value?``:`settings-input-dirty`}`})]},e.key))})]})]}),(0,v.jsxs)(`div`,{className:`settings-grid`,children:[(0,v.jsxs)(`div`,{className:`settings-card`,children:[(0,v.jsxs)(`div`,{className:`settings-card-head`,children:[(0,v.jsx)(m,{size:15}),(0,v.jsx)(`span`,{children:`数字人默认配置`})]}),(0,v.jsx)(`div`,{className:`settings-fields`,children:N.map(e=>(0,v.jsxs)(`label`,{className:`settings-field`,children:[(0,v.jsx)(`span`,{children:e.description}),(0,v.jsx)(`input`,{type:`text`,value:u[e.key]??``,onChange:t=>O(e.key,t.target.value),className:`settings-input ${u[e.key]===e.value?``:`settings-input-dirty`}`})]},e.key))})]}),(0,v.jsxs)(`div`,{className:`settings-card`,children:[(0,v.jsxs)(`div`,{className:`settings-card-head`,children:[(0,v.jsx)(h,{size:15}),(0,v.jsx)(`span`,{children:`API 服务地址`})]}),(0,v.jsx)(`div`,{className:`settings-fields`,children:P.map(e=>(0,v.jsxs)(`label`,{className:`settings-field`,children:[(0,v.jsx)(`span`,{children:e.description}),(0,v.jsx)(`input`,{type:`text`,value:u[e.key]??``,onChange:t=>O(e.key,t.target.value),className:`settings-input ${u[e.key]===e.value?``:`settings-input-dirty`}`})]},e.key))})]})]}),(0,v.jsxs)(`div`,{className:`settings-card`,children:[(0,v.jsxs)(`div`,{className:`settings-card-head`,children:[(0,v.jsx)(m,{size:15}),(0,v.jsx)(`span`,{children:E(`admin.versionInfo`)})]}),(0,v.jsxs)(`div`,{className:`settings-version-grid`,children:[(0,v.jsxs)(`div`,{className:`settings-version-item`,children:[(0,v.jsx)(`span`,{children:`系统名称`}),(0,v.jsx)(`strong`,{children:u.app_name??`灵山胜境·AI数字人导览`})]}),(0,v.jsxs)(`div`,{className:`settings-version-item`,children:[(0,v.jsx)(`span`,{children:E(`admin.frontendVersion`)}),(0,v.jsx)(`strong`,{children:`v1.0`})]}),(0,v.jsxs)(`div`,{className:`settings-version-item`,children:[(0,v.jsx)(`span`,{children:E(`admin.buildTime`)}),(0,v.jsx)(`strong`,{children:`2026-06-30`})]}),(0,v.jsxs)(`div`,{className:`settings-version-item`,children:[(0,v.jsx)(`span`,{children:E(`admin.framework`)}),(0,v.jsx)(`strong`,{children:`React 19 + Vite 8`})]}),(0,v.jsxs)(`div`,{className:`settings-version-item`,children:[(0,v.jsx)(`span`,{children:E(`admin.deployMethod`)}),(0,v.jsx)(`strong`,{children:`本地部署`})]})]})]}),(0,v.jsx)(`div`,{className:`settings-save-bar`,children:(0,v.jsxs)(l.button,{type:`button`,className:`settings-save-btn`,whileTap:{scale:.97},onClick:A,disabled:S||k===0,style:{opacity:S||k===0?.6:1},children:[S?(0,v.jsx)(n,{size:15,className:`spin`}):(0,v.jsx)(g,{size:15}),(0,v.jsx)(`span`,{children:S?`保存中...`:E(`admin.saveConfig`)})]})}),(0,v.jsx)(`style`,{children:`
+        .settings-input-dirty {
+          border-color: var(--rust) !important;
+          background: rgba(228, 148, 96, 0.05) !important;
+        }
+        .settings-toast-container {
+          position: fixed;
+          top: 16px;
+          right: 16px;
+          z-index: 9999;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .settings-toast {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 16px;
+          border-radius: 8px;
+          font-size: 13px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          min-width: 200px;
+        }
+        .settings-toast.success {
+          background: var(--teal);
+          color: #fff;
+        }
+        .settings-toast.error {
+          background: #c0392b;
+          color: #fff;
+        }
+        .spin {
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `})]})}export{b as default};

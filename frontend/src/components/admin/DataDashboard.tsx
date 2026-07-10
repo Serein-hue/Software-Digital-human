@@ -5,8 +5,6 @@ import {
 } from 'lucide-react'
 import {
   CartesianGrid,
-  Cell,
-  BarChart, Bar,
   ResponsiveContainer,
   Tooltip, XAxis, YAxis,
   Area, AreaChart,
