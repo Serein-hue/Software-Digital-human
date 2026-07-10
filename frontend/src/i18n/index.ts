@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { modernTranslations } from './modern'
 
 export type Lang = 'zh' | 'en'
 
@@ -553,9 +552,6 @@ const dict: Record<Lang, Record<string, string>> = {
     'nav.switchLang': 'Switch language',
   },
 }
-
-Object.assign(dict.zh, modernTranslations.zh)
-Object.assign(dict.en, modernTranslations.en)
 
 let currentLang: Lang = 'zh'
 const listeners = new Set<() => void>()

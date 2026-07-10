@@ -1,139 +1,96 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import {
-  AlertCircle,
-  ArrowRight,
-  Languages,
-  Leaf,
-  Lock,
-  LogIn,
-  MapPinned,
-  ShieldCheck,
-  Sparkles,
-  User,
-} from 'lucide-react'
+import { Sparkles, User, Lock, LogIn, AlertCircle } from 'lucide-react'
 import { loginAdmin } from '../api/admin'
-import AmbientMotion from './AmbientMotion'
-import { getLang, setLang, useT } from '../i18n'
 
 export default function LoginPage({ onLogin }: { onLogin: () => void }) {
-  const t = useT()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const currentLang = getLang()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!username.trim() || !password.trim()) {
-      setError(t('login.required'))
+      setError('请输入用户名和密码')
       return
     }
     setLoading(true)
     setError('')
     try {
       const user = await loginAdmin(username, password)
-      if (user) onLogin()
-      else setError(t('login.invalid'))
+      if (user) {
+        onLogin()
+      } else {
+        setError('用户名或密码错误')
+      }
     } catch {
-      setError(t('login.networkError'))
+      setError('登录失败，请检查网络连接')
     } finally {
       setLoading(false)
     }
   }
 
-  const toggleLanguage = () => setLang(currentLang === 'zh' ? 'en' : 'zh')
-
   return (
-    <div className="login-page modern-login-page">
-      <AmbientMotion variant="login" />
-      <button type="button" className="login-language" onClick={toggleLanguage} aria-label={t('nav.switchLang')}>
-        <Languages size={17} />
-        <span>{currentLang === 'zh' ? 'EN' : '中文'}</span>
-      </button>
-
-      <motion.section
-        className="login-experience"
-        initial={{ opacity: 0, x: -18 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <div className="login-brand-lockup">
-          <span className="login-brand-icon"><Leaf size={22} /></span>
-          <span>{t('login.brand')}</span>
-        </div>
-        <p className="login-eyebrow"><Sparkles size={14} /> {t('login.eyebrow')}</p>
-        <h1>{t('login.heroTitle')}</h1>
-        <p className="login-lead">{t('login.heroSubtitle')}</p>
-
-        <div className="login-feature-list">
-          <div><MapPinned size={18} /><span>{t('login.featureGuide')}</span></div>
-          <div><ShieldCheck size={18} /><span>{t('login.featureOps')}</span></div>
-          <div><Sparkles size={18} /><span>{t('login.featureAi')}</span></div>
-        </div>
-
-        <div className="login-scenic-note">
-          <span>{t('login.locationLabel')}</span>
-          <strong>{t('login.locationValue')}</strong>
-        </div>
-      </motion.section>
-
+    <div className="login-page">
       <motion.div
-        className="login-card modern-login-card"
-        initial={{ opacity: 0, y: 24, scale: 0.985 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.62, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+        className="login-card"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
       >
         <div className="login-header">
-          <span className="login-card-mark"><LogIn size={19} /></span>
-          <p className="login-card-eyebrow">{t('login.secureAccess')}</p>
-          <h2>{t('login.title')}</h2>
-          <p>{t('login.subtitle')}</p>
+          <Sparkles size={24} />
+          <h1>灵山胜境 · AI 数字人</h1>
+          <p>景区导览管理平台</p>
         </div>
 
         <form className="login-form" onSubmit={handleSubmit}>
-          <label className="login-label" htmlFor="admin-username">{t('login.username')}</label>
           <div className="login-field">
-            <User size={17} />
+            <User size={16} />
             <input
-              id="admin-username"
               type="text"
-              placeholder={t('login.usernamePlaceholder')}
+              placeholder="用户名"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              autoComplete="username"
               autoFocus
             />
           </div>
-
-          <label className="login-label" htmlFor="admin-password">{t('login.password')}</label>
           <div className="login-field">
-            <Lock size={17} />
+            <Lock size={16} />
             <input
-              id="admin-password"
               type="password"
-              placeholder={t('login.passwordPlaceholder')}
+              placeholder="密码"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
             />
           </div>
 
           {error && (
-            <motion.div className="login-error" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-              <AlertCircle size={15} />
+            <motion.div
+              className="login-error"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+            >
+              <AlertCircle size={14} />
               <span>{error}</span>
             </motion.div>
           )}
 
-          <motion.button type="submit" className="login-submit" disabled={loading} whileTap={{ scale: 0.985 }}>
-            <span>{loading ? t('login.loading') : t('login.submit')}</span>
-            {!loading && <ArrowRight size={17} />}
+          <motion.button
+            type="submit"
+            className="login-submit"
+            disabled={loading}
+            whileTap={{ scale: 0.97 }}
+          >
+            {loading ? '登录中...' : (
+              <>
+                <LogIn size={16} />
+                <span>登录</span>
+              </>
+            )}
           </motion.button>
         </form>
-
-        <p className="login-privacy"><ShieldCheck size={13} /> {t('login.privacy')}</p>
       </motion.div>
     </div>
   )

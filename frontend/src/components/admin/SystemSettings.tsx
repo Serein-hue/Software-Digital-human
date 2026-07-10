@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Key, Database, Info, Globe, Save, Loader2,
+  Key, Bell, Database, Info, Copy, Check,
+  Trash2, RefreshCw, Shield, Globe, Save, Loader2,
   CheckCircle, XCircle,
 } from 'lucide-react'
 import { useT } from '../../i18n'
@@ -16,6 +17,7 @@ interface Toast {
 let toastId = 0
 
 export default function SystemSettings() {
+  const [copiedKey, setCopiedKey] = useState<string | null>(null)
   const [configs, setConfigs] = useState<ConfigItem[]>([])
   const [edited, setEdited] = useState<Record<string, string>>({})
   const [loading, setLoading] = useState(true)
@@ -73,6 +75,12 @@ export default function SystemSettings() {
     } else {
       addToast('error', `成功 ${success} 项，失败 ${fail} 项`)
     }
+  }
+
+  const copyKey = (key: string, label: string) => {
+    navigator.clipboard.writeText(key).catch(() => {})
+    setCopiedKey(label)
+    setTimeout(() => setCopiedKey(null), 2000)
   }
 
   /** 按前缀分组显示 */

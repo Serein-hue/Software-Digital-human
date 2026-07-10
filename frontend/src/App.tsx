@@ -1,10 +1,10 @@
-import { lazy, Suspense, useState, type ReactNode } from 'react'
+import { lazy, Suspense, useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import GuidePage from './components/guide/GuidePage'
 import KioskPage from './components/guide/KioskPage'
 import ErrorBoundary from './components/ErrorBoundary'
 import LoginPage from './components/LoginPage'
-import AdminShell from './components/admin/AdminShell'
-import { useT } from './i18n'
+import { getLang, setLang, type Lang } from './i18n'
 
 const DataDashboard = lazy(() => import('./components/admin/DataDashboard'))
 const KnowledgeBase = lazy(() => import('./components/admin/KnowledgeBase'))
@@ -22,62 +22,70 @@ import {
   Navigate,
 } from 'react-router-dom'
 import './App.css'
-import './modern.css'
 
 function App() {
   const [authed, setAuthed] = useState(() => !!localStorage.getItem('scenic_admin_token'))
 
-  const handleLogin = () => setAuthed(true)
+  const handleLogin = () => {
+    setAuthed(true)
+  }
+
   const handleLogout = () => {
     localStorage.removeItem('scenic_admin_token')
     setAuthed(false)
   }
 
-  const adminPage = (content: ReactNode) => (
-    <AdminShell onLogout={handleLogout}>
-      <Suspense fallback={<PageLoading />}>{content}</Suspense>
-    </AdminShell>
-  )
-
   return (
     <ErrorBoundary>
       <HashRouter>
         <Routes>
+          {/* 公开页面 */}
           <Route path="/guide" element={<GuidePage />} />
           <Route path="/kiosk" element={<KioskPage />} />
+
+          {/* 登录页 — 已登录则跳转管理后台 */}
           <Route
             path="/"
-            element={authed ? <Navigate to="/dashboard" replace /> : <LoginPage onLogin={handleLogin} />}
+            element={
+              authed ? <Navigate to="/dashboard" replace /> : <LoginPage onLogin={handleLogin} />
+            }
           />
 
+          {/* 管理后台 — 未登录跳转登录页 */}
           {authed ? (
             <>
-              <Route path="/dashboard" element={adminPage(<DataDashboard />)} />
-              <Route path="/knowledge" element={adminPage(<KnowledgeBase />)} />
-              <Route path="/review" element={adminPage(<ContentReview />)} />
-              <Route path="/digital-human" element={adminPage(<DigitalHumanConfig />)} />
-              <Route path="/settings" element={adminPage(<SystemSettings />)} />
-              <Route path="/command" element={adminPage(<CommandCenter />)} />
-              <Route path="/digital-human-monitor" element={adminPage(<DigitalHumanMonitor />)} />
-              <Route path="/work-orders" element={adminPage(<WorkOrderCenter />)} />
+              <Route path="/dashboard" element={<Suspense fallback={<PageLoading />}><DataDashboard /></Suspense>} />
+              <Route path="/knowledge" element={<Suspense fallback={<PageLoading />}><KnowledgeBase /></Suspense>} />
+              <Route path="/review" element={<Suspense fallback={<PageLoading />}><ContentReview /></Suspense>} />
+              <Route path="/digital-human" element={<Suspense fallback={<PageLoading />}><DigitalHumanConfig /></Suspense>} />
+              <Route path="/settings" element={<Suspense fallback={<PageLoading />}><SystemSettings /></Suspense>} />
+              <Route path="/command" element={<Suspense fallback={<PageLoading />}><CommandCenter /></Suspense>} />
+              <Route path="/digital-human-monitor" element={<Suspense fallback={<PageLoading />}><DigitalHumanMonitor /></Suspense>} />
+              <Route path="/work-orders" element={<Suspense fallback={<PageLoading />}><WorkOrderCenter /></Suspense>} />
             </>
           ) : (
             <Route path="*" element={<Navigate to="/" replace />} />
           )}
         </Routes>
+
+        {/* 退出登录按钮（仅管理页面展示） */}
+        {authed && (
+          <button
+            type="button"
+            className="logout-btn"
+            onClick={handleLogout}
+            title="退出登录"
+          >
+            退出
+          </button>
+        )}
       </HashRouter>
     </ErrorBoundary>
   )
 }
 
 function PageLoading() {
-  const t = useT()
-  return (
-    <div className="modern-page-loading" role="status">
-      <span className="modern-loader-orbit" />
-      <span>{t('common.loading')}</span>
-    </div>
-  )
+  return <div className="page-loading"><span>加载中...</span></div>
 }
 
 export default App

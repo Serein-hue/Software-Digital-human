@@ -65,6 +65,7 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
   const t = useT()
 
   useEffect(() => {
+    setLoading(true)
     Promise.all([
       fetchSpot(spotId),
       fetchSpotGuide(spotId),

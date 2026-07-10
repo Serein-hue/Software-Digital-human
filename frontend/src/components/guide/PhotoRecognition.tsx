@@ -1,8 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Scan, Sparkles } from 'lucide-react'
+import { X, Scan, Sparkles, ChevronRight, History, MapPin } from 'lucide-react'
 import { useT } from '../../i18n'
 
+interface RecogResult {
+  id: string
+  name: string
+  category: string
+  confidence: number
+  description: string
+  spotId?: string
+}
 
 
 interface Props {
@@ -12,7 +20,7 @@ interface Props {
   onAsk: (question: string) => void
 }
 
-export default function PhotoRecognition({ isOpen, onClose }: Props) {
+export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk }: Props) {
   const [phase, setPhase] = useState<'scanning' | 'results'>('scanning')
   const [progress, setProgress] = useState(0)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
