@@ -16,7 +16,7 @@
           class="star {{item <= rating ? 'on' : ''}}"
           bindtap="onStarTap"
           data-star="{{item}}"
-        >{{item <= rating ? '⭐' : '☆'}}</text>
+        >{{item <= rating ? '★' : '☆'}}</text>
       </view>
     </view>
 
@@ -31,7 +31,7 @@
     <!-- 留言 -->
     <view class="comment-section">
       <text class="section-label">{{commentLabel}}</text>
-      <textarea class="comment-input" placeholder="您的建议帮助我们做得更好..." value="{{comment}}" bindinput="onCommentInput" maxlength="300" />
+      <textarea class="comment-input" placeholder="{{commentPlaceholder}}" value="{{comment}}" bindinput="onCommentInput" maxlength="300" />
     </view>
 
     <button class="submit-btn" bindtap="onSubmit" loading="{{submitting}}">{{submitLabel}}</button>
@@ -39,8 +39,8 @@
 
   <!-- 提交成功 -->
   <view wx:else class="done-box">
-    <text class="done-icon">🎉</text>
+    <text class="done-icon">✓</text>
     <text class="done-text">{{thanksLabel}}</text>
-    <button class="reset-btn" bindtap="onReset">再写一条</button>
+    <button class="reset-btn" bindtap="onReset">{{anotherLabel}}</button>
   </view>
 </view>

@@ -28,6 +28,12 @@ Page({
       submitLabel: t('emergency.submit'),
       sentLabel: t('emergency.sent'),
       locationLabel: t('emergency.location'),
+      directCallLabel: t('emergency.directCall'),
+      callScenicLabel: t('emergency.callScenic'),
+      caseIdLabel: t('emergency.caseId'),
+      newRequestLabel: t('emergency.newRequest'),
+      safetyEyebrow: t('emergency.safetyEyebrow'),
+      safetyTitle: t('emergency.safetyTitle'),
       types: [
         { key: 'medical', label: '🏥 ' + t('emergency.medical') },
         { key: 'lost', label: '🔍 ' + t('emergency.lost') },
@@ -44,7 +50,7 @@ Page({
         this.setData({ location: `${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}` })
       },
       fail: () => {
-        this.setData({ location: '无法获取位置' })
+        this.setData({ location: t('emergency.locationFailed') })
       },
     })
   },
@@ -64,7 +70,7 @@ Page({
   async onSubmit() {
     if (this.data.submitting) return
     if (!this.data.desc.trim()) {
-      wx.showToast({ title: '请描述您的情况', icon: 'none' })
+      wx.showToast({ title: t('emergency.needDescription'), icon: 'none' })
       return
     }
 
@@ -82,10 +88,14 @@ Page({
       // 离线模式也接受求助
       this.setData({
         sent: true,
-        resultMsg: '求助已记录，工作人员正在赶来。紧急情况请拨景区热线：0510-85681234',
+        resultMsg: t('emergency.sentLocal'),
         resultId: 'local-' + Date.now(),
       })
     }
+  },
+
+  callScenic() {
+    wx.makePhoneCall({ phoneNumber: '051085681234' })
   },
 
   onReset() {

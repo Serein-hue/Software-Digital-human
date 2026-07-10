@@ -33,6 +33,9 @@ Page({
       verifiedLabel: t('tickets.verified'),
       validLabel: t('tickets.valid'),
       disclaimer: t('tickets.disclaimer'),
+      productsLabel: t('tickets.sectionProducts'),
+      availableLabel: t('tickets.available'),
+      unavailableLabel: t('tickets.unavailable'),
     })
     this.loadProducts()
   },
@@ -56,7 +59,7 @@ Page({
           code,
           status: 'offline',
           names: [],
-          disclaimer: '当前演示后端未接入票务核销，真实验票请以景区官方系统为准。',
+          disclaimer: t('tickets.verifyOffline'),
         },
         verifying: false,
       })

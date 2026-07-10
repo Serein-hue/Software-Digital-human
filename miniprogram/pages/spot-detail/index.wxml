@@ -2,7 +2,7 @@
   <!-- Hero -->
   <view class="sd-hero" style="background: {{heroGradient}};">
     <button class="sd-back-btn" bindtap="goBack">
-      <text>◀</text>
+      <text>←</text>
     </button>
     <view class="sd-hero-overlay">
       <text class="sd-category">{{spot.category}}</text>
@@ -29,17 +29,17 @@
     <view wx:if="{{spot.tags}}" class="sd-tags">
       <text wx:for="{{spot.tags}}" wx:key="*this" class="sd-tag">{{item}}</text>
     </view>
-    <text wx:if="{{spot.location}}" class="sd-location">📍 {{spot.location}}</text>
+    <text wx:if="{{spot.location}}" class="sd-location">{{spot.location}}</text>
     <text wx:for="{{paragraphs}}" wx:key="*this" class="sd-para">{{item}}</text>
     <view class="sd-source">
-      <text>📖 {{spot.source}}</text>
+      <text>{{spot.source}}</text>
     </view>
   </view>
 
   <!-- Audio bar -->
   <view class="sd-audio">
     <button class="sd-play-btn {{isPlaying ? 'playing' : ''}}" bindtap="togglePlay">
-      <text>{{isPlaying ? '⏸' : '▶'}}</text>
+      <text>{{isPlaying ? 'Ⅱ' : '▶'}}</text>
     </button>
     <view class="sd-audio-info">
       <text class="sd-audio-label">{{isPlaying ? playingLabel : aiNarration}}</text>
@@ -50,7 +50,7 @@
   <!-- Related -->
   <view class="sd-related">
     <view class="sd-related-head">
-      <text>🧭 {{nearbySpots}}</text>
+      <text>{{nearbySpots}}</text>
     </view>
     <view class="sd-related-list">
       <button
@@ -58,7 +58,7 @@
         class="sd-related-chip"
         bindtap="navigateTo" data-id="{{item.id}}"
       >
-        <text>📍</text>
+        <text class="nearby-mark">近</text>
         <view class="sd-related-text">
           <text class="sd-related-name">{{item.name}}</text>
           <text class="sd-related-desc">{{item.oneLiner}}</text>

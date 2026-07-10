@@ -18,6 +18,8 @@ Page({
     this.setData({
       title: t('events.title'),
       daily: t('events.daily'),
+      emptyLabel: t('events.empty'),
+      nextLabel: t('events.next'),
     })
     this.loadEvents()
   },

@@ -1,127 +1,150 @@
-<view class="guide-page">
-  <!-- Header -->
-  <view class="guide-header">
-    <text class="guide-title">{{guideTitle}}</text>
+<view class="guide-page page">
+  <view class="ambient-orb orb-a" aria-hidden="true"></view>
+  <view class="ambient-orb orb-b" aria-hidden="true"></view>
+  <view class="ambient-dot dot-a" aria-hidden="true"></view>
+  <view class="ambient-dot dot-b" aria-hidden="true"></view>
+
+  <view class="guide-header motion-rise">
+    <view class="brand-lockup">
+      <view class="brand-mark"><text>境</text></view>
+      <view class="brand-copy">
+        <text class="brand-overline">{{brandOverline}}</text>
+        <text class="guide-title">{{guideTitle}}</text>
+      </view>
+    </view>
     <view class="guide-header-actions">
-      <button class="guide-header-btn lang-btn" bindtap="toggleLanguage">
+      <button class="guide-header-btn lang-btn" bindtap="toggleLanguage" hover-class="header-btn-hover" aria-label="{{langLabel}}">
         <text>{{langLabel}}</text>
       </button>
-      <button class="guide-header-btn" bindtap="toggleOffline" aria-label="{{toggleOfflineAria}}">
-        <text>{{isOffline ? '📡' : '📶'}}</text>
+      <button class="guide-header-btn" bindtap="toggleOffline" hover-class="header-btn-hover" aria-label="{{toggleOfflineAria}}">
+        <text class="network-glyph">{{isOffline ? '○' : '●'}}</text>
       </button>
-      <button class="guide-header-btn" bindtap="openShare" aria-label="{{shareAria}}">
-        <text>📤</text>
+      <button class="guide-header-btn" bindtap="openShare" hover-class="header-btn-hover" aria-label="{{shareAria}}">
+        <text>↗</text>
       </button>
     </view>
   </view>
 
-  <!-- Offline Banner -->
-  <view wx:if="{{isOffline}}" class="offline-banner">
-    <text>📡 {{guideOffline}}</text>
+  <view wx:if="{{isOffline}}" class="offline-banner motion-fade">
+    <view class="status-dot warning"></view>
+    <text>{{guideOffline}}</text>
   </view>
 
-  <!-- LBS Status -->
-  <lbs-status spotName="灵山胜境南门" distance="{{320}}" online="{{!isOffline}}" />
-
-  <!-- Digital Human -->
-  <view class="digital-human-wrap">
-    <view class="digital-human-avatar {{isSpeaking ? 'speaking' : ''}} {{isListening ? 'listening' : ''}}">
-      <text class="dh-face">🧑‍🎤</text>
-      <view wx:if="{{isSpeaking}}" class="dh-wave-ring">
-        <view class="dh-ring r1" />
-        <view class="dh-ring r2" />
-        <view class="dh-ring r3" />
-      </view>
-      <view wx:if="{{isListening}}" class="dh-listen-ring">
-        <view class="dh-ring r1" />
-        <view class="dh-ring r2" />
+  <view class="guide-hero motion-rise-2">
+    <view class="hero-copy">
+      <text class="hero-eyebrow">{{contextEyebrow}}</text>
+      <text class="hero-title">{{contextTitle}}</text>
+      <text class="hero-subtitle">{{contextSubtitle}}</text>
+      <view class="hero-pills">
+        <view class="hero-pill"><text>☀</text><text>{{weatherNow}}</text></view>
+        <view class="hero-pill"><text>◷</text><text>{{nextShowValue}}</text></view>
       </view>
     </view>
-    <text class="dh-name">{{guideTitle}}</text>
-    <text class="dh-status">{{isSpeaking ? guideSpeaking : isListening ? guideListening : guidePlace}}</text>
+
+    <view class="digital-human-wrap">
+      <view class="portrait-halo"></view>
+      <view class="digital-human-avatar {{isSpeaking ? 'speaking' : ''}} {{isListening ? 'listening' : ''}}">
+        <view class="dh-hair"></view>
+        <view class="dh-head">
+          <view class="dh-brow left"></view><view class="dh-brow right"></view>
+          <view class="dh-eye left"></view><view class="dh-eye right"></view>
+          <view class="dh-nose"></view>
+          <view class="dh-mouth"></view>
+        </view>
+        <view class="dh-neck"></view>
+        <view class="dh-body"><view class="dh-collar"></view></view>
+        <view wx:if="{{isSpeaking || isListening}}" class="dh-wave-ring r1"></view>
+        <view wx:if="{{isSpeaking || isListening}}" class="dh-wave-ring r2"></view>
+      </view>
+      <view class="dh-nameplate">
+        <text>{{avatarName}}</text>
+        <text class="dh-status">{{isSpeaking ? guideSpeaking : isListening ? guideListening : avatarIdle}}</text>
+      </view>
+    </view>
   </view>
 
-  <!-- Quick Actions -->
-  <view class="quick-actions">
-    <button wx:for="{{quickActions}}" wx:key="action" class="quick-chip" bindtap="onQuickAction" data-action="{{item.action}}" data-ask-text="{{item.askText}}">
-      <text>{{item.icon}}</text>
-      <text>{{item.label}}</text>
-    </button>
-    <button class="quick-chip camera-chip" bindtap="openCamera">
-      <text>📸</text>
-      <text>{{guidePhoto}}</text>
+  <view class="motion-rise-2">
+    <lbs-status spotName="{{guidePlace}}" distance="{{320}}" online="{{!isOffline}}" />
+  </view>
+
+  <view class="today-strip motion-rise-3">
+    <view class="today-copy">
+      <text class="today-overline">{{nextShowLabel}}</text>
+      <text class="today-title">{{nextShowName}}</text>
+    </view>
+    <button class="today-action" bindtap="onQuickAction" data-action="route" hover-class="button-press">
+      <text>⌁</text><text>{{planRouteLabel}}</text>
     </button>
   </view>
 
-  <!-- Chat Area -->
-  <view class="chat-area">
+  <view class="quick-actions motion-rise-3">
+    <button wx:for="{{quickActions}}" wx:key="action" class="quick-card tone-{{item.action}}" bindtap="onQuickAction" data-action="{{item.action}}" data-ask-text="{{item.askText}}" hover-class="quick-card-hover">
+      <view class="quick-glyph"><text>{{item.glyph}}</text></view>
+      <text class="quick-label">{{item.label}}</text>
+    </button>
+  </view>
+
+  <view class="chat-shell motion-rise-4">
+    <view class="chat-heading">
+      <view class="chat-heading-copy">
+        <text class="chat-eyebrow">{{chatEyebrow}}</text>
+        <text class="chat-title">{{chatTitle}}</text>
+      </view>
+      <view class="chat-status">
+        <view class="status-dot {{isOffline ? 'warning' : ''}}"></view>
+        <text>{{isOffline ? cachedServiceLabel : onlineServiceLabel}}</text>
+      </view>
+    </view>
+
     <scroll-view class="chat-list" scroll-y scroll-into-view="{{scrollToId}}" scroll-with-animation>
       <view wx:for="{{messages}}" wx:key="id" id="msg-{{item.id}}" class="chat-msg {{item.role}}">
-        <view wx:if="{{item.role === 'guide'}}" class="msg-avatar">🧑‍🎤</view>
+        <view wx:if="{{item.role === 'guide'}}" class="msg-avatar"><text>境</text></view>
         <view class="msg-bubble {{item.role}}">
           <text class="msg-text">{{item.text}}</text>
-          <view wx:if="{{item.source}}" class="msg-source">
-            <text>📖 {{item.source}}</text>
-          </view>
+          <view wx:if="{{item.source}}" class="msg-source"><text>◎ {{item.source}}</text></view>
         </view>
-        <view wx:if="{{item.role === 'user'}}" class="msg-avatar user-av">👤</view>
+        <view wx:if="{{item.role === 'user'}}" class="msg-avatar user-av"><text>我</text></view>
       </view>
       <view wx:if="{{isListening}}" class="chat-msg guide">
-        <view class="msg-avatar">🧑‍🎤</view>
+        <view class="msg-avatar"><text>境</text></view>
         <view class="msg-bubble guide typing">
-          <view class="typing-dots">
-            <view class="dot" />
-            <view class="dot" />
-            <view class="dot" />
-          </view>
+          <view class="typing-dots"><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
         </view>
       </view>
-      <view id="msg-bottom" />
+      <view id="msg-bottom"></view>
     </scroll-view>
 
-    <!-- Input bar -->
     <view class="chat-input-bar safe-bottom">
-      <button class="chat-mic-btn" bindtap="openVoice">
-        <text>🎤</text>
-      </button>
-      <input
-        class="chat-input"
-        placeholder="{{guideInputPlaceholder}}"
-        value="{{inputText}}"
-        bindinput="onInput"
-        bindconfirm="onSend"
-        confirm-type="send"
-        adjust-position
-      />
-      <button class="chat-send-btn {{inputText ? 'active' : ''}}" bindtap="onSend" disabled="{{!inputText}}">
-        <text>{{guideSend}}</text>
-      </button>
+      <button class="chat-tool-btn mic" bindtap="openVoice" hover-class="button-press" aria-label="{{voiceTapStartLabel}}"><text>⌁</text></button>
+      <button class="chat-tool-btn camera" bindtap="openCamera" hover-class="button-press" aria-label="{{guidePhoto}}"><text>▣</text></button>
+      <input class="chat-input" placeholder="{{guideInputPlaceholder}}" value="{{inputText}}" bindinput="onInput" bindconfirm="onSend" confirm-type="send" adjust-position />
+      <button class="chat-send-btn {{inputText ? 'active' : ''}}" bindtap="onSend" disabled="{{!inputText}}" hover-class="button-press"><text>↑</text></button>
     </view>
   </view>
 
-  <!-- Voice Overlay -->
+  <view class="guide-nav safe-bottom">
+    <button class="guide-nav-item active" data-target="guide" bindtap="goPrimaryNav"><text class="nav-glyph">◉</text><text>{{navGuideLabel}}</text></button>
+    <button class="guide-nav-item" data-target="route" bindtap="goPrimaryNav"><text class="nav-glyph">⌁</text><text>{{navRouteLabel}}</text></button>
+    <button class="guide-nav-item" data-target="services" bindtap="goPrimaryNav"><text class="nav-glyph">◇</text><text>{{navServicesLabel}}</text></button>
+    <button class="guide-nav-item emergency" data-target="emergency" bindtap="goPrimaryNav"><text class="nav-glyph">!</text><text>{{navEmergencyLabel}}</text></button>
+  </view>
+
   <view wx:if="{{voiceOpen}}" class="voice-overlay" bindtap="closeVoice">
-    <button class="voice-close" bindtap="closeVoice">
-      <text>✕</text>
-    </button>
-    <view class="voice-center" catchtap>
+    <button class="voice-close" bindtap="closeVoice"><text>×</text></button>
+    <view class="voice-center" catchtap="noop">
       <view class="voice-rings">
-        <view class="voice-ring r1 {{voiceRecording ? 'active' : ''}}" />
-        <view class="voice-ring r2 {{voiceRecording ? 'active' : ''}}" />
-        <view class="voice-ring r3 {{voiceRecording ? 'active' : ''}}" />
-        <view class="voice-mic-icon" bindtap="{{voiceRecording ? 'stopVoiceRecord' : 'startVoiceRecord'}}">🎤</view>
+        <view class="voice-ring r1 {{voiceRecording ? 'active' : ''}}"></view>
+        <view class="voice-ring r2 {{voiceRecording ? 'active' : ''}}"></view>
+        <view class="voice-ring r3 {{voiceRecording ? 'active' : ''}}"></view>
+        <view class="voice-mic-icon" bindtap="{{voiceRecording ? 'stopVoiceRecord' : 'startVoiceRecord'}}"><text>⌁</text></view>
       </view>
       <text class="voice-label">{{voiceRecording ? voiceRecordingLabel : voiceTapStartLabel}}</text>
-      <view class="voice-bars">
-        <view wx:for="{{16}}" wx:key="*this" wx:for-item="idx" class="voice-bar {{voiceRecording ? 'active' : ''}}" />
-      </view>
+      <view class="voice-bars"><view wx:for="{{16}}" wx:key="*this" class="voice-bar {{voiceRecording ? 'active' : ''}}"></view></view>
       <view class="voice-suggestions">
-        <text class="voice-hint">{{voiceSuggestionsLabel}}</text>
-        <button wx:for="{{voiceSuggestions}}" wx:key="*this" class="voice-chip" bindtap="onVoiceResult" data-text="{{item}}">
-          {{item}}
-        </button>
+        <text class="voice-sugg-label">{{voiceSuggestionsLabel}}</text>
+        <button wx:for="{{voiceSuggestions}}" wx:key="*this" class="voice-sugg-chip" bindtap="onVoiceResult" data-text="{{item}}">{{item}}</button>
       </view>
+      <text class="voice-hint">{{voiceRecording ? voiceRecordingHint : voiceIdleHint}}</text>
     </view>
-    <text class="voice-bottom-hint">{{voiceRecording ? voiceRecordingHint : voiceIdleHint}}</text>
   </view>
 </view>

@@ -1,4 +1,4 @@
-const { SPOTS, MOCK_KNOWLEDGE, QUICK_ACTIONS } = require('../../utils/data')
+const { SPOTS, MOCK_KNOWLEDGE } = require('../../utils/data')
 const { t, getLang, toggleLang, getSuggestions } = require('../../utils/i18n')
 const api = require('../../utils/api')
 
@@ -39,6 +39,28 @@ Page({
   refreshDisplay() {
     this.setData({
       guideTitle: t('guide.title'),
+      brandOverline: t('guide.brandOverline'),
+      contextEyebrow: t('guide.contextEyebrow'),
+      contextTitle: t('guide.contextTitle'),
+      contextSubtitle: t('guide.contextSubtitle'),
+      weatherNow: t('guide.weatherNow'),
+      nextShowValue: t('guide.nextShowValue'),
+      todayPlanLabel: t('guide.todayPlan'),
+      nextShowLabel: t('guide.nextShow'),
+      nextShowName: t('guide.nextShowName'),
+      planRouteLabel: t('guide.planRoute'),
+      chatEyebrow: t('guide.chatEyebrow'),
+      chatTitle: t('guide.chatTitle'),
+      onlineServiceLabel: t('guide.onlineService'),
+      cachedServiceLabel: t('guide.cachedService'),
+      navGuideLabel: t('guide.navGuide'),
+      navRouteLabel: t('guide.navRoute'),
+      navServicesLabel: t('guide.navServices'),
+      navEmergencyLabel: t('guide.navEmergency'),
+      networkOnlineLabel: t('guide.networkOnline'),
+      networkOfflineLabel: t('guide.networkOffline'),
+      avatarName: t('guide.avatarName'),
+      avatarIdle: t('guide.avatarIdle'),
       guideWelcome: t('guide.welcome'),
       guideWelcomeShort: t('guide.welcomeShort'),
       guideOffline: t('guide.offline'),
@@ -57,9 +79,10 @@ Page({
       langLabel: getLang() === 'zh' ? 'EN' : '中文',
       toggleOfflineAria: t('guide.toggleOffline'),
       shareAria: t('guide.share'),
-      quickActions: QUICK_ACTIONS.map((q) => ({
-        ...q,
-        label: t(q.i18nKey),
+      quickActions: PRIMARY_ACTIONS.map((item) => ({
+        ...item,
+        glyph: t(item.glyphKey),
+        label: t(item.i18nKey),
       })),
     })
   },
@@ -140,7 +163,7 @@ Page({
         const lastReply = Array.isArray(replies) ? replies[replies.length - 1] : replies
         const replyText = (lastReply && (lastReply.content || lastReply.text || lastReply.answer)) || ''
         if (replyText) {
-          this._showGuideResponse(replyText, lastReply.source || '灵山胜境官方资料')
+          this._showGuideResponse(replyText, lastReply.source || t('guide.sourceOfficial'))
         } else {
           // API 无回复，走本地 mock
           this._localAnswer(text)
@@ -173,7 +196,7 @@ Page({
       id: `g-${Date.now()}`,
       role: 'guide',
       text,
-      source: source || '灵山胜境官方资料',
+      source: source || t('guide.sourceOfficial'),
     }
     const updated = [...this.data.messages, guideMsg]
     this.setData({ messages: updated, scrollToId: `msg-${guideMsg.id}` })
@@ -198,6 +221,14 @@ Page({
     this.setData({ inputText: text }, () => this.onSend())
   },
 
+  goPrimaryNav(e) {
+    const target = e.currentTarget.dataset.target
+    if (target === 'guide') return
+    if (target === 'route') wx.navigateTo({ url: '/pages/route/index' })
+    if (target === 'services') wx.navigateTo({ url: '/pages/services/index' })
+    if (target === 'emergency') wx.navigateTo({ url: '/pages/emergency/index' })
+  },
+
   toggleOffline() {
     this.setData({ isOffline: !this.data.isOffline })
   },
@@ -213,6 +244,8 @@ Page({
       }],
     })
   },
+
+  noop() {},
 
   openVoice() {
     this.setData({ voiceOpen: true, voiceRecording: false })

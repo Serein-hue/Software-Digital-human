@@ -1,74 +1,51 @@
-<view class="route-page">
-  <view class="route-header">
-    <button class="route-back-btn" bindtap="goBack">
-      <text>◀</text>
-    </button>
-    <view class="route-header-text">
-      <text class="route-header-title">{{routeTitle}}</text>
-      <text class="route-header-sub">{{routeCount}}</text>
-    </view>
+<view class="route-page page">
+  <view class="header motion-rise">
+    <button class="back-btn" bindtap="goBack" hover-class="button-press"><text>←</text></button>
+    <view class="route-heading"><text class="title">{{routeTitle}}</text><text class="route-count">{{routeCount}}</text></view>
+    <view class="spacer"></view>
   </view>
 
-  <!-- Preference filter -->
-  <scroll-view class="pref-bar" scroll-x>
-    <button
-      wx:for="{{prefOptions}}"
-      wx:key="key"
-      class="pref-chip {{activePref === item.key ? 'active' : ''}}"
-      bindtap="onPrefTap"
-      data-pref="{{item.key}}"
-    >
-      <text>{{item.icon}} {{item.label}}</text>
-    </button>
+  <view class="route-hero motion-rise-2">
+    <text class="route-hero-eyebrow">CURATED JOURNEYS</text>
+    <text class="route-hero-title">{{routeTitle}}</text>
+    <text class="route-hero-copy">{{routeHeroCopy}}</text>
+    <view class="route-line-art"><view class="line-dot d1"></view><view class="line-dot d2"></view><view class="line-dot d3"></view></view>
+  </view>
+
+  <scroll-view class="pref-bar motion-rise-2" scroll-x enhanced show-scrollbar="{{false}}">
+    <view class="pref-inner">
+      <button wx:for="{{prefOptions}}" wx:key="key" class="pref-chip {{activePref === item.key ? 'active' : ''}}" bindtap="onPrefTap" data-pref="{{item.key}}">
+        <text class="pref-glyph">{{item.glyph}}</text><text>{{item.label}}</text>
+      </button>
+    </view>
   </scroll-view>
 
-  <!-- Loading -->
-  <view wx:if="{{isLoading}}" class="loading">
-    <view class="skeleton" style="height:200rpx;margin-bottom:24rpx;" wx:for="{{2}}" wx:key="*this" />
+  <view wx:if="{{isLoading}}" class="loading motion-fade">
+    <view class="skeleton route-skeleton" wx:for="{{2}}" wx:key="*this"></view>
   </view>
 
-  <view wx:else class="route-list">
-    <view wx:if="{{routes.length === 0}}" class="empty-state">
-      <text style="font-size:48rpx;">🗺</text>
-      <text>暂无路线数据</text>
-      <text class="text-muted">下拉刷新试试</text>
-    </view>
+  <view wx:else class="route-list motion-rise-3">
+    <view wx:if="{{routes.length === 0}}" class="empty-state card"><view class="empty-glyph">线</view><text>{{emptyLabel}}</text><text class="text-muted">{{refreshLabel}}</text></view>
     <view wx:for="{{routes}}" wx:key="id" class="route-card {{expandedId === item.id ? 'expanded' : ''}}">
       <view class="route-card-main" bindtap="toggleExpand" data-id="{{item.id}}">
-        <view class="route-card-top">
-          <view class="route-card-left">
-            <text class="route-title">{{item.title}}</text>
-            <text class="route-desc">{{item.description}}</text>
-            <view class="route-tags">
-              <text wx:for="{{item.tags}}" wx:key="*this" class="route-tag">{{item}}</text>
-            </view>
+        <view class="route-index"><text>0{{index + 1}}</text></view>
+        <view class="route-card-content">
+          <view class="route-card-heading"><text class="route-title">{{item.title}}</text><text class="route-chevron">{{expandedId === item.id ? '−' : '+'}}</text></view>
+          <text class="route-desc">{{item.description}}</text>
+          <view class="route-tags"><text wx:for="{{item.tags}}" wx:key="*this" class="route-tag">{{item}}</text></view>
+          <view class="route-meta">
+            <view><text class="meta-label">{{durationLabel}}</text><text class="meta-value">{{item.duration}}</text></view>
+            <view><text class="meta-label">{{distanceLabel}}</text><text class="meta-value">{{item.distance}}</text></view>
+            <view><text class="meta-label">{{difficultyLabel}}</text><text class="meta-value">{{item.difficulty}}</text></view>
           </view>
-          <text class="route-chevron {{expandedId === item.id ? 'open' : ''}}">{{expandedId === item.id ? '▼' : '▶'}}</text>
-        </view>
-        <view class="route-meta">
-          <text>⏱ {{item.duration}}</text>
-          <text>👣 {{item.distance}}</text>
-          <text class="route-diff">⭐ {{item.difficulty}}</text>
         </view>
       </view>
-
       <view wx:if="{{expandedId === item.id}}" class="route-detail">
-        <view class="route-steps">
-          <view wx:for="{{item.steps}}" wx:key="spot" class="route-step">
-            <view class="route-step-dot">
-              <text>{{index + 1}}</text>
-              <view wx:if="{{index < item.steps.length - 1}}" class="route-step-line" />
-            </view>
-            <view class="route-step-content">
-              <text class="step-spot">{{item.spot}}</text>
-              <text class="step-dur">{{item.duration}}</text>
-              <text class="step-note">{{item.note}}</text>
-            </view>
-          </view>
+        <view wx:for="{{item.steps}}" wx:key="spot" class="route-step">
+          <view class="route-step-axis"><view class="route-step-dot">{{index + 1}}</view><view wx:if="{{index < item.steps.length - 1}}" class="route-step-line"></view></view>
+          <view class="route-step-content"><text class="step-spot">{{item.spot}}</text><text class="step-dur">{{item.duration}}</text><text class="step-note">{{item.note}}</text></view>
         </view>
-        <button class="route-start-btn" bindtap="goBack">
-          <text>🧭 {{startNav}}</text>
-        </button>
+        <button class="route-start-btn btn-primary" bindtap="goBack" hover-class="btn-primary-hover"><text>{{startNav}}</text><text>→</text></button>
       </view>
     </view>
   </view>

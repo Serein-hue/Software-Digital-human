@@ -21,7 +21,10 @@ Page({
       scanningLabel: t('photo.scanning'), scanningHint: t('photo.hint'),
       resultsLabel: t('photo.results'), rescanLabel: t('photo.rescan'),
       confidenceLabel: t('photo.confidence'), askLabel: t('photo.ask'),
-      captureLabel: t('photo.capture'), questionPlaceholder: '这是哪个景点？输入你想了解的内容...',
+      captureLabel: t('photo.capture'), questionPlaceholder: t('photo.questionPlaceholder'),
+      promptLabel: t('photo.prompt'), questionLabel: t('photo.questionLabel'), identifyLabel: t('photo.identify'),
+      quickSelectLabel: t('photo.quickSelect'), retakeLabel: t('photo.retake'),
+      quickSpots: ['灵山大佛', '灵山梵宫', '九龙灌浴', '五印坛城', '祥符禅寺'],
     })
   },
 
@@ -56,7 +59,7 @@ Page({
   onSubmitQuestion() {
     const question = this.data.question.trim()
     if (!question) {
-      wx.showToast({ title: '请输入你想了解的内容', icon: 'none' })
+      wx.showToast({ title: t('photo.needQuestion'), icon: 'none' })
       return
     }
     this.doRecognize(question)
@@ -80,9 +83,9 @@ Page({
       const results = [{
         id: 'r0',
         name: this.extractName(answer, query),
-        category: chatData.source || '知识库',
+        category: chatData.source || t('photo.knowledgeCategory'),
         confidence: chatData.confidence === 'high' ? 90 : chatData.confidence === 'medium' ? 70 : 50,
-        description: answer.slice(0, 120) || '已理解您的问题，点击“提问”继续追问。',
+        description: answer.slice(0, 120) || t('photo.answerFallback'),
         spotId: this.guessSpotId(answer),
       }]
 
@@ -97,9 +100,9 @@ Page({
         results: [{
           id: 'r0',
           name: query,
-          category: '离线模式',
+          category: t('photo.offlineCategory'),
           confidence: 80,
-          description: '网络不可用，点击“提问”使用离线知识库继续了解。',
+          description: t('photo.offlineHint'),
           spotId: null,
         }],
       })

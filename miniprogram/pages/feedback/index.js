@@ -25,6 +25,8 @@ Page({
       resolvedLabel: t('feedback.resolved'),
       submitLabel: t('feedback.submit'),
       thanksLabel: t('feedback.thanks'),
+      commentPlaceholder: t('feedback.commentPlaceholder'),
+      anotherLabel: t('feedback.another'),
     })
   },
 
@@ -42,7 +44,7 @@ Page({
 
   async onSubmit() {
     if (this.data.rating === 0) {
-      wx.showToast({ title: '请先评分', icon: 'none' })
+      wx.showToast({ title: t('feedback.needRating'), icon: 'none' })
       return
     }
     if (this.data.submitting) return

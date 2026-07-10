@@ -1,3 +1,4 @@
+const MODERN_DICT = require('./modern-i18n')
 const DICT = {
   zh: {
     'app.title': '灵山胜境 · AI 数字人导览',
@@ -188,6 +189,9 @@ const DICT = {
     'feedback.resolved': 'Resolved',
   },
 }
+
+Object.assign(DICT.zh, MODERN_DICT.zh)
+Object.assign(DICT.en, MODERN_DICT.en)
 
 let currentLang = 'zh'
 

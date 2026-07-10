@@ -1,47 +1,13 @@
-<view class="page">
-  <view class="header">
-    <button class="back-btn" bindtap="goBack"><text>←</text></button>
-    <text class="title">{{title}}</text>
-    <view class="spacer" />
+<view class="emergency-page page">
+  <view class="header motion-rise"><button class="back-btn" bindtap="goBack"><text>←</text></button><text class="title">{{title}}</text><view class="spacer"></view></view>
+  <view class="safety-hero motion-rise-2"><view class="safety-glyph">SOS</view><view class="safety-copy"><text class="safety-eyebrow">{{safetyEyebrow}}</text><text class="safety-title">{{safetyTitle}}</text><text class="safety-tip">{{directCallLabel}}</text></view></view>
+  <view wx:if="{{!sent}}" class="emergency-form motion-rise-3">
+    <view class="type-row"><button wx:for="{{types}}" wx:key="key" class="type-btn {{activeType === item.key ? 'active' : ''}}" bindtap="onTypeTap" data-type="{{item.key}}"><text class="type-glyph">{{item.glyph}}</text><text>{{item.label}}</text></button></view>
+    <view class="location-card"><view class="location-pin"><view></view></view><view class="location-copy"><text class="field-label">{{locationLabel}}</text><text class="location-value">{{location}}</text></view><view class="live-dot"></view></view>
+    <view class="field-card"><text class="field-label">{{descPlaceholder}}</text><textarea class="desc-input" placeholder="{{descPlaceholder}}" value="{{desc}}" bindinput="onDescInput" maxlength="500"></textarea></view>
+    <view class="field-card"><text class="field-label">{{contactPlaceholder}}</text><input class="contact-input" placeholder="{{contactPlaceholder}}" value="{{contact}}" bindinput="onContactInput" type="number" maxlength="11" /></view>
+    <button class="submit-btn" bindtap="onSubmit" loading="{{submitting}}" hover-class="submit-press"><text class="submit-mark">!</text><text>{{submitLabel}}</text></button>
+    <button class="hotline-btn" bindtap="callScenic"><text>{{callScenicLabel}}</text><text class="hotline-number">0510-85681234</text></button>
   </view>
-
-  <!-- 求助前 -->
-  <view wx:if="{{!sent}}" class="form">
-    <!-- 类型选择 -->
-    <view class="type-row">
-      <button
-        wx:for="{{types}}"
-        wx:key="key"
-        class="type-btn {{activeType === item.key ? 'active' : ''}}"
-        bindtap="onTypeTap"
-        data-type="{{item.key}}"
-      >{{item.label}}</button>
-    </view>
-
-    <!-- 位置 -->
-    <view class="loc-row">
-      <text class="loc-label">{{locationLabel}}</text>
-      <text class="loc-val">📍 {{location}}</text>
-    </view>
-
-    <!-- 描述 -->
-    <textarea class="desc-input" placeholder="{{descPlaceholder}}" value="{{desc}}" bindinput="onDescInput" maxlength="500" />
-
-    <!-- 联系方式 -->
-    <input class="contact-input" placeholder="{{contactPlaceholder}}" value="{{contact}}" bindinput="onContactInput" type="number" maxlength="11" />
-
-    <!-- 提交 -->
-    <button class="submit-btn" bindtap="onSubmit" loading="{{submitting}}">🆘 {{submitLabel}}</button>
-
-    <text class="tip">紧急情况请直接拨打 110 / 120</text>
-  </view>
-
-  <!-- 求助后 -->
-  <view wx:else class="sent-box">
-    <text class="sent-icon">✅</text>
-    <text class="sent-title">{{sentLabel}}</text>
-    <text class="sent-msg">{{resultMsg}}</text>
-    <text wx:if="{{resultId}}" class="sent-id">编号: {{resultId}}</text>
-    <button class="reset-btn" bindtap="onReset">发起新求助</button>
-  </view>
+  <view wx:else class="sent-box motion-rise-2"><view class="sent-check">✓</view><text class="sent-title">{{sentLabel}}</text><text class="sent-msg">{{resultMsg}}</text><view wx:if="{{resultId}}" class="sent-id"><text>{{caseIdLabel}}</text><text>{{resultId}}</text></view><button class="reset-btn btn-primary" bindtap="onReset">{{newRequestLabel}}</button><button class="hotline-btn" bindtap="callScenic"><text>{{callScenicLabel}}</text><text class="hotline-number">0510-85681234</text></button></view>
 </view>

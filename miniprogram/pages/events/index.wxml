@@ -12,15 +12,15 @@
   <view wx:else class="list">
     <view class="section-label">{{daily}}</view>
     <view wx:if="{{events.length === 0}}" class="empty-state">
-      <text style="font-size:48rpx;">🎪</text>
-      <text>暂无演出活动信息</text>
+      <view class="empty-event">演</view>
+      <text>{{emptyLabel}}</text>
     </view>
     <view wx:for="{{events}}" wx:key="id" class="event-card">
       <view class="ev-icon">{{item.icon}}</view>
       <view class="ev-body">
         <text class="ev-name">{{item.name}}</text>
         <view class="ev-time">
-          <text class="ev-clock">🕐</text>
+          <text class="ev-clock">{{nextLabel}}</text>
           <text>{{item.time}}</text>
         </view>
         <text wx:if="{{item.description}}" class="ev-desc">{{item.description}}</text>

@@ -16,17 +16,21 @@ Page({
     activeCategory: 'all',
     services: [],
     isLoading: true,
+    emptyLabel: '',
+    heroCopy: '',
   },
 
   onLoad() {
     this.setData({
       title: t('services.title'),
+      emptyLabel: t('services.empty'),
+      heroCopy: t('services.heroCopy'),
       categories: [
-        { key: 'all', label: t('services.all'), icon: '全部' },
-        { key: 'toilet', label: t('services.toilet'), icon: '卫生间' },
-        { key: 'restaurant', label: t('services.restaurant'), icon: '餐饮' },
-        { key: 'parking', label: t('services.parking'), icon: '停车' },
-        { key: 'help_point', label: t('services.help_point'), icon: '求助' },
+        { key: 'all', label: t('services.all'), icon: 'ALL' },
+        { key: 'toilet', label: t('services.toilet'), icon: 'WC' },
+        { key: 'restaurant', label: t('services.restaurant'), icon: '餐' },
+        { key: 'parking', label: t('services.parking'), icon: 'P' },
+        { key: 'help_point', label: t('services.help_point'), icon: 'SOS' },
       ],
     })
     this.loadServices()
@@ -42,6 +46,7 @@ Page({
         ...service,
         icon: this.iconFor(service.category),
         color: this.colorFor(service.category),
+        categoryLabel: t('services.' + service.category),
       })),
       isLoading: false,
     })

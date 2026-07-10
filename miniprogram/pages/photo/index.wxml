@@ -16,27 +16,27 @@
 
   <!-- Idle: just show capture button -->
   <view wx:if="{{phase === 'idle'}}" class="photo-prompt">
-    <text class="prompt-icon">📸</text>
-    <text class="prompt-text">拍摄景点照片，AI 帮你识别讲解</text>
+    <view class="prompt-icon"><text>识</text></view>
+    <text class="prompt-text">{{promptLabel}}</text>
   </view>
 
   <!-- Captured: ask what they saw -->
   <view wx:if="{{phase === 'captured'}}" class="photo-question-area">
-    <text class="question-label">📝 照片里是什么？</text>
+    <text class="question-label">{{questionLabel}}</text>
     <view class="question-input-row">
       <input class="question-input" placeholder="{{questionPlaceholder}}" value="{{question}}" bindinput="onQuestionInput" bindconfirm="onSubmitQuestion" confirm-type="search" />
-      <button class="question-submit" bindtap="onSubmitQuestion">识别</button>
+      <button class="question-submit" bindtap="onSubmitQuestion">{{identifyLabel}}</button>
     </view>
-    <text class="question-hint">或者快速选择：</text>
+    <text class="question-hint">{{quickSelectLabel}}</text>
     <view class="quick-spots">
-      <button wx:for="{{['灵山大佛','灵山梵宫','九龙灌浴','五印坛城','祥符禅寺']}}" wx:key="*this" class="quick-spot-chip" bindtap="onQuickSpot" data-name="{{item}}">{{item}}</button>
+      <button wx:for="{{quickSpots}}" wx:key="*this" class="quick-spot-chip" bindtap="onQuickSpot" data-name="{{item}}">{{item}}</button>
     </view>
-    <button class="photo-retake-btn" bindtap="retakePhoto">📷 重新拍摄</button>
+    <button class="photo-retake-btn" bindtap="retakePhoto">{{retakeLabel}}</button>
   </view>
 
   <!-- Scanning state -->
   <view wx:if="{{phase === 'scanning'}}" class="photo-status">
-    <text class="photo-status-label">🔍 {{scanningLabel}}</text>
+    <text class="photo-status-label">{{scanningLabel}}</text>
     <view class="photo-progress">
       <view class="photo-progress-fill" style="width: {{progress}}%;" />
     </view>
@@ -46,7 +46,7 @@
   <!-- Results from RAG -->
   <view wx:if="{{phase === 'results'}}" class="photo-results">
     <view class="photo-results-head">
-      <text>✨ {{resultsLabel}}</text>
+      <text>{{resultsLabel}}</text>
       <button class="photo-rescan-btn" bindtap="startScan">{{rescanLabel}}</button>
     </view>
     <view wx:for="{{results}}" wx:key="id" class="photo-result-card">
@@ -61,10 +61,10 @@
       </view>
       <view class="photo-result-actions">
         <button wx:if="{{item.spotId}}" class="photo-action-btn" bindtap="openDetail" data-id="{{item.spotId}}">
-          <text>📍</text>
+          <text>详</text>
         </button>
         <button class="photo-action-btn ask" bindtap="askAbout" data-name="{{item.name}}">
-          <text>{{askLabel}} ▶</text>
+          <text>{{askLabel}} →</text>
         </button>
       </view>
     </view>
@@ -73,7 +73,7 @@
   <!-- Bottom actions -->
   <view class="photo-bottom-actions safe-bottom">
     <button wx:if="{{phase !== 'scanning' && phase !== 'captured'}}" class="photo-capture-btn" bindtap="takePhoto">
-      <text>📷 {{captureLabel}}</text>
+      <text>{{captureLabel}}</text>
     </button>
   </view>
 </view>

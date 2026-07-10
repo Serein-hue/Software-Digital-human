@@ -7,16 +7,16 @@
 
   <!-- 票种列表 -->
   <view class="section">
-    <text class="section-title">🎟 票种</text>
+    <text class="section-title">{{productsLabel}}</text>
     <view wx:if="{{isLoading}}" class="loading">
       <view class="skeleton" style="height:100rpx;margin-bottom:16rpx;" wx:for="{{2}}" wx:key="*this" />
     </view>
     <view wx:else class="product-list">
       <view wx:for="{{products}}" wx:key="id" class="product-card">
-        <view class="prod-icon">🎫</view>
+        <view class="prod-icon">票</view>
         <view class="prod-body">
           <text class="prod-name">{{item.name}}</text>
-          <text class="prod-status {{item.status === 'available' ? 'on' : 'off'}}">{{item.status === 'available' ? '在售' : '停售'}}</text>
+          <text class="prod-status {{item.status === 'available' ? 'on' : 'off'}}">{{item.status === 'available' ? availableLabel : unavailableLabel}}</text>
         </view>
         <view class="prod-price">
           <text class="price-num">¥{{item.price}}</text>
@@ -28,23 +28,23 @@
 
   <!-- 票码核验 -->
   <view class="section">
-    <text class="section-title">🔍 {{verifyLabel}}</text>
+    <text class="section-title">{{verifyLabel}}</text>
     <view class="verify-box">
       <input class="verify-input" placeholder="{{verifyPlaceholder}}" value="{{verifyCode}}" bindinput="onCodeInput" confirm-type="search" bindconfirm="onVerify" />
       <button class="verify-btn" bindtap="onVerify" loading="{{verifying}}">{{verifyBtn}}</button>
     </view>
 
     <view wx:if="{{verifyResult}}" class="verify-result {{verifyResult.status === 'valid' ? 'success' : 'fail'}}">
-      <text class="vr-icon">{{verifyResult.status === 'valid' ? '✅' : '❌'}}</text>
+      <text class="vr-icon">{{verifyResult.status === 'valid' ? '✓' : '!'}}</text>
       <text class="vr-status">{{verifyResult.status === 'valid' ? validLabel : verifyResult.status}}</text>
       <view wx:if="{{verifyResult.names.length > 0}}" class="vr-names">
         <text wx:for="{{verifyResult.names}}" wx:key="*this">{{item}}</text>
       </view>
-      <text wx:if="{{verifyResult.disclaimer}}" class="vr-disclaimer">⚠️ {{verifyResult.disclaimer}}</text>
+      <text wx:if="{{verifyResult.disclaimer}}" class="vr-disclaimer">{{verifyResult.disclaimer}}</text>
     </view>
   </view>
 
   <view class="disclaimer">
-    <text>⚠️ {{disclaimer}}</text>
+    <text>{{disclaimer}}</text>
   </view>
 </view>

@@ -1,12 +1,14 @@
-.lbs-bar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18rpx 28rpx; margin: 16rpx 24rpx;
-  background: #fff; border: 1rpx solid var(--line); border-radius: 24rpx;
-  font-size: 24rpx;
-}
-.lbs-left { display: flex; align-items: center; gap: 12rpx; }
-.lbs-icon { font-size: 24rpx; }
-.lbs-spot { font-weight: 700; color: var(--ink); }
-.lbs-dist { color: var(--muted); font-size: 22rpx; }
-.lbs-right { display: flex; align-items: center; gap: 8rpx; color: var(--teal); font-weight: 600; }
-.lbs-offline { color: var(--rust); }
+.lbs-card { display:flex; align-items:center; min-height:104rpx; padding:18rpx 22rpx; border:1rpx solid rgba(29,86,76,.13); border-radius:30rpx; background:rgba(255,255,255,.92); box-shadow:0 15rpx 38rpx rgba(20,72,63,.07); }
+.lbs-card.offline { border-color:rgba(214,154,49,.22); background:rgba(255,249,235,.94); }
+.lbs-pin { position:relative; display:flex; align-items:center; justify-content:center; width:60rpx; height:60rpx; margin-right:16rpx; flex-shrink:0; border-radius:21rpx; background:var(--green-soft); }
+.lbs-pin::before { content:''; width:25rpx; height:31rpx; border:5rpx solid var(--green); border-radius:50% 50% 50% 0; transform:rotate(-45deg); }
+.pin-core { position:absolute; width:8rpx; height:8rpx; top:23rpx; left:26rpx; border-radius:50%; background:var(--green); }
+.lbs-copy { display:flex; min-width:0; flex:1; flex-direction:column; }
+.lbs-overline { color:var(--green); font-size:18rpx; font-weight:800; letter-spacing:1rpx; }
+.lbs-card.offline .lbs-overline { color:#95671d; }
+.lbs-spot { margin-top:6rpx; overflow:hidden; color:var(--ink); font-size:26rpx; font-weight:850; text-overflow:ellipsis; white-space:nowrap; }
+.lbs-distance { display:flex; align-items:baseline; margin-left:14rpx; color:var(--green-deep); }
+.distance-value { font-size:34rpx; font-weight:900; }
+.distance-unit { margin-left:3rpx; color:var(--muted); font-size:19rpx; font-weight:700; }
+.signal-dot { width:12rpx; height:12rpx; margin-left:13rpx; border-radius:50%; background:#35ad84; box-shadow:0 0 0 7rpx rgba(53,173,132,.13); }
+.signal-dot.offline { background:var(--amber); box-shadow:0 0 0 7rpx rgba(214,154,49,.14); }
