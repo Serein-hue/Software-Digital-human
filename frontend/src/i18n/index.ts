@@ -5,10 +5,10 @@ export type Lang = 'zh' | 'en'
 
 const dict: Record<Lang, Record<string, string>> = {
   zh: {
-    'app.title': '灵山胜境 · AI 数字人导览',
+    'app.title': '灵山胜境 · 智能数字人导览',
 
-    'guide.welcome': '欢迎来到灵山胜境！我是您的 AI 导游小景。您可以随时向我提问，比如"灵山大佛有多高？"或者"推荐一条游览路线"。',
-    'guide.title': 'AI 导游',
+    'guide.welcome': '欢迎来到灵山胜境！我是您的智能导游小景。您可以随时向我提问，比如"灵山大佛有多高？"或者"推荐一条游览路线"。',
+    'guide.title': '智能导游',
     'guide.offlineBanner': '弱网模式 · 已缓存基础讲解包，部分功能可能受限',
     'guide.routeRecommend': '推荐路线',
     'guide.tourDuration': '游览时长',
@@ -29,10 +29,10 @@ const dict: Record<Lang, Record<string, string>> = {
     'guide.goOnline': '切换到在线模式',
     'guide.goOffline': '切换到离线模式',
     'guide.share': '分享',
-    'guide.lbsActive': 'LBS 已激活',
+    'guide.lbsActive': '定位已开启',
     'guide.offlineMode': '弱网模式',
     'guide.speaking': '讲解中',
-    'guide.brandName': 'AI 导游 · 小景',
+    'guide.brandName': '智能导游 · 小景',
 
     'voice.listening': '正在聆听...',
     'voice.tapRetry': '点击重试',
@@ -58,7 +58,7 @@ const dict: Record<Lang, Record<string, string>> = {
     'spot.oneLine': '一句话',
     'spot.shortVersion': '简短版',
     'spot.deepGuide': '深度讲解',
-    'spot.aiNarration': 'AI 语音讲解',
+    'spot.aiNarration': '智能 语音讲解',
     'spot.playing': '正在播报...',
     'spot.nearbySpots': '附近景点',
 
@@ -70,17 +70,17 @@ const dict: Record<Lang, Record<string, string>> = {
 
     'share.title': '分享我的旅程',
     'share.explored': '已探索 {{count}} 个问题',
-    'share.copyText': '我在{{spot}}探索了{{count}}个问题，快来一起体验AI导游吧！',
+    'share.copyText': '我在{{spot}}探索了{{count}}个问题，快来一起体验智能导游吧！',
     'share.copyDone': '已复制',
     'share.copyLabel': '复制文案',
     'share.saveImage': '保存图片',
     'share.templateClassic': '经典版',
     'share.templateWarm': '暖阳版',
     'share.templateInk': '水墨版',
-    'share.brand': 'AI 导游 · 小景',
-    'share.subtitle': '景区导览 AI 数字人',
+    'share.brand': '智能导游 · 小景',
+    'share.subtitle': '景区导览 智能数字人',
 
-    'kiosk.title': '灵山胜境 · AI 智能导览',
+    'kiosk.title': '灵山胜境 · 智能 智能导览',
     'kiosk.tapToStart': '点击屏幕开始体验',
     'kiosk.tabSpots': '景点讲解',
     'kiosk.tabRoutes': '路线推荐',
@@ -101,7 +101,7 @@ const dict: Record<Lang, Record<string, string>> = {
     'kiosk.micSpeaking': '讲解中...',
     'kiosk.micIdle': '语音提问',
     'kiosk.qrTitle': '扫码继续体验',
-    'kiosk.qrDesc': '用手机扫描二维码，AI 导游随时随地陪伴您的旅程',
+    'kiosk.qrDesc': '用手机扫描二维码，智能导游随时随地陪伴您的旅程',
     'kiosk.qrWechat': '支持微信扫码',
     'kiosk.qrBrowser': '手机浏览器',
 
@@ -163,7 +163,7 @@ const dict: Record<Lang, Record<string, string>> = {
     'admin.totalSize': '总大小',
 
     'admin.contentReview': '内容审核',
-    'admin.reviewDesc': 'AI 生成回答需人工审核后发布',
+    'admin.reviewDesc': '智能 生成回答需人工审核后发布',
     'admin.searchQA': '搜索问题或答案...',
     'admin.pendingReview': '待审核',
     'admin.approved': '已通过',
@@ -174,7 +174,7 @@ const dict: Record<Lang, Record<string, string>> = {
     'admin.allReviewed': '所有内容已审核完毕',
     'admin.noData': '暂无数据',
     'admin.reviewer': '审核人',
-    'admin.aiAnswer': 'AI 回答',
+    'admin.aiAnswer': '智能 回答',
     'admin.sourceRef': '信源',
     'admin.rejectReason': '驳回原因',
     'admin.approve': '通过',
@@ -211,7 +211,7 @@ const dict: Record<Lang, Record<string, string>> = {
     'admin.addKey': '添加密钥',
     'admin.notifSettings': '通知设置',
     'admin.notifNewQuestion': '新问题待审核',
-    'admin.notifNewQuestionDesc': 'AI 生成答案提交审核时通知',
+    'admin.notifNewQuestionDesc': '智能 生成答案提交审核时通知',
     'admin.notifNegativeFeedback': '游客负面反馈',
     'admin.notifNegativeFeedbackDesc': '满意度低于 3 分时发送告警',
     'admin.notifKbExpiry': '知识库过期提醒',
@@ -269,7 +269,7 @@ const dict: Record<Lang, Record<string, string>> = {
     'cmd.heatmap': '客流分布图',
     'cmd.heatmapLabel': '灵山胜境园区热力图 · 实时更新',
     'cmd.refreshInterval': '数据刷新间隔',
-    'cmd.aiOnline': 'AI 数字人服务在线',
+    'cmd.aiOnline': '智能数字人服务在线',
     'cmd.kioskOnline': 'Kiosk 终端 {{n}} 台在线',
     'cmd.daysOfWeek': '日一二三四五六',
 
@@ -590,6 +590,6 @@ export function useT() {
 }
 
 if (typeof localStorage !== 'undefined') {
-  const saved = localStorage.getItem('app-lang')
-  if (saved === 'en' || saved === 'zh') currentLang = saved
+  currentLang = 'zh'
+  localStorage.setItem('app-lang', 'zh')
 }

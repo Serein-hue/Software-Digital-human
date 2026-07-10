@@ -1,5 +1,5 @@
 const { SPOTS, MOCK_KNOWLEDGE } = require('../../utils/data')
-const { t, getLang, toggleLang, getSuggestions } = require('../../utils/i18n')
+const { t, getSuggestions } = require('../../utils/i18n')
 const api = require('../../utils/api')
 
 Page({
@@ -76,7 +76,6 @@ Page({
       voiceIdleHint: t('voice.idleHint'),
       voiceSuggestionsLabel: t('voice.suggestions'),
       voiceSuggestions: getSuggestions(),
-      langLabel: getLang() === 'zh' ? 'EN' : '中文',
       toggleOfflineAria: t('guide.toggleOffline'),
       shareAria: t('guide.share'),
       quickActions: PRIMARY_ACTIONS.map((item) => ({
@@ -231,18 +230,6 @@ Page({
 
   toggleOffline() {
     this.setData({ isOffline: !this.data.isOffline })
-  },
-
-  toggleLanguage() {
-    toggleLang()
-    this.refreshDisplay()
-    this.setData({
-      messages: [{
-        id: 'welcome',
-        role: 'guide',
-        text: t('guide.welcome'),
-      }],
-    })
   },
 
   noop() {},

@@ -6,7 +6,7 @@
   </view>
 
   <view class="route-hero motion-rise-2">
-    <text class="route-hero-eyebrow">CURATED JOURNEYS</text>
+    <text class="route-hero-eyebrow">精选游览路线</text>
     <text class="route-hero-title">{{routeTitle}}</text>
     <text class="route-hero-copy">{{routeHeroCopy}}</text>
     <view class="route-line-art"><view class="line-dot d1"></view><view class="line-dot d2"></view><view class="line-dot d3"></view></view>

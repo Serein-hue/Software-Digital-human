@@ -3,7 +3,7 @@
     <view class="pin-core"></view>
   </view>
   <view class="lbs-copy">
-    <text class="lbs-overline">LBS · {{online ? lbsActiveLabel : offlineModeLabel}}</text>
+    <text class="lbs-overline">定位服务 · {{online ? lbsActiveLabel : offlineModeLabel}}</text>
     <text class="lbs-spot">{{spotName}}</text>
   </view>
   <view class="lbs-distance">

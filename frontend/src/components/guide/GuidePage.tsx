@@ -9,7 +9,6 @@ import {
   Clock3,
   CloudSun,
   Compass,
-  Languages,
   Map,
   MapPinned,
   MessageCircle,
@@ -28,7 +27,7 @@ import SpotDetail from './SpotDetail'
 import RouteRecommend from './RouteRecommend'
 import PhotoRecognition from './PhotoRecognition'
 import ShareCard from './ShareCard'
-import { getLang, setLang, useT } from '../../i18n'
+import { useT } from '../../i18n'
 import { fetchChatAnswer } from '../../api'
 
 gsap.registerPlugin(useGSAP)
@@ -56,8 +55,6 @@ export default function GuidePage() {
   const [routeOpen, setRouteOpen] = useState(false)
   const listeningTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const speakingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const langRef = useRef(getLang())
-  const currentLang = getLang()
 
   useGSAP(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -75,19 +72,6 @@ export default function GuidePage() {
       },
     )
   }, { scope: rootRef })
-
-  useEffect(() => {
-    const current = getLang()
-    if (current !== langRef.current) {
-      langRef.current = current
-      setMessages((prev) => {
-        if (prev.length === 1 && prev[0].id === 'welcome') {
-          return [{ id: 'welcome', role: 'guide' as const, text: t('guide.welcome') }]
-        }
-        return prev
-      })
-    }
-  }, [currentLang, t])
 
   useEffect(() => () => {
     if (listeningTimerRef.current) clearTimeout(listeningTimerRef.current)
@@ -137,8 +121,6 @@ export default function GuidePage() {
     else handleSend(t(`guide.${key}`))
   }
 
-  const toggleLanguage = () => setLang(currentLang === 'zh' ? 'en' : 'zh')
-
   return (
     <div ref={rootRef} className="guide-canvas">
       <AmbientMotion variant="visitor" />
@@ -152,10 +134,6 @@ export default function GuidePage() {
             </div>
           </div>
           <div className="guide-header-actions">
-            <button type="button" className="guide-header-btn language" onClick={toggleLanguage} aria-label={t('nav.switchLang')}>
-              <Languages size={16} />
-              <span>{currentLang === 'zh' ? 'EN' : '中'}</span>
-            </button>
             <button
               type="button"
               className={`guide-header-btn ${isOffline ? 'is-offline' : ''}`}

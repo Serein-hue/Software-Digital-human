@@ -26,11 +26,11 @@ Page({
       emptyLabel: t('services.empty'),
       heroCopy: t('services.heroCopy'),
       categories: [
-        { key: 'all', label: t('services.all'), icon: 'ALL' },
-        { key: 'toilet', label: t('services.toilet'), icon: 'WC' },
+        { key: 'all', label: t('services.all'), icon: '全' },
+        { key: 'toilet', label: t('services.toilet'), icon: '厕' },
         { key: 'restaurant', label: t('services.restaurant'), icon: '餐' },
-        { key: 'parking', label: t('services.parking'), icon: 'P' },
-        { key: 'help_point', label: t('services.help_point'), icon: 'SOS' },
+        { key: 'parking', label: t('services.parking'), icon: '停' },
+        { key: 'help_point', label: t('services.help_point'), icon: '助' },
       ],
     })
     this.loadServices()

@@ -13,9 +13,6 @@
       </view>
     </view>
     <view class="guide-header-actions">
-      <button class="guide-header-btn lang-btn" bindtap="toggleLanguage" hover-class="header-btn-hover" aria-label="{{langLabel}}">
-        <text>{{langLabel}}</text>
-      </button>
       <button class="guide-header-btn" bindtap="toggleOffline" hover-class="header-btn-hover" aria-label="{{toggleOfflineAria}}">
         <text class="network-glyph">{{isOffline ? '○' : '●'}}</text>
       </button>

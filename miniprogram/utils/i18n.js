@@ -1,10 +1,10 @@
 const MODERN_DICT = require('./modern-i18n')
 const DICT = {
   zh: {
-    'app.title': '灵山胜境 · AI 数字人导览',
-    'guide.title': 'AI 导游 · 小景',
-    'guide.welcome': '欢迎来到灵山胜境！我是您的 AI 导游小景。您可以随时向我提问，比如"灵山大佛有多高？"或者"推荐一条游览路线"。',
-    'guide.welcomeShort': '欢迎来到灵山胜境！我是您的 AI 导游小景。',
+    'app.title': '灵山胜境 · 智能数字人导览',
+    'guide.title': '智能导游 · 小景',
+    'guide.welcome': '欢迎来到灵山胜境！我是您的智能导游小景。您可以随时向我提问，比如"灵山大佛有多高？"或者"推荐一条游览路线"。',
+    'guide.welcomeShort': '欢迎来到灵山胜境！我是您的智能导游小景。',
     'guide.offline': '弱网模式 · 已缓存基础讲解包',
     'guide.speaking': '正在讲解...',
     'guide.listening': '正在聆听...',
@@ -16,7 +16,7 @@ const DICT = {
     'guide.confirm': '确认',
     'guide.toggleOffline': '切换在线/离线',
     'guide.share': '分享',
-    'guide.lbsActive': 'LBS 已激活',
+    'guide.lbsActive': '定位已开启',
     'guide.offlineMode': '弱网模式',
 
     'voice.recording': '正在录音...',
@@ -30,9 +30,9 @@ const DICT = {
     'photo.tellMeAbout': '给我讲讲{{name}}',
     'photo.capture': '拍照识别',
 
-    'share.title': '灵山胜境 · AI 导游',
+    'share.title': '灵山胜境 · 智能导游',
 
-    'spot.aiNarration': 'AI 语音讲解',
+    'spot.aiNarration': '智能 语音讲解',
     'spot.playing': '正在播报...',
     'spot.nearbySpots': '附近景点',
     'spot.oneLine': '一句话',
@@ -195,10 +195,7 @@ Object.assign(DICT.en, MODERN_DICT.en)
 
 let currentLang = 'zh'
 
-try {
-  const saved = wx.getStorageSync('app-lang')
-  if (saved === 'en' || saved === 'zh') currentLang = saved
-} catch (_) { /* ignore */ }
+try { wx.setStorageSync('app-lang', 'zh') } catch (_) { /* ignore */ }
 
 function t(key, params) {
   let text = DICT[currentLang]?.[key] ?? DICT.zh[key]

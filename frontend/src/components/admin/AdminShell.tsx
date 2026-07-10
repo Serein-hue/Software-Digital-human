@@ -10,7 +10,6 @@ import {
   BrainCircuit,
   ClipboardCheck,
   Command,
-  Languages,
   LayoutDashboard,
   LogOut,
   Settings,
@@ -18,7 +17,7 @@ import {
   TicketCheck,
 } from 'lucide-react'
 import AmbientMotion from '../AmbientMotion'
-import { getLang, setLang, useT } from '../../i18n'
+import { useT } from '../../i18n'
 
 gsap.registerPlugin(useGSAP)
 
@@ -41,7 +40,6 @@ const NAV_ITEMS = [
 export default function AdminShell({ children, onLogout }: AdminShellProps) {
   const t = useT()
   const shellRef = useRef<HTMLDivElement>(null)
-  const currentLang = getLang()
 
   useGSAP(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -56,8 +54,6 @@ export default function AdminShell({ children, onLogout }: AdminShellProps) {
       { autoAlpha: 1, y: 0, duration: 0.65, ease: 'power3.out', clearProps: 'transform,opacity,visibility' },
     )
   }, { scope: shellRef })
-
-  const toggleLanguage = () => setLang(currentLang === 'zh' ? 'en' : 'zh')
 
   return (
     <div ref={shellRef} className="admin-shell">
@@ -93,10 +89,6 @@ export default function AdminShell({ children, onLogout }: AdminShellProps) {
         </nav>
 
         <div className="admin-shell-sidebar-footer">
-          <button type="button" className="admin-shell-utility" onClick={toggleLanguage}>
-            <Languages size={17} />
-            <span>{currentLang === 'zh' ? 'English' : '中文'}</span>
-          </button>
           <button type="button" className="admin-shell-utility danger" onClick={onLogout}>
             <LogOut size={17} />
             <span>{t('adminShell.logout')}</span>

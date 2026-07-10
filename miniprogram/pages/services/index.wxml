@@ -2,7 +2,7 @@
   <view class="header motion-rise"><button class="back-btn" bindtap="goBack"><text>←</text></button><text class="title">{{title}}</text><view class="spacer"></view></view>
   <view class="services-hero motion-rise-2">
     <view class="services-hero-mark"><view class="map-pin"><view></view></view></view>
-    <view class="services-hero-copy"><text class="services-eyebrow">VISITOR SERVICES</text><text class="services-title">{{title}}</text><text class="services-desc">{{heroCopy}}</text></view>
+    <view class="services-hero-copy"><text class="services-eyebrow">游客服务设施</text><text class="services-title">{{title}}</text><text class="services-desc">{{heroCopy}}</text></view>
   </view>
   <scroll-view class="cat-tabs motion-rise-2" scroll-x enhanced show-scrollbar="{{false}}"><view class="cat-inner">
     <button wx:for="{{categories}}" wx:key="key" class="cat-chip {{activeCategory === item.key ? 'active' : ''}}" bindtap="onCategoryTap" data-category="{{item.key}}"><text class="cat-icon">{{item.icon}}</text><text>{{item.label}}</text></button>

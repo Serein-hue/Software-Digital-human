@@ -223,7 +223,7 @@ export default function SystemSettings() {
         <div className="settings-version-grid">
           <div className="settings-version-item">
             <span>系统名称</span>
-            <strong>{edited.app_name ?? '灵山胜境·AI数字人导览'}</strong>
+            <strong>{edited.app_name ?? '灵山胜境·智能数字人导览'}</strong>
           </div>
           <div className="settings-version-item">
             <span>{t('admin.frontendVersion')}</span>

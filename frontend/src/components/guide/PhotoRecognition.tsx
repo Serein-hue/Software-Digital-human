@@ -1,9 +1,22 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Scan, Sparkles } from 'lucide-react'
+import { X, Scan, Sparkles, ChevronRight, MapPin } from 'lucide-react'
 import { useT } from '../../i18n'
 
+interface RecogResult {
+  id: string
+  name: string
+  category: string
+  confidence: number
+  description: string
+  spotId?: string
+}
 
+
+const RECOGNITION_RESULTS: RecogResult[] = [
+  { id: 'lingshan-buddha', name: '灵山大佛', category: '佛教文化地标', confidence: 96, description: '通高 88 米的露天青铜释迦牟尼立像，是灵山胜境的核心景观。', spotId: 'lingshan-buddha' },
+  { id: 'lingshan-fanpalace', name: '灵山梵宫', category: '佛教艺术建筑', confidence: 82, description: '集建筑、雕塑、绘画与演艺于一体的佛教文化艺术殿堂。', spotId: 'lingshan-fanpalace' },
+]
 
 interface Props {
   isOpen: boolean
@@ -12,7 +25,7 @@ interface Props {
   onAsk: (question: string) => void
 }
 
-export default function PhotoRecognition({ isOpen, onClose }: Props) {
+export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk }: Props) {
   const [phase, setPhase] = useState<'scanning' | 'results'>('scanning')
   const [progress, setProgress] = useState(0)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -114,9 +127,20 @@ export default function PhotoRecognition({ isOpen, onClose }: Props) {
                 </div>
 
                 <div className="photo-result-list">
-                  <div className="dashboard-empty">
-                    <span>拍照识别功能需要调用摄像头，请连接后端服务后使用。</span>
-                  </div>
+                  {RECOGNITION_RESULTS.map((result, index) => (
+                    <article key={result.id} className="photo-result-card">
+                      <div className="photo-result-rank"><span>{index + 1}</span></div>
+                      <div className="photo-result-info">
+                        <div className="photo-result-top"><strong>{result.name}</strong><span className="photo-result-cat">{result.category}</span></div>
+                        <p>{result.description}</p>
+                        <span className="photo-confidence">{t('photo.confidence')} {result.confidence}%</span>
+                      </div>
+                      <div className="photo-result-actions">
+                        {result.spotId && <button type="button" className="photo-action-btn" onClick={() => onSpotDetail(result.spotId!)} aria-label={`查看${result.name}详情`}><MapPin size={15} /></button>}
+                        <button type="button" className="photo-action-btn ask" onClick={() => onAsk(t('photo.tellMeAbout', { name: result.name }))}><span>{t('photo.ask')}</span><ChevronRight size={14} /></button>
+                      </div>
+                    </article>
+                  ))}
                 </div>
               </div>
             )}

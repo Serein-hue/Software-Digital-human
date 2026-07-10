@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import {
   AlertCircle,
   ArrowRight,
-  Languages,
   Leaf,
   Lock,
   LogIn,
@@ -14,7 +13,7 @@ import {
 } from 'lucide-react'
 import { loginAdmin } from '../api/admin'
 import AmbientMotion from './AmbientMotion'
-import { getLang, setLang, useT } from '../i18n'
+import { useT } from '../i18n'
 
 export default function LoginPage({ onLogin }: { onLogin: () => void }) {
   const t = useT()
@@ -22,7 +21,6 @@ export default function LoginPage({ onLogin }: { onLogin: () => void }) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const currentLang = getLang()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -43,15 +41,9 @@ export default function LoginPage({ onLogin }: { onLogin: () => void }) {
     }
   }
 
-  const toggleLanguage = () => setLang(currentLang === 'zh' ? 'en' : 'zh')
-
   return (
     <div className="login-page modern-login-page">
       <AmbientMotion variant="login" />
-      <button type="button" className="login-language" onClick={toggleLanguage} aria-label={t('nav.switchLang')}>
-        <Languages size={17} />
-        <span>{currentLang === 'zh' ? 'EN' : '中文'}</span>
-      </button>
 
       <motion.section
         className="login-experience"

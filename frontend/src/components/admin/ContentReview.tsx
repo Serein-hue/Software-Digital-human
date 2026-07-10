@@ -43,7 +43,7 @@ export default function ContentReview() {
           id: String(item.id ?? i),
           question: item.userQuestion,
           answer: item.assistantReply,
-          source: 'AI 生成',
+          source: '智能生成',
           spot: '',
           submittedAt: item.createdAt ?? '',
           status: (item.confidence ?? 0) < 0.4 ? 'pending' : 'approved' as 'pending' | 'approved',

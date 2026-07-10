@@ -11,6 +11,18 @@ interface ApiResponse<T> {
   trace_id: string
 }
 
+interface Pagination {
+  page: number
+  page_size: number
+  total: number
+  total_pages: number
+}
+
+interface PaginatedData<T> {
+  items: T[]
+  pagination: Pagination
+}
+
 async function apiGet<T>(path: string): Promise<T | null> {
   try {
     const res = await fetch(`${BUSINESS_BASE}${path}`, {
@@ -109,7 +121,7 @@ export async function fetchSpotGuide(spotId: string): Promise<SpotGuideItem | nu
 }
 
 export async function fetchRoutes(): Promise<RouteItem[] | null> {
-  const data = await apiGet<{ items: RouteItem[] }>('/routes')
+  const data = await apiGet<PaginatedData<RouteItem>>('/routes')
   return data?.items ?? null
 }
 
