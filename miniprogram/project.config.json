@@ -21,5 +21,6 @@
     "include": []
   },
   "appid": "wx929a64c238f0a862",
-  "editorSetting": {}
+  "editorSetting": {},
+  "miniprogramRoot": "./"
 }
