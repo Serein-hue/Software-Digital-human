@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  ShieldCheck, CheckCircle, XCircle, Edit3, Eye, Clock,
+  ShieldCheck, CheckCircle, XCircle, Eye, Clock,
   Search, ChevronDown, MessageCircle, BookOpen, AlertTriangle,
 } from 'lucide-react'
 import { useT } from '../../i18n'
