@@ -1,4 +1,4 @@
-<view class="route-page page">
+<view class="route-page page has-visitor-nav">
   <view class="header motion-rise">
     <button class="back-btn" bindtap="goBack" hover-class="button-press"><text>←</text></button>
     <view class="route-heading"><text class="title">{{routeTitle}}</text><text class="route-count">{{routeCount}}</text></view>
@@ -49,4 +49,5 @@
       </view>
     </view>
   </view>
+  <visitor-nav active="route" />
 </view>

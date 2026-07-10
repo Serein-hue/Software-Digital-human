@@ -1,4 +1,4 @@
-<view class="photo-page">
+<view class="photo-page has-visitor-nav">
   <view class="photo-header">
     <button class="photo-back-btn" bindtap="goBack"><text>◀</text></button>
     <text class="photo-title">{{pageTitle}}</text>
@@ -76,4 +76,5 @@
       <text>{{captureLabel}}</text>
     </button>
   </view>
+  <visitor-nav active="guide" />
 </view>

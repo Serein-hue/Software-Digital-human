@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page has-visitor-nav">
   <view class="header">
     <button class="back-btn" bindtap="goBack"><text>←</text></button>
     <text class="title">{{title}}</text>
@@ -27,4 +27,5 @@
       </view>
     </view>
   </view>
+  <visitor-nav active="services" />
 </view>

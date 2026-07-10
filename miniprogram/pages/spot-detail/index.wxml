@@ -1,4 +1,4 @@
-<view class="sd-page">
+<view class="sd-page has-visitor-nav">
   <!-- Hero -->
   <view class="sd-hero" style="background: {{heroGradient}};">
     <button class="sd-back-btn" bindtap="goBack">
@@ -66,4 +66,5 @@
       </button>
     </view>
   </view>
+  <visitor-nav active="guide" />
 </view>

@@ -1,0 +1,6 @@
+<view class="visitor-nav safe-bottom" aria-label="游客端主导航">
+  <button wx:for="{{items}}" wx:key="key" class="visitor-nav-item {{active === item.key ? 'active' : ''}} {{item.danger ? 'danger' : ''}}" bindtap="navigate" data-key="{{item.key}}" data-url="{{item.url}}" hover-class="visitor-nav-press">
+    <view class="visitor-nav-glyph"><text>{{item.glyph}}</text></view>
+    <text class="visitor-nav-label">{{item.label}}</text>
+  </button>
+</view>

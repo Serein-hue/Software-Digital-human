@@ -25,6 +25,12 @@ Page({
       title: t('services.title'),
       emptyLabel: t('services.empty'),
       heroCopy: t('services.heroCopy'),
+      shortcutsTitle: t('services.shortcutsTitle'),
+      serviceShortcuts: [
+        { key: 'events', label: t('events.title'), glyph: '演', url: '/pages/events/index' },
+        { key: 'tickets', label: t('tickets.title'), glyph: '票', url: '/pages/tickets/index' },
+        { key: 'feedback', label: t('feedback.title'), glyph: '评', url: '/pages/feedback/index' },
+      ],
       categories: [
         { key: 'all', label: t('services.all'), icon: '全' },
         { key: 'toilet', label: t('services.toilet'), icon: '厕' },
@@ -50,6 +56,11 @@ Page({
       })),
       isLoading: false,
     })
+  },
+
+  openServicePage(e) {
+    const { url } = e.currentTarget.dataset
+    if (url) wx.navigateTo({ url })
   },
 
   onCategoryTap(e) {

@@ -1,4 +1,4 @@
-<view class="guide-page page">
+<view class="guide-page page has-visitor-nav">
   <view class="ambient-orb orb-a" aria-hidden="true"></view>
   <view class="ambient-orb orb-b" aria-hidden="true"></view>
   <view class="ambient-dot dot-a" aria-hidden="true"></view>
@@ -119,13 +119,6 @@
     </view>
   </view>
 
-  <view class="guide-nav safe-bottom">
-    <button class="guide-nav-item active" data-target="guide" bindtap="goPrimaryNav"><text class="nav-glyph">◉</text><text>{{navGuideLabel}}</text></button>
-    <button class="guide-nav-item" data-target="route" bindtap="goPrimaryNav"><text class="nav-glyph">⌁</text><text>{{navRouteLabel}}</text></button>
-    <button class="guide-nav-item" data-target="services" bindtap="goPrimaryNav"><text class="nav-glyph">◇</text><text>{{navServicesLabel}}</text></button>
-    <button class="guide-nav-item emergency" data-target="emergency" bindtap="goPrimaryNav"><text class="nav-glyph">!</text><text>{{navEmergencyLabel}}</text></button>
-  </view>
-
   <view wx:if="{{voiceOpen}}" class="voice-overlay" bindtap="closeVoice">
     <button class="voice-close" bindtap="closeVoice"><text>×</text></button>
     <view class="voice-center" catchtap="noop">
@@ -144,4 +137,5 @@
       <text class="voice-hint">{{voiceRecording ? voiceRecordingHint : voiceIdleHint}}</text>
     </view>
   </view>
+  <visitor-nav active="guide" />
 </view>
