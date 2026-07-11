@@ -1,4 +1,5 @@
 const { t } = require('../../utils/i18n')
+const api = require('../../utils/api')
 
 const LOCAL_PRODUCTS = [
   { id: 'adult', name: '成人票', price: 210, status: 'available' },
@@ -41,7 +42,15 @@ Page({
   },
 
   loadProducts() {
-    this.setData({ products: LOCAL_PRODUCTS, isLoading: false })
+    this.setData({ isLoading: true })
+    api.getTicketProducts()
+      .then((items) => this._applyProducts(items && items.length ? items : LOCAL_PRODUCTS, true))
+      .catch(() => this._applyProducts(LOCAL_PRODUCTS, false))
+  },
+
+  _applyProducts(products, apiConnected) {
+    this.setData({ products, isLoading: false, apiConnected })
+    wx.stopPullDownRefresh()
   },
 
   onCodeInput(e) {
@@ -68,7 +77,6 @@ Page({
 
   onPullDownRefresh() {
     this.loadProducts()
-    wx.stopPullDownRefresh()
   },
 
   goBack() {

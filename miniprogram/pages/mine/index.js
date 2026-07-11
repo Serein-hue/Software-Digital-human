@@ -1,5 +1,5 @@
 const { t } = require('../../utils/i18n')
-const { playPageEnter, lightFeedback } = require('../../utils/motion')
+const { lightFeedback } = require('../../utils/motion')
 
 Page({
   data: { stats: [], services: [] },
@@ -19,6 +19,6 @@ Page({
       ],
     })
   },
-  onShow() { const tabBar=this.getTabBar && this.getTabBar(); if(tabBar) tabBar.setData({ selected: 4, switching: false }); playPageEnter(this) },
+  onShow() { const tabBar=this.getTabBar && this.getTabBar(); if(tabBar) tabBar.setData({ selected: 4, switching: false }); },
   openItem(e) { lightFeedback(); const { url, tab }=e.currentTarget.dataset; if(tab) wx.switchTab({url:tab}); else if(url) wx.navigateTo({url}) },
 })

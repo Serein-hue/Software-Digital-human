@@ -1,5 +1,6 @@
 const { t } = require('../../utils/i18n')
-const { playPageEnter, lightFeedback } = require('../../utils/motion')
+const api = require('../../utils/api')
+const { lightFeedback } = require('../../utils/motion')
 
 const LOCAL_SERVICES = [
   { id: 'toilet-buddha', category: 'toilet', name: '大佛广场卫生间', location: '灵山大佛广场东侧' },
@@ -24,7 +25,6 @@ Page({
   onShow() {
     const tabBar = this.getTabBar && this.getTabBar()
     if (tabBar) tabBar.setData({ selected: 2, switching: false })
-    playPageEnter(this)
   },
 
   onLoad() {
@@ -50,11 +50,18 @@ Page({
   },
 
   loadServices(category) {
-    const services = category && category !== 'all'
-      ? LOCAL_SERVICES.filter((service) => service.category === category)
-      : LOCAL_SERVICES
+    this.setData({ isLoading: true })
+    api.getServices()
+      .then((items) => this._applyServices(items && items.length ? items : LOCAL_SERVICES, category, true))
+      .catch(() => this._applyServices(LOCAL_SERVICES, category, false))
+  },
 
+  _applyServices(items, category, apiConnected) {
+    const services = category && category !== 'all'
+      ? items.filter((service) => service.category === category)
+      : items
     this.setData({
+      apiConnected,
       services: services.map((service) => ({
         ...service,
         icon: this.iconFor(service.category),
@@ -63,6 +70,7 @@ Page({
       })),
       isLoading: false,
     })
+    wx.stopPullDownRefresh()
   },
 
   openServicePage(e) {
@@ -90,7 +98,6 @@ Page({
 
   onPullDownRefresh() {
     this.loadServices(this.data.activeCategory)
-    wx.stopPullDownRefresh()
   },
 
   goBack() {

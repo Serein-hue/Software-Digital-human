@@ -1,4 +1,4 @@
-<view class="guide-page page has-visitor-nav" animation="{{pageAnimation}}">
+<view class="guide-page page has-visitor-nav">
   <view class="ambient-orb orb-a" aria-hidden="true"></view>
   <view class="ambient-orb orb-b" aria-hidden="true"></view>
   <view class="ambient-dot dot-a" aria-hidden="true"></view>
@@ -88,8 +88,8 @@
         <text class="chat-title">{{chatTitle}}</text>
       </view>
       <view class="chat-status">
-        <view class="status-dot {{isOffline ? 'warning' : ''}}"></view>
-        <text>{{isOffline ? cachedServiceLabel : onlineServiceLabel}}</text>
+        <view class="status-dot {{isOffline || !apiConnected ? 'warning' : ''}}"></view>
+        <text>{{isOffline || !apiConnected ? cachedServiceLabel : onlineServiceLabel}}</text>
       </view>
     </view>
 

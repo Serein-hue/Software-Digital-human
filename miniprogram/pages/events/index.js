@@ -1,4 +1,5 @@
 const { t } = require('../../utils/i18n')
+const api = require('../../utils/api')
 
 const LOCAL_EVENTS = [
   { id: 'jiulong-1000', name: '九龙灌浴', time: '10:00', spotId: 'lingshan-jiulong', description: '大型动态音乐群雕表演' },
@@ -25,10 +26,15 @@ Page({
   },
 
   loadEvents() {
-    this.setData({
-      events: LOCAL_EVENTS.map((event) => ({ ...event, icon: this.iconFor(event.name) })),
-      isLoading: false,
-    })
+    this.setData({ isLoading: true })
+    api.getEvents()
+      .then((items) => this._applyEvents(items && items.length ? items : LOCAL_EVENTS, true))
+      .catch(() => this._applyEvents(LOCAL_EVENTS, false))
+  },
+
+  _applyEvents(items, apiConnected) {
+    this.setData({ events: items.map((event) => ({ ...event, icon: this.iconFor(event.name) })), isLoading: false, apiConnected })
+    wx.stopPullDownRefresh()
   },
 
   iconFor(name) {
@@ -39,7 +45,6 @@ Page({
 
   onPullDownRefresh() {
     this.loadEvents()
-    wx.stopPullDownRefresh()
   },
 
   goBack() {

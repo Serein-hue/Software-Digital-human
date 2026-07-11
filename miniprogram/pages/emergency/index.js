@@ -1,6 +1,6 @@
 const { t } = require('../../utils/i18n')
-const session = require('../../utils/session')
-const { playPageEnter, lightFeedback } = require('../../utils/motion')
+const api = require('../../utils/api')
+const { lightFeedback } = require('../../utils/motion')
 
 Page({
   data: {
@@ -24,7 +24,6 @@ Page({
   onShow() {
     const tabBar = this.getTabBar && this.getTabBar()
     if (tabBar) tabBar.setData({ selected: 3, switching: false })
-    playPageEnter(this)
   },
 
   onLoad() {
@@ -85,18 +84,24 @@ Page({
 
     this.setData({ submitting: true })
     try {
-      await session.ensure()
+      const result = await api.createEmergency({
+        type: this.data.activeType,
+        description: this.data.desc.trim(),
+        contact: this.data.contact.trim() || '未提供',
+        location: this.data.location || '',
+      })
       this.setData({
         sent: true,
         submitting: false,
+        apiConnected: true,
         resultMsg: t('emergency.sent'),
-        resultId: 'local-' + Date.now(),
+        resultId: result && (result.emergencyId || result.id) || '',
       })
     } catch (e) {
-      this.setData({ submitting: false })
-      // 离线模式也接受求助
       this.setData({
         sent: true,
+        submitting: false,
+        apiConnected: false,
         resultMsg: t('emergency.sentLocal'),
         resultId: 'local-' + Date.now(),
       })

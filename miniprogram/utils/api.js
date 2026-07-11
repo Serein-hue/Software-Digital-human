@@ -10,40 +10,68 @@
  */
 
 // ── 配置 ──────────────────────────────────────────────────────────────
-// 开发时改成你电脑的局域网 IP，让手机也能连
-const BASE_URL = 'http://192.168.43.30:8001/v1'
-const TIMEOUT = 8000
+const DEVTOOLS_BASE = 'http://127.0.0.1:8001/v1'
+const LAN_BASE = 'http://192.168.1.116:8001/v1'
+const TIMEOUT = 5000
+let activeBaseUrl = ''
+
+function getBaseUrls() {
+  let override = ''
+  let platform = ''
+  try {
+    override = wx.getStorageSync('business-api-base') || ''
+    const info = wx.getDeviceInfo ? wx.getDeviceInfo() : wx.getSystemInfoSync()
+    platform = info.platform || ''
+  } catch (_) { /* use defaults */ }
+  const defaults = platform === 'devtools' ? [DEVTOOLS_BASE, LAN_BASE] : [LAN_BASE, DEVTOOLS_BASE]
+  return [override, activeBaseUrl, ...defaults].filter((item, index, list) => item && list.indexOf(item) === index)
+}
+
+function getBaseUrl() {
+  return activeBaseUrl || getBaseUrls()[0]
+}
 
 // ── 基础请求 ──────────────────────────────────────────────────────────
-
 function request(method, path, data) {
+  const bases = getBaseUrls()
   return new Promise((resolve, reject) => {
-    const url = BASE_URL + path
-    wx.request({
-      url,
-      method,
-      data,
-      timeout: TIMEOUT,
-      header: { 'Content-Type': 'application/json' },
-      success(res) {
-        const body = res.data
-        if (body && body.code === 0) {
-          resolve(body.data)
-        } else {
+    const attempt = (index, lastError) => {
+      if (index >= bases.length) {
+        reject(lastError || { code: -1, message: '网络不可达' })
+        return
+      }
+      const baseUrl = bases[index]
+      wx.request({
+        url: baseUrl + path,
+        method,
+        data,
+        timeout: TIMEOUT,
+        header: { 'Content-Type': 'application/json' },
+        success(res) {
+          const body = res.data
+          if (body && body.code === 0) {
+            activeBaseUrl = baseUrl
+            resolve(body.data)
+            return
+          }
+          if (res.statusCode >= 500 && index + 1 < bases.length) {
+            attempt(index + 1, body)
+            return
+          }
           console.warn(`[API] ${method} ${path} failed:`, body)
-          reject(body || { code: -1, message: '网络异常' })
-        }
-      },
-      fail(err) {
-        console.warn(`[API] ${method} ${path} network error:`, err)
-        // 业务方自己处理 fallback
-        reject({ code: -1, message: '网络不可达', raw: err })
-      },
-    })
+          reject(body || { code: res.statusCode || -1, message: '接口异常' })
+        },
+        fail(err) {
+          console.warn(`[API] ${method} ${path} via ${baseUrl} failed`)
+          attempt(index + 1, { code: -1, message: '网络不可达', raw: err })
+        },
+      })
+    }
+    attempt(0)
   })
 }
 
-function GET(path)  { return request('GET', path) }
+function GET(path) { return request('GET', path) }
 function POST(path, data) { return request('POST', path, data) }
 
 // ── 提取分页包装中的 items ────────────────────────────────────────────
@@ -138,6 +166,18 @@ function getQueues() {
   return GET('/queues')
 }
 
+function getTicketProducts() {
+  return GET('/tickets/products').then(unwrap)
+}
+
+function createEmergency(data) {
+  return POST('/emergency/requests', data)
+}
+
+function probe() {
+  return getWeather().then(() => ({ online: true, baseUrl: getBaseUrl() }))
+}
+
 // ═══════════════════════════════════════════════════════════════════════
 // 导出
 // ═══════════════════════════════════════════════════════════════════════
@@ -145,7 +185,8 @@ function getQueues() {
 module.exports = {
   // 基础
   request,
-  BASE_URL,
+  getBaseUrl,
+  probe,
   // 景点
   getSpots,
   getSpotDetail,
@@ -163,4 +204,6 @@ module.exports = {
   getServices,
   getWeather,
   getQueues,
+  getTicketProducts,
+  createEmergency,
 }

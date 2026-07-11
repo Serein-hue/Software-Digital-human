@@ -14,7 +14,6 @@ Component({
     switchTab(e) {
       const { path, index } = e.currentTarget.dataset
       if (this.data.switching || index === this.data.selected) return
-      try { wx.vibrateShort({ type: 'light' }) } catch (_) { /* unsupported */ }
       this.setData({ selected: index, switching: true })
       wx.switchTab({
         url: path,
