@@ -392,7 +392,7 @@ function CandidatesTab({ addToast }: { addToast: AddToast }) {
     <div>
       <div className="kb-section-head">
         <h3>低置信问答（{items.length}）</h3>
-        <span className="kb-hint">以下问题的 智能回答置信度较低，建议审核后采纳为知识库</span>
+        <span className="kb-hint">以下问题的 AI 回答置信度较低，建议审核后采纳为知识库</span>
       </div>
 
       <div className="kb-candidate-list">
@@ -403,7 +403,7 @@ function CandidatesTab({ addToast }: { addToast: AddToast }) {
               <p>{item.userQuestion || '(无关联问题)'}</p>
             </div>
             <div className="kb-candidate-a">
-              <span className="kb-label">智能回答</span>
+              <span className="kb-label">AI 回答</span>
               <p>{item.assistantReply}</p>
             </div>
             <div className="kb-candidate-meta">
