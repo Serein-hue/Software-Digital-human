@@ -1,5 +1,5 @@
 <view class="emergency-page page has-visitor-nav">
-  <view class="header motion-rise"><button class="back-btn" bindtap="goBack"><text>←</text></button><text class="title">{{title}}</text><view class="spacer"></view></view>
+  <view class="header motion-rise"><view class="spacer"></view><text class="title">{{title}}</text><view class="spacer"></view></view>
   <view class="safety-hero motion-rise-2"><view class="safety-glyph">求助</view><view class="safety-copy"><text class="safety-eyebrow">{{safetyEyebrow}}</text><text class="safety-title">{{safetyTitle}}</text><text class="safety-tip">{{directCallLabel}}</text></view></view>
   <view wx:if="{{!sent}}" class="emergency-form motion-rise-3">
     <view class="type-row"><button wx:for="{{types}}" wx:key="key" class="type-btn {{activeType === item.key ? 'active' : ''}}" bindtap="onTypeTap" data-type="{{item.key}}"><text class="type-glyph">{{item.glyph}}</text><text>{{item.label}}</text></button></view>

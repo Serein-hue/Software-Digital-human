@@ -174,6 +174,10 @@ function createEmergency(data) {
   return POST('/emergency/requests', data)
 }
 
+function submitFeedback(sessionId, data) {
+  return POST('/sessions/' + sessionId + '/feedback', data)
+}
+
 function probe() {
   return getWeather().then(() => ({ online: true, baseUrl: getBaseUrl() }))
 }
@@ -206,4 +210,5 @@ module.exports = {
   getQueues,
   getTicketProducts,
   createEmergency,
+  submitFeedback,
 }

@@ -1,5 +1,6 @@
 const { t } = require('../../utils/i18n')
 const session = require('../../utils/session')
+const api = require('../../utils/api')
 
 Page({
   data: {
@@ -51,12 +52,16 @@ Page({
 
     this.setData({ submitting: true })
     try {
-      await session.ensure()
-      this.setData({ done: true, submitting: false })
+      const sessionId = await session.ensure()
+      if (String(sessionId).startsWith('local-')) throw new Error('offline session')
+      const content = this.data.comment.trim() || `评分：${this.data.rating} 星；问题${this.data.resolved ? '已解决' : '未解决'}`
+      const result = await api.submitFeedback(sessionId, { type: 'feedback', content })
+      this.setData({ done: true, submitting: false, apiConnected: true, feedbackId: result && result.feedbackId })
+      wx.showToast({ title: '提交成功', icon: 'success' })
     } catch (e) {
       console.log('[feedback] API 失败:', e.message)
-      // 离线也能提交"成功"
-      this.setData({ done: true, submitting: false })
+      this.setData({ done: true, submitting: false, apiConnected: false })
+      wx.showToast({ title: '已离线保存', icon: 'none' })
     }
   },
 

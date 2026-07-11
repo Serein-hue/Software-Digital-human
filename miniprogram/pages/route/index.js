@@ -1,7 +1,6 @@
 const { ROUTES } = require('../../utils/data')
 const { t } = require('../../utils/i18n')
 const api = require('../../utils/api')
-const { lightFeedback } = require('../../utils/motion')
 
 const ROUTE_TYPE_MAP = {
   culture: { tags: ['推荐', '深度', '人文'], difficulty: '中等', distance: '5.2 km' },
@@ -52,6 +51,7 @@ Page({
     this._allRoutes = routes
     this.setData({ isLoading: false })
     this._filterRoutes(this.data.activePref)
+    wx.stopPullDownRefresh()
   },
 
   _filterRoutes(pref) {
@@ -71,18 +71,22 @@ Page({
   },
 
   onPrefTap(e) {
-    lightFeedback()
     const pref = e.currentTarget.dataset.pref
     this.setData({ activePref: pref, expandedId: null })
     this._filterRoutes(pref)
   },
 
   toggleExpand(e) {
-    lightFeedback()
     const { id } = e.currentTarget.dataset
     this.setData({ expandedId: this.data.expandedId === id ? null : id })
   },
 
-  onPullDownRefresh() { this._loadRoutes(); wx.stopPullDownRefresh() },
-  goBack() { wx.navigateBack() },
+  startRoute() {
+    const route = (this._allRoutes || []).find((item) => item.id === this.data.expandedId)
+    if (route) { try { wx.setStorageSync('active-route', route) } catch (_) { /* ignore */ } }
+    wx.showToast({ title: '路线已加入导览', icon: 'success' })
+    setTimeout(() => wx.switchTab({ url: '/pages/guide/index' }), 260)
+  },
+  onPullDownRefresh() { this._loadRoutes() },
+  goBack() { wx.switchTab({ url: '/pages/guide/index' }) },
 })

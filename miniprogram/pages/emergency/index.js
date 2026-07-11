@@ -1,6 +1,5 @@
 const { t } = require('../../utils/i18n')
 const api = require('../../utils/api')
-const { lightFeedback } = require('../../utils/motion')
 
 Page({
   data: {
@@ -62,7 +61,6 @@ Page({
   },
 
   onTypeTap(e) {
-    lightFeedback()
     this.setData({ activeType: e.currentTarget.dataset.type })
   },
 
@@ -75,7 +73,6 @@ Page({
   },
 
   async onSubmit() {
-    lightFeedback()
     if (this.data.submitting) return
     if (!this.data.desc.trim()) {
       wx.showToast({ title: t('emergency.needDescription'), icon: 'none' })

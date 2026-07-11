@@ -1,6 +1,5 @@
 const { t } = require('../../utils/i18n')
 const api = require('../../utils/api')
-const { lightFeedback } = require('../../utils/motion')
 
 const LOCAL_SERVICES = [
   { id: 'toilet-buddha', category: 'toilet', name: '大佛广场卫生间', location: '灵山大佛广场东侧' },
@@ -73,14 +72,17 @@ Page({
     wx.stopPullDownRefresh()
   },
 
+  showService(e) {
+    const { name, location } = e.currentTarget.dataset
+    wx.showModal({ title: name, content: location || '暂无位置说明', showCancel: false, confirmText: '知道了' })
+  },
+
   openServicePage(e) {
-    lightFeedback()
     const { url } = e.currentTarget.dataset
     if (url) wx.navigateTo({ url })
   },
 
   onCategoryTap(e) {
-    lightFeedback()
     const category = e.currentTarget.dataset.category
     this.setData({ activeCategory: category })
     this.loadServices(category)

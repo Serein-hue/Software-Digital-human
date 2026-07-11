@@ -13,7 +13,8 @@ Component({
   methods: {
     switchTab(e) {
       const { path, index } = e.currentTarget.dataset
-      if (this.data.switching || index === this.data.selected) return
+      if (this.data.switching) return
+      if (index === this.data.selected) { wx.pageScrollTo({ scrollTop: 0, duration: 180 }); return }
       this.setData({ selected: index, switching: true })
       wx.switchTab({
         url: path,

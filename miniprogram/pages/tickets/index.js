@@ -59,7 +59,7 @@ Page({
 
   onVerify() {
     const code = this.data.verifyCode.trim()
-    if (!code) return
+    if (!code) { wx.showToast({ title: '请输入票码', icon: 'none' }); return }
 
     this.setData({ verifying: true, verifyResult: null })
     setTimeout(() => {

@@ -2,7 +2,6 @@ const { SPOTS, MOCK_KNOWLEDGE } = require('../../utils/data')
 const { t, getSuggestions } = require('../../utils/i18n')
 const api = require('../../utils/api')
 const session = require('../../utils/session')
-const { lightFeedback } = require('../../utils/motion')
 
 const PRIMARY_ACTIONS = [
   { action: 'route', i18nKey: 'quick.route', glyphKey: 'quick.routeGlyph', askText: '推荐路线' },
@@ -219,12 +218,13 @@ Page({
   },
 
   onQuickAction(e) {
-    lightFeedback()
     const { action, askText } = e.currentTarget.dataset
     if (action === 'route') {
-      wx.navigateTo({ url: '/pages/route/index' })
+      wx.switchTab({ url: '/pages/route/index' })
     } else if (action === 'camera') {
       wx.navigateTo({ url: '/pages/photo/index' })
+    } else if (action === 'services') {
+      wx.switchTab({ url: '/pages/services/index' })
     } else if (action === 'detail') {
       wx.navigateTo({ url: '/pages/spot-detail/index?id=lingshan-buddha' })
     } else if (action === 'ask') {
@@ -239,9 +239,9 @@ Page({
   goPrimaryNav(e) {
     const target = e.currentTarget.dataset.target
     if (target === 'guide') return
-    if (target === 'route') wx.navigateTo({ url: '/pages/route/index' })
-    if (target === 'services') wx.navigateTo({ url: '/pages/services/index' })
-    if (target === 'emergency') wx.navigateTo({ url: '/pages/emergency/index' })
+    if (target === 'route') wx.switchTab({ url: '/pages/route/index' })
+    if (target === 'services') wx.switchTab({ url: '/pages/services/index' })
+    if (target === 'emergency') wx.switchTab({ url: '/pages/emergency/index' })
   },
 
   toggleOffline() {
@@ -251,7 +251,6 @@ Page({
   noop() {},
 
   openVoice() {
-    lightFeedback()
     this.setData({ voiceOpen: true, voiceRecording: false })
   },
 

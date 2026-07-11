@@ -37,6 +37,13 @@ Page({
     wx.stopPullDownRefresh()
   },
 
+  openEvent(e) {
+    const map = { 'LS-001': 'lingshan-buddha', 'LS-002': 'lingshan-fanpalace', 'LS-003': 'lingshan-jiulong', 'LS-004': 'lingshan-mandala', 'LS-005': 'lingshan-xiangfu' }
+    const id = map[e.currentTarget.dataset.spotId]
+    if (id) wx.navigateTo({ url: '/pages/spot-detail/index?id=' + id })
+    else wx.showToast({ title: '暂无关联景点', icon: 'none' })
+  },
+
   iconFor(name) {
     if (name.includes('九龙')) return '龙'
     if (name.includes('钟')) return '钟'

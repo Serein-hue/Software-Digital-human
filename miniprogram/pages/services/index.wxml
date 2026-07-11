@@ -1,5 +1,5 @@
 <view class="services-page page has-visitor-nav">
-  <view class="header motion-rise"><button class="back-btn" bindtap="goBack"><text>←</text></button><text class="title">{{title}}</text><view class="spacer"></view></view>
+  <view class="header motion-rise"><view class="spacer"></view><text class="title">{{title}}</text><view class="spacer"></view></view>
   <view class="services-hero motion-rise-2">
     <view class="services-hero-mark"><view class="map-pin"><view></view></view></view>
     <view class="services-hero-copy"><text class="services-eyebrow">游客服务设施</text><text class="services-title">{{title}}</text><text class="services-desc">{{heroCopy}}</text></view>
@@ -18,10 +18,10 @@
   <view wx:if="{{isLoading}}" class="loading"><view class="skeleton service-skeleton" wx:for="{{3}}" wx:key="*this"></view></view>
   <view wx:else class="service-list motion-rise-3">
     <view wx:if="{{services.length === 0}}" class="empty-state card"><view class="empty-service">服</view><text>{{emptyLabel}}</text></view>
-    <view wx:for="{{services}}" wx:key="id" class="service-card">
+    <button wx:for="{{services}}" wx:key="id" class="service-card" bindtap="showService" data-name="{{item.name}}" data-location="{{item.location}}" hover-class="service-card-press">
       <view class="service-icon" style="background:{{item.color}}18;color:{{item.color}};"><text>{{item.icon}}</text></view>
       <view class="service-copy"><text class="svc-name">{{item.name}}</text><view class="svc-location"><view class="mini-pin"></view><text>{{item.location}}</text></view></view>
       <view class="service-side"><text class="service-category" style="color:{{item.color}};">{{item.categoryLabel}}</text><text class="service-arrow">→</text></view>
-    </view>
+    </button>
   </view>
 </view>

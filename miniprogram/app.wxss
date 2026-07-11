@@ -32,7 +32,7 @@ page {
 
 view, text, button, input, textarea, image, scroll-view { box-sizing: border-box; }
 button::after { border: 0; }
-button { line-height: 1.25; transition: transform 120ms ease, opacity 120ms ease, background-color 160ms ease; }
+button { line-height: 1.25; font-family: inherit; text-align: center; transition: transform 100ms ease, opacity 100ms ease, background-color 140ms ease; }
 
 .flex-row { display: flex; align-items: center; }
 .flex-col { display: flex; flex-direction: column; }
@@ -189,11 +189,11 @@ button { line-height: 1.25; transition: transform 120ms ease, opacity 120ms ease
 .empty-state image { width: 112rpx; height: 112rpx; opacity: .45; }
 .safe-bottom { padding-bottom: calc(16rpx + env(safe-area-inset-bottom)); }
 
-.motion-rise { animation: motionRise 360ms cubic-bezier(.2,.8,.2,1) both; will-change: transform, opacity; }
-.motion-rise-2 { animation: motionRise 390ms cubic-bezier(.2,.8,.2,1) 45ms both; will-change: transform, opacity; }
-.motion-rise-3 { animation: motionRise 420ms cubic-bezier(.2,.8,.2,1) 90ms both; will-change: transform, opacity; }
-.motion-rise-4 { animation: motionRise 450ms cubic-bezier(.2,.8,.2,1) 135ms both; will-change: transform, opacity; }
-.motion-fade { animation: motionFade 360ms ease both; }
+.motion-rise { animation: motionRise 280ms cubic-bezier(.22,1,.36,1) both; will-change: transform, opacity; }
+.motion-rise-2 { animation: motionRise 310ms cubic-bezier(.22,1,.36,1) 30ms both; will-change: transform, opacity; }
+.motion-rise-3 { animation: motionRise 335ms cubic-bezier(.22,1,.36,1) 60ms both; will-change: transform, opacity; }
+.motion-rise-4 { animation: motionRise 360ms cubic-bezier(.22,1,.36,1) 90ms both; will-change: transform, opacity; }
+.motion-fade { animation: motionFade 220ms ease both; }
 
 @keyframes motionRise {
   from { opacity: 0; transform: translate3d(0, 14rpx, 0); }
@@ -207,6 +207,6 @@ button { line-height: 1.25; transition: transform 120ms ease, opacity 120ms ease
 
 .has-visitor-nav { padding-bottom: calc(190rpx + env(safe-area-inset-bottom)) !important; }
 
-.panel-reveal { transform-origin: top center; animation: panelReveal 260ms cubic-bezier(.2,.8,.2,1) both; }
+.panel-reveal { transform-origin: top center; animation: panelReveal 220ms cubic-bezier(.22,1,.36,1) both; }
 .tap-press { transform: scale(.97); opacity: .9; }
 @keyframes panelReveal { from { opacity:0; transform:translateY(-8rpx) scaleY(.96); } to { opacity:1; transform:translateY(0) scaleY(1); } }
