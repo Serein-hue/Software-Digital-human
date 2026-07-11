@@ -1,1 +1,6 @@
-<view class="custom-tabbar safe-bottom"><button wx:for="{{items}}" wx:key="pagePath" class="tab-item {{selected === index ? 'active' : ''}} {{item.danger ? 'danger' : ''}}" bindtap="switchTab" data-path="{{item.pagePath}}" data-index="{{index}}" hover-class="tab-press"><view class="tab-glyph">{{item.glyph}}</view><text>{{item.text}}</text></button></view>
+<view class="custom-tabbar safe-bottom" aria-label="游客端主导航">
+  <button wx:for="{{items}}" wx:key="pagePath" class="tab-item {{selected === index ? 'active' : ''}} {{item.danger ? 'danger' : ''}}" bindtap="switchTab" data-path="{{item.pagePath}}" data-index="{{index}}" hover-class="tab-press">
+    <view class="tab-indicator"></view>
+    <text class="tab-label">{{item.text}}</text>
+  </button>
+</view>

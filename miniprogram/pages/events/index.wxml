@@ -1,31 +1,16 @@
 <view class="page has-visitor-nav">
-  <view class="header">
-    <button class="back-btn" bindtap="goBack"><text>←</text></button>
-    <text class="title">{{title}}</text>
-    <view class="spacer" />
-  </view>
-
-  <view wx:if="{{isLoading}}" class="loading">
-    <view class="skeleton" style="height:160rpx;margin-bottom:24rpx;" wx:for="{{3}}" wx:key="*this" />
-  </view>
-
+  <view class="header detail-header"><button class="back-btn" bindtap="goBack"><text>←</text></button><text class="title">{{title}}</text></view>
+  <view class="events-intro"><text class="events-intro-title">今日活动安排</text><text class="events-intro-copy">查看时间与地点，可直接打开微信地图前往</text></view>
+  <view wx:if="{{isLoading}}" class="loading"><view class="skeleton event-skeleton" wx:for="{{3}}" wx:key="*this"></view></view>
   <view wx:else class="list">
     <view class="section-label">{{daily}}</view>
-    <view wx:if="{{events.length === 0}}" class="empty-state">
-      <view class="empty-event">演</view>
-      <text>{{emptyLabel}}</text>
+    <view wx:if="{{events.length === 0}}" class="empty-state"><view class="empty-event">演</view><text>{{emptyLabel}}</text></view>
+    <view wx:for="{{events}}" wx:key="id" class="event-card">
+      <view class="event-head"><view class="ev-icon">{{item.icon}}</view><view class="ev-heading"><text class="ev-name">{{item.name}}</text><view class="ev-time"><text class="ev-clock">{{nextLabel}}</text><text>{{item.time}}</text></view></view></view>
+      <view class="ev-location"><view class="location-dot"></view><text>{{item.location}}</text></view>
+      <text wx:if="{{item.description}}" class="ev-desc">{{item.description}}</text>
+      <view class="event-actions"><button class="detail-btn" bindtap="openEvent" data-spot-id="{{item.spotId}}" hover-class="event-action-press">查看详情</button><button class="map-btn" bindtap="navigateEvent" data-id="{{item.id}}" hover-class="event-action-press">导航前往</button></view>
     </view>
-    <button wx:for="{{events}}" wx:key="id" class="event-card" bindtap="openEvent" data-spot-id="{{item.spotId}}" hover-class="event-card-press">
-      <view class="ev-icon">{{item.icon}}</view>
-      <view class="ev-body">
-        <text class="ev-name">{{item.name}}</text>
-        <view class="ev-time">
-          <text class="ev-clock">{{nextLabel}}</text>
-          <text>{{item.time}}</text>
-        </view>
-        <text wx:if="{{item.description}}" class="ev-desc">{{item.description}}</text>
-      </view>
-    </button>
   </view>
   <visitor-nav active="services" />
 </view>

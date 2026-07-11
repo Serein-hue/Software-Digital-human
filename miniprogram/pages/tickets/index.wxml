@@ -1,51 +1,17 @@
 <view class="page has-visitor-nav">
-  <view class="header">
-    <button class="back-btn" bindtap="goBack"><text>←</text></button>
-    <text class="title">{{title}}</text>
-    <view class="spacer" />
-  </view>
-
-  <!-- 票种列表 -->
+  <view class="header detail-header"><button class="back-btn" bindtap="goBack"><text>←</text></button><text class="title">{{title}}</text></view>
+  <view class="ticket-guide"><view><text class="ticket-guide-title">入园票务</text><text class="ticket-guide-copy">查看票价、扫描票码或前往南门检票口</text></view><button class="entrance-btn" bindtap="navigateEntrance" hover-class="button-press">入口导航</button></view>
   <view class="section">
     <text class="section-title">{{productsLabel}}</text>
-    <view wx:if="{{isLoading}}" class="loading">
-      <view class="skeleton" style="height:100rpx;margin-bottom:16rpx;" wx:for="{{2}}" wx:key="*this" />
-    </view>
-    <view wx:else class="product-list">
-      <view wx:for="{{products}}" wx:key="id" class="product-card">
-        <view class="prod-icon">票</view>
-        <view class="prod-body">
-          <text class="prod-name">{{item.name}}</text>
-          <text class="prod-status {{item.status === 'available' ? 'on' : 'off'}}">{{item.status === 'available' ? availableLabel : unavailableLabel}}</text>
-        </view>
-        <view class="prod-price">
-          <text class="price-num">¥{{item.price}}</text>
-          <text class="price-label">{{priceLabel}}</text>
-        </view>
-      </view>
-    </view>
+    <view wx:if="{{isLoading}}" class="loading"><view class="skeleton product-skeleton" wx:for="{{2}}" wx:key="*this"></view></view>
+    <view wx:else class="product-list"><view wx:for="{{products}}" wx:key="id" class="product-card"><view class="prod-icon">票</view><view class="prod-body"><text class="prod-name">{{item.name}}</text><text class="prod-status {{item.status === 'available' ? 'on' : 'off'}}">{{item.status === 'available' ? availableLabel : unavailableLabel}}</text></view><view class="prod-price"><text class="price-num">¥{{item.price}}</text><text class="price-label">{{priceLabel}}</text></view></view></view>
   </view>
-
-  <!-- 票码核验 -->
-  <view class="section">
+  <view class="section verify-section">
     <text class="section-title">{{verifyLabel}}</text>
-    <view class="verify-box">
-      <input class="verify-input" placeholder="{{verifyPlaceholder}}" value="{{verifyCode}}" bindinput="onCodeInput" confirm-type="search" bindconfirm="onVerify" />
-      <button class="verify-btn" bindtap="onVerify" loading="{{verifying}}">{{verifyBtn}}</button>
-    </view>
-
-    <view wx:if="{{verifyResult}}" class="verify-result {{verifyResult.status === 'valid' ? 'success' : 'fail'}}">
-      <text class="vr-icon">{{verifyResult.status === 'valid' ? '✓' : '!'}}</text>
-      <text class="vr-status">{{verifyResult.status === 'valid' ? validLabel : verifyResult.status}}</text>
-      <view wx:if="{{verifyResult.names.length > 0}}" class="vr-names">
-        <text wx:for="{{verifyResult.names}}" wx:key="*this">{{item}}</text>
-      </view>
-      <text wx:if="{{verifyResult.disclaimer}}" class="vr-disclaimer">{{verifyResult.disclaimer}}</text>
-    </view>
+    <view class="verify-box"><input class="verify-input" placeholder="{{verifyPlaceholder}}" value="{{verifyCode}}" bindinput="onCodeInput" confirm-type="search" bindconfirm="onVerify" /><button class="scan-btn" bindtap="scanTicket" hover-class="button-press">扫码</button></view>
+    <button class="verify-btn" bindtap="onVerify" loading="{{verifying}}" disabled="{{verifying}}" hover-class="button-press">{{verifyBtn}}</button>
+    <view wx:if="{{verifyResult}}" class="verify-result {{verifyResult.status === 'valid' ? 'success' : 'fail'}}"><text class="vr-icon">{{verifyResult.status === 'valid' ? '✓' : '!'}}</text><text class="vr-status">{{verifyResult.status === 'valid' ? validLabel : '暂未联网核验'}}</text><view wx:if="{{verifyResult.names.length > 0}}" class="vr-names"><text wx:for="{{verifyResult.names}}" wx:key="*this">{{item}}</text></view><text wx:if="{{verifyResult.disclaimer}}" class="vr-disclaimer">{{verifyResult.disclaimer}}</text></view>
   </view>
-
-  <view class="disclaimer">
-    <text>{{disclaimer}}</text>
-  </view>
+  <view class="disclaimer"><text>{{disclaimer}}</text></view>
   <visitor-nav active="services" />
 </view>

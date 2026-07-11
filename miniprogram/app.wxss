@@ -71,13 +71,17 @@ button { line-height: 1.25; font-family: inherit; text-align: center; transition
   position: relative;
   z-index: 4;
   display: grid;
-  grid-template-columns: 80rpx minmax(0, 1fr) 80rpx;
+  grid-template-columns: 72rpx minmax(0, 1fr) 72rpx;
   align-items: center;
-  min-height: 112rpx;
-  padding: max(20rpx, env(safe-area-inset-top)) 28rpx 16rpx;
-  background: rgba(255,255,255,.82);
+  min-height: calc(env(safe-area-inset-top) + 176rpx);
+  padding: calc(env(safe-area-inset-top) + 96rpx) 190rpx 18rpx 28rpx;
+  background: rgba(255,255,255,.86);
   border-bottom: 1rpx solid rgba(29,86,76,.08);
 }
+
+.tab-header { display:flex; justify-content:flex-start; }
+.tab-header .title { padding:0; text-align:left; }
+.detail-header .title { padding-left:14rpx; text-align:center; }
 
 .back-btn {
   display: flex;
@@ -205,7 +209,7 @@ button { line-height: 1.25; font-family: inherit; text-align: center; transition
 @keyframes softPulse { 0%,100% { opacity: .5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
 @keyframes floatY { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,-12rpx,0); } }
 
-.has-visitor-nav { padding-bottom: calc(190rpx + env(safe-area-inset-bottom)) !important; }
+.has-visitor-nav { padding-bottom: calc(166rpx + env(safe-area-inset-bottom)) !important; }
 
 .panel-reveal { transform-origin: top center; animation: panelReveal 220ms cubic-bezier(.22,1,.36,1) both; }
 .tap-press { transform: scale(.97); opacity: .9; }

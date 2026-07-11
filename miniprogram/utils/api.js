@@ -156,6 +156,11 @@ function getServices() {
   return GET('/services').then(unwrap)
 }
 
+/** 景区地图点位 */
+function getMapPois() {
+  return GET('/map/pois').then(unwrap)
+}
+
 /** 天气 */
 function getWeather() {
   return GET('/weather')
@@ -206,6 +211,7 @@ module.exports = {
   getNotices,
   getEvents,
   getServices,
+  getMapPois,
   getWeather,
   getQueues,
   getTicketProducts,

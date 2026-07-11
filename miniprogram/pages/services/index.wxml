@@ -1,27 +1,27 @@
 <view class="services-page page has-visitor-nav">
-  <view class="header motion-rise"><view class="spacer"></view><text class="title">{{title}}</text><view class="spacer"></view></view>
+  <view class="header tab-header motion-rise"><text class="title">{{title}}</text></view>
   <view class="services-hero motion-rise-2">
     <view class="services-hero-mark"><view class="map-pin"><view></view></view></view>
-    <view class="services-hero-copy"><text class="services-eyebrow">游客服务设施</text><text class="services-title">{{title}}</text><text class="services-desc">{{heroCopy}}</text></view>
+    <view class="services-hero-copy"><text class="services-title">设施导航</text><text class="services-desc">{{heroCopy}}</text><text class="services-map-hint">{{mapHint}}</text></view>
   </view>
   <view class="service-shortcuts motion-rise-2">
     <text class="shortcuts-title">{{shortcutsTitle}}</text>
     <view class="shortcuts-grid">
       <button wx:for="{{serviceShortcuts}}" wx:key="key" class="shortcut-card" bindtap="openServicePage" data-url="{{item.url}}" hover-class="shortcut-press">
-        <view class="shortcut-glyph">{{item.glyph}}</view><text>{{item.label}}</text><text class="shortcut-arrow">→</text>
+        <view class="shortcut-glyph">{{item.glyph}}</view><text>{{item.label}}</text>
       </button>
     </view>
   </view>
-  <scroll-view class="cat-tabs motion-rise-2" scroll-x enhanced show-scrollbar="{{false}}"><view class="cat-inner">
-    <button wx:for="{{categories}}" wx:key="key" class="cat-chip {{activeCategory === item.key ? 'active' : ''}}" bindtap="onCategoryTap" data-category="{{item.key}}"><text class="cat-icon">{{item.icon}}</text><text>{{item.label}}</text></button>
+  <scroll-view class="cat-tabs" scroll-x enhanced show-scrollbar="{{false}}"><view class="cat-inner">
+    <button wx:for="{{categories}}" wx:key="key" class="cat-chip {{activeCategory === item.key ? 'active' : ''}}" bindtap="onCategoryTap" data-category="{{item.key}}"><text>{{item.label}}</text></button>
   </view></scroll-view>
   <view wx:if="{{isLoading}}" class="loading"><view class="skeleton service-skeleton" wx:for="{{3}}" wx:key="*this"></view></view>
   <view wx:else class="service-list motion-rise-3">
     <view wx:if="{{services.length === 0}}" class="empty-state card"><view class="empty-service">服</view><text>{{emptyLabel}}</text></view>
-    <button wx:for="{{services}}" wx:key="id" class="service-card" bindtap="showService" data-name="{{item.name}}" data-location="{{item.location}}" hover-class="service-card-press">
+    <view wx:for="{{services}}" wx:key="id" class="service-card">
       <view class="service-icon" style="background:{{item.color}}18;color:{{item.color}};"><text>{{item.icon}}</text></view>
-      <view class="service-copy"><text class="svc-name">{{item.name}}</text><view class="svc-location"><view class="mini-pin"></view><text>{{item.location}}</text></view></view>
-      <view class="service-side"><text class="service-category" style="color:{{item.color}};">{{item.categoryLabel}}</text><text class="service-arrow">→</text></view>
-    </button>
+      <view class="service-copy"><view class="service-title-row"><text class="svc-name">{{item.name}}</text><text class="service-category" style="color:{{item.color}};">{{item.categoryLabel}}</text></view><view class="svc-location"><view class="mini-pin"></view><text>{{item.location}}</text></view></view>
+      <button class="navigate-btn" catchtap="navigateService" data-id="{{item.id}}" hover-class="navigate-btn-press">导航</button>
+    </view>
   </view>
 </view>

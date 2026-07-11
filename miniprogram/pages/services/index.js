@@ -1,8 +1,9 @@
 const { t } = require('../../utils/i18n')
 const api = require('../../utils/api')
+const navigation = require('../../utils/navigation')
 
 const LOCAL_SERVICES = [
-  { id: 'toilet-buddha', category: 'toilet', name: '大佛广场卫生间', location: '灵山大佛广场东侧' },
+  { id: 'toilet-buddha', category: 'toilet', name: '大佛广场卫生间', location: '九龙灌浴广场右侧' },
   { id: 'toilet-fanpalace', category: 'toilet', name: '梵宫一层卫生间', location: '梵宫入口内侧' },
   { id: 'restaurant-suxiang', category: 'restaurant', name: '灵山精舍素斋馆', location: '出口商业街旁' },
   { id: 'restaurant-fanpalace', category: 'restaurant', name: '梵宫自助餐厅', location: '梵宫一层' },
@@ -12,13 +13,8 @@ const LOCAL_SERVICES = [
 
 Page({
   data: {
-    title: '',
-    categories: [],
-    activeCategory: 'all',
-    services: [],
-    isLoading: true,
-    emptyLabel: '',
-    heroCopy: '',
+    title: '', categories: [], activeCategory: 'all', services: [], allServices: [],
+    isLoading: true, emptyLabel: '', heroCopy: '', mapHint: '点击导航可直接打开微信地图',
   },
 
   onShow() {
@@ -28,9 +24,7 @@ Page({
 
   onLoad() {
     this.setData({
-      title: t('services.title'),
-      emptyLabel: t('services.empty'),
-      heroCopy: t('services.heroCopy'),
+      title: t('services.title'), emptyLabel: t('services.empty'), heroCopy: t('services.heroCopy'),
       shortcutsTitle: t('services.shortcutsTitle'),
       serviceShortcuts: [
         { key: 'events', label: t('events.title'), glyph: '演', url: '/pages/events/index' },
@@ -38,43 +32,43 @@ Page({
         { key: 'feedback', label: t('feedback.title'), glyph: '评', url: '/pages/feedback/index' },
       ],
       categories: [
-        { key: 'all', label: t('services.all'), icon: '全' },
-        { key: 'toilet', label: t('services.toilet'), icon: '厕' },
-        { key: 'restaurant', label: t('services.restaurant'), icon: '餐' },
-        { key: 'parking', label: t('services.parking'), icon: '停' },
-        { key: 'help_point', label: t('services.help_point'), icon: '助' },
+        { key: 'all', label: t('services.all') }, { key: 'toilet', label: t('services.toilet') },
+        { key: 'restaurant', label: t('services.restaurant') }, { key: 'parking', label: t('services.parking') },
+        { key: 'help_point', label: t('services.help_point') },
       ],
     })
     this.loadServices()
   },
 
-  loadServices(category) {
+  loadServices() {
     this.setData({ isLoading: true })
-    api.getServices()
-      .then((items) => this._applyServices(items && items.length ? items : LOCAL_SERVICES, category, true))
-      .catch(() => this._applyServices(LOCAL_SERVICES, category, false))
+    Promise.all([
+      api.getServices().catch(() => LOCAL_SERVICES),
+      api.getMapPois().catch(() => []),
+    ]).then(([items, pois]) => this._applyServices(items && items.length ? items : LOCAL_SERVICES, pois))
+      .catch(() => this._applyServices(LOCAL_SERVICES, []))
   },
 
-  _applyServices(items, category, apiConnected) {
-    const services = category && category !== 'all'
-      ? items.filter((service) => service.category === category)
-      : items
-    this.setData({
-      apiConnected,
-      services: services.map((service) => ({
-        ...service,
-        icon: this.iconFor(service.category),
-        color: this.colorFor(service.category),
-        categoryLabel: t('services.' + service.category),
-      })),
-      isLoading: false,
-    })
+  _applyServices(items, pois) {
+    const poiIndex = navigation.indexPois(pois)
+    const allServices = items.map((service) => ({
+      ...service,
+      icon: this.iconFor(service.category), color: this.colorFor(service.category),
+      categoryLabel: t('services.' + service.category),
+      point: navigation.resolvePoint(service.id, service.name, poiIndex[service.name]),
+    }))
+    this.setData({ allServices, isLoading: false }, () => this.applyCategory(this.data.activeCategory))
     wx.stopPullDownRefresh()
   },
 
-  showService(e) {
-    const { name, location } = e.currentTarget.dataset
-    wx.showModal({ title: name, content: location || '暂无位置说明', showCancel: false, confirmText: '知道了' })
+  applyCategory(category) {
+    const services = category === 'all' ? this.data.allServices : this.data.allServices.filter((item) => item.category === category)
+    this.setData({ activeCategory: category, services })
+  },
+
+  navigateService(e) {
+    const service = this.data.allServices.find((item) => item.id === e.currentTarget.dataset.id)
+    if (service) navigation.openLocation(service.point).catch(() => {})
   },
 
   openServicePage(e) {
@@ -82,11 +76,7 @@ Page({
     if (url) wx.navigateTo({ url })
   },
 
-  onCategoryTap(e) {
-    const category = e.currentTarget.dataset.category
-    this.setData({ activeCategory: category })
-    this.loadServices(category)
-  },
+  onCategoryTap(e) { this.applyCategory(e.currentTarget.dataset.category) },
 
   iconFor(category) {
     const map = { toilet: '卫', restaurant: '餐', parking: '停', help_point: '助', shop: '店', medical: '医' }
@@ -94,15 +84,9 @@ Page({
   },
 
   colorFor(category) {
-    const map = { toilet: '#4a90d9', restaurant: '#e89460', parking: '#5a8a4a', help_point: '#d94a4a', shop: '#8a6a4a', medical: '#d94a4a' }
+    const map = { toilet: '#397eb6', restaurant: '#c97543', parking: '#548246', help_point: '#bf4d45', shop: '#80654c', medical: '#bf4d45' }
     return map[category] || '#155d58'
   },
 
-  onPullDownRefresh() {
-    this.loadServices(this.data.activeCategory)
-  },
-
-  goBack() {
-    wx.navigateBack()
-  },
+  onPullDownRefresh() { this.loadServices() },
 })
