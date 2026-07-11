@@ -1055,3 +1055,24 @@ select:focus-visible {
   }
   .ambient-motion { display: none; }
 }
+
+.guide-desktop-layout, .guide-overview-column { display: contents; }
+
+@media (min-width: 900px) {
+  .guide-canvas { display: block; padding: 0; overflow: visible; }
+  .modern-guide { width: 100%; max-width: none; min-height: 100dvh; border: 0; border-radius: 0; box-shadow: none; background: rgba(248,252,250,.78); }
+  .modern-guide .guide-header { padding: 18px max(40px, calc((100vw - 1400px) / 2)); }
+  .guide-desktop-layout { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(420px, .92fr); gap: 24px; width: min(100%, 1400px); margin: 0 auto; padding: 28px 40px 120px; }
+  .guide-overview-column { display: flex; min-width: 0; flex-direction: column; }
+  .guide-context-card { min-height: 350px; margin: 0 0 18px; padding: 38px 36px; }
+  .guide-context-copy h1 { font-size: clamp(42px, 4vw, 64px); }
+  .guide-context-copy > p:not(.guide-context-eyebrow) { max-width: 520px; font-size: 15px; }
+  .modern-guide .dh-scene { width: 190px; height: 230px; }
+  .modern-guide .lbs-bar, .guide-today-strip { margin: 0 0 16px; }
+  .modern-guide .guide-quick-actions { padding: 0; gap: 14px; }
+  .modern-guide .quick-action-chip { min-height: 112px; padding: 18px; }
+  .guide-chat-wrap { min-width: 0; min-height: 100%; margin: 0; }
+  .modern-guide .chat-panel { min-height: 620px; max-height: none; }
+  .modern-guide .chat-messages { min-height: 500px; max-height: calc(100dvh - 330px); }
+  .guide-bottom-nav { width: min(calc(100% - 80px), 720px); bottom: 22px; border: 1px solid rgba(20,72,63,.1); border-radius: 26px; box-shadow: 0 18px 44px rgba(15,67,58,.16); }
+}

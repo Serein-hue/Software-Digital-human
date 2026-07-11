@@ -163,6 +163,8 @@ export default function GuidePage() {
           )}
         </AnimatePresence>
 
+        <div className="guide-desktop-layout">
+          <div className="guide-overview-column">
         <section className="guide-context-card guide-motion-entry">
           <div className="guide-context-copy">
             <p className="guide-context-eyebrow"><Navigation size={13} /> {t('guide.contextEyebrow')}</p>
@@ -205,6 +207,8 @@ export default function GuidePage() {
           ))}
         </div>
 
+          </div>
+
         <div className="guide-chat-wrap guide-motion-entry">
           <div className="guide-chat-heading">
             <div>
@@ -222,7 +226,7 @@ export default function GuidePage() {
             onCameraClick={() => setCameraOpen(true)}
           />
         </div>
-
+        </div>
       </main>
 
       <nav className="guide-bottom-nav" aria-label={t('guide.bottomNavigation')}>

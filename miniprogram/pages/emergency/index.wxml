@@ -10,5 +10,4 @@
     <button class="hotline-btn" bindtap="callScenic"><text>{{callScenicLabel}}</text><text class="hotline-number">0510-85681234</text></button>
   </view>
   <view wx:else class="sent-box motion-rise-2"><view class="sent-check">✓</view><text class="sent-title">{{sentLabel}}</text><text class="sent-msg">{{resultMsg}}</text><view wx:if="{{resultId}}" class="sent-id"><text>{{caseIdLabel}}</text><text>{{resultId}}</text></view><button class="reset-btn btn-primary" bindtap="onReset">{{newRequestLabel}}</button><button class="hotline-btn" bindtap="callScenic"><text>{{callScenicLabel}}</text><text class="hotline-number">0510-85681234</text></button></view>
-  <visitor-nav active="emergency" />
 </view>

@@ -15,6 +15,11 @@ Page({
     durationLabel: '', distanceLabel: '', difficultyLabel: '',
   },
 
+  onShow() {
+    const tabBar = this.getTabBar && this.getTabBar()
+    if (tabBar) tabBar.setData({ selected: 1 })
+  },
+
   onLoad() {
     this.setData({
       routeTitle: t('route.title'), routeHeroCopy: t('route.heroCopy'), startNav: t('route.startNav'),

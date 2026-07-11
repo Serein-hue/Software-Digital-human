@@ -20,6 +20,11 @@ Page({
     resultId: '',
   },
 
+  onShow() {
+    const tabBar = this.getTabBar && this.getTabBar()
+    if (tabBar) tabBar.setData({ selected: 3 })
+  },
+
   onLoad() {
     this.setData({
       title: t('emergency.title'),

@@ -20,6 +20,11 @@ Page({
     heroCopy: '',
   },
 
+  onShow() {
+    const tabBar = this.getTabBar && this.getTabBar()
+    if (tabBar) tabBar.setData({ selected: 2 })
+  },
+
   onLoad() {
     this.setData({
       title: t('services.title'),

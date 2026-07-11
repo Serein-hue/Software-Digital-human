@@ -4,6 +4,7 @@
     "pages/spot-detail/index",
     "pages/route/index",
     "pages/photo/index",
+    "pages/mine/index",
     "pages/services/index",
     "pages/events/index",
     "pages/tickets/index",
@@ -28,5 +29,34 @@
     "scope.userLocation": {
       "desc": "用于定位并推荐附近景点讲解"
     }
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#758782",
+    "selectedColor": "#0d5549",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/guide/index",
+        "text": "导览"
+      },
+      {
+        "pagePath": "pages/route/index",
+        "text": "路线"
+      },
+      {
+        "pagePath": "pages/services/index",
+        "text": "服务"
+      },
+      {
+        "pagePath": "pages/emergency/index",
+        "text": "求助"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的"
+      }
+    ]
   }
 }

@@ -2,6 +2,13 @@ const { SPOTS, MOCK_KNOWLEDGE } = require('../../utils/data')
 const { t, getSuggestions } = require('../../utils/i18n')
 const api = require('../../utils/api')
 
+const PRIMARY_ACTIONS = [
+  { action: 'route', i18nKey: 'quick.route', glyphKey: 'quick.routeGlyph', askText: '推荐路线' },
+  { action: 'camera', i18nKey: 'quick.camera', glyphKey: 'quick.cameraGlyph', askText: '拍照识景' },
+  { action: 'detail', i18nKey: 'quick.detail', glyphKey: 'quick.detailGlyph', askText: '深度讲解' },
+  { action: 'services', i18nKey: 'quick.services', glyphKey: 'quick.servicesGlyph', askText: '服务设施' },
+]
+
 Page({
   data: {
     messages: [],
@@ -84,6 +91,11 @@ Page({
         label: t(item.i18nKey),
       })),
     })
+  },
+
+  onShow() {
+    const tabBar = this.getTabBar && this.getTabBar()
+    if (tabBar) tabBar.setData({ selected: 0 })
   },
 
   onLoad() {

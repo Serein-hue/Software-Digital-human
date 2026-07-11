@@ -17,6 +17,7 @@ Component({
           { key: 'route', label: t('guide.navRoute'), glyph: '线', url: '/pages/route/index' },
           { key: 'services', label: t('guide.navServices'), glyph: '服', url: '/pages/services/index' },
           { key: 'emergency', label: t('guide.navEmergency'), glyph: '助', url: '/pages/emergency/index', danger: true },
+          { key: 'mine', label: t('guide.navMine'), glyph: '我', url: '/pages/mine/index' },
         ],
       })
     },
@@ -25,8 +26,8 @@ Component({
   methods: {
     navigate(e) {
       const { key, url } = e.currentTarget.dataset
-      if (!url || key === this.data.active) return
-      wx.reLaunch({ url })
+      if (!url) return
+      wx.switchTab({ url })
     },
   },
 })

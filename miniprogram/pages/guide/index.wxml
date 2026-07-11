@@ -137,5 +137,4 @@
       <text class="voice-hint">{{voiceRecording ? voiceRecordingHint : voiceIdleHint}}</text>
     </view>
   </view>
-  <visitor-nav active="guide" />
 </view>
