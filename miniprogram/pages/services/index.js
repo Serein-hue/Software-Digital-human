@@ -1,4 +1,5 @@
 const { t } = require('../../utils/i18n')
+const { playPageEnter, lightFeedback } = require('../../utils/motion')
 
 const LOCAL_SERVICES = [
   { id: 'toilet-buddha', category: 'toilet', name: '大佛广场卫生间', location: '灵山大佛广场东侧' },
@@ -22,7 +23,8 @@ Page({
 
   onShow() {
     const tabBar = this.getTabBar && this.getTabBar()
-    if (tabBar) tabBar.setData({ selected: 2 })
+    if (tabBar) tabBar.setData({ selected: 2, switching: false })
+    playPageEnter(this)
   },
 
   onLoad() {
@@ -64,11 +66,13 @@ Page({
   },
 
   openServicePage(e) {
+    lightFeedback()
     const { url } = e.currentTarget.dataset
     if (url) wx.navigateTo({ url })
   },
 
   onCategoryTap(e) {
+    lightFeedback()
     const category = e.currentTarget.dataset.category
     this.setData({ activeCategory: category })
     this.loadServices(category)

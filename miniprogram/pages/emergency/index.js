@@ -1,5 +1,6 @@
 const { t } = require('../../utils/i18n')
 const session = require('../../utils/session')
+const { playPageEnter, lightFeedback } = require('../../utils/motion')
 
 Page({
   data: {
@@ -22,7 +23,8 @@ Page({
 
   onShow() {
     const tabBar = this.getTabBar && this.getTabBar()
-    if (tabBar) tabBar.setData({ selected: 3 })
+    if (tabBar) tabBar.setData({ selected: 3, switching: false })
+    playPageEnter(this)
   },
 
   onLoad() {
@@ -61,6 +63,7 @@ Page({
   },
 
   onTypeTap(e) {
+    lightFeedback()
     this.setData({ activeType: e.currentTarget.dataset.type })
   },
 
@@ -73,6 +76,7 @@ Page({
   },
 
   async onSubmit() {
+    lightFeedback()
     if (this.data.submitting) return
     if (!this.data.desc.trim()) {
       wx.showToast({ title: t('emergency.needDescription'), icon: 'none' })

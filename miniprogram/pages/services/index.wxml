@@ -1,4 +1,4 @@
-<view class="services-page page has-visitor-nav">
+<view class="services-page page has-visitor-nav" animation="{{pageAnimation}}">
   <view class="header motion-rise"><button class="back-btn" bindtap="goBack"><text>←</text></button><text class="title">{{title}}</text><view class="spacer"></view></view>
   <view class="services-hero motion-rise-2">
     <view class="services-hero-mark"><view class="map-pin"><view></view></view></view>

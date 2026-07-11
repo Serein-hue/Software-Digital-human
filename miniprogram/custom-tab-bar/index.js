@@ -1,6 +1,7 @@
 Component({
   data: {
     selected: 0,
+    switching: false,
     items: [
       { pagePath: '/pages/guide/index', text: '导览', glyph: '导' },
       { pagePath: '/pages/route/index', text: '路线', glyph: '线' },
@@ -12,8 +13,13 @@ Component({
   methods: {
     switchTab(e) {
       const { path, index } = e.currentTarget.dataset
-      if (index === this.data.selected) return
-      wx.switchTab({ url: path })
+      if (this.data.switching || index === this.data.selected) return
+      try { wx.vibrateShort({ type: 'light' }) } catch (_) { /* unsupported */ }
+      this.setData({ selected: index, switching: true })
+      wx.switchTab({
+        url: path,
+        fail: () => this.setData({ switching: false }),
+      })
     },
   },
 })

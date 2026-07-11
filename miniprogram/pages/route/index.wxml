@@ -1,4 +1,4 @@
-<view class="route-page page has-visitor-nav">
+<view class="route-page page has-visitor-nav" animation="{{pageAnimation}}">
   <view class="header motion-rise">
     <button class="back-btn" bindtap="goBack" hover-class="button-press"><text>←</text></button>
     <view class="route-heading"><text class="title">{{routeTitle}}</text><text class="route-count">{{routeCount}}</text></view>
@@ -40,7 +40,7 @@
           </view>
         </view>
       </view>
-      <view wx:if="{{expandedId === item.id}}" class="route-detail">
+      <view wx:if="{{expandedId === item.id}}" class="route-detail panel-reveal">
         <view wx:for="{{item.steps}}" wx:key="spot" class="route-step">
           <view class="route-step-axis"><view class="route-step-dot">{{index + 1}}</view><view wx:if="{{index < item.steps.length - 1}}" class="route-step-line"></view></view>
           <view class="route-step-content"><text class="step-spot">{{item.spot}}</text><text class="step-dur">{{item.duration}}</text><text class="step-note">{{item.note}}</text></view>

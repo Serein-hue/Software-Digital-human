@@ -27,6 +27,7 @@ Component({
     navigate(e) {
       const { key, url } = e.currentTarget.dataset
       if (!url) return
+      try { wx.vibrateShort({ type: 'light' }) } catch (_) { /* unsupported */ }
       wx.switchTab({ url })
     },
   },

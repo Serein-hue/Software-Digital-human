@@ -1,6 +1,7 @@
 const { ROUTES } = require('../../utils/data')
 const { t } = require('../../utils/i18n')
 const api = require('../../utils/api')
+const { playPageEnter, lightFeedback } = require('../../utils/motion')
 
 const ROUTE_TYPE_MAP = {
   culture: { tags: ['推荐', '深度', '人文'], difficulty: '中等', distance: '5.2 km' },
@@ -17,7 +18,8 @@ Page({
 
   onShow() {
     const tabBar = this.getTabBar && this.getTabBar()
-    if (tabBar) tabBar.setData({ selected: 1 })
+    if (tabBar) tabBar.setData({ selected: 1, switching: false })
+    playPageEnter(this)
   },
 
   onLoad() {
@@ -70,12 +72,14 @@ Page({
   },
 
   onPrefTap(e) {
+    lightFeedback()
     const pref = e.currentTarget.dataset.pref
     this.setData({ activePref: pref, expandedId: null })
     this._filterRoutes(pref)
   },
 
   toggleExpand(e) {
+    lightFeedback()
     const { id } = e.currentTarget.dataset
     this.setData({ expandedId: this.data.expandedId === id ? null : id })
   },

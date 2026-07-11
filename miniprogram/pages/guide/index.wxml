@@ -1,4 +1,4 @@
-<view class="guide-page page has-visitor-nav">
+<view class="guide-page page has-visitor-nav" animation="{{pageAnimation}}">
   <view class="ambient-orb orb-a" aria-hidden="true"></view>
   <view class="ambient-orb orb-b" aria-hidden="true"></view>
   <view class="ambient-dot dot-a" aria-hidden="true"></view>

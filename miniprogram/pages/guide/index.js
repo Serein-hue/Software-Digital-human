@@ -1,6 +1,7 @@
 const { SPOTS, MOCK_KNOWLEDGE } = require('../../utils/data')
 const { t, getSuggestions } = require('../../utils/i18n')
 const api = require('../../utils/api')
+const { playPageEnter, lightFeedback } = require('../../utils/motion')
 
 const PRIMARY_ACTIONS = [
   { action: 'route', i18nKey: 'quick.route', glyphKey: 'quick.routeGlyph', askText: '推荐路线' },
@@ -95,7 +96,8 @@ Page({
 
   onShow() {
     const tabBar = this.getTabBar && this.getTabBar()
-    if (tabBar) tabBar.setData({ selected: 0 })
+    if (tabBar) tabBar.setData({ selected: 0, switching: false })
+    playPageEnter(this)
   },
 
   onLoad() {
@@ -216,6 +218,7 @@ Page({
   },
 
   onQuickAction(e) {
+    lightFeedback()
     const { action, askText } = e.currentTarget.dataset
     if (action === 'route') {
       wx.navigateTo({ url: '/pages/route/index' })
@@ -247,6 +250,7 @@ Page({
   noop() {},
 
   openVoice() {
+    lightFeedback()
     this.setData({ voiceOpen: true, voiceRecording: false })
   },
 

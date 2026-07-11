@@ -1,4 +1,4 @@
-<view class="emergency-page page has-visitor-nav">
+<view class="emergency-page page has-visitor-nav" animation="{{pageAnimation}}">
   <view class="header motion-rise"><button class="back-btn" bindtap="goBack"><text>←</text></button><text class="title">{{title}}</text><view class="spacer"></view></view>
   <view class="safety-hero motion-rise-2"><view class="safety-glyph">求助</view><view class="safety-copy"><text class="safety-eyebrow">{{safetyEyebrow}}</text><text class="safety-title">{{safetyTitle}}</text><text class="safety-tip">{{directCallLabel}}</text></view></view>
   <view wx:if="{{!sent}}" class="emergency-form motion-rise-3">
