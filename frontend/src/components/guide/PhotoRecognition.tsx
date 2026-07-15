@@ -1,8 +1,22 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Scan, Sparkles } from 'lucide-react'
+import { X, Scan, Sparkles, MapPin, ChevronRight } from 'lucide-react'
 import { useT } from '../../i18n'
 
+interface RecognitionResult {
+  id: string
+  name: string
+  category: string
+  description: string
+  confidence: number
+  spotId: string | null
+}
+
+const RECOGNITION_RESULTS: RecognitionResult[] = [
+  { id: '1', name: '灵山大佛', category: '佛教文化', description: '灵山胜境标志性景观，高88米', confidence: 96, spotId: 'lingshan-buddha' },
+  { id: '2', name: '九龙灌浴', category: '佛教文化', description: '大型动态音乐群雕，展现佛陀诞生场景', confidence: 88, spotId: 'jiulong-guanyu' },
+  { id: '3', name: '梵宫', category: '佛教建筑', description: '佛教文化艺术宫殿，集建筑、雕塑、绘画于一体', confidence: 82, spotId: 'fancy-palace' },
+]
 
 interface Props {
   isOpen: boolean
@@ -11,7 +25,7 @@ interface Props {
   onAsk: (question: string) => void
 }
 
-export default function PhotoRecognition({ isOpen, onClose, onSpotDetail: _onSpotDetail, onAsk: _onAsk }: Props) {
+export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk }: Props) {
   const [phase, setPhase] = useState<'scanning' | 'results'>('scanning')
   const [progress, setProgress] = useState(0)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)

@@ -23,7 +23,12 @@ import './App.css'
 
 function App() {
   const [authed, setAuthed] = useState(() => {
-    if (new URLSearchParams(window.location.hash.split('?')[1] || '').has('dev')) return true
+    const hasDev = new URLSearchParams(window.location.hash.split('?')[1] || '').has('dev')
+    if (hasDev) {
+      localStorage.setItem('scenic_dev_mode', '1')
+      return true
+    }
+    if (localStorage.getItem('scenic_dev_mode') === '1') return true
     return !!localStorage.getItem('scenic_admin_token')
   })
 

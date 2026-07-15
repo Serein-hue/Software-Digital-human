@@ -108,6 +108,11 @@ export async function fetchSpotGuide(spotId: string): Promise<SpotGuideItem | nu
   return apiGet<SpotGuideItem>(`/spots/${spotId}/guide`)
 }
 
+interface PaginatedData<T> {
+  items: T[]
+  pagination: { page: number; pageSize: number; total: number }
+}
+
 export async function fetchRoutes(): Promise<RouteItem[] | null> {
   const data = await apiGet<PaginatedData<RouteItem>>('/routes')
   return data?.items ?? null
