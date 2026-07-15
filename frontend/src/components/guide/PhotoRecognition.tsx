@@ -1,22 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Scan, Sparkles, ChevronRight, MapPin } from 'lucide-react'
+import { X, Scan, Sparkles } from 'lucide-react'
 import { useT } from '../../i18n'
 
-interface RecogResult {
-  id: string
-  name: string
-  category: string
-  confidence: number
-  description: string
-  spotId?: string
-}
-
-
-const RECOGNITION_RESULTS: RecogResult[] = [
-  { id: 'lingshan-buddha', name: '灵山大佛', category: '佛教文化地标', confidence: 96, description: '通高 88 米的露天青铜释迦牟尼立像，是灵山胜境的核心景观。', spotId: 'lingshan-buddha' },
-  { id: 'lingshan-fanpalace', name: '灵山梵宫', category: '佛教艺术建筑', confidence: 82, description: '集建筑、雕塑、绘画与演艺于一体的佛教文化艺术殿堂。', spotId: 'lingshan-fanpalace' },
-]
 
 interface Props {
   isOpen: boolean
@@ -25,7 +11,7 @@ interface Props {
   onAsk: (question: string) => void
 }
 
-export default function PhotoRecognition({ isOpen, onClose, onSpotDetail, onAsk }: Props) {
+export default function PhotoRecognition({ isOpen, onClose, onSpotDetail: _onSpotDetail, onAsk: _onAsk }: Props) {
   const [phase, setPhase] = useState<'scanning' | 'results'>('scanning')
   const [progress, setProgress] = useState(0)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)

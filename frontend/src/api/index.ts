@@ -11,18 +11,6 @@ interface ApiResponse<T> {
   trace_id: string
 }
 
-interface Pagination {
-  page: number
-  page_size: number
-  total: number
-  total_pages: number
-}
-
-interface PaginatedData<T> {
-  items: T[]
-  pagination: Pagination
-}
-
 async function apiGet<T>(path: string): Promise<T | null> {
   try {
     const res = await fetch(`${BUSINESS_BASE}${path}`, {
