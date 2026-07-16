@@ -1,12 +1,20 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
 
-// https://vite.dev/config/
 export default defineConfig({
   base: './',
   build: {
     outDir: '../docs/app',
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        operation: resolve(__dirname, 'operation/index.html'),
+        bigscreen: resolve(__dirname, 'bigscreen/index.html'),
+        'digital-human': resolve(__dirname, 'digital-human/index.html'),
+        admin: resolve(__dirname, 'admin/index.html'),
+      },
+    },
   },
   plugins: [react()],
   server: {

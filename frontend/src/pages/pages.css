@@ -1,0 +1,169 @@
+/* ===== 页面外壳 ===== */
+.page-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== 顶部导航 ===== */
+.page-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid var(--line, #ded8c9);
+  background: rgba(250, 248, 241, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.page-header-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 24px;
+}
+
+.page-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--ink, #20231f);
+  white-space: nowrap;
+}
+
+.page-nav {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+}
+
+.page-nav a {
+  min-height: 36px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--muted, #62665d);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.page-nav a:hover {
+  color: var(--teal, #155d58);
+  background: rgba(21, 93, 88, 0.06);
+}
+
+.page-nav a.nav-active {
+  color: var(--teal, #155d58);
+  background: rgba(21, 93, 88, 0.1);
+  border-color: rgba(21, 93, 88, 0.2);
+  font-weight: 600;
+}
+
+/* ===== 页面内容区 ===== */
+.page-body {
+  flex: 1;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 24px 40px;
+}
+
+.page-title-bar {
+  margin-bottom: 20px;
+}
+
+.page-title-bar h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink, #20231f);
+  margin: 0;
+}
+
+/* ===== Tab 切换 ===== */
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line, #ded8c9);
+  padding-bottom: 0;
+}
+
+.tab-bar button {
+  min-height: 38px;
+  padding: 0 18px;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted, #62665d);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.tab-bar button:hover {
+  color: var(--teal, #155d58);
+}
+
+.tab-bar button.tab-active {
+  color: var(--teal, #155d58);
+  border-bottom-color: var(--teal, #155d58);
+  font-weight: 600;
+}
+
+/* ===== 退出按钮 ===== */
+.logout-btn-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  min-height: 36px;
+  padding: 0 16px;
+  border: 1px solid var(--line, #ded8c9);
+  border-radius: 8px;
+  background: rgba(250, 248, 241, 0.9);
+  color: var(--muted, #62665d);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.15s;
+}
+
+.logout-btn-top:hover {
+  border-color: var(--rust, #b4522c);
+  color: var(--rust, #b4522c);
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 640px) {
+  .page-header-inner {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 16px;
+  }
+  .page-nav a {
+    font-size: 13px;
+    padding: 0 10px;
+    min-height: 32px;
+  }
+  .page-body {
+    padding: 16px;
+  }
+  .tab-bar button {
+    padding: 0 12px;
+    font-size: 13px;
+  }
+}
