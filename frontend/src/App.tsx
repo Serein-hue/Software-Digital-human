@@ -21,8 +21,19 @@ import {
 } from 'react-router-dom'
 import './App.css'
 
+const _IS_DEMO = typeof window !== 'undefined' && (
+  window.location.hostname.includes('github.io') ||
+  window.location.protocol === 'file:'
+)
+
 function App() {
   const [authed, setAuthed] = useState(() => {
+    // GitHub Pages 等静态部署模式自动登录
+    if (_IS_DEMO) {
+      localStorage.setItem('scenic_dev_mode', '1')
+      localStorage.setItem('scenic_admin_token', 'demo-token')
+      return true
+    }
     const hasDev = new URLSearchParams(window.location.hash.split('?')[1] || '').has('dev')
     if (hasDev) {
       localStorage.setItem('scenic_dev_mode', '1')

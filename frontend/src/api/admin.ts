@@ -1,7 +1,13 @@
 /** Admin API client for scenic-dh-admin-api. */
 
+import * as mock from './mock-data'
+
 const ADMIN_BASE = import.meta.env.VITE_ADMIN_API_BASE ?? 'http://localhost:8002/v1'
 const ADMIN_TOKEN_STORAGE_KEY = 'scenic_admin_token'
+const IS_DEMO = typeof window !== 'undefined' && (
+  window.location.hostname.includes('github.io') ||
+  window.location.protocol === 'file:'
+)
 
 function getAdminToken(): string | null {
   return window.localStorage.getItem(ADMIN_TOKEN_STORAGE_KEY)
@@ -10,6 +16,40 @@ function getAdminToken(): string | null {
 function authHeaders(extra?: HeadersInit): HeadersInit {
   const token = getAdminToken()
   return token ? { ...extra, Authorization: `Bearer ${token}` } : { ...extra }
+}
+
+// ── Mock 数据路由 ──────────────────────────────────────────────────
+
+function mockGet<T>(path: string): T | null {
+  const p = path.split('?')[0]
+  if (p === '/admin/analytics/overview') return mock.MOCK_OVERVIEW as T
+  if (p.startsWith('/admin/analytics/spot-heat')) return mock.MOCK_SPOT_HEAT as T
+  if (p === '/admin/analytics/crowd-flow') return mock.MOCK_CROWD_FLOW as T
+  if (p === '/admin/analytics/queue') return mock.MOCK_QUEUE_STATS as T
+  if (p === '/admin/analytics/command-center') return mock.MOCK_COMMAND_CENTER as T
+  if (p === '/knowledge/status') return mock.MOCK_KB_STATUS as T
+  if (p.startsWith('/knowledge/sources')) return mock.MOCK_SOURCES_PAGE as T
+  if (p.startsWith('/knowledge/qa')) return mock.MOCK_QA_PAGE as T
+  if (p.startsWith('/knowledge/low-confidence-queries')) return mock.MOCK_REVIEWS as T
+  if (p === '/auth/me') return mock.MOCK_ADMIN_USER as T
+  if (p.startsWith('/work-orders')) return mock.MOCK_WORK_ORDERS_PAGE as T
+  if (p.startsWith('/emergencies')) return mock.MOCK_EMERGENCIES_PAGE as T
+  if (p.startsWith('/feedbacks')) return mock.MOCK_FEEDBACKS_PAGE as T
+  if (p === '/runtime/status') return mock.MOCK_RUNTIME_STATUS as T
+  if (p === '/digital-human/avatars') return { items: mock.MOCK_AVATARS } as T
+  if (p === '/digital-human/voices') return { items: mock.MOCK_VOICES } as T
+  if (p === '/system-config') return { items: mock.MOCK_CONFIG_ITEMS } as T
+  if (p.startsWith('/system-config/')) return mock.MOCK_CONFIG_ITEMS.find(c => c.key === p.split('/').pop()) as T
+  return null
+}
+
+function mockPost<T>(path: string): T | null {
+  if (path === '/auth/login') return { token: 'mock-token-demo', user: mock.MOCK_ADMIN_USER } as T
+  if (path.includes('/handle')) return { workOrderId: 'mock', status: 'processing' } as T
+  if (path.includes('/resolve')) return { workOrderId: 'mock', status: 'resolved' } as T
+  if (path.includes('/close')) return { workOrderId: 'mock', status: 'closed' } as T
+  if (path.includes('/dispatch')) return { emergencyId: 'mock', status: 'dispatched' } as T
+  return null
 }
 
 interface ApiResponse<T> {
@@ -101,20 +141,22 @@ export interface LowConfidenceItem {
 // ── 请求工具 ──────────────────────────────────────────────────────────
 
 async function apiGet<T>(path: string): Promise<T | null> {
+  if (IS_DEMO) return mockGet<T>(path)
   try {
     const res = await fetch(`${ADMIN_BASE}${path}`, {
       headers: authHeaders(),
       signal: AbortSignal.timeout(8_000),
     })
-    if (!res.ok) return null
+    if (!res.ok) return mockGet<T>(path)
     const json: ApiResponse<T> = await res.json()
-    return json.code === 0 ? json.data : null
+    return json.code === 0 ? json.data : mockGet<T>(path)
   } catch {
-    return null
+    return mockGet<T>(path)
   }
 }
 
 async function apiPost<T>(path: string, body?: unknown): Promise<T | null> {
+  if (IS_DEMO) return mockPost<T>(path)
   const isFormData = body instanceof FormData
   try {
     const res = await fetch(`${ADMIN_BASE}${path}`, {
@@ -123,11 +165,11 @@ async function apiPost<T>(path: string, body?: unknown): Promise<T | null> {
       body: isFormData ? body : body ? JSON.stringify(body) : undefined,
       signal: AbortSignal.timeout(body instanceof FormData ? 120_000 : 10_000),
     })
-    if (!res.ok) return null
+    if (!res.ok) return mockPost<T>(path)
     const json: ApiResponse<T> = await res.json()
-    return json.code === 0 ? json.data : null
+    return json.code === 0 ? json.data : mockPost<T>(path)
   } catch {
-    return null
+    return mockPost<T>(path)
   }
 }
 
