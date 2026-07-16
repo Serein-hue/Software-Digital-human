@@ -52,8 +52,7 @@
 .dh-brow.left { left: 20rpx; transform: rotate(-5deg); } .dh-brow.right { right: 20rpx; transform: rotate(5deg); }
 .dh-eye.left { left: 25rpx; } .dh-eye.right { right: 25rpx; }
 .dh-nose { position: absolute; width: 8rpx; height: 14rpx; top: 71rpx; left: 48rpx; border-left: 2rpx solid rgba(115,73,55,.26); border-bottom: 2rpx solid rgba(115,73,55,.18); border-radius: 0 0 0 7rpx; }
-.dh-mouth { position: absolute; width: 25rpx; height: 8rpx; top: 96rpx; left: 39rpx; border-bottom: 4rpx solid #a65e55; border-radius: 0 0 50% 50%; transition: transform .18s ease; }
-.digital-human-avatar.speaking .dh-mouth { animation: mouthSpeak .55s ease-in-out infinite; }
+.dh-mouth { position: absolute; width: 25rpx; height: 8rpx; top: 96rpx; left: 39rpx; border-bottom: 4rpx solid #a65e55; border-radius: 0 0 50% 50%; transform-origin: top center; }
 .dh-neck { position: absolute; z-index: 2; width: 38rpx; height: 44rpx; top: 145rpx; left: 70rpx; border-radius: 12rpx; background: #e9bea0; }
 .dh-body { position: absolute; z-index: 3; width: 166rpx; height: 96rpx; left: 6rpx; bottom: 0; overflow: hidden; border-radius: 58rpx 58rpx 18rpx 18rpx; background: linear-gradient(145deg, #f4fbf8, #cce9df); }
 .dh-collar { width: 50rpx; height: 34rpx; margin: -4rpx auto 0; border: 8rpx solid #18806a; border-top: 0; border-radius: 0 0 25rpx 25rpx; }
@@ -61,6 +60,15 @@
 .dh-wave-ring.r2 { animation-delay: .5s; }
 .dh-nameplate { position: relative; z-index: 5; display: flex; width: 210rpx; min-height: 62rpx; margin-top: -12rpx; padding: 8rpx 12rpx; flex-direction: column; align-items: center; justify-content: center; border: 1rpx solid rgba(255,255,255,.17); border-radius: 20rpx; background: rgba(7,66,55,.64); font-size: 21rpx; font-weight: 800; text-align: center; }
 .dh-status { margin-top: 4rpx; color: #bde8dc; font-size: 17rpx; font-weight: 500; }
+
+/* 数字人模式切换按钮 */
+.dh-mode-btn { font-size: 20rpx; }
+.dh-mode-btn.active { color: #fff; background: var(--green-deep); }
+
+/* 真实模式头像 */
+.dh-real-avatar { position: relative; width: 176rpx; display: flex; align-items: center; justify-content: center; }
+.dh-real-img { display: block; border-radius: 28rpx; filter: drop-shadow(0 4rpx 12rpx rgba(0,0,0,.08)); }
+.dh-real-mouth { position: absolute; left: 80rpx; top: 163rpx; width: 16rpx; height: 5rpx; border-radius: 3rpx; background: #c47a5a; transform-origin: center top; }
 
 .today-strip { position: relative; z-index: 3; display: flex; align-items: center; justify-content: space-between; min-height: 108rpx; margin: 18rpx 0; padding: 20rpx 22rpx 20rpx 26rpx; border: 1rpx solid rgba(214,154,49,.22); border-radius: 30rpx; background: linear-gradient(115deg, rgba(255,249,233,.96), rgba(255,255,255,.92)); box-shadow: 0 14rpx 36rpx rgba(118,84,26,.07); }
 .today-copy { display: flex; flex: 1; min-width: 0; flex-direction: column; }
@@ -125,7 +133,6 @@
 .voice-sugg-chip { width: 100%; min-height: 76rpx; margin: 8rpx 0 0; padding: 0 24rpx; border: 1rpx solid rgba(255,255,255,.13); border-radius: 26rpx; color: rgba(255,255,255,.9); background: rgba(255,255,255,.075); font-size: 24rpx; }
 .voice-hint { margin-top: 22rpx; color: rgba(255,255,255,.57); font-size: 22rpx; text-align: center; }
 
-@keyframes mouthSpeak { 0%,100% { transform: scaleY(.65); } 50% { transform: scaleY(1.7); } }
 @keyframes portraitWave { 0% { transform: scale(.76); opacity: .65; } 100% { transform: scale(1.35); opacity: 0; } }
 @keyframes dotBounce { 0%,100% { transform: translateY(0); opacity: .35; } 50% { transform: translateY(-7rpx); opacity: 1; } }
 @keyframes voiceRing { 0% { transform: scale(.72); opacity: .55; } 100% { transform: scale(1.36); opacity: 0; } }

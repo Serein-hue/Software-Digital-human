@@ -13,6 +13,9 @@
       </view>
     </view>
     <view class="guide-header-actions">
+      <button class="guide-header-btn dh-mode-btn {{dhMode === 'realistic' ? 'active' : ''}}" bindtap="toggleDhMode" hover-class="header-btn-hover">
+        <text>{{dhMode === 'realistic' ? '👤' : '🤖'}}</text>
+      </button>
       <button class="guide-header-btn" bindtap="toggleOffline" hover-class="header-btn-hover" aria-label="{{toggleOfflineAria}}">
         <text class="network-glyph">{{isOffline ? '○' : '●'}}</text>
       </button>
@@ -40,19 +43,30 @@
 
     <view class="digital-human-wrap">
       <view class="portrait-halo"></view>
-      <view class="digital-human-avatar {{isSpeaking ? 'speaking' : ''}} {{isListening ? 'listening' : ''}}">
+
+      <!-- 卡通模式 -->
+      <view wx:if="{{dhMode === 'cartoon'}}" class="digital-human-avatar {{isSpeaking ? 'speaking' : ''}} {{isListening ? 'listening' : ''}}">
         <view class="dh-hair"></view>
         <view class="dh-head">
           <view class="dh-brow left"></view><view class="dh-brow right"></view>
           <view class="dh-eye left"></view><view class="dh-eye right"></view>
           <view class="dh-nose"></view>
-          <view class="dh-mouth"></view>
+          <view class="dh-mouth" style="transform: scaleY({{cartoonMouthScale}});"></view>
         </view>
         <view class="dh-neck"></view>
         <view class="dh-body"><view class="dh-collar"></view></view>
         <view wx:if="{{isSpeaking || isListening}}" class="dh-wave-ring r1"></view>
         <view wx:if="{{isSpeaking || isListening}}" class="dh-wave-ring r2"></view>
       </view>
+
+      <!-- 真实模式 -->
+      <view wx:else class="dh-real-avatar {{isSpeaking ? 'speaking' : ''}} {{isListening ? 'listening' : ''}}">
+        <image class="dh-real-img" src="/images/avatar.svg" mode="widthFix" style="width: 176rpx;" />
+        <view class="dh-real-mouth" style="transform: scaleY({{mouthScale}});"></view>
+        <view wx:if="{{isSpeaking || isListening}}" class="dh-wave-ring r1"></view>
+        <view wx:if="{{isSpeaking || isListening}}" class="dh-wave-ring r2"></view>
+      </view>
+
       <view class="dh-nameplate">
         <text>{{avatarName}}</text>
         <text class="dh-status">{{isSpeaking ? guideSpeaking : isListening ? guideListening : avatarIdle}}</text>

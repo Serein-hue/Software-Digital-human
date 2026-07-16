@@ -2,6 +2,7 @@ const { SPOTS, MOCK_KNOWLEDGE } = require('../../utils/data')
 const { t, getSuggestions } = require('../../utils/i18n')
 const api = require('../../utils/api')
 const session = require('../../utils/session')
+const { generateVisemesFromText, createVisemePlayer, createSynthLipSync } = require('../../utils/lipsync')
 
 const PRIMARY_ACTIONS = [
   { action: 'route', i18nKey: 'quick.route', glyphKey: 'quick.routeGlyph', askText: '推荐路线' },
@@ -43,6 +44,10 @@ Page({
     // 服务状态
     _sessionId: null,  // 当前会话 ID
     _apiOnline: false, // business-api 是否可达
+    // 数字人模式
+    dhMode: 'cartoon',
+    mouthScale: 0.5,      // 真实模式嘴型开合
+    cartoonMouthScale: 0.5, // 卡通模式嘴型开合
   },
 
   refreshDisplay() {
@@ -102,12 +107,20 @@ Page({
 
   onLoad() {
     this.refreshDisplay()
+
+    // 读取数字人模式偏好
+    const savedMode = wx.getStorageSync('scenic_dh_mode')
+    if (savedMode === 'cartoon' || savedMode === 'realistic') {
+      this.data.dhMode = savedMode
+    }
+
     this.setData({
       messages: [{
         id: 'welcome',
         role: 'guide',
         text: t('guide.welcome'),
       }],
+      dhMode: this.data.dhMode,
     })
 
     // 尝试连接 business-api，创建会话
@@ -149,6 +162,7 @@ Page({
   onUnload() {
     if (this.speakingTimer) clearTimeout(this.speakingTimer)
     if (this.listeningTimer) clearTimeout(this.listeningTimer)
+    this._stopLipSync()
   },
 
   onInput(e) {
@@ -205,6 +219,7 @@ Page({
 
   _showGuideResponse(text, source) {
     this.setData({ isSpeaking: true })
+    this._startLipSync(text)
     const guideMsg = {
       id: `g-${Date.now()}`,
       role: 'guide',
@@ -214,7 +229,10 @@ Page({
     const updated = [...this.data.messages, guideMsg]
     this.setData({ messages: updated, scrollToId: `msg-${guideMsg.id}` })
 
-    this.speakingTimer = setTimeout(() => this.setData({ isSpeaking: false }), text.length * 35)
+    this.speakingTimer = setTimeout(() => {
+      this.setData({ isSpeaking: false })
+      this._stopLipSync()
+    }, text.length * 35)
   },
 
   onQuickAction(e) {
@@ -246,6 +264,54 @@ Page({
 
   toggleOffline() {
     this.setData({ isOffline: !this.data.isOffline })
+  },
+
+  toggleDhMode() {
+    const next = this.data.dhMode === 'cartoon' ? 'realistic' : 'cartoon'
+    this.setData({ dhMode: next })
+    wx.setStorageSync('scenic_dh_mode', next)
+  },
+
+  // ── LipSync 嘴型同步 ────────────────────────────────────────────
+  _startLipSync(text) {
+    this._stopLipSync()
+
+    const frames = text ? generateVisemesFromText(text) : []
+    const player = frames.length > 0 ? createVisemePlayer(frames) : null
+    const synthGen = frames.length === 0 ? createSynthLipSync() : null
+
+    let lastTime = Date.now()
+    this._lipSyncTimer = setInterval(() => {
+      const now = Date.now()
+      const delta = now - lastTime
+      lastTime = now
+
+      let mouthOpenY = 0
+      if (player) {
+        const state = player.tick(delta)
+        mouthOpenY = state.mouthOpenY
+        if (state.done) {
+          this._stopLipSync()
+          this.setData({ mouthScale: 0.5, cartoonMouthScale: 0.5 })
+          return
+        }
+      } else if (synthGen) {
+        const state = synthGen.next()
+        mouthOpenY = state.mouthOpenY
+      }
+
+      const mouthScale = 0.5 + mouthOpenY * 4.0
+      const cartoonMouthScale = 0.3 + mouthOpenY * 1.7
+      this.setData({ mouthScale, cartoonMouthScale })
+    }, 50)
+  },
+
+  _stopLipSync() {
+    if (this._lipSyncTimer) {
+      clearInterval(this._lipSyncTimer)
+      this._lipSyncTimer = null
+    }
+    this.setData({ mouthScale: 0.5, cartoonMouthScale: 0.5 })
   },
 
   noop() {},
