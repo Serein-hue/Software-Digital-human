@@ -146,8 +146,12 @@ export interface RagQueryResult {
 // ── API functions ────────────────────────────────────────────────
 
 export async function fetchSpots(): Promise<SpotItem[] | null> {
-  const data = await apiGet<SpotItem[]>('/spots')
-  return data
+  const data = await apiGet<SpotItem[] | PaginatedData<SpotItem>>('/spots')
+  if (Array.isArray(data)) return data  // mock 数据直接返回数组
+  if (data?.items && data.items.length > 0) return data.items  // API 返回分页数据
+  // API 返回空数据时降级到 Mock
+  const mockData = mockGetVisitor<SpotItem[]>('/spots')
+  return Array.isArray(mockData) ? mockData : null
 }
 
 export async function fetchSpot(id: string): Promise<SpotItem | null> {
@@ -165,7 +169,12 @@ interface PaginatedData<T> {
 
 export async function fetchRoutes(): Promise<RouteItem[] | null> {
   const data = await apiGet<PaginatedData<RouteItem>>('/routes')
-  return data?.items ?? null
+  if (data?.items && data.items.length > 0) {
+    return data.items
+  }
+  // API 返回空数据时降级到 Mock
+  const mockData = mockGetVisitor<PaginatedData<RouteItem>>('/routes')
+  return mockData?.items ?? null
 }
 
 export async function fetchRoute(id: string): Promise<RouteItem | null> {

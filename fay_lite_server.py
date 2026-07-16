@@ -70,6 +70,32 @@ def submit_config():
         return jsonify({"result": "error", "message": str(e)}), 500
 
 
+@app.route("/api/tts", methods=["POST"])
+def text_to_speech():
+    """TTS 合成 — 使用 edge_tts 将文本转为音频"""
+    import asyncio, edge_tts, tempfile, base64
+
+    data = request.get_json(force=True, silent=True) or {}
+    text = data.get("text", "")
+    voice = data.get("voice", "zh-CN-XiaoxiaoNeural")
+    if not text.strip():
+        return jsonify({"result": "error", "message": "text required"}), 400
+
+    async def _tts():
+        communicate = edge_tts.Communicate(text=text[:500], voice=voice, rate="+15%")
+        with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+            await communicate.save(tmp.name)
+            tmp.seek(0)
+            return base64.b64encode(tmp.read()).decode()
+
+    try:
+        audio_b64 = asyncio.run(_tts())
+        return jsonify({"result": "successful", "audio_base64": audio_b64, "format": "mp3"})
+    except Exception as e:
+        logger.error("TTS error: %s", e)
+        return jsonify({"result": "error", "message": str(e)}), 500
+
+
 if __name__ == "__main__":
     port = int(os.getenv("FAY_PORT", "5000"))
     logger.info("Fay Lite server on 0.0.0.0:%d", port)

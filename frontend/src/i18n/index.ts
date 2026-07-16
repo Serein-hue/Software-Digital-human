@@ -32,6 +32,8 @@ const dict: Record<Lang, Record<string, string>> = {
     'guide.offlineMode': '弱网模式',
     'guide.speaking': '讲解中',
     'guide.brandName': 'AI 导游 · 小景',
+    'guide.switchToReal': '切换真实形象',
+    'guide.switchToCartoon': '切换卡通形象',
 
     'voice.listening': '正在聆听...',
     'voice.tapRetry': '点击重试',
@@ -306,6 +308,8 @@ const dict: Record<Lang, Record<string, string>> = {
     'guide.offlineMode': 'Offline',
     'guide.speaking': 'Speaking',
     'guide.brandName': 'AI Guide · Xiao Jing',
+    'guide.switchToReal': 'Switch to realistic',
+    'guide.switchToCartoon': 'Switch to cartoon',
 
     'voice.listening': 'Listening...',
     'voice.tapRetry': 'Tap to retry',

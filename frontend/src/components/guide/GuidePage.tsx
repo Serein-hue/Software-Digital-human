@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Map, Clock, Camera, BookOpen, Share2, Image, WifiOff, RefreshCw } from 'lucide-react'
+import { Map, Clock, Camera, BookOpen, Share2, Image, WifiOff, RefreshCw, User, Bot } from 'lucide-react'
 import DigitalHuman from './DigitalHuman'
 import LbsStatus from './LbsStatus'
 import ChatPanel, { type Message } from './ChatPanel'
@@ -34,11 +34,52 @@ export default function GuidePage() {
   const [cameraOpen, setCameraOpen] = useState(false)
   const [shareOpen, setShareOpen] = useState(false)
   const [isOffline, setIsOffline] = useState(false)
+  const [dhMode, setDhMode] = useState<'cartoon' | 'realistic'>(
+    () => (localStorage.getItem('scenic_dh_mode') as 'cartoon' | 'realistic') || 'cartoon'
+  )
+  const [spokenText, setSpokenText] = useState('')
   const [spotDetailId, setSpotDetailId] = useState<string | null>(null)
   const [routeOpen, setRouteOpen] = useState(false)
   const listeningTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const speakingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
   const langRef = useRef(getLang())
+
+  // TTS 语音播报
+  const speakAnswer = useCallback(async (text: string) => {
+    try {
+      const res = await fetch('/api/tts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text.substring(0, 500), voice: 'zh-CN-XiaoxiaoNeural' }),
+        signal: AbortSignal.timeout(15000),
+      })
+      if (!res.ok) return
+      const data = await res.json()
+      if (data.result === 'successful' && data.audio_base64) {
+        const blob = dataURItoBlob(`data:audio/mp3;base64,${data.audio_base64}`)
+        const url = URL.createObjectURL(blob)
+        if (audioRef.current) {
+          audioRef.current.pause()
+          audioRef.current.src = ''
+        }
+        const audio = new Audio(url)
+        audioRef.current = audio
+        await audio.play()
+      }
+    } catch {
+      // TTS 不可用时静默降级
+    }
+  }, [])
+
+  function dataURItoBlob(dataURI: string) {
+    const byteString = atob(dataURI.split(',')[1])
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+    const ab = new ArrayBuffer(byteString.length)
+    const ia = new Uint8Array(ab)
+    for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i)
+    return new Blob([ab], { type: mimeString })
+  }
 
   useEffect(() => {
     const current = getLang()
@@ -77,6 +118,8 @@ export default function GuidePage() {
 
       if (remote) {
         setIsSpeaking(true)
+        setSpokenText(remote.answer)
+        speakAnswer(remote.answer)
         const guideMsg: Message = {
           id: `guide-${Date.now()}`,
           role: 'guide',
@@ -104,6 +147,13 @@ export default function GuidePage() {
   }, [])
 
   const toggleOffline = () => setIsOffline((v) => !v)
+  const toggleDhMode = () => {
+    setDhMode((prev) => {
+      const next = prev === 'cartoon' ? 'realistic' : 'cartoon'
+      localStorage.setItem('scenic_dh_mode', next)
+      return next
+    })
+  }
 
   return (
     <div className="guide-page">
@@ -111,6 +161,15 @@ export default function GuidePage() {
       <header className="guide-header">
         <span className="guide-header-title">{t('guide.title')}</span>
         <div className="guide-header-actions">
+          <button
+            type="button"
+            className={`guide-header-btn dh-mode-toggle ${dhMode === 'realistic' ? 'active' : ''}`}
+            onClick={toggleDhMode}
+            aria-label={dhMode === 'cartoon' ? t('guide.switchToReal') : t('guide.switchToCartoon')}
+            title={dhMode === 'cartoon' ? '切换真实形象' : '切换卡通形象'}
+          >
+            {dhMode === 'realistic' ? <User size={17} /> : <Bot size={17} />}
+          </button>
           <button
             type="button"
             className="guide-header-btn"
@@ -148,7 +207,7 @@ export default function GuidePage() {
 
       <LbsStatus spotName="灵山胜境南门" distance={320} online={!isOffline} />
 
-      <DigitalHuman isSpeaking={isSpeaking} spotName="灵山胜境" />
+      <DigitalHuman isSpeaking={isSpeaking} spotName="灵山胜境" mode={dhMode} spokenText={spokenText} />
 
       {/* Quick actions + camera entry */}
       <div className="guide-quick-actions">
