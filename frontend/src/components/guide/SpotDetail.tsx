@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { MapPin, Clock, ChevronLeft, Play, Pause, BookOpen, Compass } from 'lucide-react'
+import { ChevronLeft, Play, Pause, BookOpen, Compass, Loader } from 'lucide-react'
 import { useT } from '../../i18n'
 import { fetchSpot, fetchSpotGuide, type SpotItem, type SpotGuideItem } from '../../api'
 
@@ -57,6 +57,7 @@ function toSpotData(spot: SpotItem, guide?: SpotGuideItem | null): SpotData {
 export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
   const [tier, setTier] = useState<Tier>('shortIntro')
   const [isPlaying, setIsPlaying] = useState(false)
+  const [ttsLoading, setTtsLoading] = useState(false)
   const audioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [spotData, setSpotData] = useState<SpotData | null>(null)
@@ -143,17 +144,18 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
 
   // ── TTS 语音播报 ──
   const togglePlay = () => {
-    if (isPlaying) {
+    if (isPlaying || ttsLoading) {
       // 停止
       setIsPlaying(false)
+      setTtsLoading(false)
       if (audioRef.current) {
         audioRef.current.pause()
         audioRef.current.src = ''
       }
       if (audioTimerRef.current) clearTimeout(audioTimerRef.current)
     } else {
-      // 播放：调用 TTS 接口
-      setIsPlaying(true)
+      // 显示加载中，开始获取 TTS
+      setTtsLoading(true)
       fetch('/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -176,14 +178,15 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
           }
           const audio = new Audio(url)
           audioRef.current = audio
-          audio.play().catch(() => {})
-          // 播放结束时自动停止动画
-          audio.onended = () => {
-            setIsPlaying(false)
-          }
+          setTtsLoading(false)
+          setIsPlaying(true)
+          audio.play().catch(() => { setIsPlaying(false) })
+          audio.onended = () => { setIsPlaying(false) }
+        } else {
+          setTtsLoading(false)
         }
       }).catch(() => {
-        setIsPlaying(false)
+        setTtsLoading(false)
       })
     }
   }
@@ -245,16 +248,41 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
       <div className="spot-audio-bar">
         <button
           type="button"
-          className={`spot-play-btn ${isPlaying ? 'playing' : ''}`}
+          className={`spot-play-btn ${isPlaying ? 'playing' : ''} ${ttsLoading ? 'loading' : ''}`}
           onClick={togglePlay}
           aria-label={isPlaying ? t('guide.pause') : t('guide.play')}
+          disabled={ttsLoading}
         >
-          {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+          {ttsLoading ? (
+            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 0.8, ease: 'linear' }}>
+              <Loader size={18} />
+            </motion.div>
+          ) : isPlaying ? (
+            <Pause size={20} />
+          ) : (
+            <Play size={20} />
+          )}
         </button>
         <div className="spot-audio-info">
-          <span className="spot-audio-label">{isPlaying ? t('spot.playing') : t('spot.aiNarration')}</span>
-          <span className="spot-audio-dur">{spotData.audioDuration}</span>
+          <span className="spot-audio-label">
+            {ttsLoading ? '加载中...' : isPlaying ? t('spot.playing') : t('spot.aiNarration')}
+          </span>
+          <span className="spot-audio-dur">
+            {ttsLoading ? '准备中' : spotData.audioDuration}
+          </span>
         </div>
+        {ttsLoading && (
+          <div className="spot-audio-bars loading">
+            {AUDIO_BARS.map((bar) => (
+              <motion.span
+                key={bar.key}
+                className="spot-audio-bar-inner"
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ repeat: Infinity, duration: 0.6, delay: bar.key * 0.08 }}
+              />
+            ))}
+          </div>
+        )}
         {isPlaying && (
           <div className="spot-audio-bars">
             {AUDIO_BARS.map((bar) => (

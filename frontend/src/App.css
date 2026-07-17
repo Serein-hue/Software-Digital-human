@@ -1657,6 +1657,11 @@ li {
   background: var(--rust);
 }
 
+.spot-play-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .spot-audio-info {
   flex: 1;
   display: flex;
@@ -1681,7 +1686,16 @@ li {
   gap: 2px;
 }
 
+.spot-audio-bars.loading .spot-audio-bar-inner {
+  display: block;
+  width: 4px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--teal);
+}
+
 .spot-audio-bar-inner {
+  display: block;
   width: 3px;
   border-radius: 2px;
   background: var(--teal);
