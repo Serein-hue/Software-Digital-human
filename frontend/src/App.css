@@ -6014,6 +6014,56 @@ li {
   line-height: 1.75;
 }
 
+/* Kiosk 三级讲解切换 */
+.kiosk-guide-tiers {
+  display: flex;
+  gap: 6px;
+  margin: 12px 0;
+}
+.kiosk-guide-tier-btn {
+  padding: 6px 16px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.kiosk-guide-tier-btn.active {
+  background: var(--teal, #155d58);
+  border-color: var(--teal, #155d58);
+  color: #fff;
+}
+.kiosk-spot-source {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: rgba(255,255,255,0.3);
+  font-size: 12px;
+  margin-top: 4px;
+}
+.kiosk-tts-bar {
+  margin-top: 16px;
+}
+.kiosk-tts-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--teal, #155d58);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.kiosk-tts-btn.playing { background: var(--rust, #b4522c); }
+.kiosk-tts-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
 .kiosk-spot-meta {
   display: flex;
   gap: 16px;
