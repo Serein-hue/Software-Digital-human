@@ -9,6 +9,7 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
+        main: resolve(__dirname, 'index.html'),
         operation: resolve(__dirname, 'operation/index.html'),
         bigscreen: resolve(__dirname, 'bigscreen/index.html'),
         'digital-human': resolve(__dirname, 'digital-human/index.html'),
