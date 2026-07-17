@@ -11,6 +11,8 @@ import PhotoRecognition from './PhotoRecognition'
 import ShareCard from './ShareCard'
 import { getLang, useT } from '../../i18n'
 import { fetchChatAnswer } from '../../api'
+import { decodeAudioToVisemes } from '../../api/lipsync'
+import type { VisemeFrame } from '../../api/lipsync'
 
 const QUICK_ACTIONS = [
   { icon: Map, key: 'routeRecommend' },
@@ -38,39 +40,13 @@ export default function GuidePage() {
     () => (localStorage.getItem('scenic_dh_mode') as 'cartoon' | 'realistic') || 'cartoon'
   )
   const [spokenText, setSpokenText] = useState('')
+  const [visemeFrames, setVisemeFrames] = useState<VisemeFrame[]>([])
   const [spotDetailId, setSpotDetailId] = useState<string | null>(null)
   const [routeOpen, setRouteOpen] = useState(false)
   const listeningTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const speakingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const langRef = useRef(getLang())
-
-  // TTS 语音播报
-  const speakAnswer = useCallback(async (text: string) => {
-    try {
-      const res = await fetch('/api/tts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: text.substring(0, 500), voice: 'zh-CN-XiaoxiaoNeural' }),
-        signal: AbortSignal.timeout(15000),
-      })
-      if (!res.ok) return
-      const data = await res.json()
-      if (data.result === 'successful' && data.audio_base64) {
-        const blob = dataURItoBlob(`data:audio/mp3;base64,${data.audio_base64}`)
-        const url = URL.createObjectURL(blob)
-        if (audioRef.current) {
-          audioRef.current.pause()
-          audioRef.current.src = ''
-        }
-        const audio = new Audio(url)
-        audioRef.current = audio
-        await audio.play()
-      }
-    } catch {
-      // TTS 不可用时静默降级
-    }
-  }, [])
 
   function dataURItoBlob(dataURI: string) {
     const byteString = atob(dataURI.split(',')[1])
@@ -79,6 +55,16 @@ export default function GuidePage() {
     const ia = new Uint8Array(ab)
     for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i)
     return new Blob([ab], { type: mimeString })
+  }
+
+  /** 用 AudioContext 解码 MP3 blob → PCM → viseme 帧序列 */
+  async function decodeBlobToVisemes(blob: Blob): Promise<VisemeFrame[]> {
+    const ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)()
+    const arrayBuffer = await blob.arrayBuffer()
+    const audioBuffer = await ctx.decodeAudioData(arrayBuffer)
+    const frames = decodeAudioToVisemes(audioBuffer)
+    ctx.close()
+    return frames
   }
 
   useEffect(() => {
@@ -101,7 +87,8 @@ export default function GuidePage() {
     }
   }, [])
 
-  const handleSend = useCallback((text: string) => {
+  // ── 核心：发送消息 → 获取回答 → 先取 TTS + 解码 viseme → 音画同步启动 ──
+  const handleSend = useCallback(async (text: string) => {
     const userMsg: Message = {
       id: `user-${Date.now()}`,
       role: 'user',
@@ -110,36 +97,86 @@ export default function GuidePage() {
     setMessages((prev) => [...prev, userMsg])
 
     setIsListening(true)
-    listeningTimerRef.current = setTimeout(async () => {
-      setIsListening(false)
+    await new Promise(r => setTimeout(r, 800))
+    setIsListening(false)
 
-      // Try backend
-      const remote = await fetchChatAnswer(text)
+    // 1. 获取 AI 回答
+    const remote = await fetchChatAnswer(text)
 
-      if (remote) {
-        setIsSpeaking(true)
-        setSpokenText(remote.answer)
-        speakAnswer(remote.answer)
-        const guideMsg: Message = {
-          id: `guide-${Date.now()}`,
-          role: 'guide',
-          text: remote.answer,
-          source: remote.source,
-          confidence: remote.confidence,
+    if (!remote) {
+      setMessages((prev) => [...prev, {
+        id: `guide-${Date.now()}`,
+        role: 'guide',
+        text: '抱歉，暂时无法连接到知识库，请稍后再试。',
+        source: '系统提示',
+        confidence: 'low' as const,
+      }])
+      return
+    }
+
+    // 2. 立即显示回答文字
+    setMessages((prev) => [...prev, {
+      id: `guide-${Date.now()}`,
+      role: 'guide',
+      text: remote.answer,
+      source: remote.source,
+      confidence: remote.confidence,
+    }])
+
+    // 3. 先取 TTS → 解码 viseme → 再启动（音画同步关键）
+    try {
+      const res = await fetch('/api/tts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: remote.answer.substring(0, 500), voice: 'zh-CN-XiaoxiaoNeural' }),
+        signal: AbortSignal.timeout(15000),
+      })
+
+      if (res.ok) {
+        const data = await res.json()
+        if (data.result === 'successful' && data.audio_base64) {
+          const blob = dataURItoBlob(`data:audio/mp3;base64,${data.audio_base64}`)
+
+          // 🔑 关键：先解码出真实 viseme 帧
+          const frames = await decodeBlobToVisemes(blob)
+
+          const url = URL.createObjectURL(blob)
+
+          // 清理之前的音频
+          if (audioRef.current) {
+            audioRef.current.pause()
+            audioRef.current.src = ''
+          }
+
+          // 创建新 Audio 但不播放
+          const audio = new Audio(url)
+          audioRef.current = audio
+
+          // 同时启动动画 + 音频
+          const durationMs = (audio.duration || frames.length * 50) * 1000 + 500
+          setVisemeFrames(frames)
+          setIsSpeaking(true)
+          setSpokenText(remote.answer)
+
+          if (speakingTimerRef.current) clearTimeout(speakingTimerRef.current)
+          speakingTimerRef.current = setTimeout(() => {
+            setIsSpeaking(false)
+            setVisemeFrames([])
+          }, durationMs)
+
+          await audio.play()
+          return // 成功，跳过 fallback
         }
-        setMessages((prev) => [...prev, guideMsg])
-        speakingTimerRef.current = setTimeout(() => setIsSpeaking(false), remote.answer.length * 35)
-      } else {
-        const guideMsg: Message = {
-          id: `guide-${Date.now()}`,
-          role: 'guide',
-          text: '抱歉，暂时无法连接到知识库，请稍后再试。',
-          source: '系统提示',
-          confidence: 'low' as const,
-        }
-        setMessages((prev) => [...prev, guideMsg])
       }
-    }, 800)
+    } catch {
+      // TTS 不可用 → 降级到文字动画
+    }
+
+    // 4. Fallback：无 TTS，纯文字动画
+    setVisemeFrames([])
+    setSpokenText(remote.answer)
+    setIsSpeaking(true)
+    speakingTimerRef.current = setTimeout(() => setIsSpeaking(false), remote.answer.length * 35)
   }, [])
 
   const handleRate = useCallback((id: string, rating: 'up' | 'down') => {
@@ -207,7 +244,14 @@ export default function GuidePage() {
 
       <LbsStatus spotName="灵山胜境南门" distance={320} online={!isOffline} />
 
-      <DigitalHuman isSpeaking={isSpeaking} spotName="灵山胜境" mode={dhMode} spokenText={spokenText} />
+      <DigitalHuman
+        isSpeaking={isSpeaking}
+        spotName="灵山胜境"
+        mode={dhMode}
+        spokenText={spokenText}
+        visemeFrames={visemeFrames}
+        audioRef={audioRef}
+      />
 
       {/* Quick actions + camera entry */}
       <div className="guide-quick-actions">

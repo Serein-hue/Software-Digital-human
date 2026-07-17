@@ -3,12 +3,16 @@ import { motion } from 'framer-motion'
 import { Sparkles, Volume2 } from 'lucide-react'
 import { useT } from '../../i18n'
 import { createSynthLipSync, createVisemePlayer, generateVisemesFromText } from '../../api/lipsync'
+import type { VisemeFrame } from '../../api/lipsync'
 
 interface Props {
   isSpeaking: boolean
   spotName?: string
   mode?: 'cartoon' | 'realistic'
   spokenText?: string
+  visemeFrames?: VisemeFrame[]
+  /** HTMLAudioElement 引用 — 当提供时，嘴型由 audio.currentTime 驱动（零误差） */
+  audioRef?: React.RefObject<HTMLAudioElement | null>
 }
 
 // ── 真实模式 SVG 头像 ──────────────────────────────────────────────
@@ -100,7 +104,7 @@ function RealisticAvatar({ mouthOpenY, isSpeaking }: { mouthOpenY: number; isSpe
         <path d="M72,94 L69,92"/>
         <path d="M73,92 L71,89"/>
         <path d="M127,94 L130,92"/>
-        <path d="M127,92 L129,89"/>
+        <path d="M127,92 L129,94"/>
       </g>
 
       {/* 腮红 */}
@@ -133,7 +137,7 @@ function CartoonMouth({ mouthOpenY }: { mouthOpenY: number }) {
 }
 
 // ── 主组件 ────────────────────────────────────────────────────────
-export default function DigitalHuman({ isSpeaking, spotName, mode = 'cartoon', spokenText }: Props) {
+export default function DigitalHuman({ isSpeaking, spotName, mode = 'cartoon', spokenText, visemeFrames, audioRef }: Props) {
   const t = useT()
   const [mouthOpenY, setMouthOpenY] = useState(0)
   const synthRef = useRef<ReturnType<typeof createSynthLipSync> | null>(null)
@@ -142,7 +146,7 @@ export default function DigitalHuman({ isSpeaking, spotName, mode = 'cartoon', s
   const lastTickRef = useRef<number>(0)
 
   // 嘴型同步：初始化播放器 + 动画循环
-  // 当 isSpeaking 或 spokenText 变化时重新初始化
+  // 优先级：音频波形驱动（audioRef + visemeFrames）> 文本估算 > 合成循环
   useEffect(() => {
     // 停止说话 → 闭嘴
     if (!isSpeaking) {
@@ -152,12 +156,21 @@ export default function DigitalHuman({ isSpeaking, spotName, mode = 'cartoon', s
       return
     }
 
-    // 开始说话 → 初始化播放器
-    if (spokenText) {
+    // 🎯 第一优先：音频波形驱动（audio.currentTime 定位，零误差）
+    if (visemeFrames && visemeFrames.length > 0 && audioRef?.current) {
+      playerRef.current = createVisemePlayer(visemeFrames)
+      synthRef.current = null
+    } else if (visemeFrames && visemeFrames.length > 0) {
+      // viseme 帧但无 audioRef（纯波形容器+文本降级场景）
+      playerRef.current = createVisemePlayer(visemeFrames)
+      synthRef.current = null
+    } else if (spokenText) {
+      // 文本估算兜底
       const frames = generateVisemesFromText(spokenText)
       playerRef.current = createVisemePlayer(frames)
       synthRef.current = null
     } else {
+      // 合成循环保底
       synthRef.current = createSynthLipSync()
       playerRef.current = null
     }
@@ -166,20 +179,31 @@ export default function DigitalHuman({ isSpeaking, spotName, mode = 'cartoon', s
 
     // 动画循环
     function tick(now: number) {
-      if (lastTickRef.current === 0) {
-        lastTickRef.current = now
+      // ── 优先使用 audio.currentTime 定位（完美同步） ──
+      if (audioRef?.current?.ended) {
+        setMouthOpenY(0)
+        return // 音频已结束，停止动画
       }
-      const delta = now - lastTickRef.current
-      lastTickRef.current = now
+      if (audioRef?.current && playerRef.current) {
+        const audioTimeMs = audioRef.current.currentTime * 1000
+        const state = playerRef.current.seek(audioTimeMs)
+        setMouthOpenY(state.mouthOpenY)
+      } else if (playerRef.current) {
+        // ── 无 audioRef → 用 rAF delta 增量推进 ──
+        if (lastTickRef.current === 0) {
+          lastTickRef.current = now
+        }
+        const delta = now - lastTickRef.current
+        lastTickRef.current = now
 
-      if (playerRef.current) {
         const state = playerRef.current.tick(delta)
         setMouthOpenY(state.mouthOpenY)
         if (playerRef.current.isFinished()) {
           setMouthOpenY(0)
-          return // 播放完毕，停止动画
+          return // 播放完毕
         }
       } else if (synthRef.current) {
+        // ── 合成循环 ──
         const state = synthRef.current.next()
         setMouthOpenY(state.mouthOpenY)
       }
@@ -192,7 +216,7 @@ export default function DigitalHuman({ isSpeaking, spotName, mode = 'cartoon', s
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
-  }, [isSpeaking, spokenText])
+  }, [isSpeaking, spokenText, visemeFrames, audioRef])
 
   return (
     <div className="dh-stage">
