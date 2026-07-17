@@ -118,7 +118,10 @@ export default function RouteRecommend({ onClose, onSpotClick }: Props) {
               <button
                 type="button"
                 className="route-card-main"
-                onClick={() => setExpandedId(expandedId === route.id ? null : route.id)}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setExpandedId(expandedId === route.id ? null : route.id)
+                }}
               >
                 <div className="route-card-top">
                   <div className="route-card-left">
