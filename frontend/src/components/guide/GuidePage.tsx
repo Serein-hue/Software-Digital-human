@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Map, Clock, Camera, BookOpen, Share2, Image, WifiOff, RefreshCw, User, Bot, MapPin, ChevronRight } from 'lucide-react'
+import { Map, Clock, Camera, BookOpen, Share2, Image, WifiOff, RefreshCw, User, Bot, MapPin, ChevronRight, X } from 'lucide-react'
 import DigitalHuman from './DigitalHuman'
 import LbsStatus from './LbsStatus'
 import ChatPanel, { type Message } from './ChatPanel'
@@ -52,6 +52,7 @@ export default function GuidePage() {
   const [spokenText, setSpokenText] = useState('')
   const [visemeFrames, setVisemeFrames] = useState<VisemeFrame[]>([])
   const [spotDetailId, setSpotDetailId] = useState<string | null>(null)
+  const [spotListOpen, setSpotListOpen] = useState(false)
   const [routeOpen, setRouteOpen] = useState(false)
   const [spots, setSpots] = useState<SpotItem[]>([])
   const listeningTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -101,7 +102,7 @@ export default function GuidePage() {
   // 加载景点列表
   useEffect(() => {
     fetchSpots().then(list => {
-      if (list) setSpots(list.slice(0, 6)) // 取前6个主要景点
+      if (list) setSpots(list)
     })
   }, [])
 
@@ -285,7 +286,7 @@ export default function GuidePage() {
               } else if (action.key === 'routeRecommend') {
                 setRouteOpen(true)
               } else if (action.key === 'deepGuide') {
-                setSpotDetailId('LS-011')
+                setSpotListOpen(true)
               } else {
                 handleSend(t(`guide.${action.key}`))
               }
@@ -369,6 +370,47 @@ export default function GuidePage() {
         messages={messages}
         spotName="灵山胜境"
       />
+
+      {/* 景点选择列表 */}
+      <AnimatePresence>
+        {spotListOpen && (
+          <motion.div
+            className="spot-list-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="spot-list-header">
+              <span className="spot-list-title">{t('guide.selectSpot')}</span>
+              <button type="button" className="spot-list-close" onClick={() => setSpotListOpen(false)}>
+                <X size={20} />
+              </button>
+            </div>
+            <div className="spot-list-grid">
+              {spots.map((spot) => (
+                <motion.button
+                  key={spot.id}
+                  type="button"
+                  className="spot-list-card"
+                  style={{ background: SPOT_GRADIENTS[spot.id] || 'linear-gradient(135deg, #2a3a2a, #4a6a4a)' }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  onClick={() => {
+                    setSpotListOpen(false)
+                    setTimeout(() => setSpotDetailId(spot.id), 200)
+                  }}
+                >
+                  <span className="spot-list-card-name">{spot.name}</span>
+                  <span className="spot-list-card-summary">{spot.summary}</span>
+                  <span className="spot-list-card-tags">{spot.tags?.join(' · ')}</span>
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Spot Detail */}
       <AnimatePresence>
