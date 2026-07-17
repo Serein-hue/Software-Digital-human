@@ -9,7 +9,7 @@ from app.config import settings
 
 router = APIRouter(tags=["RAG Proxy"])
 
-RAG_QUERY_URL = f"{settings.RAG_SERVICE_URL}/api/v1/rag/query"
+RAG_ANSWER_URL = f"{settings.RAG_SERVICE_URL}/api/v1/rag/answer"
 RAG_HEALTH_URL = f"{settings.RAG_SERVICE_URL}/api/v1/rag/health"
 
 
@@ -24,7 +24,7 @@ class RagQueryRequest(BaseModel):
 _MOCK_QA: dict[str, str] = {
     "灵山大佛": "灵山大佛位于无锡灵山胜境秦履峰南侧，是世界上最高的露天青铜释迦牟尼立像。佛像通高88米（佛体79米+莲花瓣9米），含台基总高101.5米，总用铜量725吨。右手施无畏印除却众生痛苦，左手施与愿印赐予众生欢乐。登216级登云道抱佛脚，可俯瞰太湖全景。开放时间8:00-17:00。",
     "灵山梵宫": "灵山梵宫建筑面积7.2万平方米，最高处66.5米，被誉为东方卢浮宫。内部汇集东阳木雕、琉璃、油画、景泰蓝等传统工艺，28米高星空穹顶用100公斤纯金绘制。核心琉璃巨制《华藏世界》由160块彩色琉璃拼接而成。每日上演《灵山吉祥颂》大型演出。",
-    "九龙灌浴": "九龙灌浴位于景区中轴线核心，总高27.2米，青铜重量260吨。每日4-5场表演，莲花瓣缓缓开启，太子佛在九龙喷泉与《佛之诞》音乐中旋转升起。每场约15分钟，建议提前10分钟到场。表演结束后可接取祈福圣水。",
+    "九龙灌浴": "九龙灌浴位于景区中轴线核心，总高27.2米，青铜重量260吨。平日演出时间为上午10:00、11:30、下午1:30和3:00，每场约15分钟，周末及节假日会增加场次。莲花瓣缓缓开启，太子佛在九龙喷泉与《佛之诞》音乐中旋转升起。建议提前10分钟到场占位，表演结束后可接取祈福圣水。",
     "五印坛城": "五印坛城位于香水海中央独立圆岛上，五层重檐楼宇，总高约30米，占地5000平方米。藏式碉楼风格，白墙红边金顶。转经筒长廊环绕主殿，摆放108个纯铜转经筒，游客可顺时针转动祈福。登顶层观景台可俯瞰全景。",
     "祥符禅寺": "祥符禅寺始建于唐贞观年间，由玄奘法师弟子窥基大师开坛讲经。北宋大中祥符年间赐额祥符禅寺。寺内有千年银杏、六角古井等珍贵历史遗迹，钟楼内祥符禅钟重12.8吨，钟声浑厚洪亮，响彻灵山山谷。",
     "门票": "灵山胜境成人票210元/人，学生票105元/人，60-69岁老人105元/人，70岁以上免票。票价包含所有核心景点及《灵山吉祥颂》演出。观光车20元/人。建议通过官方小程序提前购票。",
@@ -100,11 +100,11 @@ async def rag_query(body: RagQueryRequest, request: Request):
         "Authorization": f"Bearer {settings.RAG_API_KEY}",
     }
 
-    # 尝试调用真实 RAG 服务，失败则返回 mock 数据
+    # 尝试调用真实 RAG 服务（/answer 端：检索 + LLM 生成），失败则返回 mock 数据
     try:
-        async with httpx.AsyncClient(timeout=5.0) as client:
+        async with httpx.AsyncClient(timeout=10.0) as client:
             resp = await client.post(
-                RAG_QUERY_URL,
+                RAG_ANSWER_URL,
                 json=payload,
                 headers=upstream_headers,
             )
@@ -115,7 +115,13 @@ async def rag_query(body: RagQueryRequest, request: Request):
         return ok(mock_data, trace_id)
 
     if rag_data.get("code") == 0:
-        return ok(rag_data["data"], trace_id)
+        result = rag_data["data"]
+        # RAG 返回了 LLM 回答 → 直接返回
+        if result.get("answer"):
+            return ok(result, trace_id)
+        # RAG query 成功但 LLM 未生成 → 降级到 mock
+        mock_data = _mock_query(body.query)
+        return ok(mock_data, trace_id)
     else:
         mock_data = _mock_query(body.query)
         return ok(mock_data, trace_id)

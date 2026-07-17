@@ -14,12 +14,22 @@ logger = logging.getLogger("rag.ingest")
 def main():
     data_dir = os.path.join(_PROJECT_ROOT, "rag-knowledge")
     files = []
-    for fname in ["lingshan-dataset.md", "lingshan-guide.md"]:
+    for fname in ["lingshan-dataset.md", "lingshan-guide.md", "lingshan-qa.md"]:
         fpath = os.path.join(data_dir, fname)
         if os.path.exists(fpath):
-            domain = "spot_detail" if "dataset" in fname else "guide"
-            freshness = "high" if "dataset" in fname else "medium"
-            files.append((fpath, {"source_name": f"灵山胜境{'景点结构化数据集' if 'dataset' in fname else '游览指南'}",
+            if "dataset" in fname:
+                domain = "spot_detail"
+                freshness = "high"
+                source_name = "灵山胜境景点结构化数据集"
+            elif "qa" in fname:
+                domain = "guide"
+                freshness = "high"
+                source_name = "灵山胜境知识库（QA）"
+            else:
+                domain = "guide"
+                freshness = "medium"
+                source_name = "灵山胜境游览指南"
+            files.append((fpath, {"source_name": source_name,
                                   "domain": domain, "scenic_id": "lingshan",
                                   "authority_level": "official", "freshness_level": freshness}))
             logger.info("Found: %s", fpath)
