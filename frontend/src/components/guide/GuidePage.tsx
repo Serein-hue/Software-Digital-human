@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Map, Clock, Camera, BookOpen, Share2, Image, WifiOff, RefreshCw, User, Bot } from 'lucide-react'
+import { Map, Clock, Camera, BookOpen, Share2, Image, WifiOff, RefreshCw, User, Bot, MapPin, ChevronRight } from 'lucide-react'
 import DigitalHuman from './DigitalHuman'
 import LbsStatus from './LbsStatus'
 import ChatPanel, { type Message } from './ChatPanel'
@@ -10,7 +10,8 @@ import RouteRecommend from './RouteRecommend'
 import PhotoRecognition from './PhotoRecognition'
 import ShareCard from './ShareCard'
 import { getLang, useT } from '../../i18n'
-import { fetchChatAnswer } from '../../api'
+import { fetchChatAnswer, fetchSpots } from '../../api'
+import type { SpotItem } from '../../api'
 import { decodeAudioToVisemes } from '../../api/lipsync'
 import type { VisemeFrame } from '../../api/lipsync'
 
@@ -20,6 +21,15 @@ const QUICK_ACTIONS = [
   { icon: Camera, key: 'photoRecognition' },
   { icon: BookOpen, key: 'deepGuide' },
 ]
+
+const SPOT_GRADIENTS: Record<string, string> = {
+  'LS-011': 'linear-gradient(135deg, #1a3a2a, #2d6a4f)',
+  'LS-012': 'linear-gradient(135deg, #1b2838, #2d4a6a)',
+  'LS-013': 'linear-gradient(135deg, #1a3a4a, #2d6a7a)',
+  'LS-014': 'linear-gradient(135deg, #2a1a3a, #5a2d6a)',
+  'LS-015': 'linear-gradient(135deg, #3a2a1a, #6a4a2d)',
+  'LS-016': 'linear-gradient(135deg, #1a2a3a, #3a5a6a)',
+}
 
 export default function GuidePage() {
   const t = useT()
@@ -43,6 +53,7 @@ export default function GuidePage() {
   const [visemeFrames, setVisemeFrames] = useState<VisemeFrame[]>([])
   const [spotDetailId, setSpotDetailId] = useState<string | null>(null)
   const [routeOpen, setRouteOpen] = useState(false)
+  const [spots, setSpots] = useState<SpotItem[]>([])
   const listeningTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const speakingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -85,6 +96,13 @@ export default function GuidePage() {
       if (listeningTimerRef.current) clearTimeout(listeningTimerRef.current)
       if (speakingTimerRef.current) clearTimeout(speakingTimerRef.current)
     }
+  }, [])
+
+  // 加载景点列表
+  useEffect(() => {
+    fetchSpots().then(list => {
+      if (list) setSpots(list.slice(0, 6)) // 取前6个主要景点
+    })
   }, [])
 
   // ── 核心：发送消息 → 获取回答 → 先取 TTS + 解码 viseme → 音画同步启动 ──
@@ -267,7 +285,7 @@ export default function GuidePage() {
               } else if (action.key === 'routeRecommend') {
                 setRouteOpen(true)
               } else if (action.key === 'deepGuide') {
-                setSpotDetailId('lingshan-buddha')
+                setSpotDetailId('LS-011')
               } else {
                 handleSend(t(`guide.${action.key}`))
               }
@@ -287,6 +305,32 @@ export default function GuidePage() {
           <span>{t('guide.photo')}</span>
         </motion.button>
       </div>
+
+      {/* 景点推荐 — 横向滚动 */}
+      {spots.length > 0 && (
+        <div className="guide-spot-carousel">
+          <div className="guide-spot-carousel-header">
+            <MapPin size={14} />
+            <span>{t('guide.popularSpots')}</span>
+            <ChevronRight size={14} />
+          </div>
+          <div className="guide-spot-carousel-scroll">
+            {spots.map((spot) => (
+              <motion.button
+                key={spot.id}
+                type="button"
+                className="guide-spot-card"
+                style={{ background: SPOT_GRADIENTS[spot.id] || 'linear-gradient(135deg, #2a3a2a, #4a6a4a)' }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSpotDetailId(spot.id)}
+              >
+                <span className="guide-spot-card-name">{spot.name}</span>
+                <span className="guide-spot-card-tags">{spot.tags?.slice(0, 2).join(' · ')}</span>
+              </motion.button>
+            ))}
+          </div>
+        </div>
+      )}
 
       <ChatPanel
         messages={messages}

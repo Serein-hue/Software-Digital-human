@@ -105,7 +105,7 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
     )
   }
 
-  if (!spotData || !guideData) {
+  if (!spotData) {
     return (
       <motion.div
         className="spot-detail-page"
