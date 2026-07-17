@@ -50,7 +50,26 @@ interface Props {
   onSpotClick: (spotId: string) => void
 }
 
-export default function RouteRecommend({ onClose }: Props) {
+// 景点名称 → ID 映射（用于路线步骤跳转）
+const SPOT_NAME_TO_ID: Record<string, string> = {
+  '灵山大佛': 'LS-011',
+  '灵山梵宫': 'LS-012',
+  '九龙灌浴': 'LS-013',
+  '五印坛城': 'LS-014',
+  '祥符禅寺': 'LS-015',
+  '佛手广场': 'LS-016',
+  '百子戏弥勒': 'LS-017',
+  '降魔成道': 'LS-018',
+  '阿育王柱': 'LS-019',
+  '灵山精舍': 'LS-020',
+  '南门': 'LS-001',
+  '佛足坛': 'LS-002',
+  '菩提大道': 'LS-003',
+  '曼飞龙塔': 'LS-004',
+  '梵宫广场': 'LS-005',
+}
+
+export default function RouteRecommend({ onClose, onSpotClick }: Props) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [routes, setRoutes] = useState<RouteDisplay[]>([])
   const [loading, setLoading] = useState(true)
@@ -149,7 +168,16 @@ export default function RouteRecommend({ onClose }: Props) {
                             {i < route.steps.length - 1 && <span className="route-step-line" />}
                           </div>
                           <div className="route-step-content">
-                            <strong>{step.spot}</strong>
+                            <button
+                              type="button"
+                              className="route-step-spot-btn"
+                              onClick={() => {
+                                const id = SPOT_NAME_TO_ID[step.spot]
+                                if (id) onSpotClick(id)
+                              }}
+                            >
+                              <strong>{step.spot}</strong>
+                            </button>
                             <span className="route-step-dur">{step.duration}</span>
                             <p>{step.note}</p>
                           </div>

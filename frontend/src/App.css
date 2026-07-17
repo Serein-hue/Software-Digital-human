@@ -1969,6 +1969,22 @@ li {
   color: var(--ink);
 }
 
+.route-step-spot-btn {
+  display: block;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s;
+}
+.route-step-spot-btn:hover { color: var(--teal); }
+.route-step-spot-btn:active { color: var(--rust); }
+
 .route-step-dur {
   display: inline-block;
   margin: 3px 0 4px;
