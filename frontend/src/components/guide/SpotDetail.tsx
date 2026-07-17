@@ -58,6 +58,7 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
   const [tier, setTier] = useState<Tier>('shortIntro')
   const [isPlaying, setIsPlaying] = useState(false)
   const audioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
   const [spotData, setSpotData] = useState<SpotData | null>(null)
   const [guideData, setGuideData] = useState<SpotGuideItem | null>(null)
   const [relatedSpots, setRelatedSpots] = useState<SpotData[]>([])
@@ -82,8 +83,21 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
   useEffect(() => {
     return () => {
       if (audioTimerRef.current) clearTimeout(audioTimerRef.current)
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current.src = ''
+      }
     }
   }, [])
+
+  // 切换讲解档位时停止音频
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current.src = ''
+    }
+    setIsPlaying(false)
+  }, [tier])
 
   if (loading) {
     return (
@@ -127,14 +141,50 @@ export default function SpotDetail({ spotId, onClose, onNavigate }: Props) {
 
   const content = spotData[tier]
 
+  // ── TTS 语音播报 ──
   const togglePlay = () => {
     if (isPlaying) {
+      // 停止
       setIsPlaying(false)
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current.src = ''
+      }
       if (audioTimerRef.current) clearTimeout(audioTimerRef.current)
     } else {
+      // 播放：调用 TTS 接口
       setIsPlaying(true)
-      const duration = spotData.audioDuration.split(':').reduce((m, s) => m * 60 + +s, 0) * 1000
-      audioTimerRef.current = setTimeout(() => setIsPlaying(false), duration)
+      fetch('/api/tts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: content.substring(0, 500), voice: 'zh-CN-XiaoxiaoNeural' }),
+        signal: AbortSignal.timeout(15000),
+      }).then(res => {
+        if (!res.ok) throw new Error('TTS failed')
+        return res.json()
+      }).then(data => {
+        if (data.result === 'successful' && data.audio_base64) {
+          const byteString = atob(data.audio_base64)
+          const ab = new ArrayBuffer(byteString.length)
+          const ia = new Uint8Array(ab)
+          for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i)
+          const blob = new Blob([ab], { type: 'audio/mp3' })
+          const url = URL.createObjectURL(blob)
+          if (audioRef.current) {
+            audioRef.current.pause()
+            audioRef.current.src = ''
+          }
+          const audio = new Audio(url)
+          audioRef.current = audio
+          audio.play().catch(() => {})
+          // 播放结束时自动停止动画
+          audio.onended = () => {
+            setIsPlaying(false)
+          }
+        }
+      }).catch(() => {
+        setIsPlaying(false)
+      })
     }
   }
 
