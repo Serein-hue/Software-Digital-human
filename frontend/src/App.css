@@ -5780,6 +5780,7 @@ li {
 .kiosk-idle-dh {
   transform: scale(1.5);
   transform-origin: center center;
+  margin-bottom: 80px;
 }
 
 .kiosk-idle-title {

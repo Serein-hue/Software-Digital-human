@@ -330,10 +330,10 @@ export default function KioskPage() {
               </button>
               <div className="kiosk-qr-code">
                 <QRCodeSVG
-                  value={`${window.location.origin}/#/guide`}
+                  value={'https://serein-hue.github.io/Software-Digital-human/#/guide'}
                   size={160}
-                  bgColor="transparent"
-                  fgColor="#fff"
+                  bgColor="#fff"
+                  fgColor="#1a1a1a"
                 />
               </div>
               <h3>{t('kiosk.qrTitle')}</h3>
