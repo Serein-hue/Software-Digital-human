@@ -3,6 +3,7 @@ import { ANALYTICS } from '../data.js'
 export function getAnalytics(now = new Date()) {
   return {
     ...ANALYTICS,
+    dataSource: 'static-demo',
     updatedAt: now.toISOString(),
     refreshIntervalSeconds: 300,
   }
@@ -14,6 +15,7 @@ export function getRealtimeAnalytics(now = new Date()) {
     trend: ANALYTICS.weekTrend,
     alerts: ANALYTICS.alerts,
     facilityStatus: ANALYTICS.facilityStatus,
+    dataSource: 'static-demo',
     updatedAt: now.toISOString(),
     refreshIntervalSeconds: 5,
   }

@@ -241,8 +241,9 @@ def main():
         input_dir = Path(args.input)
     else:
         # Search common paths
+        project_root = Path(__file__).resolve().parents[3]
         candidates = [
-            Path("E:/Workspace/Software-Digital-human/official-materials/demo-scenic-spot/示范景区公开资料包"),
+            project_root / "official-materials" / "示范景区公开资料包",
             Path("E:/Workspace/Software-Digital-human/示范景区公开资料包"),
             Path("./示范景区公开资料包"),
         ]

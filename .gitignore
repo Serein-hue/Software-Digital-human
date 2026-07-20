@@ -28,6 +28,15 @@ live2d-avatar/CubismSdkForWeb-5-r.4/Samples/TypeScript/Demo/node_modules/
 # IDE
 .idea/
 .vscode/
+.cursor/
+.codegraph/
+.playwright-mcp/
+.pytest_cache/
+.omx/
+
+# Local delivery workspaces and generated packages
+ppt-projects/
+release/
 
 # OS
 .DS_Store
