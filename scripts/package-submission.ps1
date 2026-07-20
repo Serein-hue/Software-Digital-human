@@ -39,7 +39,11 @@ $runtimeName = "lingshan-ai-digital-human-runtime"
 $runtimeRoot = Join-Path $payloadRoot $runtimeName
 New-Item -ItemType Directory -Force $runtimeRoot | Out-Null
 
-$rootFiles = @("README.md", "LICENSE")
+$rootFiles = @(
+    "main.py", "fay_booter.py", "fay_lite_server.py", "requirements.txt",
+    "config.json", "settings.json", "system.conf", "system.conf.bak",
+    "qa.csv", "verifier.json", "favicon.ico", "icon.png"
+)
 foreach ($relativePath in $rootFiles) {
     $source = Join-Path $projectRoot $relativePath
     if (Test-Path -LiteralPath $source) {
@@ -47,7 +51,13 @@ foreach ($relativePath in $rootFiles) {
     }
 }
 
-$sourceDirectories = @("frontend", "backend", "miniprogram", "rag-knowledge")
+$sourceDirectories = @(
+    "frontend", "backend", "miniprogram", "rag-knowledge", "rag", "services",
+    "live2d-avatar", "ai_module", "asr", "config", "contracts", "core",
+    "faymcp", "fay_player_knowledge", "genagents", "gui", "llm", "mcp_servers",
+    "scheduler", "simulation_engine", "tools", "tts", "utils", "workflows",
+    "official-materials"
+)
 foreach ($relativePath in $sourceDirectories) {
     Copy-SubmissionDirectory $relativePath $runtimeRoot
 }
@@ -55,8 +65,8 @@ foreach ($relativePath in $sourceDirectories) {
 $runtimeReadme = @(
     "Lingshan AI Digital Human Guide - Complete Runtime Delivery",
     "",
-    "This archive contains the competition application source, miniprogram, knowledge base, and the built static web runtime under web/.",
-    "Excluded: documentation, Fay runtime, Live2D SDK, MCP services, auxiliary service projects, startup scripts, dependencies, caches, logs, databases, local tooling, source materials, prototypes, and Git metadata.",
+    "This archive contains the competition application, Fay runtime, MCP services, Live2D assets, RAG services, external API services, miniprogram, required configuration, seed inputs, and the built static web runtime under web/.",
+    "Excluded: documentation, tests, startup scripts, dependencies, caches, logs, databases, local tooling, prototypes, and Git metadata.",
     "",
     "Frontend: cd frontend; npm ci; npm run dev",
     "Backend: cd backend; npm ci; npm run dev",
