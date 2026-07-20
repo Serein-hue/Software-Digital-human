@@ -19,6 +19,8 @@ warn()  { echo -e "${YELLOW}[WARN]${NC}  $*"; }
 
 # 倒序停止列表（先停依赖方，再停被依赖方）
 STOP_ORDER=(
+    "frontend:Frontend(5173)"
+    "express-api:Express-API(3001)"
     "demo-mock:Demo-Mock(8006)"
     "admin-api:Admin-API(8002)"
     "business-api:Business-API(8001)"

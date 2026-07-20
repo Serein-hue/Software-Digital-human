@@ -9,6 +9,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 PID_DIR="$PROJECT_DIR/logs/pids"
 LOG_DIR="$PROJECT_DIR/logs"
+RAG_PORT="${RAG_SERVICE_PORT:-5012}"
 
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[0;33m'; CYAN='\033[0;36m'; NC='\033[0m'
 ok()   { echo -e "  ${GREEN}✅ $*${NC}"; }
@@ -46,11 +47,14 @@ check_one() {
     fi
 }
 
-check_one "RAG (5010)"            "http://127.0.0.1:5010/api/v1/rag/health"   "rag.pid"
+check_one "RAG (${RAG_PORT})"     "http://127.0.0.1:${RAG_PORT}/api/v1/rag/health" "rag.pid"
 check_one "Business-API (8001)"   "http://127.0.0.1:8001/health"             "business-api.pid"
 check_one "Admin-API (8002)"      "http://127.0.0.1:8002/health"             "admin-api.pid"
 check_one "Fay-Core (5000)"       "http://127.0.0.1:5000/"                    "fay.pid"        "$YELLOW"
+check_one "Fay-MCP (5010)"        "http://127.0.0.1:5010/api/mcp/servers"    "fay.pid"
 check_one "Demo-Mock (8006)"      "http://127.0.0.1:8006/health"             "demo-mock.pid"  "$YELLOW"
+check_one "Express-API (3001)"   "http://127.0.0.1:3001/api/health"         "express-api.pid"
+check_one "Frontend (5173)"      "http://127.0.0.1:5173/"                    "frontend.pid"
 
 echo ""
 echo "=========================================="

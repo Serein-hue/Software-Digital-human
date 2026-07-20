@@ -16,8 +16,8 @@ New-Item -ItemType Directory -Force $payloadRoot | Out-Null
 
 $excludedDirectories = @(
     ".git", ".codegraph", ".cursor", ".omx", ".playwright-mcp", ".pytest_cache",
-    "__pycache__", "node_modules", "dist", "release", "logs", "memory", "download",
-    "samples", "cache_data", "chroma_db"
+    "__pycache__", "node_modules", "dist", "release", "logs", "download", "docs", "test", "tests",
+    ".venv", "venv", "samples", "cache_data"
 )
 
 function Copy-SubmissionDirectory {
@@ -29,7 +29,7 @@ function Copy-SubmissionDirectory {
     }
     $destination = Join-Path $DestinationRoot $RelativePath
     New-Item -ItemType Directory -Force $destination | Out-Null
-    & robocopy $source $destination /E /XD $excludedDirectories /XF *.pyc *.pyo *.db *.db-shm *.db-wal | Out-Null
+    & robocopy $source $destination /E /XD $excludedDirectories /XF *.pyc *.pyo | Out-Null
     if ($LASTEXITCODE -ge 8) {
         throw "Copy failed for $RelativePath (robocopy exit code $LASTEXITCODE)."
     }
@@ -56,21 +56,46 @@ $sourceDirectories = @(
     "live2d-avatar", "ai_module", "asr", "config", "contracts", "core",
     "faymcp", "fay_player_knowledge", "genagents", "gui", "llm", "mcp_servers",
     "scheduler", "simulation_engine", "tools", "tts", "utils", "workflows",
-    "official-materials"
+    "official-materials", "memory", "scripts"
 )
 foreach ($relativePath in $sourceDirectories) {
     Copy-SubmissionDirectory $relativePath $runtimeRoot
 }
 
+# The local registry may contain development-only entries. The delivery archive
+# carries the MCP integration used by the scenic-guide runtime.
+$packagedMcpConfig = Join-Path $runtimeRoot "faymcp\data\mcp_servers.json"
+$runtimeMcpServers = @(
+    [ordered]@{
+        id = 1
+        name = "Scenic Live Data"
+        ip = ""
+        connection_time = ""
+        key = ""
+        transport = "stdio"
+        command = "python"
+        args = @("mcp_servers/scenic_data/server.py")
+        cwd = ""
+        env = [ordered]@{
+            ADMIN_API_URL = "http://127.0.0.1:8002/v1"
+            ADMIN_TOKEN = "`${ADMIN_TOKEN}"
+        }
+        autostart = $true
+    }
+)
+$runtimeMcpServers | ConvertTo-Json -Depth 16 | Set-Content -LiteralPath $packagedMcpConfig -Encoding UTF8
+
 $runtimeReadme = @(
     "Lingshan AI Digital Human Guide - Complete Runtime Delivery",
     "",
     "This archive contains the competition application, Fay runtime, MCP services, Live2D assets, RAG services, external API services, miniprogram, required configuration, seed inputs, and the built static web runtime under web/.",
-    "Excluded: documentation, tests, startup scripts, dependencies, caches, logs, databases, local tooling, prototypes, and Git metadata.",
+    "Excluded: documentation, tests, dependency directories, caches, logs, local tooling, prototypes, and Git metadata. Runtime database snapshots and service scripts are included.",
     "",
-    "Frontend: cd frontend; npm ci; npm run dev",
-    "Backend: cd backend; npm ci; npm run dev",
-    "Static build: cd frontend; npm ci; npm run build"
+    "Install all service dependencies: bash scripts/install-dependencies.sh",
+    "Start all services: bash scripts/start-all.sh",
+    "Stop all services: bash scripts/stop-all.sh",
+    "Check service status: bash scripts/status.sh",
+    "Verify HTTP and MCP endpoints: powershell -ExecutionPolicy Bypass -File scripts/health-check.ps1"
 ) -join [Environment]::NewLine
 Set-Content -Encoding UTF8 -Value $runtimeReadme (Join-Path $runtimeRoot "DELIVERY_NOTES.txt")
 

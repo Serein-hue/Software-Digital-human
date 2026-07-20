@@ -2,9 +2,9 @@
 
 `scripts/package-submission.ps1` 使用显式白名单生成一份完整运行交付包：
 
-- 运行包：包含前后端、小程序、RAG、Fay、MCP、Live2D、外部 API 服务、必要配置和数据，以及 `web/` 下的静态构建产物。
+- 运行包：包含前后端、小程序、RAG、Fay、MCP、Live2D、外部 API 服务、必要配置、数据库快照、服务脚本和 `web/` 下的静态构建产物。
 
-打包过程不会收录文档、测试、启动脚本、依赖目录、构建缓存、日志、数据库、开发工具目录、历史原型或 Git 元数据。执行方式：
+打包过程不会收录文档、测试、依赖目录、构建缓存、日志、开发工具目录、历史原型或 Git 元数据；服务脚本和运行数据库快照会随包交付。执行方式：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/package-submission.ps1
