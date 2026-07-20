@@ -35,53 +35,50 @@ function Copy-SubmissionDirectory {
     }
 }
 
-$sourceName = "lingshan-ai-digital-human-source"
-$sourceRoot = Join-Path $payloadRoot $sourceName
-New-Item -ItemType Directory -Force $sourceRoot | Out-Null
+$runtimeName = "lingshan-ai-digital-human-runtime"
+$runtimeRoot = Join-Path $payloadRoot $runtimeName
+New-Item -ItemType Directory -Force $runtimeRoot | Out-Null
 
 $rootFiles = @("README.md", "LICENSE")
 foreach ($relativePath in $rootFiles) {
     $source = Join-Path $projectRoot $relativePath
     if (Test-Path -LiteralPath $source) {
-        Copy-Item -LiteralPath $source -Destination (Join-Path $sourceRoot $relativePath) -Force
+        Copy-Item -LiteralPath $source -Destination (Join-Path $runtimeRoot $relativePath) -Force
     }
 }
 
 $sourceDirectories = @("frontend", "backend", "miniprogram", "rag-knowledge")
 foreach ($relativePath in $sourceDirectories) {
-    Copy-SubmissionDirectory $relativePath $sourceRoot
+    Copy-SubmissionDirectory $relativePath $runtimeRoot
 }
 
-$sourceReadme = @(
-    "Lingshan AI Digital Human Guide - Source Delivery",
+$runtimeReadme = @(
+    "Lingshan AI Digital Human Guide - Complete Runtime Delivery",
     "",
-    "This archive contains only the competition application source: frontend, backend, miniprogram, and knowledge base.",
-    "Excluded: Fay runtime, Live2D SDK, MCP services, auxiliary service projects, startup scripts, dependencies, caches, logs, databases, local tooling, source materials, prototypes, and Git metadata.",
+    "This archive contains the competition application source, miniprogram, knowledge base, and the built static web runtime under web/.",
+    "Excluded: documentation, Fay runtime, Live2D SDK, MCP services, auxiliary service projects, startup scripts, dependencies, caches, logs, databases, local tooling, source materials, prototypes, and Git metadata.",
     "",
     "Frontend: cd frontend; npm ci; npm run dev",
     "Backend: cd backend; npm ci; npm run dev",
     "Static build: cd frontend; npm ci; npm run build"
 ) -join [Environment]::NewLine
-Set-Content -Encoding UTF8 -Value $sourceReadme (Join-Path $sourceRoot "DELIVERY_NOTES.txt")
+Set-Content -Encoding UTF8 -Value $runtimeReadme (Join-Path $runtimeRoot "DELIVERY_NOTES.txt")
 
-$webName = "lingshan-ai-digital-human-web"
-$webRoot = Join-Path $payloadRoot $webName
+$webRoot = Join-Path $runtimeRoot "web"
 New-Item -ItemType Directory -Force $webRoot | Out-Null
 Copy-Item -Path (Join-Path $projectRoot "docs\app\*") -Destination $webRoot -Recurse -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot "docs\.nojekyll") -Destination (Join-Path $webRoot ".nojekyll") -Force
-$webReadme = @(
-    "Lingshan AI Digital Human Guide - Web Deployment",
-    "",
-    "Upload this directory to a static web server or GitHub Pages.",
-    "The frontend uses relative asset paths and retains built-in guide data when the API is unavailable."
-) -join [Environment]::NewLine
-Set-Content -Encoding UTF8 -Value $webReadme (Join-Path $webRoot "DEPLOYMENT_NOTES.txt")
 
-$sourceArchive = Join-Path $outputRoot "$sourceName.zip"
-$webArchive = Join-Path $outputRoot "$webName.zip"
-Remove-Item -LiteralPath $sourceArchive, $webArchive -Force -ErrorAction SilentlyContinue
-Compress-Archive -LiteralPath $sourceRoot -DestinationPath $sourceArchive -CompressionLevel Optimal
-Compress-Archive -LiteralPath $webRoot -DestinationPath $webArchive -CompressionLevel Optimal
+$runtimeArchive = Join-Path $outputRoot "$runtimeName.zip"
+$retiredArchives = @(
+    (Join-Path $outputRoot "lingshan-ai-digital-human-source.zip"),
+    (Join-Path $outputRoot "lingshan-ai-digital-human-web.zip")
+)
+Remove-Item -LiteralPath $runtimeArchive -Force -ErrorAction SilentlyContinue
+foreach ($archive in $retiredArchives) {
+    Remove-Item -LiteralPath $archive -Force -ErrorAction SilentlyContinue
+}
+Compress-Archive -LiteralPath $runtimeRoot -DestinationPath $runtimeArchive -CompressionLevel Optimal
 Remove-Item -LiteralPath $payloadRoot -Recurse -Force
 
-Get-Item $sourceArchive, $webArchive | Select-Object Name, Length, LastWriteTime
+Get-Item $runtimeArchive | Select-Object Name, Length, LastWriteTime
