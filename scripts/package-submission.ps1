@@ -39,10 +39,7 @@ $sourceName = "lingshan-ai-digital-human-source"
 $sourceRoot = Join-Path $payloadRoot $sourceName
 New-Item -ItemType Directory -Force $sourceRoot | Out-Null
 
-$rootFiles = @(
-    "README.md", "LICENSE", "requirements.txt", "main.py", "fay_booter.py", "fay_lite_server.py",
-    "config.json", "settings.json", "system.conf", "qa.csv", "verifier.json", "favicon.ico", "icon.png"
-)
+$rootFiles = @("README.md", "LICENSE")
 foreach ($relativePath in $rootFiles) {
     $source = Join-Path $projectRoot $relativePath
     if (Test-Path -LiteralPath $source) {
@@ -50,13 +47,7 @@ foreach ($relativePath in $rootFiles) {
     }
 }
 
-$sourceDirectories = @(
-    "frontend", "backend", "miniprogram", "rag-knowledge", "services", "scripts",
-    "official-materials",
-    "live2d-avatar", "ai_module", "asr", "config", "contracts",
-    "core", "faymcp", "gui", "llm", "mcp_servers", "scheduler", "simulation_engine",
-    "tts", "utils", "workflows"
-)
+$sourceDirectories = @("frontend", "backend", "miniprogram", "rag-knowledge")
 foreach ($relativePath in $sourceDirectories) {
     Copy-SubmissionDirectory $relativePath $sourceRoot
 }
@@ -64,8 +55,8 @@ foreach ($relativePath in $sourceDirectories) {
 $sourceReadme = @(
     "Lingshan AI Digital Human Guide - Source Delivery",
     "",
-    "This archive contains the runtime source, configuration, knowledge base, digital-human assets, and startup scripts.",
-    "Excluded: dependencies, caches, logs, databases, local tooling, duplicate source materials, optional Fay course archives, prototypes, and Git metadata.",
+    "This archive contains only the competition application source: frontend, backend, miniprogram, and knowledge base.",
+    "Excluded: Fay runtime, Live2D SDK, MCP services, auxiliary service projects, startup scripts, dependencies, caches, logs, databases, local tooling, source materials, prototypes, and Git metadata.",
     "",
     "Frontend: cd frontend; npm ci; npm run dev",
     "Backend: cd backend; npm ci; npm run dev",
