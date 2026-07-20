@@ -1,13 +1,15 @@
-# 提交包说明
+# Submission Packages
 
-`scripts/package-submission.ps1` 使用显式白名单生成一份完整运行交付包：
+Run `scripts/package-submission.ps1` to generate two delivery archives in `release/`:
 
-- 运行包：包含前后端、小程序、RAG、Fay、MCP、Live2D、外部 API 服务、必要配置、数据库快照、服务脚本和 `web/` 下的静态构建产物。
+- `lingshan-ai-digital-human-source.zip`: complete project runtime source, configuration, database snapshots, MCP integration, miniprogram, and static web output.
+- `lingshan-ai-digital-human-scripts.zip`: dependency installation, service startup, shutdown, status, health-check, and packaging scripts.
 
-打包过程不会收录文档、测试、依赖目录、构建缓存、日志、开发工具目录、历史原型或 Git 元数据；服务脚本和运行数据库快照会随包交付。执行方式：
+Both archives use the same top-level directory, `lingshan-ai-digital-human`. Extract both archives into the same destination so the `scripts/` directory merges with the source tree. Then run:
 
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/package-submission.ps1
+```bash
+bash scripts/install-dependencies.sh
+bash scripts/start-all.sh
 ```
 
-交付文件默认生成在 `release/`，该目录不纳入版本控制。
+The package process excludes documentation, tests, dependency directories, build caches, logs, local tools, prototypes, and Git metadata.

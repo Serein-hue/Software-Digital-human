@@ -35,9 +35,11 @@ function Copy-SubmissionDirectory {
     }
 }
 
-$runtimeName = "lingshan-ai-digital-human-runtime"
-$runtimeRoot = Join-Path $payloadRoot $runtimeName
-New-Item -ItemType Directory -Force $runtimeRoot | Out-Null
+$packageRootName = "lingshan-ai-digital-human"
+$sourceRoot = Join-Path (Join-Path $payloadRoot "source") $packageRootName
+$scriptsRoot = Join-Path (Join-Path $payloadRoot "scripts") $packageRootName
+New-Item -ItemType Directory -Force $sourceRoot | Out-Null
+New-Item -ItemType Directory -Force $scriptsRoot | Out-Null
 
 $rootFiles = @(
     "main.py", "fay_booter.py", "fay_lite_server.py", "requirements.txt",
@@ -47,7 +49,7 @@ $rootFiles = @(
 foreach ($relativePath in $rootFiles) {
     $source = Join-Path $projectRoot $relativePath
     if (Test-Path -LiteralPath $source) {
-        Copy-Item -LiteralPath $source -Destination (Join-Path $runtimeRoot $relativePath) -Force
+        Copy-Item -LiteralPath $source -Destination (Join-Path $sourceRoot $relativePath) -Force
     }
 }
 
@@ -56,15 +58,16 @@ $sourceDirectories = @(
     "live2d-avatar", "ai_module", "asr", "config", "contracts", "core",
     "faymcp", "fay_player_knowledge", "genagents", "gui", "llm", "mcp_servers",
     "scheduler", "simulation_engine", "tools", "tts", "utils", "workflows",
-    "official-materials", "memory", "scripts"
+    "official-materials", "memory"
 )
 foreach ($relativePath in $sourceDirectories) {
-    Copy-SubmissionDirectory $relativePath $runtimeRoot
+    Copy-SubmissionDirectory $relativePath $sourceRoot
 }
+Copy-SubmissionDirectory "scripts" $scriptsRoot
 
 # The local registry may contain development-only entries. The delivery archive
 # carries the MCP integration used by the scenic-guide runtime.
-$packagedMcpConfig = Join-Path $runtimeRoot "faymcp\data\mcp_servers.json"
+$packagedMcpConfig = Join-Path $sourceRoot "faymcp\data\mcp_servers.json"
 $runtimeMcpServers = @(
     [ordered]@{
         id = 1
@@ -85,35 +88,24 @@ $runtimeMcpServers = @(
 )
 $runtimeMcpServers | ConvertTo-Json -Depth 16 | Set-Content -LiteralPath $packagedMcpConfig -Encoding UTF8
 
-$runtimeReadme = @(
-    "Lingshan AI Digital Human Guide - Complete Runtime Delivery",
-    "",
-    "This archive contains the competition application, Fay runtime, MCP services, Live2D assets, RAG services, external API services, miniprogram, required configuration, seed inputs, and the built static web runtime under web/.",
-    "Excluded: documentation, tests, dependency directories, caches, logs, local tooling, prototypes, and Git metadata. Runtime database snapshots and service scripts are included.",
-    "",
-    "Install all service dependencies: bash scripts/install-dependencies.sh",
-    "Start all services: bash scripts/start-all.sh",
-    "Stop all services: bash scripts/stop-all.sh",
-    "Check service status: bash scripts/status.sh",
-    "Verify HTTP and MCP endpoints: powershell -ExecutionPolicy Bypass -File scripts/health-check.ps1"
-) -join [Environment]::NewLine
-Set-Content -Encoding UTF8 -Value $runtimeReadme (Join-Path $runtimeRoot "DELIVERY_NOTES.txt")
-
-$webRoot = Join-Path $runtimeRoot "web"
+$webRoot = Join-Path $sourceRoot "web"
 New-Item -ItemType Directory -Force $webRoot | Out-Null
 Copy-Item -Path (Join-Path $projectRoot "docs\app\*") -Destination $webRoot -Recurse -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot "docs\.nojekyll") -Destination (Join-Path $webRoot ".nojekyll") -Force
 
-$runtimeArchive = Join-Path $outputRoot "$runtimeName.zip"
+$sourceArchive = Join-Path $outputRoot "lingshan-ai-digital-human-source.zip"
+$scriptsArchive = Join-Path $outputRoot "lingshan-ai-digital-human-scripts.zip"
 $retiredArchives = @(
-    (Join-Path $outputRoot "lingshan-ai-digital-human-source.zip"),
+    (Join-Path $outputRoot "lingshan-ai-digital-human-runtime.zip"),
     (Join-Path $outputRoot "lingshan-ai-digital-human-web.zip")
 )
-Remove-Item -LiteralPath $runtimeArchive -Force -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath $sourceArchive -Force -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath $scriptsArchive -Force -ErrorAction SilentlyContinue
 foreach ($archive in $retiredArchives) {
     Remove-Item -LiteralPath $archive -Force -ErrorAction SilentlyContinue
 }
-Compress-Archive -LiteralPath $runtimeRoot -DestinationPath $runtimeArchive -CompressionLevel Optimal
+Compress-Archive -LiteralPath $sourceRoot -DestinationPath $sourceArchive -CompressionLevel Optimal
+Compress-Archive -LiteralPath $scriptsRoot -DestinationPath $scriptsArchive -CompressionLevel Optimal
 Remove-Item -LiteralPath $payloadRoot -Recurse -Force
 
-Get-Item $runtimeArchive | Select-Object Name, Length, LastWriteTime
+Get-Item $sourceArchive, $scriptsArchive | Select-Object Name, Length, LastWriteTime
